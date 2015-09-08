@@ -123,7 +123,8 @@ void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
         dataOnSch = par("dataOnSch").boolValue();
         dataPriority = par("dataPriority").longValue();
 
-        sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
+        //sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
+        sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT_minicurso);
 
         //simulate asynchronous channel access
         double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
@@ -268,7 +269,7 @@ WaveShortMessage*  BaseWaveApplLayer::prepareWSM(std::string name, int lengthBit
 	wsm->setSenderPos(curPosition);
 	wsm->setSerial(serial);
 
-	if (name == "beacon") {
+	if (name == "beacon_minicurso") {
 
 	    // Adicionado (Minicurso_UFPI)
 	    wsm->setRoadId(TraCIMobilityAccess().get(getParentModule()) ->getRoadId().c_str());
@@ -278,7 +279,11 @@ WaveShortMessage*  BaseWaveApplLayer::prepareWSM(std::string name, int lengthBit
 
 		DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
 	}
-	if (name == "data") {
+	else if (name == "beacon") {
+	    //
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+	}
+	else if (name == "data") {
 		DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
 	}
 	return wsm;
@@ -307,6 +312,9 @@ void BaseWaveApplLayer::handleLowerMsg(cMessage* msg) {
 	else if (std::string(wsm->getName()) == "data") {
 		onData(wsm);
 	}
+	else if (std::string(wsm->getName()) == "beacon_minicurso") {
+	    onBeacon(wsm);
+    }
 	else {
 		DBG << "unknown message (" << wsm->getName() << ")  received\n";
 	}
@@ -319,6 +327,11 @@ void BaseWaveApplLayer::handleSelfMsg(cMessage* msg) {
 			sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
 			scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
 			break;
+		}
+		case SEND_BEACON_EVT_minicurso: {
+		            sendWSM(prepareWSM("beacon_minicurso", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+		            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+		            break;
 		}
 		default: {
 			if (msg)

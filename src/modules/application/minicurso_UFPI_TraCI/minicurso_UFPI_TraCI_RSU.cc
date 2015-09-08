@@ -59,8 +59,8 @@ void minicurso_UFPI_TraCI_RSU::sendWSM(WaveShortMessage* wsm) {
 
 void minicurso_UFPI_TraCI_RSU::handleSelfMsg(cMessage* msg) {
     switch (msg->getKind()) {
-        case SEND_BEACON_EVT: {
-            sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+        case SEND_BEACON_EVT_minicurso: {
+            sendWSM(prepareWSM("beacon_minicurso", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
             scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
             break;
         }

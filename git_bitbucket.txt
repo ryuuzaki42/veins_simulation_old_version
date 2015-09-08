@@ -1,6 +1,7 @@
  $ mkdir /path/to/your/project
  $ cd /path/to/your/project
  $ echo "João Batista" >> contributors.txt
+ 
 git init
 git add .
 git commit -am 'Initial commit'
@@ -8,4 +9,5 @@ git config --global user.email joao2008batista@hotmail.com
 git config --global user.name "João Batista"
 git remote add origin https://ryuuzaki42@bitbucket.org/ryuuzaki42/simulation_veins.git
 git push -u origin master
+
  $git rm --cached README.MiXiM.txt
