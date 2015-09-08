@@ -1,0 +1,11 @@
+<routes>
+    <vType id="Car" length="2.50" maxSpeed="33.33" speedFactor="1.00" speedDev="0.10">
+        <carFollowing-Krauss accel="4.00" decel="5.00" sigma="0.00"/>
+    </vType>
+    <vehicle id="1" type="Car" depart="1">
+        <route edges="road1_in road1 road1_out"/>
+    </vehicle>
+    <vehicle id="2" type="Car" depart="1">
+        <route edges="road2_in road2 road2_out"/>
+    </vehicle>
+</routes>

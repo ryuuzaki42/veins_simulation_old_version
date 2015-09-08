@@ -1,0 +1,18 @@
+<edges>
+    <!--
+    <edge from="2_1" id="2_1to1" to="1" />
+    <edge from="2_3" id="2_3to3" to="3" />
+    <edge from="2_4" id="2_4to4" to="4" />
+    <edge from="2_5" id="2_5to5" to="5" />
+    -->
+    
+    <!--
+    <edge from="2" id="2to1" to="1" />
+    <edge from="2" id="2to3" to="3" />
+    <edge from="2" id="2to4" to="4" />
+    <edge from="2" id="2to5" to="5" />
+    -->
+    
+    <edge from="1" id="1to2" to="2" />
+    
+</edges>

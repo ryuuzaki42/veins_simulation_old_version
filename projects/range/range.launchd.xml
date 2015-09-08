@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!-- debug config -->
+<launch>
+   <copy file="range.net.xml" />
+   <copy file="range.rou.xml" />
+   <copy file="range.sumo.cfg" type="config" />
+</launch>

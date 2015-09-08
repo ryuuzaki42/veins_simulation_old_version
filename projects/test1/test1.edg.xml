@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/edges_file.xsd">
+  
+  <!--criacao das ligacoes entre os pontos criados no arquivo .nod -->  
+    <edge from="11a" id="11ato10a"  to="10a" numLanes="1"/> 
+    <edge from="10a" id="10ato9a"  to="9a"  numLanes="1"/>
+    <edge from="9a"  id="9ato8a"   to="8a"  numLanes="1"/>
+    <edge from="8a"  id="8ato7a"   to="7a"  numLanes="1"/>
+    <edge from="7a"  id="7ato6a"   to="6a"  numLanes="1"/>
+    <edge from="6a"  id="6ato5a"   to="5a"  numLanes="1"/>
+    <edge from="5a"  id="5ato4a"   to="4a"  numLanes="1"/>
+    <edge from="4a"  id="4ato3a"   to="3a"  numLanes="1"/>
+    <edge from="3a"  id="3ato2a"   to="2a"  numLanes="1"/>
+    <edge from="2a"  id="2ato1a"   to="1a"  numLanes="1"/>
+    
+    <edge from="1b"  id="1bto2b"   to="2b"  numLanes="1"/>
+    <edge from="2b"  id="2bto3b"   to="3b"  numLanes="1"/>
+    <edge from="3b"  id="3bto4b"   to="4b"  numLanes="1"/>
+    <edge from="4b"  id="4bto5b"   to="5b"  numLanes="1"/>
+    <edge from="5b"  id="5bto6b"   to="6b"  numLanes="1"/>
+    <edge from="6b"  id="6bto7b"   to="7b"  numLanes="1"/>
+    <edge from="7b"  id="7bto8b"   to="8b"  numLanes="1"/>
+    <edge from="8b"  id="8bto9b"   to="9b"  numLanes="1"/>
+    <edge from="9b"  id="9bto10b"  to="10b" numLanes="1"/>
+    <edge from="10b" id="10bto11b" to="11b" numLanes="1"/>  
+
+<!--
+ from right to left traffic flow 
+    <edge from="21a" id="21ato20a" to="20a" numLanes="3"/>
+    <edge from="20a" id="20ato19a" to="19a" numLanes="3"/>
+    <edge from="19a" id="19ato18a" to="18a" numLanes="3"/>
+    <edge from="18a" id="18ato17a" to="17a" numLanes="3"/>
+    <edge from="17a" id="17ato16a" to="16a" numLanes="3"/>
+    <edge from="16a" id="16ato15a" to="15a" numLanes="3"/>
+    <edge from="15a" id="15ato14a" to="14a" numLanes="3"/>
+    <edge from="14a" id="14ato13a" to="13a" numLanes="3"/>
+    <edge from="13a" id="13ato12a" to="12a" numLanes="3"/>
+    <edge from="12a" id="12ato11a" to="11a" numLanes="3"/>
+    <edge from="11a" id="11ato10a" to="10a" numLanes="3"/>
+    <edge from="10a" id="10ato9a"  to="9a"  numLanes="3"/>
+    <edge from="9a"  id="9ato8a"   to="8a"  numLanes="3"/>
+    <edge from="8a"  id="8ato7a"   to="7a"  numLanes="3"/>
+    <edge from="7a"  id="7ato6a"   to="6a"  numLanes="3"/>
+    <edge from="6a"  id="6ato5a"   to="5a"  numLanes="3"/>
+    <edge from="5a"  id="5ato4a"   to="4a"  numLanes="3"/>
+    <edge from="4a"  id="4ato3a"   to="3a"  numLanes="3"/>
+    <edge from="3a"  id="3ato2a"   to="2a"  numLanes="3"/>
+    <edge from="2a"  id="2ato1a"   to="1a"  numLanes="3"/>
+
+ from left to right traffic flow
+    <edge from="1b"  id="1bto2b"   to="2b"  numLanes="3"/>
+    <edge from="2b"  id="2bto3b"   to="3b"  numLanes="3"/>
+    <edge from="3b"  id="3bto4b"   to="4b"  numLanes="3"/>
+    <edge from="4b"  id="4bto5b"   to="5b"  numLanes="3"/>
+    <edge from="5b"  id="5bto6b"   to="6b"  numLanes="3"/>
+    <edge from="6b"  id="6bto7b"   to="7b"  numLanes="3"/>
+    <edge from="7b"  id="7bto8b"   to="8b"  numLanes="3"/>
+    <edge from="8b"  id="8bto9b"   to="9b"  numLanes="3"/>
+    <edge from="9b"  id="9bto10b"  to="10b" numLanes="3"/>
+    <edge from="10b" id="10bto11b" to="11b" numLanes="3"/>
+    <edge from="11b" id="11bto12b" to="12b" numLanes="3"/>
+    <edge from="12b" id="12bto13b" to="13b" numLanes="3"/>
+    <edge from="13b" id="13bto14b" to="14b" numLanes="3"/>
+    <edge from="14b" id="14bto15b" to="15b" numLanes="3"/>
+    <edge from="15b" id="15bto16b" to="16b" numLanes="3"/>
+    <edge from="16b" id="16bto17b" to="17b" numLanes="3"/>
+    <edge from="17b" id="17bto18b" to="18b" numLanes="3"/>
+    <edge from="18b" id="18bto19b" to="19b" numLanes="3"/>
+    <edge from="19b" id="19bto20b" to="20b" numLanes="3"/>
+    <edge from="20b" id="20bto21b" to="21b" numLanes="3"/>
+-->      
+</edges>                                          

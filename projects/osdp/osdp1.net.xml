@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Tue Feb 17 14:40:45 2015 by SUMO netconvert Version 0.21.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="osdp1.nod.xml"/>
+        <edge-files value="osdp1.edg.xml"/>
+    </input>
+
+    <output>
+        <output-file value="osdp1.net.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<net version="0.13" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="0.00,0.00,100001.00,100.00" origBoundary="0.00,0.00,100001.00,100.00" projParameter="!"/>
+
+    <edge id=":2_0" function="internal">
+        <lane id=":2_0_0" index="0" speed="33.33" length="0.10" shape="1.00,-4.95 1.00,-4.95"/>
+        <lane id=":2_0_1" index="1" speed="33.33" length="0.10" shape="1.00,-1.65 1.00,-1.65"/>
+    </edge>
+    <edge id=":3_0" function="internal">
+        <lane id=":3_0_0" index="0" speed="33.33" length="0.10" shape="100000.00,-4.95 100000.00,-4.95"/>
+        <lane id=":3_0_1" index="1" speed="33.33" length="0.10" shape="100000.00,-1.65 100000.00,-1.65"/>
+    </edge>
+    <edge id=":6_0" function="internal">
+        <lane id=":6_0_0" index="0" speed="33.33" length="0.10" shape="1.00,104.95 1.00,104.95"/>
+        <lane id=":6_0_1" index="1" speed="33.33" length="0.10" shape="1.00,101.65 1.00,101.65"/>
+    </edge>
+    <edge id=":7_0" function="internal">
+        <lane id=":7_0_0" index="0" speed="33.33" length="0.10" shape="100000.00,104.95 100000.00,104.95"/>
+        <lane id=":7_0_1" index="1" speed="33.33" length="0.10" shape="100000.00,101.65 100000.00,101.65"/>
+    </edge>
+
+    <edge id="road1" from="2" to="3" priority="-1">
+        <lane id="road1_0" index="0" speed="33.33" length="99999.00" shape="1.00,-4.95 100000.00,-4.95"/>
+        <lane id="road1_1" index="1" speed="33.33" length="99999.00" shape="1.00,-1.65 100000.00,-1.65"/>
+    </edge>
+    <edge id="road1_in" from="1" to="2" priority="-1">
+        <lane id="road1_in_0" index="0" speed="33.33" length="1.00" shape="0.00,-4.95 1.00,-4.95"/>
+        <lane id="road1_in_1" index="1" speed="33.33" length="1.00" shape="0.00,-1.65 1.00,-1.65"/>
+    </edge>
+    <edge id="road1_out" from="3" to="4" priority="-1">
+        <lane id="road1_out_0" index="0" speed="33.33" length="1.00" shape="100000.00,-4.95 100001.00,-4.95"/>
+        <lane id="road1_out_1" index="1" speed="33.33" length="1.00" shape="100000.00,-1.65 100001.00,-1.65"/>
+    </edge>
+    <edge id="road2" from="7" to="6" priority="-1">
+        <lane id="road2_0" index="0" speed="33.33" length="99999.00" shape="100000.00,104.95 1.00,104.95"/>
+        <lane id="road2_1" index="1" speed="33.33" length="99999.00" shape="100000.00,101.65 1.00,101.65"/>
+    </edge>
+    <edge id="road2_in" from="8" to="7" priority="-1">
+        <lane id="road2_in_0" index="0" speed="33.33" length="1.00" shape="100001.00,104.95 100000.00,104.95"/>
+        <lane id="road2_in_1" index="1" speed="33.33" length="1.00" shape="100001.00,101.65 100000.00,101.65"/>
+    </edge>
+    <edge id="road2_out" from="6" to="5" priority="-1">
+        <lane id="road2_out_0" index="0" speed="33.33" length="1.00" shape="1.00,104.95 0.00,104.95"/>
+        <lane id="road2_out_1" index="1" speed="33.33" length="1.00" shape="1.00,101.65 0.00,101.65"/>
+    </edge>
+
+    <junction id="1" type="unregulated" x="0.00" y="0.00" incLanes="" intLanes="" shape="-0.00,-0.05 -0.00,-6.55"/>
+    <junction id="2" type="priority" x="1.00" y="0.00" incLanes="road1_in_0 road1_in_1" intLanes=":2_0_0 :2_0_1" shape="1.00,-0.05 1.00,-6.55 1.00,-0.05">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="01" foes="01" cont="0"/>
+    </junction>
+    <junction id="3" type="priority" x="100000.00" y="0.00" incLanes="road1_0 road1_1" intLanes=":3_0_0 :3_0_1" shape="100000.00,-0.05 100000.00,-6.55 100000.00,-0.05">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="4" type="unregulated" x="100001.00" y="0.00" incLanes="road1_out_0 road1_out_1" intLanes="" shape="100001.00,-6.55 100001.00,-0.05"/>
+    <junction id="5" type="unregulated" x="0.00" y="100.00" incLanes="road2_out_0 road2_out_1" intLanes="" shape="0.00,106.55 0.00,100.05"/>
+    <junction id="6" type="priority" x="1.00" y="100.00" incLanes="road2_0 road2_1" intLanes=":6_0_0 :6_0_1" shape="1.00,106.55 1.00,100.05 1.00,106.55">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="01" foes="01" cont="0"/>
+    </junction>
+    <junction id="7" type="priority" x="100000.00" y="100.00" incLanes="road2_in_0 road2_in_1" intLanes=":7_0_0 :7_0_1" shape="100000.00,106.55 100000.00,100.05 100000.00,106.55">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="8" type="unregulated" x="100001.00" y="100.00" incLanes="" intLanes="" shape="100001.00,100.05 100001.00,106.55"/>
+
+    <connection from="road1" to="road1_out" fromLane="0" toLane="0" via=":3_0_0" dir="s" state="M"/>
+    <connection from="road1" to="road1_out" fromLane="1" toLane="1" via=":3_0_1" dir="s" state="M"/>
+    <connection from="road1_in" to="road1" fromLane="0" toLane="0" via=":2_0_0" dir="s" state="M"/>
+    <connection from="road1_in" to="road1" fromLane="1" toLane="1" via=":2_0_1" dir="s" state="M"/>
+    <connection from="road2" to="road2_out" fromLane="0" toLane="0" via=":6_0_0" dir="s" state="M"/>
+    <connection from="road2" to="road2_out" fromLane="1" toLane="1" via=":6_0_1" dir="s" state="M"/>
+    <connection from="road2_in" to="road2" fromLane="0" toLane="0" via=":7_0_0" dir="s" state="M"/>
+    <connection from="road2_in" to="road2" fromLane="1" toLane="1" via=":7_0_1" dir="s" state="M"/>
+
+    <connection from=":2_0" to="road1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":2_0" to="road1" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":3_0" to="road1_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":3_0" to="road1_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":6_0" to="road2_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":6_0" to="road2_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":7_0" to="road2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":7_0" to="road2" fromLane="1" toLane="1" dir="s" state="M"/>
+
+</net>
