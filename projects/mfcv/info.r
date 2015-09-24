@@ -1,5 +1,5 @@
 
-Message Forwarding by Categorization of Vehicle (MFCV)
+Message Forwarding by Categorization of Vehicles (MFCV)
 
 ## Link do pdf do minicurso
 http://www.eripi.ufpi.br/images/Minicursos/minicurso02.pdf
@@ -14,7 +14,7 @@ https://groups.google.com/forum/#!topic/omnetpp/7MzAR3iqy74
 Roniel - ronizsds@gmail.com
 
 ## criar net
-netconvert --node-files=range.nod.xml --edge-files=range.edg.xml --output-file=range.net.xml
+netconvert --node-files=mfcv.nod.xml --edge-files=mfcv.edg.xml --output-file=mfcv.net.xml
 
 ## FSPL formula
 https://en.wikipedia.org/wiki/Free-space_path_loss

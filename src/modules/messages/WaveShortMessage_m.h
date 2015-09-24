@@ -44,8 +44,19 @@
  *     string wsmData = "Some Data";
  * 
  *     // Adicionado (Minicurso_UFPI) - Send ID da pista e velocidade
+ *     // Current ID of the road, e. g., 1ato2b
  *     string roadId = "";
+ *     // current speed of vehicle - traci->getCurrentSpeed()
  *     double senderSpeed = 0.0;
+ * 
+ *     //
+ *     // Category of vehicle ( 1 to 10), 1 is bus, 2 is cab, ... need to complete 
+ *     int category = 0;
+ * 	// Path history of the vehicle, calculated from time to time
+ * 	//string pathHistory;
+ * 	// Radius of Gyration of the vehicle, calculated from time to time.
+ * 	// The vehicle send yours Radius of Gyration to another vehicles 
+ * 	//double radius_of_Gyration;
  * 
  *     int senderAddress = 0;
  *     int recipientAddress = -1;
@@ -69,6 +80,7 @@ class WaveShortMessage : public ::cPacket
     opp_string wsmData_var;
     opp_string roadId_var;
     double senderSpeed_var;
+    int category_var;
     int senderAddress_var;
     int recipientAddress_var;
     int serial_var;
@@ -114,6 +126,8 @@ class WaveShortMessage : public ::cPacket
     virtual void setRoadId(const char * roadId);
     virtual double getSenderSpeed() const;
     virtual void setSenderSpeed(double senderSpeed);
+    virtual int getCategory() const;
+    virtual void setCategory(int category);
     virtual int getSenderAddress() const;
     virtual void setSenderAddress(int senderAddress);
     virtual int getRecipientAddress() const;

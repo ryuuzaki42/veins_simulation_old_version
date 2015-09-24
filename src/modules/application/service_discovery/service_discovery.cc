@@ -97,23 +97,29 @@ void service_discovery::onBeacon(WaveShortMessage* wsm) {
 //Received messages from RSU or other vehicles doing query.
 //or from other vehicles answering to the query
 void service_discovery::onData(WaveShortMessage* wsm) {
-        opp_string s=wsm->getWsmData();
+        opp_string s = wsm->getWsmData();
         const char* opc = s.c_str();
-        std::string op1=opc;
+        std::string op1 = opc;
         std::string op2 = op1.substr(0,5);
         int x= strcmp (op2.c_str(),"query");
 
         if (x==0) {
             receiver=wsm->getSenderAddress();
+            //
+            std::cout << "\n\n wsm->getSenderAddress();" << wsm->getSenderAddress();
+            std::cout << "\n\n";
+
             queryService(s.c_str());
         }
         else {
             x= strcmp (op2.c_str(),"answe");
             if (x!=0) {
-                  insertService(s.c_str());  }
+                  insertService(s.c_str());
+            }
             else {
-                 receiver=wsm->getRecipientAddress();
-                 insertService2(s.c_str());}
+                 receiver = wsm->getRecipientAddress();
+                 insertService2(s.c_str());
+            }
         }
 }
 
@@ -131,8 +137,7 @@ void service_discovery::handleSelfMsg(cMessage* msg) {
                   break;
               }
               case SERVICE_QUERY_EVT : {
-                  if (cont_query== timeQuery / par("queryInterval").doubleValue())
-                  {
+                  if (cont_query== timeQuery / par("queryInterval").doubleValue()){
                       int service = (rand()%5);
                       std::stringstream ss;
                       ss << service;
@@ -147,9 +152,11 @@ void service_discovery::handleSelfMsg(cMessage* msg) {
                    sendMessage(qservice.c_str());
                    cont_query --;
                    if (cont_query > 0) {
-                           scheduleAt(simTime() + par("queryInterval").doubleValue(), serviceQueryEvt);}
-                   else  { qservice="query servicex";
-                           us_query.record(simTime());
+                           scheduleAt(simTime() + par("queryInterval").doubleValue(), serviceQueryEvt);
+                   }
+                   else  {
+                       qservice="query servicex";
+                       us_query.record(simTime());
                    }
                    break;
               }
@@ -200,7 +207,9 @@ void service_discovery::insertService(const char* serv){
                  else
                      cont3_adv.record(simTime());
            serviceExpiredEvt= new cMessage(serv, SERVICE_EXPIRED_EVT);
-           std::cout << speed << std::endl;
+
+           //std::cout << speed << std::endl;
+
            timeService = par("timeService").doubleValue()/speed;
            scheduleAt(simTime() + timeService, serviceExpiredEvt);
        }
@@ -214,7 +223,8 @@ void service_discovery::insertService2(const char* serv){
        std::string op4 = op3.substr(6, op3.length());
        for (int i=0; i< ns; i++) {
            x= strcmp (service[i].c_str(), op4.c_str());
-           if (x==0) exist=true;
+           if (x==0)
+               exist=true;
        }
        if (!exist){
            service[ns]=op4;

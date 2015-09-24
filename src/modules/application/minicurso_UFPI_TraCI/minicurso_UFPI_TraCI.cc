@@ -194,8 +194,8 @@ void minicurso_UFPI_TraCI::onData(WaveShortMessage* wsm) {
     }
     ++i;
     while(i < data.size()){
-            speed.push_back(data[i]);
-            ++i;
+        speed.push_back(data[i]);
+        ++i;
     }
     ++i;
     int msgId = atoi(messageIdentifier.c_str());
@@ -204,8 +204,8 @@ void minicurso_UFPI_TraCI::onData(WaveShortMessage* wsm) {
         sendMessage(wsm->getWsmData());
     }
     while(i < data.size()){
-            messageIdentifier.push_back(data[i]);
-            ++i;
+        messageIdentifier.push_back(data[i]);
+        ++i;
     }
     congestionTable[road].push_back(make_pair(simTime(),stod(speed,0)));
     if(road.compare(traci->getRoadId()) == 0)

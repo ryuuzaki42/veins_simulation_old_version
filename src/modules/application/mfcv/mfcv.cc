@@ -28,7 +28,9 @@ const simsignalwrap_t mfcv::parkingStateChangedSignal = simsignalwrap_t(TRACI_SI
 Define_Module(mfcv);
 
 void mfcv::initialize(int stage) {
+    //std::cout << "antes do BaseWaveApplLayer::initialize_mfcv(stage);";
 	BaseWaveApplLayer::initialize_mfcv(stage);
+    //std::cout << "depois do BaseWaveApplLayer::initialize_mfcv(stage);";
 	if (stage == 0) {
 		traci = TraCIMobilityAccess().get(getParentModule());
 		annotations = AnnotationManagerAccess().getIfExists();
@@ -44,31 +46,45 @@ void mfcv::initialize(int stage) {
 
 void mfcv::onBeacon(WaveShortMessage* wsm) {
 
-    DBG << "\n wsm:" << wsm;
-    DBG << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
-    DBG << "\n wsm->getRoadId():" << wsm->getRoadId();
-    DBG << "\n wsm->getFullName():" << wsm->getFullName();
-    DBG << "\n wsm->getWsmVersion():" << wsm->getWsmVersion();
-    DBG << "\n wsm->getSecurityType():" << wsm->getSecurityType();
-    DBG << "\n wsm->getChannelNumber():" << wsm->getChannelNumber();
-    DBG << "\n wsm->getDataRate():" << wsm->getDataRate();
-    DBG << "\n wsm->getPriority():" << wsm->getPriority();
-    DBG << "\n wsm->getPsid():" << wsm->getPsid();
-    DBG << "\n wsm->getPsc():" << wsm->getPsc();
-    DBG << "\n wsm->getTimestamp():" << wsm->getTimestamp();
-    DBG << "\n wsm->getSenderPos():" << wsm->getSenderPos();
-    DBG << "\n wsm->:getWsmLength():" << wsm->getWsmLength();
-    DBG << "\n wsm->:getWsmData():" << wsm->getWsmData();
-    DBG << "\n wsm->:getSenderSpeed():" << wsm->getSenderSpeed();
-    DBG << "\n wsm->:getSenderAddress():" << wsm->getSenderAddress();
-    DBG << "\n wsm->:getRecipientAddress():" << wsm->getRecipientAddress();
-    DBG << "\n wsm->getSerial():" << wsm->getSerial();
-    DBG << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
-    DBG << "\n wsm->getDisplayString():" << wsm->getDisplayString();
-    DBG << "\n wsm->getBitLength():" << wsm->getBitLength() << "\n\n";
-
     std::cout << "\n wsm:" << wsm;
+
+    std::cout << "\n teste-incio \n";
+    std::cout << "\n traci->getId():" << traci->getId();
+    std::cout << "\n sizeof(wsm):" << sizeof(wsm);
+    std::cout << "\n sizeof(int):" << sizeof(int);
+
+    cPacket* message = wsm;
+
+    WaveShortMessage wsm2;
+    //wsm2 = wsm;
+    //wsm->WaveShortMessage(wsm);
+    wsm2.setWsmData("asgkdjfklsjflkajsdfkljasdlkfjakdlfjasdlkfjalskdfjklasdjflkadsjfkljalkfjasdlkfaskldf");
+
+    cPacket* message2 = &wsm2;
+    std::cout << "\n wsm->getTotalMessageCount():" << wsm->detailedInfo();
+    //std::cout << "\n wsm->getTotalObjectCount():" << wsm->getTotalObjectCount();
+    //std::cout << "\n wsm->getgetTreeId():" << wsm->getTreeId();
+
+    string test_size;
+    //test_size = wsm;
+    std::cout << "\n test_size.length():" << test_size;
+    std::cout << "\n test_size.length():" << test_size.length();
+
+
+    //message->cMessage(dynamic_cast<cMessage*>(wsm));
+    std::cout << "\n message->getBitLength():" << message->getBitLength();
+    std::cout << "\n message->getByteLength():" << message->getByteLength();
+
+    std::cout << "\n message2->getByteLength():" << message2->getByteLength();
+    std::cout << "\n wsm2.getWsmData():" << wsm2.getWsmData();
+    std::cout << "\n wsm->getWsmData():" << wsm->getWsmData();
+
+
+    std::cout << "\n teste-fim \n";
+
     std::cout << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
+    std::cout << "\n traci->getRoadId():" << traci->getRoadId();
+    std::cout << "\n traci->getRoadId()[0]:" << traci->getRoadId()[0];
     std::cout << "\n wsm->getRoadId():" << wsm->getRoadId();
     std::cout << "\n wsm->getFullName():" << wsm->getFullName();
     std::cout << "\n wsm->getWsmVersion():" << wsm->getWsmVersion();
@@ -86,7 +102,6 @@ void mfcv::onBeacon(WaveShortMessage* wsm) {
     std::cout << "\n wsm->:getSenderAddress():" << wsm->getSenderAddress();
     std::cout << "\n wsm->:getRecipientAddress():" << wsm->getRecipientAddress();
     std::cout << "\n wsm->getSerial():" << wsm->getSerial();
-    std::cout << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
     std::cout << "\n wsm->getDisplayString():" << wsm->getDisplayString();
     std::cout << "\n wsm->getBitLength():" << wsm->getBitLength() << "\n\n";
 
@@ -101,14 +116,13 @@ void mfcv::onData(WaveShortMessage* wsm) {
 }
 
 void mfcv::sendMessage(std::string blockedRoadId) {
-	/*
     sentMessage = true;
 
 	t_channel channel = dataOnSch ? type_SCH : type_CCH;
 	WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
 	wsm->setWsmData(blockedRoadId.c_str());
 	sendWSM(wsm);
-	*/
+
 }
 void mfcv::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj) {
 	Enter_Method_Silent();
@@ -138,8 +152,7 @@ void mfcv::handlePositionUpdate(cObject* obj) {
 	if (traci->getSpeed() < 1) {
 		if (simTime() - lastDroveAt >= 10) {
 			findHost()->getDisplayString().updateWith("r=16,red");
-			if (!sentMessage)
-			    sendMessage(traci->getRoadId());
+			// if (!sentMessage) sendMessage(traci->getRoadId());
 		}
 	}
 	else {
@@ -151,7 +164,10 @@ void mfcv::sendWSM(WaveShortMessage* wsm) {
 	sendDelayedDown(wsm,individualOffset);
 }
 
-//
+//Handle Messages: Functions to be redefined by the programmer
+//These are the functions provided to add own functionality to your modules.
+//These functions are called whenever a blackboard message, a self message or a data message from the upper or lower layer arrives respectively.
+
 void mfcv::handleSelfMsg(cMessage* msg) {
     switch (msg->getKind()) {
         case SEND_BEACON_EVT: {
@@ -201,6 +217,27 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
     wsm->setPsid(0);
     wsm->setPriority(priority);
     wsm->setWsmVersion(1);
+
+    //
+    wsm->setRoadId(traci->getRoadId().c_str());
+    wsm->setSenderSpeed(traci->getSpeed());
+    std::cout << "\n traci->getSpeed():" << traci->getSpeed();
+    std::cout << "\n traci->getCurrentSpeed():" << traci->getCurrentSpeed();
+    std::cout << "\n traci->getSpeed():" << traci->getCurrentPosition();
+    // ver como definir o id, traci->getId()
+    int veh_id = traci->getId();
+    if (veh_id = 10) {
+         wsm->setCategory(1);
+     }
+    else if (veh_id = 16) {
+        wsm->setCategory(2);
+    }
+    /*
+    else {
+       wsm->setCategory(3)
+    }
+    */
+
     wsm->setTimestamp(simTime());
     wsm->setSenderAddress(myId);
     wsm->setRecipientAddress(rcvId);

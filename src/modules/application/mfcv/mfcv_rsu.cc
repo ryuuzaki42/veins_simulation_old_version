@@ -35,28 +35,6 @@ void mfcv_rsu::initialize(int stage) {
 }
 
 void mfcv_rsu::onBeacon(WaveShortMessage* wsm) {
-    DBG << "\n wsm:" << wsm;
-    DBG << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
-    DBG << "\n wsm->getRoadId():" << wsm->getRoadId();
-    DBG << "\n wsm->getFullName():" << wsm->getFullName();
-    DBG << "\n wsm->getWsmVersion():" << wsm->getWsmVersion();
-    DBG << "\n wsm->getSecurityType():" << wsm->getSecurityType();
-    DBG << "\n wsm->getChannelNumber():" << wsm->getChannelNumber();
-    DBG << "\n wsm->getDataRate():" << wsm->getDataRate();
-    DBG << "\n wsm->getPriority():" << wsm->getPriority();
-    DBG << "\n wsm->getPsid():" << wsm->getPsid();
-    DBG << "\n wsm->getPsc():" << wsm->getPsc();
-    DBG << "\n wsm->getTimestamp():" << wsm->getTimestamp();
-    DBG << "\n wsm->getSenderPos():" << wsm->getSenderPos();
-    DBG << "\n wsm->:getWsmLength():" << wsm->getWsmLength();
-    DBG << "\n wsm->:getWsmData():" << wsm->getWsmData();
-    DBG << "\n wsm->:getSenderSpeed():" << wsm->getSenderSpeed();
-    DBG << "\n wsm->:getSenderAddress():" << wsm->getSenderAddress();
-    DBG << "\n wsm->:getRecipientAddress():" << wsm->getRecipientAddress();
-    DBG << "\n wsm->getSerial():" << wsm->getSerial();
-    DBG << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
-    DBG << "\n wsm->getDisplayString():" << wsm->getDisplayString();
-    DBG << "\n wsm->getBitLength():" << wsm->getBitLength() << "\n\n";
 
     std::cout << "\n wsm:" << wsm;
     std::cout << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();

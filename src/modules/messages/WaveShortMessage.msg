@@ -45,9 +45,20 @@ packet WaveShortMessage {
 	string wsmData = "Some Data";
 	
 	// Adicionado (Minicurso_UFPI) - Send ID da pista e velocidade
+	// Current ID of the road, e. g., 1ato2b
 	string roadId = "";
+	// current speed of vehicle - traci->getCurrentSpeed()
 	double senderSpeed = 0.0;
-
+	
+	//
+	// Category of vehicle ( 1 to 10), 1 is bus, 2 is cab, ... need to complete 
+	int category = 0;
+	// Path history of the vehicle, calculated from time to time
+	//string pathHistory;
+	// Radius of Gyration of the vehicle, calculated from time to time.
+	// The vehicle send yours Radius of Gyration to another vehicles 
+	//double radius_of_Gyration;
+	
 	int senderAddress = 0;
 	int recipientAddress = -1;
 	int serial = 0;

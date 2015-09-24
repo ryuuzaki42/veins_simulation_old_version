@@ -1,40 +1,15 @@
-<routes>    
+<routes>
+    <route id="route1" edges="1ato2a 2ato3a 3ato4a 4ato5a 5ato6a 6ato7a 7ato8a 8ato9a 9ato10a 10ato11a"/>
+    <route id="route2" edges="11bto10b 10bto9b 9bto8b 8bto7b 7bto6b 6bto5b 5bto4b 4bto3b 3bto2b 2bto1b"/>
 
-    <!--
-    <vType accel="1.0" decel="1.0" id="Car" length="1.0" maxSpeed="1.0" sigma="0.5"  minGap="2.5"/>
-     
-    <route id="route1" edges="2_1to1"/>
-    <route id="route2" edges="2_3to3"/>
-    <route id="route3" edges="2_4to4"/>
-    <route id="route4" edges="2_5to5"/>
-    -->
-    
-    <!--
-    <vType accel="1.0" decel="1.0" id="Car" length="1.0" maxSpeed="1.0" sigma="0.5"  minGap="2.5"/>
-    
-    <route id="route1" edges="2to1"/>
-    <route id="route2" edges="2to3"/>
-    <route id="route3" edges="2to4"/>
-    <route id="route4" edges="2to5"/>
-    
-    <vehicle depart="0" id="veh1" route="route1" type="Car" />
-    <vehicle depart="0" id="veh2" route="route2" type="Car" />       
-    <vehicle depart="0" id="veh3" route="route3" type="Car" />        
-    <vehicle depart="0" id="veh4" route="route4" type="Car" />
-    -->
-    
-    <route id="route1" edges="1to2"/>
-    <vType accel="1.0" decel="1.0" id="Car1" length="1.0" maxSpeed="1.0" sigma="0.5"  minGap="2.5"/>
-    <!--<vType accel="1.0" decel="1.0" id="Car1" length="1.0" maxSpeed="1.0" sigma="0"  minGap="2.5"/> -->
-    
+    <vType accel="2.0" decel="2.0" id="Car1" length="2.5" maxSpeed="10.1" sigma="0.0"  minGap="2.5"/>
+    <vType accel="1.0" decel="1.0" id="Car2" length="2.5" maxSpeed="5.1" sigma="0.0"  minGap="2.5"/>
+
     <vehicle depart="0" id="veh0" route="route1" type="Car1" />
-
-    <vType accel="0.0" decel="0.0" id="Car2" length="1.0" maxSpeed="0.0" sigma="0.5"  minGap="2.5"/>
-    
-    <vehicle depart="0" id="veh1" route="route1" type="Car2" />
+    <vehicle depart="0" id="veh1" route="route2" type="Car2" />
 
 <!--
-    <vehicle depart="10" id="veh1" route="route1" type="Car1" />  
+    <vehicle depart="10" id="veh1" route="route1" type="Car1" />
     <vehicle depart="20" id="veh2" route="route1" type="Car1" />
     <vehicle depart="30" id="veh3" route="route1" type="Car1" />
     <vehicle depart="40" id="veh4" route="route1" type="Car1" />
@@ -44,5 +19,4 @@
     <vehicle depart="80" id="veh8" route="route1" type="Car1" />
     <vehicle depart="90" id="veh9" route="route1" type="Car1" />
 -->
-    
 </routes>

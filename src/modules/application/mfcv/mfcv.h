@@ -27,6 +27,9 @@
 using Veins::TraCIMobility;
 using Veins::AnnotationManager;
 
+// Adicionado (Minicurso_UFPI)
+using namespace std;
+
 /**
  * Small IVC Demo using 11p
  */
@@ -42,6 +45,11 @@ class mfcv : public BaseWaveApplLayer {
 		bool isParking;
 		bool sendWhileParking;
 		static const simsignalwrap_t parkingStateChangedSignal;
+
+		// Adicionado (Minicurso_UFPI)
+		//estrutura de dados com as velocidades recebidas dos vizinhos
+		vector<pair<simtime_t, double> > speedsList;
+
 	protected:
 		virtual void onBeacon(WaveShortMessage* wsm);
 		virtual void onData(WaveShortMessage* wsm);
