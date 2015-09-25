@@ -1,22 +1,32 @@
 <routes>
-    <route id="route1" edges="1ato2a 2ato3a 3ato4a 4ato5a 5ato6a 6ato7a 7ato8a 8ato9a 9ato10a 10ato11a"/>
-    <route id="route2" edges="11bto10b 10bto9b 9bto8b 8bto7b 7bto6b 6bto5b 5bto4b 4bto3b 3bto2b 2bto1b"/>
+    <route id="routea" edges="1ato2a 2ato3a 3ato4a 4ato5a 5ato6a 6ato7a 7ato8a 8ato9a 9ato10a 10ato11a"/>
+    <route id="routeb" edges="11bto10b 10bto9b 9bto8b 8bto7b 7bto6b 6bto5b 5bto4b 4bto3b 3bto2b 2bto1b"/>
+    <!--
+    <route id="routeb" edges="11bto10b 10bto9b 9bto8b 8bto7b 7bto6b 6bto5b 5bto4b 4bto3b 3bto2b 2bto1b">
+         <stop lane="11bto10b_0" endPos="3" duration="2000"/>
+    </route>
+    -->
 
-    <vType accel="2.0" decel="2.0" id="Car1" length="2.5" maxSpeed="10.1" sigma="0.0"  minGap="2.5"/>
-    <vType accel="1.0" decel="1.0" id="Car2" length="2.5" maxSpeed="5.1" sigma="0.0"  minGap="2.5"/>
+    <vType accel="2.0" decel="2.0" id="Car1" length="2.5" maxSpeed="5.1" sigma="0.0"  minGap="2.5" />
+    <vType accel="1.0" decel="1.0" id="Car2" length="2.5" maxSpeed="10.1" sigma="0.0"  minGap="2.5" />
 
-    <vehicle depart="0" id="veh0" route="route1" type="Car1" />
-    <vehicle depart="0" id="veh1" route="route2" type="Car2" />
+    <!-- <vType accel="1.0" decel="1.0" id="Car2" length="7.5" maxSpeed="5.1" sigma="0.0"  minGap="2.5" guiShape="bus" color= "0,1,0"/> -->
+    <!-- passenger/sedan, passenger/van, delivery, truck, truck/semitrailer, bus, rail (24.5) -->
+
+    <vehicle depart="0" id="veh1a" route="routea" type="Car1" >
+        <stop lane="1ato2a_0" endPos="3" until="2000" />
+    </vehicle>
+    <vehicle depart="0" id="veh1b" route="routeb" type="Car2" />
 
 <!--
-    <vehicle depart="10" id="veh1" route="route1" type="Car1" />
-    <vehicle depart="20" id="veh2" route="route1" type="Car1" />
-    <vehicle depart="30" id="veh3" route="route1" type="Car1" />
-    <vehicle depart="40" id="veh4" route="route1" type="Car1" />
-    <vehicle depart="50" id="veh5" route="route1" type="Car1" />
-    <vehicle depart="60" id="veh6" route="route1" type="Car1" />
-    <vehicle depart="70" id="veh7" route="route1" type="Car1" />
-    <vehicle depart="80" id="veh8" route="route1" type="Car1" />
-    <vehicle depart="90" id="veh9" route="route1" type="Car1" />
+    <vehicle depart="10" id="veh2a" route="routea" type="Car1" />
+    <vehicle depart="20" id="veh3a" route="routea" type="Car1" />
+    <vehicle depart="30" id="veh4a" route="routea" type="Car1" />
+    <vehicle depart="40" id="veh5a" route="routea" type="Car1" />
+    <vehicle depart="50" id="veh6a" route="routea" type="Car1" />
+    <vehicle depart="60" id="veh7a" route="routea" type="Car1" />
+    <vehicle depart="70" id="veh8a" route="routea" type="Car1" />
+    <vehicle depart="80" id="veh9a" route="routea" type="Car1" />
+    <vehicle depart="90" id="veh10a" route="routea" type="Car1" />
 -->
 </routes>

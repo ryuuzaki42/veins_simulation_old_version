@@ -1,23 +1,23 @@
 <edges>
-    <edge from="1a" id="1ato2a" to="2a" numLanes="1" speed="100" priority="1" />
-    <edge from="2a" id="2ato3a" to="3a" numLanes="1" speed="100" priority="1" />
-    <edge from="3a" id="3ato4a" to="4a" numLanes="1" speed="100" priority="1" />
-    <edge from="4a" id="4ato5a" to="5a" numLanes="1" speed="100" priority="1" />
-    <edge from="5a" id="5ato6a" to="6a" numLanes="1" speed="100" priority="1" />
-    <edge from="6a" id="6ato7a" to="7a" numLanes="1" speed="100" priority="1" />
-    <edge from="7a" id="7ato8a" to="8a" numLanes="1" speed="100" priority="1" />
-    <edge from="8a" id="8ato9a" to="9a" numLanes="1" speed="100" priority="1" />
-    <edge from="9a" id="9ato10a" to="10a" numLanes="1" speed="100" priority="1" />
-    <edge from="10a" id="10ato11a" to="11a" numLanes="1" speed="100" priority="1" />
+    <edge from="1a" id="1ato2a" to="2a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="2a" id="2ato3a" to="3a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="3a" id="3ato4a" to="4a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="4a" id="4ato5a" to="5a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="5a" id="5ato6a" to="6a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="6a" id="6ato7a" to="7a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="7a" id="7ato8a" to="8a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="8a" id="8ato9a" to="9a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="9a" id="9ato10a" to="10a" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="10a" id="10ato11a" to="11a" numLanes="1" speed="100" priority="1" width="3"/>
 
-    <edge from="11b" id="11bto10b" to="10b" numLanes="1" speed="100" priority="1" />
-    <edge from="10b" id="10bto9b" to="9b" numLanes="1" speed="100" priority="1" />
-    <edge from="9b" id="9bto8b" to="8b" numLanes="1" speed="100" priority="1" />
-    <edge from="8b" id="8bto7b" to="7b" numLanes="1" speed="100" priority="1" />
-    <edge from="7b" id="7bto6b" to="6b" numLanes="1" speed="100" priority="1" />
-    <edge from="6b" id="6bto5b" to="5b" numLanes="1" speed="100" priority="1" />
-    <edge from="5b" id="5bto4b" to="4b" numLanes="1" speed="100" priority="1" />
-    <edge from="4b" id="4bto3b" to="3b" numLanes="1" speed="100" priority="1" />
-    <edge from="3b" id="3bto2b" to="2b" numLanes="1" speed="100" priority="1" />
-    <edge from="2b" id="2bto1b" to="1b" numLanes="1" speed="100" priority="1" />
+    <edge from="11b" id="11bto10b" to="10b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="10b" id="10bto9b" to="9b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="9b" id="9bto8b" to="8b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="8b" id="8bto7b" to="7b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="7b" id="7bto6b" to="6b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="6b" id="6bto5b" to="5b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="5b" id="5bto4b" to="4b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="4b" id="4bto3b" to="3b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="3b" id="3bto2b" to="2b" numLanes="1" speed="100" priority="1" width="3"/>
+    <edge from="2b" id="2bto1b" to="1b" numLanes="1" speed="100" priority="1" width="3"/>
 </edges>

@@ -46,64 +46,7 @@ void mfcv::initialize(int stage) {
 
 void mfcv::onBeacon(WaveShortMessage* wsm) {
 
-    std::cout << "\n wsm:" << wsm;
-
-    std::cout << "\n teste-incio \n";
-    std::cout << "\n traci->getId():" << traci->getId();
-    std::cout << "\n sizeof(wsm):" << sizeof(wsm);
-    std::cout << "\n sizeof(int):" << sizeof(int);
-
-    cPacket* message = wsm;
-
-    WaveShortMessage wsm2;
-    //wsm2 = wsm;
-    //wsm->WaveShortMessage(wsm);
-    wsm2.setWsmData("asgkdjfklsjflkajsdfkljasdlkfjakdlfjasdlkfjalskdfjklasdjflkadsjfkljalkfjasdlkfaskldf");
-
-    cPacket* message2 = &wsm2;
-    std::cout << "\n wsm->getTotalMessageCount():" << wsm->detailedInfo();
-    //std::cout << "\n wsm->getTotalObjectCount():" << wsm->getTotalObjectCount();
-    //std::cout << "\n wsm->getgetTreeId():" << wsm->getTreeId();
-
-    string test_size;
-    //test_size = wsm;
-    std::cout << "\n test_size.length():" << test_size;
-    std::cout << "\n test_size.length():" << test_size.length();
-
-
-    //message->cMessage(dynamic_cast<cMessage*>(wsm));
-    std::cout << "\n message->getBitLength():" << message->getBitLength();
-    std::cout << "\n message->getByteLength():" << message->getByteLength();
-
-    std::cout << "\n message2->getByteLength():" << message2->getByteLength();
-    std::cout << "\n wsm2.getWsmData():" << wsm2.getWsmData();
-    std::cout << "\n wsm->getWsmData():" << wsm->getWsmData();
-
-
-    std::cout << "\n teste-fim \n";
-
-    std::cout << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
-    std::cout << "\n traci->getRoadId():" << traci->getRoadId();
-    std::cout << "\n traci->getRoadId()[0]:" << traci->getRoadId()[0];
-    std::cout << "\n wsm->getRoadId():" << wsm->getRoadId();
-    std::cout << "\n wsm->getFullName():" << wsm->getFullName();
-    std::cout << "\n wsm->getWsmVersion():" << wsm->getWsmVersion();
-    std::cout << "\n wsm->getSecurityType():" << wsm->getSecurityType();
-    std::cout << "\n wsm->getChannelNumber():" << wsm->getChannelNumber();
-    std::cout << "\n wsm->getDataRate():" << wsm->getDataRate();
-    std::cout << "\n wsm->getPriority():" << wsm->getPriority();
-    std::cout << "\n wsm->getPsid():" << wsm->getPsid();
-    std::cout << "\n wsm->getPsc():" << wsm->getPsc();
-    std::cout << "\n wsm->getTimestamp():" << wsm->getTimestamp();
-    std::cout << "\n wsm->getSenderPos():" << wsm->getSenderPos();
-    std::cout << "\n wsm->:getWsmLength():" << wsm->getWsmLength();
-    std::cout << "\n wsm->:getWsmData():" << wsm->getWsmData();
-    std::cout << "\n wsm->:getSenderSpeed():" << wsm->getSenderSpeed();
-    std::cout << "\n wsm->:getSenderAddress():" << wsm->getSenderAddress();
-    std::cout << "\n wsm->:getRecipientAddress():" << wsm->getRecipientAddress();
-    std::cout << "\n wsm->getSerial():" << wsm->getSerial();
-    std::cout << "\n wsm->getDisplayString():" << wsm->getDisplayString();
-    std::cout << "\n wsm->getBitLength():" << wsm->getBitLength() << "\n\n";
+    imprime_wsm(wsm);
 
 }
 
@@ -221,9 +164,8 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
     //
     wsm->setRoadId(traci->getRoadId().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
-    std::cout << "\n traci->getSpeed():" << traci->getSpeed();
-    std::cout << "\n traci->getCurrentSpeed():" << traci->getCurrentSpeed();
-    std::cout << "\n traci->getSpeed():" << traci->getCurrentPosition();
+    wsm->setVehicleId(traci->getId());
+
     // ver como definir o id, traci->getId()
     int veh_id = traci->getId();
     if (veh_id = 10) {
@@ -232,11 +174,10 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
     else if (veh_id = 16) {
         wsm->setCategory(2);
     }
-    /*
     else {
-       wsm->setCategory(3)
+       wsm->setCategory(10);
     }
-    */
+
 
     wsm->setTimestamp(simTime());
     wsm->setSenderAddress(myId);
@@ -245,21 +186,41 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
     wsm->setSerial(serial);
 
     if (name == "beacon") {
-
-        // Adicionado (Minicurso_UFPI)
-        //wsm->setRoadId(TraCIMobilityAccess().get(getParentModule()) ->getRoadId().c_str());
-        //wsm->setSenderSpeed(TraCIMobilityAccess(). get(getParentModule())->getSpeed());
-
-       //DBG << "\n ttt" << wsm->getSenderSpeed() << " ttt\n";
-
         DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
     }
     else if (name == "beacon_node") {
         DBG << "Creating Beacon_node with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
-
     }
     else if (name == "data") {
         DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
     }
     return wsm;
+}
+
+void mfcv::imprime_wsm(WaveShortMessage* wsm) {
+
+    std::cout << "\n\n wsm:" << wsm;
+    std::cout << "\n traci->getId():" << traci->getId();
+    std::cout << "\n wsm->getVehicleId():" << wsm->getVehicleId();
+    std::cout << "\n wsm->getId():" << wsm->getId();
+    std::cout << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
+    std::cout << "\n traci->getRoadId():" << traci->getRoadId();
+    std::cout << "\n wsm->getRoadId():" << wsm->getRoadId();
+    std::cout << "\n wsm->getWsmVersion():" << wsm->getWsmVersion();
+    std::cout << "\n wsm->getSecurityType():" << wsm->getSecurityType();
+    std::cout << "\n wsm->getChannelNumber():" << wsm->getChannelNumber();
+    std::cout << "\n wsm->getDataRate():" << wsm->getDataRate();
+    std::cout << "\n wsm->getPriority():" << wsm->getPriority();
+    std::cout << "\n wsm->getPsid():" << wsm->getPsid();
+    std::cout << "\n wsm->getPsc():" << wsm->getPsc();
+    std::cout << "\n wsm->getTimestamp():" << wsm->getTimestamp();
+    std::cout << "\n wsm->getSenderPos():" << wsm->getSenderPos();
+    std::cout << "\n wsm->:getSenderSpeed():" << wsm->getSenderSpeed();
+    std::cout << "\n wsm->:getWsmLength():" << wsm->getWsmLength();
+    std::cout << "\n wsm->:getWsmData():" << wsm->getWsmData();
+    std::cout << "\n wsm->:getSenderAddress():" << wsm->getSenderAddress();
+    std::cout << "\n wsm->:getRecipientAddress():" << wsm->getRecipientAddress();
+    std::cout << "\n wsm->getSerial():" << wsm->getSerial();
+    std::cout << "\n wsm->getDisplayString():" << wsm->getDisplayString();
+    std::cout << "\n wsm->getBitLength():" << wsm->getBitLength();
 }

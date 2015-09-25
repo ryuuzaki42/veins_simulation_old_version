@@ -61,6 +61,7 @@ class mfcv : public BaseWaveApplLayer {
 		virtual void handleSelfMsg(cMessage* msg);
 		virtual void handleLowerMsg(cMessage* msg);
 		virtual WaveShortMessage* prepareWSM_node(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+		virtual void imprime_wsm(WaveShortMessage* wsm);
 };
 
 #endif
