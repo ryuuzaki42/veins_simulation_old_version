@@ -1,0 +1,12 @@
+<map id="ChannelInfo::canDiscardInterval" name="ChannelInfo::canDiscardInterval">
+<area shape="rect" id="node2" href="$class_channel_info.html#a002d7a0fff6734bdb6d8ddebf799f7f5" title="Moves a previously active AirFrame to the inactive AirFrames. " alt="" coords="503,13,692,39"/>
+<area shape="rect" id="node11" href="$class_channel_info.html#a1ffb197c5bf86824cd04313da5e9e4ed" title="Checks if any information inside the passed interval can be discarded. " alt="" coords="263,35,455,76"/>
+<area shape="rect" id="node3" href="$class_channel_info.html#af9ee0be843528ee913df218f73d4d713" title="Tells the ChannelInfo that an AirFrame is over. " alt="" coords="740,13,936,39"/>
+<area shape="rect" id="node4" href="$class_base_phy_layer.html#a4f8fde562c0004b498fc3294c3f54c2f" title="Handles incoming AirFrames with the state END_RECEIVE. " alt="" coords="984,5,1191,47"/>
+<area shape="rect" id="node5" href="$class_base_phy_layer.html#a8d6f371fa6ea6ca89cb78764a05f31dd" title="Handles messages received from the channel (probably AirFrames). " alt="" coords="1748,34,1955,61"/>
+<area shape="rect" id="node9" href="$class_base_phy_layer.html#a9dbbcf0004b22c622ec4b06a19b4f564" title="Handles incoming AirFrames with the state RECEIVING. " alt="" coords="1239,35,1445,76"/>
+<area shape="rect" id="node6" href="$class_base_phy_layer.html#a3880154c8db8b8efb5315cb6ef8f6c41" title="OMNeT++ handle message function. " alt="" coords="2239,38,2445,65"/>
+<area shape="rect" id="node7" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="2003,27,2191,68"/>
+<area shape="rect" id="node8" href="$class_base_phy_layer.html#a17088ad93f59e143ff6c7ba866a31982" title="Handles self scheduled messages. " alt="" coords="2009,92,2185,133"/>
+<area shape="rect" id="node10" href="$class_base_phy_layer.html#a671f083680882230b754b7e9578e6274" title="Handles incoming AirFrames with the state START_RECEIVE. " alt="" coords="1493,85,1700,127"/>
+</map>

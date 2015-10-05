@@ -1,0 +1,7 @@
+<map id="ChannelInfo::startRecording" name="ChannelInfo::startRecording">
+<area shape="rect" id="node2" href="$class_base_phy_layer.html#a6866e3f79df84cdb5550a51d6502463f" title="Handles reception of a ChannelSenseRequest by forwarding it to the decider and scheduling it to the p..." alt="" coords="239,71,440,112"/>
+<area shape="rect" id="node3" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="488,5,676,47"/>
+<area shape="rect" id="node4" href="$class_base_phy_layer.html#a17088ad93f59e143ff6c7ba866a31982" title="Handles self scheduled messages. " alt="" coords="494,71,670,112"/>
+<area shape="rect" id="node6" href="$class_base_phy_layer.html#a4cab267d310b5fd6cefe613fc8dfe71d" title="Handles messages received from the upper layer through the control gate. " alt="" coords="488,136,676,177"/>
+<area shape="rect" id="node5" href="$class_base_phy_layer.html#a3880154c8db8b8efb5315cb6ef8f6c41" title="OMNeT++ handle message function. " alt="" coords="724,111,931,138"/>
+</map>

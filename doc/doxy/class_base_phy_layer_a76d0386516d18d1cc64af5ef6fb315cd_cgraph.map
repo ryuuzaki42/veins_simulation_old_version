@@ -1,0 +1,5 @@
+<map id="BasePhyLayer::sendControlMsgToMac" name="BasePhyLayer::sendControlMsgToMac">
+<area shape="rect" id="node2" href="$class_channel_info.html#a5b1b8d56aa2fa64b5d79c0cf5c3167a9" title="Returns true if ChannelInfo is currently recording. " alt="" coords="247,5,416,32"/>
+<area shape="rect" id="node3" href="$class_channel_info.html#a884277584d1abf73eaca5df0c61e08c9" title="Tells ChannelInfo to stop recording Information from now on. " alt="" coords="239,56,423,83"/>
+<area shape="rect" id="node4" href="$class_base_phy_layer.html#aaa439e85a8bc20a39477055aecf04993" title="Sends the passed control message to the upper layer. " alt="" coords="239,107,424,149"/>
+</map>

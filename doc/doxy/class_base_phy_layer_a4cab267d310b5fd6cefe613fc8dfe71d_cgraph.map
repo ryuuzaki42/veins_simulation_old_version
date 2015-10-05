@@ -1,0 +1,7 @@
+<map id="BasePhyLayer::handleUpperControlMessage" name="BasePhyLayer::handleUpperControlMessage">
+<area shape="rect" id="node2" href="$class_base_phy_layer.html#a6866e3f79df84cdb5550a51d6502463f" title="Handles reception of a ChannelSenseRequest by forwarding it to the decider and scheduling it to the p..." alt="" coords="241,89,443,131"/>
+<area shape="rect" id="node3" href="$class_decider.html#a93548ff29f4d880ed488785509dd4dd9" title="This function is called by the PhyLayer to hand over a ChannelSenseRequest. " alt="" coords="501,5,699,47"/>
+<area shape="rect" id="node4" href="$class_base_phy_layer.html#aa59aef501cadd36c94d4f82efe9b64be" title="Schedule self message to passed point in time. " alt="" coords="491,71,709,98"/>
+<area shape="rect" id="node5" href="$class_channel_info.html#a5b1b8d56aa2fa64b5d79c0cf5c3167a9" title="Returns true if ChannelInfo is currently recording. " alt="" coords="515,122,685,149"/>
+<area shape="rect" id="node6" href="$class_channel_info.html#abab4a17344f3b254693ed34309c6466f" title="Tells ChannelInfo to keep from now on all channel information until the passed time in history..." alt="" coords="507,173,693,199"/>
+</map>

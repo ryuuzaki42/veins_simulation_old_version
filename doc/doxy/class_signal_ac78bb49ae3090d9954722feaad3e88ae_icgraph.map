@@ -1,0 +1,3 @@
+<map id="Signal::getReceptionModule" name="Signal::getReceptionModule">
+<area shape="rect" id="node2" href="$class_signal.html#a3de107a6c7b0283bb79b7e641616b26c" title="Returns pointers to the gate from which the signal was sent and on which gate it arrived. " alt="" coords="239,5,409,32"/>
+</map>

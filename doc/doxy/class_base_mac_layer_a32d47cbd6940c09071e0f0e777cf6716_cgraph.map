@@ -1,0 +1,7 @@
+<map id="BaseMacLayer::encapsMsg" name="BaseMacLayer::encapsMsg">
+<area shape="rect" id="node2" href="$class_base_mac_layer.html#a64013bf689c9da4e79fa48116e14730e" title="Extracts the MAC address from the &quot;control info&quot; structure (object). " alt="" coords="237,5,473,47"/>
+<area shape="rect" id="node5" href="$class_mac_pkt.html#a72fd30a2a508d10258c3fddd7167549d" title="MacPkt::setDestAddr" alt="" coords="281,71,429,98"/>
+<area shape="rect" id="node6" href="$class_mac_pkt.html#adbb8351e4adc8c8bc3d8147a80d9917f" title="MacPkt::setSrcAddr" alt="" coords="285,122,425,149"/>
+<area shape="rect" id="node3" href="$class_netw_to_mac_control_info.html#add42e098a1af72c3fbc8be746d04b27f" title="Extracts the MAC address from the &quot;control info&quot; structure (object). " alt="" coords="521,5,692,47"/>
+<area shape="rect" id="node4" href="$class_netw_to_mac_control_info.html#a19518c8f5ccf35d44a2813a922e214ef" title="NetwToMacControlInfo\l::getDest" alt="" coords="740,5,897,47"/>
+</map>

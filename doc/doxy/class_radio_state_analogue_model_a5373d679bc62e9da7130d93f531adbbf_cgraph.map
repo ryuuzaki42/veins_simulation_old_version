@@ -1,0 +1,6 @@
+<map id="RadioStateAnalogueModel::filterSignal" name="RadioStateAnalogueModel::filterSignal">
+<area shape="rect" id="node2" href="$class_veins_1_1_air_frame.html#a50cfde43def85076f0ba2e9ad16d18a4" title="Veins::AirFrame::getSignal" alt="" coords="229,5,408,32"/>
+<area shape="rect" id="node3" href="$class_signal.html#a7c4710243cf87caf7dfc9f313e2619b2" title="Returns the point in time when the receiving of the Signal started at the receiver module..." alt="" coords="233,56,404,83"/>
+<area shape="rect" id="node4" href="$class_signal.html#a2875223239e124d85949e1116cc12ae9" title="Returns the point in time when the receiving of the Signal ended at the receiver module. " alt="" coords="235,107,402,133"/>
+<area shape="rect" id="node5" href="$class_signal.html#a0beeef0f27c33145a0fca521df1c5f5c" title="Adds a function representing an attenuation of the signal. " alt="" coords="242,157,395,184"/>
+</map>

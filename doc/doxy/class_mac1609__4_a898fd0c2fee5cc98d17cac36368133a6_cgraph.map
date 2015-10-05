@@ -1,0 +1,15 @@
+<map id="Mac1609_4::initialize" name="Mac1609_4::initialize">
+<area shape="rect" id="node2" href="$class_base_mac_layer.html#a61c82dc3b225eac37f7fa9936c28c2c3" title="Initialization of the module and some variables. " alt="" coords="215,144,379,171"/>
+<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="466,5,649,32"/>
+<area shape="rect" id="node10" href="$class_mac1609__4.html#a803d37e17046e2f7a46e7993406f390d" title="Mac1609_4::setParameters\lForBitrate" alt="" coords="206,195,389,237"/>
+<area shape="rect" id="node11" href="$class_mac1609__4.html#aae66bc58b1e0a8bb64accea786b20756" title="Set a state for the channel selecting operation. " alt="" coords="197,261,397,288"/>
+<area shape="rect" id="node12" href="$class_mac1609__4.html#a1c6717faaa6b882f1d68153a4a22ae62" title="Mac1609_4::channelIdle" alt="" coords="216,341,379,368"/>
+<area shape="rect" id="node3" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="488,56,627,83"/>
+<area shape="rect" id="node4" href="$class_mac_to_phy_interface.html#adf27aa5a5e5cbee6f8be1ec58cb9306f" title="Returns the length of the phy header in bits. " alt="" coords="485,107,629,149"/>
+<area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="482,173,633,200"/>
+<area shape="rect" id="node8" href="$class_addressing_interface.html#a7d81614e8dea6e3a7316184e6b9e959c" title="Returns the L2 address for the passed mac. " alt="" coords="488,225,627,266"/>
+<area shape="rect" id="node9" href="$class_base_mac_layer.html#adc87295362ca7859cb6fe2a5bbe3c90d" title="Registers this bridge&#39;s NIC with INET&#39;s InterfaceTable. " alt="" coords="452,291,663,317"/>
+<area shape="rect" id="node7" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="717,173,864,200"/>
+<area shape="rect" id="node13" href="$class_mac1609__4.html#a41a9c4025c9840048f72a0d758230af8" title="Mac1609_4::timeLeftTillGuardOver" alt="" coords="445,341,669,368"/>
+<area shape="rect" id="node14" href="$class_mac1609__4.html#a621bca21c2e13d7312361fd86d648a2e" title="Mac1609_4::guardActive" alt="" coords="474,392,641,419"/>
+</map>

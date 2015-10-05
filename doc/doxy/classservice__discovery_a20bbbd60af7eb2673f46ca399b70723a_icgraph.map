@@ -1,0 +1,5 @@
+<map id="service_discovery::sendMessage" name="service_discovery::sendMessage">
+<area shape="rect" id="node2" href="$classservice__discovery.html#a56dbb650c091f9721d2fd56326f19aee" title="handle self messages " alt="" coords="188,5,323,47"/>
+<area shape="rect" id="node3" href="$classservice__discovery.html#affa113a945984eeb926f08efd54d7077" title="service_discovery::\lqueryService" alt="" coords="188,71,323,112"/>
+<area shape="rect" id="node4" href="$classservice__discovery.html#a1c17ba9a9fd81600d74f1d8fb5b12826" title="service_discovery::\lonData" alt="" coords="371,71,505,112"/>
+</map>

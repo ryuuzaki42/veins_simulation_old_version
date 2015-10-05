@@ -1,0 +1,19 @@
+<map id="Veins::TraCIMobility::commandChangeVehicleRoute" name="Veins::TraCIMobility::commandChangeVehicleRoute">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#a180ae1e009f8c81f66a167e21b7b5b89" title="Veins::TraCIMobility\l::getCommandInterface" alt="" coords="288,71,447,112"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_command_interface.html#a574015e5fb2e460634f28ef510d6f8cb" title="Veins::TraCICommandInterface\l::changeVehicleRoute" alt="" coords="264,161,471,203"/>
+<area shape="rect" id="node18" href="$class_veins_1_1_tra_c_i_mobility.html#a5d901e593ed0fcb4ee5214564f81ed95" title="Veins::TraCIMobility\l::getExternalId" alt="" coords="297,227,438,268"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_mobility.html#a9112501e8dffb3ef22fc5c571a016ed1" title="Veins::TraCIMobility\l::getManager" alt="" coords="551,71,693,112"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_scenario_manager.html#af9d96f6e40de409df2f1d04b617433d5" title="Veins::TraCIScenarioManager\l::getCommandInterface" alt="" coords="523,5,721,47"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_scenario_manager_access.html#af6404515b1b992848f352b03d325b10d" title="Veins::TraCIScenarioManager\lAccess::get" alt="" coords="778,71,975,112"/>
+<area shape="rect" id="node5" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="1028,78,1225,105"/>
+<area shape="rect" id="node6" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="1276,78,1459,105"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_command_interface.html#a90a053e718c42f191f9516da25a9e156" title="Veins::TraCICommandInterface\l::getEdgeId" alt="" coords="519,188,725,229"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_tra_c_i_connection.html#ac0f5129ad1e50365588ec39112432c7d" title="sends a single command via TraCI, checks status response, returns additional responses ..." alt="" coords="1045,181,1208,223"/>
+<area shape="rect" id="node17" href="$class_veins_1_1_tra_c_i_buffer.html#a0065f3b4bf17cac8e10dc94b551eb9f8" title="Veins::TraCIBuffer::eof" alt="" coords="1048,251,1205,278"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_command_interface.html#adfa71f32d366ee0b702a4a59f822a0a4" title="Veins::TraCICommandInterface\l::genericGetString" alt="" coords="773,188,980,229"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_connection.html#aaf6acde79a0ba73113c46ea92bd567d2" title="sends a message via TraCI (after adding the header) " alt="" coords="1286,181,1449,223"/>
+<area shape="rect" id="node15" href="$namespace_veins.html#ab52db5bfe6d9095440c0b0ac309bb99d" title="returns byte&#45;buffer containing a TraCI command with optional parameters " alt="" coords="1273,130,1461,157"/>
+<area shape="rect" id="node16" href="$class_veins_1_1_tra_c_i_connection.html#a634ce6c27d5e98f7d96f65706f3460df" title="receives a message via TraCI (and strips the header) " alt="" coords="1286,247,1449,288"/>
+<area shape="rect" id="node13" href="$namespace_veins.html#a6eeefaf3bbdaff6c10cfcd01200016d3" title="Veins::socket" alt="" coords="1535,218,1638,245"/>
+<area shape="rect" id="node14" href="$class_veins_1_1_tra_c_i_buffer.html#ae0833eeb81079e14eed3f13d0ae5d2b3" title="Veins::TraCIBuffer::str" alt="" coords="1509,161,1664,187"/>
+</map>

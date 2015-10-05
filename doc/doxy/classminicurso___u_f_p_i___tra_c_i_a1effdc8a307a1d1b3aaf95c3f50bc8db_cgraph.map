@@ -1,0 +1,9 @@
+<map id="minicurso_UFPI_TraCI::receiveSignal" name="minicurso_UFPI_TraCI::receiveSignal">
+<area shape="rect" id="node2" href="$classminicurso___u_f_p_i___tra_c_i.html#afbdb7dd78a869416c7b02336667befa2" title="minicurso_UFPI_TraCI\l::handlePositionUpdate" alt="" coords="209,20,367,61"/>
+<area shape="rect" id="node4" href="$classminicurso___u_f_p_i___tra_c_i.html#a36ed88e038d964af69e8ee33c471c16e" title="minicurso_UFPI_TraCI\l::handleParkingUpdate" alt="" coords="210,115,366,156"/>
+<area shape="rect" id="node3" href="$class_base_wave_appl_layer.html#a7e2f6b90747de344330137567d30fe65" title="BaseWaveApplLayer::\lhandlePositionUpdate" alt="" coords="437,5,589,47"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_tra_c_i_mobility.html#ac730da06609e16bbf5ce9e8588c0c388" title="Veins::TraCIMobility\l::getParkingState" alt="" coords="443,71,584,112"/>
+<area shape="rect" id="node6" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="415,137,612,163"/>
+<area shape="rect" id="node8" href="$class_base_mobility.html#a43e40c6e56445ca9439d7d44a37b12c1" title="Returns the current position at the current simulation time. " alt="" coords="430,188,597,229"/>
+<area shape="rect" id="node7" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="660,137,843,163"/>
+</map>

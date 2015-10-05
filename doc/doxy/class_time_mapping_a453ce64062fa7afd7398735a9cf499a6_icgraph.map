@@ -1,0 +1,4 @@
+<map id="TimeMapping::setValue" name="TimeMapping::setValue">
+<area shape="rect" id="node2" href="$class_p_e_r_model.html#ab571e93f422b0e6a299cee2c2b886bc0" title="Has to be overriden by every implementation. " alt="" coords="220,5,375,32"/>
+<area shape="rect" id="node3" href="$class_breakpoint_pathloss_model.html#a50fed0d02ee407b1ab602a6c203cfd83" title="Filters a specified AirFrame&#39;s Signal by adding an attenuation over time to the Signal. " alt="" coords="212,57,383,98"/>
+</map>

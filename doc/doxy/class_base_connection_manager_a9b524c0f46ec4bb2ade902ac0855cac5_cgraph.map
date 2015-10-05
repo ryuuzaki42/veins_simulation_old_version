@@ -1,0 +1,4 @@
+<map id="BaseConnectionManager::fillUnionWithNeighbors" name="BaseConnectionManager::fillUnionWithNeighbors">
+<area shape="rect" id="node2" href="$class_base_connection_manager.html#a77e53c22a7c607482398632b85396a6c" title="If the value is outside of its bounds (zero and max) this function returns &#45;1 if useTorus is false an..." alt="" coords="221,5,389,47"/>
+<area shape="rect" id="node3" href="$class_base_connection_manager_1_1_coord_set.html#aaa3c6a4f31789b4644a5bb7aaf414206" title="Adds a GridCoord to the set. " alt="" coords="221,71,389,112"/>
+</map>

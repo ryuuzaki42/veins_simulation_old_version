@@ -1,0 +1,4 @@
+<map id="MappingUtils::addDiscontinuity" name="MappingUtils::addDiscontinuity">
+<area shape="rect" id="node2" href="$class_base_mac_layer.html#a23ed373dcfd98255df5f5ffa7e30eec6" title="Creates a simple Mapping with a constant curve progression at the passed value and discontinuities at..." alt="" coords="256,5,468,47"/>
+<area shape="rect" id="node3" href="$class_base_mac_layer.html#a28ca155ff241c3e202a94724cc87b232" title="Creates a simple Signal defined over time with the passed parameters. " alt="" coords="516,13,705,39"/>
+</map>

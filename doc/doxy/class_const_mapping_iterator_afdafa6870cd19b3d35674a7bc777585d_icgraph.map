@@ -1,0 +1,32 @@
+<map id="ConstMappingIterator::next" name="ConstMappingIterator::next">
+<area shape="rect" id="node2" href="$class_s_n_r_threshold_decider.html#a1d796e2f0da1c41810c5f2c5b4cfcd2e" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="221,5,387,47"/>
+<area shape="rect" id="node4" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="1199,71,1412,98"/>
+<area shape="rect" id="node6" href="$class_mapping_utils.html#a6d524e08add1a4a02d7e37425783b094" title="MappingUtils::createCompatible\lMapping" alt="" coords="200,224,408,265"/>
+<area shape="rect" id="node7" href="$class_filled_up_mapping.html#aa090d76ebccf9be3283594989b528ba7" title="FilledUpMapping::FilledUp\lMapping" alt="" coords="217,289,391,331"/>
+<area shape="rect" id="node8" href="$class_mapping_utils.html#afbe1a1e1d2becd66d2c0d5a8ac42b478" title="Iterates over the passed mapping and returns value at the key entry with the highest value..." alt="" coords="228,173,380,199"/>
+<area shape="rect" id="node27" href="$class_mapping_utils.html#a5d9c4e3dcaddccfa65f21212d0fee2cf" title="Iterates over the passed mapping and returns value at the key entry with the smallest value..." alt="" coords="973,122,1121,149"/>
+<area shape="rect" id="node29" href="$class_mapping_utils.html#a6a768601098bcb0d998be2c742126433" title="MappingUtils::iterateToNext" alt="" coords="211,355,397,382"/>
+<area shape="rect" id="node30" href="$class_multi_dim_mapping_iterator.html#a8928195a1fe4bb3af81d3ffe2391827e" title="Iterates to the next position of the function. " alt="" coords="222,407,386,448"/>
+<area shape="rect" id="node31" href="$class_const_mapping.html#a526e8d5b948e9b2ce9d729e66b162e13" title="Prints the Mapping to an output stream. " alt="" coords="235,473,373,499"/>
+<area shape="rect" id="node3" href="$class_s_n_r_threshold_decider.html#a6002f2ee8ffa35ded0162c72f93c9fba" title="Processes a received AirFrame. " alt="" coords="474,5,627,47"/>
+<area shape="rect" id="node5" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="1460,122,1683,149"/>
+<area shape="rect" id="node9" href="$class_base_decider.html#a12dd419a9e88e0b28f8d4e530e058802" title="Calculates the RSSI value for the passed interval. " alt="" coords="462,268,639,309"/>
+<area shape="rect" id="node26" href="$class_decider80211p.html#a09e54d78f37b5e61aa100ea5b9f3083f" title="Calculates the RSSI value for the passed ChannelSenseRequest. " alt="" coords="456,173,645,215"/>
+<area shape="rect" id="node10" href="$class_base_decider.html#ab8e925001d1f8630338c50f8ec10bb0d" title="Answers the ChannelSenseRequest (CSR) from the passed CSRInfo. " alt="" coords="707,246,883,273"/>
+<area shape="rect" id="node23" href="$class_s_n_r_threshold_decider.html#a1e6266fe8a4d10ce5443e37321d3bcaa" title="A function that returns information about the channel state. " alt="" coords="718,297,871,339"/>
+<area shape="rect" id="node25" href="$class_base_decider.html#af471a55749109aacb99429b409ccb9c1" title="A function that returns information about the channel state. " alt="" coords="693,363,896,390"/>
+<area shape="rect" id="node11" href="$class_base_decider.html#add7242168c4bb521c6335f3de590e4b0" title="Checks if the changed channel state enables us to answer any ongoing ChannelSenseRequests. " alt="" coords="957,304,1138,345"/>
+<area shape="rect" id="node20" href="$class_base_decider.html#a1dba383c238fba606279ef483b435f78" title="Handles a new incoming ChannelSenseRequest and returns the next (or latest) time to handle the reques..." alt="" coords="944,173,1151,215"/>
+<area shape="rect" id="node22" href="$class_base_decider.html#a2f175306cc0ae9d2805bc050315a47d8" title="Handles the timeout or end of a ChannelSenseRequest by calculating the ChannelState and returning the..." alt="" coords="957,239,1137,280"/>
+<area shape="rect" id="node12" href="$class_s_n_r_threshold_decider.html#ace13845f43c5328cea40eb00c59af2b3" title="Processes a new Signal. " alt="" coords="1229,239,1382,280"/>
+<area shape="rect" id="node13" href="$class_decider80211p.html#af06ba4862697730ee05b65f6bf90279b" title="Changes the &quot;isIdle&quot;&#45;status to the passed value. " alt="" coords="1214,304,1397,345"/>
+<area shape="rect" id="node16" href="$class_base_decider.html#ae535b44e34061014fe282c36c27b0193" title="Changes the &quot;isIdle&quot;&#45;status to the passed value. " alt="" coords="1209,369,1401,411"/>
+<area shape="rect" id="node14" href="$class_decider80211p.html#a2a8f4a380e5a2ba44c36e43cc2033270" title="Processes a new Signal. " alt="" coords="1476,273,1667,315"/>
+<area shape="rect" id="node15" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="1477,185,1665,227"/>
+<area shape="rect" id="node17" href="$class_base_decider.html#a6a480f87157d0509c0c1fccf94ea9fef" title="Processes a new Signal. " alt="" coords="1464,351,1679,378"/>
+<area shape="rect" id="node19" href="$class_base_decider.html#ab9cfef6c04e12d2524d45e881f341300" title="Processes the end of a received Signal. " alt="" coords="1466,402,1677,429"/>
+<area shape="rect" id="node18" href="$class_base_decider.html#a273892d7b0c9874e4efe3c7755aa7a17" title="Processes an AirFrame given by the PhyLayer. " alt="" coords="1731,377,1917,403"/>
+<area shape="rect" id="node21" href="$class_base_decider.html#afd31e5a65d1798d329ace9bdbec25d64" title="This function is called by the PhyLayer to hand over a ChannelSenseRequest. " alt="" coords="1210,173,1401,215"/>
+<area shape="rect" id="node24" href="$class_s_n_r_threshold_decider.html#aa7e33361b328274b04ff7bd2d6206e6d" title="Answers the ChannelSenseRequest (CSR) from the passed CSRInfo. " alt="" coords="971,369,1124,411"/>
+<area shape="rect" id="node28" href="$class_decider80211p.html#aeba984a7f23ef26ce8b22b0bfef88947" title="Decider80211p::cca" alt="" coords="1236,122,1375,149"/>
+</map>

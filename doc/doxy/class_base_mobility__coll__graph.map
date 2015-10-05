@@ -1,0 +1,9 @@
+<map id="BaseMobility" name="BaseMobility">
+<area shape="rect" id="node2" href="$class_veins_1_1_battery_access.html" title="Veins::BatteryAccess" alt="" coords="71,289,220,316"/>
+<area shape="rect" id="node3" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="39,95,134,121"/>
+<area shape="rect" id="node7" href="$class_base_battery.html" title="Base class for any power source. " alt="" coords="110,171,205,197"/>
+<area shape="rect" id="node11" href="$class_base_world_utility.html" title="Provides information and utility methods for the whole simulation. " alt="" coords="404,289,524,316"/>
+<area shape="rect" id="node6" href="$classsimsignalwrap__t.html" title="Helper function to initialize signal change identifier on use and not on initializing static sections..." alt="" coords="151,5,267,32"/>
+<area shape="rect" id="node8" href="$class_move.html" title="Class to store object position and movement. " alt="" coords="605,289,659,316"/>
+<area shape="rect" id="node10" href="$class_coord.html" title="Class for storing 3D coordinates. " alt="" coords="541,171,598,197"/>
+</map>

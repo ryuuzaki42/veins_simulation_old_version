@@ -1,0 +1,11 @@
+<map id="ConstMapping::getDimensionSet" name="ConstMapping::getDimensionSet">
+<area shape="rect" id="node2" href="$class_mapping_utils.html#a2864c33a93f9ce23403d0c84ca9a19e2" title="MappingUtils::applyElement\lWiseOperator" alt="" coords="279,5,465,47"/>
+<area shape="rect" id="node3" href="$class_s_n_r_threshold_decider.html#a0946c7a3e2ee04e2bb1c2dce4b7be7ec" title="Returns point in time when the ChannelSenseRequest of the passed CSRInfo can be answered (e..." alt="" coords="295,71,449,112"/>
+<area shape="rect" id="node4" href="$class_mapping_utils.html#a6d524e08add1a4a02d7e37425783b094" title="MappingUtils::createCompatible\lMapping" alt="" coords="268,136,476,177"/>
+<area shape="rect" id="node5" href="$class_two_ray_interference_model.html#a4488ba8c6127ff2e016edaa6bbd6a4c0" title="Has to be overriden by every implementation. " alt="" coords="285,201,459,243"/>
+<area shape="rect" id="node6" href="$class_simple_obstacle_shadowing.html#ab8f4e9c3b104f4b7fe18e4f275af79ac" title="Filters a specified Signal by adding an attenuation over time to the Signal. " alt="" coords="283,267,461,308"/>
+<area shape="rect" id="node7" href="$class_simple_pathloss_model.html#a632b408d1c0ecac4fd90da5d48d73c5e" title="Filters a specified AirFrame&#39;s Signal by adding an attenuation over time to the Signal. " alt="" coords="298,332,446,373"/>
+<area shape="rect" id="node8" href="$class_mapping_utils.html#ac9d1a808dbca5da873af58f1da4cbcf4" title="Iterates over the passed mapping and returns the value at the key entry with the highest value in the..." alt="" coords="296,398,448,425"/>
+<area shape="rect" id="node9" href="$class_mapping_utils.html#adb9e9ced268b9a5d1d4f6d34738654aa" title="Iterates over the passed mapping and returns the value at the key entry with the smallest value in th..." alt="" coords="298,449,446,475"/>
+<area shape="rect" id="node10" href="$class_const_mapping.html#a526e8d5b948e9b2ce9d729e66b162e13" title="Prints the Mapping to an output stream. " alt="" coords="303,499,441,526"/>
+</map>

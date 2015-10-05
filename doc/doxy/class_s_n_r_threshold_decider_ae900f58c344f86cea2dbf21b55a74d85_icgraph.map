@@ -1,0 +1,5 @@
+<map id="SNRThresholdDecider::isIdleRSSI" name="SNRThresholdDecider::isIdleRSSI">
+<area shape="rect" id="node2" href="$class_s_n_r_threshold_decider.html#a0946c7a3e2ee04e2bb1c2dce4b7be7ec" title="Returns point in time when the ChannelSenseRequest of the passed CSRInfo can be answered (e..." alt="" coords="207,5,360,47"/>
+<area shape="rect" id="node3" href="$class_s_n_r_threshold_decider.html#a1e6266fe8a4d10ce5443e37321d3bcaa" title="A function that returns information about the channel state. " alt="" coords="207,71,360,112"/>
+<area shape="rect" id="node4" href="$class_s_n_r_threshold_decider.html#aa7e33361b328274b04ff7bd2d6206e6d" title="Answers the ChannelSenseRequest (CSR) from the passed CSRInfo. " alt="" coords="408,71,561,112"/>
+</map>

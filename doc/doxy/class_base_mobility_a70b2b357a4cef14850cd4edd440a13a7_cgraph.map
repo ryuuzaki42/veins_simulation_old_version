@@ -1,0 +1,12 @@
+<map id="BaseMobility::handleSelfMsg" name="BaseMobility::handleSelfMsg">
+<area shape="rect" id="node2" href="$class_base_mobility.html#a9774524fd5f2d3ef348dc67f2af0f491" title="Moves the host. " alt="" coords="255,81,424,108"/>
+<area shape="rect" id="node3" href="$class_base_mobility.html#a291eed23c07d4693a5fa4164aa80934e" title="Update the position information for this node. " alt="" coords="244,132,435,159"/>
+<area shape="rect" id="node11" href="$class_move.html#a3db12757bf11ac7f025b2496d09e4941" title="Returns the current speed. " alt="" coords="281,183,398,209"/>
+<area shape="rect" id="node4" href="$class_move.html#a0287300e9580229fdd0c4c2c13e9527d" title="Returns information about the current state. " alt="" coords="537,5,620,32"/>
+<area shape="rect" id="node5" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="503,56,654,83"/>
+<area shape="rect" id="node7" href="$class_move.html#aeab90c9059a2c9214e491a58833b3c3c" title="Returns the start position. " alt="" coords="513,107,644,133"/>
+<area shape="rect" id="node8" href="$class_base_world_utility.html#a84c3d488e01d52be51c686e3fb206498" title="Returns true if the world is 2&#45;dimensional. " alt="" coords="495,157,662,184"/>
+<area shape="rect" id="node9" href="$class_base_mobility.html#a1245dec457a2d33c8dd1a70ccd74ea33" title="Returns the height of the playground. " alt="" coords="495,209,663,250"/>
+<area shape="rect" id="node10" href="$class_base_mobility.html#a4385f329f6d9df7294297c98028083e2" title="Maps the passed size in pixels to an appropriate icon size tag (is). " alt="" coords="483,275,675,301"/>
+<area shape="rect" id="node6" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="723,56,869,83"/>
+</map>

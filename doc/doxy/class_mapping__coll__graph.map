@@ -1,0 +1,4 @@
+<map id="Mapping" name="Mapping">
+<area shape="rect" id="node2" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="24,173,131,200"/>
+<area shape="rect" id="node3" href="$class_dimension_set.html" title="Represents a set of dimensions which is used to define over which dimensions a mapping is defined (th..." alt="" coords="25,83,129,109"/>
+</map>

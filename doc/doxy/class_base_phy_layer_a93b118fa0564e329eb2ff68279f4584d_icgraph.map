@@ -1,0 +1,4 @@
+<map id="BasePhyLayer::initializeRadio" name="BasePhyLayer::initializeRadio">
+<area shape="rect" id="node2" href="$class_base_phy_layer.html#a08704deaf03b73c8eda67cc60e670853" title="OMNeT++ initialization function. " alt="" coords="216,13,379,39"/>
+<area shape="rect" id="node3" href="$class_phy_layer80211p.html#aa3a10ad37436ef978aa9a0874b0da561" title="This is needed to circumvent a bug in MiXiM that allows different header length interpretations for r..." alt="" coords="427,13,601,39"/>
+</map>

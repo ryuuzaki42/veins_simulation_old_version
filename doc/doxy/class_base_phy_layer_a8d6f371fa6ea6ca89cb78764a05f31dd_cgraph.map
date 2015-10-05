@@ -1,0 +1,37 @@
+<map id="BasePhyLayer::handleAirFrame" name="BasePhyLayer::handleAirFrame">
+<area shape="rect" id="node2" href="$class_veins_1_1_air_frame.html#a7786f03f21fc3e7cf683a9636d25f109" title="Veins::AirFrame::getState" alt="" coords="277,367,450,394"/>
+<area shape="rect" id="node3" href="$class_base_phy_layer.html#a671f083680882230b754b7e9578e6274" title="Handles incoming AirFrames with the state START_RECEIVE. " alt="" coords="260,419,467,460"/>
+<area shape="rect" id="node21" href="$class_base_phy_layer.html#a9dbbcf0004b22c622ec4b06a19b4f564" title="Handles incoming AirFrames with the state RECEIVING. " alt="" coords="523,680,730,721"/>
+<area shape="rect" id="node24" href="$class_base_phy_layer.html#a4f8fde562c0004b498fc3294c3f54c2f" title="Handles incoming AirFrames with the state END_RECEIVE. " alt="" coords="793,797,999,839"/>
+<area shape="rect" id="node4" href="$class_channel_info.html#a5af012c57b6bb9930b1634138ab65bf8" title="Returns true if there are currently no active or inactive AirFrames on the channel. " alt="" coords="1297,633,1493,659"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_radio.html#a803442f32c2eced5bda170cd3a9b5772" title="sets tracking mode " alt="" coords="1065,680,1238,721"/>
+<area shape="rect" id="node6" href="$class_channel_info.html#a922ab80fac41c9d89871080940e07cd5" title="Tells the ChannelInfo that an AirFrame has started. " alt="" coords="1064,173,1239,199"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_air_frame.html#a713e5d23b4ccb3d89d29468ff1dd7b89" title="Veins::AirFrame::getDuration" alt="" coords="1791,543,1981,570"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_air_frame.html#a50cfde43def85076f0ba2e9ad16d18a4" title="Veins::AirFrame::getSignal" alt="" coords="807,434,985,461"/>
+<area shape="rect" id="node9" href="$class_signal.html#a0d2a31d69d90186d6f0ba17719f3a9e6" title="Returns the point in time when the sending of the Signal started at the sender module. " alt="" coords="547,375,706,402"/>
+<area shape="rect" id="node10" href="$class_signal.html#a2864ac2fa780e25223db94ba3d36b8e9" title="Sets the propagation delay of the signal. " alt="" coords="533,173,720,199"/>
+<area shape="rect" id="node12" href="$class_signal.html#a7c4710243cf87caf7dfc9f313e2619b2" title="Returns the point in time when the receiving of the Signal started at the receiver module..." alt="" coords="811,493,981,519"/>
+<area shape="rect" id="node13" href="$class_signal.html#a6354b073881f4ea6190637d2e0164372" title="Saves the arrival sender module information form message. " alt="" coords="523,477,730,503"/>
+<area shape="rect" id="node14" href="$class_base_phy_layer.html#adb6dcf56295ceb53b34e83eb409a40a2" title="Filters the passed AirFrame&#39;s Signal by every registered AnalogueModel. " alt="" coords="539,17,715,43"/>
+<area shape="rect" id="node18" href="$class_base_phy_layer.html#a6b5052a6a2515e016f1e2e934cf09642" title="Returns true if the protocol with the passed identifier is decodeable by the decider. " alt="" coords="515,578,739,605"/>
+<area shape="rect" id="node19" href="$class_veins_1_1_air_frame.html#a550f3534098413c07fc54c73104e05c5" title="Veins::AirFrame::getProtocolId" alt="" coords="526,629,727,655"/>
+<area shape="rect" id="node20" href="$class_veins_1_1_air_frame.html#a82332ad0dc0819fe138cdc49204d1743" title="Veins::AirFrame::setState" alt="" coords="809,274,983,301"/>
+<area shape="rect" id="node36" href="$class_base_phy_layer.html#aa59aef501cadd36c94d4f82efe9b64be" title="Schedule self message to passed point in time. " alt="" coords="787,354,1005,381"/>
+<area shape="rect" id="node11" href="$class_signal.html#a594e926b3d8ff3330375c8850699ae76" title="Deletes the rcvPower mapping member because it became out&#45;dated. " alt="" coords="791,173,1001,199"/>
+<area shape="rect" id="node15" href="$class_veins_1_1_channel_access.html#a130bfd04f4e40b490929f99d96cc1aef" title="Returns the host&#39;s mobility module. " alt="" coords="819,5,973,47"/>
+<area shape="rect" id="node16" href="$class_access_module_wrap.html#aabe6dcb792c40ce4c77b2f194aadbe5f" title="AccessModuleWrap::get" alt="" coords="1069,13,1234,39"/>
+<area shape="rect" id="node17" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="1304,13,1487,39"/>
+<area shape="rect" id="node22" href="$class_decider.html#a2039d051f59054d39d4a5e0b38f25086" title="This function processes a AirFrame given by the PhyLayer and returns the time point when Decider want..." alt="" coords="817,695,975,722"/>
+<area shape="rect" id="node23" href="$class_signal.html#a22f7cede842dbfe895cd8aedf708402f" title="Returns the duration of the signal transmission. " alt="" coords="829,594,963,621"/>
+<area shape="rect" id="node25" href="$class_veins_1_1_air_frame.html#abac89b81d2c1fdce7f64bd6c91811032" title="Veins::AirFrame::getId" alt="" coords="1075,629,1228,655"/>
+<area shape="rect" id="node26" href="$class_channel_info.html#af9ee0be843528ee913df218f73d4d713" title="Tells the ChannelInfo that an AirFrame is over. " alt="" coords="1053,863,1249,890"/>
+<area shape="rect" id="node35" href="$class_veins_1_1_radio.html#a25501a63aaa78e00dda4e5b868874407" title="discards information in the RadioStateAnalogueModel before given time&#45;point " alt="" coords="1056,797,1247,839"/>
+<area shape="rect" id="node27" href="$class_channel_info.html#aec072c13541b9a22bbdcc8e9103fe9e5" title="Deletes an AirFrame from an AirFrameMatrix. " alt="" coords="1301,838,1489,865"/>
+<area shape="rect" id="node28" href="$class_channel_info.html#a002d7a0fff6734bdb6d8ddebf799f7f5" title="Moves a previously active AirFrame to the inactive AirFrames. " alt="" coords="1301,889,1490,915"/>
+<area shape="rect" id="node34" href="$class_channel_info.html#a627fbeddfec6f3ec1da17a91b97f1051" title="Returns the start time of the odlest AirFrame on the channel. " alt="" coords="1313,772,1478,813"/>
+<area shape="rect" id="node29" href="$class_channel_info.html#a1ffb197c5bf86824cd04313da5e9e4ed" title="Checks if any information inside the passed interval can be discarded. " alt="" coords="1541,823,1733,864"/>
+<area shape="rect" id="node31" href="$class_channel_info.html#ab4da0befdce7f2b27ae4a61d66ec2167" title="Returns true if all information inside the passed interval can be deleted. " alt="" coords="1781,889,1991,915"/>
+<area shape="rect" id="node30" href="$class_channel_info_1_1_base_intersection_iterator.html#a2acff6a4c595060ffc74872cdc0be1db" title="Increases the iterator to the next intersecting AirFrame and returns a pointer to this AirFrame..." alt="" coords="2265,807,2464,848"/>
+<area shape="rect" id="node33" href="$class_channel_info_1_1_intersection_iterator.html#a6f09ba91d68c971a39fd2c5652e0e4a0" title="Erases the AirFrame the iterator currently points to from the AirFrameMatrix. " alt="" coords="1802,823,1970,864"/>
+<area shape="rect" id="node32" href="$class_channel_info.html#a2a4e738d7d51c1dc53ba7404b68103ec" title="Returns true if there is at least one AirFrame in the passed AirFrameMatrix which intersect with the ..." alt="" coords="2039,855,2217,882"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Decider80211p" name="Decider80211p">
+<area shape="rect" id="node2" href="$class_base_decider.html" title="Provides some base functionality for most common deciders. " alt="" coords="1338,57,1435,84"/>
+<area shape="rect" id="node3" href="$class_decider.html" title="The basic Decider class. " alt="" coords="954,7,1021,33"/>
+<area shape="rect" id="node4" href="$class_decider_to_phy_interface.html" title="This class is the interface for a Decider to the BasePhyLayer. " alt="" coords="645,7,801,33"/>
+<area shape="rect" id="node5" href="$struct_base_decider_1_1_c_s_r_info.html" title="Data about an currently ongoing ChannelSenseRequest. " alt="" coords="909,57,1065,84"/>
+<area shape="rect" id="node6" href="$class_channel_sense_request.html" title="ChannelSenseRequest" alt="" coords="645,57,801,84"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_air_frame.html" title="Class generated from base/messages/AirFrame.msg:33 by nedtool. " alt="" coords="1329,108,1445,135"/>
+<area shape="rect" id="node8" href="$class_channel_state.html" title="Provides information about the current state of the channel: " alt="" coords="424,31,525,57"/>
+<area shape="rect" id="node9" href="$class_decider80211p_to_phy80211p_interface.html" title="Interface of PhyLayer80211p exposed to Decider80211p. " alt="" coords="1292,159,1481,201"/>
+<area shape="rect" id="node11" href="$class_signal.html" title="The signal class stores the physical representation of the signal of an AirFrame. ..." alt="" coords="958,185,1017,212"/>
+<area shape="rect" id="node12" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="688,288,759,315"/>
+<area shape="rect" id="node13" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="421,221,528,248"/>
+<area shape="rect" id="node16" href="$class_concat_const_mapping.html" title="Defines it values by concatenating one or more Mappings to a reference Mapping. " alt="" coords="649,222,797,263"/>
+<area shape="rect" id="node14" href="$class_dimension_set.html" title="Represents a set of dimensions which is used to define over which dimensions a mapping is defined (th..." alt="" coords="199,221,303,248"/>
+</map>

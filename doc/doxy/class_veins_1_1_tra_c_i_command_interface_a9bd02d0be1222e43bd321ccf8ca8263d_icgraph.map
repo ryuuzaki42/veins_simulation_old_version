@@ -1,0 +1,12 @@
+<map id="Veins::TraCICommandInterface::genericGetDouble" name="Veins::TraCICommandInterface::genericGetDouble">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_command_interface.html#a90f17d035256946ebf1d883ae04eb46b" title="Veins::TraCICommandInterface\l::getEdgeCurrentTravelTime" alt="" coords="260,5,467,47"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_command_interface.html#ac4338b211f2c21d5b978c1516491577d" title="Veins::TraCICommandInterface\l::getEdgeMeanSpeed" alt="" coords="260,71,467,112"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_command_interface.html#a21a58a8611558cdfb01ca666797a4643" title="Veins::TraCICommandInterface\l::getLaneLength" alt="" coords="260,136,467,177"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_command_interface.html#acb4b737672dc93997cf09f522fdeaca9" title="Veins::TraCICommandInterface\l::getLaneMaxSpeed" alt="" coords="260,201,467,243"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_command_interface.html#a468a556d1aaf5ef0610db43cfd10512e" title="Veins::TraCICommandInterface\l::getLaneMeanSpeed" alt="" coords="260,267,467,308"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_tra_c_i_command_interface.html#aea3bcd95e6559e9ea9b20cdb8b79f996" title="Veins::TraCICommandInterface\l::getLanePosition" alt="" coords="260,332,467,373"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_tra_c_i_mobility.html#af8ba92d5ff2801b04fdf66268a2bb73a" title="Veins::TraCIMobility\l::commandGetLaneLength" alt="" coords="515,136,689,177"/>
+<area shape="rect" id="node6" href="$classminicurso___u_f_p_i___tra_c_i.html#a0b204910fdf88dd8e2e54e61946f1c28" title="minicurso_UFPI_TraCI\l::verifyAndSendCongestionMessage" alt="" coords="737,103,972,144"/>
+<area shape="rect" id="node8" href="$classminicurso___u_f_p_i___tra_c_i.html#a79b8501a853a65fc0b4e3bac86af9371" title="minicurso_UFPI_TraCI\l::onData" alt="" coords="777,168,933,209"/>
+<area shape="rect" id="node7" href="$classminicurso___u_f_p_i___tra_c_i.html#a13623ac92684ab2f823c0a58be229686" title="handle self messages " alt="" coords="1020,103,1176,144"/>
+</map>

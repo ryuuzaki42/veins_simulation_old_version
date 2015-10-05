@@ -1,0 +1,15 @@
+<map id="BaseMacLayer::createSignal" name="BaseMacLayer::createSignal">
+<area shape="rect" id="node2" href="$class_base_mac_layer.html#a23ed373dcfd98255df5f5ffa7e30eec6" title="Creates a simple Mapping with a constant curve progression at the passed value and discontinuities at..." alt="" coords="243,133,455,174"/>
+<area shape="rect" id="node11" href="$class_signal.html#ad8c5494d0f7bd564bf14dc0c90f9a361" title="Sets the function representing the transmission power of the signal. " alt="" coords="249,199,448,225"/>
+<area shape="rect" id="node13" href="$class_base_mac_layer.html#a1c05648ce7d11bc767f9acd3d64ee067" title="Creates a simple Mapping with a constant curve progression at the passed value. " alt="" coords="245,49,452,90"/>
+<area shape="rect" id="node14" href="$class_signal.html#a86e4ecdabd5ca03ede5e2c81c6b76002" title="Sets the function representing the bitrate of the signal. " alt="" coords="287,249,410,276"/>
+<area shape="rect" id="node3" href="$class_mapping_utils.html#a0c61c76ba04339162563339b23bf42e9" title="Returns an appropriate changeable Mapping with the specified domain and the specified interpolation m..." alt="" coords="512,56,703,83"/>
+<area shape="rect" id="node5" href="$class_mapping_utils.html#af1b74160ce464f825e0715f1fc656f5f" title="Adds a discontinuity in time&#45;dimension, i.e. " alt="" coords="506,107,709,133"/>
+<area shape="rect" id="node9" href="$class_mapping_utils.html#a31183e79401391df3e2d250846ae8d0e" title="returns the closest value of simtime after passed values " alt="" coords="542,157,673,184"/>
+<area shape="rect" id="node10" href="$class_mapping_utils.html#a2cf7c04c0adea7f6e9fe49101b0197c3" title="returns the closest value of simtime before passed value " alt="" coords="545,208,669,235"/>
+<area shape="rect" id="node4" href="$class_dimension_set.html#a015cb6fa6c77b26b8c7b1e65827b8342" title="Returns true if the passed Dimension is inside this DimensionSet. " alt="" coords="760,56,955,83"/>
+<area shape="rect" id="node6" href="$class_argument.html#a2ecb3b041b5b8721d6767531e4ac792a" title="Returns the time value of this argument. " alt="" coords="791,107,924,133"/>
+<area shape="rect" id="node7" href="$class_mapping.html#ab8906dfac661d5c6a0a35cf1744f06ed" title="Changes the value of the Mapping at the specified position. " alt="" coords="792,5,923,32"/>
+<area shape="rect" id="node8" href="$class_argument.html#a8087982f050bdc61d787b128ca9ac8f9" title="Changes the time value of this argument. " alt="" coords="791,157,924,184"/>
+<area shape="rect" id="node12" href="$class_signal.html#a594e926b3d8ff3330375c8850699ae76" title="Deletes the rcvPower mapping member because it became out&#45;dated. " alt="" coords="503,259,712,285"/>
+</map>

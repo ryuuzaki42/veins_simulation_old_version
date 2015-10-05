@@ -1,0 +1,5 @@
+<map id="BaseBattery::draw" name="BaseBattery::draw">
+<area shape="rect" id="node2" href="$class_veins_1_1_battery_access.html#a1015e11ad7fc73f62a37e395bf686015" title="Draws the amount defined by the passed DrawAmount from the battery on account of the passed account..." alt="" coords="184,5,333,47"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_battery_access.html#af62a4c6ab659f7bebc16cc789c559bc6" title="Draws the passed amount of current (in mA) over time from the battery on account of the passed accoun..." alt="" coords="184,71,333,112"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_battery_access.html#a603868d7ae89b65da4af161c9470f07f" title="Draws the passed amount of energy (in mWs) from the battery on account of the passed account..." alt="" coords="184,136,333,177"/>
+</map>

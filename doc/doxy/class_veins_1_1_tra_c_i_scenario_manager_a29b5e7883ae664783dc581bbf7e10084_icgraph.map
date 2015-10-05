@@ -1,0 +1,16 @@
+<map id="Veins::TraCIScenarioManager::traci2omnet" name="Veins::TraCIScenarioManager::traci2omnet">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#a668e0a54db3c6cea0f10b9f503c5c098" title="Veins::TraCIMobility\l::commandGetPolygonShape" alt="" coords="253,65,445,106"/>
+<area shape="rect" id="node3" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a509a641698a4887986424f07452a1807" title="Veins::default_veins\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="496,5,707,61"/>
+<area shape="rect" id="node5" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a68051be72ee51dd27b4e373ac1058c23" title="Veins::minicurso_UFPI\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="496,91,707,147"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="758,174,955,215"/>
+<area shape="rect" id="node11" href="$structtraci2omnet__functor.html#abef03695023d00ba063cecf8995bce5c" title="traci2omnet_functor\l::operator()" alt="" coords="281,233,418,274"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4b6aa1aa798b245ff323c5759a3b848e" title="Veins::TraCIScenarioManager\l::processVehicleSubscription" alt="" coords="251,298,448,339"/>
+<area shape="rect" id="node4" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#aa1bb9b88b7f8f4dc311c864b087c2640" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="755,13,959,54"/>
+<area shape="rect" id="node6" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a97b60a9b8c45ef73e4922db7f3af1024" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="755,98,959,139"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="1007,239,1204,281"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="1007,174,1204,215"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1252,239,1449,281"/>
+<area shape="rect" id="node13" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2f149bc15c3119ab19850b6960689eeb" title="Veins::TraCIScenarioManager\l::processSubcriptionResult" alt="" coords="503,242,700,283"/>
+<area shape="rect" id="node14" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a84ebe9fb50441189bd39f949f2593115" title="read and execute all commands for the next timestep " alt="" coords="758,239,955,281"/>
+<area shape="rect" id="node15" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a999d945fca20d45532a24b492430d742" title="Veins::TraCIScenarioManager\l::subscribeToVehicleVariables" alt="" coords="757,305,956,346"/>
+</map>

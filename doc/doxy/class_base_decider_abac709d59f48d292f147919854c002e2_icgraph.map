@@ -1,0 +1,5 @@
+<map id="BaseDecider::calculateSnrMapping" name="BaseDecider::calculateSnrMapping">
+<area shape="rect" id="node2" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="231,5,444,32"/>
+<area shape="rect" id="node4" href="$class_s_n_r_threshold_decider.html#a6002f2ee8ffa35ded0162c72f93c9fba" title="Processes a received AirFrame. " alt="" coords="261,57,414,98"/>
+<area shape="rect" id="node3" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="492,5,715,32"/>
+</map>

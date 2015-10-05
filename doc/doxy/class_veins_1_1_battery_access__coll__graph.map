@@ -1,0 +1,5 @@
+<map id="Veins::BatteryAccess" name="Veins::BatteryAccess">
+<area shape="rect" id="node2" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="131,95,225,121"/>
+<area shape="rect" id="node6" href="$class_base_battery.html" title="Base class for any power source. " alt="" coords="200,171,295,197"/>
+<area shape="rect" id="node5" href="$classsimsignalwrap__t.html" title="Helper function to initialize signal change identifier on use and not on initializing static sections..." alt="" coords="240,5,356,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Veins::TraCIConnection::TraCIConnection" name="Veins::TraCIConnection::TraCIConnection">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_connection.html#a0b03b7d7e0f3955936ee7a2c17039bd5" title="Veins::TraCIConnection\l::connect" alt="" coords="216,5,379,47"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="427,5,624,47"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="672,5,869,47"/>
+</map>

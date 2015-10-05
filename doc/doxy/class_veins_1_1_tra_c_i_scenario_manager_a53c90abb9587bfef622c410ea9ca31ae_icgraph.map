@@ -1,0 +1,11 @@
+<map id="Veins::TraCIScenarioManager::unsubscribeFromVehicleVariables" name="Veins::TraCIScenarioManager::unsubscribeFromVehicleVariables">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a1dba6b09e84d2d3d91c552bc9172119f" title="Veins::TraCIScenarioManager\l::processSimSubscription" alt="" coords="280,161,477,203"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4b6aa1aa798b245ff323c5759a3b848e" title="Veins::TraCIScenarioManager\l::processVehicleSubscription" alt="" coords="1017,195,1215,236"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2f149bc15c3119ab19850b6960689eeb" title="Veins::TraCIScenarioManager\l::processSubcriptionResult" alt="" coords="525,136,723,177"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a84ebe9fb50441189bd39f949f2593115" title="read and execute all commands for the next timestep " alt="" coords="771,5,969,47"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="771,71,969,112"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a999d945fca20d45532a24b492430d742" title="Veins::TraCIScenarioManager\l::subscribeToVehicleVariables" alt="" coords="771,136,969,177"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="1017,5,1215,47"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1263,5,1460,47"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="1017,71,1215,112"/>
+</map>

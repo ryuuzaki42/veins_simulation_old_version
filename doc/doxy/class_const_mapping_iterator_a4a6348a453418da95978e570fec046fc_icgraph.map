@@ -1,0 +1,30 @@
+<map id="ConstMappingIterator::inRange" name="ConstMappingIterator::inRange">
+<area shape="rect" id="node2" href="$class_mapping_utils.html#a2864c33a93f9ce23403d0c84ca9a19e2" title="MappingUtils::applyElement\lWiseOperator" alt="" coords="211,23,397,65"/>
+<area shape="rect" id="node3" href="$class_mapping_utils.html#a6d524e08add1a4a02d7e37425783b094" title="MappingUtils::createCompatible\lMapping" alt="" coords="200,89,408,130"/>
+<area shape="rect" id="node4" href="$class_filled_up_mapping.html#aa090d76ebccf9be3283594989b528ba7" title="FilledUpMapping::FilledUp\lMapping" alt="" coords="217,154,391,195"/>
+<area shape="rect" id="node5" href="$class_mapping_utils.html#afbe1a1e1d2becd66d2c0d5a8ac42b478" title="Iterates over the passed mapping and returns value at the key entry with the highest value..." alt="" coords="228,220,380,247"/>
+<area shape="rect" id="node25" href="$class_mapping_utils.html#a5d9c4e3dcaddccfa65f21212d0fee2cf" title="Iterates over the passed mapping and returns value at the key entry with the smallest value..." alt="" coords="973,284,1121,311"/>
+<area shape="rect" id="node28" href="$class_multi_dim_mapping_iterator.html#ae4f87a308ad4648d289f1f66d8da772a" title="Returns true if the current position of the iterator is in range of the function. ..." alt="" coords="222,322,386,363"/>
+<area shape="rect" id="node29" href="$class_const_mapping.html#a526e8d5b948e9b2ce9d729e66b162e13" title="Prints the Mapping to an output stream. " alt="" coords="235,388,373,415"/>
+<area shape="rect" id="node6" href="$class_base_decider.html#a12dd419a9e88e0b28f8d4e530e058802" title="Calculates the RSSI value for the passed interval. " alt="" coords="462,114,639,155"/>
+<area shape="rect" id="node24" href="$class_decider80211p.html#a09e54d78f37b5e61aa100ea5b9f3083f" title="Calculates the RSSI value for the passed ChannelSenseRequest. " alt="" coords="456,205,645,246"/>
+<area shape="rect" id="node7" href="$class_base_decider.html#ab8e925001d1f8630338c50f8ec10bb0d" title="Answers the ChannelSenseRequest (CSR) from the passed CSRInfo. " alt="" coords="707,160,883,187"/>
+<area shape="rect" id="node21" href="$class_s_n_r_threshold_decider.html#a1e6266fe8a4d10ce5443e37321d3bcaa" title="A function that returns information about the channel state. " alt="" coords="718,33,871,74"/>
+<area shape="rect" id="node23" href="$class_base_decider.html#af471a55749109aacb99429b409ccb9c1" title="A function that returns information about the channel state. " alt="" coords="693,109,896,136"/>
+<area shape="rect" id="node8" href="$class_base_decider.html#add7242168c4bb521c6335f3de590e4b0" title="Checks if the changed channel state enables us to answer any ongoing ChannelSenseRequests. " alt="" coords="957,87,1138,129"/>
+<area shape="rect" id="node18" href="$class_base_decider.html#a1dba383c238fba606279ef483b435f78" title="Handles a new incoming ChannelSenseRequest and returns the next (or latest) time to handle the reques..." alt="" coords="944,153,1151,194"/>
+<area shape="rect" id="node20" href="$class_base_decider.html#a2f175306cc0ae9d2805bc050315a47d8" title="Handles the timeout or end of a ChannelSenseRequest by calculating the ChannelState and returning the..." alt="" coords="957,218,1137,259"/>
+<area shape="rect" id="node9" href="$class_s_n_r_threshold_decider.html#ace13845f43c5328cea40eb00c59af2b3" title="Processes a new Signal. " alt="" coords="1229,153,1382,194"/>
+<area shape="rect" id="node10" href="$class_decider80211p.html#af06ba4862697730ee05b65f6bf90279b" title="Changes the &quot;isIdle&quot;&#45;status to the passed value. " alt="" coords="1214,87,1397,129"/>
+<area shape="rect" id="node14" href="$class_base_decider.html#ae535b44e34061014fe282c36c27b0193" title="Changes the &quot;isIdle&quot;&#45;status to the passed value. " alt="" coords="1209,22,1401,63"/>
+<area shape="rect" id="node11" href="$class_decider80211p.html#a2a8f4a380e5a2ba44c36e43cc2033270" title="Processes a new Signal. " alt="" coords="1476,113,1667,154"/>
+<area shape="rect" id="node12" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="1460,284,1683,311"/>
+<area shape="rect" id="node13" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="1477,189,1665,230"/>
+<area shape="rect" id="node15" href="$class_base_decider.html#a6a480f87157d0509c0c1fccf94ea9fef" title="Processes a new Signal. " alt="" coords="1464,5,1679,32"/>
+<area shape="rect" id="node17" href="$class_base_decider.html#ab9cfef6c04e12d2524d45e881f341300" title="Processes the end of a received Signal. " alt="" coords="1466,56,1677,83"/>
+<area shape="rect" id="node16" href="$class_base_decider.html#a273892d7b0c9874e4efe3c7755aa7a17" title="Processes an AirFrame given by the PhyLayer. " alt="" coords="1731,31,1917,57"/>
+<area shape="rect" id="node19" href="$class_base_decider.html#afd31e5a65d1798d329ace9bdbec25d64" title="This function is called by the PhyLayer to hand over a ChannelSenseRequest. " alt="" coords="1210,218,1401,259"/>
+<area shape="rect" id="node22" href="$class_s_n_r_threshold_decider.html#aa7e33361b328274b04ff7bd2d6206e6d" title="Answers the ChannelSenseRequest (CSR) from the passed CSRInfo. " alt="" coords="971,22,1124,63"/>
+<area shape="rect" id="node26" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="1199,335,1412,361"/>
+<area shape="rect" id="node27" href="$class_decider80211p.html#aeba984a7f23ef26ce8b22b0bfef88947" title="Decider80211p::cca" alt="" coords="1236,284,1375,311"/>
+</map>

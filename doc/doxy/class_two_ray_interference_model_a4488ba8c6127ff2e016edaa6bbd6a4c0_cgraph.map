@@ -1,0 +1,9 @@
+<map id="TwoRayInterferenceModel::filterSignal" name="TwoRayInterferenceModel::filterSignal">
+<area shape="rect" id="node2" href="$class_veins_1_1_air_frame.html#a50cfde43def85076f0ba2e9ad16d18a4" title="Veins::AirFrame::getSignal" alt="" coords="246,5,425,32"/>
+<area shape="rect" id="node3" href="$class_coord.html#ab6a7bfcc5c55e5d8edbc7c0cb5a11626" title="Returns the distance to Coord &#39;a&#39;. " alt="" coords="278,56,393,83"/>
+<area shape="rect" id="node5" href="$class_signal.html#a392ecf1a624edfb90243e7227370a772" title="Returns the function representing the transmission power of the signal. " alt="" coords="236,107,435,133"/>
+<area shape="rect" id="node6" href="$class_const_mapping.html#acc1559cf5741bec3aa6422e94c5b9cce" title="Returns this Mappings domain as DimensionSet. " alt="" coords="228,157,443,184"/>
+<area shape="rect" id="node7" href="$class_dimension_set.html#a015cb6fa6c77b26b8c7b1e65827b8342" title="Returns true if the passed Dimension is inside this DimensionSet. " alt="" coords="238,208,433,235"/>
+<area shape="rect" id="node8" href="$class_signal.html#a0beeef0f27c33145a0fca521df1c5f5c" title="Adds a function representing an attenuation of the signal. " alt="" coords="259,259,412,285"/>
+<area shape="rect" id="node4" href="$class_coord.html#acc536671c07e1af44e6ad9676a6c39ad" title="Returns the length of this Coords position vector. " alt="" coords="491,56,591,83"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="PhyLayer80211p::encapsMsg" name="PhyLayer80211p::encapsMsg">
+<area shape="rect" id="node2" href="$class_mac_to_phy_control_info.html#a2f42fccc127d84cf6853058f501da3ec" title="extracts the signal from &quot;control info&quot;. " alt="" coords="259,5,438,47"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_air_frame.html#afc8977ce81a1b732d504db463273cb1a" title="Veins::AirFrame::setDuration" alt="" coords="253,71,444,98"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_air_frame.html#a49085838ee8057aa8532249b7c2dc3f4" title="Veins::AirFrame::setSignal" alt="" coords="259,122,438,149"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_air_frame.html#a26fa4bd47eb08854f694220a6d719d2c" title="Veins::AirFrame::setProtocolId" alt="" coords="248,173,449,199"/>
+<area shape="rect" id="node7" href="$class_base_phy_layer.html#a3b24629e8306bac3186a94a3622ca5ef" title="Returns the identifier of the protocol this phy uses to send messages. " alt="" coords="253,223,445,250"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_air_frame.html#afc9fad9abb1e40cb558d3a1df40481ad" title="Veins::AirFrame::setId" alt="" coords="272,274,425,301"/>
+<area shape="rect" id="node9" href="$class_base_world_utility.html#a1c955c6c60dfa5b46a2bf683a20a84fe" title="Returns an Id for an AirFrame, at the moment simply an incremented long&#45;value. " alt="" coords="255,325,442,367"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_air_frame.html#ac5cee514e9249028a4ba35f6a8255379" title="Veins::AirFrame::setChannel" alt="" coords="253,391,444,418"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_radio.html#a6e7fa250ec1b1793c51931a7cb7ae914" title="Returns the channel the radio is currently set to. " alt="" coords="265,443,432,484"/>
+<area shape="rect" id="node3" href="$class_mac_to_phy_control_info.html#a5e04d8d4088109ccccb7c3fcdae526a7" title="Returns a pointer to the Signal of this ControlInfo. " alt="" coords="497,5,647,47"/>
+</map>

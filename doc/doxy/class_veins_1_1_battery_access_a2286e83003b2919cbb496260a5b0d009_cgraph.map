@@ -1,0 +1,6 @@
+<map id="Veins::BatteryAccess::registerWithBattery" name="Veins::BatteryAccess::registerWithBattery">
+<area shape="rect" id="node2" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="205,5,387,32"/>
+<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="221,56,371,83"/>
+<area shape="rect" id="node5" href="$class_base_battery.html#a6b2ac07e8d11823bdd239de2bfa4563a" title="Registers a power draining device with this battery. " alt="" coords="203,107,389,133"/>
+<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="437,56,584,83"/>
+</map>

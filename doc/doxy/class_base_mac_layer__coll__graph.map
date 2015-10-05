@@ -1,0 +1,9 @@
+<map id="BaseMacLayer" name="BaseMacLayer">
+<area shape="rect" id="node2" href="$class_base_layer.html" title="A very simple layer template. " alt="" coords="317,367,401,393"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_battery_access.html" title="Veins::BatteryAccess" alt="" coords="173,277,322,304"/>
+<area shape="rect" id="node4" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="131,95,225,121"/>
+<area shape="rect" id="node8" href="$class_base_battery.html" title="Base class for any power source. " alt="" coords="212,179,307,206"/>
+<area shape="rect" id="node7" href="$classsimsignalwrap__t.html" title="Helper function to initialize signal change identifier on use and not on initializing static sections..." alt="" coords="271,5,387,32"/>
+<area shape="rect" id="node9" href="$class_passed_message.html" title="PassedMessage" alt="" coords="467,277,585,304"/>
+<area shape="rect" id="node11" href="$class_mac_to_phy_interface.html" title="Defines the methods provided by the phy to the mac layer. " alt="" coords="426,367,562,393"/>
+</map>

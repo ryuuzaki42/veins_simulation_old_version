@@ -1,0 +1,5 @@
+<map id="BaseDecider" name="BaseDecider">
+<area shape="rect" id="node3" href="$class_decider80211p.html" title="Based on Decider80211.h from Karl Wessel and modifications by Christopher Saloman. " alt="" coords="5,155,115,181"/>
+<area shape="rect" id="node4" href="$class_s_n_r_threshold_decider.html" title="Decider implementation which decides a signals correctness by checking its SNR against a threshold..." alt="" coords="139,155,293,181"/>
+<area shape="rect" id="node2" href="$class_decider.html" title="The basic Decider class. " alt="" coords="104,5,171,32"/>
+</map>

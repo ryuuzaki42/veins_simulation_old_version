@@ -1,0 +1,5 @@
+<map id="Veins::Obstacle::calculateAttenuation" name="Veins::Obstacle::calculateAttenuation">
+<area shape="rect" id="node2" href="$class_veins_1_1_obstacle.html#a1e5a701e21f19186862a7e93fbf3727f" title="Veins::Obstacle::getShape" alt="" coords="228,5,407,32"/>
+<area shape="rect" id="node3" href="$class_coord.html#ab6a7bfcc5c55e5d8edbc7c0cb5a11626" title="Returns the distance to Coord &#39;a&#39;. " alt="" coords="260,56,375,83"/>
+<area shape="rect" id="node4" href="$class_coord.html#acc536671c07e1af44e6ad9676a6c39ad" title="Returns the length of this Coords position vector. " alt="" coords="455,56,555,83"/>
+</map>

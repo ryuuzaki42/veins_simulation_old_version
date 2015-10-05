@@ -1,0 +1,4 @@
+<map id="BaseMacLayer::getUpperDestinationFromControlInfo" name="BaseMacLayer::getUpperDestinationFromControlInfo">
+<area shape="rect" id="node2" href="$class_base_mac_layer.html#a32d47cbd6940c09071e0f0e777cf6716" title="Encapsulate the NetwPkt into an MacPkt. " alt="" coords="289,13,473,39"/>
+<area shape="rect" id="node3" href="$class_base_mac_layer.html#a6de2ca07018de313a7147a03e6d77bff" title="Handle messages comming from the network layer. " alt="" coords="521,13,736,39"/>
+</map>

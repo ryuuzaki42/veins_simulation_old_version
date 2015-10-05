@@ -1,0 +1,8 @@
+<map id="Veins::ChannelAccess::initialize" name="Veins::ChannelAccess::initialize">
+<area shape="rect" id="node2" href="$class_base_module.html#a03030e439aaf030c83da6e71e8be2f80" title="Basic initialization for all modules. " alt="" coords="215,5,365,32"/>
+<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="443,31,594,57"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_channel_access.html#a0dc69d65185a429fcd739d4eadedb504" title="Returns a pointer to the ConnectionManager responsible for the passed NIC module. ..." alt="" coords="208,107,372,149"/>
+<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="683,31,830,57"/>
+<area shape="rect" id="node6" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="420,115,617,141"/>
+<area shape="rect" id="node7" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="665,115,848,141"/>
+</map>

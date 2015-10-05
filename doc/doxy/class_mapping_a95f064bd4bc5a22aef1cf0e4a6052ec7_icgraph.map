@@ -1,0 +1,4 @@
+<map id="Mapping::clone" name="Mapping::clone">
+<area shape="rect" id="node2" href="$class_signal.html#aa9c8501095ecc3fb4a60f4f0e2007138" title="Overwrites the copy operator to make sure that the mappings are cloned correct. " alt="" coords="164,5,285,32"/>
+<area shape="rect" id="node3" href="$class_signal.html#a079cc6bee7380f5744001d5f26505b2c" title="Overwrites the copy constructor to make sure that the mappings are cloned correct. " alt="" coords="173,56,276,83"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="BasePhyLayer" name="BasePhyLayer">
+<area shape="rect" id="node2" href="$class_veins_1_1_channel_access.html" title="Veins::ChannelAccess" alt="" coords="1142,204,1297,231"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_battery_access.html" title="Veins::BatteryAccess" alt="" coords="867,119,1017,145"/>
+<area shape="rect" id="node4" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="319,101,414,128"/>
+<area shape="rect" id="node8" href="$class_base_battery.html" title="Base class for any power source. " alt="" coords="575,119,669,145"/>
+<area shape="rect" id="node10" href="$class_base_world_utility.html" title="Provides information and utility methods for the whole simulation. " alt="" coords="882,329,1002,356"/>
+<area shape="rect" id="node13" href="$class_base_connection_manager.html" title="Module to control the channel and handle all connection related stuff. " alt="" coords="858,236,1026,263"/>
+<area shape="rect" id="node7" href="$classsimsignalwrap__t.html" title="Helper function to initialize signal change identifier on use and not on initializing static sections..." alt="" coords="19,47,135,73"/>
+<area shape="rect" id="node9" href="$class_access_module_wrap.html" title="Finds and returns the pointer to a module of type T. " alt="" coords="848,185,1036,212"/>
+<area shape="rect" id="node11" href="$class_coord.html" title="Class for storing 3D coordinates. " alt="" coords="593,325,651,352"/>
+<area shape="rect" id="node14" href="$class_base_connection_manager_1_1_grid_coord.html" title="Represents a position inside a grid. " alt="" coords="538,170,706,211"/>
+<area shape="rect" id="node15" href="$class_decider_to_phy_interface.html" title="This class is the interface for a Decider to the BasePhyLayer. " alt="" coords="864,440,1020,467"/>
+<area shape="rect" id="node26" href="$class_decider.html" title="The basic Decider class. " alt="" coords="1186,491,1253,517"/>
+<area shape="rect" id="node16" href="$class_mac_to_phy_interface.html" title="Defines the methods provided by the phy to the mac layer. " alt="" coords="1151,440,1287,467"/>
+<area shape="rect" id="node17" href="$class_veins_1_1_radio.html" title="Veins::Radio" alt="" coords="1171,541,1268,568"/>
+<area shape="rect" id="node18" href="$class_radio_state_analogue_model.html" title="This special AnalogueModel provides filtering of a Signal according to the actual RadioStates the Rad..." alt="" coords="854,541,1030,568"/>
+<area shape="rect" id="node19" href="$class_analogue_model.html" title="Interface for the analogue models of the physical layer. " alt="" coords="567,541,677,568"/>
+<area shape="rect" id="node20" href="$class_constant_simple_const_mapping.html" title="Represents a constant mathematical mapping (f(x) = c) " alt="" coords="1120,643,1319,669"/>
+<area shape="rect" id="node21" href="$class_simple_const_mapping.html" title="Abstract subclass of ConstMapping which can be used as base for any ConstMapping implementation with ..." alt="" coords="869,643,1015,669"/>
+<area shape="rect" id="node22" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="569,643,675,669"/>
+<area shape="rect" id="node23" href="$class_dimension_set.html" title="Represents a set of dimensions which is used to define over which dimensions a mapping is defined (th..." alt="" coords="315,643,419,669"/>
+<area shape="rect" id="node25" href="$class_channel_info.html" title="This class is used by the BasePhyLayer to keep track of the AirFrames on the channel. " alt="" coords="1173,592,1265,619"/>
+</map>

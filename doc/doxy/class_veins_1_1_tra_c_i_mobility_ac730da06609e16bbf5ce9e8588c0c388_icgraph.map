@@ -1,0 +1,8 @@
+<map id="Veins::TraCIMobility::getParkingState" name="Veins::TraCIMobility::getParkingState">
+<area shape="rect" id="node2" href="$classdefault__veins___tra_c_i.html#a158ca0cba0cd16d44fd0ff7bda165efa" title="default_veins_TraCI\l::handleParkingUpdate" alt="" coords="209,5,363,47"/>
+<area shape="rect" id="node4" href="$classmfcv.html#a94eebcabfe57a07d47f8ee10626f97bf" title="mfcv::handleParkingUpdate" alt="" coords="195,71,377,98"/>
+<area shape="rect" id="node6" href="$classminicurso___u_f_p_i___tra_c_i.html#a36ed88e038d964af69e8ee33c471c16e" title="minicurso_UFPI_TraCI\l::handleParkingUpdate" alt="" coords="208,123,364,164"/>
+<area shape="rect" id="node3" href="$classdefault__veins___tra_c_i.html#a712c055b5b98c22c74eb8df0e3a38558" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="434,5,573,47"/>
+<area shape="rect" id="node5" href="$classmfcv.html#a185d491d9702571b891bd3e6480872f9" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="435,71,572,98"/>
+<area shape="rect" id="node7" href="$classminicurso___u_f_p_i___tra_c_i.html#a1effdc8a307a1d1b3aaf95c3f50bc8db" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="425,123,581,164"/>
+</map>

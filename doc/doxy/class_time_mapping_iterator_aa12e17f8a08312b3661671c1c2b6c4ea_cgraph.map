@@ -1,0 +1,5 @@
+<map id="TimeMappingIterator::next" name="TimeMappingIterator::next">
+<area shape="rect" id="node2" href="$class_argument.html#a2ecb3b041b5b8721d6767531e4ac792a" title="Returns the time value of this argument. " alt="" coords="199,5,332,32"/>
+<area shape="rect" id="node3" href="$class_argument.html#a8087982f050bdc61d787b128ca9ac8f9" title="Changes the time value of this argument. " alt="" coords="384,85,517,112"/>
+<area shape="rect" id="node4" href="$class_time_mapping_iterator.html#a1a9382671669207404a7edba9469145e" title="TimeMappingIterator\l::updateNextPos" alt="" coords="195,107,336,149"/>
+</map>

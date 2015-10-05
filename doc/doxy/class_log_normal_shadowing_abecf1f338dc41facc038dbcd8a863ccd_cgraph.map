@@ -1,0 +1,12 @@
+<map id="LogNormalShadowing::filterSignal" name="LogNormalShadowing::filterSignal">
+<area shape="rect" id="node2" href="$class_veins_1_1_air_frame.html#a50cfde43def85076f0ba2e9ad16d18a4" title="Veins::AirFrame::getSignal" alt="" coords="209,5,387,32"/>
+<area shape="rect" id="node3" href="$class_signal.html#a7c4710243cf87caf7dfc9f313e2619b2" title="Returns the point in time when the receiving of the Signal started at the receiver module..." alt="" coords="213,56,383,83"/>
+<area shape="rect" id="node4" href="$class_signal.html#a2875223239e124d85949e1116cc12ae9" title="Returns the point in time when the receiving of the Signal ended at the receiver module. " alt="" coords="215,107,381,133"/>
+<area shape="rect" id="node5" href="$class_mapping_utils.html#a0c61c76ba04339162563339b23bf42e9" title="Returns an appropriate changeable Mapping with the specified domain and the specified interpolation m..." alt="" coords="203,157,393,184"/>
+<area shape="rect" id="node7" href="$class_argument.html#a8087982f050bdc61d787b128ca9ac8f9" title="Changes the time value of this argument. " alt="" coords="231,208,365,235"/>
+<area shape="rect" id="node8" href="$class_mapping.html#a2a63bc33cabcddf8c0f5938afd2e3328" title="Appends the passed value at the passed position to the mapping. " alt="" coords="221,259,375,285"/>
+<area shape="rect" id="node9" href="$class_log_normal_shadowing.html#ab81e4e559d16d59321fe0dced4a45806" title="Returns a random log normal distributed gain factor. " alt="" coords="217,310,379,351"/>
+<area shape="rect" id="node11" href="$class_signal.html#a0beeef0f27c33145a0fca521df1c5f5c" title="Adds a function representing an attenuation of the signal. " alt="" coords="221,376,375,403"/>
+<area shape="rect" id="node6" href="$class_dimension_set.html#a015cb6fa6c77b26b8c7b1e65827b8342" title="Returns true if the passed Dimension is inside this DimensionSet. " alt="" coords="441,157,636,184"/>
+<area shape="rect" id="node10" href="$class_f_w_math.html#af308407856d9835b103f2421e373ee28" title="Converts a dBm value into milliwatts. " alt="" coords="469,317,608,344"/>
+</map>

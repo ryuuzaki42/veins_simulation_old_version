@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_analogue_model.html" title="Interface for the analogue models of the physical layer. " alt="" coords="5,183,116,209"/>
+<area shape="rect" id="node2" href="$class_breakpoint_pathloss_model.html" title="Basic implementation of a BreakpointPathlossModel. " alt="" coords="168,5,339,32"/>
+<area shape="rect" id="node3" href="$class_jakes_fading.html" title="Implements Rayleigh fading after Jakes&#39; model. " alt="" coords="205,56,301,83"/>
+<area shape="rect" id="node4" href="$class_log_normal_shadowing.html" title="Channel state implementing log&#45;normal shadowing. " alt="" coords="179,107,328,133"/>
+<area shape="rect" id="node5" href="$class_p_e_r_model.html" title="This class applies a parameterized packet error rate to incoming packets. " alt="" coords="211,157,296,184"/>
+<area shape="rect" id="node6" href="$class_radio_state_analogue_model.html" title="This special AnalogueModel provides filtering of a Signal according to the actual RadioStates the Rad..." alt="" coords="165,208,341,235"/>
+<area shape="rect" id="node7" href="$class_simple_obstacle_shadowing.html" title="Basic implementation of a SimpleObstacleShadowing that uses SimplePathlossConstMapping (that is subcl..." alt="" coords="164,259,343,285"/>
+<area shape="rect" id="node8" href="$class_simple_pathloss_model.html" title="Basic implementation of a SimplePathlossModel that uses SimplePathlossConstMapping (that is subclasse..." alt="" coords="179,309,327,336"/>
+<area shape="rect" id="node9" href="$class_two_ray_interference_model.html" title="Extended version of Two&#45;Ray Ground path loss model. " alt="" coords="166,360,341,387"/>
+</map>

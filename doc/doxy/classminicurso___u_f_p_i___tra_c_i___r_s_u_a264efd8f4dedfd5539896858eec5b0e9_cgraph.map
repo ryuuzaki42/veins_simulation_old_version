@@ -1,0 +1,19 @@
+<map id="minicurso_UFPI_TraCI_RSU::sendMessage" name="minicurso_UFPI_TraCI_RSU::sendMessage">
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#aaa76362a567f160e008bf8a1dbde15d0" title="BaseWaveApplLayer::\lprepareWSM" alt="" coords="246,356,398,397"/>
+<area shape="rect" id="node15" href="$class_wave_short_message.html#a138e7425f6286d388541280dceab0352" title="WaveShortMessage::setWsmData" alt="" coords="209,474,435,501"/>
+<area shape="rect" id="node16" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#af7ac0956cfb79dd3cb99b1a5c5c7d958" title="minicurso_UFPI_TraCI\l_RSU::sendWSM" alt="" coords="244,631,400,672"/>
+<area shape="rect" id="node3" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="491,5,705,47"/>
+<area shape="rect" id="node4" href="$class_wave_short_message.html#adaf66b336060aff74a296c29f41509d6" title="WaveShortMessage::setPsid" alt="" coords="502,71,694,98"/>
+<area shape="rect" id="node5" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="495,122,701,149"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="499,173,697,215"/>
+<area shape="rect" id="node7" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="483,239,713,266"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#ac5318ca78711740c66b88bc156f7c52b" title="WaveShortMessage::setSender\lAddress" alt="" coords="495,291,701,332"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#a818105a3cb5d5bc51a1257826be98b13" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="487,356,709,397"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="483,422,713,449"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="499,473,697,499"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="494,523,702,550"/>
+<area shape="rect" id="node13" href="$class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf" title="WaveShortMessage::setSender\lSpeed" alt="" coords="495,575,701,616"/>
+<area shape="rect" id="node14" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="483,641,713,667"/>
+<area shape="rect" id="node17" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="484,691,712,718"/>
+<area shape="rect" id="node18" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="761,691,931,718"/>
+</map>

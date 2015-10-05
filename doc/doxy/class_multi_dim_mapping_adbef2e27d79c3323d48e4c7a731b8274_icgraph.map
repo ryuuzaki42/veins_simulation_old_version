@@ -1,0 +1,4 @@
+<map id="MultiDimMapping::copySubMappings" name="MultiDimMapping::copySubMappings">
+<area shape="rect" id="node2" href="$class_multi_dim_mapping.html#a3ac6685b718a771032556e192752c528" title="Intern copy&#45;constructor which assures that the sub&#45;mappings are deep copied instead of only their poi..." alt="" coords="236,5,407,47"/>
+<area shape="rect" id="node3" href="$class_multi_dim_mapping.html#adf3d7e794c6e10795a4fa18d6e3b67d0" title="Copy operator which assures that the sub&#45;mappings are deep copied instead of only their the pointers..." alt="" coords="236,71,407,112"/>
+</map>

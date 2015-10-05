@@ -1,0 +1,4 @@
+<map id="BorderMsg::getPolicy" name="BorderMsg::getPolicy">
+<area shape="rect" id="node2" href="$class_base_mobility.html#a1cd10753592e8eeb018d8f774ce862c6" title="Called upon arrival of a border messages. " alt="" coords="200,5,407,32"/>
+<area shape="rect" id="node3" href="$class_base_mobility.html#aad7ebb839ae5726f97ccf149ae661333" title="This modules should only receive self&#45;messages. " alt="" coords="455,5,651,32"/>
+</map>

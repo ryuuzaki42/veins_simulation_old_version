@@ -28,9 +28,7 @@ const simsignalwrap_t mfcv::parkingStateChangedSignal = simsignalwrap_t(TRACI_SI
 Define_Module(mfcv);
 
 void mfcv::initialize(int stage) {
-    //std::cout << "antes do BaseWaveApplLayer::initialize_mfcv(stage);";
 	BaseWaveApplLayer::initialize_mfcv(stage);
-    //std::cout << "depois do BaseWaveApplLayer::initialize_mfcv(stage);";
 	if (stage == 0) {
 		traci = TraCIMobilityAccess().get(getParentModule());
 		annotations = AnnotationManagerAccess().getIfExists();
@@ -110,7 +108,6 @@ void mfcv::sendWSM(WaveShortMessage* wsm) {
 //Handle Messages: Functions to be redefined by the programmer
 //These are the functions provided to add own functionality to your modules.
 //These functions are called whenever a blackboard message, a self message or a data message from the upper or lower layer arrives respectively.
-
 void mfcv::handleSelfMsg(cMessage* msg) {
     switch (msg->getKind()) {
         case SEND_BEACON_EVT: {

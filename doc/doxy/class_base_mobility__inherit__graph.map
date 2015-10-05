@@ -1,0 +1,5 @@
+<map id="BaseMobility" name="BaseMobility">
+<area shape="rect" id="node6" href="$class_veins_1_1_tra_c_i_mobility.html" title="Veins::TraCIMobility" alt="" coords="49,304,190,331"/>
+<area shape="rect" id="node2" href="$class_veins_1_1_battery_access.html" title="Veins::BatteryAccess" alt="" coords="45,155,194,181"/>
+<area shape="rect" id="node3" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="72,80,167,107"/>
+</map>

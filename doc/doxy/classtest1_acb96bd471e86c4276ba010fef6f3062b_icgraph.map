@@ -1,0 +1,5 @@
+<map id="test1::sendMessage" name="test1::sendMessage">
+<area shape="rect" id="node2" href="$classtest1.html#adea56f23113457f0a7c389574bdaa614" title="handle self messages " alt="" coords="193,5,339,32"/>
+<area shape="rect" id="node3" href="$classtest1.html#aa29cea4ff376eee8735ad4791c05da3a" title="test1::queryService" alt="" coords="199,56,333,83"/>
+<area shape="rect" id="node4" href="$classtest1.html#abfb909355df8c4447c2fa0d56e036e58" title="test1::onData" alt="" coords="387,56,488,83"/>
+</map>

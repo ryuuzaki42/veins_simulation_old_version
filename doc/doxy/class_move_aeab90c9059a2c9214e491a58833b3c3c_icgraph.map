@@ -1,0 +1,23 @@
+<map id="Move::getStartPos" name="Move::getStartPos">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#a3137899bb330551c9823c40b4ed8b8fc" title="Veins::TraCIMobility\l::changePosition" alt="" coords="924,205,1065,246"/>
+<area shape="rect" id="node13" href="$class_base_mobility.html#ab69f42caa7932524bf470f0799b4aac7" title="Checks whether the host is outside the playground and returns where. " alt="" coords="184,111,377,137"/>
+<area shape="rect" id="node14" href="$class_base_mobility.html#aae36006995d117a723134cbe1fee5e90" title="Main border handling function. " alt="" coords="431,99,627,125"/>
+<area shape="rect" id="node15" href="$class_veins_1_1_tra_c_i_mobility.html#a0fdea350639a2c9e1a71d91c4d4cb8f8" title="called after each read to check for (and handle) invalid positions " alt="" coords="701,81,855,122"/>
+<area shape="rect" id="node16" href="$class_base_mobility.html#a3bf65a049293dc4c7043554c04555bdc" title="calculate the step to reach the border " alt="" coords="195,60,367,87"/>
+<area shape="rect" id="node17" href="$class_base_mobility.html#a1cd10753592e8eeb018d8f774ce862c6" title="Called upon arrival of a border messages. " alt="" coords="425,313,632,340"/>
+<area shape="rect" id="node19" href="$class_base_mobility.html#aa89e41596faff0067340643acbab27d0" title="Initializes mobility model parameters. " alt="" coords="453,161,605,188"/>
+<area shape="rect" id="node21" href="$class_base_mobility.html#a291eed23c07d4693a5fa4164aa80934e" title="Update the position information for this node. " alt="" coords="185,263,376,289"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_mobility.html#a2b8432d33ff6bcadf7a5c4d30d5636b3" title="Veins::TraCIMobility\l::nextPosition" alt="" coords="1141,171,1283,213"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a08e1ff8c735af701665a197839515aa6" title="Veins::TraCIScenarioManager\l::addModule" alt="" coords="1113,237,1311,278"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4b6aa1aa798b245ff323c5759a3b848e" title="Veins::TraCIScenarioManager\l::processVehicleSubscription" alt="" coords="1359,205,1556,246"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2f149bc15c3119ab19850b6960689eeb" title="Veins::TraCIScenarioManager\l::processSubcriptionResult" alt="" coords="1604,173,1801,214"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="1850,105,2047,146"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a84ebe9fb50441189bd39f949f2593115" title="read and execute all commands for the next timestep " alt="" coords="1850,170,2047,211"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a999d945fca20d45532a24b492430d742" title="Veins::TraCIScenarioManager\l::subscribeToVehicleVariables" alt="" coords="1849,235,2048,277"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="2096,170,2293,211"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="2096,105,2293,146"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="2341,170,2539,211"/>
+<area shape="rect" id="node18" href="$class_base_mobility.html#aad7ebb839ae5726f97ccf149ae661333" title="This modules should only receive self&#45;messages. " alt="" coords="680,288,876,315"/>
+<area shape="rect" id="node20" href="$class_veins_1_1_tra_c_i_mobility.html#a508c83b198cc326da67bd8ed1decfb75" title="Initializes mobility model parameters. " alt="" coords="707,146,849,187"/>
+<area shape="rect" id="node22" href="$class_base_mobility.html#a70b2b357a4cef14850cd4edd440a13a7" title="Called upon arrival of a self messages. " alt="" coords="433,263,624,289"/>
+</map>

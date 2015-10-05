@@ -1,0 +1,6 @@
+<map id="BaseWorldUtility::getUniqueAirFrameId" name="BaseWorldUtility::getUniqueAirFrameId">
+<area shape="rect" id="node2" href="$class_phy_layer80211p.html#a88a501014c135335bf1e51ac3d92d845" title="This function encapsulates messages from the upper layer into an AirFrame and sets all necessary attr..." alt="" coords="240,5,435,32"/>
+<area shape="rect" id="node3" href="$class_base_phy_layer.html#a1e42622259807fe3cf06935e7a818ccf" title="This function encapsulates messages from the upper layer into an AirFrame and sets all necessary attr..." alt="" coords="246,56,429,83"/>
+<area shape="rect" id="node4" href="$class_base_phy_layer.html#a17b1d469775962d23835dd5f43a639ac" title="Handles messages received from the upper layer through the data gate. " alt="" coords="483,49,671,90"/>
+<area shape="rect" id="node5" href="$class_base_phy_layer.html#a3880154c8db8b8efb5315cb6ef8f6c41" title="OMNeT++ handle message function. " alt="" coords="719,56,925,83"/>
+</map>

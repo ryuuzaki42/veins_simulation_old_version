@@ -1,0 +1,22 @@
+<map id="Decider80211p.h" name="Decider80211p.h">
+<area shape="rect" id="node2" href="$_base_decider_8h.html" title="BaseDecider.h" alt="" coords="1087,244,1195,271"/>
+<area shape="rect" id="node13" href="$_consts80211p_8h.html" title="Consts80211p.h" alt="" coords="987,87,1104,114"/>
+<area shape="rect" id="node14" href="$_mac80211p_to_phy11p_interface_8h.html" title="Mac80211pToPhy11pInterface.h" alt="" coords="752,87,963,114"/>
+<area shape="rect" id="node34" href="$_decider80211p_to_phy80211p_interface_8h.html" title="Decider80211pToPhy80211p\lInterface.h" alt="" coords="1179,80,1368,121"/>
+<area shape="rect" id="node3" href="$_mi_xi_m_defs_8h.html" title="MiXiMDefs.h" alt="" coords="959,543,1057,569"/>
+<area shape="rect" id="node6" href="$_decider_8h.html" title="Decider.h" alt="" coords="1238,319,1317,345"/>
+<area shape="rect" id="node5" href="$miximkerneldefs_8h.html" title="miximkerneldefs.h" alt="" coords="944,617,1072,644"/>
+<area shape="rect" id="node7" href="$_decider_to_phy_interface_8h.html" title="DeciderToPhyInterface.h" alt="" coords="1491,393,1658,420"/>
+<area shape="rect" id="node10" href="$_channel_sense_request__m_8h.html" title="ChannelSenseRequest_m.h" alt="" coords="1282,393,1467,420"/>
+<area shape="rect" id="node11" href="$_channel_state_8h.html" title="ChannelState.h" alt="" coords="952,468,1064,495"/>
+<area shape="rect" id="node15" href="$_mac_to_phy_interface_8h.html" title="MacToPhyInterface.h" alt="" coords="784,169,931,196"/>
+<area shape="rect" id="node16" href="$_signal___8h.html" title="Signal_.h" alt="" coords="511,244,587,271"/>
+<area shape="rect" id="node29" href="$_phy_utils_8h.html" title="PhyUtils.h" alt="" coords="816,244,899,271"/>
+<area shape="rect" id="node17" href="$_mapping_8h.html" title="Mapping.h" alt="" coords="429,319,512,345"/>
+<area shape="rect" id="node18" href="$_mapping_base_8h.html" title="MappingBase.h" alt="" coords="349,468,461,495"/>
+<area shape="rect" id="node28" href="$_mapping_utils_8h.html" title="MappingUtils.h" alt="" coords="453,393,563,420"/>
+<area shape="rect" id="node25" href="$_interpolation_8h.html" title="Interpolation.h" alt="" coords="72,543,176,569"/>
+<area shape="rect" id="node30" href="$_analogue_model_8h.html" title="AnalogueModel.h" alt="" coords="739,319,861,345"/>
+<area shape="rect" id="node31" href="$_coord_8h.html" title="Coord.h" alt="" coords="1190,393,1258,420"/>
+<area shape="rect" id="node32" href="$_f_w_math_8h.html" title="FWMath.h" alt="" coords="1240,468,1323,495"/>
+</map>

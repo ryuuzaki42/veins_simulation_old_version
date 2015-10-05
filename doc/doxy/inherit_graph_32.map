@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_interpolator_base.html" title="InterpolatorBase\&lt; \l_ContainerType \&gt;" alt="" coords="5,49,135,90"/>
+<area shape="rect" id="node2" href="$class_linear.html" title="Given two iterators defining a range of key&#45;value&#45;pairs this class provides linear interpolation of t..." alt="" coords="201,5,375,32"/>
+<area shape="rect" id="node3" href="$class_nearest.html" title="Given two iterators defining a range of key&#45;value&#45;pairs this class provides interpolation of values f..." alt="" coords="196,56,380,83"/>
+<area shape="rect" id="node4" href="$class_next_smaller.html" title="Given two iterators defining a range of key&#45;value&#45;pairs this class provides interpolation of values f..." alt="" coords="183,107,393,133"/>
+</map>

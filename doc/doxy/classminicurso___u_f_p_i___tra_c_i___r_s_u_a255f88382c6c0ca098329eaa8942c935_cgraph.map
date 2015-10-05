@@ -1,0 +1,47 @@
+<map id="minicurso_UFPI_TraCI_RSU::onData" name="minicurso_UFPI_TraCI_RSU::onData">
+<area shape="rect" id="node2" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="249,190,400,217"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_annotation_manager.html#ac782dda85f42f36488d8a2eb91de6b11" title="Veins::AnnotationManager\l::scheduleErase" alt="" coords="237,241,412,283"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_annotation_manager.html#a4e92e8dd00db918dda24085571ef234e" title="Veins::AnnotationManager\l::drawLine" alt="" coords="237,307,412,348"/>
+<area shape="rect" id="node26" href="$class_wave_short_message.html#a47e866d383c3454e186dbe9c869fbc38" title="WaveShortMessage::getSenderPos" alt="" coords="209,373,440,399"/>
+<area shape="rect" id="node27" href="$class_base_mobility.html#a43e40c6e56445ca9439d7d44a37b12c1" title="Returns the current position at the current simulation time. " alt="" coords="241,424,408,465"/>
+<area shape="rect" id="node28" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a264efd8f4dedfd5539896858eec5b0e9" title="minicurso_UFPI_TraCI\l_RSU::sendMessage" alt="" coords="247,489,403,531"/>
+<area shape="rect" id="node46" href="$class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0" title="WaveShortMessage::getWsmData" alt="" coords="212,555,437,582"/>
+<area shape="rect" id="node3" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="527,190,674,217"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_annotation_manager.html#a87ffa1c7edbccb8372a4551b73c73def" title="Veins::AnnotationManager\l::show" alt="" coords="513,267,688,308"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_scenario_manager_access.html#af6404515b1b992848f352b03d325b10d" title="Veins::TraCIScenarioManager\lAccess::get" alt="" coords="778,332,975,373"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_scenario_manager.html#ab25b8a9284329844c1fb4f48124ddfa3" title="Veins::TraCIScenarioManager\l::isConnected" alt="" coords="778,397,975,439"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_tra_c_i_scenario_manager.html#af9d96f6e40de409df2f1d04b617433d5" title="Veins::TraCIScenarioManager\l::getCommandInterface" alt="" coords="778,463,975,504"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_command_interface.html#ab96a689984239c3b71b26e789de6bc76" title="Veins::TraCICommandInterface\l::addPoi" alt="" coords="773,71,980,112"/>
+<area shape="rect" id="node19" href="$class_veins_1_1_tra_c_i_color.html#a298f34374f0c11021d65018040152c98" title="Veins::TraCIColor::\lfromTkColor" alt="" coords="809,5,944,47"/>
+<area shape="rect" id="node21" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2402ac6e732d3d969edb739ac1bb32f8" title="convert OMNeT++ coordinates to TraCI coordinates " alt="" coords="778,136,975,177"/>
+<area shape="rect" id="node22" href="$class_veins_1_1_annotation_manager.html#a9f62775132e28042c0e239c79131fa61" title="Veins::AnnotationManager\l::createDummyModuleLine" alt="" coords="787,267,966,308"/>
+<area shape="rect" id="node24" href="$class_veins_1_1_tra_c_i_command_interface.html#a461a0c6e0919a5c0c9432a2abdd01d8e" title="Veins::TraCICommandInterface\l::addPolygon" alt="" coords="773,201,980,243"/>
+<area shape="rect" id="node8" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="1040,339,1237,366"/>
+<area shape="rect" id="node9" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="1288,339,1471,366"/>
+<area shape="rect" id="node13" href="$class_veins_1_1_tra_c_i_connection.html#ac0f5129ad1e50365588ec39112432c7d" title="sends a single command via TraCI, checks status response, returns additional responses ..." alt="" coords="1057,107,1220,148"/>
+<area shape="rect" id="node14" href="$class_veins_1_1_tra_c_i_connection.html#aaf6acde79a0ba73113c46ea92bd567d2" title="sends a message via TraCI (after adding the header) " alt="" coords="1298,107,1461,148"/>
+<area shape="rect" id="node17" href="$namespace_veins.html#ab52db5bfe6d9095440c0b0ac309bb99d" title="returns byte&#45;buffer containing a TraCI command with optional parameters " alt="" coords="1285,55,1473,82"/>
+<area shape="rect" id="node18" href="$class_veins_1_1_tra_c_i_connection.html#a634ce6c27d5e98f7d96f65706f3460df" title="receives a message via TraCI (and strips the header) " alt="" coords="1298,172,1461,213"/>
+<area shape="rect" id="node15" href="$namespace_veins.html#a6eeefaf3bbdaff6c10cfcd01200016d3" title="Veins::socket" alt="" coords="1547,143,1650,170"/>
+<area shape="rect" id="node16" href="$class_veins_1_1_tra_c_i_buffer.html#ae0833eeb81079e14eed3f13d0ae5d2b3" title="Veins::TraCIBuffer::str" alt="" coords="1521,86,1676,113"/>
+<area shape="rect" id="node20" href="$class_veins_1_1_tra_c_i_color.html#aed4c0a7c62bb97cd300b23f3f932e6e7" title="Veins::TraCIColor::\lTraCIColor" alt="" coords="1071,5,1206,47"/>
+<area shape="rect" id="node23" href="$class_veins_1_1_annotation_manager.html#a5913c22f5ec33e8a4d6531bc0b016899" title="Veins::AnnotationManager\l::createDummyModule" alt="" coords="1051,267,1226,308"/>
+<area shape="rect" id="node25" href="$class_veins_1_1_tra_c_i_buffer.html#a0065f3b4bf17cac8e10dc94b551eb9f8" title="Veins::TraCIBuffer::eof" alt="" coords="1060,209,1217,235"/>
+<area shape="rect" id="node29" href="$class_base_wave_appl_layer.html#aaa76362a567f160e008bf8a1dbde15d0" title="BaseWaveApplLayer::\lprepareWSM" alt="" coords="525,856,677,897"/>
+<area shape="rect" id="node42" href="$class_wave_short_message.html#a138e7425f6286d388541280dceab0352" title="WaveShortMessage::setWsmData" alt="" coords="488,470,713,497"/>
+<area shape="rect" id="node43" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#af7ac0956cfb79dd3cb99b1a5c5c7d958" title="minicurso_UFPI_TraCI\l_RSU::sendWSM" alt="" coords="523,521,679,563"/>
+<area shape="rect" id="node30" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="769,1032,984,1073"/>
+<area shape="rect" id="node31" href="$class_wave_short_message.html#adaf66b336060aff74a296c29f41509d6" title="WaveShortMessage::setPsid" alt="" coords="781,1098,973,1125"/>
+<area shape="rect" id="node32" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="773,1149,980,1175"/>
+<area shape="rect" id="node33" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="778,1200,975,1241"/>
+<area shape="rect" id="node34" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="761,579,992,606"/>
+<area shape="rect" id="node35" href="$class_wave_short_message.html#ac5318ca78711740c66b88bc156f7c52b" title="WaveShortMessage::setSender\lAddress" alt="" coords="773,631,980,672"/>
+<area shape="rect" id="node36" href="$class_wave_short_message.html#a818105a3cb5d5bc51a1257826be98b13" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="766,696,987,737"/>
+<area shape="rect" id="node37" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="761,762,992,789"/>
+<area shape="rect" id="node38" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="777,813,976,839"/>
+<area shape="rect" id="node39" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="773,863,981,890"/>
+<area shape="rect" id="node40" href="$class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf" title="WaveShortMessage::setSender\lSpeed" alt="" coords="773,915,980,956"/>
+<area shape="rect" id="node41" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="761,981,992,1007"/>
+<area shape="rect" id="node44" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="763,529,991,555"/>
+<area shape="rect" id="node45" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="1054,529,1223,555"/>
+</map>

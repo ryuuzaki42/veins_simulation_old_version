@@ -1,0 +1,6 @@
+<map id="mfcv::sendWSM" name="mfcv::sendWSM">
+<area shape="rect" id="node2" href="$classmfcv.html#acc11e6c02a10d0f9cf48f2e60f5867a1" title="handle self messages " alt="" coords="173,5,319,32"/>
+<area shape="rect" id="node3" href="$classmfcv.html#a23d37a267ae8e4e826d5ee71a8d1d4ec" title="mfcv::sendMessage" alt="" coords="176,56,316,83"/>
+<area shape="rect" id="node4" href="$classmfcv.html#a38a6f05fceb02f9ccc823fe4e1fbda57" title="mfcv::onData" alt="" coords="367,56,468,83"/>
+<area shape="rect" id="node5" href="$classmfcv.html#a5761d767ad551990b1fa52d1d531a5ce" title="handle messages from below " alt="" coords="516,56,673,83"/>
+</map>

@@ -1,0 +1,26 @@
+<map id="BaseMobility::initialize" name="BaseMobility::initialize">
+<area shape="rect" id="node2" href="$class_base_module.html#a03030e439aaf030c83da6e71e8be2f80" title="Basic initialization for all modules. " alt="" coords="229,69,379,96"/>
+<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="471,14,622,41"/>
+<area shape="rect" id="node5" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="205,274,403,301"/>
+<area shape="rect" id="node7" href="$class_base_world_utility.html#a84c3d488e01d52be51c686e3fb206498" title="Returns true if the world is 2&#45;dimensional. " alt="" coords="463,65,630,92"/>
+<area shape="rect" id="node8" href="$class_base_world_utility.html#a3c574ecd7a055ba2407f638ce548bc24" title="Random position somewhere in the playground. " alt="" coords="207,326,401,367"/>
+<area shape="rect" id="node10" href="$class_move.html#a385a1d6229f2490fdbe26f9266f29188" title="Sets start position (components in meters) and start time. " alt="" coords="250,392,358,418"/>
+<area shape="rect" id="node11" href="$class_move.html#aeab90c9059a2c9214e491a58833b3c3c" title="Returns the start position. " alt="" coords="481,284,612,310"/>
+<area shape="rect" id="node12" href="$class_coord.html#a86994bfa7096155d951abb03dcf30bf1" title="Returns a string with the value of the coordinate. " alt="" coords="261,442,347,469"/>
+<area shape="rect" id="node13" href="$class_base_world_utility.html#a179c8bf9d4613cbb1af0a85d779827a6" title="Returns the playgroundSize. " alt="" coords="219,493,389,520"/>
+<area shape="rect" id="node14" href="$class_move.html#af80f74d5fc42ec7fcedf9940c9d01655" title="Sets the current speed in meters per second. " alt="" coords="245,544,363,570"/>
+<area shape="rect" id="node15" href="$class_move.html#a1700ddcd2a41917a29747abaf2aee294" title="Sets the direction to the passed vector, which must be already normalized or the 0&#45;vector. " alt="" coords="211,594,397,621"/>
+<area shape="rect" id="node18" href="$class_base_mobility.html#afd83457f242d92ccdc2e2b5a3b2c4dd8" title="Returns the width of the playground. " alt="" coords="220,646,388,687"/>
+<area shape="rect" id="node19" href="$class_base_mobility.html#a09941dabdb81e67c77fc4794167c9351" title="Returns the height of the playground. " alt="" coords="220,711,388,752"/>
+<area shape="rect" id="node20" href="$class_base_mobility.html#a27e651dbd0a13f5f1a40c8ac531fc367" title="Maps the passed icon size tag (is) to an actual size in pixels. " alt="" coords="215,776,393,818"/>
+<area shape="rect" id="node21" href="$class_base_mobility.html#a291eed23c07d4693a5fa4164aa80934e" title="Update the position information for this node. " alt="" coords="209,173,399,200"/>
+<area shape="rect" id="node25" href="$class_move.html#a3db12757bf11ac7f025b2496d09e4941" title="Returns the current speed. " alt="" coords="245,842,363,869"/>
+<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="691,14,837,41"/>
+<area shape="rect" id="node6" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="455,334,638,361"/>
+<area shape="rect" id="node9" href="$class_base_world_utility.html#aabcceb57843568c213b0772b08971827" title="Initializes all members accessible by other modules. " alt="" coords="459,386,634,427"/>
+<area shape="rect" id="node16" href="$class_f_w_math.html#a38d2500887b49de2a2b5f8610f7ba6d1" title="Tests whether two doubles are close enough to be declared equal. " alt="" coords="491,569,602,596"/>
+<area shape="rect" id="node17" href="$class_coord.html#a278c018d6de54a020c39b3b1afaec50e" title="Returns the square of the length of this Coords position vector. " alt="" coords="475,620,618,646"/>
+<area shape="rect" id="node22" href="$class_move.html#a0287300e9580229fdd0c4c2c13e9527d" title="Returns information about the current state. " alt="" coords="505,116,588,142"/>
+<area shape="rect" id="node23" href="$class_base_mobility.html#a1245dec457a2d33c8dd1a70ccd74ea33" title="Returns the height of the playground. " alt="" coords="463,167,631,208"/>
+<area shape="rect" id="node24" href="$class_base_mobility.html#a4385f329f6d9df7294297c98028083e2" title="Maps the passed size in pixels to an appropriate icon size tag (is). " alt="" coords="451,233,643,260"/>
+</map>

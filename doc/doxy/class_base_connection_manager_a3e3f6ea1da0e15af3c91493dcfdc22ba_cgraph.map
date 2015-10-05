@@ -1,0 +1,9 @@
+<map id="BaseConnectionManager::unregisterNic" name="BaseConnectionManager::unregisterNic">
+<area shape="rect" id="node2" href="$class_base_connection_manager.html#a7f0e7ff7533bb1f5e3c9bb2c2c0db261" title="Calculates the corresponding cell of a coordinate. " alt="" coords="221,5,389,47"/>
+<area shape="rect" id="node3" href="$class_base_connection_manager_1_1_coord_set.html#aaa3c6a4f31789b4644a5bb7aaf414206" title="Adds a GridCoord to the set. " alt="" coords="437,64,605,105"/>
+<area shape="rect" id="node4" href="$class_base_connection_manager.html#a9b524c0f46ec4bb2ade902ac0855cac5" title="Adds every direct Neighbor of a GridCoord to a union of coords. " alt="" coords="221,123,389,164"/>
+<area shape="rect" id="node6" href="$class_base_connection_manager_1_1_coord_set.html#a02d6a8788ed22b635e7d8edbcb576d9d" title="Returns the next GridCoord in the set. " alt="" coords="221,188,389,229"/>
+<area shape="rect" id="node7" href="$class_base_connection_manager_1_1_grid_coord.html#a91ebc91e4af84ce4cf11d177d8ed7813" title="Output string for this coordinate. " alt="" coords="221,253,389,295"/>
+<area shape="rect" id="node8" href="$class_base_connection_manager.html#ae776ac81a8f88a9afba710afaf8573b8" title="Returns the NicEntries of the cell with specified coordinate. " alt="" coords="221,319,389,360"/>
+<area shape="rect" id="node5" href="$class_base_connection_manager.html#a77e53c22a7c607482398632b85396a6c" title="If the value is outside of its bounds (zero and max) this function returns &#45;1 if useTorus is false an..." alt="" coords="437,129,605,171"/>
+</map>

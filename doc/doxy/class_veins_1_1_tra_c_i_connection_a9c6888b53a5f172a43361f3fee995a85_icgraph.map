@@ -1,0 +1,15 @@
+<map id="Veins::TraCIConnection::queryOptional" name="Veins::TraCIConnection::queryOptional">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_command_interface.html#a6ac5b17a01d5e6034ed0f806587b4829" title="Veins::TraCICommandInterface\l::addVehicle" alt="" coords="216,157,423,199"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_command_interface.html#a5ec16879b2f125f96cca09406ba948d7" title="Veins::TraCICommandInterface\l::getVersion" alt="" coords="216,288,423,329"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_mobility.html#a5701e3f37cb8ff4d7f1348808620aa76" title="Veins::TraCIMobility\l::commandAddVehicle" alt="" coords="499,5,653,47"/>
+<area shape="rect" id="node4" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a68051be72ee51dd27b4e373ac1058c23" title="Veins::minicurso_UFPI\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="471,70,681,126"/>
+<area shape="rect" id="node6" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a509a641698a4887986424f07452a1807" title="Veins::default_veins\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="471,150,681,206"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2950402455646afe8ed6c36254cc9fa3" title="tries to add all vehicles in the vehicle queue to SUMO; " alt="" coords="477,229,675,271"/>
+<area shape="rect" id="node5" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a97b60a9b8c45ef73e4922db7f3af1024" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="729,77,933,119"/>
+<area shape="rect" id="node7" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#aa1bb9b88b7f8f4dc311c864b087c2640" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="729,157,933,199"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a84ebe9fb50441189bd39f949f2593115" title="read and execute all commands for the next timestep " alt="" coords="733,225,930,267"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="981,288,1179,329"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1227,288,1424,329"/>
+<area shape="rect" id="node13" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="733,291,930,332"/>
+<area shape="rect" id="node14" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="477,347,675,388"/>
+</map>

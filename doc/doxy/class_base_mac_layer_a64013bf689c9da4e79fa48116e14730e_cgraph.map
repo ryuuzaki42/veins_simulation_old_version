@@ -1,0 +1,4 @@
+<map id="BaseMacLayer::getUpperDestinationFromControlInfo" name="BaseMacLayer::getUpperDestinationFromControlInfo">
+<area shape="rect" id="node2" href="$class_netw_to_mac_control_info.html#add42e098a1af72c3fbc8be746d04b27f" title="Extracts the MAC address from the &quot;control info&quot; structure (object). " alt="" coords="289,5,460,47"/>
+<area shape="rect" id="node3" href="$class_netw_to_mac_control_info.html#a19518c8f5ccf35d44a2813a922e214ef" title="NetwToMacControlInfo\l::getDest" alt="" coords="508,5,665,47"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Argument::isClose" name="Argument::isClose">
+<area shape="rect" id="node2" href="$class_argument.html#af0e836fd4aaecc1461b994e21f66ddc3" title="Returns an iterator to the first argument value in this Argument. " alt="" coords="184,5,301,32"/>
+<area shape="rect" id="node3" href="$class_argument.html#aeeb6730c20ae8a8d6c9606f2e03cc1da" title="Returns an iterator to the value behind the last argument value. " alt="" coords="189,56,296,83"/>
+</map>

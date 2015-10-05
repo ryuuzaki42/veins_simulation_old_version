@@ -1,0 +1,9 @@
+<map id="BaseMobility::goToBorder" name="BaseMobility::goToBorder">
+<area shape="rect" id="node2" href="$class_move.html#aeab90c9059a2c9214e491a58833b3c3c" title="Returns the start position. " alt="" coords="244,5,375,32"/>
+<area shape="rect" id="node3" href="$class_coord.html#a86994bfa7096155d951abb03dcf30bf1" title="Returns a string with the value of the coordinate. " alt="" coords="266,56,353,83"/>
+<area shape="rect" id="node4" href="$class_move.html#a13cf0bb336db329a2033506d739c834f" title="Returns the direction vector (which is unit less, because of normalization). " alt="" coords="243,107,375,133"/>
+<area shape="rect" id="node5" href="$class_base_world_utility.html#a84c3d488e01d52be51c686e3fb206498" title="Returns true if the world is 2&#45;dimensional. " alt="" coords="226,157,393,184"/>
+<area shape="rect" id="node6" href="$class_base_mobility.html#afd83457f242d92ccdc2e2b5a3b2c4dd8" title="Returns the width of the playground. " alt="" coords="225,209,393,250"/>
+<area shape="rect" id="node7" href="$class_base_mobility.html#a09941dabdb81e67c77fc4794167c9351" title="Returns the height of the playground. " alt="" coords="225,274,393,315"/>
+<area shape="rect" id="node8" href="$class_base_mobility.html#a1245dec457a2d33c8dd1a70ccd74ea33" title="Returns the height of the playground. " alt="" coords="225,339,393,381"/>
+</map>

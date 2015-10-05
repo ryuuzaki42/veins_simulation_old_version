@@ -1,0 +1,9 @@
+<map id="ConstMappingIterator::iterateTo" name="ConstMappingIterator::iterateTo">
+<area shape="rect" id="node2" href="$class_mapping_utils.html#a2864c33a93f9ce23403d0c84ca9a19e2" title="MappingUtils::applyElement\lWiseOperator" alt="" coords="201,5,386,47"/>
+<area shape="rect" id="node3" href="$class_s_n_r_threshold_decider.html#a1d796e2f0da1c41810c5f2c5b4cfcd2e" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="210,71,377,112"/>
+<area shape="rect" id="node5" href="$class_mapping_utils.html#adb9e9ced268b9a5d1d4f6d34738654aa" title="Iterates over the passed mapping and returns the value at the key entry with the smallest value in th..." alt="" coords="219,137,367,163"/>
+<area shape="rect" id="node6" href="$class_multi_dim_mapping_iterator.html#a3a3b5ddc5aa1636772b9a89c085acdfc" title="Iterates to the specified position. " alt="" coords="211,188,375,229"/>
+<area shape="rect" id="node7" href="$class_mapping_utils.html#a6a768601098bcb0d998be2c742126433" title="MappingUtils::iterateToNext" alt="" coords="201,254,386,281"/>
+<area shape="rect" id="node8" href="$class_r_s_a_m_const_mapping_iterator.html#a919ae04b93ed239dc2f5566a383f28d4" title="Iterates to the next position of the function. " alt="" coords="200,305,387,347"/>
+<area shape="rect" id="node4" href="$class_s_n_r_threshold_decider.html#a6002f2ee8ffa35ded0162c72f93c9fba" title="Processes a received AirFrame. " alt="" coords="435,71,588,112"/>
+</map>

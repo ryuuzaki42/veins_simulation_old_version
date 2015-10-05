@@ -1,0 +1,14 @@
+<area shape="rect" id="node1" href="org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer.html" title="Simple Module BaseWaveApplLayer" alt="" coords="847,79,991,104">
+<area shape="rect" id="node3" href="org.car2x.veins.modules.application.default_veins_TraCI.default_veins_TraCI.html" title="Simple Module default_veins_TraCI" alt="" coords="5,152,144,177">
+<area shape="rect" id="node4" href="org.car2x.veins.modules.application.default_veins_TraCI.default_veins_TraCI_RSU.html" title="Simple Module default_veins_TraCI_RSU" alt="" coords="169,152,343,177">
+<area shape="rect" id="node5" href="org.car2x.veins.modules.application.mfcv.mfcv.html" title="Simple Module mfcv" alt="" coords="368,152,440,177">
+<area shape="rect" id="node6" href="org.car2x.veins.modules.application.mfcv.mfcv_rsu.html" title="Simple Module mfcv_rsu" alt="" coords="465,152,541,177">
+<area shape="rect" id="node7" href="org.car2x.veins.modules.application.minicurso_UFPI_TraCI.minicurso_UFPI_TraCI.html" title="Simple Module minicurso_UFPI_TraCI" alt="" coords="565,152,721,177">
+<area shape="rect" id="node8" href="org.car2x.veins.modules.application.minicurso_UFPI_TraCI.minicurso_UFPI_TraCI_RSU.html" title="Simple Module minicurso_UFPI_TraCI_RSU" alt="" coords="745,152,937,177">
+<area shape="rect" id="node9" href="org.car2x.veins.modules.application.osdp.osdp.html" title="Simple Module osdp" alt="" coords="961,152,1033,177">
+<area shape="rect" id="node10" href="org.car2x.veins.modules.application.osdp.osdp_RSU.html" title="Simple Module osdp_RSU" alt="" coords="1058,152,1145,177">
+<area shape="rect" id="node11" href="org.car2x.veins.modules.application.service_discovery.service_discovery.html" title="Simple Module service_discovery" alt="" coords="1169,152,1295,177">
+<area shape="rect" id="node12" href="org.car2x.veins.modules.application.service_discovery.service_discovery_RSU.html" title="Simple Module service_discovery_RSU" alt="" coords="1320,152,1483,177">
+<area shape="rect" id="node13" href="org.car2x.veins.modules.application.test1.test1.html" title="Simple Module test1" alt="" coords="1507,152,1579,177">
+<area shape="rect" id="node14" href="org.car2x.veins.modules.application.test1.test1_rsu.html" title="Simple Module test1_rsu" alt="" coords="1603,152,1679,177">
+<area shape="rect" id="node2" href="org.car2x.veins.base.modules.IBaseApplLayer.html" title="Module Interface IBaseApplLayer" alt="" coords="861,5,976,31">

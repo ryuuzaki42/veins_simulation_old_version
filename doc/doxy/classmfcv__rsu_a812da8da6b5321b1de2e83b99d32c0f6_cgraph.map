@@ -1,0 +1,16 @@
+<map id="mfcv_rsu::handleSelfMsg" name="mfcv_rsu::handleSelfMsg">
+<area shape="rect" id="node2" href="$classmfcv__rsu.html#a977bed514ff365699edd825ed77879bd" title="mfcv_rsu::sendWSM" alt="" coords="244,123,389,149"/>
+<area shape="rect" id="node5" href="$classmfcv__rsu.html#ade8aaabaa0bdd838ad2dd248fb758183" title="mfcv_rsu::prepareWSM_rsu" alt="" coords="224,291,409,317"/>
+<area shape="rect" id="node3" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="459,5,687,32"/>
+<area shape="rect" id="node4" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="736,5,905,32"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="465,57,680,98"/>
+<area shape="rect" id="node7" href="$class_wave_short_message.html#adaf66b336060aff74a296c29f41509d6" title="WaveShortMessage::setPsid" alt="" coords="477,123,669,149"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="469,173,676,200"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="474,225,671,266"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="457,291,688,317"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#ac5318ca78711740c66b88bc156f7c52b" title="WaveShortMessage::setSender\lAddress" alt="" coords="469,342,676,383"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#a818105a3cb5d5bc51a1257826be98b13" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="462,407,683,449"/>
+<area shape="rect" id="node13" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="457,473,688,500"/>
+<area shape="rect" id="node14" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="473,524,672,551"/>
+<area shape="rect" id="node15" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="457,575,688,601"/>
+</map>

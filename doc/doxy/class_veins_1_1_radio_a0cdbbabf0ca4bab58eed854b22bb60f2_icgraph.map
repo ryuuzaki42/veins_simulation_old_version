@@ -1,0 +1,9 @@
+<map id="Veins::Radio::makeRSAMEntry" name="Veins::Radio::makeRSAMEntry">
+<area shape="rect" id="node2" href="$class_veins_1_1_radio.html#aceb966be7e36e87068ae3424de8a5928" title="called by PhyLayer when duration&#45;time for the current switching process is up " alt="" coords="260,81,427,107"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_radio.html#aab434b342c42f1dbfa1df3640afbb4b0" title="A function called by the Physical Layer to start the switching process to a new RadioState. " alt="" coords="485,137,644,163"/>
+<area shape="rect" id="node3" href="$class_base_phy_layer.html#ada6c556e50ead146f822dadf6ea2a472" title="Called the moment the simulated switching process of the Radio is finished. " alt="" coords="475,71,655,112"/>
+<area shape="rect" id="node4" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="708,5,896,47"/>
+<area shape="rect" id="node5" href="$class_base_phy_layer.html#a17088ad93f59e143ff6c7ba866a31982" title="Handles self scheduled messages. " alt="" coords="714,71,890,112"/>
+<area shape="rect" id="node7" href="$class_base_phy_layer.html#a5170b3aadae25dc6b9e61974076be04b" title="Tells the BasePhyLayer to switch to the specified radio state. " alt="" coords="703,137,901,163"/>
+<area shape="rect" id="node6" href="$class_base_phy_layer.html#a3880154c8db8b8efb5315cb6ef8f6c41" title="OMNeT++ handle message function. " alt="" coords="949,78,1156,105"/>
+</map>

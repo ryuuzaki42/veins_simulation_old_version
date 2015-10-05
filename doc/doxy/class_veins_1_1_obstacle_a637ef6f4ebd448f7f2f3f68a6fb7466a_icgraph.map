@@ -1,0 +1,4 @@
+<map id="Veins::Obstacle::calculateAttenuation" name="Veins::Obstacle::calculateAttenuation">
+<area shape="rect" id="node2" href="$class_veins_1_1_obstacle_control.html#ae3bc0ffe81dd2ca3145636656f392204" title="calculate additional attenuation by obstacles, return signal strength " alt="" coords="228,5,385,47"/>
+<area shape="rect" id="node3" href="$class_simple_obstacle_shadowing.html#ab8f4e9c3b104f4b7fe18e4f275af79ac" title="Filters a specified Signal by adding an attenuation over time to the Signal. " alt="" coords="433,5,612,47"/>
+</map>

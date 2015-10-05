@@ -1,0 +1,6 @@
+<map id="FilteredMappingIterator" name="FilteredMappingIterator">
+<area shape="rect" id="node2" href="$class_base_filtered_iterator.html" title="BaseFilteredIterator\l\&lt; MappingIterator \&gt;" alt="" coords="55,199,191,240"/>
+<area shape="rect" id="node3" href="$class_mapping_iterator.html" title="Defines an iterator for a Mapping which is able to iterate over the Mapping. " alt="" coords="23,102,135,129"/>
+<area shape="rect" id="node4" href="$class_const_mapping_iterator.html" title="Defines an const iterator for a ConstMapping which is able to iterate over the Mapping. " alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node5" href="$class_base_filtered_iterator.html" title="This iterator takes another ConstMappingIterator and does just pipe every method to the passed ConstM..." alt="" coords="159,95,295,136"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Decider80211p::setPath" name="Decider80211p::setPath">
+<area shape="rect" id="node2" href="$class_phy_layer80211p.html#a91727110b53120bd4f008b59ffba2b8f" title="Initializes a new Decider80211 from the passed parameter map. " alt="" coords="216,5,391,47"/>
+<area shape="rect" id="node3" href="$class_phy_layer80211p.html#aba4ff7d43c6ee3c6fa550722db94aa86" title="Creates and returns an instance of the Decider with the specified name. " alt="" coords="439,5,629,47"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="MultiDimMapping&lt; Interpolator &gt;" name="MultiDimMapping&lt; Interpolator &gt;">
+<area shape="rect" id="node2" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="701,7,772,33"/>
+<area shape="rect" id="node6" href="$class_const_mapping_wrapper.html" title="Wraps an ConstMapping into a Mapping interface. " alt="" coords="1039,59,1194,85"/>
+<area shape="rect" id="node3" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="421,59,528,85"/>
+<area shape="rect" id="node13" href="$class_simple_const_mapping.html" title="Abstract subclass of ConstMapping which can be used as base for any ConstMapping implementation with ..." alt="" coords="663,120,810,147"/>
+<area shape="rect" id="node4" href="$class_dimension_set.html" title="Represents a set of dimensions which is used to define over which dimensions a mapping is defined (th..." alt="" coords="199,59,303,85"/>
+<area shape="rect" id="node7" href="$class_interpolateable_map.html" title="InterpolateableMap\l\&lt; Interpolator\&lt; std\l::map\&lt; argument_value\l_t, Mapping * \&gt; \&gt; \&gt;" alt="" coords="1037,171,1196,242"/>
+<area shape="rect" id="node9" href="$class_interpolateable_map.html" title="Represents a std::map which is able to interpolate. " alt="" coords="641,266,832,307"/>
+<area shape="rect" id="node12" href="$class_constant_simple_const_mapping.html" title="Represents a constant mathematical mapping (f(x) = c) " alt="" coords="1017,120,1216,147"/>
+<area shape="rect" id="node14" href="$class_dimension.html" title="Specifies a dimension for mappings (like time, frequency, etc.) " alt="" coords="1075,320,1159,347"/>
+</map>

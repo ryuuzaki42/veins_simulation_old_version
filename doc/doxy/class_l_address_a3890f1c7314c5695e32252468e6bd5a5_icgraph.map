@@ -1,0 +1,3 @@
+<map id="LAddress::isL2Broadcast" name="LAddress::isL2Broadcast">
+<area shape="rect" id="node2" href="$class_base_mac_layer.html#a413375cec02b990a521b62086a02264c" title="If message arrives from lower layer, check whether it is for us. " alt="" coords="221,5,436,32"/>
+</map>

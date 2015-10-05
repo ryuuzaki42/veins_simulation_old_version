@@ -1,0 +1,5 @@
+<map id="BasePhyLayer::getChannelInfo" name="BasePhyLayer::getChannelInfo">
+<area shape="rect" id="node2" href="$class_channel_info.html#a76e9891245a5df7dd6bfb14e99e343e5" title="Fills the passed AirFrameVector reference with the AirFrames which intersect with the given time inte..." alt="" coords="256,13,435,39"/>
+<area shape="rect" id="node3" href="$class_channel_info.html#a683ab4280d9c20ad02bd1c080d71b6d1" title="Returns every AirFrame of an AirFrameMatrix which intersect with a given interval. " alt="" coords="483,13,676,39"/>
+<area shape="rect" id="node4" href="$class_channel_info_1_1_base_intersection_iterator.html#a2acff6a4c595060ffc74872cdc0be1db" title="Increases the iterator to the next intersecting AirFrame and returns a pointer to this AirFrame..." alt="" coords="724,5,923,47"/>
+</map>

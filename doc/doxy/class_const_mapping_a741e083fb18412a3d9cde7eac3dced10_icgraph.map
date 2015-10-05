@@ -1,0 +1,5 @@
+<map id="ConstMapping::constClone" name="ConstMapping::constClone">
+<area shape="rect" id="node2" href="$class_const_mapping_wrapper.html#a5290d7c6126897a26e810da626d115ec" title="Returns a deep const copy of this mapping by using the according &quot;clone()&quot;&#45;implementation. " alt="" coords="233,5,388,47"/>
+<area shape="rect" id="node3" href="$class_signal.html#aa9c8501095ecc3fb4a60f4f0e2007138" title="Overwrites the copy operator to make sure that the mappings are cloned correct. " alt="" coords="250,71,371,98"/>
+<area shape="rect" id="node4" href="$class_signal.html#a079cc6bee7380f5744001d5f26505b2c" title="Overwrites the copy constructor to make sure that the mappings are cloned correct. " alt="" coords="259,122,362,149"/>
+</map>

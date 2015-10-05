@@ -1,0 +1,6 @@
+<map id="BasePhyLayer::getParametersFromXML" name="BasePhyLayer::getParametersFromXML">
+<area shape="rect" id="node2" href="$class_base_phy_layer.html#a8ea7353793eed2f1a7b0cd1caacd72e9" title="Initializes the AnalogueModels with the data from the passed XML&#45;config data. " alt="" coords="253,5,416,47"/>
+<area shape="rect" id="node5" href="$class_base_phy_layer.html#a9da4f8ffaa373a0de7895cbea524816b" title="Initializes the Decider with the data from the passed XML&#45;config data. " alt="" coords="253,71,416,112"/>
+<area shape="rect" id="node3" href="$class_base_phy_layer.html#a08704deaf03b73c8eda67cc60e670853" title="OMNeT++ initialization function. " alt="" coords="464,46,627,73"/>
+<area shape="rect" id="node4" href="$class_phy_layer80211p.html#aa3a10ad37436ef978aa9a0874b0da561" title="This is needed to circumvent a bug in MiXiM that allows different header length interpretations for r..." alt="" coords="675,46,849,73"/>
+</map>

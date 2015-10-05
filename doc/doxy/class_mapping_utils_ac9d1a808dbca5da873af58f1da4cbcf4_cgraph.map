@@ -1,0 +1,12 @@
+<map id="MappingUtils::findMax" name="MappingUtils::findMax">
+<area shape="rect" id="node2" href="$class_const_mapping.html#acc1559cf5741bec3aa6422e94c5b9cce" title="Returns this Mappings domain as DimensionSet. " alt="" coords="205,5,420,32"/>
+<area shape="rect" id="node3" href="$class_argument.html#a8b3fcda23d2eec4e931126d261e4b194" title="Returns the dimensions this argument is defined over. " alt="" coords="226,56,399,83"/>
+<area shape="rect" id="node4" href="$class_dimension_set.html#aae6d8ce3a87e3e1571b97c92f11363fb" title="Returns true if the passed DimensionSet is a subset of this DimensionSet. " alt="" coords="230,107,395,133"/>
+<area shape="rect" id="node5" href="$class_const_mapping.html#a5ff3a15fe6d536fa7a26a3fe1ff1b274" title="Returns a pointer of a new Iterator which is able to iterate over this Mapping. " alt="" coords="220,158,405,199"/>
+<area shape="rect" id="node6" href="$class_const_mapping_iterator.html#ad4419c259e747867f003d07d62d4259f" title="Returns the value of the Mapping at the current position. " alt="" coords="239,223,386,265"/>
+<area shape="rect" id="node7" href="$class_argument.html#a2ecb3b041b5b8721d6767531e4ac792a" title="Returns the time value of this argument. " alt="" coords="246,289,379,316"/>
+<area shape="rect" id="node8" href="$class_argument.html#aeeb6730c20ae8a8d6c9606f2e03cc1da" title="Returns an iterator to the value behind the last argument value. " alt="" coords="259,340,366,367"/>
+<area shape="rect" id="node9" href="$class_argument.html#af0e836fd4aaecc1461b994e21f66ddc3" title="Returns an iterator to the first argument value in this Argument. " alt="" coords="254,391,371,417"/>
+<area shape="rect" id="node10" href="$class_argument.html#a137a911de0281cbb519fe13727aa0813" title="Returns the value for the specified dimension. " alt="" coords="234,441,391,468"/>
+<area shape="rect" id="node11" href="$class_argument.html#ae4b61830a991f8911978c30a67dd2da6" title="Returns an iterator to the Argument value for the passed Dimension. " alt="" coords="468,441,575,468"/>
+</map>

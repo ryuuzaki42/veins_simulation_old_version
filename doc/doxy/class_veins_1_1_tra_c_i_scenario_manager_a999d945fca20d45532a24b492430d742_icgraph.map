@@ -1,0 +1,9 @@
+<map id="Veins::TraCIScenarioManager::subscribeToVehicleVariables" name="Veins::TraCIScenarioManager::subscribeToVehicleVariables">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4b6aa1aa798b245ff323c5759a3b848e" title="Veins::TraCIScenarioManager\l::processVehicleSubscription" alt="" coords="252,9,449,51"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2f149bc15c3119ab19850b6960689eeb" title="Veins::TraCIScenarioManager\l::processSubcriptionResult" alt="" coords="497,39,695,80"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a84ebe9fb50441189bd39f949f2593115" title="read and execute all commands for the next timestep " alt="" coords="743,5,940,47"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="743,71,940,112"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="988,5,1185,47"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1233,5,1431,47"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="988,71,1185,112"/>
+</map>

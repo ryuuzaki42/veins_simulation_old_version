@@ -1,0 +1,13 @@
+<map id="NicEntryDirect" name="NicEntryDirect">
+<area shape="rect" id="node2" href="$class_nic_entry.html" title="NicEntry is used by ConnectionManager to store the necessary information for each nic..." alt="" coords="1279,44,1352,71"/>
+<area shape="rect" id="node4" href="$class_coord.html" title="Class for storing 3D coordinates. " alt="" coords="487,81,544,108"/>
+<area shape="rect" id="node13" href="$class_base_world_utility.html" title="Provides information and utility methods for the whole simulation. " alt="" coords="775,279,895,305"/>
+<area shape="rect" id="node14" href="$class_base_connection_manager.html" title="Module to control the channel and handle all connection related stuff. " alt="" coords="751,163,919,189"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_channel_access.html" title="Veins::ChannelAccess" alt="" coords="1013,304,1168,331"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_battery_access.html" title="Veins::BatteryAccess" alt="" coords="761,329,910,356"/>
+<area shape="rect" id="node7" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="287,351,381,377"/>
+<area shape="rect" id="node11" href="$class_base_battery.html" title="Base class for any power source. " alt="" coords="468,329,563,356"/>
+<area shape="rect" id="node10" href="$classsimsignalwrap__t.html" title="Helper function to initialize signal change identifier on use and not on initializing static sections..." alt="" coords="5,416,121,443"/>
+<area shape="rect" id="node12" href="$class_access_module_wrap.html" title="Finds and returns the pointer to a module of type T. " alt="" coords="741,380,929,407"/>
+<area shape="rect" id="node15" href="$class_base_connection_manager_1_1_grid_coord.html" title="Represents a position inside a grid. " alt="" coords="431,133,599,174"/>
+</map>

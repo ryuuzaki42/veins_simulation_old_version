@@ -1,0 +1,5 @@
+<map id="SimplePathlossConstMapping::getValue" name="SimplePathlossConstMapping::getValue">
+<area shape="rect" id="node2" href="$class_argument.html#a0e9998020362333915af80cde79df9e6" title="Returns true if this Argument has a value for the passed Dimension. " alt="" coords="256,5,403,32"/>
+<area shape="rect" id="node3" href="$class_argument.html#a137a911de0281cbb519fe13727aa0813" title="Returns the value for the specified dimension. " alt="" coords="251,56,408,83"/>
+<area shape="rect" id="node4" href="$class_argument.html#ae4b61830a991f8911978c30a67dd2da6" title="Returns an iterator to the Argument value for the passed Dimension. " alt="" coords="456,56,563,83"/>
+</map>

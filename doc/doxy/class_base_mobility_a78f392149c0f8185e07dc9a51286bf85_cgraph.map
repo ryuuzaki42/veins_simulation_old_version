@@ -1,0 +1,6 @@
+<map id="BaseMobility::wrapIfOutside" name="BaseMobility::wrapIfOutside">
+<area shape="rect" id="node2" href="$class_f_w_math.html#adfee479fcdbaba84bd4cfa57cdacf97e" title="Returns the remainder r on division of dividend a by divisor n, using floored division. " alt="" coords="263,5,385,32"/>
+<area shape="rect" id="node3" href="$class_base_mobility.html#afd83457f242d92ccdc2e2b5a3b2c4dd8" title="Returns the width of the playground. " alt="" coords="240,57,408,98"/>
+<area shape="rect" id="node4" href="$class_base_mobility.html#a09941dabdb81e67c77fc4794167c9351" title="Returns the height of the playground. " alt="" coords="240,122,408,163"/>
+<area shape="rect" id="node5" href="$class_base_mobility.html#a1245dec457a2d33c8dd1a70ccd74ea33" title="Returns the height of the playground. " alt="" coords="240,187,408,229"/>
+</map>

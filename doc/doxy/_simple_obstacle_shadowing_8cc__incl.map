@@ -1,0 +1,20 @@
+<map id="SimpleObstacleShadowing.cc" name="SimpleObstacleShadowing.cc">
+<area shape="rect" id="node2" href="$_simple_obstacle_shadowing_8h.html" title="SimpleObstacleShadowing.h" alt="" coords="743,80,932,107"/>
+<area shape="rect" id="node3" href="$_analogue_model_8h.html" title="AnalogueModel.h" alt="" coords="807,326,929,353"/>
+<area shape="rect" id="node10" href="$_mapping_8h.html" title="Mapping.h" alt="" coords="343,326,425,353"/>
+<area shape="rect" id="node23" href="$_base_world_utility_8h.html" title="BaseWorldUtility.h" alt="" coords="449,326,580,353"/>
+<area shape="rect" id="node24" href="$_obstacle_control_8h.html" title="modules/obstacle/Obstacle\lControl.h" alt="" coords="1003,155,1183,196"/>
+<area shape="rect" id="node30" href="$_move_8h.html" title="Move.h" alt="" coords="1390,326,1455,353"/>
+<area shape="rect" id="node31" href="$_signal___8h.html" title="Signal_.h" alt="" coords="618,244,694,271"/>
+<area shape="rect" id="node32" href="$_air_frame__m_8h.html" title="base/messages/AirFrame_m.h" alt="" coords="669,162,869,189"/>
+<area shape="rect" id="node4" href="$_mi_xi_m_defs_8h.html" title="MiXiMDefs.h" alt="" coords="581,557,680,584"/>
+<area shape="rect" id="node7" href="$_coord_8h.html" title="Coord.h" alt="" coords="981,408,1049,435"/>
+<area shape="rect" id="node6" href="$miximkerneldefs_8h.html" title="miximkerneldefs.h" alt="" coords="567,632,695,659"/>
+<area shape="rect" id="node8" href="$_f_w_math_8h.html" title="FWMath.h" alt="" coords="973,483,1056,509"/>
+<area shape="rect" id="node11" href="$_mapping_base_8h.html" title="MappingBase.h" alt="" coords="367,483,479,509"/>
+<area shape="rect" id="node22" href="$_mapping_utils_8h.html" title="MappingUtils.h" alt="" coords="420,408,529,435"/>
+<area shape="rect" id="node19" href="$_interpolation_8h.html" title="Interpolation.h" alt="" coords="53,557,157,584"/>
+<area shape="rect" id="node26" href="$_obstacle_8h.html" title="modules/obstacle/Obstacle.h" alt="" coords="1055,244,1246,271"/>
+<area shape="rect" id="node28" href="$_annotation_manager_8h.html" title="modules/world/annotations\l/AnnotationManager.h" alt="" coords="1189,319,1366,360"/>
+<area shape="rect" id="node29" href="$_find_module_8h.html" title="FindModule.h" alt="" coords="1281,483,1381,509"/>
+</map>

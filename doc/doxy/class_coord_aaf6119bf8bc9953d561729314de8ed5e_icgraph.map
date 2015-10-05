@@ -1,0 +1,5 @@
+<map id="Coord::sqrTorusDist" name="Coord::sqrTorusDist">
+<area shape="rect" id="node2" href="$class_simple_pathloss_model.html#ade7562b60b0a5ced0d81ca29bee99ffd" title="Method to calculate the attenuation value for pathloss. " alt="" coords="205,5,353,47"/>
+<area shape="rect" id="node3" href="$class_breakpoint_pathloss_model.html#a50fed0d02ee407b1ab602a6c203cfd83" title="Filters a specified AirFrame&#39;s Signal by adding an attenuation over time to the Signal. " alt="" coords="193,71,364,112"/>
+<area shape="rect" id="node4" href="$class_simple_pathloss_model.html#a632b408d1c0ecac4fd90da5d48d73c5e" title="Filters a specified AirFrame&#39;s Signal by adding an attenuation over time to the Signal. " alt="" coords="205,136,353,177"/>
+</map>

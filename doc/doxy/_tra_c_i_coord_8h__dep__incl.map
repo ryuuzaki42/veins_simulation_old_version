@@ -1,0 +1,29 @@
+<map id="TraCICoord.h" name="TraCICoord.h">
+<area shape="rect" id="node2" href="$_tra_c_i_buffer_8cc.html" title="TraCIBuffer.cc" alt="" coords="781,80,889,107"/>
+<area shape="rect" id="node3" href="$_tra_c_i_command_interface_8h.html" title="TraCICommandInterface.h" alt="" coords="913,80,1090,107"/>
+<area shape="rect" id="node27" href="$_tra_c_i_scenario_manager_8h.html" title="TraCIScenarioManager.h" alt="" coords="1145,80,1311,107"/>
+<area shape="rect" id="node4" href="$service__discovery_8h.html" title="service_discovery.h" alt="" coords="103,237,241,263"/>
+<area shape="rect" id="node6" href="$test1_8h.html" title="test1.h" alt="" coords="15,237,78,263"/>
+<area shape="rect" id="node8" href="$_tra_c_i_command_interface_8cc.html" title="TraCICommandInterface.cc" alt="" coords="707,155,891,181"/>
+<area shape="rect" id="node9" href="$_tra_c_i_mobility_8h.html" title="TraCIMobility.h" alt="" coords="915,155,1026,181"/>
+<area shape="rect" id="node24" href="$_tra_c_i_scenario_manager_8cc.html" title="TraCIScenarioManager.cc" alt="" coords="1477,237,1651,263"/>
+<area shape="rect" id="node25" href="$_tra_c_i_scenario_manager_launchd_8cc.html" title="TraCIScenarioManagerLaunchd.cc" alt="" coords="1675,237,1898,263"/>
+<area shape="rect" id="node26" href="$_annotation_manager_8cc.html" title="AnnotationManager.cc" alt="" coords="1152,155,1304,181"/>
+<area shape="rect" id="node5" href="$service__discovery_8cc.html" title="service_discovery.cc" alt="" coords="99,326,245,353"/>
+<area shape="rect" id="node7" href="$test1_8cc.html" title="test1.cc" alt="" coords="5,326,75,353"/>
+<area shape="rect" id="node10" href="$default__veins___tra_c_i_8h.html" title="default_veins_TraCI.h" alt="" coords="1302,237,1453,263"/>
+<area shape="rect" id="node12" href="$default__veins___tra_c_i___test_app_8h.html" title="default_veins_TraCI\l_TestApp.h" alt="" coords="265,229,404,271"/>
+<area shape="rect" id="node14" href="$_base_wave_appl_layer_8cc.html" title="BaseWaveApplLayer.cc" alt="" coords="428,237,591,263"/>
+<area shape="rect" id="node15" href="$mfcv_8h.html" title="mfcv.h" alt="" coords="615,237,678,263"/>
+<area shape="rect" id="node17" href="$minicurso___u_f_p_i___tra_c_i_8h.html" title="minicurso_UFPI_TraCI.h" alt="" coords="702,237,869,263"/>
+<area shape="rect" id="node19" href="$minicurso___u_f_p_i___tra_c_i___test_app_8h.html" title="minicurso_UFPI_TraCI\l_TestApp.h" alt="" coords="893,229,1049,271"/>
+<area shape="rect" id="node21" href="$osdp_8h.html" title="osdp.h" alt="" coords="1073,237,1135,263"/>
+<area shape="rect" id="node23" href="$_tra_c_i_mobility_8cc.html" title="TraCIMobility.cc" alt="" coords="1159,237,1278,263"/>
+<area shape="rect" id="node11" href="$default__veins___tra_c_i_8cc.html" title="default_veins_TraCI.cc" alt="" coords="1299,326,1456,353"/>
+<area shape="rect" id="node13" href="$default__veins___tra_c_i___test_app_8cc.html" title="default_veins_TraCI\l_TestApp.cc" alt="" coords="269,319,408,360"/>
+<area shape="rect" id="node16" href="$mfcv_8cc.html" title="mfcv.cc" alt="" coords="601,326,671,353"/>
+<area shape="rect" id="node18" href="$minicurso___u_f_p_i___tra_c_i_8cc.html" title="minicurso_UFPI_TraCI.cc" alt="" coords="695,326,870,353"/>
+<area shape="rect" id="node20" href="$minicurso___u_f_p_i___tra_c_i___test_app_8cc.html" title="minicurso_UFPI_TraCI\l_TestApp.cc" alt="" coords="894,319,1050,360"/>
+<area shape="rect" id="node22" href="$osdp_8cc.html" title="osdp.cc" alt="" coords="1074,326,1142,353"/>
+<area shape="rect" id="node28" href="$_tra_c_i_scenario_manager_launchd_8h.html" title="TraCIScenarioManagerLaunchd.h" alt="" coords="1584,155,1800,181"/>
+</map>

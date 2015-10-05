@@ -1,0 +1,12 @@
+<map id="Veins::TraCIMobility::changePosition" name="Veins::TraCIMobility::changePosition">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a08e1ff8c735af701665a197839515aa6" title="Veins::TraCIScenarioManager\l::addModule" alt="" coords="195,72,392,113"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_tra_c_i_mobility.html#a2b8432d33ff6bcadf7a5c4d30d5636b3" title="Veins::TraCIMobility\l::nextPosition" alt="" coords="223,137,364,179"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4b6aa1aa798b245ff323c5759a3b848e" title="Veins::TraCIScenarioManager\l::processVehicleSubscription" alt="" coords="440,105,637,147"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2f149bc15c3119ab19850b6960689eeb" title="Veins::TraCIScenarioManager\l::processSubcriptionResult" alt="" coords="685,73,883,115"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="931,71,1129,112"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a84ebe9fb50441189bd39f949f2593115" title="read and execute all commands for the next timestep " alt="" coords="931,5,1129,47"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a999d945fca20d45532a24b492430d742" title="Veins::TraCIScenarioManager\l::subscribeToVehicleVariables" alt="" coords="931,136,1129,177"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="1177,5,1375,47"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="1177,71,1375,112"/>
+<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1423,5,1620,47"/>
+</map>

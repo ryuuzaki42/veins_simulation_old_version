@@ -1,0 +1,8 @@
+<map id="SNRThresholdDecider" name="SNRThresholdDecider">
+<area shape="rect" id="node2" href="$class_base_decider.html" title="Provides some base functionality for most common deciders. " alt="" coords="127,273,224,300"/>
+<area shape="rect" id="node3" href="$class_decider.html" title="The basic Decider class. " alt="" coords="61,184,127,211"/>
+<area shape="rect" id="node4" href="$class_decider_to_phy_interface.html" title="This class is the interface for a Decider to the BasePhyLayer. " alt="" coords="5,95,161,121"/>
+<area shape="rect" id="node5" href="$struct_base_decider_1_1_c_s_r_info.html" title="Data about an currently ongoing ChannelSenseRequest. " alt="" coords="157,184,313,211"/>
+<area shape="rect" id="node6" href="$class_channel_sense_request.html" title="ChannelSenseRequest" alt="" coords="185,95,341,121"/>
+<area shape="rect" id="node8" href="$class_channel_state.html" title="Provides information about the current state of the channel: " alt="" coords="267,5,369,32"/>
+</map>

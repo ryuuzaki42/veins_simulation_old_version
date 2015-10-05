@@ -1,0 +1,6 @@
+<map id="Veins::TraCICommandInterface::setTrafficLightPhaseIndex" name="Veins::TraCICommandInterface::setTrafficLightPhaseIndex">
+<area shape="rect" id="node2" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a509a641698a4887986424f07452a1807" title="Veins::default_veins\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="260,5,471,61"/>
+<area shape="rect" id="node4" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a68051be72ee51dd27b4e373ac1058c23" title="Veins::minicurso_UFPI\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="260,85,471,141"/>
+<area shape="rect" id="node3" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#aa1bb9b88b7f8f4dc311c864b087c2640" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="519,13,723,54"/>
+<area shape="rect" id="node5" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a97b60a9b8c45ef73e4922db7f3af1024" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="519,93,723,134"/>
+</map>

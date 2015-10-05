@@ -1,0 +1,4 @@
+<map id="MacToPhyInterface" name="MacToPhyInterface">
+<area shape="rect" id="node2" href="$class_base_phy_layer.html" title="The BasePhyLayer represents the physical layer of a nic. " alt="" coords="20,80,127,107"/>
+<area shape="rect" id="node3" href="$class_phy_layer80211p.html" title="Adaptation of the PhyLayer class for 802.11p. " alt="" coords="14,155,133,181"/>
+</map>

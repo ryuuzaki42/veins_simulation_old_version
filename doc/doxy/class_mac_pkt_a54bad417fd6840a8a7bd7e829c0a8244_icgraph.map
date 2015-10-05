@@ -1,0 +1,4 @@
+<map id="MacPkt::getDestAddr" name="MacPkt::getDestAddr">
+<area shape="rect" id="node2" href="$class_mac1609__4.html#a2909c6cda932d7e69db061969744ac70" title="Handle messages from lower layer. " alt="" coords="211,5,406,32"/>
+<area shape="rect" id="node3" href="$class_base_mac_layer.html#a413375cec02b990a521b62086a02264c" title="If message arrives from lower layer, check whether it is for us. " alt="" coords="201,56,416,83"/>
+</map>

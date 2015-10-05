@@ -5,9 +5,11 @@ src/*.so
 projects/**/results
 projects/**/.tkenvrc
 projects/**/valgrind.out
-/images
-/tests
-/doc
+
+#/images
+#/tests
+#/doc
+
 #
 #COPYING
 #Makefile

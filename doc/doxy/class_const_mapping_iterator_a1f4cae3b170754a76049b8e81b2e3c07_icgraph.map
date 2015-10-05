@@ -1,0 +1,7 @@
+<map id="ConstMappingIterator::getNextPosition" name="ConstMappingIterator::getNextPosition">
+<area shape="rect" id="node2" href="$class_s_n_r_threshold_decider.html#a1d796e2f0da1c41810c5f2c5b4cfcd2e" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="218,5,385,47"/>
+<area shape="rect" id="node4" href="$class_mapping_utils.html#adb9e9ced268b9a5d1d4f6d34738654aa" title="Iterates over the passed mapping and returns the value at the key entry with the smallest value in th..." alt="" coords="227,71,375,98"/>
+<area shape="rect" id="node5" href="$class_mapping_utils.html#a6a768601098bcb0d998be2c742126433" title="MappingUtils::iterateToNext" alt="" coords="209,122,394,149"/>
+<area shape="rect" id="node6" href="$class_multi_dim_mapping_iterator.html#a1eb04551f2a3ae22f0eae4844f14ac97" title="Helper method which updates the nextPosition member. " alt="" coords="200,173,403,215"/>
+<area shape="rect" id="node3" href="$class_s_n_r_threshold_decider.html#a6002f2ee8ffa35ded0162c72f93c9fba" title="Processes a received AirFrame. " alt="" coords="451,5,604,47"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="BasePhyLayer::setRadioState" name="BasePhyLayer::setRadioState">
+<area shape="rect" id="node2" href="$class_veins_1_1_radio.html#aab434b342c42f1dbfa1df3640afbb4b0" title="A function called by the Physical Layer to start the switching process to a new RadioState. " alt="" coords="532,5,691,32"/>
+<area shape="rect" id="node4" href="$class_base_phy_layer.html#ada6c556e50ead146f822dadf6ea2a472" title="Called the moment the simulated switching process of the Radio is finished. " alt="" coords="271,57,451,98"/>
+<area shape="rect" id="node10" href="$class_base_phy_layer.html#aa59aef501cadd36c94d4f82efe9b64be" title="Schedule self message to passed point in time. " alt="" coords="252,123,471,149"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_radio.html#a0cdbbabf0ca4bab58eed854b22bb60f2" title="responsible for making entries to the RSAM " alt="" coords="752,9,959,36"/>
+<area shape="rect" id="node5" href="$class_veins_1_1_radio.html#aceb966be7e36e87068ae3424de8a5928" title="called by PhyLayer when duration&#45;time for the current switching process is up " alt="" coords="528,56,695,83"/>
+<area shape="rect" id="node6" href="$class_base_phy_layer.html#a76d0386516d18d1cc64af5ef6fb315cd" title="Called by the Decider to send a control message to the MACLayer. " alt="" coords="519,107,704,149"/>
+<area shape="rect" id="node7" href="$class_channel_info.html#a5b1b8d56aa2fa64b5d79c0cf5c3167a9" title="Returns true if ChannelInfo is currently recording. " alt="" coords="771,64,940,91"/>
+<area shape="rect" id="node8" href="$class_channel_info.html#a884277584d1abf73eaca5df0c61e08c9" title="Tells ChannelInfo to stop recording Information from now on. " alt="" coords="763,115,947,141"/>
+<area shape="rect" id="node9" href="$class_base_phy_layer.html#aaa439e85a8bc20a39477055aecf04993" title="Sends the passed control message to the upper layer. " alt="" coords="763,166,948,207"/>
+</map>

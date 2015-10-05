@@ -1,0 +1,5 @@
+<map id="ChannelInfo::getIntersections" name="ChannelInfo::getIntersections">
+<area shape="rect" id="node2" href="$class_channel_info.html#a76e9891245a5df7dd6bfb14e99e343e5" title="Fills the passed AirFrameVector reference with the AirFrames which intersect with the given time inte..." alt="" coords="247,31,425,57"/>
+<area shape="rect" id="node3" href="$class_base_phy_layer.html#a44a1a7e9bc420aa7b835c8a7687f97a5" title="Fills the passed AirFrameVector with all AirFrames that intersect with the time interval [from..." alt="" coords="476,5,679,32"/>
+<area shape="rect" id="node4" href="$class_base_phy_layer.html#a0fc69907490ed2752d2a888ef26348ff" title="Free the pointer to the decider and the AnalogueModels and the Radio. " alt="" coords="473,56,681,83"/>
+</map>

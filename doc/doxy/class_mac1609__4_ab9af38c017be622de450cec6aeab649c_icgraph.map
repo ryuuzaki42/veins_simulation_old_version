@@ -1,0 +1,4 @@
+<map id="Mac1609_4::mapPriority" name="Mac1609_4::mapPriority">
+<area shape="rect" id="node2" href="$class_mac1609__4.html#a551d295ebf0b23896f4d272e3db3961d" title="Handle self messages such as timers. " alt="" coords="222,5,405,32"/>
+<area shape="rect" id="node3" href="$class_mac1609__4.html#ac93bf319ea2065fd7e8c041697e49919" title="Handle messages from upper layer. " alt="" coords="216,56,411,83"/>
+</map>

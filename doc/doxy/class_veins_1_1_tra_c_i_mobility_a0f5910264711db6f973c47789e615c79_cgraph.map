@@ -1,0 +1,9 @@
+<map id="Veins::TraCIMobility::preInitialize" name="Veins::TraCIMobility::preInitialize">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#ad717a66b60ffceb73d95bf7c1c4eb87e" title="Calculates where the antenna of this car is, given its front bumper position. " alt="" coords="199,5,377,47"/>
+<area shape="rect" id="node3" href="$class_move.html#ae3bceb166e7924c6ea1620b633b1192d" title="Move::getCurrentPosition" alt="" coords="203,71,373,98"/>
+<area shape="rect" id="node4" href="$class_move.html#a385a1d6229f2490fdbe26f9266f29188" title="Sets start position (components in meters) and start time. " alt="" coords="234,122,342,149"/>
+<area shape="rect" id="node5" href="$class_move.html#a1700ddcd2a41917a29747abaf2aee294" title="Sets the direction to the passed vector, which must be already normalized or the 0&#45;vector. " alt="" coords="195,173,381,199"/>
+<area shape="rect" id="node8" href="$class_move.html#af80f74d5fc42ec7fcedf9940c9d01655" title="Sets the current speed in meters per second. " alt="" coords="229,223,347,250"/>
+<area shape="rect" id="node6" href="$class_f_w_math.html#a38d2500887b49de2a2b5f8610f7ba6d1" title="Tests whether two doubles are close enough to be declared equal. " alt="" coords="445,147,556,174"/>
+<area shape="rect" id="node7" href="$class_coord.html#a278c018d6de54a020c39b3b1afaec50e" title="Returns the square of the length of this Coords position vector. " alt="" coords="429,198,572,225"/>
+</map>

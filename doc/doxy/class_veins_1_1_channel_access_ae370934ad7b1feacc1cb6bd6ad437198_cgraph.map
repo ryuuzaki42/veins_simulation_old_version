@@ -1,0 +1,9 @@
+<map id="Veins::ChannelAccess::sendToChannel" name="Veins::ChannelAccess::sendToChannel">
+<area shape="rect" id="node2" href="$class_base_connection_manager.html#ae71cb544584cb71f96e7de50896577f8" title="Returns the ingates of all nics in range. " alt="" coords="217,5,385,47"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_channel_access.html#a01c12c70034ec0583ee5f4e1ac0f683b" title="Calculates the propagation delay to the passed receiving nic. " alt="" coords="208,71,393,112"/>
+<area shape="rect" id="node4" href="$class_veins_1_1_channel_access.html#a130bfd04f4e40b490929f99d96cc1aef" title="Returns the host&#39;s mobility module. " alt="" coords="441,41,596,83"/>
+<area shape="rect" id="node7" href="$class_coord.html#ab6a7bfcc5c55e5d8edbc7c0cb5a11626" title="Returns the distance to Coord &#39;a&#39;. " alt="" coords="461,107,576,134"/>
+<area shape="rect" id="node5" href="$class_access_module_wrap.html#aabe6dcb792c40ce4c77b2f194aadbe5f" title="AccessModuleWrap::get" alt="" coords="644,49,809,75"/>
+<area shape="rect" id="node6" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="857,49,1040,75"/>
+<area shape="rect" id="node8" href="$class_coord.html#acc536671c07e1af44e6ad9676a6c39ad" title="Returns the length of this Coords position vector. " alt="" coords="677,107,777,134"/>
+</map>

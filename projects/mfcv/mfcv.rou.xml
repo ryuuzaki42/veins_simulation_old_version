@@ -7,7 +7,7 @@
     </route>
     -->
 
-    <vType accel="2.0" decel="2.0" id="Car1" length="2.5" maxSpeed="5.1" sigma="0.0"  minGap="2.5" />
+    <vType accel="2.0" decel="2.0" id="Car1" length="2.5" maxSpeed="5.1" sigma="0.0"  minGap="2.5" vClass="passenger"/>
     <vType accel="1.0" decel="1.0" id="Car2" length="2.5" maxSpeed="10.1" sigma="0.0"  minGap="2.5" />
 
     <!-- <vType accel="1.0" decel="1.0" id="Car2" length="7.5" maxSpeed="5.1" sigma="0.0"  minGap="2.5" guiShape="bus" color= "0,1,0"/> -->

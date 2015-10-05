@@ -1,0 +1,5 @@
+<map id="Signal::operator=" name="Signal::operator=">
+<area shape="rect" id="node2" href="$class_signal.html#a594e926b3d8ff3330375c8850699ae76" title="Deletes the rcvPower mapping member because it became out&#45;dated. " alt="" coords="175,5,384,32"/>
+<area shape="rect" id="node3" href="$class_const_mapping.html#a741e083fb18412a3d9cde7eac3dced10" title="returns a deep copy of this mapping instance. " alt="" coords="189,56,369,83"/>
+<area shape="rect" id="node4" href="$class_mapping.html#a95f064bd4bc5a22aef1cf0e4a6052ec7" title="Returns a deep copy of this Mapping. " alt="" coords="224,107,335,133"/>
+</map>

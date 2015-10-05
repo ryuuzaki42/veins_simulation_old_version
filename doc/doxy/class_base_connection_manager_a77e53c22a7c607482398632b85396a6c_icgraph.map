@@ -1,0 +1,21 @@
+<map id="BaseConnectionManager::wrapIfTorus" name="BaseConnectionManager::wrapIfTorus">
+<area shape="rect" id="node2" href="$class_base_connection_manager.html#a9b524c0f46ec4bb2ade902ac0855cac5" title="Adds every direct Neighbor of a GridCoord to a union of coords. " alt="" coords="221,129,389,171"/>
+<area shape="rect" id="node3" href="$class_base_connection_manager.html#a063c137e5a6d73ff846321b511d48a32" title="Check connections of a nic in the grid. " alt="" coords="437,80,605,121"/>
+<area shape="rect" id="node8" href="$class_base_connection_manager.html#a3e3f6ea1da0e15af3c91493dcfdc22ba" title="Unregisters a NIC such that its connections aren&#39;t managed by the CM anymore. " alt="" coords="437,177,605,219"/>
+<area shape="rect" id="node4" href="$class_base_connection_manager.html#a997a62d3bc3ca2d220a36609e4b7f4e5" title="Updates the connections of the nic with &quot;nicID&quot;. " alt="" coords="668,71,836,112"/>
+<area shape="rect" id="node5" href="$class_base_connection_manager.html#ab9d82c54244e022ee41f3d1017cd74f1" title="Registers a nic to have its connections managed by ConnectionManager. " alt="" coords="913,5,1081,47"/>
+<area shape="rect" id="node7" href="$class_base_connection_manager.html#a075ad308e1ae744f4f7ff1d6517da324" title="Updates the position information of a registered nic. " alt="" coords="913,71,1081,112"/>
+<area shape="rect" id="node6" href="$class_veins_1_1_channel_access.html#ad7c56c9ed2db85ecba91900c35e795a0" title="Called by the signalling mechanism to inform of changes. " alt="" coords="1165,39,1320,80"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a51fba19aa4d310e5a3bb5ecb27b11d0c" title="Veins::TraCIScenarioManager\l::deleteModule" alt="" coords="653,193,851,235"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a95586be7e5fa2b6f0bb15a5768559dc9" title="Veins::TraCIScenarioManager\l::finish" alt="" coords="899,136,1096,177"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a1dba6b09e84d2d3d91c552bc9172119f" title="Veins::TraCIScenarioManager\l::processSimSubscription" alt="" coords="899,201,1096,243"/>
+<area shape="rect" id="node20" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4b6aa1aa798b245ff323c5759a3b848e" title="Veins::TraCIScenarioManager\l::processVehicleSubscription" alt="" coords="1636,260,1833,301"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#ad29dc12c41e262b7d59b44183dda06bb" title="Veins::TraCIScenarioManager\lLaunchd::finish" alt="" coords="1144,136,1341,177"/>
+<area shape="rect" id="node13" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a2f149bc15c3119ab19850b6960689eeb" title="Veins::TraCIScenarioManager\l::processSubcriptionResult" alt="" coords="1144,201,1341,243"/>
+<area shape="rect" id="node14" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="1390,136,1587,177"/>
+<area shape="rect" id="node18" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a84ebe9fb50441189bd39f949f2593115" title="read and execute all commands for the next timestep " alt="" coords="1390,71,1587,112"/>
+<area shape="rect" id="node19" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a999d945fca20d45532a24b492430d742" title="Veins::TraCIScenarioManager\l::subscribeToVehicleVariables" alt="" coords="1389,201,1588,243"/>
+<area shape="rect" id="node15" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="1636,71,1833,112"/>
+<area shape="rect" id="node17" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="1636,136,1833,177"/>
+<area shape="rect" id="node16" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1881,71,2079,112"/>
+</map>

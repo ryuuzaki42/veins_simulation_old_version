@@ -1,0 +1,9 @@
+<map id="service_discovery::initialize" name="service_discovery::initialize">
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#aea124f2d3a5a91b3f6fc843e4625ec9e" title="BaseWaveApplLayer::\linitialize_service_discovery" alt="" coords="203,46,384,87"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_mobility_access.html#aa2788845910c6afc0b6068d9bf71bdd3" title="Veins::TraCIMobilityAccess::get" alt="" coords="188,112,399,139"/>
+<area shape="rect" id="node3" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="455,5,621,32"/>
+<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="447,111,629,137"/>
+<area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="463,56,613,83"/>
+<area shape="rect" id="node4" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="681,5,820,32"/>
+<area shape="rect" id="node7" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="677,56,824,83"/>
+</map>

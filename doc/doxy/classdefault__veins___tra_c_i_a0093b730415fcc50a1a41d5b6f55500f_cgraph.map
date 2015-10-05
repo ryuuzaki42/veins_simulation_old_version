@@ -1,0 +1,25 @@
+<map id="default_veins_TraCI::handlePositionUpdate" name="default_veins_TraCI::handlePositionUpdate">
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a7e2f6b90747de344330137567d30fe65" title="BaseWaveApplLayer::\lhandlePositionUpdate" alt="" coords="211,203,363,244"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_mobility.html#a0c0e1114d451023eeb819c443f81bb89" title="Veins::TraCIMobility\l::getSpeed" alt="" coords="216,268,357,309"/>
+<area shape="rect" id="node4" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="211,334,362,361"/>
+<area shape="rect" id="node6" href="$classdefault__veins___tra_c_i.html#a8d4d22301ab6eb1af8904bd8a4023be9" title="default_veins_TraCI\l::sendMessage" alt="" coords="217,385,356,427"/>
+<area shape="rect" id="node24" href="$class_veins_1_1_tra_c_i_mobility.html#afd3a0636a9a5bbe834f71a59108eeda4" title="Veins::TraCIMobility\l::getRoadId" alt="" coords="216,451,357,492"/>
+<area shape="rect" id="node5" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="450,305,597,331"/>
+<area shape="rect" id="node7" href="$class_base_wave_appl_layer.html#aaa76362a567f160e008bf8a1dbde15d0" title="BaseWaveApplLayer::\lprepareWSM" alt="" coords="447,356,599,397"/>
+<area shape="rect" id="node20" href="$class_wave_short_message.html#a138e7425f6286d388541280dceab0352" title="WaveShortMessage::setWsmData" alt="" coords="411,422,636,449"/>
+<area shape="rect" id="node21" href="$classdefault__veins___tra_c_i.html#aa8f2d266ed9ba5f4e76f11aa30c33555" title="default_veins_TraCI\l::sendWSM" alt="" coords="454,579,593,620"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="692,5,907,47"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#adaf66b336060aff74a296c29f41509d6" title="WaveShortMessage::setPsid" alt="" coords="703,71,895,98"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="696,122,903,149"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="701,173,898,215"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="684,239,915,266"/>
+<area shape="rect" id="node13" href="$class_wave_short_message.html#ac5318ca78711740c66b88bc156f7c52b" title="WaveShortMessage::setSender\lAddress" alt="" coords="696,291,903,332"/>
+<area shape="rect" id="node14" href="$class_wave_short_message.html#a818105a3cb5d5bc51a1257826be98b13" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="689,356,910,397"/>
+<area shape="rect" id="node15" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="684,422,915,449"/>
+<area shape="rect" id="node16" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="700,473,899,499"/>
+<area shape="rect" id="node17" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="695,523,903,550"/>
+<area shape="rect" id="node18" href="$class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf" title="WaveShortMessage::setSender\lSpeed" alt="" coords="696,575,903,616"/>
+<area shape="rect" id="node19" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="684,641,915,667"/>
+<area shape="rect" id="node22" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="685,691,913,718"/>
+<area shape="rect" id="node23" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="963,691,1132,718"/>
+</map>

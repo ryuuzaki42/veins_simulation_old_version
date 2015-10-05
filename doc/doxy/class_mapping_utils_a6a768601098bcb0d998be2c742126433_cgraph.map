@@ -1,0 +1,7 @@
+<map id="MappingUtils::iterateToNext" name="MappingUtils::iterateToNext">
+<area shape="rect" id="node2" href="$class_const_mapping_iterator.html#ad4bac7233c154b7086c6124d2e21be49" title="Returns true if the iterator has a next value it can iterate to on a call to &quot;next()&quot;. " alt="" coords="239,5,385,47"/>
+<area shape="rect" id="node3" href="$class_const_mapping_iterator.html#a1f4cae3b170754a76049b8e81b2e3c07" title="Returns the position the next call to &quot;next()&quot; of this Iterator would iterate to. ..." alt="" coords="239,71,385,112"/>
+<area shape="rect" id="node4" href="$class_const_mapping_iterator.html#afdafa6870cd19b3d35674a7bc777585d" title="Iterates to the next position of the Mapping. " alt="" coords="239,136,385,177"/>
+<area shape="rect" id="node5" href="$class_const_mapping_iterator.html#a607d741e2d841265851a85670f247c46" title="Iterates to the specified position. " alt="" coords="239,201,385,243"/>
+<area shape="rect" id="node6" href="$class_const_mapping_iterator.html#a047e853613d5a19ff34526d0cff8fcf9" title="Returns the current position of the iterator. " alt="" coords="239,267,385,308"/>
+</map>

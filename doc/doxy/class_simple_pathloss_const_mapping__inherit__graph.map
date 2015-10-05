@@ -1,0 +1,4 @@
+<map id="SimplePathlossConstMapping" name="SimplePathlossConstMapping">
+<area shape="rect" id="node2" href="$class_simple_const_mapping.html" title="Abstract subclass of ConstMapping which can be used as base for any ConstMapping implementation with ..." alt="" coords="31,80,177,107"/>
+<area shape="rect" id="node3" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="51,5,157,32"/>
+</map>

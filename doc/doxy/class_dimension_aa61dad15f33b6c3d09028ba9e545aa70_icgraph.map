@@ -1,0 +1,10 @@
+<map id="Dimension::Dimension" name="Dimension::Dimension">
+<area shape="rect" id="node2" href="$class_dimension.html#aad8d4dbdfadd58664a90f34ce4d8154e" title="Shortcut to the frequency Dimension, same as &#39;Dimension(&quot;frequency&quot;)&#39;, but spares the parsing of a ..." alt="" coords="211,71,361,112"/>
+<area shape="rect" id="node9" href="$class_dimension.html#a0ebe0eeec14af70b3f75f675c3eb7a7b" title="Shortcut to the time Dimension, same as &#39;Dimension(&quot;time&quot;)&#39;, but spares the parsing of a string..." alt="" coords="208,137,364,163"/>
+<area shape="rect" id="node3" href="$class_decider80211p.html#a2a8f4a380e5a2ba44c36e43cc2033270" title="Processes a new Signal. " alt="" coords="689,5,880,47"/>
+<area shape="rect" id="node4" href="$class_decider80211p.html#a09e54d78f37b5e61aa100ea5b9f3083f" title="Calculates the RSSI value for the passed ChannelSenseRequest. " alt="" coords="424,41,613,83"/>
+<area shape="rect" id="node5" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="412,158,625,185"/>
+<area shape="rect" id="node7" href="$class_decider80211p.html#aeba984a7f23ef26ce8b22b0bfef88947" title="Decider80211p::cca" alt="" coords="449,107,588,134"/>
+<area shape="rect" id="node6" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="673,158,896,185"/>
+<area shape="rect" id="node8" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="691,92,879,133"/>
+</map>

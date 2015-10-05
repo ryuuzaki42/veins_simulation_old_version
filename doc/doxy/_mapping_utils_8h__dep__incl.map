@@ -1,0 +1,36 @@
+<map id="MappingUtils.h" name="MappingUtils.h">
+<area shape="rect" id="node2" href="$_mapping_8h.html" title="Mapping.h" alt="" coords="1612,80,1695,107"/>
+<area shape="rect" id="node35" href="$_mapping_utils_8cc.html" title="MappingUtils.cc" alt="" coords="1719,80,1835,107"/>
+<area shape="rect" id="node3" href="$_base_mac_layer_8cc.html" title="BaseMacLayer.cc" alt="" coords="473,304,599,331"/>
+<area shape="rect" id="node4" href="$_signal___8h.html" title="Signal_.h" alt="" coords="1325,155,1401,181"/>
+<area shape="rect" id="node18" href="$_log_normal_shadowing_8cc.html" title="LogNormalShadowing.cc" alt="" coords="1766,304,1933,331"/>
+<area shape="rect" id="node20" href="$_simple_obstacle_shadowing_8h.html" title="SimpleObstacleShadowing.h" alt="" coords="1957,304,2147,331"/>
+<area shape="rect" id="node26" href="$_s_n_r_threshold_decider_8cc.html" title="SNRThresholdDecider.cc" alt="" coords="2171,304,2341,331"/>
+<area shape="rect" id="node32" href="$_phy_utils_8h.html" title="PhyUtils.h" alt="" coords="565,155,648,181"/>
+<area shape="rect" id="node33" href="$_jakes_fading_8h.html" title="JakesFading.h" alt="" coords="5,229,112,256"/>
+<area shape="rect" id="node34" href="$_simple_pathloss_model_8h.html" title="SimplePathlossModel.h" alt="" coords="2455,229,2614,256"/>
+<area shape="rect" id="node5" href="$_air_frame__m_8h.html" title="AirFrame_m.h" alt="" coords="1375,229,1479,256"/>
+<area shape="rect" id="node25" href="$_decider80211p_8cc.html" title="Decider80211p.cc" alt="" coords="1346,453,1473,480"/>
+<area shape="rect" id="node27" href="$_mac_to_phy_interface_8h.html" title="MacToPhyInterface.h" alt="" coords="451,229,597,256"/>
+<area shape="rect" id="node30" href="$_mac_to_phy_control_info_8h.html" title="MacToPhyControlInfo.h" alt="" coords="773,229,933,256"/>
+<area shape="rect" id="node31" href="$_signal_8cc.html" title="Signal.cc" alt="" coords="1274,229,1350,256"/>
+<area shape="rect" id="node6" href="$_base_decider_8cc.html" title="BaseDecider.cc" alt="" coords="1145,304,1260,331"/>
+<area shape="rect" id="node7" href="$_channel_info_8h.html" title="ChannelInfo.h" alt="" coords="891,304,994,331"/>
+<area shape="rect" id="node15" href="$_phy_utils_8cc.html" title="PhyUtils.cc" alt="" coords="675,304,765,331"/>
+<area shape="rect" id="node16" href="$_breakpoint_pathloss_model_8cc.html" title="BreakpointPathlossModel.cc" alt="" coords="1502,304,1690,331"/>
+<area shape="rect" id="node17" href="$_jakes_fading_8cc.html" title="JakesFading.cc" alt="" coords="48,304,163,331"/>
+<area shape="rect" id="node19" href="$_p_e_r_model_8cc.html" title="PERModel.cc" alt="" coords="1018,304,1121,331"/>
+<area shape="rect" id="node22" href="$_simple_pathloss_model_8cc.html" title="SimplePathlossModel.cc" alt="" coords="2366,304,2533,331"/>
+<area shape="rect" id="node23" href="$_two_ray_interference_model_8cc.html" title="TwoRayInterferenceModel.cc" alt="" coords="1285,304,1478,331"/>
+<area shape="rect" id="node24" href="$_air_frame11p__m_8h.html" title="AirFrame11p_m.h" alt="" coords="1347,379,1472,405"/>
+<area shape="rect" id="node8" href="$_base_phy_layer_8h.html" title="BasePhyLayer.h" alt="" coords="643,379,762,405"/>
+<area shape="rect" id="node14" href="$_channel_info_8cc.html" title="ChannelInfo.cc" alt="" coords="891,379,1002,405"/>
+<area shape="rect" id="node9" href="$_base_phy_layer_8cc.html" title="BasePhyLayer.cc" alt="" coords="691,453,816,480"/>
+<area shape="rect" id="node10" href="$_phy_layer80211p_8h.html" title="PhyLayer80211p.h" alt="" coords="485,453,616,480"/>
+<area shape="rect" id="node11" href="$_mac1609__4_8h.html" title="Mac1609_4.h" alt="" coords="425,528,525,555"/>
+<area shape="rect" id="node13" href="$_phy_layer80211p_8cc.html" title="PhyLayer80211p.cc" alt="" coords="785,528,922,555"/>
+<area shape="rect" id="node12" href="$_mac1609__4_8cc.html" title="Mac1609_4.cc" alt="" coords="421,603,528,629"/>
+<area shape="rect" id="node21" href="$_simple_obstacle_shadowing_8cc.html" title="SimpleObstacleShadowing.cc" alt="" coords="1954,379,2150,405"/>
+<area shape="rect" id="node28" href="$_mac80211p_to_phy11p_interface_8h.html" title="Mac80211pToPhy11pInterface.h" alt="" coords="187,304,397,331"/>
+<area shape="rect" id="node29" href="$_decider80211p_8h.html" title="Decider80211p.h" alt="" coords="493,379,613,405"/>
+</map>

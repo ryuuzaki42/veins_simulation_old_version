@@ -1,0 +1,4 @@
+<map id="HostState::get" name="HostState::get">
+<area shape="rect" id="node2" href="$class_base_module.html#a44220aa650488eee8ad121f8bc599265" title="Called whenever the hosts state changes. " alt="" coords="160,5,359,32"/>
+<area shape="rect" id="node3" href="$class_base_module.html#a9195e1fe5a0ca770e7d29351e0ab2ecf" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="407,5,587,32"/>
+</map>

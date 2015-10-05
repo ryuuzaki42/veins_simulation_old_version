@@ -1,0 +1,17 @@
+<map id="ChannelSenseRequest::setResult" name="ChannelSenseRequest::setResult">
+<area shape="rect" id="node2" href="$class_s_n_r_threshold_decider.html#aa7e33361b328274b04ff7bd2d6206e6d" title="Answers the ChannelSenseRequest (CSR) from the passed CSRInfo. " alt="" coords="221,123,374,164"/>
+<area shape="rect" id="node3" href="$class_base_decider.html#ab8e925001d1f8630338c50f8ec10bb0d" title="Answers the ChannelSenseRequest (CSR) from the passed CSRInfo. " alt="" coords="209,189,385,215"/>
+<area shape="rect" id="node4" href="$class_base_decider.html#add7242168c4bb521c6335f3de590e4b0" title="Checks if the changed channel state enables us to answer any ongoing ChannelSenseRequests. " alt="" coords="446,116,627,157"/>
+<area shape="rect" id="node14" href="$class_base_decider.html#a1dba383c238fba606279ef483b435f78" title="Handles a new incoming ChannelSenseRequest and returns the next (or latest) time to handle the reques..." alt="" coords="433,181,640,223"/>
+<area shape="rect" id="node16" href="$class_base_decider.html#a2f175306cc0ae9d2805bc050315a47d8" title="Handles the timeout or end of a ChannelSenseRequest by calculating the ChannelState and returning the..." alt="" coords="447,247,627,288"/>
+<area shape="rect" id="node5" href="$class_s_n_r_threshold_decider.html#ace13845f43c5328cea40eb00c59af2b3" title="Processes a new Signal. " alt="" coords="707,51,861,92"/>
+<area shape="rect" id="node6" href="$class_decider80211p.html#af06ba4862697730ee05b65f6bf90279b" title="Changes the &quot;isIdle&quot;&#45;status to the passed value. " alt="" coords="693,116,875,157"/>
+<area shape="rect" id="node10" href="$class_base_decider.html#ae535b44e34061014fe282c36c27b0193" title="Changes the &quot;isIdle&quot;&#45;status to the passed value. " alt="" coords="688,181,880,223"/>
+<area shape="rect" id="node7" href="$class_decider80211p.html#a2a8f4a380e5a2ba44c36e43cc2033270" title="Processes a new Signal. " alt="" coords="944,5,1135,47"/>
+<area shape="rect" id="node8" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="928,71,1151,98"/>
+<area shape="rect" id="node9" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="945,123,1133,164"/>
+<area shape="rect" id="node11" href="$class_base_decider.html#a6a480f87157d0509c0c1fccf94ea9fef" title="Processes a new Signal. " alt="" coords="932,189,1147,215"/>
+<area shape="rect" id="node13" href="$class_base_decider.html#ab9cfef6c04e12d2524d45e881f341300" title="Processes the end of a received Signal. " alt="" coords="934,239,1145,266"/>
+<area shape="rect" id="node12" href="$class_base_decider.html#a273892d7b0c9874e4efe3c7755aa7a17" title="Processes an AirFrame given by the PhyLayer. " alt="" coords="1199,214,1385,241"/>
+<area shape="rect" id="node15" href="$class_base_decider.html#afd31e5a65d1798d329ace9bdbec25d64" title="This function is called by the PhyLayer to hand over a ChannelSenseRequest. " alt="" coords="689,247,879,288"/>
+</map>

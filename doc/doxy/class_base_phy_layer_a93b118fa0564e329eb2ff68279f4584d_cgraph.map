@@ -1,0 +1,4 @@
+<map id="BasePhyLayer::initializeRadio" name="BasePhyLayer::initializeRadio">
+<area shape="rect" id="node2" href="$class_base_phy_layer.html#a379b5527a61ac5dfe378691faca6c2d9" title="Reads and returns the parameter with the passed name. " alt="" coords="232,5,392,32"/>
+<area shape="rect" id="node3" href="$class_veins_1_1_radio.html#aed80922c736427067f27669c87aaf4f8" title="function called by PhyLayer in order to make an entry in the switch times matrix, i..." alt="" coords="216,56,408,83"/>
+</map>

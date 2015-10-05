@@ -1,0 +1,5 @@
+<map id="BaseMacLayer::decapsMsg" name="BaseMacLayer::decapsMsg">
+<area shape="rect" id="node2" href="$class_base_mac_layer.html#a7ff1f42ff72aee9670a012ebffb54881" title="Attaches a &quot;control info&quot; (MacToNetw) structure (object) to the message pMsg. " alt="" coords="237,13,453,39"/>
+<area shape="rect" id="node4" href="$class_mac_pkt.html#a0d65290bfc1bf7687cf53faa80ae9bdb" title="MacPkt::getSrcAddr" alt="" coords="275,63,415,90"/>
+<area shape="rect" id="node3" href="$class_mac_to_netw_control_info.html#ab441b40ab3bd8077f452ff1bacbc4da9" title="Attaches a &quot;control info&quot; structure (object) to the message pMsg. " alt="" coords="501,5,659,47"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="ConstInterpolateableIterator::inRange" name="ConstInterpolateableIterator::inRange">
+<area shape="rect" id="node2" href="$class_multi_dim_mapping_iterator.html#a99bbed82612268040bb8f5162871fb48" title="Returns true if the iterator has a valid next value a call to &quot;next()&quot; could jump to..." alt="" coords="236,5,400,47"/>
+<area shape="rect" id="node3" href="$class_multi_dim_mapping_iterator.html#ae4f87a308ad4648d289f1f66d8da772a" title="Returns true if the current position of the iterator is in range of the function. ..." alt="" coords="236,71,400,112"/>
+</map>

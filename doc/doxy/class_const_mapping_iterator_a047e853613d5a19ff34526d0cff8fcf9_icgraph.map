@@ -1,0 +1,15 @@
+<map id="ConstMappingIterator::getPosition" name="ConstMappingIterator::getPosition">
+<area shape="rect" id="node2" href="$class_mapping_utils.html#a2864c33a93f9ce23403d0c84ca9a19e2" title="MappingUtils::applyElement\lWiseOperator" alt="" coords="223,5,408,47"/>
+<area shape="rect" id="node3" href="$class_s_n_r_threshold_decider.html#a1d796e2f0da1c41810c5f2c5b4cfcd2e" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="232,71,399,112"/>
+<area shape="rect" id="node5" href="$class_mapping_utils.html#a6d524e08add1a4a02d7e37425783b094" title="MappingUtils::createCompatible\lMapping" alt="" coords="211,136,419,177"/>
+<area shape="rect" id="node6" href="$class_filled_up_mapping.html#aa090d76ebccf9be3283594989b528ba7" title="FilledUpMapping::FilledUp\lMapping" alt="" coords="228,201,403,243"/>
+<area shape="rect" id="node7" href="$class_mapping_utils.html#adb9e9ced268b9a5d1d4f6d34738654aa" title="Iterates over the passed mapping and returns the value at the key entry with the smallest value in th..." alt="" coords="241,267,389,294"/>
+<area shape="rect" id="node8" href="$class_mapping_utils.html#a6a768601098bcb0d998be2c742126433" title="MappingUtils::iterateToNext" alt="" coords="223,318,408,345"/>
+<area shape="rect" id="node9" href="$class_multi_dim_mapping_iterator.html#ab41125ce8959de6fafb3347a7691ca52" title="Lets the iterator point to the begin of the function. " alt="" coords="233,369,398,411"/>
+<area shape="rect" id="node10" href="$class_linear_intpl_mapping_iterator.html#ae9431327ab0c4c20b29950cef7af45fc" title="Initializes the Iterator with the passed Iterators of the mappings to Interpolate and the their inter..." alt="" coords="225,435,405,476"/>
+<area shape="rect" id="node11" href="$class_multi_dim_mapping_iterator.html#a60281ab679beb5b3aff42d24d3d7bb09" title="Initializes the Iterator for the passed MultiDimMapping and sets its position two the first entry of ..." alt="" coords="200,500,431,541"/>
+<area shape="rect" id="node12" href="$class_multi_dim_mapping_iterator.html#a8928195a1fe4bb3af81d3ffe2391827e" title="Iterates to the next position of the function. " alt="" coords="233,565,397,607"/>
+<area shape="rect" id="node13" href="$class_const_mapping.html#a526e8d5b948e9b2ce9d729e66b162e13" title="Prints the Mapping to an output stream. " alt="" coords="246,631,385,658"/>
+<area shape="rect" id="node14" href="$class_multi_dim_mapping_iterator.html#a1eb04551f2a3ae22f0eae4844f14ac97" title="Helper method which updates the nextPosition member. " alt="" coords="214,683,417,724"/>
+<area shape="rect" id="node4" href="$class_s_n_r_threshold_decider.html#a6002f2ee8ffa35ded0162c72f93c9fba" title="Processes a received AirFrame. " alt="" coords="479,71,632,112"/>
+</map>

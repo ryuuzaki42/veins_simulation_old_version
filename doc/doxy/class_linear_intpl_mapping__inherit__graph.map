@@ -1,0 +1,4 @@
+<map id="LinearIntplMapping" name="LinearIntplMapping">
+<area shape="rect" id="node2" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="35,80,106,107"/>
+<area shape="rect" id="node3" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="17,5,124,32"/>
+</map>

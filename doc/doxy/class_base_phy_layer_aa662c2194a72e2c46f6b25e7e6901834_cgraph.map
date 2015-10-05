@@ -1,0 +1,4 @@
+<map id="BasePhyLayer::setCurrentRadioChannel" name="BasePhyLayer::setCurrentRadioChannel">
+<area shape="rect" id="node2" href="$class_veins_1_1_radio.html#a8304dc1fea7754a1cd9c26713e39f234" title="Changes the current channel of the radio. " alt="" coords="232,5,399,47"/>
+<area shape="rect" id="node3" href="$class_decider.html#a546a912fd2463258e29bfe72698c9452" title="Called by phy layer to indicate that the channel this radio currently listens to has changed..." alt="" coords="229,71,401,98"/>
+</map>

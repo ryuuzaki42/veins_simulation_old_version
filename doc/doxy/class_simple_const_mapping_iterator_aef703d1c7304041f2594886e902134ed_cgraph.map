@@ -1,0 +1,4 @@
+<map id="SimpleConstMappingIterator::SimpleConstMappingIterator" name="SimpleConstMappingIterator::SimpleConstMappingIterator">
+<area shape="rect" id="node2" href="$class_argument.html#a8b3fcda23d2eec4e931126d261e4b194" title="Returns the dimensions this argument is defined over. " alt="" coords="248,5,421,32"/>
+<area shape="rect" id="node3" href="$class_dimension_set.html#aae6d8ce3a87e3e1571b97c92f11363fb" title="Returns true if the passed DimensionSet is a subset of this DimensionSet. " alt="" coords="252,56,417,83"/>
+</map>
