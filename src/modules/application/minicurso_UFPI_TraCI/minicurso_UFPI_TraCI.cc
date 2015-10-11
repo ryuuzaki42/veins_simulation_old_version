@@ -139,7 +139,7 @@ void minicurso_UFPI_TraCI::handleSelfMsg(cMessage* msg){
     }
 }
 void minicurso_UFPI_TraCI::updateSpeedList() {
-    vector<pair<simtime_t, double>> newSpeedsList;
+    vector<pair<simtime_t, double> > newSpeedsList;
 
     for(int i=0;i < speedsList.size(); ++i)
         if(simTime() - speedsList[i].first < 5.0)
@@ -207,10 +207,10 @@ void minicurso_UFPI_TraCI::onData(WaveShortMessage* wsm) {
         messageIdentifier.push_back(data[i]);
         ++i;
     }
-    congestionTable[road].push_back(make_pair(simTime(),stod(speed,0)));
+    congestionTable[road].push_back(make_pair(simTime(), stod(speed,0)));
     if(road.compare(traci->getRoadId()) == 0)
         lastSent = simTime();
-    vector<pair<simtime_t, double>> speeds = congestionTable[road];
+    vector<pair<simtime_t, double> > speeds = congestionTable[road];
     double sum = 0;
     for(int i = 0; i < speeds.size(); ++i)
         sum += speeds[i].second;

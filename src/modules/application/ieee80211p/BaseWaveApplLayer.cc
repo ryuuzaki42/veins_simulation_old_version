@@ -32,8 +32,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
 	BaseApplLayer::initialize(stage);
 
 	if (stage==0) {
-		myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(
-		            getParentModule());
+		myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(getParentModule());
 		assert(myMac);
 
 		myId = getParentModule()->getIndex();
@@ -69,8 +68,7 @@ void BaseWaveApplLayer::initialize_mfcv(int stage) {
     BaseApplLayer::initialize(stage);
 
     if (stage==0) {
-        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(
-                    getParentModule());
+        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(getParentModule());
         assert(myMac);
 
         myId = getParentModule()->getIndex();
@@ -106,8 +104,7 @@ void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
     BaseApplLayer::initialize(stage);
 
     if (stage==0) {
-        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(
-                    getParentModule());
+        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(getParentModule());
         assert(myMac);
 
         myId = getParentModule()->getIndex();
@@ -144,8 +141,7 @@ void BaseWaveApplLayer::initialize_osdp(int stage) {
     BaseApplLayer::initialize(stage);
 
     if (stage==0) {
-        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(
-                    getParentModule());
+        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(getParentModule());
         assert(myMac);
 
         myId = getParentModule()->getIndex();
@@ -181,8 +177,7 @@ void BaseWaveApplLayer::initialize_service_discovery(int stage) {
     BaseApplLayer::initialize(stage);
 
     if (stage==0) {
-        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(
-                    getParentModule());
+        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(getParentModule());
         assert(myMac);
 
         myId = getParentModule()->getIndex();
@@ -218,8 +213,7 @@ void BaseWaveApplLayer::initialize_test1(int stage) {
     BaseApplLayer::initialize(stage);
 
     if (stage==0) {
-        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(
-                    getParentModule());
+        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(getParentModule());
         assert(myMac);
 
         myId = getParentModule()->getIndex();

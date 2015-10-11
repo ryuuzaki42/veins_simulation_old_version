@@ -181,12 +181,16 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
     wsm->setRecipientAddress(rcvId);
     wsm->setSenderPos(curPosition);
     wsm->setSerial(serial);
+    //
 
-    if (name == "beacon") {
-        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
-    }
-    else if (name == "beacon_node") {
+    if (name == "beacon_node") {
         DBG << "Creating Beacon_node with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    }
+    else if (name == "data_node") {
+        DBG << "Creating Data_node with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    }
+    else if (name == "beacon") {
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
     }
     else if (name == "data") {
         DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
@@ -195,7 +199,6 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
 }
 
 void mfcv::imprime_wsm(WaveShortMessage* wsm) {
-
     std::cout << "\n\n wsm:" << wsm;
     std::cout << "\n traci->getId():" << traci->getId();
     std::cout << "\n wsm->getVehicleId():" << wsm->getVehicleId();
