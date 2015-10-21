@@ -24,14 +24,24 @@
     -->
     
     <route id="route1" edges="1to2"/>
-    <vType accel="1.0" decel="1.0" id="Car1" length="1.0" maxSpeed="1.0" sigma="0.5"  minGap="2.5"/>
-    <!--<vType accel="1.0" decel="1.0" id="Car1" length="1.0" maxSpeed="1.0" sigma="0"  minGap="2.5"/> -->
+    <vType accel="1.0" decel="1.0" id="Car1" length="3.0" maxSpeed="1.0" sigma="0"  minGap="2.5"/>
+    <!--
+    <vType accel="1.0" decel="1.0" id="Car1" length="1.0" maxSpeed="1.0" sigma="0"  minGap="2.5"/>
+    -->
     
     <vehicle depart="0" id="veh0" route="route1" type="Car1" />
 
-    <vType accel="0.0" decel="0.0" id="Car2" length="1.0" maxSpeed="0.0" sigma="0.5"  minGap="2.5"/>
+    <!--
+    <vType accel="0.0" decel="0.0" id="Car2" length="3.0" maxSpeed="0.0" sigma="0.5"  minGap="2.5"/> 
     
-    <vehicle depart="0" id="veh1" route="route1" type="Car2" />
+    <vehicle depart="0" id="veh1" route="route1" type="Car2" /> 
+    -->
+    
+    <!--
+    <vehicle depart="0" id="veh1" route="route1" type="Car1" >
+        <stop lane="1to2_0" endPos="4" until="2000" />
+    </vehicle>
+    -->
 
 <!--
     <vehicle depart="10" id="veh1" route="route1" type="Car1" />  

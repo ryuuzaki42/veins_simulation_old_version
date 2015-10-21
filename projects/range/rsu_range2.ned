@@ -16,10 +16,10 @@
 import org.car2x.veins.nodes.RSU;
 import org.car2x.veins.nodes.Scenario;
 
-network rsu_range extends Scenario
+network rsu_range2 extends Scenario
 {
     submodules:
-        rsu[1]: RSU {
-            @display("p=14,15;r=125,,dodgerBlue,1;i=device/rsu,,0");
-        }
+        //rsu[1]: RSU {
+        //    @display("p=15,14;b=10,10,oval;r=134,,dodgerBlue,1");
+        //}
 }
