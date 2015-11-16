@@ -1,31 +1,33 @@
 <map id="Veins::TraCIScenarioManager::omnet2traci" name="Veins::TraCIScenarioManager::omnet2traci">
-<area shape="rect" id="node2" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a509a641698a4887986424f07452a1807" title="Veins::default_veins\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="251,93,461,149"/>
-<area shape="rect" id="node4" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a68051be72ee51dd27b4e373ac1058c23" title="Veins::minicurso_UFPI\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="251,173,461,229"/>
-<area shape="rect" id="node6" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4ad5eb6538c9948243ab66f32f8eef71" title="Veins::TraCIScenarioManager\l::omnet2traci" alt="" coords="257,253,455,294"/>
-<area shape="rect" id="node7" href="$class_veins_1_1_annotation_manager.html#a87ffa1c7edbccb8372a4551b73c73def" title="Veins::AnnotationManager\l::show" alt="" coords="269,362,443,403"/>
-<area shape="rect" id="node3" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#aa1bb9b88b7f8f4dc311c864b087c2640" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="509,101,713,142"/>
-<area shape="rect" id="node5" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a97b60a9b8c45ef73e4922db7f3af1024" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="509,173,713,214"/>
-<area shape="rect" id="node8" href="$class_veins_1_1_annotation_manager.html#ae661e9164bc6810b5296e330a6923cc5" title="Veins::AnnotationManager\l::drawPoint" alt="" coords="524,362,699,403"/>
-<area shape="rect" id="node11" href="$class_veins_1_1_annotation_manager.html#a4e92e8dd00db918dda24085571ef234e" title="Veins::AnnotationManager\l::drawLine" alt="" coords="524,238,699,279"/>
-<area shape="rect" id="node20" href="$class_veins_1_1_annotation_manager.html#a250a47fb5e1390f8b4de2128a4aed175" title="Veins::AnnotationManager\l::drawPolygon" alt="" coords="524,427,699,469"/>
-<area shape="rect" id="node29" href="$class_veins_1_1_annotation_manager.html#a5aeb55b31919c887fce7332cd8d98152" title="Veins::AnnotationManager\l::showAll" alt="" coords="524,522,699,563"/>
-<area shape="rect" id="node9" href="$class_veins_1_1_annotation_manager.html#a946e1967906528815fbe61cb8cfb2986" title="adds Annotations from an XML document; example below. " alt="" coords="767,369,942,410"/>
-<area shape="rect" id="node10" href="$class_veins_1_1_annotation_manager.html#a4e45767a1dabba9ee81112336be01786" title="Veins::AnnotationManager\l::initialize" alt="" coords="1007,362,1182,403"/>
-<area shape="rect" id="node12" href="$classdefault__veins___tra_c_i.html#a87e402f998805bb76652b1e7774f79ed" title="default_veins_TraCI\l::onData" alt="" coords="785,238,924,279"/>
-<area shape="rect" id="node13" href="$classdefault__veins___tra_c_i___r_s_u.html#a29732bb0998b15a12abc3c0779dc882d" title="default_veins_TraCI\l_RSU::onData" alt="" coords="785,303,924,345"/>
-<area shape="rect" id="node14" href="$classmfcv.html#a38a6f05fceb02f9ccc823fe4e1fbda57" title="mfcv::onData" alt="" coords="804,5,905,32"/>
-<area shape="rect" id="node16" href="$classmfcv__rsu.html#a9a1df5b0aa5c8d3d4098cdfdbd646c1a" title="mfcv_rsu::onData" alt="" coords="791,56,918,83"/>
-<area shape="rect" id="node18" href="$classminicurso___u_f_p_i___tra_c_i.html#a79b8501a853a65fc0b4e3bac86af9371" title="minicurso_UFPI_TraCI\l::onData" alt="" coords="777,107,933,149"/>
-<area shape="rect" id="node19" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a255f88382c6c0ca098329eaa8942c935" title="minicurso_UFPI_TraCI\l_RSU::onData" alt="" coords="777,173,933,214"/>
-<area shape="rect" id="node15" href="$classmfcv.html#a5761d767ad551990b1fa52d1d531a5ce" title="handle messages from below " alt="" coords="1016,5,1173,32"/>
-<area shape="rect" id="node17" href="$classmfcv__rsu.html#a81a66a29d8002b072d2db7ad57f29742" title="handle messages from below " alt="" coords="1003,56,1186,83"/>
-<area shape="rect" id="node21" href="$class_veins_1_1_annotation_manager.html#a09a32830153c4132dc54290197b94dba" title="Veins::AnnotationManager\l::drawPolygon" alt="" coords="767,486,942,527"/>
-<area shape="rect" id="node22" href="$class_veins_1_1_obstacle_control.html#a206a6e9155d1b201841d0718e65ed30f" title="Veins::ObstacleControl::add" alt="" coords="761,435,948,461"/>
-<area shape="rect" id="node23" href="$class_veins_1_1_obstacle_control.html#a1e5fceb8e8d9616622cc12551231c9d3" title="Veins::ObstacleControl\l::addFromXml" alt="" coords="1016,493,1173,534"/>
-<area shape="rect" id="node25" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="996,427,1193,469"/>
-<area shape="rect" id="node24" href="$class_veins_1_1_obstacle_control.html#a199ba1a4bd7eb58b6365fcaa5c0b1a90" title="Veins::ObstacleControl\l::initialize" alt="" coords="1261,493,1419,534"/>
-<area shape="rect" id="node26" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="1241,362,1439,403"/>
-<area shape="rect" id="node28" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="1241,427,1439,469"/>
-<area shape="rect" id="node27" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1487,362,1684,403"/>
-<area shape="rect" id="node30" href="$class_veins_1_1_annotation_manager.html#a8bf0a36cd6e242341fa5a5b39fefd898" title="Veins::AnnotationManager\l::handleParameterChange" alt="" coords="767,551,942,593"/>
+<area shape="rect" id="node2" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a509a641698a4887986424f07452a1807" title="Veins::default_veins\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="251,17,461,73"/>
+<area shape="rect" id="node4" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a68051be72ee51dd27b4e373ac1058c23" title="Veins::minicurso_UFPI\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="251,97,461,153"/>
+<area shape="rect" id="node6" href="$class_veins_1_1epidemic__app.html#a3d0f4fc6d7a18896ed87669ab37670a4" title="Veins::epidemic_app\l::handlePositionUpdate" alt="" coords="277,177,435,218"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a4ad5eb6538c9948243ab66f32f8eef71" title="Veins::TraCIScenarioManager\l::omnet2traci" alt="" coords="257,242,455,283"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_annotation_manager.html#a87ffa1c7edbccb8372a4551b73c73def" title="Veins::AnnotationManager\l::show" alt="" coords="269,362,443,403"/>
+<area shape="rect" id="node3" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#aa1bb9b88b7f8f4dc311c864b087c2640" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="509,25,713,66"/>
+<area shape="rect" id="node5" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a97b60a9b8c45ef73e4922db7f3af1024" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="509,105,713,146"/>
+<area shape="rect" id="node7" href="$class_veins_1_1epidemic__app.html#ab1558c0812fe48f47d1aac6f30b5dae8" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="540,173,683,214"/>
+<area shape="rect" id="node10" href="$class_veins_1_1_annotation_manager.html#ae661e9164bc6810b5296e330a6923cc5" title="Veins::AnnotationManager\l::drawPoint" alt="" coords="524,362,699,403"/>
+<area shape="rect" id="node13" href="$class_veins_1_1_annotation_manager.html#a4e92e8dd00db918dda24085571ef234e" title="Veins::AnnotationManager\l::drawLine" alt="" coords="524,238,699,279"/>
+<area shape="rect" id="node22" href="$class_veins_1_1_annotation_manager.html#a250a47fb5e1390f8b4de2128a4aed175" title="Veins::AnnotationManager\l::drawPolygon" alt="" coords="524,427,699,469"/>
+<area shape="rect" id="node31" href="$class_veins_1_1_annotation_manager.html#a5aeb55b31919c887fce7332cd8d98152" title="Veins::AnnotationManager\l::showAll" alt="" coords="524,522,699,563"/>
+<area shape="rect" id="node11" href="$class_veins_1_1_annotation_manager.html#a946e1967906528815fbe61cb8cfb2986" title="adds Annotations from an XML document; example below. " alt="" coords="767,369,942,410"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_annotation_manager.html#a4e45767a1dabba9ee81112336be01786" title="Veins::AnnotationManager\l::initialize" alt="" coords="1007,362,1182,403"/>
+<area shape="rect" id="node14" href="$classdefault__veins___tra_c_i.html#a87e402f998805bb76652b1e7774f79ed" title="default_veins_TraCI\l::onData" alt="" coords="785,238,924,279"/>
+<area shape="rect" id="node15" href="$classdefault__veins___tra_c_i___r_s_u.html#a29732bb0998b15a12abc3c0779dc882d" title="default_veins_TraCI\l_RSU::onData" alt="" coords="785,303,924,345"/>
+<area shape="rect" id="node16" href="$classmfcv.html#a38a6f05fceb02f9ccc823fe4e1fbda57" title="mfcv::onData" alt="" coords="804,5,905,32"/>
+<area shape="rect" id="node18" href="$classmfcv__rsu.html#a9a1df5b0aa5c8d3d4098cdfdbd646c1a" title="mfcv_rsu::onData" alt="" coords="791,56,918,83"/>
+<area shape="rect" id="node20" href="$classminicurso___u_f_p_i___tra_c_i.html#a79b8501a853a65fc0b4e3bac86af9371" title="minicurso_UFPI_TraCI\l::onData" alt="" coords="777,107,933,149"/>
+<area shape="rect" id="node21" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a255f88382c6c0ca098329eaa8942c935" title="minicurso_UFPI_TraCI\l_RSU::onData" alt="" coords="777,173,933,214"/>
+<area shape="rect" id="node17" href="$classmfcv.html#a5761d767ad551990b1fa52d1d531a5ce" title="handle messages from below " alt="" coords="1016,5,1173,32"/>
+<area shape="rect" id="node19" href="$classmfcv__rsu.html#a81a66a29d8002b072d2db7ad57f29742" title="handle messages from below " alt="" coords="1003,56,1186,83"/>
+<area shape="rect" id="node23" href="$class_veins_1_1_annotation_manager.html#a09a32830153c4132dc54290197b94dba" title="Veins::AnnotationManager\l::drawPolygon" alt="" coords="767,486,942,527"/>
+<area shape="rect" id="node24" href="$class_veins_1_1_obstacle_control.html#a206a6e9155d1b201841d0718e65ed30f" title="Veins::ObstacleControl::add" alt="" coords="761,435,948,461"/>
+<area shape="rect" id="node25" href="$class_veins_1_1_obstacle_control.html#a1e5fceb8e8d9616622cc12551231c9d3" title="Veins::ObstacleControl\l::addFromXml" alt="" coords="1016,493,1173,534"/>
+<area shape="rect" id="node27" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="996,427,1193,469"/>
+<area shape="rect" id="node26" href="$class_veins_1_1_obstacle_control.html#a199ba1a4bd7eb58b6365fcaa5c0b1a90" title="Veins::ObstacleControl\l::initialize" alt="" coords="1261,493,1419,534"/>
+<area shape="rect" id="node28" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="1241,427,1439,469"/>
+<area shape="rect" id="node30" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="1241,362,1439,403"/>
+<area shape="rect" id="node29" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="1487,427,1684,469"/>
+<area shape="rect" id="node32" href="$class_veins_1_1_annotation_manager.html#a8bf0a36cd6e242341fa5a5b39fefd898" title="Veins::AnnotationManager\l::handleParameterChange" alt="" coords="767,551,942,593"/>
 </map>

@@ -44,6 +44,8 @@ var hierarchy =
               [ "BaseWaveApplLayer", "class_base_wave_appl_layer.html", [
                 [ "default_veins_TraCI", "classdefault__veins___tra_c_i.html", null ],
                 [ "default_veins_TraCI_RSU", "classdefault__veins___tra_c_i___r_s_u.html", null ],
+                [ "epidemic", "classepidemic.html", null ],
+                [ "epidemic_rsu", "classepidemic__rsu.html", null ],
                 [ "mfcv", "classmfcv.html", null ],
                 [ "mfcv_rsu", "classmfcv__rsu.html", null ],
                 [ "minicurso_UFPI_TraCI", "classminicurso___u_f_p_i___tra_c_i.html", null ],
@@ -56,6 +58,7 @@ var hierarchy =
                 [ "test1_rsu", "classtest1__rsu.html", null ]
               ] ],
               [ "Veins::default_veins_TraCI_TestApp", "class_veins_1_1default__veins___tra_c_i___test_app.html", null ],
+              [ "Veins::epidemic_app", "class_veins_1_1epidemic__app.html", null ],
               [ "Veins::minicurso_UFPI_TraCI_TestApp", "class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html", null ]
             ] ],
             [ "BaseMacLayer", "class_base_mac_layer.html", [
@@ -129,11 +132,11 @@ var hierarchy =
       [ "SimpleConstMappingIterator", "class_simple_const_mapping_iterator.html", null ]
     ] ],
     [ "container_type", null, [
-      [ "InterpolateableMap< Linear< std::map< argument_value_t, Mapping * > > >", "class_interpolateable_map.html", null ]
-    ] ],
-    [ "container_type", null, [
       [ "InterpolateableMap< Interpolator< std::map< argument_value_t, Mapping * > > >", "class_interpolateable_map.html", null ],
       [ "InterpolateableMap< Interpolator< std::map< simtime_t, argument_value_t > > >", "class_interpolateable_map.html", null ]
+    ] ],
+    [ "container_type", null, [
+      [ "InterpolateableMap< Linear< std::map< argument_value_t, Mapping * > > >", "class_interpolateable_map.html", null ]
     ] ],
     [ "BaseConnectionManager::CoordSet", "class_base_connection_manager_1_1_coord_set.html", null ],
     [ "cPacket", null, [

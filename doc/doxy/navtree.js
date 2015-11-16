@@ -43,20 +43,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_addressing_interface_8h.html",
-"_mapping_utils_8h_source.html",
-"_tra_c_i_constants_8h.html#a97fe5470fb1ac167c713671655ff3e52",
-"class_base_appl_layer.html#ab42918350289ee246b194a5ab5e18d97",
-"class_base_mobility.html#ab98fb8c368f0440f799b286082ab9692a829b74c4a43c1dcf653cefb1f013442c",
-"class_channel_sense_request.html#ad61ae58418171f8567b243875aded318",
-"class_dimension.html#a920a9f94db7163fa08ae0f00956d95e7",
-"class_mac1609__4.html#a0f1db11ef138c86619532e8daf187720",
-"class_multi_dim_mapping_iterator.html#a3a3b5ddc5aa1636772b9a89c085acdfc",
-"class_signal.html#adfd5ce93e172004046d7714eaefb36c7",
-"class_veins_1_1_obstacle.html#aca5158acb83145623179b40756afbc76",
-"class_veins_1_1_tra_c_i_scenario_manager.html#a51d1f1892cf60111262ab822c61e0bbc",
-"classminicurso___u_f_p_i___tra_c_i.html#afbdb7dd78a869416c7b02336667befa2",
-"functions_0x64.html",
-"structtraci2omnet__functor.html#abef03695023d00ba063cecf8995bce5c"
+"_mapping_utils_8h.html#af6d7bb3c43fe0bda97133e548ce327c2",
+"_tra_c_i_constants_8h.html#a93901a271a595e7d3eb9ab540aa8d9b9",
+"class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145",
+"class_base_mobility.html#ab98fb8c368f0440f799b286082ab9692",
+"class_channel_sense_request.html#a5ba4620119467ef99ad1657ad37bd0da",
+"class_dimension.html",
+"class_log_normal_shadowing.html#a50187c1c7d025725f8fcba3afd01e076",
+"class_multi_dim_mapping.html#ae9678ee0ab7315c97b0748f793acaaac",
+"class_signal.html#a8073ad666fac40bf900fe0d9d6a88fa1",
+"class_veins_1_1_obstacle.html#a1ef3b86c63ee37c99e9bf6319de2ced9",
+"class_veins_1_1_tra_c_i_scenario_manager.html#a2fcc8edee3707edb30d1fb497d5fa617",
+"classepidemic.html#a274e19be14aec4cbce195a68fbf2a2ea",
+"classservice__discovery___r_s_u.html#a186d3fe1e517b9ee24c332cd125087fa",
+"globals_defs_0x65.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

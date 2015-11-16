@@ -521,6 +521,13 @@
     <class kind="class">BaseWaveApplLayer</class>
     <member kind="define">
       <type>#define</type>
+      <name>BROADCAST</name>
+      <anchorfile>_base_wave_appl_layer_8h.html</anchorfile>
+      <anchor>ac286e1243ab6be2c950c277e5e1377f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>DBG</name>
       <anchorfile>_base_wave_appl_layer_8h.html</anchorfile>
       <anchor>a49606be7356624568932ec81c0d429f4</anchor>
@@ -1181,6 +1188,72 @@
     <includes id="_tra_c_i_mobility_8h" name="TraCIMobility.h" local="yes" imported="no">modules/mobility/traci/TraCIMobility.h</includes>
     <class kind="class">Veins::default_veins_TraCI_TestApp</class>
     <namespace>Veins</namespace>
+  </compound>
+  <compound kind="file">
+    <name>epidemic.cc</name>
+    <path>/media/sda4/prog/veins-3.0/src/modules/application/epidemic/</path>
+    <filename>epidemic_8cc</filename>
+    <includes id="epidemic_8h" name="epidemic.h" local="yes" imported="no">application/epidemic/epidemic.h</includes>
+    <member kind="function">
+      <type></type>
+      <name>Define_Module</name>
+      <anchorfile>epidemic_8cc.html</anchorfile>
+      <anchor>a3e568119e449d75a82a34815e8e7c834</anchor>
+      <arglist>(epidemic)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>epidemic.h</name>
+    <path>/media/sda4/prog/veins-3.0/src/modules/application/epidemic/</path>
+    <filename>epidemic_8h</filename>
+    <includes id="_base_wave_appl_layer_8h" name="BaseWaveApplLayer.h" local="yes" imported="no">BaseWaveApplLayer.h</includes>
+    <includes id="_tra_c_i_mobility_8h" name="TraCIMobility.h" local="yes" imported="no">modules/mobility/traci/TraCIMobility.h</includes>
+    <class kind="class">epidemic</class>
+  </compound>
+  <compound kind="file">
+    <name>epidemic_app.cc</name>
+    <path>/media/sda4/prog/veins-3.0/src/modules/application/epidemic/</path>
+    <filename>epidemic__app_8cc</filename>
+    <includes id="asserts_8h" name="asserts.h" local="yes" imported="no">asserts.h</includes>
+    <includes id="epidemic__app_8h" name="epidemic_app.h" local="yes" imported="no">application/epidemic/epidemic_app.h</includes>
+    <includes id="_tra_c_i_color_8h" name="TraCIColor.h" local="yes" imported="no">mobility/traci/TraCIColor.h</includes>
+    <member kind="function">
+      <type></type>
+      <name>Define_Module</name>
+      <anchorfile>epidemic__app_8cc.html</anchorfile>
+      <anchor>afb6b00a8ade834561aa494da6006dab6</anchor>
+      <arglist>(Veins::epidemic_app)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>epidemic_app.h</name>
+    <path>/media/sda4/prog/veins-3.0/src/modules/application/epidemic/</path>
+    <filename>epidemic__app_8h</filename>
+    <includes id="_base_appl_layer_8h" name="BaseApplLayer.h" local="yes" imported="no">BaseApplLayer.h</includes>
+    <includes id="_tra_c_i_mobility_8h" name="TraCIMobility.h" local="yes" imported="no">modules/mobility/traci/TraCIMobility.h</includes>
+    <class kind="class">Veins::epidemic_app</class>
+    <namespace>Veins</namespace>
+  </compound>
+  <compound kind="file">
+    <name>epidemic_rsu.cc</name>
+    <path>/media/sda4/prog/veins-3.0/src/modules/application/epidemic/</path>
+    <filename>epidemic__rsu_8cc</filename>
+    <includes id="epidemic__rsu_8h" name="epidemic_rsu.h" local="yes" imported="no">application/epidemic/epidemic_rsu.h</includes>
+    <member kind="function">
+      <type></type>
+      <name>Define_Module</name>
+      <anchorfile>epidemic__rsu_8cc.html</anchorfile>
+      <anchor>a087b470a701e5b2eabe5c39120d6a759</anchor>
+      <arglist>(epidemic_rsu)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>epidemic_rsu.h</name>
+    <path>/media/sda4/prog/veins-3.0/src/modules/application/epidemic/</path>
+    <filename>epidemic__rsu_8h</filename>
+    <includes id="_base_wave_appl_layer_8h" name="BaseWaveApplLayer.h" local="yes" imported="no">BaseWaveApplLayer.h</includes>
+    <includes id="_annotation_manager_8h" name="AnnotationManager.h" local="yes" imported="no">modules/world/annotations/AnnotationManager.h</includes>
+    <class kind="class">epidemic_rsu</class>
   </compound>
   <compound kind="file">
     <name>FindModule.h</name>
@@ -8121,6 +8194,13 @@
       <anchor>a4a3db8fff925c8783c21fa9dde853dc5a293b14424f80ffab7a704c5256c1ba05</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <type>@</type>
+      <name>SEND_BEACON_EVT_epidemic</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a4a3db8fff925c8783c21fa9dde853dc5acf171b10235540b3427fb0965b3d2ee1</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>~BaseWaveApplLayer</name>
@@ -8172,6 +8252,13 @@
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
+      <name>initialize_epidemic</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a9aef9d25723a567a257b8915cba77361</anchor>
+      <arglist>(int stage)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
       <name>finish</name>
       <anchorfile>class_base_wave_appl_layer.html</anchorfile>
       <anchor>ac6dc138be8605ada8191478c1e5cb4d2</anchor>
@@ -8202,8 +8289,22 @@
       <type>virtual WaveShortMessage *</type>
       <name>prepareWSM</name>
       <anchorfile>class_base_wave_appl_layer.html</anchorfile>
-      <anchor>aaa76362a567f160e008bf8a1dbde15d0</anchor>
-      <arglist>(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0)</arglist>
+      <anchor>a99419f231627d477c13b2b4573174295</anchor>
+      <arglist>(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual WaveShortMessage *</type>
+      <name>prepareWSM_epidemic</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a9b516ecd60c5272098aeaa8c49f12a87</anchor>
+      <arglist>(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual unsigned int</type>
+      <name>MACToInteger</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a3838ef2e8dba7ab8767cf3c3d3d9883b</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
@@ -8322,6 +8423,41 @@
       <name>myMac</name>
       <anchorfile>class_base_wave_appl_layer.html</anchorfile>
       <anchor>a88feeae30cb95aa4608a2e888329d093</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>sendSummaryVectorInterval</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>aff58e063673084179b7304df6a9a46d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unsigned int</type>
+      <name>maximumEpidemicBufferSize</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a75abed0b5a0e0bfdab7f7d289f6557d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unsigned int</type>
+      <name>hopCount</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a744aae3d57e876be6c9e0289a12b4190</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>string</type>
+      <name>source</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a449e5a6d3e87c647c4e46c2dbac99bdf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>string</type>
+      <name>target</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a8b43dcc614b85df2ed37818d950a765c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -11562,6 +11698,590 @@
       <name>value</name>
       <anchorfile>class_draw_amount.html</anchorfile>
       <anchor>a5e5e81c528b00da622e79a04d603d4c4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>epidemic</name>
+    <filename>classepidemic.html</filename>
+    <base>BaseWaveApplLayer</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>initialize</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a8a6caa75f695661b99daec66dc29b49d</anchor>
+      <arglist>(int stage)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>receiveSignal</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a9e98f0ba6fc15b0d6bdfba683a1f4144</anchor>
+      <arglist>(cComponent *source, simsignal_t signalID, cObject *obj)</arglist>
+    </member>
+    <member kind="typedef" protection="protected">
+      <type>unordered_map&lt; string, WaveShortMessage &gt;</type>
+      <name>MyMapEpidemicMessageBuffer</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>aa949b5c72d877f4cf91e0182eef0ade5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="protected">
+      <type>pair&lt; string, WaveShortMessage &gt;</type>
+      <name>MyPairEpidemicMessageBuffer</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>aaf2f790b4b9f632bb6831c3c7a2159a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onBeacon</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a1d0d363afe79faf69671a46b3e3dbea2</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onData</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a21393ee6c5146e0158ded545f543e5ac</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendLocalSummaryVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a8d3ec16471e9453f721674cca0ef4d82</anchor>
+      <arglist>(unsigned int newRecipientAddress)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendEpidemicRequestMessageVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a5f8fc65f217cebee3ffcfbe56d28b01d</anchor>
+      <arglist>(unsigned int newRecipientAddress)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendMessagesRequested</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ab922f7335885658bfad15f085d9e8e15</anchor>
+      <arglist>(string s, unsigned int recipientAddress)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendBeacon</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ac54157f21a4358897f483117855e8c07</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendBeacon</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>aa2da133319028083d6ddb138a305a991</anchor>
+      <arglist>(unsigned int target)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>sendWSM</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ae1e4741318f2a550da522fff204ad715</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handlePositionUpdate</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>afbc9ec669dbe59a1d2032c12553400c8</anchor>
+      <arglist>(cObject *obj)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleParkingUpdate</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a44e2ef65e238bd83814fed2337b39d00</anchor>
+      <arglist>(cObject *obj)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>string</type>
+      <name>getLocalSummaryVectorData</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>aac596f36850483d68c02d5f5900360bd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>string</type>
+      <name>getEpidemicRequestMessageVectorData</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a10dc670788db22bf8d6cdd145cbe2ac7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>WaveShortMessage</type>
+      <name>getEpidemicLocalMessageBuffer</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a817fd6d1a2375fa417efc98660ee7f2a</anchor>
+      <arglist>(string s)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printNodesIRecentlySentSummaryVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>acf7ab35e094873b4796d4958e6d28fbc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicLocalMessageBuffer</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a3d2aa2dbe02869df323295550a102943</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicRequestMessageVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ae9ae0b7ef2cdd64e14e86e696cc3d5a6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printWaveShortMessage</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a830fa4472a6940665e2e9de49ad34cf2</anchor>
+      <arglist>(WaveShortMessage wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printWaveShortMessage</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a8e884a75705156a70503d0be0037cf29</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicLocalSummaryVectorData</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a057756c9b8b581d5f44ffb943fe4f6f0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicRemoteSummaryVectorData</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a2857bc63bda357aae6b01c82d7c47560</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>createEpidemicRequestMessageVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>aa746757b6189be4a0e0cc40261976e22</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printQueueFIFO</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a69fc3ed41255998aef79be5d2d2046b8</anchor>
+      <arglist>(queue&lt; string &gt; qFIFO)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>createEpidemicRemoteSummaryVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a936f264542e193706b06c15a28af39e6</anchor>
+      <arglist>(string s)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>updateNumberOfContacts</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a0f2d22dee5ec7631d29b8e4b24d66239</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>generateTarget</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a513f4608cba44c9e2486e81fa64dfa2a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>generateMessage</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ad6a045ae2994f7bffad8d9c97f9126fe</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>finish</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ad70b89792b095b03961c74924a636bc6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>TraCIMobility *</type>
+      <name>traci</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a1ed993146a36d379ac2a222d8f7c805a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AnnotationManager *</type>
+      <name>annotations</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a76c4ba25397f38440abe7f0e0aecd0d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>simtime_t</type>
+      <name>lastDroveAt</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>aa8f720041241e64fb6af29a4976c6f9f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>isParking</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a5b2ff2e0a0e8605b4ae1577ebb88b56a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>sendWhileParking</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a8cc934674c7bc4a2fffc76ecc68c5b3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>NumberOfContacts</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a19f9eeafdcf03e9eda73cf32092deeac</anchor>
+      <arglist>[50]</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MyMapEpidemicMessageBuffer</type>
+      <name>epidemicLocalMessageBuffer</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ab009620b496d11810258463df842ef8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; string, bool &gt;</type>
+      <name>epidemicLocalSummaryVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a70afbd0203fb2da0fafa036031b6010e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; string, bool &gt;</type>
+      <name>epidemicRemoteSummaryVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a274e19be14aec4cbce195a68fbf2a2ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; string, bool &gt;</type>
+      <name>epidemicRequestMessageVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a9974591cebc66855299ee8fad467922d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; unsigned int, simtime_t &gt;</type>
+      <name>nodesRecentlyFoundList</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>af5ba36bb83a0783d583ef04262bbe965</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; unsigned int, simtime_t &gt;</type>
+      <name>nodesIRecentlySentSummaryVector</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a4c61469fc4adad3666ffe2bbea56743b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>queue&lt; string &gt;</type>
+      <name>queueFIFO</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>ad5a7c84b400f7c1c6ae76cb7c3ce97f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static const simsignalwrap_t</type>
+      <name>parkingStateChangedSignal</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a66d4a1e020744894636578f0eaeffdb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static unsigned short int</type>
+      <name>messageId</name>
+      <anchorfile>classepidemic.html</anchorfile>
+      <anchor>a24db2731fcae9f09c794725bb2ea457b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>epidemic_rsu</name>
+    <filename>classepidemic__rsu.html</filename>
+    <base>BaseWaveApplLayer</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>initialize</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a2f48c5f77c7d3eb705a75182c54da4c2</anchor>
+      <arglist>(int stage)</arglist>
+    </member>
+    <member kind="typedef" protection="protected">
+      <type>unordered_map&lt; string, WaveShortMessage &gt;</type>
+      <name>MyMapEpidemicMessageBuffer</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a801a6cd24e695b1acc15abc907f4274e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="protected">
+      <type>pair&lt; string, WaveShortMessage &gt;</type>
+      <name>MyPairEpidemicMessageBuffer</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>ad6ae0a947dd3a458396197dfe3c6a981</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onBeacon</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a198b769137de21b435a90f9092eb0df3</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onData</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>addc6771a70b0cb8f01df46df120357cb</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendLocalSummaryVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a7d5f30ee2711fa57054e8a63e278a62f</anchor>
+      <arglist>(unsigned int newRecipientAddress)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendEpidemicRequestMessageVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a0aad04c7373d719394ad1927aa4aa7a0</anchor>
+      <arglist>(unsigned int newRecipientAddress)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendMessagesRequested</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>aff93c911e10e4b1c29d2d1e4a0b3b931</anchor>
+      <arglist>(string s, unsigned int recipientAddress)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendBeacon</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a4045ee27460db38accde23708b09dc5f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendBeacon</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a7e504bfbb880292b07db7a7099a07598</anchor>
+      <arglist>(unsigned int target)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>sendWSM</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a1845eb4969a3b1dfdc75102f7924cc5c</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>string</type>
+      <name>getLocalSummaryVectorData</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a05a7c45c260965779093965872b45796</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>string</type>
+      <name>getEpidemicRequestMessageVectorData</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>aaf3d7a504d919707ba554a8c71a8b232</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>WaveShortMessage</type>
+      <name>getEpidemicLocalMessageBuffer</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a2e0f340fdf6056565b6ccb6e66834539</anchor>
+      <arglist>(string s)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printNodesIRecentlySentSummaryVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a9d38991442b41e646f2594c4bc364f36</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicLocalMessageBuffer</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a14dbefb5a48ac9183fb05bea8a0a5320</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicRequestMessageVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>af4fa46a85208027e133f47bcc72702ae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printWaveShortMessage</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a2b8a5dece62b33a4fd1fe5420f5cc8b3</anchor>
+      <arglist>(WaveShortMessage wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printWaveShortMessage</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a5f63818f6a38a33830e2c9365e2871b3</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicLocalSummaryVectorData</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a18a51c79a1568bbec08f0444286d0803</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printEpidemicRemoteSummaryVectorData</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a7d6c1942df7a4982f1038550ff3091b4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>createEpidemicRequestMessageVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>adcac67915bf040756d4e4ac441b81e77</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printQueueFIFO</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a0c368e853839139a0ffec0050effee33</anchor>
+      <arglist>(queue&lt; string &gt; qFIFO)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>createEpidemicRemoteSummaryVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a49e9588c9df679a81cd6b4cf3f92910a</anchor>
+      <arglist>(string s)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>finish</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a02af21adab5e20af24ce47383a30212f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>AnnotationManager *</type>
+      <name>annotations</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>af612b1051a86ee8292d42aeba5dbcc18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>BaseMobility *</type>
+      <name>mobi</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a695c51571b1e861d8dc3cd30be4010f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>sentMessage</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>ab1702ddabbf40b1bdb8782390f130df6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MyMapEpidemicMessageBuffer</type>
+      <name>epidemicLocalMessageBuffer</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a1e45f364c26de85c337f955bcbcf34a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; string, bool &gt;</type>
+      <name>epidemicLocalSummaryVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a5137bf1fa3ad881453a5ef021e449f5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; string, bool &gt;</type>
+      <name>epidemicRemoteSummaryVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a9b8ea0fc2b712d754efffaabb7d674bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; string, bool &gt;</type>
+      <name>epidemicRequestMessageVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>ac6eb07f3d5aeb3c83b1f55a474e74ce1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; unsigned int, simtime_t &gt;</type>
+      <name>nodesRecentlyFoundList</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a20e9795c683cbf478c244df68c7a1402</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; unsigned int, simtime_t &gt;</type>
+      <name>nodesIRecentlySentSummaryVector</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>aa9091f30235c817e288ff0c91d987bfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>queue&lt; string &gt;</type>
+      <name>queueFIFO</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a40961a8168a9594b6613414f8e8e0ddb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>maiortempo</name>
+      <anchorfile>classepidemic__rsu.html</anchorfile>
+      <anchor>a3d06a9ddc344cbc428b1bbba85c9d6f5</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -20492,6 +21212,195 @@
       <arglist>(const char *wsmData)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>getSerial</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a9ffe0a30a78e7192e643e0ac5427db1b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setSerial</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a89a1fd291250ae9c6e16b104d3a76e8e</anchor>
+      <arglist>(int serial)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual Coord &amp;</type>
+      <name>getSenderPos</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a47e866d383c3454e186dbe9c869fbc38</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const Coord &amp;</type>
+      <name>getSenderPos</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>aef5363629ec88acfca41b3c56ecb2698</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setSenderPos</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a66e2d0a9a7bb00d63cf79837fe0de6a3</anchor>
+      <arglist>(const Coord &amp;senderPos)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual simtime_t</type>
+      <name>getTimestamp</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a26d848cf954f3c04bc78063e8c16d956</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setTimestamp</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>aed9bcc826c641cf992fe9bd82b2d5ca6</anchor>
+      <arglist>(simtime_t timestamp)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned int</type>
+      <name>getSenderAddress</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a71a1969325dc1e97be41c1163f31af3c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setSenderAddress</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a088963cd05b8b2d4ba9da752e91c06f8</anchor>
+      <arglist>(unsigned int senderAddress)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned int</type>
+      <name>getRecipientAddress</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a15fe47fd5025d6e06a9d9a60e05c025b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setRecipientAddress</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>ad7cbabdfdaf2620d1ad8f7ea6eea9c89</anchor>
+      <arglist>(unsigned int recipientAddress)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getSource</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a9fee46e80789894357a0da88fc0f8458</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setSource</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>aefc55f16ac16be615b58ecb0b724ea87</anchor>
+      <arglist>(const char *source)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getTarget</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a2bdb99e260528ad12afd44b16f8c1e10</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setTarget</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>ab089299581a136da502bf3dec5475436</anchor>
+      <arglist>(const char *target)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>getSummaryVector</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a017e4a44a8acfc490e33f25732220f5b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setSummaryVector</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a5ce6a4923a9e3a9908cf0ab236597445</anchor>
+      <arglist>(bool summaryVector)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>getRequestMessages</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a39832f2b630e991d68aa71fa1490f7ea</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setRequestMessages</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a8d42f5967b9f16bae543f3b6bcbd1e08</anchor>
+      <arglist>(bool requestMessages)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getGlobalMessageIdentificaton</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a45f745e1750b2a1b6ca9c31f5e513a89</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setGlobalMessageIdentificaton</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>aae6c742a65f7ab57b5a86e9791a68546</anchor>
+      <arglist>(const char *globalMessageIdentificaton)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getLocalMessageIdentificaton</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a1d089fb4eb35580a32b7d89f9ac17dc8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setLocalMessageIdentificaton</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a1db07fc59effbf6587a97d3271ce247d</anchor>
+      <arglist>(const char *localMessageIdentificaton)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned int</type>
+      <name>getHopCount</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a03e76e79afecdc031715444921f9ba6e</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setHopCount</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>ae8f272dda7636725afecbf45a2ae8c0f</anchor>
+      <arglist>(unsigned int hopCount)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>getAckRequest</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a2c34df954ec68ff80c8161014feeda6c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setAckRequest</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a5ab53c33d2e93480e4d3da63c7679881</anchor>
+      <arglist>(bool ackRequest)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
       <type>virtual const char *</type>
       <name>getRoadId</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
@@ -20546,83 +21455,6 @@
       <anchorfile>class_wave_short_message.html</anchorfile>
       <anchor>aedc2467543d47137f3553f20bd5677a3</anchor>
       <arglist>(int vehicleId)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int</type>
-      <name>getSenderAddress</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a038bc0823a7c9d64fba0a1b2a1780adb</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setSenderAddress</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>ac5318ca78711740c66b88bc156f7c52b</anchor>
-      <arglist>(int senderAddress)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int</type>
-      <name>getRecipientAddress</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>adc22d16ffc384ede9084c7694426ee80</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setRecipientAddress</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a818105a3cb5d5bc51a1257826be98b13</anchor>
-      <arglist>(int recipientAddress)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual int</type>
-      <name>getSerial</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a9ffe0a30a78e7192e643e0ac5427db1b</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setSerial</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a89a1fd291250ae9c6e16b104d3a76e8e</anchor>
-      <arglist>(int serial)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual Coord &amp;</type>
-      <name>getSenderPos</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a47e866d383c3454e186dbe9c869fbc38</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const Coord &amp;</type>
-      <name>getSenderPos</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>aef5363629ec88acfca41b3c56ecb2698</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setSenderPos</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a66e2d0a9a7bb00d63cf79837fe0de6a3</anchor>
-      <arglist>(const Coord &amp;senderPos)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual simtime_t</type>
-      <name>getTimestamp</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a26d848cf954f3c04bc78063e8c16d956</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setTimestamp</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>aed9bcc826c641cf992fe9bd82b2d5ca6</anchor>
-      <arglist>(simtime_t timestamp)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>bool</type>
@@ -20695,6 +21527,97 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>serial_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>ad4aa751d16536190049b740580067895</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Coord</type>
+      <name>senderPos_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>aadbb99ab6b73089e01967ec6d57ad9df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>simtime_t</type>
+      <name>timestamp_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a33b24de6e0d97218a2f69cc4ad575e2a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unsigned int</type>
+      <name>senderAddress_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>ae1773ce56c973b9d25783f30ba617e91</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unsigned int</type>
+      <name>recipientAddress_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>ade8ebe19bad346bb01779d09b481a4d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>opp_string</type>
+      <name>source_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a44093530d9b4d192a0c578334d0457c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>opp_string</type>
+      <name>target_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a9c53d91dc9c7e82b32f9a44d3f2a17ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>summaryVector_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>ac3b379c273f11f3fc075d25bd4c33a87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>requestMessages_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a2a6144800c0e81db4a93c2fe01b0fbe4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>opp_string</type>
+      <name>globalMessageIdentificaton_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>aac3405d9f5e25df383ab7130cae2bec0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>opp_string</type>
+      <name>localMessageIdentificaton_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a6bc9e1f02228500a36ef89f4b88a49e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unsigned int</type>
+      <name>hopCount_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a19d8f27cf4646af8c09c9e8100435d3c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>ackRequest_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a574627f9e2162fa2483c0441683664d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>opp_string</type>
       <name>roadId_var</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
@@ -20720,41 +21643,6 @@
       <name>vehicleId_var</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
       <anchor>a8e589d8db8e7d50f7849f51acbb102d5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>senderAddress_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a2c998933262477494af7e97b7c35e03b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>recipientAddress_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>af5bec277b742d8ae61ebbb0a6ae3136f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>serial_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>ad4aa751d16536190049b740580067895</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>Coord</type>
-      <name>senderPos_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>aadbb99ab6b73089e01967ec6d57ad9df</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>simtime_t</type>
-      <name>timestamp_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a33b24de6e0d97218a2f69cc4ad575e2a</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="private">
@@ -21034,6 +21922,7 @@
     <class kind="class">Veins::BatteryAccess</class>
     <class kind="class">Veins::Radio</class>
     <class kind="class">Veins::default_veins_TraCI_TestApp</class>
+    <class kind="class">Veins::epidemic_app</class>
     <class kind="class">Veins::minicurso_UFPI_TraCI_TestApp</class>
     <class kind="class">Veins::TraCIBuffer</class>
     <class kind="class">Veins::TraCIColor</class>
@@ -21452,6 +22341,102 @@
       <name>mobilityStateChangedSignal</name>
       <anchorfile>class_veins_1_1default__veins___tra_c_i___test_app.html</anchorfile>
       <anchor>abfd5766ab9397a041ab3dbe8b5b7caed</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Veins::epidemic_app</name>
+    <filename>class_veins_1_1epidemic__app.html</filename>
+    <base>BaseApplLayer</base>
+    <member kind="function">
+      <type>int</type>
+      <name>numInitStages</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a1ed1f46e5b75675bcde2f534364aab5a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initialize</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a2e4ff5ee0e6c7bb3363ad408bb703b24</anchor>
+      <arglist>(int stage)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>finish</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a70087a0550261b1770a89dc17522dce5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handleSelfMsg</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a58e1701b4782d50f301931ff37dac297</anchor>
+      <arglist>(cMessage *)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handleLowerMsg</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>afeaa48ed52206a23881b376ba4f4c297</anchor>
+      <arglist>(cMessage *)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>receiveSignal</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>ab1558c0812fe48f47d1aac6f30b5dae8</anchor>
+      <arglist>(cComponent *source, simsignal_t signalID, cObject *obj)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handlePositionUpdate</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a3d0f4fc6d7a18896ed87669ab37670a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>debug</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>ae69611e1cb87ee187ee6c4704474d3a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>testNumber</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a4bc387684de3bf23a8471a1ca127a74d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>TraCIMobility *</type>
+      <name>traci</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>aa780119f49aaf2c4d642adedc9120e7f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::set&lt; std::string &gt;</type>
+      <name>visitedEdges</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a855a0c9182668485fac6a2f012eec96e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>hasStopped</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>a1a1feaed101ef2423c1d227c6d47e4ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static const simsignalwrap_t</type>
+      <name>mobilityStateChangedSignal</name>
+      <anchorfile>class_veins_1_1epidemic__app.html</anchorfile>
+      <anchor>ad2302e7ec0842f5f3261c075fc5ee5af</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -24254,6 +25239,7 @@
     <path>/media/sda4/prog/veins-3.0/src/modules/application/</path>
     <filename>dir_5f41347d155178977248ca65e5afda3b.html</filename>
     <dir>default_veins_TraCI</dir>
+    <dir>epidemic</dir>
     <dir>ieee80211p</dir>
     <dir>mfcv</dir>
     <dir>minicurso_UFPI_TraCI</dir>
@@ -24297,6 +25283,17 @@
     <file>default_veins_TraCI_RSU.h</file>
     <file>default_veins_TraCI_TestApp.cc</file>
     <file>default_veins_TraCI_TestApp.h</file>
+  </compound>
+  <compound kind="dir">
+    <name>epidemic</name>
+    <path>/media/sda4/prog/veins-3.0/src/modules/application/epidemic/</path>
+    <filename>dir_7f9e25eb1b3bf5c0b6c865dc7d2263fb.html</filename>
+    <file>epidemic.cc</file>
+    <file>epidemic.h</file>
+    <file>epidemic_app.cc</file>
+    <file>epidemic_app.h</file>
+    <file>epidemic_rsu.cc</file>
+    <file>epidemic_rsu.h</file>
   </compound>
   <compound kind="dir">
     <name>ieee80211p</name>

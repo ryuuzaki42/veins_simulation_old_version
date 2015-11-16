@@ -53,6 +53,8 @@ var annotated =
     [ "Dimension", "class_dimension.html", "class_dimension" ],
     [ "DimensionSet", "class_dimension_set.html", "class_dimension_set" ],
     [ "DrawAmount", "class_draw_amount.html", "class_draw_amount" ],
+    [ "epidemic", "classepidemic.html", "classepidemic" ],
+    [ "epidemic_rsu", "classepidemic__rsu.html", "classepidemic__rsu" ],
     [ "FilledUpMapping", "class_filled_up_mapping.html", "class_filled_up_mapping" ],
     [ "FilledUpMappingIterator", "class_filled_up_mapping_iterator.html", "class_filled_up_mapping_iterator" ],
     [ "FilteredMappingIterator", "class_filtered_mapping_iterator.html", "class_filtered_mapping_iterator" ],

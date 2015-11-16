@@ -1,0 +1,10 @@
+<map id="WaveShortMessage::getSenderAddress" name="WaveShortMessage::getSenderAddress">
+<area shape="rect" id="node2" href="$classepidemic__rsu.html#a198b769137de21b435a90f9092eb0df3" title="epidemic_rsu::onBeacon" alt="" coords="276,5,441,32"/>
+<area shape="rect" id="node3" href="$classepidemic.html#a1d0d363afe79faf69671a46b3e3dbea2" title="epidemic::onBeacon" alt="" coords="289,56,429,83"/>
+<area shape="rect" id="node4" href="$classtest1.html#abfb909355df8c4447c2fa0d56e036e58" title="test1::onData" alt="" coords="308,107,409,133"/>
+<area shape="rect" id="node5" href="$classservice__discovery.html#a1c17ba9a9fd81600d74f1d8fb5b12826" title="service_discovery::\lonData" alt="" coords="291,158,426,199"/>
+<area shape="rect" id="node6" href="$classepidemic__rsu.html#addc6771a70b0cb8f01df46df120357cb" title="epidemic_rsu::onData" alt="" coords="284,224,433,251"/>
+<area shape="rect" id="node7" href="$classepidemic.html#a21393ee6c5146e0158ded545f543e5ac" title="epidemic::onData" alt="" coords="297,275,421,301"/>
+<area shape="rect" id="node8" href="$classepidemic__rsu.html#a2b8a5dece62b33a4fd1fe5420f5cc8b3" title="epidemic_rsu::printWaveShort\lMessage" alt="" coords="260,326,457,367"/>
+<area shape="rect" id="node9" href="$classepidemic.html#a830fa4472a6940665e2e9de49ad34cf2" title="epidemic::printWaveShort\lMessage" alt="" coords="273,391,445,433"/>
+</map>

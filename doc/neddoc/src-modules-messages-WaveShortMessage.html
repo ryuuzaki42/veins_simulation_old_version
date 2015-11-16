@@ -114,62 +114,6 @@ string</i>
 </td>
 </tr>
 <tr class="local">
-   <td>roadId</td>
-   <td>
-      <i>
-string</i>
-   </td>
-   <td>
-<p>Current ID of the road, e. g., 1ato2b</p>
-</td>
-</tr>
-<tr class="local">
-   <td>senderSpeed</td>
-   <td>
-      <i>
-double</i>
-   </td>
-   <td>
-<p>Speed of vehicle in the moment which send a message WSM, wsm-&gt;setSenderSpeed(traci-&gt;getSpeed());</p>
-</td>
-</tr>
-<tr class="local">
-   <td>category</td>
-   <td>
-      <i>
-int</i>
-   </td>
-   <td>
-<p>Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete</p>
-</td>
-</tr>
-<tr class="local">
-   <td>vehicleId</td>
-   <td>
-      <i>
-int</i>
-   </td>
-   <td>
-<p>vehicle ID (wsm-&gt;setVehicleId(traci-&gt;getId());)</p>
-</td>
-</tr>
-<tr class="local">
-   <td>senderAddress</td>
-   <td>
-      <i>
-int</i>
-   </td>
-   <td></td>
-</tr>
-<tr class="local">
-   <td>recipientAddress</td>
-   <td>
-      <i>
-int</i>
-   </td>
-   <td></td>
-</tr>
-<tr class="local">
    <td>serial</td>
    <td>
       <i>
@@ -191,7 +135,154 @@ Coord</i>
       <i>
 simtime_t</i>
    </td>
-   <td></td>
+   <td>
+<p>int senderAddress = 0;
+int recipientAddress = -1;</p>
+</td>
+</tr>
+<tr class="local">
+   <td>senderAddress</td>
+   <td>
+      <i>
+unsigned int</i>
+   </td>
+   <td>
+<p>Epidemic changes
+Set the Address of the sender;</p>
+</td>
+</tr>
+<tr class="local">
+   <td>recipientAddress</td>
+   <td>
+      <i>
+unsigned int</i>
+   </td>
+   <td>
+<p>Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;</p>
+</td>
+</tr>
+<tr class="local">
+   <td>source</td>
+   <td>
+      <i>
+string</i>
+   </td>
+   <td>
+<p>Add for Epidemic
+Set the source which generate the message, e.g., car[0], car[1] etc.</p>
+</td>
+</tr>
+<tr class="local">
+   <td>target</td>
+   <td>
+      <i>
+string</i>
+   </td>
+   <td>
+<p>Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.</p>
+</td>
+</tr>
+<tr class="local">
+   <td>summaryVector</td>
+   <td>
+      <i>
+bool</i>
+   </td>
+   <td>
+<p>set if this is a summary vector or not. true value means summaryvector</p>
+</td>
+</tr>
+<tr class="local">
+   <td>requestMessages</td>
+   <td>
+      <i>
+bool</i>
+   </td>
+   <td>
+<p>set if this is a request vector or not. true value means requestvector</p>
+</td>
+</tr>
+<tr class="local">
+   <td>globalMessageIdentificaton</td>
+   <td>
+      <i>
+string</i>
+   </td>
+   <td>
+<p>Unique global message identification</p>
+</td>
+</tr>
+<tr class="local">
+   <td>localMessageIdentificaton</td>
+   <td>
+      <i>
+string</i>
+   </td>
+   <td>
+<p>Unique local message identification</p>
+</td>
+</tr>
+<tr class="local">
+   <td>hopCount</td>
+   <td>
+      <i>
+unsigned int</i>
+   </td>
+   <td>
+<p>Hop Count works like TTL in the IP packets. -1 means that this variable has not being used</p>
+</td>
+</tr>
+<tr class="local">
+   <td>ackRequest</td>
+   <td>
+      <i>
+bool</i>
+   </td>
+   <td>
+<p>Determine if a message has been successfully received or not. False is default value assigned to it</p>
+</td>
+</tr>
+<tr class="local">
+   <td>roadId</td>
+   <td>
+      <i>
+string</i>
+   </td>
+   <td>
+<p>Add Minicurso_UFPI - Send ID da pista e velocidade
+Current ID of the road, e. g., 1ato2b</p>
+</td>
+</tr>
+<tr class="local">
+   <td>senderSpeed</td>
+   <td>
+      <i>
+double</i>
+   </td>
+   <td>
+<p>Speed of vehicle in the moment which send a message WSM, wsm-&gt;setSenderSpeed(traci-&gt;getSpeed());</p>
+</td>
+</tr>
+<tr class="local">
+   <td>category</td>
+   <td>
+      <i>
+int</i>
+   </td>
+   <td>
+<p>MFCV
+Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete</p>
+</td>
+</tr>
+<tr class="local">
+   <td>vehicleId</td>
+   <td>
+      <i>
+int</i>
+   </td>
+   <td>
+<p>vehicle ID (wsm-&gt;setVehicleId(traci-&gt;getId());)</p>
+</td>
 </tr>
 </table>
 <h3 class="subtitle">Source code:</h3>
@@ -216,14 +307,44 @@ simtime_t</i>
     </span><span style="color: #808080; font-style: italic; ">//Data of Wave Short Message
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">wsmData</span><span style="color: #000000; "> = </span><span style="color: #008000; ">&quot;Some Data&quot;</span><span style="color: #000000; ">;
 
-	</span><span style="color: #808080; font-style: italic; ">// Adicionado (Minicurso_UFPI) - Send ID da pista e velocidade
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">serial</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
+    </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderPos</span><span style="color: #000000; ">;
+    </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">timestamp</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
+
+	</span><span style="color: #808080; font-style: italic; ">//int senderAddress = 0;
+</span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">//int recipientAddress = -1;
 </span><span style="color: #000000; ">
-    </span><span style="color: #808080; font-style: italic; ">// Current ID of the road, e. g., 1ato2b
+    </span><span style="color: #808080; font-style: italic; ">// Epidemic changes
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//Set the Address of the sender;
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderAddress</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">recipientAddress</span><span style="color: #000000; "> = </span><span style="color: #008000; ">268435455</span><span style="color: #000000; ">;
+
+    </span><span style="color: #808080; font-style: italic; ">// Add for Epidemic
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//Set the source which generate the message, e.g., car[0], car[1] etc.
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">source</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">target</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//set if this is a summary vector or not. true value means summaryvector
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">bool</span><span style="color: #000000; "> </span><span style="color: #000000; ">summaryVector</span><span style="color: #000000; "> = </span><span style="color: #008000; ">false</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//set if this is a request vector or not. true value means requestvector
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">bool</span><span style="color: #000000; "> </span><span style="color: #000000; ">requestMessages</span><span style="color: #000000; "> = </span><span style="color: #008000; ">false</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//Unique global message identification
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">globalMessageIdentificaton</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//Unique local message identification
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">localMessageIdentificaton</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">hopCount</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">//Determine if a message has been successfully received or not. False is default value assigned to it
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">bool</span><span style="color: #000000; "> </span><span style="color: #000000; ">ackRequest</span><span style="color: #000000; "> = </span><span style="color: #008000; ">false</span><span style="color: #000000; ">;
+
+    </span><span style="color: #808080; font-style: italic; ">// Add Minicurso_UFPI - Send ID da pista e velocidade
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Current ID of the road, e. g., 1ato2b
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">roadId</span><span style="color: #000000; "> = </span><span style="color: #008000; ">&quot;&quot;</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// Speed of vehicle in the moment which send a message WSM, wsm-&gt;setSenderSpeed(traci-&gt;getSpeed());
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">double</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderSpeed</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">.</span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
 
-    </span><span style="color: #808080; font-style: italic; ">//
+    </span><span style="color: #808080; font-style: italic; ">// MFCV
 </span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">category</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// vehicle ID (wsm-&gt;setVehicleId(traci-&gt;getId());)
@@ -233,13 +354,7 @@ simtime_t</i>
 </span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">// Radius of Gyration of the vehicle, calculated from time to time.
 </span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">// The vehicle send yours Radius of Gyration to another vehicles 
 </span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">//double radius_of_Gyration;
-</span><span style="color: #000000; ">
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderAddress</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">recipientAddress</span><span style="color: #000000; "> = -</span><span style="color: #008000; ">1</span><span style="color: #000000; ">;
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">serial</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-    </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderPos</span><span style="color: #000000; ">;
-    </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">timestamp</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-}
+</span><span style="color: #000000; ">}
 </span></pre>
    <hr><p class="footer"><a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top"><img src="by-sa.png"></a> This documentation is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top">Creative Commons license</a></p>
    </body>

@@ -1,0 +1,10 @@
+<map id="epidemic::sendMessagesRequested" name="epidemic::sendMessagesRequested">
+<area shape="rect" id="node2" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="307,5,497,47"/>
+<area shape="rect" id="node3" href="$class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0" title="WaveShortMessage::getWsmData" alt="" coords="289,71,515,98"/>
+<area shape="rect" id="node4" href="$class_wave_short_message.html#a9fee46e80789894357a0da88fc0f8458" title="WaveShortMessage::getSource" alt="" coords="299,122,505,149"/>
+<area shape="rect" id="node5" href="$class_wave_short_message.html#a2bdb99e260528ad12afd44b16f8c1e10" title="WaveShortMessage::getTarget" alt="" coords="301,173,503,199"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="287,223,517,250"/>
+<area shape="rect" id="node7" href="$class_wave_short_message.html#a138e7425f6286d388541280dceab0352" title="WaveShortMessage::setWsmData" alt="" coords="289,274,515,301"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a5ce6a4923a9e3a9908cf0ab236597445" title="WaveShortMessage::setSummary\lVector" alt="" coords="291,325,513,367"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#a8d42f5967b9f16bae543f3b6bcbd1e08" title="WaveShortMessage::setRequest\lMessages" alt="" coords="295,391,509,432"/>
+</map>

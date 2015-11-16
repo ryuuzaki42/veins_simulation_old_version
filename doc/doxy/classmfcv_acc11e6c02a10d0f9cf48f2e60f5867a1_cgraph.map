@@ -14,8 +14,8 @@
 <area shape="rect" id="node14" href="$class_wave_short_message.html#aedc2467543d47137f3553f20bd5677a3" title="WaveShortMessage::setVehicleId" alt="" coords="423,539,643,565"/>
 <area shape="rect" id="node15" href="$class_wave_short_message.html#a8ae71835284c1c771f8dd3413d4c8aaa" title="WaveShortMessage::setCategory" alt="" coords="423,589,642,616"/>
 <area shape="rect" id="node16" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="417,640,648,667"/>
-<area shape="rect" id="node17" href="$class_wave_short_message.html#ac5318ca78711740c66b88bc156f7c52b" title="WaveShortMessage::setSender\lAddress" alt="" coords="429,691,636,733"/>
-<area shape="rect" id="node18" href="$class_wave_short_message.html#a818105a3cb5d5bc51a1257826be98b13" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="422,757,643,798"/>
+<area shape="rect" id="node17" href="$class_wave_short_message.html#a088963cd05b8b2d4ba9da752e91c06f8" title="WaveShortMessage::setSender\lAddress" alt="" coords="429,691,636,733"/>
+<area shape="rect" id="node18" href="$class_wave_short_message.html#ad7cbabdfdaf2620d1ad8f7ea6eea9c89" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="422,757,643,798"/>
 <area shape="rect" id="node19" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="417,823,648,849"/>
 <area shape="rect" id="node20" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="433,873,632,900"/>
 <area shape="rect" id="node21" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="417,924,648,951"/>

@@ -1,0 +1,11 @@
+<map id="WaveShortMessage::setSummaryVector" name="WaveShortMessage::setSummaryVector">
+<area shape="rect" id="node2" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="300,5,485,32"/>
+<area shape="rect" id="node3" href="$classepidemic__rsu.html#a0aad04c7373d719394ad1927aa4aa7a0" title="epidemic_rsu::sendEpidemic\lRequestMessageVector" alt="" coords="298,187,487,229"/>
+<area shape="rect" id="node5" href="$classepidemic.html#a5f8fc65f217cebee3ffcfbe56d28b01d" title="epidemic::sendEpidemicRequest\lMessageVector" alt="" coords="286,122,499,163"/>
+<area shape="rect" id="node6" href="$classepidemic__rsu.html#a7d5f30ee2711fa57054e8a63e278a62f" title="epidemic_rsu::sendLocalSummary\lVector" alt="" coords="281,318,504,359"/>
+<area shape="rect" id="node8" href="$classepidemic.html#a8d3ec16471e9453f721674cca0ef4d82" title="epidemic::sendLocalSummary\lVector" alt="" coords="294,253,491,294"/>
+<area shape="rect" id="node9" href="$classepidemic__rsu.html#aff93c911e10e4b1c29d2d1e4a0b3b931" title="epidemic_rsu::sendMessages\lRequested" alt="" coords="295,57,490,98"/>
+<area shape="rect" id="node10" href="$classepidemic.html#ab922f7335885658bfad15f085d9e8e15" title="epidemic::sendMessagesRequested" alt="" coords="276,384,509,411"/>
+<area shape="rect" id="node4" href="$classepidemic__rsu.html#addc6771a70b0cb8f01df46df120357cb" title="epidemic_rsu::onData" alt="" coords="565,195,715,221"/>
+<area shape="rect" id="node7" href="$classepidemic__rsu.html#a198b769137de21b435a90f9092eb0df3" title="epidemic_rsu::onBeacon" alt="" coords="557,325,723,352"/>
+</map>

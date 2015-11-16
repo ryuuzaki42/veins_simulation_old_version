@@ -1,0 +1,11 @@
+<map id="epidemic::initialize" name="epidemic::initialize">
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a9aef9d25723a567a257b8915cba77361" title="BaseWaveApplLayer::\linitialize_epidemic" alt="" coords="212,66,364,107"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_mobility_access.html#aa2788845910c6afc0b6068d9bf71bdd3" title="Veins::TraCIMobilityAccess::get" alt="" coords="183,149,393,176"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_annotation_manager_access.html#a2c602699c6a6878cfaccfc2553ff839f" title="Veins::AnnotationManager\lAccess::getIfExists" alt="" coords="201,201,375,242"/>
+<area shape="rect" id="node3" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="457,5,623,32"/>
+<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="687,157,869,184"/>
+<area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="465,56,615,83"/>
+<area shape="rect" id="node4" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="709,5,847,32"/>
+<area shape="rect" id="node7" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="705,56,851,83"/>
+<area shape="rect" id="node10" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="441,208,639,235"/>
+</map>

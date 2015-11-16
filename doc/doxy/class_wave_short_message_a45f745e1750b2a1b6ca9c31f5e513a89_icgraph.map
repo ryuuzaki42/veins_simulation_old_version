@@ -1,0 +1,5 @@
+<map id="WaveShortMessage::getGlobalMessageIdentificaton" name="WaveShortMessage::getGlobalMessageIdentificaton">
+<area shape="rect" id="node2" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="262,5,447,32"/>
+<area shape="rect" id="node3" href="$classepidemic__rsu.html#a2b8a5dece62b33a4fd1fe5420f5cc8b3" title="epidemic_rsu::printWaveShort\lMessage" alt="" coords="256,57,453,98"/>
+<area shape="rect" id="node4" href="$classepidemic.html#a830fa4472a6940665e2e9de49ad34cf2" title="epidemic::printWaveShort\lMessage" alt="" coords="269,122,441,163"/>
+</map>

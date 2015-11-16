@@ -1,10 +1,12 @@
 <map id="Veins::TraCIMobilityAccess::get" name="Veins::TraCIMobilityAccess::get">
 <area shape="rect" id="node2" href="$classosdp.html#a6aaaee984b1b8e0d921b528e1870a1fe" title="Initialization of the module and some variables. " alt="" coords="298,5,403,32"/>
-<area shape="rect" id="node3" href="$classtest1.html#aa2cd014fcecf9458585eb65f3ff32ca0" title="Initialization of the module and some variables. " alt="" coords="297,56,404,83"/>
-<area shape="rect" id="node4" href="$classservice__discovery.html#a885bf6658ad357136fef79a09b7a0215" title="Initialization of the module and some variables. " alt="" coords="283,107,418,149"/>
-<area shape="rect" id="node5" href="$classdefault__veins___tra_c_i.html#a639af01c98fa830eb1f2b8de49afc661" title="Initialization of the module and some variables. " alt="" coords="281,173,420,214"/>
-<area shape="rect" id="node6" href="$classminicurso___u_f_p_i___tra_c_i.html#a01709524d5113cf544843148035e4193" title="Initialization of the module and some variables. " alt="" coords="273,238,429,279"/>
-<area shape="rect" id="node7" href="$classmfcv.html#aa1b3b27b74793924dc3709a837971c7c" title="Initialization of the module and some variables. " alt="" coords="297,304,404,331"/>
-<area shape="rect" id="node8" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a4e328610e19ff9d1a441131a8b323c96" title="Initialization of the module and some variables. " alt="" coords="264,355,437,397"/>
-<area shape="rect" id="node9" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a800673c5b14342a3aad82f8e631ae83c" title="Initialization of the module and some variables. " alt="" coords="264,421,437,462"/>
+<area shape="rect" id="node3" href="$classservice__discovery.html#a885bf6658ad357136fef79a09b7a0215" title="Initialization of the module and some variables. " alt="" coords="283,57,418,98"/>
+<area shape="rect" id="node4" href="$classtest1.html#aa2cd014fcecf9458585eb65f3ff32ca0" title="Initialization of the module and some variables. " alt="" coords="297,123,404,149"/>
+<area shape="rect" id="node5" href="$classdefault__veins___tra_c_i.html#a639af01c98fa830eb1f2b8de49afc661" title="Initialization of the module and some variables. " alt="" coords="281,174,420,215"/>
+<area shape="rect" id="node6" href="$classmfcv.html#aa1b3b27b74793924dc3709a837971c7c" title="Initialization of the module and some variables. " alt="" coords="297,240,404,267"/>
+<area shape="rect" id="node7" href="$classminicurso___u_f_p_i___tra_c_i.html#a01709524d5113cf544843148035e4193" title="Initialization of the module and some variables. " alt="" coords="273,291,429,333"/>
+<area shape="rect" id="node8" href="$classepidemic.html#a8a6caa75f695661b99daec66dc29b49d" title="Initialization of the module and some variables. " alt="" coords="286,357,415,384"/>
+<area shape="rect" id="node9" href="$class_veins_1_1epidemic__app.html#a2e4ff5ee0e6c7bb3363ad408bb703b24" title="Initialization of the module and some variables. " alt="" coords="279,409,422,450"/>
+<area shape="rect" id="node10" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a4e328610e19ff9d1a441131a8b323c96" title="Initialization of the module and some variables. " alt="" coords="264,474,437,515"/>
+<area shape="rect" id="node11" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a800673c5b14342a3aad82f8e631ae83c" title="Initialization of the module and some variables. " alt="" coords="264,539,437,581"/>
 </map>

@@ -5,6 +5,7 @@ var namespace_veins =
     [ "BatteryAccess", "class_veins_1_1_battery_access.html", "class_veins_1_1_battery_access" ],
     [ "Radio", "class_veins_1_1_radio.html", "class_veins_1_1_radio" ],
     [ "default_veins_TraCI_TestApp", "class_veins_1_1default__veins___tra_c_i___test_app.html", "class_veins_1_1default__veins___tra_c_i___test_app" ],
+    [ "epidemic_app", "class_veins_1_1epidemic__app.html", "class_veins_1_1epidemic__app" ],
     [ "minicurso_UFPI_TraCI_TestApp", "class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html", "class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app" ],
     [ "TraCIBuffer", "class_veins_1_1_tra_c_i_buffer.html", "class_veins_1_1_tra_c_i_buffer" ],
     [ "TraCIColor", "class_veins_1_1_tra_c_i_color.html", "class_veins_1_1_tra_c_i_color" ],

@@ -159,6 +159,42 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
 <p>the access category for data packets</p>
    </td>
 </tr>
+<tr class="inherited">
+   <td>sendSummaryVectorInterval</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0s</td>
+   <td>
+<p>Add for Epidemic</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>maximumEpidemicBufferSize</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+<p>define the maximum buffer size (in number of messages) that a node is willing to allocate for <a href="org.car2x.veins.modules.application.epidemic.epidemic.html">epidemic</a> messages.</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>hopCount</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+<p>define the maximum number of hopes that a message can be forward before reach the target</p>
+<p>@signal[numberHops](type="long");
+@statistic[hopCount](title="Hop Count"; source="numberHops"; record=vector,histogram,stats);</p>
+<p>@signal[delay](type="double");
+@statistic[delayTime](source=delay; title="End-to-End Delay"; record=stats,histogram,vector);</p>
+<p>@signal[messageReceived](type="long");
+@statistic[numMessageReceived](source=sum(messageReceived); title="Total Number or Message Received"; record=stats,histogram,vector);</p>
+   </td>
+</tr>
 <tr class="local">
    <td>serv1</td>
    <td>

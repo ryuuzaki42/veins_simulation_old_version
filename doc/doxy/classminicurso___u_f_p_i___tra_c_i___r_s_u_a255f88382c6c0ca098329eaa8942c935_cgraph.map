@@ -27,7 +27,7 @@
 <area shape="rect" id="node20" href="$class_veins_1_1_tra_c_i_color.html#aed4c0a7c62bb97cd300b23f3f932e6e7" title="Veins::TraCIColor::\lTraCIColor" alt="" coords="1071,5,1206,47"/>
 <area shape="rect" id="node23" href="$class_veins_1_1_annotation_manager.html#a5913c22f5ec33e8a4d6531bc0b016899" title="Veins::AnnotationManager\l::createDummyModule" alt="" coords="1051,267,1226,308"/>
 <area shape="rect" id="node25" href="$class_veins_1_1_tra_c_i_buffer.html#a0065f3b4bf17cac8e10dc94b551eb9f8" title="Veins::TraCIBuffer::eof" alt="" coords="1060,209,1217,235"/>
-<area shape="rect" id="node29" href="$class_base_wave_appl_layer.html#aaa76362a567f160e008bf8a1dbde15d0" title="BaseWaveApplLayer::\lprepareWSM" alt="" coords="525,856,677,897"/>
+<area shape="rect" id="node29" href="$class_base_wave_appl_layer.html#a99419f231627d477c13b2b4573174295" title="BaseWaveApplLayer::\lprepareWSM" alt="" coords="525,856,677,897"/>
 <area shape="rect" id="node42" href="$class_wave_short_message.html#a138e7425f6286d388541280dceab0352" title="WaveShortMessage::setWsmData" alt="" coords="488,470,713,497"/>
 <area shape="rect" id="node43" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#af7ac0956cfb79dd3cb99b1a5c5c7d958" title="minicurso_UFPI_TraCI\l_RSU::sendWSM" alt="" coords="523,521,679,563"/>
 <area shape="rect" id="node30" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="769,1032,984,1073"/>
@@ -35,8 +35,8 @@
 <area shape="rect" id="node32" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="773,1149,980,1175"/>
 <area shape="rect" id="node33" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="778,1200,975,1241"/>
 <area shape="rect" id="node34" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="761,579,992,606"/>
-<area shape="rect" id="node35" href="$class_wave_short_message.html#ac5318ca78711740c66b88bc156f7c52b" title="WaveShortMessage::setSender\lAddress" alt="" coords="773,631,980,672"/>
-<area shape="rect" id="node36" href="$class_wave_short_message.html#a818105a3cb5d5bc51a1257826be98b13" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="766,696,987,737"/>
+<area shape="rect" id="node35" href="$class_wave_short_message.html#a088963cd05b8b2d4ba9da752e91c06f8" title="WaveShortMessage::setSender\lAddress" alt="" coords="773,631,980,672"/>
+<area shape="rect" id="node36" href="$class_wave_short_message.html#ad7cbabdfdaf2620d1ad8f7ea6eea9c89" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="766,696,987,737"/>
 <area shape="rect" id="node37" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="761,762,992,789"/>
 <area shape="rect" id="node38" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="777,813,976,839"/>
 <area shape="rect" id="node39" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="773,863,981,890"/>

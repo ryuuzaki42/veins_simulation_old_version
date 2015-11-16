@@ -121,6 +121,18 @@ var files =
     [ "default_veins_TraCI_TestApp.h", "default__veins___tra_c_i___test_app_8h.html", [
       [ "default_veins_TraCI_TestApp", "class_veins_1_1default__veins___tra_c_i___test_app.html", "class_veins_1_1default__veins___tra_c_i___test_app" ]
     ] ],
+    [ "epidemic.cc", "epidemic_8cc.html", "epidemic_8cc" ],
+    [ "epidemic.h", "epidemic_8h.html", [
+      [ "epidemic", "classepidemic.html", "classepidemic" ]
+    ] ],
+    [ "epidemic_app.cc", "epidemic__app_8cc.html", "epidemic__app_8cc" ],
+    [ "epidemic_app.h", "epidemic__app_8h.html", [
+      [ "epidemic_app", "class_veins_1_1epidemic__app.html", "class_veins_1_1epidemic__app" ]
+    ] ],
+    [ "epidemic_rsu.cc", "epidemic__rsu_8cc.html", "epidemic__rsu_8cc" ],
+    [ "epidemic_rsu.h", "epidemic__rsu_8h.html", [
+      [ "epidemic_rsu", "classepidemic__rsu.html", "classepidemic__rsu" ]
+    ] ],
     [ "FindModule.h", "_find_module_8h.html", [
       [ "FindModule", "class_find_module.html", null ],
       [ "AccessModuleWrap", "class_access_module_wrap.html", "class_access_module_wrap" ]

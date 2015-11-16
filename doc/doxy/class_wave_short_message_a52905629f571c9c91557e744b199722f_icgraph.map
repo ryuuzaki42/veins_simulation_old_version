@@ -1,3 +1,5 @@
 <map id="WaveShortMessage::getChannelNumber" name="WaveShortMessage::getChannelNumber">
-<area shape="rect" id="node2" href="$class_mac1609__4.html#ac93bf319ea2065fd7e8c041697e49919" title="Handle messages from upper layer. " alt="" coords="268,13,463,39"/>
+<area shape="rect" id="node2" href="$class_mac1609__4.html#ac93bf319ea2065fd7e8c041697e49919" title="Handle messages from upper layer. " alt="" coords="269,5,464,32"/>
+<area shape="rect" id="node3" href="$classepidemic__rsu.html#a2b8a5dece62b33a4fd1fe5420f5cc8b3" title="epidemic_rsu::printWaveShort\lMessage" alt="" coords="268,57,465,98"/>
+<area shape="rect" id="node4" href="$classepidemic.html#a830fa4472a6940665e2e9de49ad34cf2" title="epidemic::printWaveShort\lMessage" alt="" coords="281,122,453,163"/>
 </map>

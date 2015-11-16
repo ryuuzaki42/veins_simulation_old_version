@@ -1,16 +1,16 @@
 <map id="minicurso_UFPI_TraCI_RSU.h" name="minicurso_UFPI_TraCI_RSU.h">
-<area shape="rect" id="node2" href="$_base_wave_appl_layer_8h.html" title="BaseWaveApplLayer.h" alt="" coords="715,95,869,121"/>
-<area shape="rect" id="node32" href="$_annotation_manager_8h.html" title="modules/world/annotations\l/AnnotationManager.h" alt="" coords="1671,408,1849,449"/>
-<area shape="rect" id="node4" href="$_base_appl_layer_8h.html" title="BaseApplLayer.h" alt="" coords="243,177,365,203"/>
-<area shape="rect" id="node17" href="$_consts80211p_8h.html" title="Consts80211p.h" alt="" coords="488,259,605,285"/>
+<area shape="rect" id="node2" href="$_base_wave_appl_layer_8h.html" title="BaseWaveApplLayer.h" alt="" coords="732,95,887,121"/>
+<area shape="rect" id="node33" href="$_annotation_manager_8h.html" title="modules/world/annotations\l/AnnotationManager.h" alt="" coords="1671,408,1849,449"/>
+<area shape="rect" id="node4" href="$_base_appl_layer_8h.html" title="BaseApplLayer.h" alt="" coords="247,177,369,203"/>
+<area shape="rect" id="node17" href="$_consts80211p_8h.html" title="Consts80211p.h" alt="" coords="484,259,601,285"/>
 <area shape="rect" id="node18" href="$_wave_short_message__m_8h.html" title="WaveShortMessage_m.h" alt="" coords="1426,415,1595,442"/>
-<area shape="rect" id="node22" href="$_channel_access_8h.html" title="base/connectionManager\l/ChannelAccess.h" alt="" coords="857,169,1023,211"/>
-<area shape="rect" id="node30" href="$_wave_app_to_mac1609__4_interface_8h.html" title="WaveAppToMac1609_4Interface.h" alt="" coords="435,177,658,203"/>
+<area shape="rect" id="node22" href="$_channel_access_8h.html" title="base/connectionManager\l/ChannelAccess.h" alt="" coords="905,169,1071,211"/>
+<area shape="rect" id="node30" href="$_wave_app_to_mac1609__4_interface_8h.html" title="WaveAppToMac1609_4Interface.h" alt="" coords="431,177,654,203"/>
 <area shape="rect" id="node6" href="$_mi_xi_m_defs_8h.html" title="MiXiMDefs.h" alt="" coords="600,647,699,673"/>
-<area shape="rect" id="node9" href="$_base_layer_8h.html" title="BaseLayer.h" alt="" coords="257,259,351,285"/>
+<area shape="rect" id="node9" href="$_base_layer_8h.html" title="BaseLayer.h" alt="" coords="261,259,355,285"/>
 <area shape="rect" id="node16" href="$_simple_address_8h.html" title="SimpleAddress.h" alt="" coords="287,572,409,599"/>
 <area shape="rect" id="node8" href="$miximkerneldefs_8h.html" title="miximkerneldefs.h" alt="" coords="585,721,713,748"/>
-<area shape="rect" id="node10" href="$_battery_access_8h.html" title="BatteryAccess.h" alt="" coords="707,333,826,360"/>
+<area shape="rect" id="node10" href="$_battery_access_8h.html" title="BatteryAccess.h" alt="" coords="731,333,850,360"/>
 <area shape="rect" id="node15" href="$_passed_message_8h.html" title="PassedMessage.h" alt="" coords="5,572,136,599"/>
 <area shape="rect" id="node11" href="$_base_module_8h.html" title="BaseModule.h" alt="" coords="701,497,806,524"/>
 <area shape="rect" id="node14" href="$_base_battery_8h.html" title="BaseBattery.h" alt="" coords="791,415,897,442"/>
@@ -18,8 +18,8 @@
 <area shape="rect" id="node19" href="$_coord_8h.html" title="Coord.h" alt="" coords="1151,497,1219,524"/>
 <area shape="rect" id="node20" href="$_f_w_math_8h.html" title="FWMath.h" alt="" coords="1252,572,1335,599"/>
 <area shape="rect" id="node24" href="$_find_module_8h.html" title="FindModule.h" alt="" coords="1617,497,1717,524"/>
-<area shape="rect" id="node25" href="$_base_mobility_8h.html" title="BaseMobility.h" alt="" coords="1041,259,1149,285"/>
+<area shape="rect" id="node25" href="$_base_mobility_8h.html" title="BaseMobility.h" alt="" coords="1053,259,1161,285"/>
 <area shape="rect" id="node26" href="$_move_8h.html" title="Move.h" alt="" coords="1273,415,1338,442"/>
 <area shape="rect" id="node29" href="$_base_world_utility_8h.html" title="BaseWorldUtility.h" alt="" coords="1049,415,1180,442"/>
-<area shape="rect" id="node31" href="$_netw_to_mac_control_info_8h.html" title="NetwToMacControlInfo.h" alt="" coords="376,497,544,524"/>
+<area shape="rect" id="node31" href="$_netw_to_mac_control_info_8h.html" title="NetwToMacControlInfo.h" alt="" coords="368,497,536,524"/>
 </map>

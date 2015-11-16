@@ -1,0 +1,11 @@
+<map id="epidemic_rsu::initialize" name="epidemic_rsu::initialize">
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a9aef9d25723a567a257b8915cba77361" title="BaseWaveApplLayer::\linitialize_epidemic" alt="" coords="219,57,371,98"/>
+<area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="454,5,605,32"/>
+<area shape="rect" id="node8" href="$class_veins_1_1_annotation_manager_access.html#a2c602699c6a6878cfaccfc2553ff839f" title="Veins::AnnotationManager\lAccess::getIfExists" alt="" coords="208,122,383,163"/>
+<area shape="rect" id="node10" href="$class_base_wave_appl_layer.html#a3838ef2e8dba7ab8767cf3c3d3d9883b" title="BaseWaveApplLayer::\lMACToInteger" alt="" coords="219,187,371,229"/>
+<area shape="rect" id="node3" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="447,56,612,83"/>
+<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="676,132,859,159"/>
+<area shape="rect" id="node4" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="698,56,837,83"/>
+<area shape="rect" id="node7" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="694,5,841,32"/>
+<area shape="rect" id="node9" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="431,157,628,184"/>
+</map>
