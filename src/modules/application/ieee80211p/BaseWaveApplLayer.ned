@@ -48,6 +48,20 @@ simple BaseWaveApplLayer like IBaseApplLayer
         bool dataOnSch = default(true); //tells the applayer whether to use a service channel for datapackets or the control channel
         int dataPriority = default(3); //the access category for data packets
 
+        // Add for Epidemic
+        int sendSummaryVectorInterval @unit("s") = default(0s); //define the minimum slide window length among contacts to send new version of summary vector
+        int maximumEpidemicBufferSize = default(0); //define the maximum buffer size (in number of messages) that a node is willing to allocate for epidemic messages.
+        int hopCount = default(0); //define the maximum number of hopes that a message can be forward before reach the target
+        
+        //@signal[numberHops](type="long");
+        //@statistic[hopCount](title="Hop Count"; source="numberHops"; record=vector,histogram,stats);
+        
+        //@signal[delay](type="double");
+        //@statistic[delayTime](source=delay; title="End-to-End Delay"; record=stats,histogram,vector);
+        
+        //@signal[messageReceived](type="long");
+        //@statistic[numMessageReceived](source=sum(messageReceived); title="Total Number or Message Received"; record=stats,histogram,vector);
+
     gates:
         input lowerLayerIn; // from mac layer
         output lowerLayerOut; // to mac layer

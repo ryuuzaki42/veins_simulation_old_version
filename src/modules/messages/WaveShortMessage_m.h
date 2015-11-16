@@ -43,14 +43,44 @@
  *     //Data of Wave Short Message
  *     string wsmData = "Some Data";
  * 
- * 	// Adicionado (Minicurso_UFPI) - Send ID da pista e velocidade
+ *     int serial = 0;
+ *     Coord senderPos;
+ *     simtime_t timestamp = 0;
  * 
+ * 	//int senderAddress = 0;
+ * 	//int recipientAddress = -1;
+ * 
+ *     // Epidemic changes	
+ *     //Set the Address of the sender;
+ *     unsigned int senderAddress = 0;
+ *     //Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
+ *     unsigned int recipientAddress = 268435455;
+ * 
+ *     // Add for Epidemic
+ *     //Set the source which generate the message, e.g., car[0], car[1] etc.
+ *     string source;
+ *     //Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
+ *     string target;
+ *     //set if this is a summary vector or not. true value means summaryvector
+ *     bool summaryVector = false;
+ *     //set if this is a request vector or not. true value means requestvector
+ *     bool requestMessages = false;
+ *     //Unique global message identification
+ *     string globalMessageIdentificaton;
+ *     //Unique local message identification
+ *     string localMessageIdentificaton;
+ *     //Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
+ *     unsigned int hopCount = 0;
+ *     //Determine if a message has been successfully received or not. False is default value assigned to it
+ *     bool ackRequest = false;
+ * 
+ *     // Add Minicurso_UFPI - Send ID da pista e velocidade
  *     // Current ID of the road, e. g., 1ato2b
  *     string roadId = "";
  *     // Speed of vehicle in the moment which send a message WSM, wsm->setSenderSpeed(traci->getSpeed());
  *     double senderSpeed = 0.0;
  * 
- *     //
+ *     // MFCV
  *     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
  *     int category = 0;
  *     // vehicle ID (wsm->setVehicleId(traci->getId());)
@@ -60,12 +90,6 @@
  * 	// Radius of Gyration of the vehicle, calculated from time to time.
  * 	// The vehicle send yours Radius of Gyration to another vehicles 
  * 	//double radius_of_Gyration;
- * 
- *     int senderAddress = 0;
- *     int recipientAddress = -1;
- *     int serial = 0;
- *     Coord senderPos;
- *     simtime_t timestamp = 0;
  * }
  * </pre>
  */
@@ -81,15 +105,23 @@ class WaveShortMessage : public ::cPacket
     opp_string psc_var;
     int wsmLength_var;
     opp_string wsmData_var;
+    int serial_var;
+    Coord senderPos_var;
+    simtime_t timestamp_var;
+    unsigned int senderAddress_var;
+    unsigned int recipientAddress_var;
+    opp_string source_var;
+    opp_string target_var;
+    bool summaryVector_var;
+    bool requestMessages_var;
+    opp_string globalMessageIdentificaton_var;
+    opp_string localMessageIdentificaton_var;
+    unsigned int hopCount_var;
+    bool ackRequest_var;
     opp_string roadId_var;
     double senderSpeed_var;
     int category_var;
     int vehicleId_var;
-    int senderAddress_var;
-    int recipientAddress_var;
-    int serial_var;
-    Coord senderPos_var;
-    simtime_t timestamp_var;
 
   private:
     void copy(const WaveShortMessage& other);
@@ -126,6 +158,33 @@ class WaveShortMessage : public ::cPacket
     virtual void setWsmLength(int wsmLength);
     virtual const char * getWsmData() const;
     virtual void setWsmData(const char * wsmData);
+    virtual int getSerial() const;
+    virtual void setSerial(int serial);
+    virtual Coord& getSenderPos();
+    virtual const Coord& getSenderPos() const {return const_cast<WaveShortMessage*>(this)->getSenderPos();}
+    virtual void setSenderPos(const Coord& senderPos);
+    virtual simtime_t getTimestamp() const;
+    virtual void setTimestamp(simtime_t timestamp);
+    virtual unsigned int getSenderAddress() const;
+    virtual void setSenderAddress(unsigned int senderAddress);
+    virtual unsigned int getRecipientAddress() const;
+    virtual void setRecipientAddress(unsigned int recipientAddress);
+    virtual const char * getSource() const;
+    virtual void setSource(const char * source);
+    virtual const char * getTarget() const;
+    virtual void setTarget(const char * target);
+    virtual bool getSummaryVector() const;
+    virtual void setSummaryVector(bool summaryVector);
+    virtual bool getRequestMessages() const;
+    virtual void setRequestMessages(bool requestMessages);
+    virtual const char * getGlobalMessageIdentificaton() const;
+    virtual void setGlobalMessageIdentificaton(const char * globalMessageIdentificaton);
+    virtual const char * getLocalMessageIdentificaton() const;
+    virtual void setLocalMessageIdentificaton(const char * localMessageIdentificaton);
+    virtual unsigned int getHopCount() const;
+    virtual void setHopCount(unsigned int hopCount);
+    virtual bool getAckRequest() const;
+    virtual void setAckRequest(bool ackRequest);
     virtual const char * getRoadId() const;
     virtual void setRoadId(const char * roadId);
     virtual double getSenderSpeed() const;
@@ -134,17 +193,6 @@ class WaveShortMessage : public ::cPacket
     virtual void setCategory(int category);
     virtual int getVehicleId() const;
     virtual void setVehicleId(int vehicleId);
-    virtual int getSenderAddress() const;
-    virtual void setSenderAddress(int senderAddress);
-    virtual int getRecipientAddress() const;
-    virtual void setRecipientAddress(int recipientAddress);
-    virtual int getSerial() const;
-    virtual void setSerial(int serial);
-    virtual Coord& getSenderPos();
-    virtual const Coord& getSenderPos() const {return const_cast<WaveShortMessage*>(this)->getSenderPos();}
-    virtual void setSenderPos(const Coord& senderPos);
-    virtual simtime_t getTimestamp() const;
-    virtual void setTimestamp(simtime_t timestamp);
 };
 
 inline void doPacking(cCommBuffer *b, WaveShortMessage& obj) {obj.parsimPack(b);}

@@ -28,6 +28,17 @@
 #include "base/connectionManager/ChannelAccess.h"
 #include <WaveAppToMac1609_4Interface.h>
 
+// Add for Epidemic
+#include <stdio.h>
+
+using namespace std;
+
+//Define a constant to support send beacons or send messages in a broadcast fashion
+#ifndef BROADCAST
+#define BROADCAST 268435455
+#endif
+//
+
 #ifndef DBG
 #define DBG EV
 #endif
@@ -56,13 +67,15 @@ class BaseWaveApplLayer : public BaseApplLayer {
 		virtual void initialize_osdp(int stage);
 		virtual void initialize_service_discovery(int stage);
 		virtual void initialize_test1(int stage);
+		virtual void initialize_epidemic(int stage);
 		virtual void finish();
 
 		virtual  void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
 
 		enum WaveApplMessageKinds {
 			SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
-			SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
+			SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT, //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
+			SEND_BEACON_EVT_epidemic
 		};
 
 	protected:
@@ -74,7 +87,13 @@ class BaseWaveApplLayer : public BaseApplLayer {
 		/** @brief handle self messages */
 		virtual void handleSelfMsg(cMessage* msg);
 
-		virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+		//virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+		virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
+
+		//Add for Epidemic
+		virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
+		virtual unsigned int MACToInteger();
+
 		virtual void sendWSM(WaveShortMessage* wsm);
 		virtual void onBeacon(WaveShortMessage* wsm) = 0;
 		virtual void onData(WaveShortMessage* wsm) = 0;
@@ -97,6 +116,25 @@ class BaseWaveApplLayer : public BaseApplLayer {
 		cMessage* sendBeaconEvt;
 
 		WaveAppToMac1609_4Interface* myMac;
+
+		// Add for Epidemic
+		int sendSummaryVectorInterval;
+        unsigned int maximumEpidemicBufferSize;
+        unsigned int hopCount;
+
+        //To record statistics collection
+		//cLongHistogram hopCountStats;
+		//cOutVector hopCountVector;
+	    //cDoubleHistogram messageArrivalTimeStats;
+		//cOutVector messageArrivalTimeVector;
+		//long unsigned int numMessageReceived;
+
+        //simsignal_t hopsToDeliverSignal;
+        //simsignal_t delayToDeliverSignal;
+        //simsignal_t messageArrivalSignal;
+
+		string source;
+		string target;
 };
 
 #endif /* BASEWAVEAPPLLAYER_H_ */
