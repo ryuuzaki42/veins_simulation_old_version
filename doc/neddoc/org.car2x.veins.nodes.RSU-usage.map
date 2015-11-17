@@ -1,8 +1,8 @@
 <area shape="rect" id="node1" href="org.car2x.veins.nodes.RSU.html" title="Compound Module RSU" alt="" coords="468,79,540,104">
-<area shape="rect" id="node2" href="org.car2x.veins.modules.nic.INic80211p.html" title="Module Interface INic80211p" alt="" coords="281,152,369,177">
-<area shape="rect" id="node3" href="ned.IdealChannel.html" title="Channel IdealChannel" alt="" coords="393,152,492,177">
-<area shape="rect" id="node4" href="org.car2x.veins.base.modules.BaseMobility.html" title="Simple Module BaseMobility" alt="" coords="517,152,614,177">
-<area shape="rect" id="node5" href="org.car2x.veins.base.modules.IBaseApplLayer.html" title="Module Interface IBaseApplLayer" alt="" coords="639,152,753,177">
+<area shape="rect" id="node2" href="org.car2x.veins.modules.nic.INic80211p.html" title="Module Interface INic80211p" alt="" coords="277,152,365,177">
+<area shape="rect" id="node3" href="org.car2x.veins.base.modules.BaseMobility.html" title="Simple Module BaseMobility" alt="" coords="390,152,487,177">
+<area shape="rect" id="node4" href="org.car2x.veins.base.modules.IBaseApplLayer.html" title="Module Interface IBaseApplLayer" alt="" coords="512,152,627,177">
+<area shape="rect" id="node5" href="ned.IdealChannel.html" title="Channel IdealChannel" alt="" coords="651,152,749,177">
 <area shape="rect" id="node6" href="epidemic_rsu.html" title="Network epidemic_rsu" alt="" coords="5,5,104,31">
 <area shape="rect" id="node7" href="RSU_bologna_acosta.html" title="Network RSU_bologna_acosta" alt="" coords="128,5,277,31">
 <area shape="rect" id="node8" href="RSU_default_veins.html" title="Network RSU_default_veins" alt="" coords="302,5,437,31">

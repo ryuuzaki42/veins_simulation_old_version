@@ -189,7 +189,7 @@ string</i>
 bool</i>
    </td>
    <td>
-<p>set if this is a summary vector or not. true value means summaryvector</p>
+<p>Set if this is a summary vector or not. true value means summaryvector</p>
 </td>
 </tr>
 <tr class="local">
@@ -199,7 +199,7 @@ bool</i>
 bool</i>
    </td>
    <td>
-<p>set if this is a request vector or not. true value means requestvector</p>
+<p>Set if this is a request vector or not. true value means requestvector</p>
 </td>
 </tr>
 <tr class="local">
@@ -288,58 +288,58 @@ int</i>
 <h3 class="subtitle">Source code:</h3>
 <pre class="src"><span style="color: #800000; font-weight: bold; ">packet</span><span style="color: #000000; "> </span><span style="color: #000000; ">WaveShortMessage</span><span style="color: #000000; ">
 {
-    </span><span style="color: #808080; font-style: italic; ">//Version of the Wave Short Message
+    </span><span style="color: #808080; font-style: italic; ">// Version of the Wave Short Message
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">wsmVersion</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Determine which security mechanism was used
+    </span><span style="color: #808080; font-style: italic; ">// Determine which security mechanism was used
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">securityType</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Channel Number on which this packet was sent
+    </span><span style="color: #808080; font-style: italic; ">// Channel Number on which this packet was sent
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">channelNumber</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Data rate with which this packet was sent
+    </span><span style="color: #808080; font-style: italic; ">// Data rate with which this packet was sent
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">dataRate</span><span style="color: #000000; "> = </span><span style="color: #008000; ">1</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Power Level with which this packet was sent
+    </span><span style="color: #808080; font-style: italic; ">// Power Level with which this packet was sent
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">priority</span><span style="color: #000000; "> = </span><span style="color: #008000; ">3</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Unique number to identify the service
+    </span><span style="color: #808080; font-style: italic; ">// Unique number to identify the service
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">psid</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Provider Service Context
+    </span><span style="color: #808080; font-style: italic; ">// Provider Service Context
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">psc</span><span style="color: #000000; "> = </span><span style="color: #008000; ">&quot;Service with some Data&quot;</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Length of Wave Short Message
+    </span><span style="color: #808080; font-style: italic; ">// Length of Wave Short Message
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">wsmLength</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Data of Wave Short Message
+    </span><span style="color: #808080; font-style: italic; ">// Data of Wave Short Message
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">wsmData</span><span style="color: #000000; "> = </span><span style="color: #008000; ">&quot;Some Data&quot;</span><span style="color: #000000; ">;
 
     </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">serial</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
     </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderPos</span><span style="color: #000000; ">;
     </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">timestamp</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
 
-	</span><span style="color: #808080; font-style: italic; ">//int senderAddress = 0;
-</span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">//int recipientAddress = -1;
+    </span><span style="color: #808080; font-style: italic; ">// int senderAddress = 0;
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// int recipientAddress = -1;
 </span><span style="color: #000000; ">
     </span><span style="color: #808080; font-style: italic; ">// Epidemic changes
-</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//Set the Address of the sender;
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Set the Address of the sender;
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderAddress</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
+    </span><span style="color: #808080; font-style: italic; ">// Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">recipientAddress</span><span style="color: #000000; "> = </span><span style="color: #008000; ">268435455</span><span style="color: #000000; ">;
 
     </span><span style="color: #808080; font-style: italic; ">// Add for Epidemic
-</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//Set the source which generate the message, e.g., car[0], car[1] etc.
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Set the source which generate the message, e.g., car[0], car[1] etc.
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">source</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
+    </span><span style="color: #808080; font-style: italic; ">// Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">target</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//set if this is a summary vector or not. true value means summaryvector
+    </span><span style="color: #808080; font-style: italic; ">// Set if this is a summary vector or not. true value means summaryvector
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">bool</span><span style="color: #000000; "> </span><span style="color: #000000; ">summaryVector</span><span style="color: #000000; "> = </span><span style="color: #008000; ">false</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//set if this is a request vector or not. true value means requestvector
+    </span><span style="color: #808080; font-style: italic; ">// Set if this is a request vector or not. true value means requestvector
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">bool</span><span style="color: #000000; "> </span><span style="color: #000000; ">requestMessages</span><span style="color: #000000; "> = </span><span style="color: #008000; ">false</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Unique global message identification
+    </span><span style="color: #808080; font-style: italic; ">// Unique global message identification
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">globalMessageIdentificaton</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Unique local message identification
+    </span><span style="color: #808080; font-style: italic; ">// Unique local message identification
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">localMessageIdentificaton</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
+    </span><span style="color: #808080; font-style: italic; ">// Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">hopCount</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">//Determine if a message has been successfully received or not. False is default value assigned to it
+    </span><span style="color: #808080; font-style: italic; ">// Determine if a message has been successfully received or not. False is default value assigned to it
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">bool</span><span style="color: #000000; "> </span><span style="color: #000000; ">ackRequest</span><span style="color: #000000; "> = </span><span style="color: #008000; ">false</span><span style="color: #000000; ">;
 
-    </span><span style="color: #808080; font-style: italic; ">// Add Minicurso_UFPI - Send ID da pista e velocidade
-</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Current ID of the road, e. g., 1ato2b
+    </span><span style="color: #808080; font-style: italic; ">//Add Minicurso_UFPI - Send ID da pista e velocidade
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//Current ID of the road, e. g., 1ato2b
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">roadId</span><span style="color: #000000; "> = </span><span style="color: #008000; ">&quot;&quot;</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// Speed of vehicle in the moment which send a message WSM, wsm-&gt;setSenderSpeed(traci-&gt;getSpeed());
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">double</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderSpeed</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">.</span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
@@ -349,11 +349,11 @@ int</i>
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">category</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// vehicle ID (wsm-&gt;setVehicleId(traci-&gt;getId());)
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">vehicleId</span><span style="color: #000000; ">;
-	</span><span style="color: #808080; font-style: italic; ">// Path history of the vehicle, calculated from time to time
-</span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">//string pathHistory;
-</span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">// Radius of Gyration of the vehicle, calculated from time to time.
-</span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">// The vehicle send yours Radius of Gyration to another vehicles 
-</span><span style="color: #000000; ">	</span><span style="color: #808080; font-style: italic; ">//double radius_of_Gyration;
+    </span><span style="color: #808080; font-style: italic; ">// Path history of the vehicle, calculated from time to time
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//string pathHistory;
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Radius of Gyration of the vehicle, calculated from time to time.
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// The vehicle send yours Radius of Gyration to another vehicles 
+</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//double radius_of_Gyration;
 </span><span style="color: #000000; ">}
 </span></pre>
    <hr><p class="footer"><a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top"><img src="by-sa.png"></a> This documentation is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top">Creative Commons license</a></p>
