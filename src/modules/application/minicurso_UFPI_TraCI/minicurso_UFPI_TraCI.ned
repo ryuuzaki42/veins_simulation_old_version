@@ -21,8 +21,7 @@
 package org.car2x.veins.modules.application.minicurso_UFPI_TraCI;
 import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
-simple minicurso_UFPI_TraCI extends BaseWaveApplLayer
-{
+simple minicurso_UFPI_TraCI extends BaseWaveApplLayer {
     @class(minicurso_UFPI_TraCI);
     @display("i=block/app2");
     bool sendWhileParking  = default(false); //send messages when the car is parked

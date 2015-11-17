@@ -21,21 +21,21 @@ void osdp::initialize(int stage) {
     LastTime =0;
     lastQuery="servicex";
     if (stage == 0) {
-	    traci = TraCIMobilityAccess().get(getParentModule());
-	    outVector.setName("TimeQuery");
-	    outVector2.setName("TimeContact");
-	    cont_adv.setName("Advertisements");
-	    cont_serv.setName("Services");
-	    s_query.setName("SuccessQuery");
-	    c_query.setName("CancelledQuery");
-	    p_query.setName("PlanifiedQuery");
-	    m_query.setName("MessagesQuery");
-	    r_query.setName("AnsweredTotalQuery");
-	    //u_query.setName("UnsuccessfulQuery");
-	    //traci->getCommandInterface()->setSpeed("query",par("speed").doubleValue());
-	    //randomQuery();
-	    deterministQuery();
-	}
+        traci = TraCIMobilityAccess().get(getParentModule());
+        outVector.setName("TimeQuery");
+        outVector2.setName("TimeContact");
+        cont_adv.setName("Advertisements");
+        cont_serv.setName("Services");
+        s_query.setName("SuccessQuery");
+        c_query.setName("CancelledQuery");
+        p_query.setName("PlanifiedQuery");
+        m_query.setName("MessagesQuery");
+        r_query.setName("AnsweredTotalQuery");
+        //u_query.setName("UnsuccessfulQuery");
+        //traci->getCommandInterface()->setSpeed("query",par("speed").doubleValue());
+        //randomQuery();
+        deterministQuery();
+    }
 }
 
 void osdp::deterministQuery() {
@@ -52,6 +52,7 @@ void osdp::deterministQuery() {
          p_query.record(eed);
     }
 }
+
 void osdp::randomQuery() {
     int query_car=(rand()%2);
     query=query_car;
@@ -305,4 +306,3 @@ void osdp::cancelQuery(const char* serv){
         //qservice="query servicex";
     }
  }
-

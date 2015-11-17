@@ -24,58 +24,58 @@
  * <pre>
  * packet WaveShortMessage
  * {
- *     //Version of the Wave Short Message
+ *     // Version of the Wave Short Message
  *     int wsmVersion = 0;
- *     //Determine which security mechanism was used
+ *     // Determine which security mechanism was used
  *     int securityType = 0;
- *     //Channel Number on which this packet was sent
+ *     // Channel Number on which this packet was sent
  *     int channelNumber;
- *     //Data rate with which this packet was sent
+ *     // Data rate with which this packet was sent
  *     int dataRate = 1;
- *     //Power Level with which this packet was sent
+ *     // Power Level with which this packet was sent
  *     int priority = 3;
- *     //Unique number to identify the service
+ *     // Unique number to identify the service
  *     int psid = 0;
- *     //Provider Service Context
+ *     // Provider Service Context
  *     string psc = "Service with some Data";
- *     //Length of Wave Short Message
+ *     // Length of Wave Short Message
  *     int wsmLength;
- *     //Data of Wave Short Message
+ *     // Data of Wave Short Message
  *     string wsmData = "Some Data";
  * 
  *     int serial = 0;
  *     Coord senderPos;
  *     simtime_t timestamp = 0;
  * 
- * 	//int senderAddress = 0;
- * 	//int recipientAddress = -1;
+ *     // int senderAddress = 0;
+ *     // int recipientAddress = -1;
  * 
- *     // Epidemic changes	
- *     //Set the Address of the sender;
+ *     // Epidemic changes
+ *     // Set the Address of the sender;
  *     unsigned int senderAddress = 0;
- *     //Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
+ *     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
  *     unsigned int recipientAddress = 268435455;
  * 
  *     // Add for Epidemic
- *     //Set the source which generate the message, e.g., car[0], car[1] etc.
+ *     // Set the source which generate the message, e.g., car[0], car[1] etc.
  *     string source;
- *     //Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
+ *     // Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
  *     string target;
- *     //set if this is a summary vector or not. true value means summaryvector
+ *     // Set if this is a summary vector or not. true value means summaryvector
  *     bool summaryVector = false;
- *     //set if this is a request vector or not. true value means requestvector
+ *     // Set if this is a request vector or not. true value means requestvector
  *     bool requestMessages = false;
- *     //Unique global message identification
+ *     // Unique global message identification
  *     string globalMessageIdentificaton;
- *     //Unique local message identification
+ *     // Unique local message identification
  *     string localMessageIdentificaton;
- *     //Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
+ *     // Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
  *     unsigned int hopCount = 0;
- *     //Determine if a message has been successfully received or not. False is default value assigned to it
+ *     // Determine if a message has been successfully received or not. False is default value assigned to it
  *     bool ackRequest = false;
  * 
- *     // Add Minicurso_UFPI - Send ID da pista e velocidade
- *     // Current ID of the road, e. g., 1ato2b
+ *     //Add Minicurso_UFPI - Send ID da pista e velocidade
+ *     //Current ID of the road, e. g., 1ato2b
  *     string roadId = "";
  *     // Speed of vehicle in the moment which send a message WSM, wsm->setSenderSpeed(traci->getSpeed());
  *     double senderSpeed = 0.0;
@@ -85,11 +85,11 @@
  *     int category = 0;
  *     // vehicle ID (wsm->setVehicleId(traci->getId());)
  *     int vehicleId;
- * 	// Path history of the vehicle, calculated from time to time
- * 	//string pathHistory;
- * 	// Radius of Gyration of the vehicle, calculated from time to time.
- * 	// The vehicle send yours Radius of Gyration to another vehicles 
- * 	//double radius_of_Gyration;
+ *     // Path history of the vehicle, calculated from time to time
+ *     //string pathHistory;
+ *     // Radius of Gyration of the vehicle, calculated from time to time.
+ *     // The vehicle send yours Radius of Gyration to another vehicles 
+ *     //double radius_of_Gyration;
  * }
  * </pre>
  */

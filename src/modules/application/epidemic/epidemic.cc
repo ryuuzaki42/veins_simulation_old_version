@@ -29,46 +29,45 @@ const simsignalwrap_t epidemic::parkingStateChangedSignal = simsignalwrap_t(TRAC
 Define_Module(epidemic);
 
 void epidemic::initialize(int stage) {
-	BaseWaveApplLayer::initialize_epidemic(stage);
-	if (stage == 0) {
-		traci = TraCIMobilityAccess().get(getParentModule());
-		annotations = AnnotationManagerAccess().getIfExists();
-		ASSERT(annotations);
+    BaseWaveApplLayer::initialize_epidemic(stage);
+    if (stage == 0) {
+        traci = TraCIMobilityAccess().get(getParentModule());
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
 
-		lastDroveAt = simTime();
-		findHost()->subscribe(parkingStateChangedSignal, this);
-		isParking = false;
-		sendWhileParking = par("sendWhileParking").boolValue();
+        lastDroveAt = simTime();
+        findHost()->subscribe(parkingStateChangedSignal, this);
+        isParking = false;
+        sendWhileParking = par("sendWhileParking").boolValue();
 
-		//cout << "I'm " << findHost()->getFullName() <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
+        //cout << "I'm " << findHost()->getFullName() <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
 
-		//Set the source node which generate a message that will be sent to another random node
-		//source = car[0] or car[1] etc.
-		source = findHost()->getFullName();
+        //Set the source node which generate a message that will be sent to another random node
+        //source = car[0] or car[1] etc.
+        source = findHost()->getFullName();
 
-		WATCH(source);
-		WATCH(target);
-		//WATCH_VECTOR(epidemicLocalMessageBuffer);
-		//WATCH(epidemicLocalSummaryVector);
-		//WATCH(epidemicRemoteSummaryVector);
-		//WATCH(epidemicRequestMessageVector);
-		//WATCH(nodesIRecentlySentSummaryVector);
-		//WATCH(queueFIFO);
-		WATCH(hopCount);
-		WATCH(maximumEpidemicBufferSize);
-		WATCH(sendSummaryVectorInterval);
+        WATCH(source);
+        WATCH(target);
+        //WATCH_VECTOR(epidemicLocalMessageBuffer);
+        //WATCH(epidemicLocalSummaryVector);
+        //WATCH(epidemicRemoteSummaryVector);
+        //WATCH(epidemicRequestMessageVector);
+        //WATCH(nodesIRecentlySentSummaryVector);
+        //WATCH(queueFIFO);
+        WATCH(hopCount);
+        WATCH(maximumEpidemicBufferSize);
+        WATCH(sendSummaryVectorInterval);
 
+        //Generate a message with a probability x=80% to be sent to another node
+        //initialize random seed
+        //srand (time(NULL));
+        // generate secret number between 1 and 100:
+        //int probability = rand() % 100 + 1;
+        //cout << "Probability of message generation from " << findHost()->getFullName() << " : " << probability << endl;
 
-		//Generate a message with a probability x=80% to be sent to another node
-	    //initialize random seed
-	    //srand (time(NULL));
-	    // generate secret number between 1 and 100:
-	    //int probability = rand() % 100 + 1;
-	    //cout << "Probability of message generation from " << findHost()->getFullName() << " : " << probability << endl;
-
-	    //if(probability <= 100) //100 means that all nodes will generate messages to forward in the network
-		generateMessage();
-	}
+        //if(probability <= 100) //100 means that all nodes will generate messages to forward in the network
+        generateMessage();
+    }
 }
 
 //This method is called when beacons arrive in the device's wireless interface
@@ -110,7 +109,7 @@ void epidemic::onBeacon(WaveShortMessage* wsm) {
 
 void epidemic::onData(WaveShortMessage* wsm) {
 
-	//Verifying the kind of a received message: if a summary vector (true) or a epidemic buffer data message (false).
+    //Verifying the kind of a received message: if a summary vector (true) or a epidemic buffer data message (false).
     if(wsm->getSummaryVector()){
        //checking if the summary vector was sent to me
        if(wsm->getRecipientAddress() == MACToInteger()){
@@ -259,11 +258,10 @@ void epidemic::onData(WaveShortMessage* wsm) {
 }
 
 void epidemic::sendBeacon() {
-
-	t_channel channel = dataOnSch ? type_SCH : type_CCH;
-	std::cout << "Channel: " << channel << std::endl;
-	WaveShortMessage* wsm = prepareWSM_epidemic("beacon", dataLengthBits, channel, dataPriority, BROADCAST,2);
-	sendWSM(wsm);
+    t_channel channel = dataOnSch ? type_SCH : type_CCH;
+    std::cout << "Channel: " << channel << std::endl;
+    WaveShortMessage* wsm = prepareWSM_epidemic("beacon", dataLengthBits, channel, dataPriority, BROADCAST,2);
+    sendWSM(wsm);
 }
 
 void epidemic::sendWSM(WaveShortMessage* wsm) {
@@ -355,28 +353,28 @@ void epidemic::sendEpidemicRequestMessageVector(unsigned int newRecipientAddress
 }
 
 void epidemic::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj) {
-	Enter_Method_Silent();
-	if (signalID == mobilityStateChangedSignal) {
-		handlePositionUpdate(obj);
-	}
-	else if (signalID == parkingStateChangedSignal) {
-		handleParkingUpdate(obj);
-	}
+    Enter_Method_Silent();
+    if (signalID == mobilityStateChangedSignal) {
+        handlePositionUpdate(obj);
+    }
+    else if (signalID == parkingStateChangedSignal) {
+        handleParkingUpdate(obj);
+    }
 }
 void epidemic::handleParkingUpdate(cObject* obj) {
-	isParking = traci->getParkingState();
-	if (sendWhileParking == false) {
-		if (isParking == true) {
-			(FindModule<BaseConnectionManager*>::findGlobalModule())->unregisterNic(this->getParentModule()->getSubmodule("nic"));
-		}
-		else {
-			Coord pos = traci->getCurrentPosition();
-			(FindModule<BaseConnectionManager*>::findGlobalModule())->registerNic(this->getParentModule()->getSubmodule("nic"), (ChannelAccess*) this->getParentModule()->getSubmodule("nic")->getSubmodule("phy80211p"), &pos);
-		}
-	}
+    isParking = traci->getParkingState();
+    if (sendWhileParking == false) {
+        if (isParking == true) {
+            (FindModule<BaseConnectionManager*>::findGlobalModule())->unregisterNic(this->getParentModule()->getSubmodule("nic"));
+        }
+        else {
+            Coord pos = traci->getCurrentPosition();
+            (FindModule<BaseConnectionManager*>::findGlobalModule())->registerNic(this->getParentModule()->getSubmodule("nic"), (ChannelAccess*) this->getParentModule()->getSubmodule("nic")->getSubmodule("phy80211p"), &pos);
+        }
+    }
 }
 void epidemic::handlePositionUpdate(cObject* obj) {
-	BaseWaveApplLayer::handlePositionUpdate(obj);
+    BaseWaveApplLayer::handlePositionUpdate(obj);
 }
 
 void epidemic::createEpidemicRemoteSummaryVector(string s){

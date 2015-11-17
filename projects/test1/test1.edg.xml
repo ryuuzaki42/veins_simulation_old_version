@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/edges_file.xsd">
-  
-  <!--criacao das ligacoes entre os pontos criados no arquivo .nod -->  
+
+    <!--criacao das ligacoes entre os pontos criados no arquivo .nod -->
+
     <edge from="11a" id="11ato10a"  to="10a" numLanes="1"/> 
     <edge from="10a" id="10ato9a"  to="9a"  numLanes="1"/>
     <edge from="9a"  id="9ato8a"   to="8a"  numLanes="1"/>
@@ -12,7 +13,7 @@
     <edge from="4a"  id="4ato3a"   to="3a"  numLanes="1"/>
     <edge from="3a"  id="3ato2a"   to="2a"  numLanes="1"/>
     <edge from="2a"  id="2ato1a"   to="1a"  numLanes="1"/>
-    
+
     <edge from="1b"  id="1bto2b"   to="2b"  numLanes="1"/>
     <edge from="2b"  id="2bto3b"   to="3b"  numLanes="1"/>
     <edge from="3b"  id="3bto4b"   to="4b"  numLanes="1"/>
@@ -24,8 +25,8 @@
     <edge from="9b"  id="9bto10b"  to="10b" numLanes="1"/>
     <edge from="10b" id="10bto11b" to="11b" numLanes="1"/>  
 
-<!--
- from right to left traffic flow 
+    <!-- from right to left traffic flow
+
     <edge from="21a" id="21ato20a" to="20a" numLanes="3"/>
     <edge from="20a" id="20ato19a" to="19a" numLanes="3"/>
     <edge from="19a" id="19ato18a" to="18a" numLanes="3"/>
@@ -47,7 +48,8 @@
     <edge from="3a"  id="3ato2a"   to="2a"  numLanes="3"/>
     <edge from="2a"  id="2ato1a"   to="1a"  numLanes="3"/>
 
- from left to right traffic flow
+    from left to right traffic flow
+
     <edge from="1b"  id="1bto2b"   to="2b"  numLanes="3"/>
     <edge from="2b"  id="2bto3b"   to="3b"  numLanes="3"/>
     <edge from="3b"  id="3bto4b"   to="4b"  numLanes="3"/>
@@ -68,5 +70,6 @@
     <edge from="18b" id="18bto19b" to="19b" numLanes="3"/>
     <edge from="19b" id="19bto20b" to="20b" numLanes="3"/>
     <edge from="20b" id="20bto21b" to="21b" numLanes="3"/>
--->      
-</edges>                                          
+    -->
+
+</edges>

@@ -31,29 +31,29 @@ using Veins::AnnotationManager;
  * Small IVC Demo using 11p
  */
 class default_veins_TraCI : public BaseWaveApplLayer {
-	public:
-		virtual void initialize(int stage);
-		virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
-	protected:
-		TraCIMobility* traci;
-		AnnotationManager* annotations;
-		simtime_t lastDroveAt;
-		bool sentMessage;
-		bool isParking;
-		bool sendWhileParking;
-		static const simsignalwrap_t parkingStateChangedSignal;
-	protected:
-		virtual void onBeacon(WaveShortMessage* wsm);
-		virtual void onData(WaveShortMessage* wsm);
-		void sendMessage(std::string blockedRoadId);
-		virtual void handlePositionUpdate(cObject* obj);
-		virtual void handleParkingUpdate(cObject* obj);
-		virtual void sendWSM(WaveShortMessage* wsm);
-		//
-		/*
-		virtual void handleSelfMsg(cMessage* msg);
-		virtual WaveShortMessage* prepareWSM2(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
-		*/
+    public:
+        virtual void initialize(int stage);
+        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+    protected:
+        TraCIMobility* traci;
+        AnnotationManager* annotations;
+        simtime_t lastDroveAt;
+        bool sentMessage;
+        bool isParking;
+        bool sendWhileParking;
+        static const simsignalwrap_t parkingStateChangedSignal;
+    protected:
+        virtual void onBeacon(WaveShortMessage* wsm);
+        virtual void onData(WaveShortMessage* wsm);
+        void sendMessage(std::string blockedRoadId);
+        virtual void handlePositionUpdate(cObject* obj);
+        virtual void handleParkingUpdate(cObject* obj);
+        virtual void sendWSM(WaveShortMessage* wsm);
+        //
+        /*
+        virtual void handleSelfMsg(cMessage* msg);
+        virtual WaveShortMessage* prepareWSM2(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+        */
 };
 
 #endif

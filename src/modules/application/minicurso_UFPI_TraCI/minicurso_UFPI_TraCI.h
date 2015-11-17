@@ -34,13 +34,13 @@ using namespace std;
  * Small IVC Demo using 11p
  */
 class minicurso_UFPI_TraCI : public BaseWaveApplLayer {
-	public:
-		virtual void initialize(int stage);
-		virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
-	protected:
-		TraCIMobility* traci;
-		AnnotationManager* annotations;
-		simtime_t lastDroveAt;
+    public:
+        virtual void initialize(int stage);
+        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+    protected:
+        TraCIMobility* traci;
+        AnnotationManager* annotations;
+        simtime_t lastDroveAt;
 
         // Adicionado (Minicurso_UFPI)
         //estrutura de dados com as velocidades recebidas dos vizinhos
@@ -61,27 +61,27 @@ class minicurso_UFPI_TraCI : public BaseWaveApplLayer {
 
         //bool sentMessage;
 
-		bool isParking;
-		bool sendWhileParking;
-		static const simsignalwrap_t parkingStateChangedSignal;
+        bool isParking;
+        bool sendWhileParking;
+        static const simsignalwrap_t parkingStateChangedSignal;
 
-	protected:
+    protected:
 
-		// Adicionado (Minicurso_UFPI)
-		virtual void handleSelfMsg(cMessage* msg);
-		void updateSpeedList();
-		void updateCongestionTable();
-		void verifyAndSendCongestionMessage();
+        // Adicionado (Minicurso_UFPI)
+        virtual void handleSelfMsg(cMessage* msg);
+        void updateSpeedList();
+        void updateCongestionTable();
+        void verifyAndSendCongestionMessage();
 
-		virtual void onBeacon(WaveShortMessage* wsm);
-		virtual void onData(WaveShortMessage* wsm);
-		void sendMessage(std::string blockedRoadId);
-		virtual void handlePositionUpdate(cObject* obj);
-		virtual void handleParkingUpdate(cObject* obj);
-		virtual void sendWSM(WaveShortMessage* wsm);
+        virtual void onBeacon(WaveShortMessage* wsm);
+        virtual void onData(WaveShortMessage* wsm);
+        void sendMessage(std::string blockedRoadId);
+        virtual void handlePositionUpdate(cObject* obj);
+        virtual void handleParkingUpdate(cObject* obj);
+        virtual void sendWSM(WaveShortMessage* wsm);
 };
 
- // Adicionado (Minicurso_UFPI)
-int minicurso_UFPI_TraCI::messageId = 0;
+    // Adicionado (Minicurso_UFPI)
+    int minicurso_UFPI_TraCI::messageId = 0;
 
 #endif

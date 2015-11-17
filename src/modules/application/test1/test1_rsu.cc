@@ -14,16 +14,16 @@ void test1_rsu::initialize(int stage) {
     BaseWaveApplLayer::initialize_test1(stage);
     std::cout << "Starting services " << serv1 << " - "<< serv2 << std::endl;
     setServices();
- 	if (stage == 0) {
- 	    t=simTime();
-	    sent_adv.setName("SentAdvertisements");
-	    sendServiceEvt = new cMessage("service evt", SERVICE_EVT);
-	    scheduleAt(simTime() + par("serviceInterval").doubleValue(), sendServiceEvt);
-	    mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
-	    ASSERT(mobi);
-	    annotations = AnnotationManagerAccess().getIfExists();
-	    ASSERT(annotations);
-	}
+     if (stage == 0) {
+         t=simTime();
+        sent_adv.setName("SentAdvertisements");
+        sendServiceEvt = new cMessage("service evt", SERVICE_EVT);
+        scheduleAt(simTime() + par("serviceInterval").doubleValue(), sendServiceEvt);
+        mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
+        ASSERT(mobi);
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
+    }
 }
 
 void test1_rsu::onBeacon(WaveShortMessage* wsm) {
@@ -61,13 +61,13 @@ void test1_rsu::handleSelfMsg(cMessage* msg) {
 }
 
 void test1_rsu::sendMessage(const char* serv) {
-	sentMessage = true;
-	t_channel channel = dataOnSch ? type_SCH : type_CCH;
-	//Message of type data
-	WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
-	//add the next line
-	wsm->setWsmData(serv);
-	sendWSM(wsm);
+    sentMessage = true;
+    t_channel channel = dataOnSch ? type_SCH : type_CCH;
+    //Message of type data
+    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
+    //add the next line
+    wsm->setWsmData(serv);
+    sendWSM(wsm);
 }
 
 void test1_rsu::sendWSM(WaveShortMessage* wsm) {

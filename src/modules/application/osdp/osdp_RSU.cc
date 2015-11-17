@@ -15,16 +15,16 @@ void osdp_RSU::initialize(int stage) {
     std::cout << "Starting services " << serv1 << " - "<< serv2 << std::endl;
     setServices();
     sleep = 1;
-	if (stage == 0) {
+    if (stage == 0) {
             //Register of sent advertisements by the RSU
            sent_adv.setName("SentAdvertisements");
-	    sendServiceEvt = new cMessage("service evt", SERVICE_EVT);
-	    scheduleAt(simTime() + par("serviceInterval").doubleValue(), sendServiceEvt);
-	    mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
-	    ASSERT(mobi);
-	    annotations = AnnotationManagerAccess().getIfExists();
-	    ASSERT(annotations);
-	}
+        sendServiceEvt = new cMessage("service evt", SERVICE_EVT);
+        scheduleAt(simTime() + par("serviceInterval").doubleValue(), sendServiceEvt);
+        mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
+        ASSERT(mobi);
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
+    }
 }
 
 void osdp_RSU::onBeacon(WaveShortMessage* wsm) {
@@ -60,17 +60,17 @@ void osdp_RSU::handleSelfMsg(cMessage* msg) {
 }
 
 void osdp_RSU::sendMessage(const char* serv) {
-	sentMessage = true;
-	t_channel channel = dataOnSch ? type_SCH : type_CCH;
-	//Message of type data
-	WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
-	//add the next line with the information of the service in the field WsmData of WaveShortMessage
-	wsm->setWsmData(serv);
-	sendWSM(wsm);
+    sentMessage = true;
+    t_channel channel = dataOnSch ? type_SCH : type_CCH;
+    //Message of type data
+    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
+    //add the next line with the information of the service in the field WsmData of WaveShortMessage
+    wsm->setWsmData(serv);
+    sendWSM(wsm);
 }
 
 void osdp_RSU::sendWSM(WaveShortMessage* wsm) {
-	sendDelayedDown(wsm,individualOffset);
+    sendDelayedDown(wsm,individualOffset);
 }
 
 void osdp_RSU::setServices() {

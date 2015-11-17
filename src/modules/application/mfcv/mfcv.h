@@ -34,34 +34,34 @@ using namespace std;
  * Small IVC Demo using 11p
  */
 class mfcv : public BaseWaveApplLayer {
-	public:
-		virtual void initialize(int stage);
-		virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
-	protected:
-		TraCIMobility* traci;
-		AnnotationManager* annotations;
-		simtime_t lastDroveAt;
-		bool sentMessage;
-		bool isParking;
-		bool sendWhileParking;
-		static const simsignalwrap_t parkingStateChangedSignal;
+    public:
+        virtual void initialize(int stage);
+        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+    protected:
+        TraCIMobility* traci;
+        AnnotationManager* annotations;
+        simtime_t lastDroveAt;
+        bool sentMessage;
+        bool isParking;
+        bool sendWhileParking;
+        static const simsignalwrap_t parkingStateChangedSignal;
 
-		// Adicionado (Minicurso_UFPI)
-		//estrutura de dados com as velocidades recebidas dos vizinhos
-		vector<pair<simtime_t, double> > speedsList;
+        // Adicionado (Minicurso_UFPI)
+        //estrutura de dados com as velocidades recebidas dos vizinhos
+        vector<pair<simtime_t, double> > speedsList;
 
-	protected:
-		virtual void onBeacon(WaveShortMessage* wsm);
-		virtual void onData(WaveShortMessage* wsm);
-		void sendMessage(std::string blockedRoadId);
-		virtual void handlePositionUpdate(cObject* obj);
-		virtual void handleParkingUpdate(cObject* obj);
-		virtual void sendWSM(WaveShortMessage* wsm);
-		//
-		virtual void handleSelfMsg(cMessage* msg);
-		virtual void handleLowerMsg(cMessage* msg);
-		virtual WaveShortMessage* prepareWSM_node(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
-		virtual void imprime_wsm(WaveShortMessage* wsm);
+    protected:
+        virtual void onBeacon(WaveShortMessage* wsm);
+        virtual void onData(WaveShortMessage* wsm);
+        void sendMessage(std::string blockedRoadId);
+        virtual void handlePositionUpdate(cObject* obj);
+        virtual void handleParkingUpdate(cObject* obj);
+        virtual void sendWSM(WaveShortMessage* wsm);
+        //
+        virtual void handleSelfMsg(cMessage* msg);
+        virtual void handleLowerMsg(cMessage* msg);
+        virtual WaveShortMessage* prepareWSM_node(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+        virtual void imprime_wsm(WaveShortMessage* wsm);
 };
 
 #endif

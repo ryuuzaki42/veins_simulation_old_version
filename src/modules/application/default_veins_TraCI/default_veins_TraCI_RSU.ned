@@ -21,8 +21,7 @@
 package org.car2x.veins.modules.application.default_veins_TraCI;
 import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
-simple default_veins_TraCI_RSU extends BaseWaveApplLayer
-{
+simple default_veins_TraCI_RSU extends BaseWaveApplLayer {
     @class(default_veins_TraCI_RSU);
     @display("i=block/app2");
 }

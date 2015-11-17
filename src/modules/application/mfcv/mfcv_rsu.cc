@@ -25,13 +25,13 @@ using Veins::AnnotationManagerAccess;
 Define_Module(mfcv_rsu);
 
 void mfcv_rsu::initialize(int stage) {
-	BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
-	if (stage == 0) {
-	    mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
-	    ASSERT(mobi);
-	    annotations = AnnotationManagerAccess().getIfExists();
-	    ASSERT(annotations);
-	}
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
+    if (stage == 0) {
+        mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
+        ASSERT(mobi);
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
+    }
 }
 
 void mfcv_rsu::onBeacon(WaveShortMessage* wsm) {
@@ -62,22 +62,22 @@ void mfcv_rsu::onBeacon(WaveShortMessage* wsm) {
 }
 
 void mfcv_rsu::onData(WaveShortMessage* wsm) {
-	findHost()->getDisplayString().updateWith("r=16,green");
+    findHost()->getDisplayString().updateWith("r=16,green");
 
-	annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
+    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
 
-	if (!sentMessage) sendMessage(wsm->getWsmData());
+    if (!sentMessage) sendMessage(wsm->getWsmData());
 }
 
 void mfcv_rsu::sendMessage(std::string blockedRoadId) {
-	sentMessage = true;
-	t_channel channel = dataOnSch ? type_SCH : type_CCH;
-	WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
-	wsm->setWsmData(blockedRoadId.c_str());
-	sendWSM(wsm);
+    sentMessage = true;
+    t_channel channel = dataOnSch ? type_SCH : type_CCH;
+    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
+    wsm->setWsmData(blockedRoadId.c_str());
+    sendWSM(wsm);
 }
 void mfcv_rsu::sendWSM(WaveShortMessage* wsm) {
-	sendDelayedDown(wsm,individualOffset);
+    sendDelayedDown(wsm,individualOffset);
 }
 
 //

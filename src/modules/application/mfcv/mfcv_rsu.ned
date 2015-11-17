@@ -21,8 +21,7 @@
 package org.car2x.veins.modules.application.mfcv;
 import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
-simple mfcv_rsu extends BaseWaveApplLayer
-{
+simple mfcv_rsu extends BaseWaveApplLayer {
     @class(mfcv_rsu);
     @display("i=block/app2");
 }

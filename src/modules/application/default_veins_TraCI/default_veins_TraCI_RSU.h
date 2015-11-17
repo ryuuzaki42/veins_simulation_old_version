@@ -30,17 +30,17 @@ using Veins::AnnotationManager;
  * Small RSU Demo using 11p
  */
 class default_veins_TraCI_RSU : public BaseWaveApplLayer {
-	public:
-		virtual void initialize(int stage);
-	protected:
-		AnnotationManager* annotations;
-		BaseMobility* mobi;
-		bool sentMessage;
-	protected:
-		virtual void onBeacon(WaveShortMessage* wsm);
-		virtual void onData(WaveShortMessage* wsm);
-		void sendMessage(std::string blockedRoadId);
-		virtual void sendWSM(WaveShortMessage* wsm);
+    public:
+        virtual void initialize(int stage);
+    protected:
+        AnnotationManager* annotations;
+        BaseMobility* mobi;
+        bool sentMessage;
+    protected:
+        virtual void onBeacon(WaveShortMessage* wsm);
+        virtual void onData(WaveShortMessage* wsm);
+        void sendMessage(std::string blockedRoadId);
+        virtual void sendWSM(WaveShortMessage* wsm);
 };
 
 #endif

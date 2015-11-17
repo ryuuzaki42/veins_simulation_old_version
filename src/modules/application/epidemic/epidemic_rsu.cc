@@ -25,14 +25,14 @@ using Veins::AnnotationManagerAccess;
 Define_Module(epidemic_rsu);
 
 void epidemic_rsu::initialize(int stage) {
-	BaseWaveApplLayer::initialize_epidemic(stage);
-	if (stage == 0) {
-	    mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
-	    ASSERT(mobi);
-	    annotations = AnnotationManagerAccess().getIfExists();
-	    ASSERT(annotations);
+    BaseWaveApplLayer::initialize_epidemic(stage);
+    if (stage == 0) {
+        mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
+        ASSERT(mobi);
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
 
-	    //To record some statistics about the simulation
+        //To record some statistics about the simulation
         //hopCountStats.setName("hopCountStats"); //Histogram
         //hopCountStats.setRangeAutoUpper(0, 10, 1.5); //Histogram
         //hopCountVector.setName("HopCount");
@@ -41,8 +41,8 @@ void epidemic_rsu::initialize(int stage) {
         //messageArrivalTimeVector.setName("messageArrivalVector");
         //numMessageReceived = 0;
 
-	    std::cout << "I'm " << findHost()->getFullName() <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
-	}
+        std::cout << "I'm " << findHost()->getFullName() <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
+    }
 }
 
 void epidemic_rsu::onBeacon(WaveShortMessage* wsm) {
@@ -99,13 +99,11 @@ void epidemic_rsu::onData(WaveShortMessage* wsm) {
              //cout << "EpidemicRequestMessageVector from " << findHost()->getFullName() << " is empty now " << endl;
              //cout << "Or strcmp(wsm->getWsmData(),\"\") == 0) " << endl;
              //cout << "And  wsm->getSenderAddress() > MACToInteger() " << endl;
-          }
-          else if(epidemicRequestMessageVector.empty()){
+          }else if(epidemicRequestMessageVector.empty()){
               //cout << "EpidemicRequestMessageVector from " << findHost()->getFullName() << " is empty now " << endl;
               //changing the turn of the anti-entropy session. In this case, I have not found any differences between EpidemicRemoteSummaryVector and EpidemicLocalSummaryVector but I need to change the round of anti-entropy session
               sendLocalSummaryVector(wsm->getSenderAddress());
-          }
-          else{
+          }else{
               //Sending a request vector in order to get messages that I don't have
               sendEpidemicRequestMessageVector(wsm->getSenderAddress());
           }
@@ -191,7 +189,6 @@ void epidemic_rsu::onData(WaveShortMessage* wsm) {
                                    // emit(delayToDeliverSignal, (simTime() - w.getTimestamp()));
                                    // emit(hopsToDeliverSignal, (hopCount - w.getHopCount()));
                                    // emit(messageArrivalSignal, 1);
-
 
                                     if(maiortempo < (simTime() - w.getTimestamp()).dbl())
                                         maiortempo = (simTime() - w.getTimestamp()).dbl();
@@ -314,15 +311,14 @@ void epidemic_rsu::sendMessagesRequested(string s, unsigned int recipientAddress
           WaveShortMessage w;
           unordered_map<string,WaveShortMessage>::const_iterator got = epidemicLocalMessageBuffer.find(s.substr(0, pos));
           if(got == epidemicLocalMessageBuffer.end()){ //true value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
-          }
-          else{
+
+          }else{
                w = got->second;
                //WaveShortMessage w = getEpidemicLocalMessageBuffer(s.substr(0, pos));
                //Verifying if I'm still able to spread the message or not. If w.getHopCount == 1 I'm able to send the message only to its target
                if(w.getHopCount() > 1){
                  ss << s.substr(0, pos) << "|" << w.getWsmData() << "|" << w.getSource() << "|" << w.getTarget() << "|" << w.getTimestamp() << "|" << w.getHopCount() - 1 << "|";
-               }
-               else if(w.getHopCount() == 1){
+               }else if(w.getHopCount() == 1){
                  if((strcmp(tokenRequester.c_str(),w.getTarget()) == 0)){
                    ss << s.substr(0, pos) << "|" << w.getWsmData() << "|" << w.getSource() << "|" << w.getTarget() << "|" << w.getTimestamp() << "|" << w.getHopCount() - 1 << "|";
                  }
@@ -491,8 +487,7 @@ void epidemic_rsu::printQueueFIFO(queue<string> qFIFO){
 void epidemic_rsu::printEpidemicLocalMessageBuffer(){
     if(epidemicLocalMessageBuffer.empty()){
            cout << "EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    }else{
         int i = 0;
         cout << "Printing the epidemicLocalMessageBuffer from " << findHost()->getFullName() << "(" << MACToInteger() <<"):" << endl;
         for(auto& x: epidemicLocalMessageBuffer){
@@ -505,8 +500,7 @@ void epidemic_rsu::printEpidemicLocalMessageBuffer(){
 void epidemic_rsu::printEpidemicLocalSummaryVectorData(){
     if(epidemicLocalSummaryVector.empty()){
            cout << "EpidemicLocalSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    }else{
         ostringstream ss;
         for(auto& x: epidemicLocalSummaryVector)
            ss << x.first << "|" << x.second << "|";
@@ -519,8 +513,7 @@ void epidemic_rsu::printEpidemicLocalSummaryVectorData(){
 void epidemic_rsu::printEpidemicRemoteSummaryVectorData(){
     if(epidemicRemoteSummaryVector.empty()){
            cout << "EpidemicRemoteSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    }else{
         ostringstream ss;
         for(auto& x: epidemicRemoteSummaryVector)
             ss << x.first << "|" << x.second << "|";
@@ -598,8 +591,7 @@ void epidemic_rsu::printWaveShortMessage(WaveShortMessage* wsm){
     cout << "wsm->getWsmData()" << wsm->getWsmData() << endl;
 }
 
-void epidemic_rsu::finish()
-{
+void epidemic_rsu::finish(){
 //    // This function is called by OMNeT++ at the end of the simulation.
 //    cout << "Number of Messages Received: " << numMessageReceived << endl;
 //    cout << "Hop count, min:    " << hopCountStats.getMin() << endl;

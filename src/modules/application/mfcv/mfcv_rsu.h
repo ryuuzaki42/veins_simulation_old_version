@@ -30,21 +30,21 @@ using Veins::AnnotationManager;
  * Small RSU Demo using 11p
  */
 class mfcv_rsu : public BaseWaveApplLayer {
-	public:
-		virtual void initialize(int stage);
-	protected:
-		AnnotationManager* annotations;
-		BaseMobility* mobi;
-		bool sentMessage;
-	protected:
-		virtual void onBeacon(WaveShortMessage* wsm);
-		virtual void onData(WaveShortMessage* wsm);
-		void sendMessage(std::string blockedRoadId);
-		virtual void sendWSM(WaveShortMessage* wsm);
-		//
-		virtual void handleSelfMsg(cMessage* msg);
-		virtual void handleLowerMsg(cMessage* msg);
-		virtual WaveShortMessage* prepareWSM_rsu(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+    public:
+        virtual void initialize(int stage);
+    protected:
+        AnnotationManager* annotations;
+        BaseMobility* mobi;
+        bool sentMessage;
+    protected:
+        virtual void onBeacon(WaveShortMessage* wsm);
+        virtual void onData(WaveShortMessage* wsm);
+        void sendMessage(std::string blockedRoadId);
+        virtual void sendWSM(WaveShortMessage* wsm);
+        //
+        virtual void handleSelfMsg(cMessage* msg);
+        virtual void handleLowerMsg(cMessage* msg);
+        virtual WaveShortMessage* prepareWSM_rsu(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
 };
 
 #endif

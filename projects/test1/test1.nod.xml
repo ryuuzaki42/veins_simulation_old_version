@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/nodes_file.xsd">
 
-<!--criacao de 10 pontos na pista 'a' a cada 5km coord (x,y) -->
-<node id="1a"      x="0.0" y="5.0" />
-<node id="2a"   x="5000.0" y="5.0" />
-<node id="3a"  x="10000.0" y="5.0" />
-<node id="4a"  x="15000.0" y="5.0" />
-<node id="5a"  x="20000.0" y="5.0" />
-<node id="6a"  x="25000.0" y="5.0" />
-<node id="7a"  x="30000.0" y="5.0" />
-<node id="8a"  x="35000.0" y="5.0" />
-<node id="9a"  x="40000.0" y="5.0" />
-<node id="10a" x="45000.0" y="5.0" />
-<node id="11a" x="50000.0" y="5.0" />
+    <!--criacao de 10 pontos na pista 'a' a cada 5km coord (x,y) -->
 
-<!--criacao de 10 pontos na pista 'b' a cada 5km coord (x,y) -->
-<node id="1b"      x="0.0" y="0.0" />
-<node id="2b"   x="5000.0" y="0.0" />
-<node id="3b"  x="10000.0" y="0.0" />
-<node id="4b"  x="15000.0" y="0.0" />
-<node id="5b"  x="20000.0" y="0.0" />
-<node id="6b"  x="25000.0" y="0.0" />
-<node id="7b"  x="30000.0" y="0.0" />
-<node id="8b"  x="35000.0" y="0.0" />
-<node id="9b"  x="40000.0" y="0.0" />
-<node id="10b" x="45000.0" y="0.0" />
-<node id="11b" x="50000.0" y="0.0" />
+    <node id="1a"      x="0.0" y="5.0" />
+    <node id="2a"   x="5000.0" y="5.0" />
+    <node id="3a"  x="10000.0" y="5.0" />
+    <node id="4a"  x="15000.0" y="5.0" />
+    <node id="5a"  x="20000.0" y="5.0" />
+    <node id="6a"  x="25000.0" y="5.0" />
+    <node id="7a"  x="30000.0" y="5.0" />
+    <node id="8a"  x="35000.0" y="5.0" />
+    <node id="9a"  x="40000.0" y="5.0" />
+    <node id="10a" x="45000.0" y="5.0" />
+    <node id="11a" x="50000.0" y="5.0" />
 
-<!--
-<node id="1a" x="0.0" y="5.0" />
-<node id="2a" x="5000.0" y="5.0" />
-<node id="3a" x="10000.0" y="5.0" />
-<node id="4a" x="15000.0" y="5.0" />
-<node id="5a" x="20000.0" y="5.0" />
-<node id="6a" x="25000.0" y="5.0" />
-<node id="7a" x="30000.0" y="5.0" />
-<node id="8a" x="35000.0" y="5.0" />
-<node id="9a" x="40000.0" y="5.0" />
-<node id="10a" x="45000.0" y="5.0" />
-<node id="11a" x="50000.0" y="5.0" />
-<node id="12a" x="55000.0" y="5.0" />
-<node id="13a" x="60000.0" y="5.0" />
-<node id="14a" x="65000.0" y="5.0" />
-<node id="15a" x="70000.0" y="5.0" />
-<node id="16a" x="75000.0" y="5.0" />
-<node id="17a" x="80000.0" y="5.0" />
-<node id="18a" x="85000.0" y="5.0" />
-<node id="19a" x="90000.0" y="5.0" />
-<node id="20a" x="95000.0" y="5.0" />
-<node id="21a" x="100000.0" y="5.0" />
+    <!--criacao de 10 pontos na pista 'b' a cada 5km coord (x,y) -->
 
-<node id="1b" x="0.0" y="0.0" />
-<node id="2b" x="5000.0" y="0.0" />
-<node id="3b" x="10000.0" y="0.0" />
-<node id="4b" x="15000.0" y="0.0" />
-<node id="5b" x="20000.0" y="0.0" />
-<node id="6b" x="25000.0" y="0.0" />
-<node id="7b" x="30000.0" y="0.0" />
-<node id="8b" x="35000.0" y="0.0" />
-<node id="9b" x="40000.0" y="0.0" />
-<node id="10b" x="45000.0" y="0.0" />
-<node id="11b" x="50000.0" y="0.0" />
-<node id="12b" x="55000.0" y="0.0" />
-<node id="13b" x="60000.0" y="0.0" />
-<node id="14b" x="65000.0" y="0.0" />
-<node id="15b" x="70000.0" y="0.0" />
-<node id="16b" x="75000.0" y="0.0" />
-<node id="17b" x="80000.0" y="0.0" />
-<node id="18b" x="85000.0" y="0.0" />
-<node id="19b" x="90000.0" y="0.0" />
-<node id="20b" x="95000.0" y="0.0" />
-<node id="21b" x="100000.0" y="0.0" />
--->
+    <node id="1b"      x="0.0" y="0.0" />
+    <node id="2b"   x="5000.0" y="0.0" />
+    <node id="3b"  x="10000.0" y="0.0" />
+    <node id="4b"  x="15000.0" y="0.0" />
+    <node id="5b"  x="20000.0" y="0.0" />
+    <node id="6b"  x="25000.0" y="0.0" />
+    <node id="7b"  x="30000.0" y="0.0" />
+    <node id="8b"  x="35000.0" y="0.0" />
+    <node id="9b"  x="40000.0" y="0.0" />
+    <node id="10b" x="45000.0" y="0.0" />
+    <node id="11b" x="50000.0" y="0.0" />
 
+    <!--
+    <node id="1a" x="0.0" y="5.0" />
+    <node id="2a" x="5000.0" y="5.0" />
+    <node id="3a" x="10000.0" y="5.0" />
+    <node id="4a" x="15000.0" y="5.0" />
+    <node id="5a" x="20000.0" y="5.0" />
+    <node id="6a" x="25000.0" y="5.0" />
+    <node id="7a" x="30000.0" y="5.0" />
+    <node id="8a" x="35000.0" y="5.0" />
+    <node id="9a" x="40000.0" y="5.0" />
+    <node id="10a" x="45000.0" y="5.0" />
+    <node id="11a" x="50000.0" y="5.0" />
+    <node id="12a" x="55000.0" y="5.0" />
+    <node id="13a" x="60000.0" y="5.0" />
+    <node id="14a" x="65000.0" y="5.0" />
+    <node id="15a" x="70000.0" y="5.0" />
+    <node id="16a" x="75000.0" y="5.0" />
+    <node id="17a" x="80000.0" y="5.0" />
+    <node id="18a" x="85000.0" y="5.0" />
+    <node id="19a" x="90000.0" y="5.0" />
+    <node id="20a" x="95000.0" y="5.0" />
+    <node id="21a" x="100000.0" y="5.0" />
+
+    <node id="1b" x="0.0" y="0.0" />
+    <node id="2b" x="5000.0" y="0.0" />
+    <node id="3b" x="10000.0" y="0.0" />
+    <node id="4b" x="15000.0" y="0.0" />
+    <node id="5b" x="20000.0" y="0.0" />
+    <node id="6b" x="25000.0" y="0.0" />
+    <node id="7b" x="30000.0" y="0.0" />
+    <node id="8b" x="35000.0" y="0.0" />
+    <node id="9b" x="40000.0" y="0.0" />
+    <node id="10b" x="45000.0" y="0.0" />
+    <node id="11b" x="50000.0" y="0.0" />
+    <node id="12b" x="55000.0" y="0.0" />
+    <node id="13b" x="60000.0" y="0.0" />
+    <node id="14b" x="65000.0" y="0.0" />
+    <node id="15b" x="70000.0" y="0.0" />
+    <node id="16b" x="75000.0" y="0.0" />
+    <node id="17b" x="80000.0" y="0.0" />
+    <node id="18b" x="85000.0" y="0.0" />
+    <node id="19b" x="90000.0" y="0.0" />
+    <node id="20b" x="95000.0" y="0.0" />
+    <node id="21b" x="100000.0" y="0.0" />
+    -->
 
 </nodes>
-

@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/routes_file.xsd"> -->
+
 <routes>
-<vType id="car-fast"          accel="2.6" decel="4.5"  length="3.0" departSpeed="random" maxSpeed="33.33" minGap="2.5" color= "0,1,0" />
-<vType id="car-slow"          accel="1.5" decel="4.5"  length="4.0" departSpeed="random" maxSpeed="25.00" minGap="2.5" color= "1,1,1" />
-<vType id="car-very-slow"     accel="0.8" decel="4.5"  length="5.0" departSpeed="random" maxSpeed="16.66" minGap="2.5" color= "1,1,0" />
+    <vType id="car-fast"          accel="2.6" decel="4.5"  length="3.0" departSpeed="random" maxSpeed="33.33" minGap="2.5" color= "0,1,0" />
+    <vType id="car-slow"          accel="1.5" decel="4.5"  length="4.0" departSpeed="random" maxSpeed="25.00" minGap="2.5" color= "1,1,1" />
+    <vType id="car-very-slow"     accel="0.8" decel="4.5"  length="5.0" departSpeed="random" maxSpeed="16.66" minGap="2.5" color= "1,1,0" />
 
-<!-- yellow = very slow   white = slow green = fast-->
+    <!-- yellow = very slow   white = slow green = fast-->
 
-<route id="route1" edges="21ato20a 20ato19a 19ato18a 18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route2" edges="20ato19a 19ato18a 18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route3" edges="19ato18a 18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route4" edges="18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route5" edges="17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route6" edges="16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route7" edges="15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route8" edges="14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route9" edges="13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route10" edges="12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route11" edges="11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route12" edges="10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route13" edges="9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route14" edges="8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route15" edges="7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route16" edges="6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route17" edges="5ato4a 4ato3a 3ato2a 2ato1a" />
-<route id="route18" edges="4ato3a 3ato2a 2ato1a" />
-<route id="route19" edges="3ato2a 2ato1a" />
-<route id="route20" edges="2ato1a" />
+    <route id="route1" edges="21ato20a 20ato19a 19ato18a 18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route2" edges="20ato19a 19ato18a 18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route3" edges="19ato18a 18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route4" edges="18ato17a 17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route5" edges="17ato16a 16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route6" edges="16ato15a 15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route7" edges="15ato14a 14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route8" edges="14ato13a 13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route9" edges="13ato12a 12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route10" edges="12ato11a 11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route11" edges="11ato10a 10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route12" edges="10ato9a 9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route13" edges="9ato8a 8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route14" edges="8ato7a 7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route15" edges="7ato6a 6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route16" edges="6ato5a 5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route17" edges="5ato4a 4ato3a 3ato2a 2ato1a" />
+    <route id="route18" edges="4ato3a 3ato2a 2ato1a" />
+    <route id="route19" edges="3ato2a 2ato1a" />
+    <route id="route20" edges="2ato1a" />
 
-<route id ="route21" edges ="1bto2b 2bto3b 3bto4b 4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route22" edges ="2bto3b 3bto4b 4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route23" edges ="3bto4b 4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route24" edges ="4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route25" edges ="5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route26" edges ="6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route27" edges ="7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route28" edges ="8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route29" edges ="9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route30" edges ="10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route31" edges ="11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route32" edges ="12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route33" edges ="13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route34" edges ="14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route35" edges ="15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route36" edges ="16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route37" edges ="17bto18b 18bto19b 19bto20b 20bto21b"/>	
-<route id ="route38" edges ="18bto19b 19bto20b 20bto21b"/>	
-<route id ="route39" edges ="19bto20b 20bto21b"/>	
-<route id ="route40" edges ="20bto21b"/>	
+    <route id ="route21" edges ="1bto2b 2bto3b 3bto4b 4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route22" edges ="2bto3b 3bto4b 4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route23" edges ="3bto4b 4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route24" edges ="4bto5b 5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route25" edges ="5bto6b 6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route26" edges ="6bto7b 7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route27" edges ="7bto8b 8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route28" edges ="8bto9b 9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route29" edges ="9bto10b 10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route30" edges ="10bto11b 11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route31" edges ="11bto12b 12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route32" edges ="12bto13b 13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route33" edges ="13bto14b 14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route34" edges ="14bto15b 15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route35" edges ="15bto16b 16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route36" edges ="16bto17b 17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route37" edges ="17bto18b 18bto19b 19bto20b 20bto21b"/>
+    <route id ="route38" edges ="18bto19b 19bto20b 20bto21b"/>
+    <route id ="route39" edges ="19bto20b 20bto21b"/>
+    <route id ="route40" edges ="20bto21b"/>
 
-<flow begin="0" departPos="free" id="flow21a" period="5" number="50" route ="route21" type="car-fast" departlane="free"/>
-<flow begin="0" departPos="free" id="flow21b" period="5" number="50" route ="route21" type="car-slow" departlane="free"/>
-<flow begin="0" departPos="free" id="flow21c" period="5" number="50" route ="route21" type="car-very-slow" departlane="free"/>
+    <flow begin="0" departPos="free" id="flow21a" period="5" number="50" route ="route21" type="car-fast" departlane="free"/>
+    <flow begin="0" departPos="free" id="flow21b" period="5" number="50" route ="route21" type="car-slow" departlane="free"/>
+    <flow begin="0" departPos="free" id="flow21c" period="5" number="50" route ="route21" type="car-very-slow" departlane="free"/>
 
-<flow begin="0" departPos="free" id="flow11a" period="5" number="50" route ="route1" type="car-fast" departlane="free"/>
-<flow begin="0" departPos="free" id="flow11b" period="5" number="50" route ="route1" type="car-slow" departlane="free"/>
-<flow begin="0" departPos="free" id="flow11c" period="5" number="50" route ="route1" type="car-very-slow" departlane="free"/>
+    <flow begin="0" departPos="free" id="flow11a" period="5" number="50" route ="route1" type="car-fast" departlane="free"/>
+    <flow begin="0" departPos="free" id="flow11b" period="5" number="50" route ="route1" type="car-slow" departlane="free"/>
+    <flow begin="0" departPos="free" id="flow11c" period="5" number="50" route ="route1" type="car-very-slow" departlane="free"/>
 
 </routes>

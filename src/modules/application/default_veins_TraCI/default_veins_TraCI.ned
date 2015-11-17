@@ -21,8 +21,7 @@
 package org.car2x.veins.modules.application.default_veins_TraCI;
 import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 
-simple default_veins_TraCI extends BaseWaveApplLayer
-{
+simple default_veins_TraCI extends BaseWaveApplLayer {
     @class(default_veins_TraCI);
     @display("i=block/app2");
     bool sendWhileParking  = default(false); //send messages when the car is parked

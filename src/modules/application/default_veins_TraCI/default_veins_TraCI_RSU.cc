@@ -25,13 +25,13 @@ using Veins::AnnotationManagerAccess;
 Define_Module(default_veins_TraCI_RSU);
 
 void default_veins_TraCI_RSU::initialize(int stage) {
-	BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
-	if (stage == 0) {
-	    mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
-	    ASSERT(mobi);
-	    annotations = AnnotationManagerAccess().getIfExists();
-	    ASSERT(annotations);
-	}
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
+    if (stage == 0) {
+        mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
+        ASSERT(mobi);
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
+    }
 }
 
 void default_veins_TraCI_RSU::onBeacon(WaveShortMessage* wsm) {
@@ -85,20 +85,20 @@ void default_veins_TraCI_RSU::onBeacon(WaveShortMessage* wsm) {
 }
 
 void default_veins_TraCI_RSU::onData(WaveShortMessage* wsm) {
-	findHost()->getDisplayString().updateWith("r=16,green");
+    findHost()->getDisplayString().updateWith("r=16,green");
 
-	annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
+    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
 
-	if (!sentMessage) sendMessage(wsm->getWsmData());
+    if (!sentMessage) sendMessage(wsm->getWsmData());
 }
 
 void default_veins_TraCI_RSU::sendMessage(std::string blockedRoadId) {
-	sentMessage = true;
-	t_channel channel = dataOnSch ? type_SCH : type_CCH;
-	WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
-	wsm->setWsmData(blockedRoadId.c_str());
-	sendWSM(wsm);
+    sentMessage = true;
+    t_channel channel = dataOnSch ? type_SCH : type_CCH;
+    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
+    wsm->setWsmData(blockedRoadId.c_str());
+    sendWSM(wsm);
 }
 void default_veins_TraCI_RSU::sendWSM(WaveShortMessage* wsm) {
-	sendDelayedDown(wsm,individualOffset);
+    sendDelayedDown(wsm,individualOffset);
 }

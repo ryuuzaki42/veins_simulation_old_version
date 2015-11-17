@@ -59,82 +59,82 @@ using namespace std;
  */
 class BaseWaveApplLayer : public BaseApplLayer {
 
-	public:
-		~BaseWaveApplLayer();
-		virtual void initialize_default_veins_TraCI(int stage);
-		virtual void initialize_mfcv(int stage);
-		virtual void initialize_minicurso_UFPI_TraCI(int stage);
-		virtual void initialize_osdp(int stage);
-		virtual void initialize_service_discovery(int stage);
-		virtual void initialize_test1(int stage);
-		virtual void initialize_epidemic(int stage);
-		virtual void finish();
+    public:
+        ~BaseWaveApplLayer();
+        virtual void initialize_default_veins_TraCI(int stage);
+        virtual void initialize_mfcv(int stage);
+        virtual void initialize_minicurso_UFPI_TraCI(int stage);
+        virtual void initialize_osdp(int stage);
+        virtual void initialize_service_discovery(int stage);
+        virtual void initialize_test1(int stage);
+        virtual void initialize_epidemic(int stage);
+        virtual void finish();
 
-		virtual  void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+        virtual  void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
 
-		enum WaveApplMessageKinds {
-			SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
-			SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT, //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
-			SEND_BEACON_EVT_epidemic
-		};
+        enum WaveApplMessageKinds {
+            SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
+            SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT, //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
+            SEND_BEACON_EVT_epidemic
+        };
 
-	protected:
+    protected:
 
-		static const simsignalwrap_t mobilityStateChangedSignal;
+        static const simsignalwrap_t mobilityStateChangedSignal;
 
-		/** @brief handle messages from below */
-		virtual void handleLowerMsg(cMessage* msg);
-		/** @brief handle self messages */
-		virtual void handleSelfMsg(cMessage* msg);
+        /** @brief handle messages from below */
+        virtual void handleLowerMsg(cMessage* msg);
+        /** @brief handle self messages */
+        virtual void handleSelfMsg(cMessage* msg);
 
-		//virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
-		virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
+        //virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+        virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
 
-		//Add for Epidemic
-		virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
-		virtual unsigned int MACToInteger();
+        //Add for Epidemic
+        virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
+        virtual unsigned int MACToInteger();
 
-		virtual void sendWSM(WaveShortMessage* wsm);
-		virtual void onBeacon(WaveShortMessage* wsm) = 0;
-		virtual void onData(WaveShortMessage* wsm) = 0;
+        virtual void sendWSM(WaveShortMessage* wsm);
+        virtual void onBeacon(WaveShortMessage* wsm) = 0;
+        virtual void onData(WaveShortMessage* wsm) = 0;
 
-		virtual void handlePositionUpdate(cObject* obj);
+        virtual void handlePositionUpdate(cObject* obj);
 
-	protected:
-		int beaconLengthBits;
-		int beaconPriority;
-		bool sendData;
-		bool sendBeacons;
-		simtime_t individualOffset;
-		int dataLengthBits;
-		bool dataOnSch;
-		int dataPriority;
-		Coord curPosition;
-		int mySCH;
-		int myId;
+    protected:
+        int beaconLengthBits;
+        int beaconPriority;
+        bool sendData;
+        bool sendBeacons;
+        simtime_t individualOffset;
+        int dataLengthBits;
+        bool dataOnSch;
+        int dataPriority;
+        Coord curPosition;
+        int mySCH;
+        int myId;
 
-		cMessage* sendBeaconEvt;
+        cMessage* sendBeaconEvt;
 
-		WaveAppToMac1609_4Interface* myMac;
+        WaveAppToMac1609_4Interface* myMac;
 
-		// Add for Epidemic
-		int sendSummaryVectorInterval;
+        // Add for Epidemic
+        int sendSummaryVectorInterval;
         unsigned int maximumEpidemicBufferSize;
         unsigned int hopCount;
 
         //To record statistics collection
-		//cLongHistogram hopCountStats;
-		//cOutVector hopCountVector;
-	    //cDoubleHistogram messageArrivalTimeStats;
-		//cOutVector messageArrivalTimeVector;
-		//long unsigned int numMessageReceived;
+        //cLongHistogram hopCountStats;
+        //cOutVector hopCountVector;
+        //cDoubleHistogram messageArrivalTimeStats;
+        //cOutVector messageArrivalTimeVector;
+        //long unsigned int numMessageReceived;
 
         //simsignal_t hopsToDeliverSignal;
         //simsignal_t delayToDeliverSignal;
         //simsignal_t messageArrivalSignal;
 
-		string source;
-		string target;
+        string source;
+        string target;
 };
 
 #endif /* BASEWAVEAPPLLAYER_H_ */
