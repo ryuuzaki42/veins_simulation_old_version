@@ -40,7 +40,7 @@ void epidemic::initialize(int stage) {
         isParking = false;
         sendWhileParking = par("sendWhileParking").boolValue();
 
-        //cout << "I'm " << findHost()->getFullName() <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
+        cout << "I'm " << findHost()->getFullName() <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
 
         //Set the source node which generate a message that will be sent to another random node
         //source = car[0] or car[1] etc.
