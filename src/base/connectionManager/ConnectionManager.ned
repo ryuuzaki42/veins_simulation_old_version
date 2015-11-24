@@ -32,7 +32,7 @@ package org.car2x.veins.base.connectionManager;
 // here in ConnectionManager are used to calculate the upper bound,
 // i.e. they can be redifined in the analogue models, but never such
 // that the maximal interference distance is exeeded.
-//       
+//
 // @author Steffen Sroka, Daniel Willkomm, Karl Wessel
 // @see MobilityBase
 //

@@ -6,11 +6,11 @@ cplusplus {{
 class noncobject ChannelState;
 
 enum SenseMode {
-    UNTIL_IDLE = 1;		//sense until channel is busy or timeout is reached
-    UNTIL_BUSY = 2;		//sense until channel is idle or timeout is reached
-    UNTIL_TIMEOUT = 3;	//sense until timeout is reached
+    UNTIL_IDLE = 1;       //sense until channel is busy or timeout is reached
+    UNTIL_BUSY = 2;       //sense until channel is idle or timeout is reached
+    UNTIL_TIMEOUT = 3;    //sense until timeout is reached
 };
-    
+
 //
 // The ChannelSenseRequest is a control packet from the
 // MAC layer to the physical layer. In contrast to the
@@ -42,10 +42,9 @@ enum SenseMode {
 // rssi info contained in the ChannelState are calculated
 // and interpreted depends on the Decider.
 //
-packet ChannelSenseRequest
-{
-    int senseMode enum(SenseMode);	// defines the sensing mode (see SenseMode enum)
-    simtime_t senseTimeout; 		// Time to listen on the channel
-    ChannelState result; 			// The result of the request containing the current state of the channel.
-									// See ChannelState for details.
+packet ChannelSenseRequest {
+    int senseMode enum(SenseMode);  // defines the sensing mode (see SenseMode enum)
+    simtime_t senseTimeout;         // Time to listen on the channel
+    ChannelState result;            // The result of the request containing the current state of the channel.
+                                    // See ChannelState for details.
 }

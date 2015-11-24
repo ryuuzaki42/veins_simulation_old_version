@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>base/messages/MacPkt.msg:36</tt> by nedtool.
+ * Class generated from <tt>base/messages/MacPkt.msg:35</tt> by nedtool.
  * <pre>
  * // A basic MAC (Media Access Control) packet format definition
  * // 
@@ -32,7 +32,7 @@
  * packet MacPkt
  * {
  *     LAddress::L2Type destAddr; // destination mac address
- *     LAddress::L2Type srcAddr;  // source mac address
+ *     LAddress::L2Type srcAddr; // source mac address
  *     long sequenceId; // Sequence Number to detect duplicate messages
  * }
  * </pre>

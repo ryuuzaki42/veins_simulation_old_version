@@ -20,7 +20,7 @@
 // }}
 
 /**
- * Class generated from <tt>base/messages/BorderMsg.msg:34</tt> by nedtool.
+ * Class generated from <tt>base/messages/BorderMsg.msg:31</tt> by nedtool.
  * <pre>
  * // used as a self packet containing the position, direction and BorderPolicy
  * //

@@ -26,6 +26,9 @@ void doUnpacking(cCommBuffer *, T& t) {
     throw cRuntimeError("Parsim error: no doUnpacking() function for type %s or its base class (check .msg and _m.cc/h files!)",opp_typename(typeid(t)));
 }
 
+
+
+
 // Template rule for outputting std::vector<T> types
 template<typename T, typename A>
 inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)

@@ -25,9 +25,9 @@
  * enum SenseMode
  * {
  * 
- *     UNTIL_IDLE = 1;		//sense until channel is busy or timeout is reached
- *     UNTIL_BUSY = 2;		//sense until channel is idle or timeout is reached
- *     UNTIL_TIMEOUT = 3;	//sense until timeout is reached
+ *     UNTIL_IDLE = 1;       //sense until channel is busy or timeout is reached
+ *     UNTIL_BUSY = 2;       //sense until channel is idle or timeout is reached
+ *     UNTIL_TIMEOUT = 3;    //sense until timeout is reached
  * }
  * </pre>
  */
@@ -38,7 +38,7 @@ enum SenseMode {
 };
 
 /**
- * Class generated from <tt>base/messages/ChannelSenseRequest.msg:46</tt> by nedtool.
+ * Class generated from <tt>base/messages/ChannelSenseRequest.msg:45</tt> by nedtool.
  * <pre>
  * //
  * // The ChannelSenseRequest is a control packet from the
@@ -73,10 +73,10 @@ enum SenseMode {
  * //
  * packet ChannelSenseRequest
  * {
- *     int senseMode @enum(SenseMode);	// defines the sensing mode (see SenseMode enum)
- *     simtime_t senseTimeout; 		// Time to listen on the channel
- *     ChannelState result; 			// The result of the request containing the current state of the channel.
- * 									// See ChannelState for details.
+ *     int senseMode @enum(SenseMode);  // defines the sensing mode (see SenseMode enum)
+ *     simtime_t senseTimeout;         // Time to listen on the channel
+ *     ChannelState result;            // The result of the request containing the current state of the channel.
+ *                                     // See ChannelState for details.
  * }
  * </pre>
  */

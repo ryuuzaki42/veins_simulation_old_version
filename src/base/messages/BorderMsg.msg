@@ -21,9 +21,6 @@ cplusplus {{
 #include "Coord.h"
 }}
 
-
-
-
 class noncobject Coord;
 
 // used as a self packet containing the position, direction and BorderPolicy
