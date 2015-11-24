@@ -284,7 +284,73 @@ void BaseWaveApplLayer::initialize_epidemic(int stage) {
 
         //sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
         sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT_epidemic);
-        std::cout << "sendBeaconEvt: " << sendBeaconEvt->getName() << " SEND_BEACON_EVT: " << SEND_BEACON_EVT << " SERVICE_PROVIDER: " << SERVICE_PROVIDER << std::endl;
+        //std::cout << "sendBeaconEvt: " << sendBeaconEvt->getName() << " SEND_BEACON_EVT: " << SEND_BEACON_EVT << " SERVICE_PROVIDER: " << SERVICE_PROVIDER << std::endl;
+
+        //simulate asynchronous channel access
+        double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
+        offSet = offSet + floor(offSet/0.050)*0.050;
+        individualOffset = dblrand() * maxOffset;
+
+        findHost()->subscribe(mobilityStateChangedSignal, this);
+
+        //std::cout << "Eu sou o " << findHost()->getFullName() << " myMac: " << myMac <<  " myMacInteger: " << MACToInteger() << std::endl;
+
+        //if(strcmp(findHost()->getFullName(), "rsu[0]")==0){
+        //    targetAddress = MACToInteger();
+        //    assert(targetAddress);
+        //    ///std::cout << "Eu sou o " << findHost()->getFullName() << " myMac: " << myMac <<  " myMacInteger: " << MACToInteger() << std::endl;
+        //    //cout << "O target foi definido para: " << targetAddress << endl;
+        //}
+        //else{
+        //    //targetAddress = findHost()->get
+        //}
+
+        if (sendBeacons) {
+            scheduleAt(simTime() + offSet, sendBeaconEvt);
+        }
+    }
+}
+
+void BaseWaveApplLayer::initialize_mfcv_epidemic(int stage) {
+    BaseApplLayer::initialize(stage);
+
+    if (stage==0) {
+        myMac = FindModule<WaveAppToMac1609_4Interface*>::findSubModule(getParentModule());
+        assert(myMac);
+
+        myId = getParentModule()->getIndex();
+
+        headerLength = par("headerLength").longValue();
+        double maxOffset = par("maxOffset").doubleValue();
+        sendBeacons = par("sendBeacons").boolValue();
+        beaconLengthBits = par("beaconLengthBits").longValue();
+        beaconPriority = par("beaconPriority").longValue();
+
+        sendData = par("sendData").boolValue();
+        dataLengthBits = par("dataLengthBits").longValue();
+        dataOnSch = par("dataOnSch").boolValue();
+        dataPriority = par("dataPriority").longValue();
+
+        //define the minimum slide window length among contacts to send new version of summary vector
+        sendSummaryVectorInterval = par("sendSummaryVectorInterval").longValue();
+        //define the maximum buffer size (in number of messages) that a node is willing to allocate for mfcv_epidemic messages.
+        maximumMfcvEpidemicBufferSize = par("maximumMfcvEpidemicBufferSize").longValue();
+        //define the maximum number of hopes that a message can be forward before reach the target
+        hopCount = par("hopCount").longValue();
+
+        //cout << "sendSummaryVectorInterval: " << sendSummaryVectorInterval << endl;
+        //cout << "maximumMfcvEpidemicBufferSize: " << maximumMfcvEpidemicBufferSize << endl;
+        //cout << "hopCount: " << hopCount << endl;
+        //cout << "uniform(0,1):" << uniform(0,1) << endl;
+        //cout << "rand() % 100 + 1:" << (rand() % 100 + 1) << endl;
+
+        //hopsToDeliverSignal = registerSignal("numberHops");
+        //messageArrivalSignal = registerSignal("delay");
+        //messageArrivalSignal = registerSignal("messageReceived");
+
+        //sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
+        sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT_mfcv_epidemic);
+        //std::cout << "sendBeaconEvt: " << sendBeaconEvt->getName() << " SEND_BEACON_EVT: " << SEND_BEACON_EVT << " SERVICE_PROVIDER: " << SERVICE_PROVIDER << std::endl;
 
         //simulate asynchronous channel access
         double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
@@ -372,6 +438,33 @@ WaveShortMessage*  BaseWaveApplLayer::prepareWSM_epidemic(std::string name, int 
     return wsm;
 }
 
+WaveShortMessage*  BaseWaveApplLayer::prepareWSM_mfcv_epidemic(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
+    WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
+    wsm->addBitLength(headerLength);
+    wsm->addBitLength(lengthBits);
+    switch (channel) {
+        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
+    }
+    wsm->setPsid(0);
+    wsm->setPriority(priority);
+    wsm->setWsmVersion(1);
+    wsm->setTimestamp(simTime());
+    wsm->setSenderAddress(MACToInteger());
+    wsm->setRecipientAddress(rcvId);
+    //wsm->setSource(source);
+    //wsm->setTarget(target);
+    wsm->setSenderPos(curPosition);
+    wsm->setSerial(serial);
+
+    if (name == "beacon") {
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    }else if (name == "data") {
+        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    }
+    return wsm;
+}
+
 unsigned int BaseWaveApplLayer::MACToInteger(){
     unsigned int macInt;
     std::stringstream ss;
@@ -420,16 +513,23 @@ void BaseWaveApplLayer::handleSelfMsg(cMessage* msg) {
             break;
         }
         case SEND_BEACON_EVT_minicurso: {
-                    sendWSM(prepareWSM("beacon_minicurso", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
-                    scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
-                    break;
+            sendWSM(prepareWSM("beacon_minicurso", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+            break;
         }
         case SEND_BEACON_EVT_epidemic: {
-                    //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
-                    //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
-                    sendWSM(prepareWSM_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
-                    scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
-                    break;
+            //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
+            //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
+            sendWSM(prepareWSM_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
+            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+            break;
+        }
+        case SEND_BEACON_EVT_mfcv_epidemic: {
+            //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
+            //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
+            sendWSM(prepareWSM_mfcv_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
+            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+            break;
         }
         default: {
             if (msg)

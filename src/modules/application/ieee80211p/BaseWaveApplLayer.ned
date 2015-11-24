@@ -52,13 +52,15 @@ simple BaseWaveApplLayer like IBaseApplLayer
         int sendSummaryVectorInterval @unit("s") = default(0s); //define the minimum slide window length among contacts to send new version of summary vector
         int maximumEpidemicBufferSize = default(0); //define the maximum buffer size (in number of messages) that a node is willing to allocate for epidemic messages.
         int hopCount = default(0); //define the maximum number of hopes that a message can be forward before reach the target
-        
+
+        int maximumMfcvEpidemicBufferSize = default(0); //define the maximum buffer size (in number of messages) that a node is willing to allocate for mfcv_epidemic messages.
+
         //@signal[numberHops](type="long");
         //@statistic[hopCount](title="Hop Count"; source="numberHops"; record=vector,histogram,stats);
-        
+
         //@signal[delay](type="double");
         //@statistic[delayTime](source=delay; title="End-to-End Delay"; record=stats,histogram,vector);
-        
+
         //@signal[messageReceived](type="long");
         //@statistic[numMessageReceived](source=sum(messageReceived); title="Total Number or Message Received"; record=stats,histogram,vector);
 

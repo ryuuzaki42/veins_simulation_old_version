@@ -68,6 +68,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual void initialize_service_discovery(int stage);
         virtual void initialize_test1(int stage);
         virtual void initialize_epidemic(int stage);
+        virtual void initialize_mfcv_epidemic(int stage);
         virtual void finish();
 
         virtual  void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
@@ -75,7 +76,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
         enum WaveApplMessageKinds {
             SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
             SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT, //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
-            SEND_BEACON_EVT_epidemic
+            SEND_BEACON_EVT_epidemic,
+            SEND_BEACON_EVT_mfcv_epidemic
         };
 
     protected:
@@ -93,6 +95,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
         //Add for Epidemic
         virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
         virtual unsigned int MACToInteger();
+
+        virtual WaveShortMessage* prepareWSM_mfcv_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
 
         virtual void sendWSM(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm) = 0;
@@ -121,6 +125,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
         int sendSummaryVectorInterval;
         unsigned int maximumEpidemicBufferSize;
         unsigned int hopCount;
+
+        unsigned int maximumMfcvEpidemicBufferSize;
 
         //To record statistics collection
         //cLongHistogram hopCountStats;
