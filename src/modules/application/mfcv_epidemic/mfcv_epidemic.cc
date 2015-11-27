@@ -92,14 +92,15 @@ void mfcv_epidemic::initialize(int stage) {
 
         cout << "target after generateMessage(): " << target << endl << endl;
 
-        //Open a new file for the current simulation
-        myfile.open ("results/onBeacon_veh.txt");
-        myfile.close();
+        if (source.compare(0,3,"car") == 0) {
+            //Open a new file for the current simulation
+            myfile.open ("results/onBeacon_veh.txt");
+            myfile.close();
 
-        //Open a new file for the current simulation
-        myfile.open ("results/LocalMessageBuffer_veh.txt");
-        myfile.close();
-
+            //Open a new file for the current simulation
+            myfile.open ("results/LocalMessageBuffer_veh.txt");
+            myfile.close();
+        }
 
         cout << "veh ID " << traci->getId() << endl;
         cout << "simTime() " << SimTime() << endl;
@@ -935,7 +936,6 @@ unsigned int mfcv_epidemic::getHeading(){
         cout << "Error angle (getHeading): " << angle << " Heading of error " << 9 << endl;
         return 9; // Error
     }
-
 }
 
 void mfcv_epidemic::handleSelfMsg(cMessage* msg) {
