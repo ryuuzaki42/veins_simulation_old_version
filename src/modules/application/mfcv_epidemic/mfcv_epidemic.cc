@@ -31,6 +31,12 @@ Define_Module(mfcv_epidemic);
 void mfcv_epidemic::initialize(int stage) {
     BaseWaveApplLayer::initialize_mfcv_epidemic(stage);
     if (stage == 0) {
+
+
+        //test Jonh
+        BaseWaveApplLayer::vehCount++;
+
+
         traci = TraCIMobilityAccess().get(getParentModule());
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
@@ -45,6 +51,8 @@ void mfcv_epidemic::initialize(int stage) {
         //Set the source node which generate a message that will be sent to another random node
         //source = car[0] or car[1] etc.
         source = findHost()->getFullName();
+
+        cout << "target before generateMessage()" << target << endl << endl;
 
         WATCH(source);
         WATCH(target);
@@ -66,16 +74,41 @@ void mfcv_epidemic::initialize(int stage) {
         //cout << "Probability of message generation from " << findHost()->getFullName() << " : " << probability << endl;
 
         //if(probability <= 100) //100 means that all nodes will generate messages to forward in the network
-        generateMessage();
+        //generateMessage();
+
+        // test Jonh
+
+        // source ex: car[0], car[1], car[2]
+        if (source.compare(0,3,"car") == 0) {
+            cout << "It is a veh, and my fullName is: " << source << endl;
+        } else {
+            cout << "It not a veh, and my fullName is: " << source << endl;
+        }
+
+        // only car[0] generate message
+        //if (source.compare("car[0]") == 0) {
+          generateMessage();
+        //}
+
+        cout << "target after generateMessage(): " << target << endl << endl;
+
+        //Open a new file for the current simulation
+        myfile.open ("results/onBeacon_veh.txt");
+        myfile.close();
+
+        //Open a new file for the current simulation
+        myfile.open ("results/LocalMessageBuffer_veh.txt");
+        myfile.close();
+
+
+        cout << "veh ID " << traci->getId() << endl;
+        cout << "simTime() " << SimTime() << endl;
+        cout << "ExternalId " << traci->getExternalId() << endl;
+        cout << "Index " << traci->getIndex() << endl;
+        cout << "veh BaseWaveApplLayer::vehCount " << BaseWaveApplLayer::vehCount << endl;
+        cout << "veh BaseWaveApplLayer::rsuCount " << BaseWaveApplLayer::rsuCount << endl;
+        cout << endl;
     }
-    //Open a new file for the current simulation
-    myfile.open ("results/onBeacon.txt");
-    myfile.close();
-
-    //Open a new file for the current simulation
-    myfile.open ("results/LocalMessageBuffer.txt");
-    myfile.close();
-
 }
 
 //This method is called when beacons arrive in the device's wireless interface
@@ -491,10 +524,38 @@ void mfcv_epidemic::generateTarget(){
     //else
         target = "rsu[0]";
     //cout << findHost()->getFullName() << "generating a RSU target to its message (" << source << " -> " << target << ")"<< endl;
+
+
+    // text Jonh
+    srand (time(NULL));
+    cout << endl;
+    cout << "Host count " << (BaseWaveApplLayer::vehCount + BaseWaveApplLayer::rsuCount) << endl;
+    int targetRandom = rand() % (BaseWaveApplLayer::vehCount + BaseWaveApplLayer::rsuCount);
+    cout << "targetRandom "<< targetRandom << endl;
+
+    cout << "BaseWaveApplLayer::vehCount "<< BaseWaveApplLayer::vehCount << endl;
+    cout << "BaseWaveApplLayer::rsuCount "<< BaseWaveApplLayer::rsuCount << endl;
+    //cout << "rand "<< rand() % (BaseWaveApplLayer::vehCount + BaseWaveApplLayer::rsuCount) << endl;
+    cout << endl;
+
+    if ( targetRandom <= BaseWaveApplLayer::vehCount){
+        cout << "targetRandom: " << targetRandom << " set a veh as a target, with: car[" << targetRandom << "]" << endl;
+    }else{ //targetRandom > BaseWaveApplLayer::vehCount
+        cout << "targetRandom: " << targetRandom << " set a rsu as a target, with: rsu[" << targetRandom - BaseWaveApplLayer::vehCount <<"]" << endl;
+    }
+
 }
 
 //Generate a message in order to be sent to a target
 void mfcv_epidemic::generateMessage(){
+
+
+    // test Jonh
+    cout << endl;
+    cout << "In generateMessage() veh fullName" << findHost()->getFullName() <<endl;
+    cout << endl;
+
+
     //Set the target node to whom my message has to be delivered
     //target = rsu[0] rsu[1] or car[*].
     generateTarget();
@@ -516,6 +577,14 @@ void mfcv_epidemic::generateMessage(){
     wsm.setTimestamp(simTime());
     wsm.setSenderAddress(MACToInteger());
     wsm.setRecipientAddress(BROADCAST);
+
+
+    // test Jonh
+    cout << endl;
+    cout << "source.c_str() " << source.c_str() << endl;
+    cout << "target.c_str() " << target.c_str() << endl;
+    cout << endl;
+
     wsm.setSource(source.c_str());
     wsm.setTarget(target.c_str());
     wsm.setSenderPos(curPosition);
@@ -630,6 +699,7 @@ void mfcv_epidemic::printWaveShortMessage(WaveShortMessage wsm){
     cout << "wsm.getWsmVersion():" << wsm.getWsmVersion() << endl;
     cout << "wsm.getTimestamp():" << wsm.getTimestamp() << endl;
     cout << "wsm.getSenderAddress():" << wsm.getSenderAddress() << endl;
+    cout << "wsm.getHeading() " << wsm.getHeading() << endl;
     cout << "wsm.getRecipientAddress():" << wsm.getRecipientAddress() << endl;
     cout << "wsm.getSource():" << wsm.getSource() << endl;
     cout << "wsm.getTarget():" << wsm.getTarget() << endl;
@@ -652,6 +722,7 @@ void mfcv_epidemic::printWaveShortMessage(WaveShortMessage* wsm){
     cout << "wsm->getWsmVersion()" << wsm->getWsmVersion() << endl;
     cout << "wsm->getTimestamp()" << wsm->getTimestamp() << endl;
     cout << "wsm->getSenderAddress()" << wsm->getSenderAddress() << endl;
+    cout << "wsm->getHeading() " << wsm->getHeading() << endl;
     cout << "wsm->getRecipientAddress()" << wsm->getRecipientAddress() << endl;
     cout << "wsm->getSource()" << wsm->getSource() << endl;
     cout << "wsm->getTarget()" << wsm->getTarget() << endl;
@@ -680,27 +751,30 @@ void mfcv_epidemic::finish(){
     cout << "traci->getExternalId() " << traci->getExternalId() << endl;
     cout << "traci->getId() " << traci->getId() << endl;
 
-
     //Converting from degrees to radians
     // radians = ( degrees * pi ) / 180 ;
     //Converting from radians to degrees
     // degrees=( radians * 180 ) / pi ;
 
-//    ← = -3.14159
-//    → = 0
-//    ↓ = -1.5708
-//    ↑ = 1.5708
-//math.la.asu.edu/~nbrewer/Spring2006/Unit%20Circle%20Diagram_files/unit_circle.gif
+    //    ← = -3.14159
+    //    → = 0
+    //    ↓ = -1.5708
+    //    ↑ = 1.5708
+    //math.la.asu.edu/~nbrewer/Spring2006/Unit%20Circle%20Diagram_files/unit_circle.gif
+    //math10.com/en/geometry/angles/measure/angles-and-measurement.html
 
 }
+
+
+// test Jonh
 
 //This function is for record beacon on file
 void mfcv_epidemic::recordOnFile(WaveShortMessage* wsm){
 
     //Open file for just apeend
-    myfile.open ("results/onBeacon.txt", std::ios_base::app);
+    myfile.open ("results/onBeacon_veh.txt", std::ios_base::app);
 
-    //Send "strings" to be saved on the file onBeacon.txt
+    //Send "strings" to be saved on the file onBeacon_veh.txt
     myfile << "Beacon from " << wsm->getSenderAddress() << " at " << simTime();
     myfile << " to " << wsm->getRecipientAddress() << endl;
     myfile << "wsm->getName() " << wsm->getName() << endl;
@@ -711,6 +785,7 @@ void mfcv_epidemic::recordOnFile(WaveShortMessage* wsm){
     myfile << "wsm->getWsmVersion() " << wsm->getWsmVersion() << endl;
     myfile << "wsm->getTimestamp() " << wsm->getTimestamp() << endl;
     myfile << "wsm->getSenderAddress() " << wsm->getSenderAddress() << endl;
+    myfile << "wsm->getHeading() " << wsm->getHeading() << endl;
     myfile << "wsm->getRecipientAddress() " << wsm->getRecipientAddress() << endl;
     myfile << "wsm->getSource() " << wsm->getSource() << endl;
     myfile << "wsm->getTarget() " << wsm->getTarget() << endl;
@@ -718,16 +793,17 @@ void mfcv_epidemic::recordOnFile(WaveShortMessage* wsm){
     myfile << "wsm->getSerial() " << wsm->getSerial() << endl;
     myfile << "wsm->getSummaryVector() " << wsm->getSummaryVector() << endl;
     myfile << "wsm->getRequestMessages() " << wsm->getRequestMessages() << endl;
-    myfile << "wsm->getWsmData() " << wsm->getWsmData() << endl << endl;
+    myfile << "wsm->getWsmData() " << wsm->getWsmData() << endl;
+    myfile << endl;
     myfile.close();
 }
 
 void mfcv_epidemic::printMfcv_EpidemicLocalMessageBufferOnFile(){
 
     //Open file for just apeend
-    myfile.open ("results/LocalMessageBuffer.txt", std::ios_base::app);
+    myfile.open ("results/LocalMessageBuffer_veh.txt", std::ios_base::app);
 
-    //Send "strings" to be saved on the file onBeacon.txt
+    //Send "strings" to be saved on the file onBeacon_veh.txt
     if(mfcv_epidemicLocalMessageBuffer.empty()){
         //cout << "Mfcv_EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now " << endl;
         myfile << "Mfcv_EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now " << endl;
@@ -744,4 +820,154 @@ void mfcv_epidemic::printMfcv_EpidemicLocalMessageBufferOnFile(){
     }
     myfile << endl;
     myfile.close();
+}
+
+WaveShortMessage* mfcv_epidemic::prepareWSM_mfcv_epidemic(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
+    WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
+    wsm->addBitLength(headerLength);
+    wsm->addBitLength(lengthBits);
+    switch (channel) {
+        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
+    }
+    wsm->setPsid(0);
+    wsm->setPriority(priority);
+    wsm->setWsmVersion(1);
+    wsm->setTimestamp(simTime());
+    wsm->setSenderAddress(MACToInteger());
+    wsm->setRecipientAddress(rcvId);
+    //wsm->setSource(source);
+    //wsm->setTarget(target);
+    wsm->setSenderPos(curPosition);
+    wsm->setSerial(serial);
+    wsm->setRoadId(traci->getRoadId().c_str());
+    wsm->setSenderSpeed(traci->getSpeed());
+    wsm->setVehicleId(traci->getId());
+
+    // ver como definir o id, traci->getId(), e a categoria
+    if (traci->getId() < 5) {
+        wsm->setCategory(1);
+    }
+    else if (traci->getId() > 5) {
+         wsm->setCategory(2);
+    }
+    else if (traci->getId() < 10) {
+             wsm->setCategory(4);
+    }
+    else {
+        wsm->setCategory(4);
+    }
+
+    wsm->setHeading(getHeading());
+    //wsm->setHeading(((traci->getAngleRad() * 180) / M_PI));
+    cout << endl << endl;
+    cout << "In prepareWSM_mfcv_epidemic3" << endl;
+    cout << "findHost()->getDisplayString() " << findHost()->getDisplayString() << endl;
+    cout << "Angle radians " << ((traci->getAngleRad() * 180) / M_PI) << endl;
+    cout << "Heading " << traci->getAngleRad() << endl;
+    cout << "Angle degree (getAngle) " << getHeading() << endl;
+    cout << "Angle in degrees (M_PI): " << ((traci->getAngleRad() * 180) / M_PI) << endl;
+    cout << "Angle in degrees (2*M_PI): " << (((traci->getAngleRad() + 2*M_PI ) * 180)/ M_PI) << endl;
+    cout << endl << endl;
+
+    if (name == "beacon") {
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    }else if (name == "data") {
+        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    }
+    return wsm;
+}
+
+unsigned int mfcv_epidemic::getHeading(){
+    // return angle <0º - 359º>
+
+    // marcospaiva.com.br/images/rosa_dos_ventos%2002.GIF
+    // marcospaiva.com.br/localizacao.htm
+
+    // (angle >= 337.5 && angle < 360) || (angle >= 0 && angle < 22.5) return 1; // L or E => 0º
+    // angle >= 22.5 && angle < 67.5                                   return 2; // NE => 45º
+    // angle >= 67.5  && angle < 112,5                                 return 3; // N => 90º
+    // angle >= 112.5  && angle < 157.5                                return 4; // NO => 135º
+    // angle >= 157,5  && angle < 202,5                                return 5; // O or W => 180º
+    // angle >= 202.5  && angle < 247.5                                return 6; // SO => 225º
+    // angle >= 292.5  && angle < 337.5                                return 8; // SE => 315º
+    // angle >= 360 return 9; // Error
+
+    double angle;
+    if (traci->getAngleRad() < 0) // radians are negtive, so degrees negative
+        angle = (((traci->getAngleRad() + 2*M_PI ) * 180)/ M_PI);
+    else //radians are positive, so degrees positive
+        angle = ((traci->getAngleRad() * 180) / M_PI);
+
+    if ((angle >= 337.5 && angle < 360) || (angle >= 0 && angle < 22.5)){
+        cout << "Angle: " << angle << " Heading " << 1 << endl;
+        return 1; // L or E => 0º
+    }
+    else if (angle >= 22.5 && angle < 67.5) {
+        cout << "Angle (getHeading): " << angle << " Heading " << 2 << endl;
+        return 2; // NE => 45º
+    }
+    else if (angle >= 67.5  && angle < 112.5) {
+        cout << "Angle (getHeading): " << angle << " Heading " << 3 << endl;
+        return 3; // N => 90º
+    }
+    else if (angle >= 112.5  && angle < 157.5) {
+        cout << "Angle (getHeading): " << angle << " Heading " << 4 << endl;
+        return 4; // NO => 135º
+    }
+    else if (angle >= 157.5  && angle < 202.5) {
+        cout << "Angle (getHeading): " << angle << " Heading " << 5 << endl;
+        return 5; // O or W => 180º
+    }
+    else if (angle >= 202.5  && angle < 247.5) {
+        cout << "Angle (getHeading): " << angle << " Heading " << 6 << endl;
+        return 6; // SO => 225º
+    }
+    else if (angle >= 247.5  && angle < 292.5) {
+        cout << "Angle (getHeading): " << angle << " Heading " << 7 << endl;
+        return 7; // S => 270º
+    }
+    else if (angle >= 292.5  && angle < 337.5) {
+        cout << "Angle (getHeading): " << angle << " Heading " << 8 << endl;
+        return 8; // SE => 315º
+    }
+    else {
+        cout << "Error angle (getHeading): " << angle << " Heading of error " << 9 << endl;
+        return 9; // Error
+    }
+
+}
+
+void mfcv_epidemic::handleSelfMsg(cMessage* msg) {
+    switch (msg->getKind()) {
+//        case SEND_BEACON_EVT: {
+//            sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+//            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+//            break;
+//        }
+//        case SEND_BEACON_EVT_minicurso: {
+//            sendWSM(prepareWSM("beacon_minicurso", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+//            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+//            break;
+//        }
+//        case SEND_BEACON_EVT_epidemic: {
+//            //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
+//            //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
+//            sendWSM(prepareWSM_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
+//            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+//            break;
+//        }
+        case SEND_BEACON_EVT_mfcv_epidemic: {
+            //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
+            //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
+            sendWSM(prepareWSM_mfcv_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
+            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+            break;
+        }
+        default: {
+            if (msg)
+                DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
+            break;
+        }
+    }
 }

@@ -82,6 +82,7 @@ WaveShortMessage::WaveShortMessage(const char *name, int kind) : ::cPacket(name,
     this->senderSpeed_var = 0.0;
     this->category_var = 0;
     this->vehicleId_var = 0;
+    this->heading_var = 0;
 }
 
 WaveShortMessage::WaveShortMessage(const WaveShortMessage& other) : ::cPacket(other)
@@ -129,6 +130,7 @@ void WaveShortMessage::copy(const WaveShortMessage& other)
     this->senderSpeed_var = other.senderSpeed_var;
     this->category_var = other.category_var;
     this->vehicleId_var = other.vehicleId_var;
+    this->heading_var = other.heading_var;
 }
 
 void WaveShortMessage::parsimPack(cCommBuffer *b)
@@ -160,6 +162,7 @@ void WaveShortMessage::parsimPack(cCommBuffer *b)
     doPacking(b,this->senderSpeed_var);
     doPacking(b,this->category_var);
     doPacking(b,this->vehicleId_var);
+    doPacking(b,this->heading_var);
 }
 
 void WaveShortMessage::parsimUnpack(cCommBuffer *b)
@@ -191,6 +194,7 @@ void WaveShortMessage::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->senderSpeed_var);
     doUnpacking(b,this->category_var);
     doUnpacking(b,this->vehicleId_var);
+    doUnpacking(b,this->heading_var);
 }
 
 int WaveShortMessage::getWsmVersion() const
@@ -433,12 +437,12 @@ void WaveShortMessage::setSenderSpeed(double senderSpeed)
     this->senderSpeed_var = senderSpeed;
 }
 
-int WaveShortMessage::getCategory() const
+unsigned short WaveShortMessage::getCategory() const
 {
     return category_var;
 }
 
-void WaveShortMessage::setCategory(int category)
+void WaveShortMessage::setCategory(unsigned short category)
 {
     this->category_var = category;
 }
@@ -451,6 +455,16 @@ int WaveShortMessage::getVehicleId() const
 void WaveShortMessage::setVehicleId(int vehicleId)
 {
     this->vehicleId_var = vehicleId;
+}
+
+unsigned short WaveShortMessage::getHeading() const
+{
+    return heading_var;
+}
+
+void WaveShortMessage::setHeading(unsigned short heading)
+{
+    this->heading_var = heading;
 }
 
 class WaveShortMessageDescriptor : public cClassDescriptor
@@ -500,7 +514,7 @@ const char *WaveShortMessageDescriptor::getProperty(const char *propertyname) co
 int WaveShortMessageDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 26+basedesc->getFieldCount(object) : 26;
+    return basedesc ? 27+basedesc->getFieldCount(object) : 27;
 }
 
 unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -538,8 +552,9 @@ unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int fie
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<26) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<27) ? fieldTypeFlags[field] : 0;
 }
 
 const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) const
@@ -577,8 +592,9 @@ const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) co
         "senderSpeed",
         "category",
         "vehicleId",
+        "heading",
     };
-    return (field>=0 && field<26) ? fieldNames[field] : NULL;
+    return (field>=0 && field<27) ? fieldNames[field] : NULL;
 }
 
 int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) const
@@ -611,6 +627,7 @@ int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) c
     if (fieldName[0]=='s' && strcmp(fieldName, "senderSpeed")==0) return base+23;
     if (fieldName[0]=='c' && strcmp(fieldName, "category")==0) return base+24;
     if (fieldName[0]=='v' && strcmp(fieldName, "vehicleId")==0) return base+25;
+    if (fieldName[0]=='h' && strcmp(fieldName, "heading")==0) return base+26;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -647,10 +664,11 @@ const char *WaveShortMessageDescriptor::getFieldTypeString(void *object, int fie
         "bool",
         "string",
         "double",
+        "unsigned short",
         "int",
-        "int",
+        "unsigned short",
     };
-    return (field>=0 && field<26) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<27) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *WaveShortMessageDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -714,8 +732,9 @@ std::string WaveShortMessageDescriptor::getFieldAsString(void *object, int field
         case 21: return bool2string(pp->getAckRequest());
         case 22: return oppstring2string(pp->getRoadId());
         case 23: return double2string(pp->getSenderSpeed());
-        case 24: return long2string(pp->getCategory());
+        case 24: return ulong2string(pp->getCategory());
         case 25: return long2string(pp->getVehicleId());
+        case 26: return ulong2string(pp->getHeading());
         default: return "";
     }
 }
@@ -753,8 +772,9 @@ bool WaveShortMessageDescriptor::setFieldAsString(void *object, int field, int i
         case 21: pp->setAckRequest(string2bool(value)); return true;
         case 22: pp->setRoadId((value)); return true;
         case 23: pp->setSenderSpeed(string2double(value)); return true;
-        case 24: pp->setCategory(string2long(value)); return true;
+        case 24: pp->setCategory(string2ulong(value)); return true;
         case 25: pp->setVehicleId(string2long(value)); return true;
+        case 26: pp->setHeading(string2ulong(value)); return true;
         default: return false;
     }
 }

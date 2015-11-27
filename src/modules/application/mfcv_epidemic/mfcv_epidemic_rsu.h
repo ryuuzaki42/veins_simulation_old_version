@@ -83,6 +83,14 @@ class mfcv_epidemic_rsu : public BaseWaveApplLayer {
         void printQueueFIFO(queue<string> qFIFO);
         void createMfcv_EpidemicRemoteSummaryVector(string s);
         virtual void finish();
+
+
+        //test Jonh
+        unsigned int getAngleDegrees();
+        void handleSelfMsg(cMessage* msg);
+        WaveShortMessage* prepareWSM_mfcv_epidemic(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
 };
+
+unsigned short int BaseWaveApplLayer::rsuCount= 0;
 
 #endif

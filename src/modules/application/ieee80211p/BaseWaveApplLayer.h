@@ -96,13 +96,16 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
         virtual unsigned int MACToInteger();
 
-        virtual WaveShortMessage* prepareWSM_mfcv_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
-
         virtual void sendWSM(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm) = 0;
         virtual void onData(WaveShortMessage* wsm) = 0;
 
         virtual void handlePositionUpdate(cObject* obj);
+
+
+        // test Jonh
+        static unsigned short int vehCount;
+        static unsigned short int rsuCount;
 
     protected:
         int beaconLengthBits;
@@ -142,5 +145,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
         string source;
         string target;
 };
+
+//unsigned short int BaseWaveApplLayer::vehCount= 0;
+//unsigned short int BaseWaveApplLayer::rsuCount= 0;
 
 #endif /* BASEWAVEAPPLLAYER_H_ */

@@ -83,7 +83,7 @@ packet WaveShortMessage {
 
     // MFCV
     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
-    int category = 0;
+    unsigned short category = 0;
     // vehicle ID (wsm->setVehicleId(traci->getId());)
     int vehicleId;
     // Path history of the vehicle, calculated from time to time
@@ -91,4 +91,8 @@ packet WaveShortMessage {
     // Radius of Gyration of the vehicle, calculated from time to time.
     // The vehicle send yours Radius of Gyration to another vehicles 
     //double radius_of_Gyration;
+
+    // test Jonh
+    unsigned short heading;
+
 }

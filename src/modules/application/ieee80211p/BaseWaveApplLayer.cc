@@ -60,7 +60,6 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
         if (sendBeacons) {
             scheduleAt(simTime() + offSet, sendBeaconEvt); //parte modificada para o osdp e para o service_discovery
         }
-
     }
 }
 
@@ -96,7 +95,6 @@ void BaseWaveApplLayer::initialize_mfcv(int stage) {
         if (sendBeacons) {
             scheduleAt(simTime() + offSet, sendBeaconEvt); //parte modificada para o osdp e para o service_discovery
         }
-
     }
 }
 
@@ -133,7 +131,6 @@ void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
         if (sendBeacons) {
             scheduleAt(simTime() + offSet, sendBeaconEvt); //parte modificada para o osdp e para o service_discovery
         }
-
     }
 }
 
@@ -169,7 +166,6 @@ void BaseWaveApplLayer::initialize_osdp(int stage) {
         if (sendBeacons) {
             //scheduleAt(simTime() + offSet, sendBeaconEvt); //parte modificada para o osdp e para o service_discovery
         }
-
     }
 }
 
@@ -205,7 +201,6 @@ void BaseWaveApplLayer::initialize_service_discovery(int stage) {
         if (sendBeacons) {
             //scheduleAt(simTime() + offSet, sendBeaconEvt); //parte modificada para o osdp e para o service_discovery
         }
-
     }
 }
 
@@ -241,7 +236,6 @@ void BaseWaveApplLayer::initialize_test1(int stage) {
         if (sendBeacons) {
             //scheduleAt(simTime() + offSet, sendBeaconEvt); //parte modificada para o osdp e para o service_discovery
         }
-
     }
 }
 
@@ -438,33 +432,6 @@ WaveShortMessage*  BaseWaveApplLayer::prepareWSM_epidemic(std::string name, int 
     return wsm;
 }
 
-WaveShortMessage*  BaseWaveApplLayer::prepareWSM_mfcv_epidemic(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
-    WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
-    wsm->addBitLength(headerLength);
-    wsm->addBitLength(lengthBits);
-    switch (channel) {
-        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
-        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
-    }
-    wsm->setPsid(0);
-    wsm->setPriority(priority);
-    wsm->setWsmVersion(1);
-    wsm->setTimestamp(simTime());
-    wsm->setSenderAddress(MACToInteger());
-    wsm->setRecipientAddress(rcvId);
-    //wsm->setSource(source);
-    //wsm->setTarget(target);
-    wsm->setSenderPos(curPosition);
-    wsm->setSerial(serial);
-
-    if (name == "beacon") {
-        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
-    }else if (name == "data") {
-        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
-    }
-    return wsm;
-}
-
 unsigned int BaseWaveApplLayer::MACToInteger(){
     unsigned int macInt;
     std::stringstream ss;
@@ -486,7 +453,6 @@ void BaseWaveApplLayer::handlePositionUpdate(cObject* obj) {
 }
 
 void BaseWaveApplLayer::handleLowerMsg(cMessage* msg) {
-
     WaveShortMessage* wsm = dynamic_cast<WaveShortMessage*>(msg);
     ASSERT(wsm);
 
@@ -524,13 +490,13 @@ void BaseWaveApplLayer::handleSelfMsg(cMessage* msg) {
             scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
             break;
         }
-        case SEND_BEACON_EVT_mfcv_epidemic: {
-            //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
-            //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
-            sendWSM(prepareWSM_mfcv_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
-            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
-            break;
-        }
+//        case SEND_BEACON_EVT_mfcv_epidemic: {
+//            //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
+//            //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
+//            sendWSM(prepareWSM_mfcv_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
+//            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+//            break;
+//        }
         default: {
             if (msg)
                 DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;

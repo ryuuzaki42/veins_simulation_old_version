@@ -108,10 +108,17 @@ class mfcv_epidemic : public BaseWaveApplLayer {
 
         virtual void finish();
 
+        //test Jonh
         void recordOnFile(WaveShortMessage* wsm);
         void printMfcv_EpidemicLocalMessageBufferOnFile();
+        unsigned int getHeading();
+        void handleSelfMsg(cMessage* msg);
+        WaveShortMessage* prepareWSM_mfcv_epidemic(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
 };
 
 unsigned short int mfcv_epidemic::messageId = 0;
+
+// test Jonh
+unsigned short int BaseWaveApplLayer::vehCount= 0;
 
 #endif

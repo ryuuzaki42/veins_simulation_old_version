@@ -82,7 +82,7 @@
  * 
  *     // MFCV
  *     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
- *     int category = 0;
+ *     unsigned short category = 0;
  *     // vehicle ID (wsm->setVehicleId(traci->getId());)
  *     int vehicleId;
  *     // Path history of the vehicle, calculated from time to time
@@ -90,6 +90,10 @@
  *     // Radius of Gyration of the vehicle, calculated from time to time.
  *     // The vehicle send yours Radius of Gyration to another vehicles 
  *     //double radius_of_Gyration;
+ * 
+ *     // test Jonh
+ *     unsigned short heading;
+ * 
  * }
  * </pre>
  */
@@ -120,8 +124,9 @@ class WaveShortMessage : public ::cPacket
     bool ackRequest_var;
     opp_string roadId_var;
     double senderSpeed_var;
-    int category_var;
+    unsigned short category_var;
     int vehicleId_var;
+    unsigned short heading_var;
 
   private:
     void copy(const WaveShortMessage& other);
@@ -189,10 +194,12 @@ class WaveShortMessage : public ::cPacket
     virtual void setRoadId(const char * roadId);
     virtual double getSenderSpeed() const;
     virtual void setSenderSpeed(double senderSpeed);
-    virtual int getCategory() const;
-    virtual void setCategory(int category);
+    virtual unsigned short getCategory() const;
+    virtual void setCategory(unsigned short category);
     virtual int getVehicleId() const;
     virtual void setVehicleId(int vehicleId);
+    virtual unsigned short getHeading() const;
+    virtual void setHeading(unsigned short heading);
 };
 
 inline void doPacking(cCommBuffer *b, WaveShortMessage& obj) {obj.parsimPack(b);}
