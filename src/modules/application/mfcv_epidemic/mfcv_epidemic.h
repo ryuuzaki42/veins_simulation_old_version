@@ -70,6 +70,8 @@ class mfcv_epidemic : public BaseWaveApplLayer {
 
         // record in file
         std::ofstream myfile;
+        //simtime_t timeGenerateMessage;
+        Coord vehPositionBack;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -112,7 +114,10 @@ class mfcv_epidemic : public BaseWaveApplLayer {
         void recordOnFile(WaveShortMessage* wsm);
         void printMfcv_EpidemicLocalMessageBufferOnFile();
         unsigned int getHeading();
+        bool testSendHeading(int headingLocal, int headingRemote);
+        bool testSendtoTarget(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
         void handleSelfMsg(cMessage* msg);
+        void updatePosition();
         WaveShortMessage* prepareWSM_mfcv_epidemic(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
 };
 

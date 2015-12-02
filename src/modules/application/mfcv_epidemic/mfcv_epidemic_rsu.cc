@@ -50,13 +50,16 @@ void mfcv_epidemic_rsu::initialize(int stage) {
         std::cout << "I'm " << findHost()->getFullName() <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
 
         // test Jonh
-        cout << "rsu ID " << findHost()->getId() << endl;
-        cout << "simTime() " << SimTime() << endl;
-        mobi->getCurrentPosition();
+        cout << "rsu ID: " << findHost()->getId() << endl;
+        cout << "simTime(): " << SimTime() << endl;
+        cout << "rsu Position: " << mobi->getCurrentPosition();
         cout << "rsu fullName " << findHost()->getFullName() << endl;
-        cout << "rsu BaseWaveApplLayer::vehCount " << BaseWaveApplLayer::vehCount << endl;
-        cout << "rsu BaseWaveApplLayer::rsuCount " << BaseWaveApplLayer::rsuCount << endl;
+        cout << "rsu BaseWaveApplLayer::vehCount: " << BaseWaveApplLayer::vehCount << endl;
+        cout << "rsu BaseWaveApplLayer::rsuCount: " << BaseWaveApplLayer::rsuCount << endl;
         cout << endl;
+    }
+    if(stage != 0) {
+       cout << "outside if rsu Position: " << mobi->getCurrentPosition() << " stage: "<< stage<< endl;
     }
 }
 

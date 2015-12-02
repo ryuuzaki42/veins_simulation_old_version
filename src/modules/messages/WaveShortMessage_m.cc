@@ -131,6 +131,8 @@ void WaveShortMessage::copy(const WaveShortMessage& other)
     this->category_var = other.category_var;
     this->vehicleId_var = other.vehicleId_var;
     this->heading_var = other.heading_var;
+    this->TargetPos_var = other.TargetPos_var;
+    this->senderPosBack_var = other.senderPosBack_var;
 }
 
 void WaveShortMessage::parsimPack(cCommBuffer *b)
@@ -163,6 +165,8 @@ void WaveShortMessage::parsimPack(cCommBuffer *b)
     doPacking(b,this->category_var);
     doPacking(b,this->vehicleId_var);
     doPacking(b,this->heading_var);
+    doPacking(b,this->TargetPos_var);
+    doPacking(b,this->senderPosBack_var);
 }
 
 void WaveShortMessage::parsimUnpack(cCommBuffer *b)
@@ -195,6 +199,8 @@ void WaveShortMessage::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->category_var);
     doUnpacking(b,this->vehicleId_var);
     doUnpacking(b,this->heading_var);
+    doUnpacking(b,this->TargetPos_var);
+    doUnpacking(b,this->senderPosBack_var);
 }
 
 int WaveShortMessage::getWsmVersion() const
@@ -467,6 +473,26 @@ void WaveShortMessage::setHeading(unsigned short heading)
     this->heading_var = heading;
 }
 
+Coord& WaveShortMessage::getTargetPos()
+{
+    return TargetPos_var;
+}
+
+void WaveShortMessage::setTargetPos(const Coord& TargetPos)
+{
+    this->TargetPos_var = TargetPos;
+}
+
+Coord& WaveShortMessage::getSenderPosBack()
+{
+    return senderPosBack_var;
+}
+
+void WaveShortMessage::setSenderPosBack(const Coord& senderPosBack)
+{
+    this->senderPosBack_var = senderPosBack;
+}
+
 class WaveShortMessageDescriptor : public cClassDescriptor
 {
   public:
@@ -514,7 +540,7 @@ const char *WaveShortMessageDescriptor::getProperty(const char *propertyname) co
 int WaveShortMessageDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 27+basedesc->getFieldCount(object) : 27;
+    return basedesc ? 29+basedesc->getFieldCount(object) : 29;
 }
 
 unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -553,8 +579,10 @@ unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int fie
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
     };
-    return (field>=0 && field<27) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<29) ? fieldTypeFlags[field] : 0;
 }
 
 const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) const
@@ -593,8 +621,10 @@ const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) co
         "category",
         "vehicleId",
         "heading",
+        "TargetPos",
+        "senderPosBack",
     };
-    return (field>=0 && field<27) ? fieldNames[field] : NULL;
+    return (field>=0 && field<29) ? fieldNames[field] : NULL;
 }
 
 int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) const
@@ -628,6 +658,8 @@ int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) c
     if (fieldName[0]=='c' && strcmp(fieldName, "category")==0) return base+24;
     if (fieldName[0]=='v' && strcmp(fieldName, "vehicleId")==0) return base+25;
     if (fieldName[0]=='h' && strcmp(fieldName, "heading")==0) return base+26;
+    if (fieldName[0]=='T' && strcmp(fieldName, "TargetPos")==0) return base+27;
+    if (fieldName[0]=='s' && strcmp(fieldName, "senderPosBack")==0) return base+28;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -667,8 +699,10 @@ const char *WaveShortMessageDescriptor::getFieldTypeString(void *object, int fie
         "unsigned short",
         "int",
         "unsigned short",
+        "Coord",
+        "Coord",
     };
-    return (field>=0 && field<27) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<29) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *WaveShortMessageDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -735,6 +769,8 @@ std::string WaveShortMessageDescriptor::getFieldAsString(void *object, int field
         case 24: return ulong2string(pp->getCategory());
         case 25: return long2string(pp->getVehicleId());
         case 26: return ulong2string(pp->getHeading());
+        case 27: {std::stringstream out; out << pp->getTargetPos(); return out.str();}
+        case 28: {std::stringstream out; out << pp->getSenderPosBack(); return out.str();}
         default: return "";
     }
 }
@@ -789,6 +825,8 @@ const char *WaveShortMessageDescriptor::getFieldStructName(void *object, int fie
     }
     switch (field) {
         case 10: return opp_typename(typeid(Coord));
+        case 27: return opp_typename(typeid(Coord));
+        case 28: return opp_typename(typeid(Coord));
         default: return NULL;
     };
 }
@@ -804,6 +842,8 @@ void *WaveShortMessageDescriptor::getFieldStructPointer(void *object, int field,
     WaveShortMessage *pp = (WaveShortMessage *)object; (void)pp;
     switch (field) {
         case 10: return (void *)(&pp->getSenderPos()); break;
+        case 27: return (void *)(&pp->getTargetPos()); break;
+        case 28: return (void *)(&pp->getSenderPosBack()); break;
         default: return NULL;
     }
 }

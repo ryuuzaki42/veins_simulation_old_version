@@ -64,6 +64,13 @@ simple BaseWaveApplLayer like IBaseApplLayer
         //@signal[messageReceived](type="long");
         //@statistic[numMessageReceived](source=sum(messageReceived); title="Total Number or Message Received"; record=stats,histogram,vector);
 
+        //jonh test
+        int target_x;
+        int target_y;
+
+        int timeUpdatePosition @unit("s") = default(1s);
+        bool sendUpdatePos = default(false); //tell the applayer to periodically send UpdatePosition
+
     gates:
         input lowerLayerIn; // from mac layer
         output lowerLayerOut; // to mac layer

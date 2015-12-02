@@ -36,7 +36,6 @@ void mfcv_epidemic::initialize(int stage) {
         //test Jonh
         BaseWaveApplLayer::vehCount++;
 
-
         traci = TraCIMobilityAccess().get(getParentModule());
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
@@ -109,6 +108,10 @@ void mfcv_epidemic::initialize(int stage) {
         cout << "veh BaseWaveApplLayer::vehCount " << BaseWaveApplLayer::vehCount << endl;
         cout << "veh BaseWaveApplLayer::rsuCount " << BaseWaveApplLayer::rsuCount << endl;
         cout << endl;
+        //timeGenerateMessage = 0;
+        vehPositionBack = traci->getCurrentPosition();
+        cout << "initial positionBack :" << vehPositionBack << endl;
+
     }
 }
 
@@ -138,6 +141,13 @@ void mfcv_epidemic::onBeacon(WaveShortMessage* wsm) {
 
     //bubble a short message in the device (in this case a vehicle)
     findHost()->bubble("Received Beacon");
+
+    cout << "local: getHeading(): " << getHeading() << endl;
+    cout << "remote: wsm->getHeading(): " << wsm->getHeading() << endl;
+    cout << "testSendHeading is " << testSendHeading(getHeading(), wsm->getHeading()) << endl;
+
+    //test send distante e heading to target
+    testSendtoTarget(wsm->getSenderPosBack(), wsm->getSenderPos(), wsm->getHeading(), wsm->getTargetPos());
 
 
     //Verifying if I have the smaller address in order to start the anti-entropy session sending out my summary vector
@@ -553,7 +563,7 @@ void mfcv_epidemic::generateMessage(){
 
     // test Jonh
     cout << endl;
-    cout << "In generateMessage() veh fullName" << findHost()->getFullName() <<endl;
+    cout << "In generateMessage() veh fullName " << findHost()->getFullName() <<endl;
     cout << endl;
 
 
@@ -585,6 +595,13 @@ void mfcv_epidemic::generateMessage(){
     cout << "source.c_str() " << source.c_str() << endl;
     cout << "target.c_str() " << target.c_str() << endl;
     cout << endl;
+     int x = par("target_x");
+     int y = par("target_y");
+     cout << "x: " << x << endl;
+     cout << "y: " << y << endl;
+     wsm.setTargetPos(Coord(par("target_x"), par("target_y"), 3));
+
+     wsm.setSenderPosBack(vehPositionBack);
 
     wsm.setSource(source.c_str());
     wsm.setTarget(target.c_str());
@@ -638,7 +655,7 @@ void mfcv_epidemic::printMfcv_EpidemicLocalMessageBuffer(){
 
 void mfcv_epidemic::printMfcv_EpidemicLocalSummaryVectorData(){
     if(mfcv_epidemicLocalSummaryVector.empty()){
-           cout << "Mfcv_EpidemicLocalSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
+           cout << "Mfcv_EpidemicLocalSummaryVector from " << findHost()->getFullName() << " is empty now" << endl;
     }
     else{
         ostringstream ss;
@@ -652,7 +669,7 @@ void mfcv_epidemic::printMfcv_EpidemicLocalSummaryVectorData(){
 
 void mfcv_epidemic::printMfcv_EpidemicRemoteSummaryVectorData(){
     if(mfcv_epidemicRemoteSummaryVector.empty()){
-           cout << "Mfcv_EpidemicRemoteSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
+           cout << "Mfcv_EpidemicRemoteSummaryVector from " << findHost()->getFullName() << " is empty now" << endl;
     }
     else{
         ostringstream ss;
@@ -667,7 +684,7 @@ void mfcv_epidemic::printMfcv_EpidemicRemoteSummaryVectorData(){
 void mfcv_epidemic::printMfcv_EpidemicRequestMessageVector(){
 
     if(mfcv_epidemicRequestMessageVector.empty()){
-        cout << "Mfcv_EpidemicRequestMessageVector from " << findHost()->getFullName() << " is empty now " << endl;
+        cout << "Mfcv_EpidemicRequestMessageVector from " << findHost()->getFullName() << " is empty now" << endl;
     }
     else{
         ostringstream ss;
@@ -681,7 +698,7 @@ void mfcv_epidemic::printMfcv_EpidemicRequestMessageVector(){
 
 void mfcv_epidemic::printNodesIRecentlySentSummaryVector(){
     if(nodesIRecentlySentSummaryVector.empty()){
-           cout << "NodesIRecentlySentSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
+           cout << "NodesIRecentlySentSummaryVector from " << findHost()->getFullName() << " is empty now" << endl;
     }
     else{
         int i = 0;
@@ -807,7 +824,7 @@ void mfcv_epidemic::printMfcv_EpidemicLocalMessageBufferOnFile(){
     //Send "strings" to be saved on the file onBeacon_veh.txt
     if(mfcv_epidemicLocalMessageBuffer.empty()){
         //cout << "Mfcv_EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now " << endl;
-        myfile << "Mfcv_EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now " << endl;
+        myfile << "Mfcv_EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now" << endl;
     }
     else{
         int i = 0;
@@ -859,6 +876,8 @@ WaveShortMessage* mfcv_epidemic::prepareWSM_mfcv_epidemic(std::string name, int 
         wsm->setCategory(4);
     }
 
+    wsm->setTargetPos(Coord(par("target_x"), par("target_y"), 3));
+    wsm->setSenderPosBack(vehPositionBack);
     wsm->setHeading(getHeading());
     //wsm->setHeading(((traci->getAngleRad() * 180) / M_PI));
     cout << endl << endl;
@@ -901,39 +920,39 @@ unsigned int mfcv_epidemic::getHeading(){
         angle = ((traci->getAngleRad() * 180) / M_PI);
 
     if ((angle >= 337.5 && angle < 360) || (angle >= 0 && angle < 22.5)){
-        cout << "Angle: " << angle << " Heading " << 1 << endl;
+        //cout << "Angle: " << angle << " Heading " << 1 << endl;
         return 1; // L or E => 0º
     }
     else if (angle >= 22.5 && angle < 67.5) {
-        cout << "Angle (getHeading): " << angle << " Heading " << 2 << endl;
+        //cout << "Angle (getHeading): " << angle << " Heading " << 2 << endl;
         return 2; // NE => 45º
     }
     else if (angle >= 67.5  && angle < 112.5) {
-        cout << "Angle (getHeading): " << angle << " Heading " << 3 << endl;
+        //cout << "Angle (getHeading): " << angle << " Heading " << 3 << endl;
         return 3; // N => 90º
     }
     else if (angle >= 112.5  && angle < 157.5) {
-        cout << "Angle (getHeading): " << angle << " Heading " << 4 << endl;
+        //cout << "Angle (getHeading): " << angle << " Heading " << 4 << endl;
         return 4; // NO => 135º
     }
     else if (angle >= 157.5  && angle < 202.5) {
-        cout << "Angle (getHeading): " << angle << " Heading " << 5 << endl;
+        //cout << "Angle (getHeading): " << angle << " Heading " << 5 << endl;
         return 5; // O or W => 180º
     }
     else if (angle >= 202.5  && angle < 247.5) {
-        cout << "Angle (getHeading): " << angle << " Heading " << 6 << endl;
+        //cout << "Angle (getHeading): " << angle << " Heading " << 6 << endl;
         return 6; // SO => 225º
     }
     else if (angle >= 247.5  && angle < 292.5) {
-        cout << "Angle (getHeading): " << angle << " Heading " << 7 << endl;
+        //cout << "Angle (getHeading): " << angle << " Heading " << 7 << endl;
         return 7; // S => 270º
     }
     else if (angle >= 292.5  && angle < 337.5) {
-        cout << "Angle (getHeading): " << angle << " Heading " << 8 << endl;
+        //cout << "Angle (getHeading): " << angle << " Heading " << 8 << endl;
         return 8; // SE => 315º
     }
     else {
-        cout << "Error angle (getHeading): " << angle << " Heading of error " << 9 << endl;
+        //cout << "Error angle (getHeading): " << angle << " Heading of error " << 9 << endl;
         return 9; // Error
     }
 }
@@ -964,10 +983,66 @@ void mfcv_epidemic::handleSelfMsg(cMessage* msg) {
             scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
             break;
         }
+        case SEND_updatePosVeh: {
+            updatePosition();
+            scheduleAt(simTime() + par("timeUpdatePosition").doubleValue(), updatePosVeh);
+            break;
+        }
         default: {
             if (msg)
                 DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
             break;
         }
     }
+}
+
+bool mfcv_epidemic::testSendHeading(int headingLocal, int headingRemote){
+    if (headingLocal == headingRemote){
+        //cout << "send message - heading is equal" << endl;
+        return true;
+    } else {
+        //cout << "not send message - heading is different" << endl;
+        return false;
+    }
+}
+
+bool mfcv_epidemic::testSendtoTarget(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord){
+    cout << endl;
+    cout <<  "targetCoord.x: " << targetCoord.x << endl;
+    cout <<  "targetCoord.y: " << targetCoord.y << endl;
+    cout <<  "vehicleRemoteCoordBack.x: " << vehicleRemoteCoordBack.x << endl;
+    cout <<  "vehicleRemoteCoordBack.y: " << vehicleRemoteCoordBack.y << endl;
+    cout <<  "vehicleRemoteCoordNow.x: " << vehicleRemoteCoordNow.x << endl;
+    cout <<  "vehicleRemoteCoord.y: " << vehicleRemoteCoordNow.y << endl;
+    cout <<  "vehicleRemoteHeading: " << vehicleRemoteHeading << endl;
+
+    // (angle >= 337.5 && angle < 360) || (angle >= 0 && angle < 22.5) return 1; // L or E => 0º
+    // angle >= 22.5 && angle < 67.5                                   return 2; // NE => 45º
+    // angle >= 67.5  && angle < 112,5                                 return 3; // N => 90º
+    // angle >= 112.5  && angle < 157.5                                return 4; // NO => 135º
+    // angle >= 157,5  && angle < 202,5                                return 5; // O or W => 180º
+    // angle >= 202.5  && angle < 247.5                                return 6; // SO => 225º
+    // angle >= 292.5  && angle < 337.5                                return 8; // SE => 315º
+    // angle >= 360 return 9; // Error
+
+     double distanceBefore = traci->commandDistanceRequest(vehicleRemoteCoordBack, targetCoord, false);
+     double distanceNow = traci->commandDistanceRequest(vehicleRemoteCoordNow, targetCoord, false);
+
+     if(distanceNow < distanceBefore){
+         cout << "Distance to the target is less" << endl;
+     }else if(distanceNow == distanceBefore){
+         cout << "Distance not change" << endl;
+     }else{
+         cout << "Distance to the target is more" << endl;
+     }
+     return false;
+}
+
+void mfcv_epidemic::updatePosition(){
+    cout << "Vehicle: " << findHost()->getFullName();
+    cout << " Update position: " <<  "time: "<< simTime() << " next update: ";
+    cout << (simTime() + par("timeUpdatePosition").doubleValue()) << endl;
+    cout << "positionBack :" << vehPositionBack;
+    vehPositionBack = traci->getPositionAt(simTime() - par("timeUpdatePosition").doubleValue());
+    cout << " and update positionBack :" << vehPositionBack << endl << endl;
 }

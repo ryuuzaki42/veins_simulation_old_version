@@ -368,6 +368,12 @@ void BaseWaveApplLayer::initialize_mfcv_epidemic(int stage) {
         if (sendBeacons) {
             scheduleAt(simTime() + offSet, sendBeaconEvt);
         }
+
+        updatePosVeh = new cMessage("UpdatePos evt", SEND_updatePosVeh);
+        sendUpdatePos =  par("sendUpdatePos").boolValue();
+        if (sendUpdatePos){
+           scheduleAt(simTime()+ par("timeUpdatePosition").doubleValue(), updatePosVeh);
+        }
     }
 }
 

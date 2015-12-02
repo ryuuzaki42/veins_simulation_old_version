@@ -94,5 +94,8 @@ packet WaveShortMessage {
 
     // test Jonh
     unsigned short heading;
+    // targetPost
+    Coord TargetPos;
+    Coord senderPosBack;
 
 }
