@@ -77,8 +77,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
             SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
             SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT, //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
             SEND_BEACON_EVT_epidemic,
-            SEND_BEACON_EVT_mfcv_epidemic,
-            SEND_updatePosVeh
+            SEND_BEACON_EVT_mfcv_epidemic
         };
 
     protected:
@@ -122,7 +121,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
         int myId;
 
         cMessage* sendBeaconEvt;
-        cMessage* updatePosVeh;
 
         WaveAppToMac1609_4Interface* myMac;
 

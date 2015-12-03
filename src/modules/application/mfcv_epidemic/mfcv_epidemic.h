@@ -38,6 +38,11 @@ class mfcv_epidemic : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+
+        enum WaveApplMessageKinds {
+            SEND_updatePosVeh
+        };
+
     protected:
         TraCIMobility* traci;
         AnnotationManager* annotations;
@@ -72,6 +77,7 @@ class mfcv_epidemic : public BaseWaveApplLayer {
         std::ofstream myfile;
         //simtime_t timeGenerateMessage;
         Coord vehPositionBack;
+        cMessage* updatePosVeh;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);

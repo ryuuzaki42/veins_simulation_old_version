@@ -91,7 +91,9 @@ void mfcv_epidemic::initialize(int stage) {
 
         cout << "target after generateMessage(): " << target << endl << endl;
 
-        if (source.compare(0,3,"car") == 0) {
+        if (source.compare("car[0]") == 0) {
+            //create a folder results
+            system("mkdir results");
             //Open a new file for the current simulation
             myfile.open ("results/onBeacon_veh.txt");
             myfile.close();
@@ -112,6 +114,11 @@ void mfcv_epidemic::initialize(int stage) {
         vehPositionBack = traci->getCurrentPosition();
         cout << "initial positionBack :" << vehPositionBack << endl;
 
+        updatePosVeh = new cMessage("UpdatePos evt", SEND_updatePosVeh);
+        sendUpdatePos =  par("sendUpdatePos").boolValue();
+        if (sendUpdatePos){
+           scheduleAt(simTime()+ par("timeUpdatePosition").doubleValue(), updatePosVeh);
+        }
     }
 }
 
