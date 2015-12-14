@@ -62,11 +62,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
     public:
         ~BaseWaveApplLayer();
         virtual void initialize_default_veins_TraCI(int stage);
-        virtual void initialize_mfcv(int stage);
         virtual void initialize_minicurso_UFPI_TraCI(int stage);
-        virtual void initialize_osdp(int stage);
-        virtual void initialize_service_discovery(int stage);
-        virtual void initialize_test1(int stage);
         virtual void initialize_epidemic(int stage);
         virtual void initialize_mfcv_epidemic(int stage);
         virtual void finish();

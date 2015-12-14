@@ -28,7 +28,7 @@ const simsignalwrap_t mfcv::parkingStateChangedSignal = simsignalwrap_t(TRACI_SI
 Define_Module(mfcv);
 
 void mfcv::initialize(int stage) {
-    BaseWaveApplLayer::initialize_mfcv(stage);
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     if (stage == 0) {
         traci = TraCIMobilityAccess().get(getParentModule());
         annotations = AnnotationManagerAccess().getIfExists();

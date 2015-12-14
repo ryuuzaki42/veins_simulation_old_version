@@ -14,7 +14,7 @@ using Veins::AnnotationManagerAccess;
 Define_Module(service_discovery);
 
 void service_discovery::initialize(int stage) {
-    BaseWaveApplLayer::initialize_service_discovery(stage);
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     //Define t for contact-time in advertisements
     //t=34;
     ns=0;

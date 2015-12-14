@@ -15,7 +15,7 @@ using Veins::AnnotationManagerAccess;
 Define_Module(test1);
 
 void test1::initialize(int stage) {
-    BaseWaveApplLayer::initialize_test1(stage);
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     //Define t for contact-time in advertisements
     //t=34;
     ns=0;

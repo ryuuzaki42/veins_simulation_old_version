@@ -11,7 +11,7 @@ Define_Module(osdp_RSU);
 void osdp_RSU::initialize(int stage) {
     serv1 = par("serv1").longValue();
     serv2 = par("serv2").longValue();
-    BaseWaveApplLayer::initialize_osdp(stage);
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     std::cout << "Starting services " << serv1 << " - "<< serv2 << std::endl;
     setServices();
     sleep = 1;

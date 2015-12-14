@@ -5,6 +5,5 @@
     <!-- <copy file="mfcv_epidemic.rou.xml" /> -->
     <copy file="test_end.rou.xml" />
     <copy file="gui-settings.cfg" />
-    <copy file="gui-settings.cfg" />
     <copy file="mfcv_epidemic.sumo.cfg" type="config" />
 </launch>

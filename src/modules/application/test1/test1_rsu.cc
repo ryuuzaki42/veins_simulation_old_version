@@ -11,7 +11,7 @@ Define_Module(test1_rsu);
 void test1_rsu::initialize(int stage) {
     serv1 = par("serv1").longValue();
     serv2 = par("serv2").longValue();
-    BaseWaveApplLayer::initialize_test1(stage);
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     std::cout << "Starting services " << serv1 << " - "<< serv2 << std::endl;
     setServices();
      if (stage == 0) {

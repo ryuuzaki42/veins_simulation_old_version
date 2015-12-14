@@ -11,7 +11,7 @@ Define_Module(service_discovery_RSU);
 void service_discovery_RSU::initialize(int stage) {
     serv1 = par("serv1").longValue();
     serv2 = par("serv2").longValue();
-    BaseWaveApplLayer::initialize_service_discovery(stage);
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     std::cout << "Starting services " << serv1 << " - "<< serv2 << std::endl;
     setServices();
      if (stage == 0) {

@@ -12,7 +12,7 @@ using Veins::AnnotationManagerAccess;
 Define_Module(osdp);
 
 void osdp::initialize(int stage) {
-    BaseWaveApplLayer::initialize_osdp(stage);
+    BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     query = par("query").longValue();
     timeService = par("timeService").doubleValue();
     timeQuery = par("timeQuery").doubleValue();
