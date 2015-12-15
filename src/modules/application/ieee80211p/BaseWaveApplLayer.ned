@@ -70,6 +70,7 @@ simple BaseWaveApplLayer like IBaseApplLayer
 
         int timeUpdatePosition @unit("s") = default(1s);
         bool sendUpdatePos = default(false); //tell the applayer to periodically send UpdatePosition
+        int dataInterval @unit("s") = default(1s);
 
     gates:
         input lowerLayerIn; // from mac layer

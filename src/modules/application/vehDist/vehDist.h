@@ -24,16 +24,22 @@
 #include "BaseWaveApplLayer.h"
 #include "modules/mobility/traci/TraCIMobility.h"
 
+#include <map>
+#include <unordered_map>
+using namespace std;
+
 using Veins::TraCIMobility;
 using Veins::AnnotationManager;
 
-/**
- * Small IVC Demo using 11p
- */
 class vehDist : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+
+        enum WaveApplMessageKinds {
+            SEND_updatePosVeh, SEND_DATA_EVT
+        };
+
     protected:
         TraCIMobility* traci;
         AnnotationManager* annotations;
@@ -42,6 +48,15 @@ class vehDist : public BaseWaveApplLayer {
         bool isParking;
         bool sendWhileParking;
         static const simsignalwrap_t parkingStateChangedSignal;
+
+        map<string, WaveShortMessage> contextLocalMessageBuffer;
+        int countMessage=0;
+        static unsigned short int messageId;
+        cMessage* sendDataEvt;
+        Coord vehPositionBack;
+        cMessage* updatePosVeh;
+        unordered_map<string, WaveShortMessage> beaconNeighbors;
+
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
@@ -49,6 +64,17 @@ class vehDist : public BaseWaveApplLayer {
         virtual void handlePositionUpdate(cObject* obj);
         virtual void handleParkingUpdate(cObject* obj);
         virtual void sendWSM(WaveShortMessage* wsm);
+
+        void sendDataTest();
+        void generateTarget();
+        WaveShortMessage* generateMessage();
+        void handleSelfMsg(cMessage* msg);
+        void printContextLocalMessageBuffer();
+        void printBeaconNeighbors();
+        WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
+        void updatePosition();
+        unsigned int getHeading();
 };
 
+unsigned short int vehDist::messageId = 0;
 #endif

@@ -1,0 +1,9 @@
+# Get angle
+
+# insert (and update) beacon from neighbors
+
+# position on the past (time sspecific)
+
+Now?
+Set category
+Use only neighbors to send
