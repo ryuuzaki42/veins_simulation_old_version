@@ -74,6 +74,7 @@ class vehDist : public BaseWaveApplLayer {
         WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
         void updatePosition();
         unsigned int getHeading();
+        unsigned int MACToInteger(WaveAppToMac1609_4Interface* myMac);
 };
 
 unsigned short int vehDist::messageId = 0;

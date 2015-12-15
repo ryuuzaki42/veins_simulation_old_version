@@ -42,7 +42,7 @@ How can I adjust the transmission range of RSU to the Circle?
 
   asked Jun 26 at 17:40
    Kifayat Ullah
-   
+
 ##
 Adding a display string tag of r is just adding a circle to the graphical output; it does not influence the simulation.
 If you define the "transmission range" as the point where the probability of reception is zero, you can calculate this point based on the transmission power at the antenna and the sensitivity of the radio (both set in omnetpp.ini), as well as the used path loss and fading models (set in config.xml). If you change these parameters and models, you are changing this "transmission range".

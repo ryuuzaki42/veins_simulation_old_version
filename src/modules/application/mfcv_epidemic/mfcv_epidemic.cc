@@ -877,7 +877,7 @@ WaveShortMessage* mfcv_epidemic::prepareWSM_mfcv_epidemic(std::string name, int 
          wsm->setCategory(2);
     }
     else if (traci->getId() < 10) {
-             wsm->setCategory(4);
+             wsm->setCategory(3);
     }
     else {
         wsm->setCategory(4);
