@@ -110,15 +110,17 @@ void mfcv_epidemic::initialize(int stage) {
         cout << "veh BaseWaveApplLayer::vehCount " << BaseWaveApplLayer::vehCount << endl;
         cout << "veh BaseWaveApplLayer::rsuCount " << BaseWaveApplLayer::rsuCount << endl;
         cout << endl;
+
         //timeGenerateMessage = 0;
+
         vehPositionBack = traci->getCurrentPosition();
         cout << "initial positionBack :" << vehPositionBack << endl;
-
         updatePosVeh = new cMessage("UpdatePos evt", SEND_updatePosVeh);
         sendUpdatePos =  par("sendUpdatePos").boolValue();
         if (sendUpdatePos){
            scheduleAt(simTime()+ par("timeUpdatePosition").doubleValue(), updatePosVeh);
         }
+
     }
 }
 

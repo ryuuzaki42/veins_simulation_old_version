@@ -25,4 +25,12 @@ simple vehDist extends BaseWaveApplLayer {
     @class(vehDist);
     @display("i=block/app2");
     bool sendWhileParking  = default(false); //send messages when the car is parked
+
+//    int timeTrySendMessage @unit("s") = default(1s);
+    int timeDeleteMessage @unit("s") = default(1s);
+    bool deleteMessage = default(false); //tell the ap
+    int messageBufferSize = default(10);
+
+    int beaconBufferSize = default(10);
+    int timeValidBeacon  @unit("s") = default(10s);
 }

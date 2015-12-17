@@ -31,6 +31,22 @@ void vehDist_rsu::initialize(int stage) {
         ASSERT(mobi);
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
+
+//        if (source.compare("RSU[0]") == 0) {
+            //create a folder results
+            system("mkdir results");
+            //Open a new file for the current simulation
+            myfile.open ("results/RSUmessages.txt");
+            myfile.close();
+
+            myfile.open ("results/RSUBroadcastmessages.txt");
+            myfile.close();
+//            //Open a new file for the current simulation
+//            myfile.open ("results/LocalMessageBuffer_veh.txt");
+//            myfile.close();
+//        }
+           //cout << " " << findHost()->getFullName() << "entreing " << endl;
+
     }
 }
 
@@ -38,12 +54,22 @@ void vehDist_rsu::onBeacon(WaveShortMessage* wsm) {
 
 }
 
-void vehDist_rsu::onData(WaveShortMessage* wsm) {
-    findHost()->getDisplayString().updateWith("r=16,green");
+void vehDist_rsu::onData(WaveShortMessage* wsm){
 
-    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
+    if (strcmp(wsm->getTarget(), findHost()->getFullName()) == 0){
+        findHost()->bubble("Received data");
+        wsm->setTimestamp(simTime());
+        recordOnFileMessages(wsm);
+    }
+    else if (wsm->getRecipientAddress() == 268435455){
+           recordOnFileMessagesBroadcast(wsm);
+       }
 
-    if (!sentMessage) sendMessage(wsm->getWsmData());
+//    findHost()->getDisplayString().updateWith("r=16,green");
+//
+//    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
+//
+//    if (!sentMessage) sendMessage(wsm->getWsmData());
 }
 
 void vehDist_rsu::sendMessage(std::string blockedRoadId) {
@@ -55,4 +81,70 @@ void vehDist_rsu::sendMessage(std::string blockedRoadId) {
 }
 void vehDist_rsu::sendWSM(WaveShortMessage* wsm) {
     sendDelayedDown(wsm,individualOffset);
+}
+
+void vehDist_rsu::recordOnFileMessages(WaveShortMessage* wsm){
+    if (strcmp(wsm->getName(), "data") == 0){
+
+        //Open file for just apeend
+        myfile.open ("results/RSUmessages.txt", std::ios_base::app);
+
+        //Send "strings" to be saved on the file onBeacon_veh.txt
+        myfile << "Data from " << wsm->getSenderAddress() << " at " << simTime();
+        myfile << " to " << wsm->getRecipientAddress() << endl;
+        myfile << "wsm->getName(): " << wsm->getName() << endl;
+        myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
+        myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
+        myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
+        myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
+        myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
+        myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
+        myfile << "wsm->getMessageTimestampGenerate(): " << wsm->getMessageTimestampGenerate() << endl;
+        myfile << "wsm->getSenderAddress(): " << wsm->getSenderAddress() << endl;
+        myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
+        myfile << "wsm->getRecipientAddress(): " << wsm->getRecipientAddress() << endl;
+        myfile << "wsm->getSource(): " << wsm->getSource() << endl;
+        myfile << "wsm->getTarget(): " << wsm->getTarget() << "findHost()->getFullName()" << findHost()->getFullName() << endl;
+        myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
+        myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
+        myfile << "wsm->getSummaryVector(): " << wsm->getSummaryVector() << endl;
+        myfile << "wsm->getRequestMessages(): " << wsm->getRequestMessages() << endl;
+        myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
+        myfile << "Time to generate and recived: " << (wsm->getTimestamp() - wsm->getMessageTimestampGenerate()) << endl;
+        myfile << endl << endl;
+        myfile.close();
+    }
+}
+
+void vehDist_rsu::recordOnFileMessagesBroadcast(WaveShortMessage* wsm){
+    if (strcmp(wsm->getName(), "data") == 0){
+
+        //Open file for just apeend
+        myfile.open ("results/RSUBroadcastmessages.txt", std::ios_base::app);
+
+        //Send "strings" to be saved on the file onBeacon_veh.txt
+        myfile << "Data from " << wsm->getSenderAddress() << " at " << simTime();
+        myfile << " to " << wsm->getRecipientAddress() << endl;
+        myfile << "wsm->getName(): " << wsm->getName() << endl;
+        myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
+        myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
+        myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
+        myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
+        myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
+        myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
+        myfile << "wsm->getMessageTimestampGenerate(): " << wsm->getMessageTimestampGenerate() << endl;
+        myfile << "wsm->getSenderAddress(): " << wsm->getSenderAddress() << endl;
+        myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
+        myfile << "wsm->getRecipientAddress(): " << wsm->getRecipientAddress() << endl;
+        myfile << "wsm->getSource(): " << wsm->getSource() << endl;
+        myfile << "wsm->getTarget(): " << wsm->getTarget() << "findHost()->getFullName()" << findHost()->getFullName() << endl;
+        myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
+        myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
+        myfile << "wsm->getSummaryVector(): " << wsm->getSummaryVector() << endl;
+        myfile << "wsm->getRequestMessages(): " << wsm->getRequestMessages() << endl;
+        myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
+        myfile << "Time to generate and recived: " << (wsm->getTimestamp() - wsm->getMessageTimestampGenerate()) << endl;
+        myfile << endl << endl;
+        myfile.close();
+    }
 }

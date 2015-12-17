@@ -43,6 +43,7 @@
  *     // Data of Wave Short Message
  *     string wsmData = "Some Data";
  * 
+ *     // not sure, but I think is like a port number or identification of an application
  *     int serial = 0;
  *     Coord senderPos;
  *     simtime_t timestamp = 0;
@@ -96,6 +97,7 @@
  *     // targetPost
  *     Coord TargetPos;
  *     Coord senderPosBack;
+ *     simtime_t messageTimestampGenerate = 0;
  * 
  * }
  * </pre>
@@ -132,6 +134,7 @@ class WaveShortMessage : public ::cPacket
     unsigned short heading_var;
     Coord TargetPos_var;
     Coord senderPosBack_var;
+    simtime_t messageTimestampGenerate_var;
 
   private:
     void copy(const WaveShortMessage& other);
@@ -211,6 +214,8 @@ class WaveShortMessage : public ::cPacket
     virtual Coord& getSenderPosBack();
     virtual const Coord& getSenderPosBack() const {return const_cast<WaveShortMessage*>(this)->getSenderPosBack();}
     virtual void setSenderPosBack(const Coord& senderPosBack);
+    virtual simtime_t getMessageTimestampGenerate() const;
+    virtual void setMessageTimestampGenerate(simtime_t messageTimestampGenerate);
 };
 
 inline void doPacking(cCommBuffer *b, WaveShortMessage& obj) {obj.parsimPack(b);}

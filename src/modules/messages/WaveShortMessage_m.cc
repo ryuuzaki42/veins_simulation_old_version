@@ -83,6 +83,7 @@ WaveShortMessage::WaveShortMessage(const char *name, int kind) : ::cPacket(name,
     this->category_var = 0;
     this->vehicleId_var = 0;
     this->heading_var = 0;
+    this->messageTimestampGenerate_var = 0;
 }
 
 WaveShortMessage::WaveShortMessage(const WaveShortMessage& other) : ::cPacket(other)
@@ -133,6 +134,7 @@ void WaveShortMessage::copy(const WaveShortMessage& other)
     this->heading_var = other.heading_var;
     this->TargetPos_var = other.TargetPos_var;
     this->senderPosBack_var = other.senderPosBack_var;
+    this->messageTimestampGenerate_var = other.messageTimestampGenerate_var;
 }
 
 void WaveShortMessage::parsimPack(cCommBuffer *b)
@@ -167,6 +169,7 @@ void WaveShortMessage::parsimPack(cCommBuffer *b)
     doPacking(b,this->heading_var);
     doPacking(b,this->TargetPos_var);
     doPacking(b,this->senderPosBack_var);
+    doPacking(b,this->messageTimestampGenerate_var);
 }
 
 void WaveShortMessage::parsimUnpack(cCommBuffer *b)
@@ -201,6 +204,7 @@ void WaveShortMessage::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->heading_var);
     doUnpacking(b,this->TargetPos_var);
     doUnpacking(b,this->senderPosBack_var);
+    doUnpacking(b,this->messageTimestampGenerate_var);
 }
 
 int WaveShortMessage::getWsmVersion() const
@@ -493,6 +497,16 @@ void WaveShortMessage::setSenderPosBack(const Coord& senderPosBack)
     this->senderPosBack_var = senderPosBack;
 }
 
+simtime_t WaveShortMessage::getMessageTimestampGenerate() const
+{
+    return messageTimestampGenerate_var;
+}
+
+void WaveShortMessage::setMessageTimestampGenerate(simtime_t messageTimestampGenerate)
+{
+    this->messageTimestampGenerate_var = messageTimestampGenerate;
+}
+
 class WaveShortMessageDescriptor : public cClassDescriptor
 {
   public:
@@ -540,7 +554,7 @@ const char *WaveShortMessageDescriptor::getProperty(const char *propertyname) co
 int WaveShortMessageDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 29+basedesc->getFieldCount(object) : 29;
+    return basedesc ? 30+basedesc->getFieldCount(object) : 30;
 }
 
 unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -581,8 +595,9 @@ unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int fie
         FD_ISEDITABLE,
         FD_ISCOMPOUND,
         FD_ISCOMPOUND,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<29) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<30) ? fieldTypeFlags[field] : 0;
 }
 
 const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) const
@@ -623,8 +638,9 @@ const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) co
         "heading",
         "TargetPos",
         "senderPosBack",
+        "messageTimestampGenerate",
     };
-    return (field>=0 && field<29) ? fieldNames[field] : NULL;
+    return (field>=0 && field<30) ? fieldNames[field] : NULL;
 }
 
 int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) const
@@ -660,6 +676,7 @@ int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) c
     if (fieldName[0]=='h' && strcmp(fieldName, "heading")==0) return base+26;
     if (fieldName[0]=='T' && strcmp(fieldName, "TargetPos")==0) return base+27;
     if (fieldName[0]=='s' && strcmp(fieldName, "senderPosBack")==0) return base+28;
+    if (fieldName[0]=='m' && strcmp(fieldName, "messageTimestampGenerate")==0) return base+29;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -701,8 +718,9 @@ const char *WaveShortMessageDescriptor::getFieldTypeString(void *object, int fie
         "unsigned short",
         "Coord",
         "Coord",
+        "simtime_t",
     };
-    return (field>=0 && field<29) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<30) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *WaveShortMessageDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -771,6 +789,7 @@ std::string WaveShortMessageDescriptor::getFieldAsString(void *object, int field
         case 26: return ulong2string(pp->getHeading());
         case 27: {std::stringstream out; out << pp->getTargetPos(); return out.str();}
         case 28: {std::stringstream out; out << pp->getSenderPosBack(); return out.str();}
+        case 29: return double2string(pp->getMessageTimestampGenerate());
         default: return "";
     }
 }
@@ -811,6 +830,7 @@ bool WaveShortMessageDescriptor::setFieldAsString(void *object, int field, int i
         case 24: pp->setCategory(string2ulong(value)); return true;
         case 25: pp->setVehicleId(string2long(value)); return true;
         case 26: pp->setHeading(string2ulong(value)); return true;
+        case 29: pp->setMessageTimestampGenerate(string2double(value)); return true;
         default: return false;
     }
 }

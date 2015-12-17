@@ -49,13 +49,18 @@ class vehDist : public BaseWaveApplLayer {
         bool sendWhileParking;
         static const simsignalwrap_t parkingStateChangedSignal;
 
-        map<string, WaveShortMessage> contextLocalMessageBuffer;
-        int countMessage=0;
+        unordered_map<string, WaveShortMessage> messagesBuffer;
         static unsigned short int messageId;
+        int countMessage = 0;
+        int countBeacon = 0;
         cMessage* sendDataEvt;
         Coord vehPositionBack;
         cMessage* updatePosVeh;
         unordered_map<string, WaveShortMessage> beaconNeighbors;
+        unordered_map<int, string> ordemMessages;
+        unordered_map<int, string> ordemBeacons;
+
+        bool sendDeleteMessage;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -65,16 +70,28 @@ class vehDist : public BaseWaveApplLayer {
         virtual void handleParkingUpdate(cObject* obj);
         virtual void sendWSM(WaveShortMessage* wsm);
 
-        void sendDataTest();
+        void sendDataMessage();
         void generateTarget();
         WaveShortMessage* generateMessage();
         void handleSelfMsg(cMessage* msg);
-        void printContextLocalMessageBuffer();
+        void printMessagesBuffer();
         void printBeaconNeighbors();
         WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
+        WaveShortMessage* updateMessageWSM(WaveShortMessage* wsm, unsigned int rcvId);
         void updatePosition();
-        unsigned int getHeading();
+        unsigned int getHeading8();
+        unsigned int getHeading4();
         unsigned int MACToInteger(WaveAppToMac1609_4Interface* myMac);
+//        void deleteMessage();
+        void deleteMessage();
+        void printOrdemMessages();
+        void printOrdemBeacons();
+        bool sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
+        void recordOnFileMessages(WaveShortMessage* wsm);
+        void recordOnFileMessagesBroadcast(WaveShortMessage* wsm);
+        void removeMessageOutSizeBuffer();
+        void removeBeaconOutSizeBuffer();
+
 };
 
 unsigned short int vehDist::messageId = 0;

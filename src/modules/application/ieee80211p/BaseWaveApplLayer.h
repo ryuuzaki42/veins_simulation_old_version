@@ -31,6 +31,7 @@
 // Add for Epidemic
 #include <stdio.h>
 
+#include <fstream>
 using namespace std;
 
 //Define a constant to support send beacons or send messages in a broadcast fashion
@@ -102,6 +103,9 @@ class BaseWaveApplLayer : public BaseApplLayer {
         // test Jonh
         static unsigned short int vehCount;
         static unsigned short int rsuCount;
+
+        // record in file
+        std::ofstream myfile;
 
     protected:
         int beaconLengthBits;

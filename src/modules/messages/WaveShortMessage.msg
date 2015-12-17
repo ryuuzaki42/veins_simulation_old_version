@@ -43,7 +43,8 @@ packet WaveShortMessage {
     int wsmLength;
     // Data of Wave Short Message
     string wsmData = "Some Data";
-    
+
+    // not sure, but I think is like a port number or identification of an application
     int serial = 0;
     Coord senderPos;
     simtime_t timestamp = 0;
@@ -97,5 +98,6 @@ packet WaveShortMessage {
     // targetPost
     Coord TargetPos;
     Coord senderPosBack;
+    simtime_t messageTimestampGenerate = 0;
 
 }

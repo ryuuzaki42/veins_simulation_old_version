@@ -21,6 +21,7 @@
 #ifndef vehDist_rsu_H
 #define vehDist_rsu_H
 
+
 #include "BaseWaveApplLayer.h"
 #include "modules/world/annotations/AnnotationManager.h"
 
@@ -33,11 +34,15 @@ class vehDist_rsu : public BaseWaveApplLayer {
         AnnotationManager* annotations;
         BaseMobility* mobi;
         bool sentMessage;
+
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
         void sendMessage(std::string blockedRoadId);
         virtual void sendWSM(WaveShortMessage* wsm);
+
+        void recordOnFileMessages(WaveShortMessage* wsm);
+        void recordOnFileMessagesBroadcast(WaveShortMessage* wsm);
 };
 
 #endif
