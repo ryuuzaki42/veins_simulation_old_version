@@ -57,23 +57,22 @@
 </span><span style="color: #800000; font-weight: bold; ">namespace</span><span style="color: #000000; "> </span><span style="color: #000000; ">Veins</span><span style="color: #000000; ">;
 </span><span style="color: #800000; font-weight: bold; ">packet</span><span style="color: #000000; "> </span><span style="color: #000000; ">AirFrame</span><span style="color: #000000; ">
 {
-    </span><span style="color: #000000; ">Signal</span><span style="color: #000000; "> </span><span style="color: #000000; ">signal</span><span style="color: #000000; ">;		</span><span style="color: #808080; font-style: italic; ">// Contains the physical data of this AirFrame
+    </span><span style="color: #000000; ">Signal</span><span style="color: #000000; "> </span><span style="color: #000000; ">signal</span><span style="color: #000000; ">; </span><span style="color: #808080; font-style: italic; ">// Contains the physical data of this AirFrame
 </span><span style="color: #000000; ">
-    </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">duration</span><span style="color: #000000; ">;	</span><span style="color: #808080; font-style: italic; ">// time the AirFrames takes to be transmited (without propagation delay)
+    </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">duration</span><span style="color: #000000; ">; </span><span style="color: #808080; font-style: italic; ">// time the AirFrames takes to be transmited (without propagation delay)
 </span><span style="color: #000000; ">
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">state</span><span style="color: #000000; "> = </span><span style="color: #008000; ">1</span><span style="color: #000000; ">; 		</span><span style="color: #808080; font-style: italic; ">// state of the AirFrames, used by the physical layer
-</span><span style="color: #000000; ">        					</span><span style="color: #808080; font-style: italic; ">// as state machine for delay and transmission duration
-</span><span style="color: #000000; ">        					</span><span style="color: #808080; font-style: italic; ">// simulation
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">state</span><span style="color: #000000; "> = </span><span style="color: #008000; ">1</span><span style="color: #000000; ">; </span><span style="color: #808080; font-style: italic; ">// state of the AirFrames, used by the physical layer
+</span><span style="color: #000000; ">                   </span><span style="color: #808080; font-style: italic; ">// as state machine for delay and transmission duration simulation
 </span><span style="color: #000000; ">
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">type</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;		</span><span style="color: #808080; font-style: italic; ">// If type isn't null then this is a control-AirFrame
-</span><span style="color: #000000; ">        					</span><span style="color: #808080; font-style: italic; ">// and type specifies the control type.
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">type</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">; </span><span style="color: #808080; font-style: italic; ">// If type isn't null then this is a control-AirFrame
+</span><span style="color: #000000; ">                  </span><span style="color: #808080; font-style: italic; ">// and type specifies the control type.
 </span><span style="color: #000000; ">
-    </span><span style="color: #000080; font-weight: bold; ">long</span><span style="color: #000000; "> </span><span style="color: #000000; ">id</span><span style="color: #000000; ">;			</span><span style="color: #808080; font-style: italic; ">// Unique ID of the AirFrame used as identifier for
-</span><span style="color: #000000; ">							</span><span style="color: #808080; font-style: italic; ">// related control-AirFrames
-</span><span style="color: #000000; ">							
-	</span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">protocolId</span><span style="color: #000000; ">;		</span><span style="color: #808080; font-style: italic; ">//the id of the phy protocol of this airframe
-</span><span style="color: #000000; ">	
-	</span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">channel</span><span style="color: #000000; ">;    	</span><span style="color: #808080; font-style: italic; ">//the channel of the radio used for this transmission
+    </span><span style="color: #000080; font-weight: bold; ">long</span><span style="color: #000000; "> </span><span style="color: #000000; ">id</span><span style="color: #000000; ">; </span><span style="color: #808080; font-style: italic; ">// Unique ID of the AirFrame used as identifier for
+</span><span style="color: #000000; ">             </span><span style="color: #808080; font-style: italic; ">// related control-AirFrames
+</span><span style="color: #000000; ">
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">protocolId</span><span style="color: #000000; ">; </span><span style="color: #808080; font-style: italic; ">//the id of the phy protocol of this airframe
+</span><span style="color: #000000; ">
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">channel</span><span style="color: #000000; ">; </span><span style="color: #808080; font-style: italic; ">//the channel of the radio used for this transmission
 </span><span style="color: #000000; ">}
 </span></pre>
    <hr><p class="footer"><a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top"><img src="by-sa.png"></a> This documentation is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top">Creative Commons license</a></p>

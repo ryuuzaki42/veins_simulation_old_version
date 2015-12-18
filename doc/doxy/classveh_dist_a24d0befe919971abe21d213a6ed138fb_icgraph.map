@@ -1,0 +1,4 @@
+<map id="vehDist::updateMessageWSM" name="vehDist::updateMessageWSM">
+<area shape="rect" id="node2" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="253,5,437,32"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="485,5,647,32"/>
+</map>

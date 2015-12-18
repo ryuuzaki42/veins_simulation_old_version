@@ -41,12 +41,15 @@ var hierarchy =
         [ "Veins::BatteryAccess", "class_veins_1_1_battery_access.html", [
           [ "BaseLayer", "class_base_layer.html", [
             [ "BaseApplLayer", "class_base_appl_layer.html", [
+              [ "AdvancedFlooding", "class_advanced_flooding.html", null ],
               [ "BaseWaveApplLayer", "class_base_wave_appl_layer.html", [
                 [ "default_veins_TraCI", "classdefault__veins___tra_c_i.html", null ],
                 [ "default_veins_TraCI_RSU", "classdefault__veins___tra_c_i___r_s_u.html", null ],
                 [ "epidemic", "classepidemic.html", null ],
                 [ "epidemic_rsu", "classepidemic__rsu.html", null ],
                 [ "mfcv", "classmfcv.html", null ],
+                [ "mfcv_epidemic", "classmfcv__epidemic.html", null ],
+                [ "mfcv_epidemic_rsu", "classmfcv__epidemic__rsu.html", null ],
                 [ "mfcv_rsu", "classmfcv__rsu.html", null ],
                 [ "minicurso_UFPI_TraCI", "classminicurso___u_f_p_i___tra_c_i.html", null ],
                 [ "minicurso_UFPI_TraCI_RSU", "classminicurso___u_f_p_i___tra_c_i___r_s_u.html", null ],
@@ -55,10 +58,14 @@ var hierarchy =
                 [ "service_discovery", "classservice__discovery.html", null ],
                 [ "service_discovery_RSU", "classservice__discovery___r_s_u.html", null ],
                 [ "test1", "classtest1.html", null ],
-                [ "test1_rsu", "classtest1__rsu.html", null ]
+                [ "test1_rsu", "classtest1__rsu.html", null ],
+                [ "vehDist", "classveh_dist.html", null ],
+                [ "vehDist_rsu", "classveh_dist__rsu.html", null ]
               ] ],
+              [ "Flooding", "class_flooding.html", null ],
               [ "Veins::default_veins_TraCI_TestApp", "class_veins_1_1default__veins___tra_c_i___test_app.html", null ],
               [ "Veins::epidemic_app", "class_veins_1_1epidemic__app.html", null ],
+              [ "Veins::mfcv_epidemic_app", "class_veins_1_1mfcv__epidemic__app.html", null ],
               [ "Veins::minicurso_UFPI_TraCI_TestApp", "class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html", null ]
             ] ],
             [ "BaseMacLayer", "class_base_mac_layer.html", [
@@ -148,7 +155,9 @@ var hierarchy =
       [ "Veins::AirFrame", "class_veins_1_1_air_frame.html", [
         [ "AirFrame11p", "class_air_frame11p.html", null ]
       ] ],
-      [ "WaveShortMessage", "class_wave_short_message.html", null ]
+      [ "WaveShortMessage", "class_wave_short_message.html", [
+        [ "FloodingMessage", "class_flooding_message.html", null ]
+      ] ]
     ] ],
     [ "cSimpleModule", null, [
       [ "BaseConnectionManager", "class_base_connection_manager.html", [

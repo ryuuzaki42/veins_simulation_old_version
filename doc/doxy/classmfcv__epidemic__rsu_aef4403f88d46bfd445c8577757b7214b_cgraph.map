@@ -1,0 +1,29 @@
+<map id="mfcv_epidemic_rsu::sendMessagesRequested" name="mfcv_epidemic_rsu::sendMessagesRequested">
+<area shape="rect" id="node2" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="540,757,691,783"/>
+<area shape="rect" id="node4" href="$class_base_wave_appl_layer.html#a3838ef2e8dba7ab8767cf3c3d3d9883b" title="BaseWaveApplLayer::\lMACToInteger" alt="" coords="539,640,691,681"/>
+<area shape="rect" id="node5" href="$classmfcv__epidemic__rsu.html#a1712bae9a4cca9f38b1e75d8ce999fbc" title="mfcv_epidemic_rsu::\lprepareWSM_mfcv_epidemic" alt="" coords="243,385,436,427"/>
+<area shape="rect" id="node17" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="500,706,731,733"/>
+<area shape="rect" id="node18" href="$classmfcv__epidemic__rsu.html#a3faac558edcbd7fed30fe62514bd5f45" title="mfcv_epidemic_rsu::\lprintMfcv_EpidemicLocalMessage\lBuffer" alt="" coords="229,742,450,798"/>
+<area shape="rect" id="node19" href="$class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0" title="WaveShortMessage::getWsmData" alt="" coords="503,809,728,835"/>
+<area shape="rect" id="node20" href="$class_wave_short_message.html#a9fee46e80789894357a0da88fc0f8458" title="WaveShortMessage::getSource" alt="" coords="512,861,719,887"/>
+<area shape="rect" id="node21" href="$class_wave_short_message.html#a2bdb99e260528ad12afd44b16f8c1e10" title="WaveShortMessage::getTarget" alt="" coords="514,914,717,941"/>
+<area shape="rect" id="node22" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="520,967,711,1008"/>
+<area shape="rect" id="node23" href="$class_wave_short_message.html#a138e7425f6286d388541280dceab0352" title="WaveShortMessage::setWsmData" alt="" coords="227,1025,452,1051"/>
+<area shape="rect" id="node24" href="$class_wave_short_message.html#a5ce6a4923a9e3a9908cf0ab236597445" title="WaveShortMessage::setSummary\lVector" alt="" coords="228,1076,451,1117"/>
+<area shape="rect" id="node25" href="$class_wave_short_message.html#a8d42f5967b9f16bae543f3b6bcbd1e08" title="WaveShortMessage::setRequest\lMessages" alt="" coords="232,1141,447,1183"/>
+<area shape="rect" id="node26" href="$classmfcv__epidemic__rsu.html#aae1efadb0ac218eeee99623900a2849b" title="mfcv_epidemic_rsu::\lsendWSM" alt="" coords="268,1207,411,1248"/>
+<area shape="rect" id="node3" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="790,757,937,783"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="508,5,723,47"/>
+<area shape="rect" id="node7" href="$class_wave_short_message.html#adaf66b336060aff74a296c29f41509d6" title="WaveShortMessage::setPsid" alt="" coords="519,71,711,98"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="512,122,719,149"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="517,173,714,215"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="500,239,731,266"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#a088963cd05b8b2d4ba9da752e91c06f8" title="WaveShortMessage::setSender\lAddress" alt="" coords="512,291,719,332"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#ad7cbabdfdaf2620d1ad8f7ea6eea9c89" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="505,356,726,397"/>
+<area shape="rect" id="node13" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="500,422,731,449"/>
+<area shape="rect" id="node14" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="516,473,715,499"/>
+<area shape="rect" id="node15" href="$class_wave_short_message.html#a2b4f4892ec4142abbcff25c335271050" title="WaveShortMessage::setHeading" alt="" coords="508,523,723,550"/>
+<area shape="rect" id="node16" href="$classmfcv__epidemic__rsu.html#aebab2aa86eb8970e8898fa9122ba9d03" title="mfcv_epidemic_rsu::\lgetAngleDegrees" alt="" coords="544,575,687,616"/>
+<area shape="rect" id="node27" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="501,1214,729,1241"/>
+<area shape="rect" id="node28" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="779,1214,948,1241"/>
+</map>

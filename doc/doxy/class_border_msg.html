@@ -76,7 +76,7 @@ $(document).ready(function(){initNavTree('class_border_msg.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Class generated from <code>base/messages/BorderMsg.msg:34</code> by nedtool.  
+<p>Class generated from <code>base/messages/BorderMsg.msg:31</code> by nedtool.  
  <a href="class_border_msg.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_border_msg__m_8h_source.html">BorderMsg_m.h</a>&gt;</code></p>
@@ -84,6 +84,8 @@ $(document).ready(function(){initNavTree('class_border_msg.html','');});
 Inheritance diagram for BorderMsg:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_border_msg__inherit__graph.png" border="0" usemap="#_border_msg_inherit__map" alt="Inheritance graph"/></div>
+<map name="_border_msg_inherit__map" id="_border_msg_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for BorderMsg:</div>
@@ -146,14 +148,14 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a6586c285a9c6d38b50ccd815839a6ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class generated from <code>base/messages/BorderMsg.msg:34</code> by nedtool. </p>
+<div class="textblock"><p>Class generated from <code>base/messages/BorderMsg.msg:31</code> by nedtool. </p>
 <pre>
 // used as a self packet containing the position, direction and BorderPolicy
 //
 // </p>
 <dl class="section author"><dt>Author</dt><dd> Daniel Willkomm
 //
-packet <a class="el" href="class_border_msg.html" title="Class generated from base/messages/BorderMsg.msg:34 by nedtool. ">BorderMsg</a>
+packet <a class="el" href="class_border_msg.html" title="Class generated from base/messages/BorderMsg.msg:31 by nedtool. ">BorderMsg</a>
 {
     int policy;    // border policy to use for the host
     <a class="el" href="class_coord.html" title="Class for storing 3D coordinates. ">Coord</a> startPos; // new start position of the host
@@ -361,12 +363,14 @@ Here is the caller graph for this function:</div>
 <p>Referenced by <a class="el" href="_border_msg__m_8h_source.html#l00067">getDirection()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{<span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span><a class="code" href="class_border_msg.html">BorderMsg</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;<a class="code" href="class_border_msg.html#a101c3dea676ad7866d882b6c985b8962">getDirection</a>();}</div>
 <div class="ttc" id="class_border_msg_html_a101c3dea676ad7866d882b6c985b8962"><div class="ttname"><a href="class_border_msg.html#a101c3dea676ad7866d882b6c985b8962">BorderMsg::getDirection</a></div><div class="ttdeci">virtual Coord &amp; getDirection()</div></div>
-<div class="ttc" id="class_border_msg_html"><div class="ttname"><a href="class_border_msg.html">BorderMsg</a></div><div class="ttdoc">Class generated from base/messages/BorderMsg.msg:34 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_border_msg__m_8h_source.html#l00037">BorderMsg_m.h:37</a></div></div>
+<div class="ttc" id="class_border_msg_html"><div class="ttname"><a href="class_border_msg.html">BorderMsg</a></div><div class="ttdoc">Class generated from base/messages/BorderMsg.msg:31 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_border_msg__m_8h_source.html#l00037">BorderMsg_m.h:37</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_cgraph.png" border="0" usemap="#class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_cgraph" alt=""/></div>
+<map name="class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_cgraph" id="class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_cgraph">
+</map>
 </div>
 </p>
 
@@ -374,6 +378,8 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_icgraph.png" border="0" usemap="#class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_icgraph" alt=""/></div>
+<map name="class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_icgraph" id="class_border_msg_af7abd3055908df44d8f2c28c8a77d17e_icgraph">
+</map>
 </div>
 </p>
 
@@ -472,13 +478,15 @@ Here is the caller graph for this function:</div>
 
 <p>Referenced by <a class="el" href="_border_msg__m_8h_source.html#l00064">getStartPos()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{<span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span><a class="code" href="class_border_msg.html">BorderMsg</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;<a class="code" href="class_border_msg.html#ad8cf7509b53714e4e0212e137d371bec">getStartPos</a>();}</div>
-<div class="ttc" id="class_border_msg_html"><div class="ttname"><a href="class_border_msg.html">BorderMsg</a></div><div class="ttdoc">Class generated from base/messages/BorderMsg.msg:34 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_border_msg__m_8h_source.html#l00037">BorderMsg_m.h:37</a></div></div>
+<div class="ttc" id="class_border_msg_html"><div class="ttname"><a href="class_border_msg.html">BorderMsg</a></div><div class="ttdoc">Class generated from base/messages/BorderMsg.msg:31 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_border_msg__m_8h_source.html#l00037">BorderMsg_m.h:37</a></div></div>
 <div class="ttc" id="class_border_msg_html_ad8cf7509b53714e4e0212e137d371bec"><div class="ttname"><a href="class_border_msg.html#ad8cf7509b53714e4e0212e137d371bec">BorderMsg::getStartPos</a></div><div class="ttdeci">virtual Coord &amp; getStartPos()</div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_border_msg_a2b86962a5fa313115446ae5739a094e3_cgraph.png" border="0" usemap="#class_border_msg_a2b86962a5fa313115446ae5739a094e3_cgraph" alt=""/></div>
+<map name="class_border_msg_a2b86962a5fa313115446ae5739a094e3_cgraph" id="class_border_msg_a2b86962a5fa313115446ae5739a094e3_cgraph">
+</map>
 </div>
 </p>
 
@@ -486,6 +494,8 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_border_msg_a2b86962a5fa313115446ae5739a094e3_icgraph.png" border="0" usemap="#class_border_msg_a2b86962a5fa313115446ae5739a094e3_icgraph" alt=""/></div>
+<map name="class_border_msg_a2b86962a5fa313115446ae5739a094e3_icgraph" id="class_border_msg_a2b86962a5fa313115446ae5739a094e3_icgraph">
+</map>
 </div>
 </p>
 
@@ -782,7 +792,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_border_msg.html">BorderMsg</a></li>
-    <li class="footer">Generated on Tue Nov 17 2015 12:48:27 for Veins Framework by
+    <li class="footer">Generated on Fri Dec 18 2015 19:40:03 for Veins Framework by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

@@ -1,0 +1,6 @@
+<map id="Veins::TraCIMobility::getAngleRad" name="Veins::TraCIMobility::getAngleRad">
+<area shape="rect" id="node2" href="$classveh_dist.html#ad5fb330662e4372d63bb5699bfe8064a" title="vehDist::getHeading4" alt="" coords="195,5,343,32"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a0b580ff0304ca871132864712fc340ab" title="vehDist::getHeading8" alt="" coords="195,56,343,83"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#ab37f9248461664ccd839bb09b7bd34cf" title="vehDist::prepareBeaconWSM" alt="" coords="391,5,585,32"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="633,5,795,32"/>
+</map>

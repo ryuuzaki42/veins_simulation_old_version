@@ -1,11 +1,11 @@
 <map id="test1_rsu::initialize" name="test1_rsu::initialize">
-<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a96b4e10d6b98e021877fbb925e1865e1" title="BaseWaveApplLayer::\linitialize_test1" alt="" coords="195,46,347,87"/>
-<area shape="rect" id="node8" href="$classtest1__rsu.html#aa74bfba1cac54621985869e9da05e9cf" title="test1_rsu::setServices" alt="" coords="195,112,348,139"/>
-<area shape="rect" id="node9" href="$class_veins_1_1_annotation_manager_access.html#a2c602699c6a6878cfaccfc2553ff839f" title="Veins::AnnotationManager\lAccess::getIfExists" alt="" coords="184,163,359,205"/>
-<area shape="rect" id="node3" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="423,56,588,83"/>
-<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="652,144,835,171"/>
-<area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="430,5,581,32"/>
-<area shape="rect" id="node4" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="674,56,813,83"/>
-<area shape="rect" id="node7" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="670,5,817,32"/>
-<area shape="rect" id="node10" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="407,169,604,196"/>
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a1e1a0f73782dc4d07b5685faeaecacc9" title="BaseWaveApplLayer::\linitialize_default_veins_TraCI" alt="" coords="184,46,377,87"/>
+<area shape="rect" id="node8" href="$classtest1__rsu.html#aa74bfba1cac54621985869e9da05e9cf" title="test1_rsu::setServices" alt="" coords="204,112,357,139"/>
+<area shape="rect" id="node9" href="$class_veins_1_1_annotation_manager_access.html#a2c602699c6a6878cfaccfc2553ff839f" title="Veins::AnnotationManager\lAccess::getIfExists" alt="" coords="193,163,368,205"/>
+<area shape="rect" id="node3" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="441,56,607,83"/>
+<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="671,144,853,171"/>
+<area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="449,5,599,32"/>
+<area shape="rect" id="node4" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="693,56,831,83"/>
+<area shape="rect" id="node7" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="689,5,835,32"/>
+<area shape="rect" id="node10" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="425,169,623,196"/>
 </map>

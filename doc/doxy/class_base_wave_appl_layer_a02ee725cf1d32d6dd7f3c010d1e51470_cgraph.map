@@ -1,7 +1,0 @@
-<map id="BaseWaveApplLayer::initialize_mfcv" name="BaseWaveApplLayer::initialize_mfcv">
-<area shape="rect" id="node2" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="214,5,379,32"/>
-<area shape="rect" id="node4" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="205,56,388,83"/>
-<area shape="rect" id="node5" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="221,107,372,133"/>
-<area shape="rect" id="node3" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="440,5,579,32"/>
-<area shape="rect" id="node6" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="436,107,583,133"/>
-</map>

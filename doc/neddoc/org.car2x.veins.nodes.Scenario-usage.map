@@ -1,6 +1,6 @@
-<area shape="rect" id="node1" href="org.car2x.veins.nodes.Scenario.html" title="Network Scenario" alt="" coords="334,5,407,31">
-<area shape="rect" id="node2" href="org.car2x.veins.base.connectionManager.ConnectionManager.html" title="Simple Module ConnectionManager" alt="" coords="5,79,144,104">
-<area shape="rect" id="node3" href="org.car2x.veins.base.modules.BaseWorldUtility.html" title="Simple Module BaseWorldUtility" alt="" coords="168,79,288,104">
-<area shape="rect" id="node4" href="org.car2x.veins.modules.obstacle.ObstacleControl.html" title="Simple Module ObstacleControl" alt="" coords="313,79,429,104">
-<area shape="rect" id="node5" href="org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd.html" title="Simple Module TraCIScenarioManagerLaunchd" alt="" coords="453,79,659,104">
-<area shape="rect" id="node6" href="org.car2x.veins.modules.world.annotations.AnnotationManager.html" title="Simple Module AnnotationManager" alt="" coords="683,79,818,104">
+<area shape="rect" id="node1" href="org.car2x.veins.nodes.Scenario.html" title="Network Scenario" alt="" coords="375,5,448,31">
+<area shape="rect" id="node2" href="org.car2x.veins.modules.world.annotations.AnnotationManager.html" title="Simple Module AnnotationManager" alt="" coords="5,79,140,104">
+<area shape="rect" id="node3" href="org.car2x.veins.base.modules.BaseWorldUtility.html" title="Simple Module BaseWorldUtility" alt="" coords="165,79,285,104">
+<area shape="rect" id="node4" href="org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd.html" title="Simple Module TraCIScenarioManagerLaunchd" alt="" coords="309,79,514,104">
+<area shape="rect" id="node5" href="org.car2x.veins.base.connectionManager.ConnectionManager.html" title="Simple Module ConnectionManager" alt="" coords="538,79,677,104">
+<area shape="rect" id="node6" href="org.car2x.veins.modules.obstacle.ObstacleControl.html" title="Simple Module ObstacleControl" alt="" coords="701,79,817,104">

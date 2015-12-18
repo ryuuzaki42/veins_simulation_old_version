@@ -1,0 +1,8 @@
+<map id="WaveShortMessage::getMessageTimestampGenerate" name="WaveShortMessage::getMessageTimestampGenerate">
+<area shape="rect" id="node2" href="$classveh_dist__rsu.html#aa8f2a1e9c05d59e036f94dbc958aa06b" title="vehDist_rsu::recordOnFile\lMessages" alt="" coords="289,5,464,47"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#a92022a34d1bd78a3917da427e50d975b" title="vehDist::recordOnFileMessages" alt="" coords="272,137,481,163"/>
+<area shape="rect" id="node6" href="$classveh_dist__rsu.html#ad84452793921568f057c873fbc46d13c" title="vehDist_rsu::recordOnFile\lMessagesBroadcast" alt="" coords="289,71,464,112"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a2bb2233d62b252501ea9f31592ba964b" title="vehDist::recordOnFileMessages\lBroadcast" alt="" coords="272,188,481,229"/>
+<area shape="rect" id="node3" href="$classveh_dist__rsu.html#ae75c14310c557d1383da4165dc92c05a" title="vehDist_rsu::onData" alt="" coords="529,46,672,73"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="542,166,659,193"/>
+</map>

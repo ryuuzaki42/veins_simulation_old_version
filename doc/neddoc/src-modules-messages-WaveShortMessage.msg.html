@@ -69,8 +69,9 @@
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">wsmLength</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// Data of Wave Short Message
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">wsmData</span><span style="color: #000000; "> = </span><span style="color: #008000; ">&quot;Some Data&quot;</span><span style="color: #000000; ">;
-    
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">serial</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
+
+    </span><span style="color: #808080; font-style: italic; ">// not sure, but I think is like a port number or identification of an application
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">serial</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
     </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderPos</span><span style="color: #000000; ">;
     </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">timestamp</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
 
@@ -109,7 +110,7 @@
 
     </span><span style="color: #808080; font-style: italic; ">// MFCV
 </span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
-</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">category</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">short</span><span style="color: #000000; "> </span><span style="color: #000000; ">category</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// vehicle ID (wsm-&gt;setVehicleId(traci-&gt;getId());)
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">vehicleId</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// Path history of the vehicle, calculated from time to time
@@ -117,7 +118,15 @@
 </span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Radius of Gyration of the vehicle, calculated from time to time.
 </span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// The vehicle send yours Radius of Gyration to another vehicles 
 </span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//double radius_of_Gyration;
-</span><span style="color: #000000; ">}</span></pre>
+</span><span style="color: #000000; ">
+    </span><span style="color: #808080; font-style: italic; ">// test Jonh
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">short</span><span style="color: #000000; "> </span><span style="color: #000000; ">heading</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">// targetPost
+</span><span style="color: #000000; ">    </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">TargetPos</span><span style="color: #000000; ">;
+    </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderPosBack</span><span style="color: #000000; ">;
+    </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">messageTimestampGenerate</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
+
+}</span></pre>
    <hr><p class="footer"><a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top"><img src="by-sa.png"></a> This documentation is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top">Creative Commons license</a></p>
    </body>
 </html>

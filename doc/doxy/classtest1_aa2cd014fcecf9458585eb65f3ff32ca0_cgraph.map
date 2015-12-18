@@ -1,5 +1,5 @@
 <map id="test1::initialize" name="test1::initialize">
-<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a96b4e10d6b98e021877fbb925e1865e1" title="BaseWaveApplLayer::\linitialize_test1" alt="" coords="189,46,341,87"/>
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a1e1a0f73782dc4d07b5685faeaecacc9" title="BaseWaveApplLayer::\linitialize_default_veins_TraCI" alt="" coords="169,46,362,87"/>
 <area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_mobility_access.html#aa2788845910c6afc0b6068d9bf71bdd3" title="Veins::TraCIMobilityAccess::get" alt="" coords="160,112,371,139"/>
 <area shape="rect" id="node3" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="427,5,593,32"/>
 <area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="419,111,601,137"/>

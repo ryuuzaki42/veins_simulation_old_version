@@ -187,12 +187,76 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    <td>0</td>
    <td>
 <p>define the maximum number of hopes that a message can be forward before reach the target</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>maximumMfcvEpidemicBufferSize</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+<p>define the maximum buffer size (in number of messages) that a node is willing to allocate for <a href="org.car2x.veins.modules.application.mfcv_epidemic.mfcv_epidemic.html">mfcv_epidemic</a> messages.</p>
 <p>@signal[numberHops](type="long");
 @statistic[hopCount](title="Hop Count"; source="numberHops"; record=vector,histogram,stats);</p>
 <p>@signal[delay](type="double");
 @statistic[delayTime](source=delay; title="End-to-End Delay"; record=stats,histogram,vector);</p>
 <p>@signal[messageReceived](type="long");
 @statistic[numMessageReceived](source=sum(messageReceived); title="Total Number or Message Received"; record=stats,histogram,vector);</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>target_x</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+<p>jonh test</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>target_y</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>timeUpdatePosition</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>1s</td>
+   <td>   </td>
+</tr>
+<tr class="inherited">
+   <td>sendUpdatePos</td>
+   <td>
+      <i>bool</i>
+   </td>
+   <td>false</td>
+   <td>
+<p>tell the applayer to periodically send UpdatePosition</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>repeatNumber</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>   </td>
+</tr>
+<tr class="inherited">
+   <td>dataInterval</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>1s</td>
+   <td>
    </td>
 </tr>
 </table>

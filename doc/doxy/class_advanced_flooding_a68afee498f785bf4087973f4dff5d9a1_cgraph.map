@@ -1,0 +1,31 @@
+<map id="AdvancedFlooding::generateMessage" name="AdvancedFlooding::generateMessage">
+<area shape="rect" id="node2" href="$class_advanced_flooding.html#adb41696856da4e8383208e363df6d037" title="AdvancedFlooding::prepareWSM" alt="" coords="240,298,453,325"/>
+<area shape="rect" id="node13" href="$class_flooding_message.html#a6906c648a639671e947905829cecae97" title="FloodingMessage::setMsgId" alt="" coords="253,589,440,615"/>
+<area shape="rect" id="node14" href="$class_veins_1_1_tra_c_i_mobility.html#acfe0eb11dba7e58ceb8a73a1fc546dc4" title="Veins::TraCIMobility\l::commandSetColor" alt="" coords="276,640,417,681"/>
+<area shape="rect" id="node29" href="$class_veins_1_1_tra_c_i_color.html#a298f34374f0c11021d65018040152c98" title="Veins::TraCIColor::\lfromTkColor" alt="" coords="279,737,414,779"/>
+<area shape="rect" id="node3" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="509,5,724,47"/>
+<area shape="rect" id="node4" href="$class_wave_short_message.html#adaf66b336060aff74a296c29f41509d6" title="WaveShortMessage::setPsid" alt="" coords="521,71,713,98"/>
+<area shape="rect" id="node5" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="513,122,720,149"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="518,173,715,215"/>
+<area shape="rect" id="node7" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="501,239,732,266"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a088963cd05b8b2d4ba9da752e91c06f8" title="WaveShortMessage::setSender\lAddress" alt="" coords="513,291,720,332"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#ad7cbabdfdaf2620d1ad8f7ea6eea9c89" title="WaveShortMessage::setRecipient\lAddress" alt="" coords="506,356,727,397"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="501,422,732,449"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="517,473,716,499"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="501,523,732,550"/>
+<area shape="rect" id="node15" href="$class_veins_1_1_tra_c_i_mobility.html#a180ae1e009f8c81f66a167e21b7b5b89" title="Veins::TraCIMobility\l::getCommandInterface" alt="" coords="537,575,696,616"/>
+<area shape="rect" id="node21" href="$class_veins_1_1_tra_c_i_command_interface.html#a9a8c9a38fe1d0e175c3ebd37361dfd77" title="Veins::TraCICommandInterface\l::setColor" alt="" coords="513,640,720,681"/>
+<area shape="rect" id="node28" href="$class_veins_1_1_tra_c_i_mobility.html#a5d901e593ed0fcb4ee5214564f81ed95" title="Veins::TraCIMobility\l::getExternalId" alt="" coords="546,705,687,747"/>
+<area shape="rect" id="node16" href="$class_veins_1_1_tra_c_i_mobility.html#a9112501e8dffb3ef22fc5c571a016ed1" title="Veins::TraCIMobility\l::getManager" alt="" coords="808,509,949,551"/>
+<area shape="rect" id="node20" href="$class_veins_1_1_tra_c_i_scenario_manager.html#af9d96f6e40de409df2f1d04b617433d5" title="Veins::TraCIScenarioManager\l::getCommandInterface" alt="" coords="780,575,977,616"/>
+<area shape="rect" id="node17" href="$class_veins_1_1_tra_c_i_scenario_manager_access.html#af6404515b1b992848f352b03d325b10d" title="Veins::TraCIScenarioManager\lAccess::get" alt="" coords="1025,509,1223,551"/>
+<area shape="rect" id="node18" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="1271,517,1468,543"/>
+<area shape="rect" id="node19" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="1516,517,1699,543"/>
+<area shape="rect" id="node22" href="$class_veins_1_1_tra_c_i_connection.html#ac0f5129ad1e50365588ec39112432c7d" title="sends a single command via TraCI, checks status response, returns additional responses ..." alt="" coords="797,640,960,681"/>
+<area shape="rect" id="node23" href="$class_veins_1_1_tra_c_i_connection.html#aaf6acde79a0ba73113c46ea92bd567d2" title="sends a message via TraCI (after adding the header) " alt="" coords="1043,640,1205,681"/>
+<area shape="rect" id="node26" href="$namespace_veins.html#ab52db5bfe6d9095440c0b0ac309bb99d" title="returns byte&#45;buffer containing a TraCI command with optional parameters " alt="" coords="1030,706,1218,733"/>
+<area shape="rect" id="node27" href="$class_veins_1_1_tra_c_i_connection.html#a634ce6c27d5e98f7d96f65706f3460df" title="receives a message via TraCI (and strips the header) " alt="" coords="1043,575,1205,616"/>
+<area shape="rect" id="node24" href="$namespace_veins.html#a6eeefaf3bbdaff6c10cfcd01200016d3" title="Veins::socket" alt="" coords="1318,621,1421,647"/>
+<area shape="rect" id="node25" href="$class_veins_1_1_tra_c_i_buffer.html#ae0833eeb81079e14eed3f13d0ae5d2b3" title="Veins::TraCIBuffer::str" alt="" coords="1292,675,1447,702"/>
+<area shape="rect" id="node30" href="$class_veins_1_1_tra_c_i_color.html#aed4c0a7c62bb97cd300b23f3f932e6e7" title="Veins::TraCIColor::\lTraCIColor" alt="" coords="549,771,684,812"/>
+</map>

@@ -2,7 +2,8 @@
 <area shape="rect" id="node2" href="src-modules-messages-AirFrame11p.html" title="Message AirFrame11p" alt="" coords="5,79,101,104">
 <area shape="rect" id="node3" href="src-base-messages-BorderMsg.html" title="Packet BorderMsg" alt="" coords="115,5,200,31">
 <area shape="rect" id="node4" href="src-base-messages-ChannelSenseRequest.html" title="Packet ChannelSenseRequest" alt="" coords="225,5,381,31">
-<area shape="rect" id="node5" href="src-modules-messages-Mac80211Pkt.html" title="Packet Mac80211Pkt" alt="" coords="390,79,493,104">
-<area shape="rect" id="node6" href="src-base-messages-MacPkt.html" title="Packet MacPkt" alt="" coords="405,5,477,31">
-<area shape="rect" id="node7" href="src-base-messages-SenseMode.html" title="Enum SenseMode" alt="" coords="501,5,592,31">
-<area shape="rect" id="node8" href="src-modules-messages-WaveShortMessage.html" title="Packet WaveShortMessage" alt="" coords="617,5,757,31">
+<area shape="rect" id="node5" href="src-modules-messages-FloodingMessage.html" title="Message FloodingMessage" alt="" coords="413,79,537,104">
+<area shape="rect" id="node6" href="src-modules-messages-WaveShortMessage.html" title="Packet WaveShortMessage" alt="" coords="405,5,545,31">
+<area shape="rect" id="node7" href="src-modules-messages-Mac80211Pkt.html" title="Packet Mac80211Pkt" alt="" coords="561,79,663,104">
+<area shape="rect" id="node8" href="src-base-messages-MacPkt.html" title="Packet MacPkt" alt="" coords="576,5,648,31">
+<area shape="rect" id="node9" href="src-base-messages-SenseMode.html" title="Enum SenseMode" alt="" coords="672,5,763,31">

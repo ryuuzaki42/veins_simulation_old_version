@@ -51,11 +51,11 @@ the request together with the ChannelState over this period.</p>
 </span><span style="color: #800000; font-weight: bold; ">class</span><span style="color: #000000; "> </span><span style="color: #800000; font-weight: bold; ">noncobject</span><span style="color: #000000; "> </span><span style="color: #000000; ">ChannelState</span><span style="color: #000000; ">;
 
 </span><span style="color: #800000; font-weight: bold; ">enum</span><span style="color: #000000; "> </span><span style="color: #000000; ">SenseMode</span><span style="color: #000000; "> {
-    </span><span style="color: #000000; ">UNTIL_IDLE</span><span style="color: #000000; "> = </span><span style="color: #008000; ">1</span><span style="color: #000000; ">;		</span><span style="color: #808080; font-style: italic; ">//sense until channel is busy or timeout is reached
-</span><span style="color: #000000; ">    </span><span style="color: #000000; ">UNTIL_BUSY</span><span style="color: #000000; "> = </span><span style="color: #008000; ">2</span><span style="color: #000000; ">;		</span><span style="color: #808080; font-style: italic; ">//sense until channel is idle or timeout is reached
-</span><span style="color: #000000; ">    </span><span style="color: #000000; ">UNTIL_TIMEOUT</span><span style="color: #000000; "> = </span><span style="color: #008000; ">3</span><span style="color: #000000; ">;	</span><span style="color: #808080; font-style: italic; ">//sense until timeout is reached
+    </span><span style="color: #000000; ">UNTIL_IDLE</span><span style="color: #000000; "> = </span><span style="color: #008000; ">1</span><span style="color: #000000; ">;       </span><span style="color: #808080; font-style: italic; ">//sense until channel is busy or timeout is reached
+</span><span style="color: #000000; ">    </span><span style="color: #000000; ">UNTIL_BUSY</span><span style="color: #000000; "> = </span><span style="color: #008000; ">2</span><span style="color: #000000; ">;       </span><span style="color: #808080; font-style: italic; ">//sense until channel is idle or timeout is reached
+</span><span style="color: #000000; ">    </span><span style="color: #000000; ">UNTIL_TIMEOUT</span><span style="color: #000000; "> = </span><span style="color: #008000; ">3</span><span style="color: #000000; ">;    </span><span style="color: #808080; font-style: italic; ">//sense until timeout is reached
 </span><span style="color: #000000; ">};
-    
+
 </span><span style="color: #808080; font-style: italic; ">//
 // The ChannelSenseRequest is a control packet from the
 // MAC layer to the physical layer. In contrast to the
@@ -87,12 +87,11 @@ the request together with the ChannelState over this period.</p>
 // rssi info contained in the ChannelState are calculated
 // and interpreted depends on the Decider.
 //
-</span><span style="color: #800000; font-weight: bold; ">packet</span><span style="color: #000000; "> </span><span style="color: #000000; ">ChannelSenseRequest</span><span style="color: #000000; ">
-{
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">senseMode</span><span style="color: #000000; "> </span><span style="color: #800000; font-weight: bold; ">enum</span><span style="color: #000000; ">(</span><span style="color: #000000; ">SenseMode</span><span style="color: #000000; ">);	</span><span style="color: #808080; font-style: italic; ">// defines the sensing mode (see SenseMode enum)
-</span><span style="color: #000000; ">    </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">senseTimeout</span><span style="color: #000000; ">; 		</span><span style="color: #808080; font-style: italic; ">// Time to listen on the channel
-</span><span style="color: #000000; ">    </span><span style="color: #000000; ">ChannelState</span><span style="color: #000000; "> </span><span style="color: #000000; ">result</span><span style="color: #000000; ">; 			</span><span style="color: #808080; font-style: italic; ">// The result of the request containing the current state of the channel.
-</span><span style="color: #000000; ">									</span><span style="color: #808080; font-style: italic; ">// See ChannelState for details.
+</span><span style="color: #800000; font-weight: bold; ">packet</span><span style="color: #000000; "> </span><span style="color: #000000; ">ChannelSenseRequest</span><span style="color: #000000; "> {
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">senseMode</span><span style="color: #000000; "> </span><span style="color: #800000; font-weight: bold; ">enum</span><span style="color: #000000; ">(</span><span style="color: #000000; ">SenseMode</span><span style="color: #000000; ">);  </span><span style="color: #808080; font-style: italic; ">// defines the sensing mode (see SenseMode enum)
+</span><span style="color: #000000; ">    </span><span style="color: #000000; ">simtime_t</span><span style="color: #000000; "> </span><span style="color: #000000; ">senseTimeout</span><span style="color: #000000; ">;         </span><span style="color: #808080; font-style: italic; ">// Time to listen on the channel
+</span><span style="color: #000000; ">    </span><span style="color: #000000; ">ChannelState</span><span style="color: #000000; "> </span><span style="color: #000000; ">result</span><span style="color: #000000; ">;            </span><span style="color: #808080; font-style: italic; ">// The result of the request containing the current state of the channel.
+</span><span style="color: #000000; ">                                    </span><span style="color: #808080; font-style: italic; ">// See ChannelState for details.
 </span><span style="color: #000000; ">}
 </span></pre>
    <hr><p class="footer"><a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top"><img src="by-sa.png"></a> This documentation is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top">Creative Commons license</a></p>

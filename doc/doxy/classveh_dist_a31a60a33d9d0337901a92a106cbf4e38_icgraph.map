@@ -1,0 +1,4 @@
+<map id="vehDist::sendMessage" name="vehDist::sendMessage">
+<area shape="rect" id="node2" href="$classveh_dist.html#a8289ffd678d433e6025e853968e6158e" title="vehDist::handlePositionUpdate" alt="" coords="209,5,412,32"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#ab030c6cdc9bfada05b16572c32303de8" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="460,5,613,32"/>
+</map>

@@ -76,7 +76,7 @@ $(document).ready(function(){initNavTree('class_mac_pkt.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Class generated from <code>base/messages/MacPkt.msg:36</code> by nedtool.  
+<p>Class generated from <code>base/messages/MacPkt.msg:35</code> by nedtool.  
  <a href="class_mac_pkt.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_mac_pkt__m_8h_source.html">MacPkt_m.h</a>&gt;</code></p>
@@ -91,6 +91,8 @@ Inheritance diagram for MacPkt:</div>
 Collaboration diagram for MacPkt:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_mac_pkt__coll__graph.png" border="0" usemap="#_mac_pkt_coll__map" alt="Collaboration graph"/></div>
+<map name="_mac_pkt_coll__map" id="_mac_pkt_coll__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -146,7 +148,7 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a43007ce645a8100e47fe3fd3d84e5caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class generated from <code>base/messages/MacPkt.msg:36</code> by nedtool. </p>
+<div class="textblock"><p>Class generated from <code>base/messages/MacPkt.msg:35</code> by nedtool. </p>
 <pre>
 // A basic MAC (Media Access Control) packet format definition
 // 
@@ -156,10 +158,10 @@ Private Member Functions</h2></td></tr>
 //
 // </p>
 <dl class="section author"><dt>Author</dt><dd> Daniel Willkomm
-packet <a class="el" href="class_mac_pkt.html" title="Class generated from base/messages/MacPkt.msg:36 by nedtool. ">MacPkt</a>
+packet <a class="el" href="class_mac_pkt.html" title="Class generated from base/messages/MacPkt.msg:35 by nedtool. ">MacPkt</a>
 {
     <a class="el" href="class_l_address.html#aea56b60dcb5ae8c2bde465271daf7210" title="Type definition for a L2 (MAC) address. ">LAddress::L2Type</a> destAddr; // destination mac address
-    <a class="el" href="class_l_address.html#aea56b60dcb5ae8c2bde465271daf7210" title="Type definition for a L2 (MAC) address. ">LAddress::L2Type</a> srcAddr;  // source mac address
+    <a class="el" href="class_l_address.html#aea56b60dcb5ae8c2bde465271daf7210" title="Type definition for a L2 (MAC) address. ">LAddress::L2Type</a> srcAddr; // source mac address
     long sequenceId; // Sequence Number to detect duplicate messages
 }
 
@@ -365,13 +367,15 @@ Here is the caller graph for this function:</div>
 
 <p>Referenced by <a class="el" href="_mac_pkt__m_8h_source.html#l00065">getDestAddr()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{<span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span><a class="code" href="class_mac_pkt.html">MacPkt</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;<a class="code" href="class_mac_pkt.html#a54bad417fd6840a8a7bd7e829c0a8244">getDestAddr</a>();}</div>
-<div class="ttc" id="class_mac_pkt_html"><div class="ttname"><a href="class_mac_pkt.html">MacPkt</a></div><div class="ttdoc">Class generated from base/messages/MacPkt.msg:36 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_mac_pkt__m_8h_source.html#l00040">MacPkt_m.h:40</a></div></div>
+<div class="ttc" id="class_mac_pkt_html"><div class="ttname"><a href="class_mac_pkt.html">MacPkt</a></div><div class="ttdoc">Class generated from base/messages/MacPkt.msg:35 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_mac_pkt__m_8h_source.html#l00040">MacPkt_m.h:40</a></div></div>
 <div class="ttc" id="class_mac_pkt_html_a54bad417fd6840a8a7bd7e829c0a8244"><div class="ttname"><a href="class_mac_pkt.html#a54bad417fd6840a8a7bd7e829c0a8244">MacPkt::getDestAddr</a></div><div class="ttdeci">virtual LAddress::L2Type &amp; getDestAddr()</div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_cgraph.png" border="0" usemap="#class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_cgraph" alt=""/></div>
+<map name="class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_cgraph" id="class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_cgraph">
+</map>
 </div>
 </p>
 
@@ -379,6 +383,8 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_icgraph.png" border="0" usemap="#class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_icgraph" alt=""/></div>
+<map name="class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_icgraph" id="class_mac_pkt_a564ac532b26d7fac11bdde0f129bbc01_icgraph">
+</map>
 </div>
 </p>
 
@@ -466,13 +472,15 @@ Here is the caller graph for this function:</div>
 
 <p>Referenced by <a class="el" href="_mac_pkt__m_8h_source.html#l00068">getSrcAddr()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{<span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span><a class="code" href="class_mac_pkt.html">MacPkt</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;<a class="code" href="class_mac_pkt.html#a0d65290bfc1bf7687cf53faa80ae9bdb">getSrcAddr</a>();}</div>
-<div class="ttc" id="class_mac_pkt_html"><div class="ttname"><a href="class_mac_pkt.html">MacPkt</a></div><div class="ttdoc">Class generated from base/messages/MacPkt.msg:36 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_mac_pkt__m_8h_source.html#l00040">MacPkt_m.h:40</a></div></div>
+<div class="ttc" id="class_mac_pkt_html"><div class="ttname"><a href="class_mac_pkt.html">MacPkt</a></div><div class="ttdoc">Class generated from base/messages/MacPkt.msg:35 by nedtool. </div><div class="ttdef"><b>Definition:</b> <a href="_mac_pkt__m_8h_source.html#l00040">MacPkt_m.h:40</a></div></div>
 <div class="ttc" id="class_mac_pkt_html_a0d65290bfc1bf7687cf53faa80ae9bdb"><div class="ttname"><a href="class_mac_pkt.html#a0d65290bfc1bf7687cf53faa80ae9bdb">MacPkt::getSrcAddr</a></div><div class="ttdeci">virtual LAddress::L2Type &amp; getSrcAddr()</div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_cgraph.png" border="0" usemap="#class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_cgraph" alt=""/></div>
+<map name="class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_cgraph" id="class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_cgraph">
+</map>
 </div>
 </p>
 
@@ -480,6 +488,8 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_icgraph.png" border="0" usemap="#class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_icgraph" alt=""/></div>
+<map name="class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_icgraph" id="class_mac_pkt_a41095230d3e3609da8bf11489c1e3868_icgraph">
+</map>
 </div>
 </p>
 
@@ -769,7 +779,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_mac_pkt.html">MacPkt</a></li>
-    <li class="footer">Generated on Tue Nov 17 2015 12:48:28 for Veins Framework by
+    <li class="footer">Generated on Fri Dec 18 2015 19:40:03 for Veins Framework by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

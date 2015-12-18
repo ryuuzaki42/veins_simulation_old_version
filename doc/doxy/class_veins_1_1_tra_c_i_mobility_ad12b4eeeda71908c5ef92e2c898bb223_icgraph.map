@@ -1,8 +1,13 @@
 <map id="Veins::TraCIMobility::commandDistanceRequest" name="Veins::TraCIMobility::commandDistanceRequest">
 <area shape="rect" id="node2" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#a509a641698a4887986424f07452a1807" title="Veins::default_veins\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="241,5,452,61"/>
-<area shape="rect" id="node4" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a68051be72ee51dd27b4e373ac1058c23" title="Veins::minicurso_UFPI\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="241,85,452,141"/>
-<area shape="rect" id="node6" href="$class_veins_1_1epidemic__app.html#a3d0f4fc6d7a18896ed87669ab37670a4" title="Veins::epidemic_app\l::handlePositionUpdate" alt="" coords="268,165,425,206"/>
+<area shape="rect" id="node4" href="$class_veins_1_1epidemic__app.html#a3d0f4fc6d7a18896ed87669ab37670a4" title="Veins::epidemic_app\l::handlePositionUpdate" alt="" coords="268,85,425,126"/>
+<area shape="rect" id="node6" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a68051be72ee51dd27b4e373ac1058c23" title="Veins::minicurso_UFPI\l_TraCI_TestApp::handlePosition\lUpdate" alt="" coords="241,149,452,205"/>
+<area shape="rect" id="node8" href="$class_veins_1_1mfcv__epidemic__app.html#ae0a00bb3b7841231069e8df7bb380266" title="Veins::mfcv_epidemic\l_app::handlePositionUpdate" alt="" coords="254,229,439,270"/>
+<area shape="rect" id="node10" href="$classveh_dist.html#abb6bea55eb2e6915cacfe0206bccc368" title="vehDist::sendtoTargetbyVeh" alt="" coords="253,295,441,321"/>
 <area shape="rect" id="node3" href="$class_veins_1_1default__veins___tra_c_i___test_app.html#aa1bb9b88b7f8f4dc311c864b087c2640" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="500,13,704,54"/>
-<area shape="rect" id="node5" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a97b60a9b8c45ef73e4922db7f3af1024" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="500,93,704,134"/>
-<area shape="rect" id="node7" href="$class_veins_1_1epidemic__app.html#ab1558c0812fe48f47d1aac6f30b5dae8" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="531,165,673,206"/>
+<area shape="rect" id="node5" href="$class_veins_1_1epidemic__app.html#ab1558c0812fe48f47d1aac6f30b5dae8" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="531,85,673,126"/>
+<area shape="rect" id="node7" href="$class_veins_1_1minicurso___u_f_p_i___tra_c_i___test_app.html#a97b60a9b8c45ef73e4922db7f3af1024" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="500,157,704,198"/>
+<area shape="rect" id="node9" href="$class_veins_1_1mfcv__epidemic__app.html#abc069f1b64afb0af1d2ccb006d5f3066" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="527,229,677,270"/>
+<area shape="rect" id="node11" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="510,295,694,321"/>
+<area shape="rect" id="node12" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="752,295,913,321"/>
 </map>

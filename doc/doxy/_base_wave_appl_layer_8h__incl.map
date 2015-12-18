@@ -2,7 +2,7 @@
 <area shape="rect" id="node3" href="$_base_appl_layer_8h.html" title="BaseApplLayer.h" alt="" coords="978,87,1099,114"/>
 <area shape="rect" id="node16" href="$_consts80211p_8h.html" title="Consts80211p.h" alt="" coords="1184,169,1301,196"/>
 <area shape="rect" id="node17" href="$_wave_short_message__m_8h.html" title="WaveShortMessage_m.h" alt="" coords="1377,319,1546,345"/>
-<area shape="rect" id="node21" href="$_channel_access_8h.html" title="base/connectionManager\l/ChannelAccess.h" alt="" coords="535,80,702,121"/>
+<area shape="rect" id="node21" href="$_channel_access_8h.html" title="base/connectionManager\l/ChannelAccess.h" alt="" coords="531,80,698,121"/>
 <area shape="rect" id="node29" href="$_wave_app_to_mac1609__4_interface_8h.html" title="WaveAppToMac1609_4Interface.h" alt="" coords="1174,87,1397,114"/>
 <area shape="rect" id="node5" href="$_mi_xi_m_defs_8h.html" title="MiXiMDefs.h" alt="" coords="783,543,881,569"/>
 <area shape="rect" id="node8" href="$_base_layer_8h.html" title="BaseLayer.h" alt="" coords="963,169,1058,196"/>
@@ -15,9 +15,9 @@
 <area shape="rect" id="node12" href="$_host_state_8h.html" title="HostState.h" alt="" coords="145,468,237,495"/>
 <area shape="rect" id="node18" href="$_coord_8h.html" title="Coord.h" alt="" coords="726,393,794,420"/>
 <area shape="rect" id="node19" href="$_f_w_math_8h.html" title="FWMath.h" alt="" coords="611,468,693,495"/>
-<area shape="rect" id="node23" href="$_find_module_8h.html" title="FindModule.h" alt="" coords="138,244,238,271"/>
-<area shape="rect" id="node24" href="$_base_mobility_8h.html" title="BaseMobility.h" alt="" coords="618,169,726,196"/>
-<area shape="rect" id="node25" href="$_move_8h.html" title="Move.h" alt="" coords="563,319,629,345"/>
-<area shape="rect" id="node28" href="$_base_world_utility_8h.html" title="BaseWorldUtility.h" alt="" coords="709,319,840,345"/>
+<area shape="rect" id="node23" href="$_find_module_8h.html" title="FindModule.h" alt="" coords="162,244,262,271"/>
+<area shape="rect" id="node24" href="$_base_mobility_8h.html" title="BaseMobility.h" alt="" coords="614,169,722,196"/>
+<area shape="rect" id="node25" href="$_move_8h.html" title="Move.h" alt="" coords="558,319,623,345"/>
+<area shape="rect" id="node28" href="$_base_world_utility_8h.html" title="BaseWorldUtility.h" alt="" coords="705,319,836,345"/>
 <area shape="rect" id="node30" href="$_netw_to_mac_control_info_8h.html" title="NetwToMacControlInfo.h" alt="" coords="1255,393,1423,420"/>
 </map>

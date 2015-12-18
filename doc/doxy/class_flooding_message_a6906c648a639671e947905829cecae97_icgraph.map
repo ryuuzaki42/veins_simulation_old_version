@@ -1,0 +1,6 @@
+<map id="FloodingMessage::setMsgId" name="FloodingMessage::setMsgId">
+<area shape="rect" id="node2" href="$class_flooding.html#a570dbd7017fd5f13590e2446cadc114c" title="Flooding::generateMessage" alt="" coords="242,5,425,32"/>
+<area shape="rect" id="node4" href="$class_advanced_flooding.html#a68afee498f785bf4087973f4dff5d9a1" title="AdvancedFlooding::generate\lMessage" alt="" coords="240,57,427,98"/>
+<area shape="rect" id="node3" href="$class_flooding.html#aa6a1bf0e9ed47cb582d1c55ec598b4bc" title="handle self messages " alt="" coords="479,5,645,32"/>
+<area shape="rect" id="node5" href="$class_advanced_flooding.html#a025749ad0047324a9e4e4eaddc8b525c" title="handle self messages " alt="" coords="475,57,649,98"/>
+</map>

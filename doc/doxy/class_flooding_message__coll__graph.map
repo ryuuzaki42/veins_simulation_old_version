@@ -1,0 +1,4 @@
+<map id="FloodingMessage" name="FloodingMessage">
+<area shape="rect" id="node2" href="$class_wave_short_message.html" title="Class generated from modules/messages/WaveShortMessage.msg:27 by nedtool. " alt="" coords="5,200,145,227"/>
+<area shape="rect" id="node4" href="$class_coord.html" title="Class for storing 3D coordinates. " alt="" coords="103,81,160,108"/>
+</map>

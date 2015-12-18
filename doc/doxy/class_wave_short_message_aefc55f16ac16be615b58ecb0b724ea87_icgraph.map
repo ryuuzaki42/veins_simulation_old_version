@@ -1,5 +1,10 @@
 <map id="WaveShortMessage::setSource" name="WaveShortMessage::setSource">
-<area shape="rect" id="node2" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="260,5,445,32"/>
-<area shape="rect" id="node3" href="$classepidemic__rsu.html#addc6771a70b0cb8f01df46df120357cb" title="epidemic_rsu::onData" alt="" coords="278,56,427,83"/>
-<area shape="rect" id="node4" href="$classepidemic.html#a21393ee6c5146e0158ded545f543e5ac" title="epidemic::onData" alt="" coords="291,107,415,133"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#a11fa0f572ada2a8872c6387a841f98f1" title="vehDist::generateMessage" alt="" coords="281,5,460,32"/>
+<area shape="rect" id="node4" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="278,56,463,83"/>
+<area shape="rect" id="node5" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="260,107,481,133"/>
+<area shape="rect" id="node6" href="$classmfcv__epidemic__rsu.html#a4e90c012caa8cc897fc32047fdbe3e7f" title="mfcv_epidemic_rsu::\lonData" alt="" coords="299,158,442,199"/>
+<area shape="rect" id="node7" href="$classepidemic__rsu.html#addc6771a70b0cb8f01df46df120357cb" title="epidemic_rsu::onData" alt="" coords="296,224,445,251"/>
+<area shape="rect" id="node8" href="$classepidemic.html#a21393ee6c5146e0158ded545f543e5ac" title="epidemic::onData" alt="" coords="309,275,433,301"/>
+<area shape="rect" id="node9" href="$classmfcv__epidemic.html#a31f715dc1b472665bba9549aab71eb87" title="mfcv_epidemic::onData" alt="" coords="291,325,451,352"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="529,5,652,32"/>
 </map>

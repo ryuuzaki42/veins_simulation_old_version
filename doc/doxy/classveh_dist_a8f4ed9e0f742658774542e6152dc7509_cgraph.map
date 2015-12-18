@@ -1,0 +1,4 @@
+<map id="vehDist::removeBeaconOutSizeBuffer" name="vehDist::removeBeaconOutSizeBuffer">
+<area shape="rect" id="node2" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="236,13,387,39"/>
+<area shape="rect" id="node3" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="435,13,581,39"/>
+</map>

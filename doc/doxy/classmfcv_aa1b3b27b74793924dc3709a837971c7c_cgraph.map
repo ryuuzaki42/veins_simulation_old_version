@@ -1,5 +1,5 @@
 <map id="mfcv::initialize" name="mfcv::initialize">
-<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a02ee725cf1d32d6dd7f3c010d1e51470" title="BaseWaveApplLayer::\linitialize_mfcv" alt="" coords="189,73,341,114"/>
+<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a1e1a0f73782dc4d07b5685faeaecacc9" title="BaseWaveApplLayer::\linitialize_default_veins_TraCI" alt="" coords="169,73,362,114"/>
 <area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="442,5,593,32"/>
 <area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_mobility_access.html#aa2788845910c6afc0b6068d9bf71bdd3" title="Veins::TraCIMobilityAccess::get" alt="" coords="160,145,371,172"/>
 <area shape="rect" id="node9" href="$class_veins_1_1_annotation_manager_access.html#a2c602699c6a6878cfaccfc2553ff839f" title="Veins::AnnotationManager\lAccess::getIfExists" alt="" coords="178,199,353,241"/>

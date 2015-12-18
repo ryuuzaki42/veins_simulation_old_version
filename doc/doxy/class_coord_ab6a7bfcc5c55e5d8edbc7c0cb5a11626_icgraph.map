@@ -4,6 +4,7 @@
 <area shape="rect" id="node10" href="$class_veins_1_1_tra_c_i_mobility.html#a3137899bb330551c9823c40b4ed8b8fc" title="Veins::TraCIMobility\l::changePosition" alt="" coords="662,204,803,245"/>
 <area shape="rect" id="node21" href="$class_two_ray_interference_model.html#a4488ba8c6127ff2e016edaa6bbd6a4c0" title="Has to be overriden by every implementation. " alt="" coords="179,188,353,229"/>
 <area shape="rect" id="node22" href="$class_base_mobility.html#aae36006995d117a723134cbe1fee5e90" title="Main border handling function. " alt="" coords="168,254,364,281"/>
+<area shape="rect" id="node24" href="$classmfcv__epidemic.html#a6f82cfc277cc02930f6c5a4da2151ad5" title="mfcv_epidemic::onBeacon" alt="" coords="178,305,354,331"/>
 <area shape="rect" id="node3" href="$class_veins_1_1_obstacle_control.html#ae3bc0ffe81dd2ca3145636656f392204" title="calculate additional attenuation by obstacles, return signal strength " alt="" coords="412,5,569,47"/>
 <area shape="rect" id="node4" href="$class_simple_obstacle_shadowing.html#ab8f4e9c3b104f4b7fe18e4f275af79ac" title="Filters a specified Signal by adding an attenuation over time to the Signal. " alt="" coords="643,5,822,47"/>
 <area shape="rect" id="node6" href="$class_veins_1_1_channel_access.html#ae370934ad7b1feacc1cb6bd6ad437198" title="Sends a message to all nics connected to this one. " alt="" coords="413,71,568,112"/>

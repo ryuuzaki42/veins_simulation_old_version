@@ -8,7 +8,8 @@ var class_base_wave_appl_layer =
       [ "SERVICE_QUERY_EVT", "class_base_wave_appl_layer.html#a4a3db8fff925c8783c21fa9dde853dc5a2dbb3f66951e34c7211e6aef0f236506", null ],
       [ "SERVICE_EVT", "class_base_wave_appl_layer.html#a4a3db8fff925c8783c21fa9dde853dc5a7a796083091e91eaef43b53070f322fa", null ],
       [ "MOBILITY_EVT", "class_base_wave_appl_layer.html#a4a3db8fff925c8783c21fa9dde853dc5a293b14424f80ffab7a704c5256c1ba05", null ],
-      [ "SEND_BEACON_EVT_epidemic", "class_base_wave_appl_layer.html#a4a3db8fff925c8783c21fa9dde853dc5acf171b10235540b3427fb0965b3d2ee1", null ]
+      [ "SEND_BEACON_EVT_epidemic", "class_base_wave_appl_layer.html#a4a3db8fff925c8783c21fa9dde853dc5acf171b10235540b3427fb0965b3d2ee1", null ],
+      [ "SEND_BEACON_EVT_mfcv_epidemic", "class_base_wave_appl_layer.html#a4a3db8fff925c8783c21fa9dde853dc5ae0b176a1ee763913930333c734d31dc9", null ]
     ] ],
     [ "~BaseWaveApplLayer", "class_base_wave_appl_layer.html#acb0faac09ec7fdc1ba73ccb9b5ee40e7", null ],
     [ "finish", "class_base_wave_appl_layer.html#ac6dc138be8605ada8191478c1e5cb4d2", null ],
@@ -17,11 +18,8 @@ var class_base_wave_appl_layer =
     [ "handleSelfMsg", "class_base_wave_appl_layer.html#a830e58e379655c6d24319c16f8db5e3d", null ],
     [ "initialize_default_veins_TraCI", "class_base_wave_appl_layer.html#a1e1a0f73782dc4d07b5685faeaecacc9", null ],
     [ "initialize_epidemic", "class_base_wave_appl_layer.html#a9aef9d25723a567a257b8915cba77361", null ],
-    [ "initialize_mfcv", "class_base_wave_appl_layer.html#a02ee725cf1d32d6dd7f3c010d1e51470", null ],
+    [ "initialize_mfcv_epidemic", "class_base_wave_appl_layer.html#a3bf4a7ba9796cbbb386505bbc7de9a06", null ],
     [ "initialize_minicurso_UFPI_TraCI", "class_base_wave_appl_layer.html#aab3b2e113e51777281aec1e88fdcf2e1", null ],
-    [ "initialize_osdp", "class_base_wave_appl_layer.html#a70d992a2c523e27c7571c088d2c88590", null ],
-    [ "initialize_service_discovery", "class_base_wave_appl_layer.html#aea124f2d3a5a91b3f6fc843e4625ec9e", null ],
-    [ "initialize_test1", "class_base_wave_appl_layer.html#a96b4e10d6b98e021877fbb925e1865e1", null ],
     [ "MACToInteger", "class_base_wave_appl_layer.html#a3838ef2e8dba7ab8767cf3c3d3d9883b", null ],
     [ "onBeacon", "class_base_wave_appl_layer.html#a6c6ab22ca68ba54da92b878131758bc2", null ],
     [ "onData", "class_base_wave_appl_layer.html#a60322665b20fe28f586c1d090d3be2dd", null ],
@@ -38,6 +36,8 @@ var class_base_wave_appl_layer =
     [ "hopCount", "class_base_wave_appl_layer.html#a744aae3d57e876be6c9e0289a12b4190", null ],
     [ "individualOffset", "class_base_wave_appl_layer.html#a1fbb007c8d097f0835ab64d8d9711710", null ],
     [ "maximumEpidemicBufferSize", "class_base_wave_appl_layer.html#a75abed0b5a0e0bfdab7f7d289f6557d9", null ],
+    [ "maximumMfcvEpidemicBufferSize", "class_base_wave_appl_layer.html#a71472890b0c32ebc498e62dfaa67fbea", null ],
+    [ "myfile", "class_base_wave_appl_layer.html#a76c7b202d7e6d567ed278f43d5314def", null ],
     [ "myId", "class_base_wave_appl_layer.html#aecb7da475da7cab714cb3b9f26c27895", null ],
     [ "myMac", "class_base_wave_appl_layer.html#a88feeae30cb95aa4608a2e888329d093", null ],
     [ "mySCH", "class_base_wave_appl_layer.html#ab2dabd99ddb3d7e5c5c760709be09650", null ],
@@ -45,6 +45,7 @@ var class_base_wave_appl_layer =
     [ "sendBeacons", "class_base_wave_appl_layer.html#a46a0f0355edd6adf8578aee8e82e9e69", null ],
     [ "sendData", "class_base_wave_appl_layer.html#a5a97137fd055fd8ec70609cdf6d2d673", null ],
     [ "sendSummaryVectorInterval", "class_base_wave_appl_layer.html#aff58e063673084179b7304df6a9a46d9", null ],
+    [ "sendUpdatePos", "class_base_wave_appl_layer.html#a9640c953ade1f76e95961fcc19f7e8a6", null ],
     [ "source", "class_base_wave_appl_layer.html#a449e5a6d3e87c647c4e46c2dbac99bdf", null ],
     [ "target", "class_base_wave_appl_layer.html#a8b43dcc614b85df2ed37818d950a765c", null ]
 ];
