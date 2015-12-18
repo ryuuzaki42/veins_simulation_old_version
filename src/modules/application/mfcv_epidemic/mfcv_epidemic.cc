@@ -81,7 +81,7 @@ void mfcv_epidemic::initialize(int stage) {
         if (source.compare(0,3,"car") == 0) {
             cout << "It is a veh, and my fullName is: " << source << endl;
         } else {
-            cout << "It not a veh, and my fullName is: " << source << endl;
+            cout << "It is not a veh, and my fullName is: " << source << endl;
         }
 
         // only car[0] generate message
@@ -120,6 +120,21 @@ void mfcv_epidemic::initialize(int stage) {
         if (sendUpdatePos){
            scheduleAt(simTime()+ par("timeUpdatePosition").doubleValue(), updatePosVeh);
         }
+
+         // Save vehicle start position
+        if (source.compare("car[0]") == 0) {
+            int repeatNumber = par("repeatNumber");
+            if (repeatNumber == 0) {
+                myfile.open ("results/vehicle_position_initialize.txt");
+            } else {
+                 myfile.open ("results/vehicle_position_initialize.txt", std::ios_base::app);
+            }
+            myfile << "Start Position Vehicles, repeatNumber: " << repeatNumber << endl;
+        } else {
+            myfile.open ("results/vehicle_position_initialize.txt", std::ios_base::app);
+        }
+        myfile << findHost()->getFullName() << ": "<< traci->getCurrentPosition() << endl;
+        myfile.close();
 
     }
 }

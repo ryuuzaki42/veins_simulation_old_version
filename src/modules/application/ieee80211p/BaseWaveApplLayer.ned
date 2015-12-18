@@ -65,11 +65,12 @@ simple BaseWaveApplLayer like IBaseApplLayer
         //@statistic[numMessageReceived](source=sum(messageReceived); title="Total Number or Message Received"; record=stats,histogram,vector);
 
         //jonh test
-        int target_x;
-        int target_y;
+        int target_x = default(0);
+        int target_y = default(0);
 
         int timeUpdatePosition @unit("s") = default(1s);
         bool sendUpdatePos = default(false); //tell the applayer to periodically send UpdatePosition
+        int repeatNumber = default(0);
         int dataInterval @unit("s") = default(1s);
 
     gates:
