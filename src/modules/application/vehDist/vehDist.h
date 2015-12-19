@@ -89,6 +89,7 @@ class vehDist : public BaseWaveApplLayer {
         void vehUpdatePosition();
         void vehSendData();
         void fieldsToSave(WaveShortMessage* wsm);
+        int getCategory();
 };
 
 unsigned short int vehDist::messageId = 0;
