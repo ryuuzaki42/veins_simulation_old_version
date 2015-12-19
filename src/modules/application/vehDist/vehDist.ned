@@ -28,9 +28,8 @@ simple vehDist extends BaseWaveApplLayer {
 
 //    int timeTrySendMessage @unit("s") = default(1s);
     int timeDeleteMessage @unit("s") = default(1s);
-    bool deleteMessage = default(false); //tell the ap
     int messageBufferSize = default(10);
 
-    int beaconBufferSize = default(10);
     int timeValidBeacon  @unit("s") = default(10s);
+    int beaconBufferSize = default(10);
 }
