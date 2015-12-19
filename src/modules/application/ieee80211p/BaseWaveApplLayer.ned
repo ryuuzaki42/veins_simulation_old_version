@@ -69,7 +69,6 @@ simple BaseWaveApplLayer like IBaseApplLayer
         int target_y = default(0);
 
         int timeUpdatePosition @unit("s") = default(1s);
-        bool sendUpdatePos = default(false); //tell the applayer to periodically send UpdatePosition
         int repeatNumber = default(0);
         int dataInterval @unit("s") = default(1s);
 

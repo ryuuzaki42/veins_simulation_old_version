@@ -84,7 +84,6 @@ class mfcv_epidemic_rsu : public BaseWaveApplLayer {
         void createMfcv_EpidemicRemoteSummaryVector(string s);
         virtual void finish();
 
-
         //test Jonh
         unsigned int getAngleDegrees();
         void handleSelfMsg(cMessage* msg);

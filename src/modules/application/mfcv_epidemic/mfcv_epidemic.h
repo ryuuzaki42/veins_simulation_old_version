@@ -128,8 +128,6 @@ class mfcv_epidemic : public BaseWaveApplLayer {
 };
 
 unsigned short int mfcv_epidemic::messageId = 0;
-
-// test Jonh
 unsigned short int BaseWaveApplLayer::vehCount= 0;
 
 #endif

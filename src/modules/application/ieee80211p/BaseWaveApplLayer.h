@@ -32,6 +32,8 @@
 #include <stdio.h>
 
 #include <fstream>
+#include <map>
+#include <unordered_map>
 using namespace std;
 
 //Define a constant to support send beacons or send messages in a broadcast fashion
@@ -99,7 +101,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         virtual void handlePositionUpdate(cObject* obj);
 
-
         // test Jonh
         static unsigned short int vehCount;
         static unsigned short int rsuCount;
@@ -144,12 +145,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         string source;
         string target;
-
-        // test Jonh
-        bool sendUpdatePos;
 };
-
-//unsigned short int BaseWaveApplLayer::vehCount= 0;
-//unsigned short int BaseWaveApplLayer::rsuCount= 0;
 
 #endif /* BASEWAVEAPPLLAYER_H_ */

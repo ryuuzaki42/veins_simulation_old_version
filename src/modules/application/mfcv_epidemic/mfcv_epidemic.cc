@@ -76,6 +76,7 @@ void mfcv_epidemic::initialize(int stage) {
         //generateMessage();
 
         // test Jonh
+        int repeatNumber = par("repeatNumber");
 
         // source ex: car[0], car[1], car[2]
         if (source.compare(0,3,"car") == 0) {
@@ -116,14 +117,11 @@ void mfcv_epidemic::initialize(int stage) {
         vehPositionBack = traci->getCurrentPosition();
         cout << "initial positionBack :" << vehPositionBack << endl;
         updatePosVeh = new cMessage("UpdatePos evt", SEND_updatePosVeh);
-        sendUpdatePos =  par("sendUpdatePos").boolValue();
-        if (sendUpdatePos){
-           scheduleAt(simTime()+ par("timeUpdatePosition").doubleValue(), updatePosVeh);
-        }
+        // Create event UpdatePosition
+        scheduleAt(simTime()+ par("timeUpdatePosition").doubleValue(), updatePosVeh);
 
          // Save vehicle start position
         if (source.compare("car[0]") == 0) {
-            int repeatNumber = par("repeatNumber");
             if (repeatNumber == 0) {
                 myfile.open ("results/vehicle_position_initialize.txt");
             } else {
