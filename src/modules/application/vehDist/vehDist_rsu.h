@@ -35,6 +35,8 @@ class vehDist_rsu : public BaseWaveApplLayer {
         BaseMobility* mobi;
         bool sentMessage;
 
+        string fileMessagesName;
+
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
@@ -43,6 +45,9 @@ class vehDist_rsu : public BaseWaveApplLayer {
 
         void recordOnFileMessages(WaveShortMessage* wsm);
         void recordOnFileMessagesBroadcast(WaveShortMessage* wsm);
+        void fieldsToSave(WaveShortMessage* wsm);
+        void handleSelfMsg(cMessage* msg);
+        WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
 };
 
 #endif

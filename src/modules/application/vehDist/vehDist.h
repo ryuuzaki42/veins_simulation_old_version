@@ -24,10 +24,6 @@
 #include "BaseWaveApplLayer.h"
 #include "modules/mobility/traci/TraCIMobility.h"
 
-#include <map>
-#include <unordered_map>
-using namespace std;
-
 using Veins::TraCIMobility;
 using Veins::AnnotationManager;
 
@@ -60,8 +56,6 @@ class vehDist : public BaseWaveApplLayer {
         unordered_map<int, string> ordemMessages;
         unordered_map<int, string> ordemBeacons;
 
-        bool sendDeleteMessage;
-
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
@@ -77,12 +71,11 @@ class vehDist : public BaseWaveApplLayer {
         void printMessagesBuffer();
         void printBeaconNeighbors();
         WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
-        WaveShortMessage* updateMessageWSM(WaveShortMessage* wsm, unsigned int rcvId);
+        WaveShortMessage* updateMessageWSM(WaveShortMessage* wsm, string rcvId);
         void updatePosition();
         unsigned int getHeading8();
         unsigned int getHeading4();
         unsigned int MACToInteger(WaveAppToMac1609_4Interface* myMac);
-//        void deleteMessage();
         void deleteMessage();
         void printOrdemMessages();
         void printOrdemBeacons();
@@ -91,7 +84,11 @@ class vehDist : public BaseWaveApplLayer {
         void recordOnFileMessagesBroadcast(WaveShortMessage* wsm);
         void removeMessageOutSizeBuffer();
         void removeBeaconOutSizeBuffer();
-
+        void saveVehStartPosition();
+        void restartFilesResult();
+        void vehUpdatePosition();
+        void vehSendData();
+        void fieldsToSave(WaveShortMessage* wsm);
 };
 
 unsigned short int vehDist::messageId = 0;

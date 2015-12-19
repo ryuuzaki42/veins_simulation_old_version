@@ -32,21 +32,22 @@ void vehDist_rsu::initialize(int stage) {
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
-//        if (source.compare("RSU[0]") == 0) {
+        if (strcmp(findHost()->getFullName(), "rsu[0]") == 0){
             //create a folder results
             system("mkdir results");
             //Open a new file for the current simulation
-            myfile.open ("results/RSUmessages.txt");
+            myfile.open ("results/RSUBroadcastMessages.txt");
             myfile.close();
 
-            myfile.open ("results/RSUBroadcastmessages.txt");
+            fileMessagesName = "results/";
+            fileMessagesName += findHost()->getFullName();
+            fileMessagesName += "MessagesReceived.txt";
+            //cout  << "fileMessagesName " << fileMessagesName << endl;
+            myfile.open (fileMessagesName);
             myfile.close();
-//            //Open a new file for the current simulation
-//            myfile.open ("results/LocalMessageBuffer_veh.txt");
-//            myfile.close();
-//        }
-           //cout << " " << findHost()->getFullName() << "entreing " << endl;
-
+        }
+        //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
+        //cout << endl << findHost()->getFullName() << " myId " <<  myId << endl;
     }
 }
 
@@ -56,14 +57,17 @@ void vehDist_rsu::onBeacon(WaveShortMessage* wsm) {
 
 void vehDist_rsu::onData(WaveShortMessage* wsm){
 
-    if (strcmp(wsm->getTarget(), findHost()->getFullName()) == 0){
+    if (strcmp(wsm->getRecipientAddressString(), findHost()->getFullName()) == 0){
         findHost()->bubble("Received data");
         wsm->setTimestamp(simTime());
         recordOnFileMessages(wsm);
     }
-    else if (wsm->getRecipientAddress() == 268435455){
-           recordOnFileMessagesBroadcast(wsm);
-       }
+    else{
+   // else if (strcmp(wsm->getRecipientAddressString(), "BROADCAST") == 0){
+      //  findHost()->bubble("Received BroadcastMessage");
+        recordOnFileMessagesBroadcast(wsm);
+    //}
+    }
 
 //    findHost()->getDisplayString().updateWith("r=16,green");
 //
@@ -84,67 +88,93 @@ void vehDist_rsu::sendWSM(WaveShortMessage* wsm) {
 }
 
 void vehDist_rsu::recordOnFileMessages(WaveShortMessage* wsm){
-    if (strcmp(wsm->getName(), "data") == 0){
-
         //Open file for just apeend
-        myfile.open ("results/RSUmessages.txt", std::ios_base::app);
+        myfile.open (fileMessagesName, std::ios_base::app);
 
-        //Send "strings" to be saved on the file onBeacon_veh.txt
-        myfile << "Data from " << wsm->getSenderAddress() << " at " << simTime();
-        myfile << " to " << wsm->getRecipientAddress() << endl;
-        myfile << "wsm->getName(): " << wsm->getName() << endl;
-        myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
-        myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
-        myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
-        myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
-        myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
-        myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
-        myfile << "wsm->getMessageTimestampGenerate(): " << wsm->getMessageTimestampGenerate() << endl;
-        myfile << "wsm->getSenderAddress(): " << wsm->getSenderAddress() << endl;
-        myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
-        myfile << "wsm->getRecipientAddress(): " << wsm->getRecipientAddress() << endl;
-        myfile << "wsm->getSource(): " << wsm->getSource() << endl;
-        myfile << "wsm->getTarget(): " << wsm->getTarget() << "findHost()->getFullName()" << findHost()->getFullName() << endl;
-        myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
-        myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
-        myfile << "wsm->getSummaryVector(): " << wsm->getSummaryVector() << endl;
-        myfile << "wsm->getRequestMessages(): " << wsm->getRequestMessages() << endl;
-        myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
-        myfile << "Time to generate and recived: " << (wsm->getTimestamp() - wsm->getMessageTimestampGenerate()) << endl;
-        myfile << endl << endl;
+        fieldsToSave(wsm);
         myfile.close();
-    }
 }
 
 void vehDist_rsu::recordOnFileMessagesBroadcast(WaveShortMessage* wsm){
-    if (strcmp(wsm->getName(), "data") == 0){
-
         //Open file for just apeend
-        myfile.open ("results/RSUBroadcastmessages.txt", std::ios_base::app);
+        myfile.open ("results/RSUBroadcastMessages.txt", std::ios_base::app);
 
-        //Send "strings" to be saved on the file onBeacon_veh.txt
-        myfile << "Data from " << wsm->getSenderAddress() << " at " << simTime();
-        myfile << " to " << wsm->getRecipientAddress() << endl;
-        myfile << "wsm->getName(): " << wsm->getName() << endl;
-        myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
-        myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
-        myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
-        myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
-        myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
-        myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
-        myfile << "wsm->getMessageTimestampGenerate(): " << wsm->getMessageTimestampGenerate() << endl;
-        myfile << "wsm->getSenderAddress(): " << wsm->getSenderAddress() << endl;
-        myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
-        myfile << "wsm->getRecipientAddress(): " << wsm->getRecipientAddress() << endl;
-        myfile << "wsm->getSource(): " << wsm->getSource() << endl;
-        myfile << "wsm->getTarget(): " << wsm->getTarget() << "findHost()->getFullName()" << findHost()->getFullName() << endl;
-        myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
-        myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
-        myfile << "wsm->getSummaryVector(): " << wsm->getSummaryVector() << endl;
-        myfile << "wsm->getRequestMessages(): " << wsm->getRequestMessages() << endl;
-        myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
-        myfile << "Time to generate and recived: " << (wsm->getTimestamp() - wsm->getMessageTimestampGenerate()) << endl;
-        myfile << endl << endl;
+        fieldsToSave(wsm);
         myfile.close();
+}
+
+void vehDist_rsu::fieldsToSave(WaveShortMessage* wsm){
+    //Send "strings" to be saved on the file
+    myfile << "Data from " << wsm->getSenderAddressString() << " at " << simTime();
+    myfile << " to " << wsm->getRecipientAddressString() << endl;
+    myfile << "wsm->getName(): " << wsm->getName() << endl;
+    myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
+    myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
+    myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
+    myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
+    myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
+    myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
+    myfile << "wsm->getMessageTimestampGenerate(): " << wsm->getMessageTimestampGenerate() << endl;
+    myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
+    myfile << "wsm->getSenderAddressString(): " << wsm->getSenderAddressString() << endl;
+    myfile << "wsm->getRecipientAddressString(): " << wsm->getRecipientAddressString() << endl;
+    myfile << "wsm->getSource(): " << wsm->getSource() << endl;
+    myfile << "wsm->getTarget(): " << wsm->getTarget() << endl;
+    myfile << "findHost()->getFullName(): " << findHost()->getFullName() << endl;
+    myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
+    myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
+    myfile << "wsm->getSummaryVector(): " << wsm->getSummaryVector() << endl;
+    myfile << "wsm->getRequestMessages(): " << wsm->getRequestMessages() << endl;
+    myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
+    myfile << "Time to generate and recived: " << (wsm->getTimestamp() - wsm->getMessageTimestampGenerate()) << endl;
+    myfile << endl << endl;
+}
+
+WaveShortMessage* vehDist_rsu::prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
+    WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
+    wsm->addBitLength(headerLength);
+    wsm->addBitLength(lengthBits);
+    switch (channel) {
+        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
+    }
+
+    wsm->setPsid(0);
+    wsm->setPriority(priority);
+    wsm->setWsmVersion(1);
+    wsm->setTimestamp(simTime());
+
+    cout << "rsu create a beacon: " << findHost()->getFullName() << endl;
+    wsm->setSenderAddressString(findHost()->getFullName());
+    wsm->setRecipientAddressString("BROADCAST");
+
+    //beacon don't need
+    //wsm->setSource(source);
+    //wsm->setTarget(target);
+
+    wsm->setSenderPos(curPosition);
+    wsm->setSerial(serial);
+
+        if (name == "beacon") {
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    } else if (name == "data") {
+        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+    }
+    return wsm;
+}
+
+void vehDist_rsu::handleSelfMsg(cMessage* msg) {
+    switch (msg->getKind()) {
+        case SEND_BEACON_EVT: {
+            //sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+            sendWSM(prepareBeaconWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+            break;
+        }
+        default: {
+            if (msg)
+                DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
+            break;
+        }
     }
 }
