@@ -70,6 +70,8 @@ WaveShortMessage::WaveShortMessage(const char *name, int kind) : ::cPacket(name,
     this->timestamp_var = 0;
     this->senderAddress_var = 0;
     this->recipientAddress_var = 268435455;
+    this->senderAddressString_var = 0;
+    this->recipientAddressString_var = 0;
     this->source_var = 0;
     this->target_var = 0;
     this->summaryVector_var = false;
@@ -119,6 +121,8 @@ void WaveShortMessage::copy(const WaveShortMessage& other)
     this->timestamp_var = other.timestamp_var;
     this->senderAddress_var = other.senderAddress_var;
     this->recipientAddress_var = other.recipientAddress_var;
+    this->senderAddressString_var = other.senderAddressString_var;
+    this->recipientAddressString_var = other.recipientAddressString_var;
     this->source_var = other.source_var;
     this->target_var = other.target_var;
     this->summaryVector_var = other.summaryVector_var;
@@ -154,6 +158,8 @@ void WaveShortMessage::parsimPack(cCommBuffer *b)
     doPacking(b,this->timestamp_var);
     doPacking(b,this->senderAddress_var);
     doPacking(b,this->recipientAddress_var);
+    doPacking(b,this->senderAddressString_var);
+    doPacking(b,this->recipientAddressString_var);
     doPacking(b,this->source_var);
     doPacking(b,this->target_var);
     doPacking(b,this->summaryVector_var);
@@ -189,6 +195,8 @@ void WaveShortMessage::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->timestamp_var);
     doUnpacking(b,this->senderAddress_var);
     doUnpacking(b,this->recipientAddress_var);
+    doUnpacking(b,this->senderAddressString_var);
+    doUnpacking(b,this->recipientAddressString_var);
     doUnpacking(b,this->source_var);
     doUnpacking(b,this->target_var);
     doUnpacking(b,this->summaryVector_var);
@@ -345,6 +353,26 @@ unsigned int WaveShortMessage::getRecipientAddress() const
 void WaveShortMessage::setRecipientAddress(unsigned int recipientAddress)
 {
     this->recipientAddress_var = recipientAddress;
+}
+
+const char * WaveShortMessage::getSenderAddressString() const
+{
+    return senderAddressString_var.c_str();
+}
+
+void WaveShortMessage::setSenderAddressString(const char * senderAddressString)
+{
+    this->senderAddressString_var = senderAddressString;
+}
+
+const char * WaveShortMessage::getRecipientAddressString() const
+{
+    return recipientAddressString_var.c_str();
+}
+
+void WaveShortMessage::setRecipientAddressString(const char * recipientAddressString)
+{
+    this->recipientAddressString_var = recipientAddressString;
 }
 
 const char * WaveShortMessage::getSource() const
@@ -554,7 +582,7 @@ const char *WaveShortMessageDescriptor::getProperty(const char *propertyname) co
 int WaveShortMessageDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 30+basedesc->getFieldCount(object) : 30;
+    return basedesc ? 32+basedesc->getFieldCount(object) : 32;
 }
 
 unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -593,11 +621,13 @@ unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int fie
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
         FD_ISCOMPOUND,
         FD_ISCOMPOUND,
         FD_ISEDITABLE,
     };
-    return (field>=0 && field<30) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<32) ? fieldTypeFlags[field] : 0;
 }
 
 const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) const
@@ -623,6 +653,8 @@ const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) co
         "timestamp",
         "senderAddress",
         "recipientAddress",
+        "senderAddressString",
+        "recipientAddressString",
         "source",
         "target",
         "summaryVector",
@@ -640,7 +672,7 @@ const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) co
         "senderPosBack",
         "messageTimestampGenerate",
     };
-    return (field>=0 && field<30) ? fieldNames[field] : NULL;
+    return (field>=0 && field<32) ? fieldNames[field] : NULL;
 }
 
 int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) const
@@ -661,22 +693,24 @@ int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) c
     if (fieldName[0]=='t' && strcmp(fieldName, "timestamp")==0) return base+11;
     if (fieldName[0]=='s' && strcmp(fieldName, "senderAddress")==0) return base+12;
     if (fieldName[0]=='r' && strcmp(fieldName, "recipientAddress")==0) return base+13;
-    if (fieldName[0]=='s' && strcmp(fieldName, "source")==0) return base+14;
-    if (fieldName[0]=='t' && strcmp(fieldName, "target")==0) return base+15;
-    if (fieldName[0]=='s' && strcmp(fieldName, "summaryVector")==0) return base+16;
-    if (fieldName[0]=='r' && strcmp(fieldName, "requestMessages")==0) return base+17;
-    if (fieldName[0]=='g' && strcmp(fieldName, "globalMessageIdentificaton")==0) return base+18;
-    if (fieldName[0]=='l' && strcmp(fieldName, "localMessageIdentificaton")==0) return base+19;
-    if (fieldName[0]=='h' && strcmp(fieldName, "hopCount")==0) return base+20;
-    if (fieldName[0]=='a' && strcmp(fieldName, "ackRequest")==0) return base+21;
-    if (fieldName[0]=='r' && strcmp(fieldName, "roadId")==0) return base+22;
-    if (fieldName[0]=='s' && strcmp(fieldName, "senderSpeed")==0) return base+23;
-    if (fieldName[0]=='c' && strcmp(fieldName, "category")==0) return base+24;
-    if (fieldName[0]=='v' && strcmp(fieldName, "vehicleId")==0) return base+25;
-    if (fieldName[0]=='h' && strcmp(fieldName, "heading")==0) return base+26;
-    if (fieldName[0]=='T' && strcmp(fieldName, "TargetPos")==0) return base+27;
-    if (fieldName[0]=='s' && strcmp(fieldName, "senderPosBack")==0) return base+28;
-    if (fieldName[0]=='m' && strcmp(fieldName, "messageTimestampGenerate")==0) return base+29;
+    if (fieldName[0]=='s' && strcmp(fieldName, "senderAddressString")==0) return base+14;
+    if (fieldName[0]=='r' && strcmp(fieldName, "recipientAddressString")==0) return base+15;
+    if (fieldName[0]=='s' && strcmp(fieldName, "source")==0) return base+16;
+    if (fieldName[0]=='t' && strcmp(fieldName, "target")==0) return base+17;
+    if (fieldName[0]=='s' && strcmp(fieldName, "summaryVector")==0) return base+18;
+    if (fieldName[0]=='r' && strcmp(fieldName, "requestMessages")==0) return base+19;
+    if (fieldName[0]=='g' && strcmp(fieldName, "globalMessageIdentificaton")==0) return base+20;
+    if (fieldName[0]=='l' && strcmp(fieldName, "localMessageIdentificaton")==0) return base+21;
+    if (fieldName[0]=='h' && strcmp(fieldName, "hopCount")==0) return base+22;
+    if (fieldName[0]=='a' && strcmp(fieldName, "ackRequest")==0) return base+23;
+    if (fieldName[0]=='r' && strcmp(fieldName, "roadId")==0) return base+24;
+    if (fieldName[0]=='s' && strcmp(fieldName, "senderSpeed")==0) return base+25;
+    if (fieldName[0]=='c' && strcmp(fieldName, "category")==0) return base+26;
+    if (fieldName[0]=='v' && strcmp(fieldName, "vehicleId")==0) return base+27;
+    if (fieldName[0]=='h' && strcmp(fieldName, "heading")==0) return base+28;
+    if (fieldName[0]=='T' && strcmp(fieldName, "TargetPos")==0) return base+29;
+    if (fieldName[0]=='s' && strcmp(fieldName, "senderPosBack")==0) return base+30;
+    if (fieldName[0]=='m' && strcmp(fieldName, "messageTimestampGenerate")==0) return base+31;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -705,6 +739,8 @@ const char *WaveShortMessageDescriptor::getFieldTypeString(void *object, int fie
         "unsigned int",
         "string",
         "string",
+        "string",
+        "string",
         "bool",
         "bool",
         "string",
@@ -720,7 +756,7 @@ const char *WaveShortMessageDescriptor::getFieldTypeString(void *object, int fie
         "Coord",
         "simtime_t",
     };
-    return (field>=0 && field<30) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<32) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *WaveShortMessageDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -774,22 +810,24 @@ std::string WaveShortMessageDescriptor::getFieldAsString(void *object, int field
         case 11: return double2string(pp->getTimestamp());
         case 12: return ulong2string(pp->getSenderAddress());
         case 13: return ulong2string(pp->getRecipientAddress());
-        case 14: return oppstring2string(pp->getSource());
-        case 15: return oppstring2string(pp->getTarget());
-        case 16: return bool2string(pp->getSummaryVector());
-        case 17: return bool2string(pp->getRequestMessages());
-        case 18: return oppstring2string(pp->getGlobalMessageIdentificaton());
-        case 19: return oppstring2string(pp->getLocalMessageIdentificaton());
-        case 20: return ulong2string(pp->getHopCount());
-        case 21: return bool2string(pp->getAckRequest());
-        case 22: return oppstring2string(pp->getRoadId());
-        case 23: return double2string(pp->getSenderSpeed());
-        case 24: return ulong2string(pp->getCategory());
-        case 25: return long2string(pp->getVehicleId());
-        case 26: return ulong2string(pp->getHeading());
-        case 27: {std::stringstream out; out << pp->getTargetPos(); return out.str();}
-        case 28: {std::stringstream out; out << pp->getSenderPosBack(); return out.str();}
-        case 29: return double2string(pp->getMessageTimestampGenerate());
+        case 14: return oppstring2string(pp->getSenderAddressString());
+        case 15: return oppstring2string(pp->getRecipientAddressString());
+        case 16: return oppstring2string(pp->getSource());
+        case 17: return oppstring2string(pp->getTarget());
+        case 18: return bool2string(pp->getSummaryVector());
+        case 19: return bool2string(pp->getRequestMessages());
+        case 20: return oppstring2string(pp->getGlobalMessageIdentificaton());
+        case 21: return oppstring2string(pp->getLocalMessageIdentificaton());
+        case 22: return ulong2string(pp->getHopCount());
+        case 23: return bool2string(pp->getAckRequest());
+        case 24: return oppstring2string(pp->getRoadId());
+        case 25: return double2string(pp->getSenderSpeed());
+        case 26: return ulong2string(pp->getCategory());
+        case 27: return long2string(pp->getVehicleId());
+        case 28: return ulong2string(pp->getHeading());
+        case 29: {std::stringstream out; out << pp->getTargetPos(); return out.str();}
+        case 30: {std::stringstream out; out << pp->getSenderPosBack(); return out.str();}
+        case 31: return double2string(pp->getMessageTimestampGenerate());
         default: return "";
     }
 }
@@ -817,20 +855,22 @@ bool WaveShortMessageDescriptor::setFieldAsString(void *object, int field, int i
         case 11: pp->setTimestamp(string2double(value)); return true;
         case 12: pp->setSenderAddress(string2ulong(value)); return true;
         case 13: pp->setRecipientAddress(string2ulong(value)); return true;
-        case 14: pp->setSource((value)); return true;
-        case 15: pp->setTarget((value)); return true;
-        case 16: pp->setSummaryVector(string2bool(value)); return true;
-        case 17: pp->setRequestMessages(string2bool(value)); return true;
-        case 18: pp->setGlobalMessageIdentificaton((value)); return true;
-        case 19: pp->setLocalMessageIdentificaton((value)); return true;
-        case 20: pp->setHopCount(string2ulong(value)); return true;
-        case 21: pp->setAckRequest(string2bool(value)); return true;
-        case 22: pp->setRoadId((value)); return true;
-        case 23: pp->setSenderSpeed(string2double(value)); return true;
-        case 24: pp->setCategory(string2ulong(value)); return true;
-        case 25: pp->setVehicleId(string2long(value)); return true;
-        case 26: pp->setHeading(string2ulong(value)); return true;
-        case 29: pp->setMessageTimestampGenerate(string2double(value)); return true;
+        case 14: pp->setSenderAddressString((value)); return true;
+        case 15: pp->setRecipientAddressString((value)); return true;
+        case 16: pp->setSource((value)); return true;
+        case 17: pp->setTarget((value)); return true;
+        case 18: pp->setSummaryVector(string2bool(value)); return true;
+        case 19: pp->setRequestMessages(string2bool(value)); return true;
+        case 20: pp->setGlobalMessageIdentificaton((value)); return true;
+        case 21: pp->setLocalMessageIdentificaton((value)); return true;
+        case 22: pp->setHopCount(string2ulong(value)); return true;
+        case 23: pp->setAckRequest(string2bool(value)); return true;
+        case 24: pp->setRoadId((value)); return true;
+        case 25: pp->setSenderSpeed(string2double(value)); return true;
+        case 26: pp->setCategory(string2ulong(value)); return true;
+        case 27: pp->setVehicleId(string2long(value)); return true;
+        case 28: pp->setHeading(string2ulong(value)); return true;
+        case 31: pp->setMessageTimestampGenerate(string2double(value)); return true;
         default: return false;
     }
 }
@@ -845,8 +885,8 @@ const char *WaveShortMessageDescriptor::getFieldStructName(void *object, int fie
     }
     switch (field) {
         case 10: return opp_typename(typeid(Coord));
-        case 27: return opp_typename(typeid(Coord));
-        case 28: return opp_typename(typeid(Coord));
+        case 29: return opp_typename(typeid(Coord));
+        case 30: return opp_typename(typeid(Coord));
         default: return NULL;
     };
 }
@@ -862,8 +902,8 @@ void *WaveShortMessageDescriptor::getFieldStructPointer(void *object, int field,
     WaveShortMessage *pp = (WaveShortMessage *)object; (void)pp;
     switch (field) {
         case 10: return (void *)(&pp->getSenderPos()); break;
-        case 27: return (void *)(&pp->getTargetPos()); break;
-        case 28: return (void *)(&pp->getSenderPosBack()); break;
+        case 29: return (void *)(&pp->getTargetPos()); break;
+        case 30: return (void *)(&pp->getSenderPosBack()); break;
         default: return NULL;
     }
 }

@@ -58,6 +58,11 @@ packet WaveShortMessage {
     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
     unsigned int recipientAddress = 268435455;
 
+
+    string senderAddressString;
+    // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
+    string recipientAddressString;
+    
     // Add for Epidemic
     // Set the source which generate the message, e.g., car[0], car[1] etc.
     string source;

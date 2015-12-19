@@ -57,6 +57,11 @@
  *     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
  *     unsigned int recipientAddress = 268435455;
  * 
+ * 
+ *     string senderAddressString;
+ *     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
+ *     string recipientAddressString;
+ * 
  *     // Add for Epidemic
  *     // Set the source which generate the message, e.g., car[0], car[1] etc.
  *     string source;
@@ -119,6 +124,8 @@ class WaveShortMessage : public ::cPacket
     simtime_t timestamp_var;
     unsigned int senderAddress_var;
     unsigned int recipientAddress_var;
+    opp_string senderAddressString_var;
+    opp_string recipientAddressString_var;
     opp_string source_var;
     opp_string target_var;
     bool summaryVector_var;
@@ -182,6 +189,10 @@ class WaveShortMessage : public ::cPacket
     virtual void setSenderAddress(unsigned int senderAddress);
     virtual unsigned int getRecipientAddress() const;
     virtual void setRecipientAddress(unsigned int recipientAddress);
+    virtual const char * getSenderAddressString() const;
+    virtual void setSenderAddressString(const char * senderAddressString);
+    virtual const char * getRecipientAddressString() const;
+    virtual void setRecipientAddressString(const char * recipientAddressString);
     virtual const char * getSource() const;
     virtual void setSource(const char * source);
     virtual const char * getTarget() const;
