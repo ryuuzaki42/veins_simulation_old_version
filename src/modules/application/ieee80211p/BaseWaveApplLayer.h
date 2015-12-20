@@ -145,6 +145,9 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         string source;
         string target;
+
+        string fileMessagesNameUnicast;
+        string fileMessagesNameBroadcast;
 };
 
 #endif /* BASEWAVEAPPLLAYER_H_ */

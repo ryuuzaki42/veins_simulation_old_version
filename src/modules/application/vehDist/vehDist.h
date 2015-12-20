@@ -80,8 +80,6 @@ class vehDist : public BaseWaveApplLayer {
         void printOrdemMessages();
         void printOrdemBeacons();
         bool sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
-        void recordOnFileMessages(WaveShortMessage* wsm);
-        void recordOnFileMessagesBroadcast(WaveShortMessage* wsm);
         void removeMessageOutSizeBuffer();
         void removeBeaconOutSizeBuffer();
         void saveVehStartPosition();
@@ -90,6 +88,7 @@ class vehDist : public BaseWaveApplLayer {
         void vehSendData();
         void fieldsToSave(WaveShortMessage* wsm);
         int getCategory();
+        void saveMessagesOnFile(WaveShortMessage* wsm, string file);
 };
 
 unsigned short int vehDist::messageId = 0;
