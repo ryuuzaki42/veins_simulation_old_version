@@ -38,6 +38,8 @@ class vehDist_rsu : public BaseWaveApplLayer {
         struct messages {
           int HopsCount;
           string hops;
+          int minHop;
+          int maxHop;
           double averageHops;
           string wsmData;
         };

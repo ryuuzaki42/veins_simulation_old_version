@@ -892,6 +892,7 @@ void vehDist::fieldsToSave(WaveShortMessage* wsm){
     myfile << "wsm->getSource(): " << wsm->getSource() << endl;
     myfile << "wsm->getTarget(): " << wsm->getTarget() << endl;
     myfile << "findHost()->getFullName(): " << findHost()->getFullName() << endl;
+    myfile << "wsm->getHopCount(): " << wsm->getHopCount() << endl;
     myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
     myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
     myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;

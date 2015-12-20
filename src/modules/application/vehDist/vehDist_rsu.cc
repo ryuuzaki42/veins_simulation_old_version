@@ -76,19 +76,26 @@ void vehDist_rsu::onData(WaveShortMessage* wsm){
 }
 
 void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
+    int limitHopCount = par("hopCount");
     auto it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
     if (it != messagesReceived.end()){
         it->second.hops += ", ";
         it->second.HopsCount = it->second.HopsCount + 1;
-        it->second.hops += to_string(wsm->getHopCount());
+        it->second.hops += to_string(limitHopCount - wsm->getHopCount());
         cout << "hop:" << it->second.hops << endl;
         it->second.averageHops = it->second.averageHops + wsm->getHopCount();
+        if ((limitHopCount - wsm->getHopCount()) > it->second. maxHop){
+            it->second.maxHop = (limitHopCount - wsm->getHopCount());
+        }
+        if ((limitHopCount - wsm->getHopCount()) < it->second. minHop){
+             it->second.minHop = (limitHopCount - wsm->getHopCount());
+         }
     } else {
         struct messages m;
         m.HopsCount = 1;
         m.wsmData = wsm->getWsmData();
-        m.hops = to_string(wsm->getHopCount());
-        m.averageHops = wsm->getHopCount();
+        m.hops = to_string(limitHopCount - wsm->getHopCount());
+        m.maxHop = m.minHop = m.averageHops = limitHopCount - wsm->getHopCount();
         messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), m));
     }
 }
@@ -130,6 +137,7 @@ void vehDist_rsu::fieldsToSave(WaveShortMessage* wsm){
     myfile << "wsm->getSource(): " << wsm->getSource() << endl;
     myfile << "wsm->getTarget(): " << wsm->getTarget() << endl;
     myfile << "findHost()->getFullName(): " << findHost()->getFullName() << endl;
+    myfile << "wsm->getHopCount(): " << wsm->getHopCount() << endl;
     myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
     myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
     myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
@@ -206,10 +214,10 @@ void vehDist_rsu::printCountMessagesReceived(){
                 myfile << it->second.wsmData << endl;
                 myfile << "Hopcunt: " << it->second.hops << endl;
                 it->second.averageHops = it->second.averageHops/it->second.HopsCount;
-                myfile << "Average Hops: " << it->second.averageHops;
-
+                myfile << "Average Hops: " << it->second.averageHops << endl;
+                myfile << "Max Hop: " << it->second.maxHop << endl;
+                myfile << "Mim Hop: " << it->second.minHop << endl;
             }
-
         }
         myfile.close();
     }
