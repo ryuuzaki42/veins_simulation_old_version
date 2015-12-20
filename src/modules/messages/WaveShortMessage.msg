@@ -103,6 +103,4 @@ packet WaveShortMessage {
     // targetPost
     Coord TargetPos;
     Coord senderPosBack;
-    simtime_t messageTimestampGenerate = 0;
-
 }
