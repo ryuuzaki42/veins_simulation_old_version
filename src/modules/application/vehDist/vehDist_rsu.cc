@@ -63,23 +63,33 @@ void vehDist_rsu::restartFilesResult(){
 void vehDist_rsu::onData(WaveShortMessage* wsm){
     if (strcmp(wsm->getRecipientAddressString(), findHost()->getFullName()) == 0){
         findHost()->bubble("Received data");
-        wsm->setTimestamp(simTime());
         saveMessagesOnFile(wsm, fileMessagesNameUnicast);
 
-        auto it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
-        if (it != messagesReceived.end()){
-            it->second.setHeading((it->second.getHeading() + 1));
-        } else {
-            wsm->setHeading(1);
-            messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
-        }
-
+        messagesReceivedMeasuring(wsm);
     }
     else{
    // else if (strcmp(wsm->getRecipientAddressString(), "BROADCAST") == 0){
       //  findHost()->bubble("Received BroadcastMessage");
         saveMessagesOnFile(wsm, fileMessagesNameBroadcast);
     //}
+    }
+}
+
+void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
+    auto it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
+    if (it != messagesReceived.end()){
+        it->second.hops += ", ";
+        it->second.HopsCount = it->second.HopsCount + 1;
+        it->second.hops += to_string(wsm->getHopCount());
+        cout << "hop:" << it->second.hops << endl;
+        it->second.averageHops = it->second.averageHops + wsm->getHopCount();
+    } else {
+        struct messages m;
+        m.HopsCount = 1;
+        m.wsmData = wsm->getWsmData();
+        m.hops = to_string(wsm->getHopCount());
+        m.averageHops = wsm->getHopCount();
+        messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), m));
     }
 }
 
@@ -188,10 +198,16 @@ void vehDist_rsu::printCountMessagesReceived(){
         }else{
             myfile.open (fileName, std::ios_base::app);
         }
-        unordered_map<string, WaveShortMessage>::iterator it;
+        unordered_map<string,  struct messages>::iterator it;
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
             if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0)) {
-                myfile << it->second.getWsmData() <<" Id: " << it->first << " Count received: " << it->second.getHeading() << endl;
+                myfile << "Message Id: " << it->first << endl;
+                myfile << "Count received: " << it->second.HopsCount << endl;
+                myfile << it->second.wsmData << endl;
+                myfile << "Hopcunt: " << it->second.hops << endl;
+                it->second.averageHops = it->second.averageHops/it->second.HopsCount;
+                myfile << "Average Hops: " << it->second.averageHops;
+
             }
 
         }

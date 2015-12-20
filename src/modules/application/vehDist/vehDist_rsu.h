@@ -35,7 +35,14 @@ class vehDist_rsu : public BaseWaveApplLayer {
         BaseMobility* mobi;
         bool sentMessage;
 
-        unordered_map<string, WaveShortMessage> messagesReceived;
+        struct messages {
+          int HopsCount;
+          string hops;
+          double averageHops;
+          string wsmData;
+        };
+
+        unordered_map<string,  struct messages> messagesReceived;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -50,6 +57,7 @@ class vehDist_rsu : public BaseWaveApplLayer {
         void restartFilesResult();
         virtual void finish();
         void printCountMessagesReceived();
+        void messagesReceivedMeasuring(WaveShortMessage* wsm);
 };
 
 #endif
