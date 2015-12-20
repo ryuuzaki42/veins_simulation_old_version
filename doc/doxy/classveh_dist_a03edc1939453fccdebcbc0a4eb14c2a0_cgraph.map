@@ -1,31 +1,26 @@
 <map id="vehDist::onData" name="vehDist::onData">
-<area shape="rect" id="node2" href="$classveh_dist.html#a1b21181052bb7ae17a254e062cda0d25" title="vehDist::printMessagesBuffer" alt="" coords="189,192,383,219"/>
-<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="489,24,640,51"/>
-<area shape="rect" id="node5" href="$class_base_wave_appl_layer.html#a3838ef2e8dba7ab8767cf3c3d3d9883b" title="BaseWaveApplLayer::\lMACToInteger" alt="" coords="489,75,641,117"/>
-<area shape="rect" id="node6" href="$class_wave_short_message.html#a15fe47fd5025d6e06a9d9a60e05c025b" title="WaveShortMessage::getRecipient\lAddress" alt="" coords="454,206,675,247"/>
-<area shape="rect" id="node7" href="$classveh_dist.html#a92022a34d1bd78a3917da427e50d975b" title="vehDist::recordOnFileMessages" alt="" coords="181,448,391,475"/>
-<area shape="rect" id="node8" href="$class_wave_short_message.html#a71a1969325dc1e97be41c1163f31af3c" title="WaveShortMessage::getSender\lAddress" alt="" coords="461,141,668,182"/>
-<area shape="rect" id="node16" href="$class_wave_short_message.html#a9fee46e80789894357a0da88fc0f8458" title="WaveShortMessage::getSource" alt="" coords="461,1009,668,1036"/>
-<area shape="rect" id="node23" href="$classveh_dist.html#a2bb2233d62b252501ea9f31592ba964b" title="vehDist::recordOnFileMessages\lBroadcast" alt="" coords="181,499,391,541"/>
-<area shape="rect" id="node24" href="$class_wave_short_message.html#a45f745e1750b2a1b6ca9c31f5e513a89" title="WaveShortMessage::getGlobal\lMessageIdentificaton" alt="" coords="185,617,387,658"/>
-<area shape="rect" id="node25" href="$class_wave_short_message.html#a2a994de6e6306a0d3b6792e35ae40a64" title="WaveShortMessage::dup" alt="" coords="201,683,371,709"/>
-<area shape="rect" id="node27" href="$classveh_dist.html#a0002db506cbd6c74c9aed17b1f42700b" title="vehDist::deleteMessage" alt="" coords="205,75,367,101"/>
-<area shape="rect" id="node28" href="$classveh_dist.html#aa3a1d1c261dd2781d22683d358f314a7" title="vehDist::removeMessageOut\lSizeBuffer" alt="" coords="190,126,382,167"/>
-<area shape="rect" id="node29" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="171,733,401,760"/>
-<area shape="rect" id="node30" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="191,785,381,826"/>
-<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="728,24,875,51"/>
-<area shape="rect" id="node9" href="$class_wave_short_message.html#a52905629f571c9c91557e744b199722f" title="WaveShortMessage::getChannel\lNumber" alt="" coords="457,893,672,934"/>
-<area shape="rect" id="node10" href="$class_wave_short_message.html#ab5790460483faa5713077d73007b1033" title="WaveShortMessage::getPsid" alt="" coords="469,959,661,985"/>
-<area shape="rect" id="node11" href="$class_wave_short_message.html#ac3117615566fa0a605f81bbaf53d5921" title="WaveShortMessage::getPriority" alt="" coords="461,272,668,299"/>
-<area shape="rect" id="node12" href="$class_wave_short_message.html#a6851e8a2af35b6e55d5bec81057ae51f" title="WaveShortMessage::getWsm\lVersion" alt="" coords="466,323,663,365"/>
-<area shape="rect" id="node13" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="449,389,680,416"/>
-<area shape="rect" id="node14" href="$class_wave_short_message.html#a7f82a862057add0060252b964f91c56d" title="WaveShortMessage::getMessage\lTimestampGenerate" alt="" coords="455,441,674,482"/>
-<area shape="rect" id="node15" href="$class_wave_short_message.html#a2c0b693fa05728f6712cf22d0da2a3b2" title="WaveShortMessage::getHeading" alt="" coords="457,507,672,533"/>
-<area shape="rect" id="node17" href="$class_wave_short_message.html#a2bdb99e260528ad12afd44b16f8c1e10" title="WaveShortMessage::getTarget" alt="" coords="463,557,666,584"/>
-<area shape="rect" id="node18" href="$class_wave_short_message.html#a47e866d383c3454e186dbe9c869fbc38" title="WaveShortMessage::getSenderPos" alt="" coords="449,608,680,635"/>
-<area shape="rect" id="node19" href="$class_wave_short_message.html#a9ffe0a30a78e7192e643e0ac5427db1b" title="WaveShortMessage::getSerial" alt="" coords="465,659,664,685"/>
-<area shape="rect" id="node20" href="$class_wave_short_message.html#a017e4a44a8acfc490e33f25732220f5b" title="WaveShortMessage::getSummary\lVector" alt="" coords="453,710,676,751"/>
-<area shape="rect" id="node21" href="$class_wave_short_message.html#a39832f2b630e991d68aa71fa1490f7ea" title="WaveShortMessage::getRequest\lMessages" alt="" coords="457,775,672,817"/>
-<area shape="rect" id="node22" href="$class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0" title="WaveShortMessage::getWsmData" alt="" coords="452,841,677,868"/>
-<area shape="rect" id="node26" href="$class_wave_short_message.html#a8d66edc68ebe3ec56c8df75d5b367310" title="WaveShortMessage::WaveShort\lMessage" alt="" coords="458,1061,671,1102"/>
+<area shape="rect" id="node2" href="$class_wave_short_message.html#ac0d2a04942ab72d58695888dc08204fd" title="WaveShortMessage::getRecipient\lAddressString" alt="" coords="715,80,937,121"/>
+<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="751,29,901,55"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#ac6eababe9063bb948595be363fc0b8a1" title="vehDist::saveMessagesOnFile" alt="" coords="185,427,387,454"/>
+<area shape="rect" id="node7" href="$class_wave_short_message.html#ad670b89d9f8db77ee076ef3f04183970" title="WaveShortMessage::getSender\lAddressString" alt="" coords="723,145,929,187"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a45f745e1750b2a1b6ca9c31f5e513a89" title="WaveShortMessage::getGlobal\lMessageIdentificaton" alt="" coords="725,751,927,792"/>
+<area shape="rect" id="node15" href="$class_wave_short_message.html#a9fee46e80789894357a0da88fc0f8458" title="WaveShortMessage::getSource" alt="" coords="723,817,929,843"/>
+<area shape="rect" id="node17" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="731,868,921,909"/>
+<area shape="rect" id="node21" href="$class_wave_short_message.html#a2a994de6e6306a0d3b6792e35ae40a64" title="WaveShortMessage::dup" alt="" coords="201,630,371,657"/>
+<area shape="rect" id="node23" href="$classveh_dist.html#a0002db506cbd6c74c9aed17b1f42700b" title="vehDist::deleteMessage" alt="" coords="475,86,637,113"/>
+<area shape="rect" id="node24" href="$classveh_dist.html#aa3a1d1c261dd2781d22683d358f314a7" title="vehDist::removeMessageOut\lSizeBuffer" alt="" coords="460,145,652,187"/>
+<area shape="rect" id="node25" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="171,681,401,707"/>
+<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="989,29,1136,55"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#a4f1221dae90cc67d866d611ebaa80f60" title="vehDist::fieldsToSave" alt="" coords="481,427,631,454"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#a52905629f571c9c91557e744b199722f" title="WaveShortMessage::getChannel\lNumber" alt="" coords="719,633,933,675"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#ab5790460483faa5713077d73007b1033" title="WaveShortMessage::getPsid" alt="" coords="730,699,922,726"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#ac3117615566fa0a605f81bbaf53d5921" title="WaveShortMessage::getPriority" alt="" coords="723,211,929,238"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#a6851e8a2af35b6e55d5bec81057ae51f" title="WaveShortMessage::getWsm\lVersion" alt="" coords="727,263,925,304"/>
+<area shape="rect" id="node13" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="711,329,941,355"/>
+<area shape="rect" id="node14" href="$class_wave_short_message.html#a2c0b693fa05728f6712cf22d0da2a3b2" title="WaveShortMessage::getHeading" alt="" coords="719,379,933,406"/>
+<area shape="rect" id="node16" href="$class_wave_short_message.html#a2bdb99e260528ad12afd44b16f8c1e10" title="WaveShortMessage::getTarget" alt="" coords="725,430,927,457"/>
+<area shape="rect" id="node18" href="$class_wave_short_message.html#a47e866d383c3454e186dbe9c869fbc38" title="WaveShortMessage::getSenderPos" alt="" coords="711,481,941,507"/>
+<area shape="rect" id="node19" href="$class_wave_short_message.html#a9ffe0a30a78e7192e643e0ac5427db1b" title="WaveShortMessage::getSerial" alt="" coords="727,531,925,558"/>
+<area shape="rect" id="node20" href="$class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0" title="WaveShortMessage::getWsmData" alt="" coords="713,582,939,609"/>
+<area shape="rect" id="node22" href="$class_wave_short_message.html#a8d66edc68ebe3ec56c8df75d5b367310" title="WaveShortMessage::WaveShort\lMessage" alt="" coords="449,631,663,672"/>
 </map>

@@ -1,0 +1,8 @@
+<map id="WaveShortMessage::getRecipientAddressString" name="WaveShortMessage::getRecipientAddressString">
+<area shape="rect" id="node2" href="$classveh_dist__rsu.html#ac5e0cae06b25bb79e8c54d6cdbfa7e59" title="vehDist_rsu::fieldsToSave" alt="" coords="275,17,451,43"/>
+<area shape="rect" id="node4" href="$classveh_dist__rsu.html#ae75c14310c557d1383da4165dc92c05a" title="vehDist_rsu::onData" alt="" coords="748,59,891,86"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a4f1221dae90cc67d866d611ebaa80f60" title="vehDist::fieldsToSave" alt="" coords="287,122,438,149"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="761,135,878,162"/>
+<area shape="rect" id="node3" href="$classveh_dist__rsu.html#a406cc86e92767427797227c407289448" title="vehDist_rsu::saveMessages\lOnFile" alt="" coords="505,5,693,47"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#ac6eababe9063bb948595be363fc0b8a1" title="vehDist::saveMessagesOnFile" alt="" coords="499,122,700,149"/>
+</map>

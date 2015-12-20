@@ -139,11 +139,11 @@ var hierarchy =
       [ "SimpleConstMappingIterator", "class_simple_const_mapping_iterator.html", null ]
     ] ],
     [ "container_type", null, [
-      [ "InterpolateableMap< Interpolator< std::map< argument_value_t, Mapping * > > >", "class_interpolateable_map.html", null ],
-      [ "InterpolateableMap< Interpolator< std::map< simtime_t, argument_value_t > > >", "class_interpolateable_map.html", null ]
+      [ "InterpolateableMap< Linear< std::map< argument_value_t, Mapping * > > >", "class_interpolateable_map.html", null ]
     ] ],
     [ "container_type", null, [
-      [ "InterpolateableMap< Linear< std::map< argument_value_t, Mapping * > > >", "class_interpolateable_map.html", null ]
+      [ "InterpolateableMap< Interpolator< std::map< argument_value_t, Mapping * > > >", "class_interpolateable_map.html", null ],
+      [ "InterpolateableMap< Interpolator< std::map< simtime_t, argument_value_t > > >", "class_interpolateable_map.html", null ]
     ] ],
     [ "BaseConnectionManager::CoordSet", "class_base_connection_manager_1_1_coord_set.html", null ],
     [ "cPacket", null, [
@@ -222,6 +222,7 @@ var hierarchy =
       [ "BasePhyLayer", "class_base_phy_layer.html", null ]
     ] ],
     [ "MappingUtils", "class_mapping_utils.html", null ],
+    [ "vehDist_rsu::messages", "structveh_dist__rsu_1_1messages.html", null ],
     [ "mixim::math::mW2dBm< T, B >", "structmixim_1_1math_1_1m_w2d_bm.html", null ],
     [ "mixim::math::mW2dBm< T, false >", "structmixim_1_1math_1_1m_w2d_bm_3_01_t_00_01false_01_4.html", null ],
     [ "mixim::math::mW2dBm< T, true >", "structmixim_1_1math_1_1m_w2d_bm_3_01_t_00_01true_01_4.html", null ],

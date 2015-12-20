@@ -1,0 +1,5 @@
+<map id="vehDist_rsu::messagesReceivedMeasuring" name="vehDist_rsu::messagesReceivedMeasuring">
+<area shape="rect" id="node2" href="$class_wave_short_message.html#a45f745e1750b2a1b6ca9c31f5e513a89" title="WaveShortMessage::getGlobal\lMessageIdentificaton" alt="" coords="279,5,482,47"/>
+<area shape="rect" id="node3" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="285,71,476,112"/>
+<area shape="rect" id="node4" href="$class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0" title="WaveShortMessage::getWsmData" alt="" coords="268,137,493,163"/>
+</map>

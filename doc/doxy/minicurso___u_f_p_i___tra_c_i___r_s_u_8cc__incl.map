@@ -1,12 +1,12 @@
 <map id="minicurso_UFPI_TraCI_RSU.cc" name="minicurso_UFPI_TraCI_RSU.cc">
-<area shape="rect" id="node2" href="$minicurso___u_f_p_i___tra_c_i___r_s_u_8h.html" title="application/minicurso\l_UFPI_TraCI/minicurso\l_UFPI_TraCI_RSU.h" alt="" coords="1644,95,1804,151"/>
-<area shape="rect" id="node3" href="$_base_wave_appl_layer_8h.html" title="BaseWaveApplLayer.h" alt="" coords="1503,199,1657,225"/>
-<area shape="rect" id="node35" href="$_annotation_manager_8h.html" title="modules/world/annotations\l/AnnotationManager.h" alt="" coords="1585,512,1762,553"/>
+<area shape="rect" id="node2" href="$minicurso___u_f_p_i___tra_c_i___r_s_u_8h.html" title="application/minicurso\l_UFPI_TraCI/minicurso\l_UFPI_TraCI_RSU.h" alt="" coords="1739,95,1899,151"/>
+<area shape="rect" id="node3" href="$_base_wave_appl_layer_8h.html" title="BaseWaveApplLayer.h" alt="" coords="1529,199,1684,225"/>
+<area shape="rect" id="node36" href="$_annotation_manager_8h.html" title="modules/world/annotations\l/AnnotationManager.h" alt="" coords="1585,512,1762,553"/>
 <area shape="rect" id="node5" href="$_base_appl_layer_8h.html" title="BaseApplLayer.h" alt="" coords="198,281,319,307"/>
-<area shape="rect" id="node18" href="$_consts80211p_8h.html" title="Consts80211p.h" alt="" coords="1513,363,1631,389"/>
-<area shape="rect" id="node19" href="$_wave_short_message__m_8h.html" title="WaveShortMessage_m.h" alt="" coords="1207,519,1377,546"/>
-<area shape="rect" id="node23" href="$_channel_access_8h.html" title="base/connectionManager\l/ChannelAccess.h" alt="" coords="883,273,1050,315"/>
-<area shape="rect" id="node31" href="$_wave_app_to_mac1609__4_interface_8h.html" title="WaveAppToMac1609_4Interface.h" alt="" coords="1310,281,1533,307"/>
+<area shape="rect" id="node18" href="$_consts80211p_8h.html" title="Consts80211p.h" alt="" coords="1509,363,1627,389"/>
+<area shape="rect" id="node19" href="$_wave_short_message__m_8h.html" title="WaveShortMessage_m.h" alt="" coords="1203,519,1373,546"/>
+<area shape="rect" id="node23" href="$_channel_access_8h.html" title="base/connectionManager\l/ChannelAccess.h" alt="" coords="866,273,1033,315"/>
+<area shape="rect" id="node31" href="$_wave_app_to_mac1609__4_interface_8h.html" title="WaveAppToMac1609_4Interface.h" alt="" coords="1306,281,1529,307"/>
 <area shape="rect" id="node7" href="$_mi_xi_m_defs_8h.html" title="MiXiMDefs.h" alt="" coords="512,751,611,777"/>
 <area shape="rect" id="node10" href="$_base_layer_8h.html" title="BaseLayer.h" alt="" coords="211,363,306,389"/>
 <area shape="rect" id="node17" href="$_simple_address_8h.html" title="SimpleAddress.h" alt="" coords="929,676,1050,703"/>
@@ -19,8 +19,8 @@
 <area shape="rect" id="node20" href="$_coord_8h.html" title="Coord.h" alt="" coords="1149,601,1217,628"/>
 <area shape="rect" id="node21" href="$_f_w_math_8h.html" title="FWMath.h" alt="" coords="1075,676,1157,703"/>
 <area shape="rect" id="node25" href="$_find_module_8h.html" title="FindModule.h" alt="" coords="1535,601,1635,628"/>
-<area shape="rect" id="node26" href="$_base_mobility_8h.html" title="BaseMobility.h" alt="" coords="913,363,1021,389"/>
-<area shape="rect" id="node27" href="$_move_8h.html" title="Move.h" alt="" coords="1015,519,1081,546"/>
-<area shape="rect" id="node30" href="$_base_world_utility_8h.html" title="BaseWorldUtility.h" alt="" coords="861,519,992,546"/>
+<area shape="rect" id="node26" href="$_base_mobility_8h.html" title="BaseMobility.h" alt="" coords="895,363,1003,389"/>
+<area shape="rect" id="node27" href="$_move_8h.html" title="Move.h" alt="" coords="1011,519,1077,546"/>
+<area shape="rect" id="node30" href="$_base_world_utility_8h.html" title="BaseWorldUtility.h" alt="" coords="857,519,988,546"/>
 <area shape="rect" id="node32" href="$_netw_to_mac_control_info_8h.html" title="NetwToMacControlInfo.h" alt="" coords="1241,601,1409,628"/>
 </map>

@@ -368,7 +368,8 @@ var files =
     ] ],
     [ "vehDist_rsu.cc", "veh_dist__rsu_8cc.html", "veh_dist__rsu_8cc" ],
     [ "vehDist_rsu.h", "veh_dist__rsu_8h.html", [
-      [ "vehDist_rsu", "classveh_dist__rsu.html", "classveh_dist__rsu" ]
+      [ "vehDist_rsu", "classveh_dist__rsu.html", "classveh_dist__rsu" ],
+      [ "messages", "structveh_dist__rsu_1_1messages.html", "structveh_dist__rsu_1_1messages" ]
     ] ],
     [ "WaveAppToMac1609_4Interface.h", "_wave_app_to_mac1609__4_interface_8h.html", [
       [ "WaveAppToMac1609_4Interface", "class_wave_app_to_mac1609__4_interface.html", "class_wave_app_to_mac1609__4_interface" ]

@@ -1,8 +1,7 @@
 <map id="vehDist::sendWSM" name="vehDist::sendWSM">
-<area shape="rect" id="node2" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="442,27,603,54"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="220,27,343,54"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="189,78,373,104"/>
-<area shape="rect" id="node5" href="$classveh_dist.html#a31a60a33d9d0337901a92a106cbf4e38" title="vehDist::sendMessage" alt="" coords="203,128,359,155"/>
-<area shape="rect" id="node6" href="$classveh_dist.html#a8289ffd678d433e6025e853968e6158e" title="vehDist::handlePositionUpdate" alt="" coords="421,128,624,155"/>
-<area shape="rect" id="node7" href="$classveh_dist.html#ab030c6cdc9bfada05b16572c32303de8" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="672,128,825,155"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="442,5,603,32"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="189,31,373,57"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#a31a60a33d9d0337901a92a106cbf4e38" title="vehDist::sendMessage" alt="" coords="203,81,359,108"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a8289ffd678d433e6025e853968e6158e" title="vehDist::handlePositionUpdate" alt="" coords="421,81,624,108"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#ab030c6cdc9bfada05b16572c32303de8" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="672,81,825,108"/>
 </map>

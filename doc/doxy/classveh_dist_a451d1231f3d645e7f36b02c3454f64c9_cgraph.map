@@ -1,8 +1,3 @@
 <map id="vehDist::onBeacon" name="vehDist::onBeacon">
-<area shape="rect" id="node2" href="$class_wave_short_message.html#a71a1969325dc1e97be41c1163f31af3c" title="WaveShortMessage::getSender\lAddress" alt="" coords="187,5,393,47"/>
-<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="442,114,593,141"/>
-<area shape="rect" id="node5" href="$classveh_dist.html#a7e0df0976d79f7bb0dbe7bcf5815a268" title="vehDist::printOrdemBeacons" alt="" coords="195,122,385,149"/>
-<area shape="rect" id="node7" href="$classveh_dist.html#a359006f8f28cef3c628ad4fa276fa8a3" title="vehDist::printBeaconNeighbors" alt="" coords="189,173,391,199"/>
-<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="641,114,788,141"/>
-<area shape="rect" id="node6" href="$class_base_wave_appl_layer.html#a3838ef2e8dba7ab8767cf3c3d3d9883b" title="BaseWaveApplLayer::\lMACToInteger" alt="" coords="441,165,593,207"/>
+<area shape="rect" id="node2" href="$class_wave_short_message.html#ad670b89d9f8db77ee076ef3f04183970" title="WaveShortMessage::getSender\lAddressString" alt="" coords="187,5,393,47"/>
 </map>

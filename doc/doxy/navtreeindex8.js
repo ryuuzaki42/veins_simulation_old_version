@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"class_mac_to_netw_control_info.html#a69d09f2d4b0f7603b5cfa0bd8efafe61":[2,0,81,9],
 "class_mac_to_netw_control_info.html#a789cde71306e4d00c552c502a09e9a12":[2,0,81,6],
 "class_mac_to_netw_control_info.html#a9399aa277ab5647efe0576a2651eb2f7":[2,0,81,1],
 "class_mac_to_netw_control_info.html#aa5a3ee1ad3f78209ab7ce2798252e813":[2,0,81,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "class_phy_layer80211p.html#adfe098a981b32aa82c0cf369bdca29b3":[2,0,108,13],
 "class_phy_to_mac_control_info.html":[2,0,109],
 "class_phy_to_mac_control_info.html#a1dc106d6290a2f4f18b4281e14077545":[2,0,109,3],
-"class_phy_to_mac_control_info.html#a5b56a9f0cf2b87496f6d19df98216bf5":[2,0,109,1],
-"class_phy_to_mac_control_info.html#a695fcb4091796018a3315486acafc9b0":[2,0,109,2]
+"class_phy_to_mac_control_info.html#a5b56a9f0cf2b87496f6d19df98216bf5":[2,0,109,1]
 };

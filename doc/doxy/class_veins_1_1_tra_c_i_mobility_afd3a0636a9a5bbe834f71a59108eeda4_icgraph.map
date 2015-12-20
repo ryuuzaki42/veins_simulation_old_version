@@ -15,7 +15,7 @@
 <area shape="rect" id="node23" href="$classminicurso___u_f_p_i___tra_c_i.html#a79b8501a853a65fc0b4e3bac86af9371" title="minicurso_UFPI_TraCI\l::onData" alt="" coords="234,827,390,868"/>
 <area shape="rect" id="node24" href="$classveh_dist.html#ab37f9248461664ccd839bb09b7bd34cf" title="vehDist::prepareBeaconWSM" alt="" coords="482,943,677,970"/>
 <area shape="rect" id="node26" href="$classmfcv.html#aa9342e16ddb4c110992eca1cd438f60c" title="mfcv::prepareWSM_node" alt="" coords="227,994,397,1021"/>
-<area shape="rect" id="node28" href="$classveh_dist.html#a24d0befe919971abe21d213a6ed138fb" title="vehDist::updateMessageWSM" alt="" coords="212,1045,412,1071"/>
+<area shape="rect" id="node28" href="$classveh_dist.html#ac744d5b0d7e5a45033e6bc5528295980" title="vehDist::updateMessageWSM" alt="" coords="212,1045,412,1071"/>
 <area shape="rect" id="node30" href="$classminicurso___u_f_p_i___tra_c_i.html#a0b204910fdf88dd8e2e54e61946f1c28" title="minicurso_UFPI_TraCI\l::verifyAndSendCongestionMessage" alt="" coords="195,761,429,803"/>
 <area shape="rect" id="node5" href="$classdefault__veins___tra_c_i.html#a712c055b5b98c22c74eb8df0e3a38558" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="510,123,649,164"/>
 <area shape="rect" id="node7" href="$class_veins_1_1epidemic__app.html#ab1558c0812fe48f47d1aac6f30b5dae8" title="Called by the signaling mechanism whenever a change of a category occurs to which we have subscribed..." alt="" coords="508,188,651,229"/>

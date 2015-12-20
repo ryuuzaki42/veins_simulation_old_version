@@ -1,4 +1,5 @@
 <map id="vehDist::generateTarget" name="vehDist::generateTarget">
 <area shape="rect" id="node2" href="$classveh_dist.html#a11fa0f572ada2a8872c6387a841f98f1" title="vehDist::generateMessage" alt="" coords="216,5,395,32"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="443,5,565,32"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="443,5,597,32"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="645,5,768,32"/>
 </map>

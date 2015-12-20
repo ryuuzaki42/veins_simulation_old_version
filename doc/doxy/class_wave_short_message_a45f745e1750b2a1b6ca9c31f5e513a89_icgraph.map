@@ -1,11 +1,18 @@
 <map id="WaveShortMessage::getGlobalMessageIdentificaton" name="WaveShortMessage::getGlobalMessageIdentificaton">
-<area shape="rect" id="node2" href="$classveh_dist.html#a11fa0f572ada2a8872c6387a841f98f1" title="vehDist::generateMessage" alt="" coords="277,5,456,32"/>
-<area shape="rect" id="node4" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="274,56,459,83"/>
-<area shape="rect" id="node5" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="256,107,477,133"/>
-<area shape="rect" id="node6" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="308,157,425,184"/>
-<area shape="rect" id="node7" href="$classepidemic__rsu.html#a2b8a5dece62b33a4fd1fe5420f5cc8b3" title="epidemic_rsu::printWaveShort\lMessage" alt="" coords="268,209,465,250"/>
-<area shape="rect" id="node8" href="$classmfcv__epidemic__rsu.html#a389a26ed164c4f72918ceeb2d0d72c2c" title="mfcv_epidemic_rsu::\lprintWaveShortMessage" alt="" coords="284,274,449,315"/>
-<area shape="rect" id="node9" href="$classepidemic.html#a830fa4472a6940665e2e9de49ad34cf2" title="epidemic::printWaveShort\lMessage" alt="" coords="281,339,453,381"/>
-<area shape="rect" id="node10" href="$classmfcv__epidemic.html#a99d02ada1ef214584d69ec3bb5627cd3" title="mfcv_epidemic::printWave\lShortMessage" alt="" coords="278,405,455,446"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="525,5,648,32"/>
+<area shape="rect" id="node2" href="$classveh_dist__rsu.html#ac5e0cae06b25bb79e8c54d6cdbfa7e59" title="vehDist_rsu::fieldsToSave" alt="" coords="279,181,455,208"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a4f1221dae90cc67d866d611ebaa80f60" title="vehDist::fieldsToSave" alt="" coords="291,76,442,102"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="801,49,918,76"/>
+<area shape="rect" id="node8" href="$classveh_dist.html#a11fa0f572ada2a8872c6387a841f98f1" title="vehDist::generateMessage" alt="" coords="277,333,456,360"/>
+<area shape="rect" id="node11" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="274,232,459,258"/>
+<area shape="rect" id="node12" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="256,282,477,309"/>
+<area shape="rect" id="node13" href="$classveh_dist__rsu.html#a7f25344fb1d8b1aaee227f2957a46f24" title="vehDist_rsu::messagesReceived\lMeasuring" alt="" coords="525,126,740,167"/>
+<area shape="rect" id="node14" href="$classepidemic__rsu.html#a2b8a5dece62b33a4fd1fe5420f5cc8b3" title="epidemic_rsu::printWaveShort\lMessage" alt="" coords="268,384,465,426"/>
+<area shape="rect" id="node15" href="$classmfcv__epidemic__rsu.html#a389a26ed164c4f72918ceeb2d0d72c2c" title="mfcv_epidemic_rsu::\lprintWaveShortMessage" alt="" coords="284,450,449,491"/>
+<area shape="rect" id="node16" href="$classepidemic.html#a830fa4472a6940665e2e9de49ad34cf2" title="epidemic::printWaveShort\lMessage" alt="" coords="281,515,453,556"/>
+<area shape="rect" id="node17" href="$classmfcv__epidemic.html#a99d02ada1ef214584d69ec3bb5627cd3" title="mfcv_epidemic::printWave\lShortMessage" alt="" coords="278,580,455,622"/>
+<area shape="rect" id="node3" href="$classveh_dist__rsu.html#a406cc86e92767427797227c407289448" title="vehDist_rsu::saveMessages\lOnFile" alt="" coords="539,191,727,232"/>
+<area shape="rect" id="node4" href="$classveh_dist__rsu.html#ae75c14310c557d1383da4165dc92c05a" title="vehDist_rsu::onData" alt="" coords="788,166,931,193"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#ac6eababe9063bb948595be363fc0b8a1" title="vehDist::saveMessagesOnFile" alt="" coords="532,74,733,101"/>
+<area shape="rect" id="node9" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="555,333,710,360"/>
+<area shape="rect" id="node10" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="798,333,921,360"/>
 </map>

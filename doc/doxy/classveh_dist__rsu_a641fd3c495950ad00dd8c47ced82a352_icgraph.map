@@ -1,3 +1,4 @@
 <map id="vehDist_rsu::sendWSM" name="vehDist_rsu::sendWSM">
-<area shape="rect" id="node2" href="$classveh_dist__rsu.html#a0eacc13c3e30ec03508ff02681741d01" title="vehDist_rsu::sendMessage" alt="" coords="215,5,396,32"/>
+<area shape="rect" id="node2" href="$classveh_dist__rsu.html#a3be9ef029cadf611185d8ee64ba67fb6" title="handle self messages " alt="" coords="215,5,401,32"/>
+<area shape="rect" id="node3" href="$classveh_dist__rsu.html#a0eacc13c3e30ec03508ff02681741d01" title="vehDist_rsu::sendMessage" alt="" coords="217,56,399,83"/>
 </map>

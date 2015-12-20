@@ -1,18 +1,18 @@
 <map id="WaveShortMessage::getPriority" name="WaveShortMessage::getPriority">
-<area shape="rect" id="node2" href="$class_mac1609__4.html#a551d295ebf0b23896f4d272e3db3961d" title="Handle self messages such as timers. " alt="" coords="273,5,456,32"/>
-<area shape="rect" id="node3" href="$class_mac1609__4.html#ac93bf319ea2065fd7e8c041697e49919" title="Handle messages from upper layer. " alt="" coords="267,56,462,83"/>
-<area shape="rect" id="node4" href="$classepidemic__rsu.html#a2b8a5dece62b33a4fd1fe5420f5cc8b3" title="epidemic_rsu::printWaveShort\lMessage" alt="" coords="266,107,463,149"/>
-<area shape="rect" id="node5" href="$classmfcv__epidemic__rsu.html#a389a26ed164c4f72918ceeb2d0d72c2c" title="mfcv_epidemic_rsu::\lprintWaveShortMessage" alt="" coords="282,173,447,214"/>
-<area shape="rect" id="node6" href="$classepidemic.html#a830fa4472a6940665e2e9de49ad34cf2" title="epidemic::printWaveShort\lMessage" alt="" coords="279,238,451,279"/>
-<area shape="rect" id="node7" href="$classmfcv__epidemic.html#a99d02ada1ef214584d69ec3bb5627cd3" title="mfcv_epidemic::printWave\lShortMessage" alt="" coords="276,303,453,345"/>
-<area shape="rect" id="node8" href="$classmfcv__epidemic.html#a600b446b20f9657763545b664231a526" title="mfcv_epidemic::recordOnFile" alt="" coords="269,369,461,396"/>
-<area shape="rect" id="node9" href="$classveh_dist__rsu.html#aa8f2a1e9c05d59e036f94dbc958aa06b" title="vehDist_rsu::recordOnFile\lMessages" alt="" coords="277,421,452,462"/>
-<area shape="rect" id="node11" href="$classveh_dist.html#a92022a34d1bd78a3917da427e50d975b" title="vehDist::recordOnFileMessages" alt="" coords="260,552,469,579"/>
-<area shape="rect" id="node13" href="$classveh_dist__rsu.html#ad84452793921568f057c873fbc46d13c" title="vehDist_rsu::recordOnFile\lMessagesBroadcast" alt="" coords="277,486,452,527"/>
-<area shape="rect" id="node14" href="$classveh_dist.html#a2bb2233d62b252501ea9f31592ba964b" title="vehDist::recordOnFileMessages\lBroadcast" alt="" coords="260,603,469,645"/>
-<area shape="rect" id="node15" href="$classveh_dist.html#a24d0befe919971abe21d213a6ed138fb" title="vehDist::updateMessageWSM" alt="" coords="265,669,465,696"/>
-<area shape="rect" id="node10" href="$classveh_dist__rsu.html#ae75c14310c557d1383da4165dc92c05a" title="vehDist_rsu::onData" alt="" coords="538,461,681,488"/>
-<area shape="rect" id="node12" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="551,581,668,608"/>
-<area shape="rect" id="node16" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="517,669,701,696"/>
-<area shape="rect" id="node17" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="749,669,911,696"/>
+<area shape="rect" id="node2" href="$classveh_dist__rsu.html#ac5e0cae06b25bb79e8c54d6cdbfa7e59" title="vehDist_rsu::fieldsToSave" alt="" coords="272,17,448,43"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a4f1221dae90cc67d866d611ebaa80f60" title="vehDist::fieldsToSave" alt="" coords="285,69,435,95"/>
+<area shape="rect" id="node8" href="$class_mac1609__4.html#a551d295ebf0b23896f4d272e3db3961d" title="Handle self messages such as timers. " alt="" coords="269,119,451,146"/>
+<area shape="rect" id="node9" href="$class_mac1609__4.html#ac93bf319ea2065fd7e8c041697e49919" title="Handle messages from upper layer. " alt="" coords="263,170,457,197"/>
+<area shape="rect" id="node10" href="$classmfcv__epidemic__rsu.html#a389a26ed164c4f72918ceeb2d0d72c2c" title="mfcv_epidemic_rsu::\lprintWaveShortMessage" alt="" coords="277,221,443,263"/>
+<area shape="rect" id="node11" href="$classepidemic__rsu.html#a2b8a5dece62b33a4fd1fe5420f5cc8b3" title="epidemic_rsu::printWaveShort\lMessage" alt="" coords="261,287,459,328"/>
+<area shape="rect" id="node12" href="$classepidemic.html#a830fa4472a6940665e2e9de49ad34cf2" title="epidemic::printWaveShort\lMessage" alt="" coords="274,352,446,393"/>
+<area shape="rect" id="node13" href="$classmfcv__epidemic.html#a99d02ada1ef214584d69ec3bb5627cd3" title="mfcv_epidemic::printWave\lShortMessage" alt="" coords="271,417,449,459"/>
+<area shape="rect" id="node14" href="$classmfcv__epidemic.html#a600b446b20f9657763545b664231a526" title="mfcv_epidemic::recordOnFile" alt="" coords="264,483,456,510"/>
+<area shape="rect" id="node15" href="$classveh_dist.html#ac744d5b0d7e5a45033e6bc5528295980" title="vehDist::updateMessageWSM" alt="" coords="260,534,460,561"/>
+<area shape="rect" id="node3" href="$classveh_dist__rsu.html#a406cc86e92767427797227c407289448" title="vehDist_rsu::saveMessages\lOnFile" alt="" coords="515,5,703,47"/>
+<area shape="rect" id="node4" href="$classveh_dist__rsu.html#ae75c14310c557d1383da4165dc92c05a" title="vehDist_rsu::onData" alt="" coords="767,13,909,39"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#ac6eababe9063bb948595be363fc0b8a1" title="vehDist::saveMessagesOnFile" alt="" coords="508,71,709,98"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="779,71,897,98"/>
+<area shape="rect" id="node16" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="517,534,701,561"/>
+<area shape="rect" id="node17" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="757,534,919,561"/>
 </map>

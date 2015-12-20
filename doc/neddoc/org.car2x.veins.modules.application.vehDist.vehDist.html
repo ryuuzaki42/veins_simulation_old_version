@@ -233,16 +233,6 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    <td>   </td>
 </tr>
 <tr class="inherited">
-   <td>sendUpdatePos</td>
-   <td>
-      <i>bool</i>
-   </td>
-   <td>false</td>
-   <td>
-<p>tell the applayer to periodically send UpdatePosition</p>
-   </td>
-</tr>
-<tr class="inherited">
    <td>repeatNumber</td>
    <td>
       <i>int</i>
@@ -280,16 +270,6 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    </td>
 </tr>
 <tr class="local">
-   <td>deleteMessage</td>
-   <td>
-      <i>bool</i>
-   </td>
-   <td>false</td>
-   <td>
-<p>tell the ap</p>
-   </td>
-</tr>
-<tr class="local">
    <td>messageBufferSize</td>
    <td>
       <i>int</i>
@@ -299,19 +279,19 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    </td>
 </tr>
 <tr class="local">
-   <td>beaconBufferSize</td>
-   <td>
-      <i>int</i>
-   </td>
-   <td>10</td>
-   <td>   </td>
-</tr>
-<tr class="local">
    <td>timeValidBeacon</td>
    <td>
       <i>int</i>
    </td>
    <td>10s</td>
+   <td>   </td>
+</tr>
+<tr class="local">
+   <td>beaconBufferSize</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>10</td>
    <td>   </td>
 </tr>
 </table>
@@ -375,11 +355,10 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
 </span><span style="color: #000000; ">
     </span><span style="color: #808080; font-style: italic; ">//    int timeTrySendMessage @unit(&quot;s&quot;) = default(1s);
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">timeDeleteMessage</span><span style="color: #000000; "> </span><span style="color: #000000; font-weight: bold; ">@unit</span><span style="color: #000000; ">(</span><span style="color: #008000; ">&quot;s&quot;</span><span style="color: #000000; ">) = </span><span style="color: #800000; font-weight: bold; ">default</span><span style="color: #000000; ">(</span><span style="color: #008000; ">1</span><span style="color: #000000; ">s</span><span style="color: #000000; ">);
-    </span><span style="color: #000080; font-weight: bold; ">bool</span><span style="color: #000000; "> </span><span style="color: #000000; ">deleteMessage</span><span style="color: #000000; "> = </span><span style="color: #800000; font-weight: bold; ">default</span><span style="color: #000000; ">(</span><span style="color: #008000; ">false</span><span style="color: #000000; ">); </span><span style="color: #808080; font-style: italic; ">//tell the ap
-</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">messageBufferSize</span><span style="color: #000000; "> = </span><span style="color: #800000; font-weight: bold; ">default</span><span style="color: #000000; ">(</span><span style="color: #008000; ">10</span><span style="color: #000000; ">);
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">messageBufferSize</span><span style="color: #000000; "> = </span><span style="color: #800000; font-weight: bold; ">default</span><span style="color: #000000; ">(</span><span style="color: #008000; ">10</span><span style="color: #000000; ">);
 
-    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">beaconBufferSize</span><span style="color: #000000; "> = </span><span style="color: #800000; font-weight: bold; ">default</span><span style="color: #000000; ">(</span><span style="color: #008000; ">10</span><span style="color: #000000; ">);
     </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">timeValidBeacon</span><span style="color: #000000; "> </span><span style="color: #000000; font-weight: bold; ">@unit</span><span style="color: #000000; ">(</span><span style="color: #008000; ">&quot;s&quot;</span><span style="color: #000000; ">) = </span><span style="color: #800000; font-weight: bold; ">default</span><span style="color: #000000; ">(</span><span style="color: #008000; ">10</span><span style="color: #000000; ">s</span><span style="color: #000000; ">);
+    </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">beaconBufferSize</span><span style="color: #000000; "> = </span><span style="color: #800000; font-weight: bold; ">default</span><span style="color: #000000; ">(</span><span style="color: #008000; ">10</span><span style="color: #000000; ">);
 }
 </span></pre>
    <hr><p class="footer"><a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top"><img src="by-sa.png"></a> This documentation is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top">Creative Commons license</a></p>

@@ -1,0 +1,10 @@
+<map id="WaveShortMessage::setRecipientAddressString" name="WaveShortMessage::setRecipientAddressString">
+<area shape="rect" id="node2" href="$classveh_dist.html#a11fa0f572ada2a8872c6387a841f98f1" title="vehDist::generateMessage" alt="" coords="295,5,474,32"/>
+<area shape="rect" id="node5" href="$classveh_dist__rsu.html#a8b02b075ac428f6ef0e8eeae33145483" title="vehDist_rsu::prepareBeaconWSM" alt="" coords="275,56,495,83"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#ac744d5b0d7e5a45033e6bc5528295980" title="vehDist::updateMessageWSM" alt="" coords="285,107,485,133"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="559,5,713,32"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="797,5,919,32"/>
+<area shape="rect" id="node6" href="$classveh_dist__rsu.html#a3be9ef029cadf611185d8ee64ba67fb6" title="handle self messages " alt="" coords="543,56,729,83"/>
+<area shape="rect" id="node8" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="544,107,728,133"/>
+<area shape="rect" id="node9" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="777,107,939,133"/>
+</map>

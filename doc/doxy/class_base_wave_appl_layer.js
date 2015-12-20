@@ -33,6 +33,8 @@ var class_base_wave_appl_layer =
     [ "dataLengthBits", "class_base_wave_appl_layer.html#af3b82dfc5a5b4640d1130385ff38bd4c", null ],
     [ "dataOnSch", "class_base_wave_appl_layer.html#a3cb7bca87c3ed7f4fd999f2c25821114", null ],
     [ "dataPriority", "class_base_wave_appl_layer.html#aa64f5e93849af57871d115fa39bc358e", null ],
+    [ "fileMessagesNameBroadcast", "class_base_wave_appl_layer.html#ad17baefcf81545ae08e54542f03744af", null ],
+    [ "fileMessagesNameUnicast", "class_base_wave_appl_layer.html#a493f516a89496153c48955674db8620f", null ],
     [ "hopCount", "class_base_wave_appl_layer.html#a744aae3d57e876be6c9e0289a12b4190", null ],
     [ "individualOffset", "class_base_wave_appl_layer.html#a1fbb007c8d097f0835ab64d8d9711710", null ],
     [ "maximumEpidemicBufferSize", "class_base_wave_appl_layer.html#a75abed0b5a0e0bfdab7f7d289f6557d9", null ],
@@ -45,7 +47,6 @@ var class_base_wave_appl_layer =
     [ "sendBeacons", "class_base_wave_appl_layer.html#a46a0f0355edd6adf8578aee8e82e9e69", null ],
     [ "sendData", "class_base_wave_appl_layer.html#a5a97137fd055fd8ec70609cdf6d2d673", null ],
     [ "sendSummaryVectorInterval", "class_base_wave_appl_layer.html#aff58e063673084179b7304df6a9a46d9", null ],
-    [ "sendUpdatePos", "class_base_wave_appl_layer.html#a9640c953ade1f76e95961fcc19f7e8a6", null ],
     [ "source", "class_base_wave_appl_layer.html#a449e5a6d3e87c647c4e46c2dbac99bdf", null ],
     [ "target", "class_base_wave_appl_layer.html#a8b43dcc614b85df2ed37818d950a765c", null ]
 ];
