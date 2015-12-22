@@ -323,6 +323,14 @@ void BaseWaveApplLayer::handleLowerMsg(cMessage* msg) {
     else if (std::string(wsm->getName()) == "data") {
         onData(wsm);
     }
+//
+    else if (std::string(wsm->getName()) == "data2veh") {
+        cout << "data2veh now" << endl;
+    }
+    else if (std::string(wsm->getName()) == "data2rsu") {
+            cout << "data2rsu now" << endl;
+    }
+//
     else if (std::string(wsm->getName()) == "beacon_minicurso") {
         onBeacon(wsm);
     }
