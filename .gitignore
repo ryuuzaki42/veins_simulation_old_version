@@ -6,6 +6,9 @@ projects/**/results
 projects/**/.tkenvrc
 projects/**/valgrind.out
 
+#
+projects/**/resultsEnd
+#
 #/images
 #/tests
 #/doc
