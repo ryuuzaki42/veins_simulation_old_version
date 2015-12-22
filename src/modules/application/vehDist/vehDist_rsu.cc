@@ -34,28 +34,56 @@ void vehDist_rsu::initialize(int stage) {
 
         restartFilesResult();
         //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
-        //cout << endl << findHost()->getFullName() << " myId " <<  myId << endl;
     }
 }
 
 void vehDist_rsu::onBeacon(WaveShortMessage* wsm) {
+    // to do?
 
 }
 
 void vehDist_rsu::restartFilesResult(){
-    int repeatNumber = par("repeatNumber");
+
+    fileMessagesNameBroadcast = "results/rsuBroadcastMessages.txt";
+
+    fileMessagesNameUnicast = "results/";
+    fileMessagesNameUnicast += findHost()->getFullName();
+    fileMessagesNameUnicast += "MessagesReceived.txt";
+
+    fileMessagesCount = "results/";
+    fileMessagesCount += findHost()->getFullName();
+    fileMessagesCount += "CountMessagesReceived.txt";
+
+     //fileMessagesDrop = ...
+
+    repeatNumber = par("repeatNumber");
     if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0) && (repeatNumber == 0)) {
         //create a folder results
         system("mkdir results");
         //Open a new file for the current simulation
-        fileMessagesNameBroadcast = "results/rsuBroadcastMessages.txt";
         myfile.open (fileMessagesNameBroadcast);
+        printHeaderfileExecution();
         myfile.close();
 
-        fileMessagesNameUnicast = "results/";
-        fileMessagesNameUnicast += findHost()->getFullName();
-        fileMessagesNameUnicast += "MessagesReceived.txt";
         myfile.open (fileMessagesNameUnicast);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesCount);
+        printHeaderfileExecution();
+        myfile.close();
+    }else if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0) && (repeatNumber != 0)) {
+        //Open a new file for the current simulation
+        myfile.open (fileMessagesNameBroadcast, std::ios_base::app);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesNameUnicast, std::ios_base::app);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesCount, std::ios_base::app);
+        printHeaderfileExecution();
         myfile.close();
     }
 }
@@ -68,81 +96,75 @@ void vehDist_rsu::onData(WaveShortMessage* wsm){
         messagesReceivedMeasuring(wsm);
     }
     else{
-   // else if (strcmp(wsm->getRecipientAddressString(), "BROADCAST") == 0){
-      //  findHost()->bubble("Received BroadcastMessage");
         saveMessagesOnFile(wsm, fileMessagesNameBroadcast);
-    //}
     }
 }
 
 void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
-    int limitHopCount = par("hopCount");
+    int limitHopCount = par("hopCount").doubleValue();
     auto it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
     if (it != messagesReceived.end()){
+
         it->second.hops += ", ";
-        it->second.HopsCount = it->second.HopsCount + 1;
         it->second.hops += to_string(limitHopCount - wsm->getHopCount());
-        cout << "hop:" << it->second.hops << endl;
-        it->second.averageHops = it->second.averageHops + wsm->getHopCount();
+        it->second.HopsCount = it->second.HopsCount + 1;
+        it->second.averageHops += (limitHopCount - wsm->getHopCount());
         if ((limitHopCount - wsm->getHopCount()) > it->second. maxHop){
             it->second.maxHop = (limitHopCount - wsm->getHopCount());
         }
         if ((limitHopCount - wsm->getHopCount()) < it->second. minHop){
              it->second.minHop = (limitHopCount - wsm->getHopCount());
          }
+
+        it->second.timeAverage += (simTime() - wsm->getTimestamp());
+        it->second.times += ", ";
+        simtime_t tmpTime = (simTime() - wsm->getTimestamp());
+        it->second.times += tmpTime.str();
+
     } else {
         struct messages m;
         m.HopsCount = 1;
         m.wsmData = wsm->getWsmData();
         m.hops = to_string(limitHopCount - wsm->getHopCount());
         m.maxHop = m.minHop = m.averageHops = limitHopCount - wsm->getHopCount();
+        m.averageHops = (limitHopCount - wsm->getHopCount());
+        m.timeAverage = (simTime() - wsm->getTimestamp());
+        simtime_t tmpTime = (simTime() - wsm->getTimestamp());
+        m.times = tmpTime.str();
         messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), m));
+
     }
 }
 
 void vehDist_rsu::saveMessagesOnFile(WaveShortMessage* wsm, string fileName){
         //Open file for just apeend
         myfile.open (fileName, std::ios_base::app);
-        fieldsToSave(wsm);
+
+        //Send "strings" to be saved on the file
+        myfile << "Data from " << wsm->getSenderAddressString() << " at " << simTime();
+        myfile << " to " << wsm->getRecipientAddressString() << endl;
+        myfile << "wsm->getGlobalMessageIdentificaton(): " << wsm->getGlobalMessageIdentificaton() << endl;
+        myfile << "wsm->getName(): " << wsm->getName() << endl;
+        myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
+        myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
+        myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
+        myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
+        myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
+        myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
+        myfile << "wsm->getSenderAddressString(): " << wsm->getSenderAddressString() << endl;
+        myfile << "wsm->getRecipientAddressString(): " << wsm->getRecipientAddressString() << endl;
+        myfile << "wsm->getSource(): " << wsm->getSource() << endl;
+        myfile << "wsm->getTarget(): " << wsm->getTarget() << endl;
+        myfile << "findHost()->getFullName(): " << findHost()->getFullName() << endl;
+        myfile << "wsm->getHopCount(): " << wsm->getHopCount() << endl;
+        myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
+        myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
+        myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
+        myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
+        myfile << "Time to generate and recived: " << (simTime() - wsm->getTimestamp()) << endl;
+        myfile << endl;
+
         myfile.close();
-}
-
-void vehDist_rsu::sendMessage(std::string blockedRoadId) {
-    sentMessage = true;
-    t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
-    wsm->setWsmData(blockedRoadId.c_str());
-    sendWSM(wsm);
-}
-
-void vehDist_rsu::sendWSM(WaveShortMessage* wsm) {
-    sendDelayedDown(wsm,individualOffset);
-}
-
-void vehDist_rsu::fieldsToSave(WaveShortMessage* wsm){
-    //Send "strings" to be saved on the file
-    myfile << "Data from " << wsm->getSenderAddressString() << " at " << simTime();
-    myfile << " to " << wsm->getRecipientAddressString() << endl;
-    myfile << "wsm->getGlobalMessageIdentificaton(): " << wsm->getGlobalMessageIdentificaton() << endl;
-    myfile << "wsm->getName(): " << wsm->getName() << endl;
-    myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
-    myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
-    myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
-    myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
-    myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
-    myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
-    myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
-    myfile << "wsm->getSenderAddressString(): " << wsm->getSenderAddressString() << endl;
-    myfile << "wsm->getRecipientAddressString(): " << wsm->getRecipientAddressString() << endl;
-    myfile << "wsm->getSource(): " << wsm->getSource() << endl;
-    myfile << "wsm->getTarget(): " << wsm->getTarget() << endl;
-    myfile << "findHost()->getFullName(): " << findHost()->getFullName() << endl;
-    myfile << "wsm->getHopCount(): " << wsm->getHopCount() << endl;
-    myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
-    myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
-    myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
-    myfile << "Time to generate and recived: " << (simTime() - wsm->getTimestamp()) << endl;
-    myfile << endl << endl;
 }
 
 WaveShortMessage* vehDist_rsu::prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
@@ -161,8 +183,9 @@ WaveShortMessage* vehDist_rsu::prepareBeaconWSM(std::string name, int lengthBits
     wsm->setSenderPos(curPosition);
 
     wsm->setSenderAddressString(findHost()->getFullName());
-    wsm->setRecipientAddressString("BROADCAST");
+
     //beacon don't need
+    //wsm->setRecipientAddressString(); => "BROADCAST"
     //wsm->setSource(source);
     //wsm->setTarget(target);
 
@@ -190,39 +213,55 @@ void vehDist_rsu::handleSelfMsg(cMessage* msg) {
     }
 }
 
+void vehDist_rsu::printHeaderfileExecution(){
+    myfile << "#############################################################################################";
+    myfile << "#############################################################################################" << endl;
+    myfile << "Execution number: " << repeatNumber << endl << endl;
+}
+
 void vehDist_rsu::printCountMessagesReceived(){
+    myfile.open (fileMessagesCount, std::ios_base::app);
+
     if (messagesReceived.empty()) {
-        cout << "messagesReceived from " << findHost()->getFullName() << " is empty now " << endl;
+        myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;
     } else {
-        cout << "Printing the messagesReceived from " << findHost()->getFullName() << endl;
+        myfile << "messagesReceived from " << findHost()->getFullName() << endl;
 
-        string fileName = "results/";
-        fileName += findHost()->getFullName();
-        fileName += "CountMessagesReceived.txt";
-
-        int repeatNumber = par("repeatNumber");
-        if(repeatNumber == 0){
-            myfile.open (fileName);
-        }else{
-            myfile.open (fileName, std::ios_base::app);
-        }
-        unordered_map<string,  struct messages>::iterator it;
+        map<string,  struct messages>::iterator it;
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
-            if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0)) {
-                myfile << "Message Id: " << it->first << endl;
-                myfile << "Count received: " << it->second.HopsCount << endl;
-                myfile << it->second.wsmData << endl;
-                myfile << "Hopcunt: " << it->second.hops << endl;
-                it->second.averageHops = it->second.averageHops/it->second.HopsCount;
-                myfile << "Average Hops: " << it->second.averageHops << endl;
-                myfile << "Max Hop: " << it->second.maxHop << endl;
-                myfile << "Mim Hop: " << it->second.minHop << endl;
-            }
+            myfile << endl;
+            myfile << "Message Id: " << it->first << endl;
+            myfile << "Count received: " << it->second.HopsCount << endl;
+            myfile << it->second.wsmData << endl;
+            myfile << "Hops: " << it->second.hops << endl;
+            myfile << "Sum hops: " << it->second.averageHops << endl;
+            it->second.averageHops = (it->second.averageHops/it->second.HopsCount);
+            myfile << "Average Hops: " << it->second.averageHops << endl;
+            myfile << "Max Hop: " << it->second.maxHop << endl;
+            myfile << "Min Hop: " << it->second.minHop << endl;
+            myfile << "Times: " << it->second.times << endl;
+            myfile << "Sum times: " << it->second.timeAverage << endl;
+            myfile << "Avegare time to received: " << (it->second.timeAverage/it->second.HopsCount) << endl;
+
         }
-        myfile.close();
+        myfile << "Count Messages Received: " << messagesReceived.size() << endl;
+        myfile << endl;
     }
+    myfile.close();
 }
 
 void vehDist_rsu:: finish(){
     printCountMessagesReceived();
+}
+
+void vehDist_rsu::sendWSM(WaveShortMessage* wsm) {
+    sendDelayedDown(wsm,individualOffset);
+}
+
+void vehDist_rsu::sendMessage(std::string blockedRoadId) {
+    sentMessage = true;
+    t_channel channel = dataOnSch ? type_SCH : type_CCH;
+    WaveShortMessage* wsm = prepareWSM("data2rsu", dataLengthBits, channel, dataPriority, -1,2);
+    wsm->setWsmData(blockedRoadId.c_str());
+    sendWSM(wsm);
 }

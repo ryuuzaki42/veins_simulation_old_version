@@ -42,403 +42,246 @@ void vehDist::initialize(int stage) {
 
         source = findHost()->getFullName();
         hopCount = par("hopCount").longValue();
+        repeatNumber = par("repeatNumber");
 
         vehSendData();
         vehUpdatePosition();
         restartFilesResult();
 
-        //saveVehStartPosition();
-
+        saveVehStartPosition();
         //cout << endl << findHost()->getFullName() << " entered in the scenario" << endl;
-        //cout << endl << findHost()->getFullName() << " myId " <<  myId << endl;
     }
 }
+// Generate route bigger than 25 m/s *600 s
+// Remove beacon of veh more distance? (if veh pass the another car?)
 
 void vehDist::onBeacon(WaveShortMessage* wsm) {
-    //cout << "before insert one beacon. Id(veh): " << wsm->getVehicleId() << " timestamp: " << wsm->getTimestamp() << endl;
+    //cout << "OnBeacon Id(veh): " << wsm->getVehicleId() << " timestamp: " << wsm->getTimestamp() << endl;
+
+    removeOldestInput(&beaconNeighbors, par("timeValidBeacon").doubleValue(), par("beaconBufferSize").doubleValue());
+
     auto it = beaconNeighbors.find(wsm->getSenderAddressString());
     if (it != beaconNeighbors.end()){
-        //cout << "Update wsm beacon (Key: " << to_string(wsm->getSenderAddress()) << ", timestamp: " << beaconNeighbors[to_string(wsm->getSenderAddress())].getTimestamp() << ")" << endl;
+        //cout << "Update wsm beacon (Key: " << wsm->getSenderAddressString() << ", timestamp: " << beaconNeighbors[wsm->getSenderAddressString()].getTimestamp() << ")" << endl;
+        wsm->setTimestamp(simTime());
         it->second = *wsm;
     } else {
-        countBeacon++;
         beaconNeighbors.insert(make_pair(wsm->getSenderAddressString(), *wsm));
-        ordemBeacons.insert(make_pair(countBeacon, wsm->getSenderAddressString()));
-//        if (countBeacon > par("beaconBufferSize").doubleValue()){
-//            cout << "remove beacon" << endl;
-//            printBeaconNeighbors();
-//            removeBeaconOutSizeBuffer();
-//            printBeaconNeighbors();
-//            cout << "countBeacon" << countBeacon << endl;
-//        }
     }
-
-    //cout << "veh: " << findHost()->getFullName() << " countBeacon: " << countBeacon << endl;
-    //printOrdemBeacons();
+    //cout << "veh: " << findHost()->getFullName() << "beaconNeighbors.size(): " << beaconNeighbors.size() << endl;
     //printBeaconNeighbors();
-}
 
-void vehDist::removeBeaconOutSizeBuffer() {
-    cout << "on removeBeaconOutSizeBuffer" << endl;
-    if (beaconNeighbors.empty()) {
-        cout << "beaconNeighbors from " << findHost()->getFullName() << " is empty now " << endl;
-    } else {
-//        printMessagesBuffer();
-//        printOrdemMessages();
-        unordered_map<string, WaveShortMessage>::iterator it;
-        for (it = beaconNeighbors.begin(); it != beaconNeighbors.end(); it++) {
-            bool t = true;
-            //if ((it->second.getTimestamp() + par("timeDeleteMessage").doubleValue()) <= simTime()){
-            if (countBeacon >= par("beaconBufferSize").doubleValue()){
-                if(!t)
-                    cout << endl << endl << endl << "dois beacons para apagar? como?" << endl << endl << endl;
+    sendMessageNeighborsTarget();
 
-//                cout << " found search on for, simTime(): " << simTime() << endl;
-//                cout << "messagesBuffer.size(): " << messagesBuffer.size() << endl;
-//                cout << "ordemMessages.size(): " << ordemMessages.size() << endl;
-
-                cout << "change this" << endl;
-                if (it->second.getGlobalMessageIdentificaton() != ordemMessages[0]) {
-//                    cout << "it->second.getGlobalMessageIdentificaton() != ordemMessages[0], message to delete is not the last" << endl;
-//                    cout << "it " << it->second.getGlobalMessageIdentificaton() << " od " << ordemMessages[0] << endl;
-
-                    unordered_map<int, string>::iterator it2;
-                    int now = countBeacon;
-                    for (it2 = ordemMessages.begin(); it2 != ordemMessages.end(); it2++) {
-                    //for (int i = 1; i <= countMessage; i++) {
-                        if (it2->second == messagesBuffer[ordemMessages[1]].getGlobalMessageIdentificaton()){
-//                            cout << "Encontrado " << it2->first << " " << it2->second << endl;
-                            now = it2->first;
-                            break;
-                        }
-                    }
-                    for (; now < countMessage; now++) {
-//                        cout << "moving messages " << now  << " recive " << (now+1) << endl;
-//                        cout << ordemMessages[now] << " " << ordemMessages[now+1] << endl;
-//                        cout << "messagesBuffer[ordemMessages[now]] "<< " " << messagesBuffer[ordemMessages[now]] << endl;
-                        messagesBuffer[ordemMessages[now]] = messagesBuffer[ordemMessages[now+1]];
-                        ordemMessages[now] = ordemMessages[now+1];
-//                        cout << "moved" << endl;
-//                        printMessagesBuffer();
-//                        printOrdemMessages();
-//                        cout << ordemMessages[now] << " " << ordemMessages[now+1] << endl;
-                    }
-                }
-//                cout << "countMessage: " << countMessage << endl;
-//                cout << "messagesBuffer[ordemMessages[countMessage]].getGlobalMessageIdentificaton()  " << messagesBuffer[ordemMessages[countMessage]].getGlobalMessageIdentificaton() << endl;
-//                cout << "ordemMessages[ordemMessages] " << ordemMessages[countMessage] << endl;
-                messagesBuffer.erase(ordemMessages[countMessage]);
-                ordemMessages.erase(countMessage);
-                t = false;
-//                cout << "messagesBuffer.size(): " << messagesBuffer.size() << endl;
-//                cout << "ordemMessages.size(): " << ordemMessages.size() << endl;
-                countMessage--;
-//                cout << "countMessage: " << countMessage << endl;
-//                printMessagesBuffer();
-//                cout << "end" << endl;
-                break;
-            }
-        }
-    }
 }
 
 void vehDist::onData(WaveShortMessage* wsm) {
-    //cout << " in onData" << endl;
+    //findHost()->bubble("Received data");
     //printMessagesBuffer();
 
+    removeOldestInput(&messagesBuffer, par("timeDeleteMessage").doubleValue(), par("messageBufferSize").doubleValue());
+
     if (strcmp(wsm->getRecipientAddressString(), findHost()->getFullName()) == 0){
+        cout << "Save message from: " << wsm->getSenderAddressString() << " to " << findHost()->getFullName() << endl;
         saveMessagesOnFile(wsm, fileMessagesNameUnicast);
-    }else{
-    //} else if (strcmp(wsm->getRecipientAddressString(), "BROADCAST") == 0){
+    } else { //another veh
+        //cout << "Save message from: " << wsm->getSenderAddressString() << " to " << findHost()->getFullName() << endl;
         saveMessagesOnFile(wsm, fileMessagesNameBroadcast);
-    //}
     }
 
+    //mudar para depois do if abaixo
+    if (wsm->getHopCount() == 0){
+        unordered_map<string, int>::const_iterator searchDrop = messagesDrop.find(wsm->getGlobalMessageIdentificaton());
+        if(messagesDrop.empty() || searchDrop == messagesDrop.end()){
+            messagesDrop.insert(make_pair(wsm->getGlobalMessageIdentificaton(), 1));
+        } else{
+            messagesDrop[wsm->getGlobalMessageIdentificaton()] += 1;
+        }
+            return;
+    }
 
-
-    //findHost()->bubble("Received data");
     //verify if this is the recipient of the message
-    //if (strcmp(wsm->getRecipientAddressString(), "BROADCAST") == 0)
-    if (strcmp(wsm->getRecipientAddressString(), findHost()->getFullName())) {
-
-        //verify if the message isn't in the buffer
+    if (strcmp(wsm->getRecipientAddressString(), findHost()->getFullName()) !=0) {
         unordered_map<string, WaveShortMessage>::const_iterator search = messagesBuffer.find(wsm->getGlobalMessageIdentificaton());
-        if ((messagesBuffer.empty()) || (search == messagesBuffer.end())) {
-            cout << findHost()->getFullName() << " buffer empty or the vehicle don't have the message at simtime: " << simTime() << endl;
-
-            //duplicating the message, so this vehicle has his own copy of the message
-            WaveShortMessage* wsmdup = wsm->dup();
-
-            //cout<<endl<<findHost()->getFullName()<<"("<<MACToInteger()<<")"<<": inside of the onData"<<endl;
-            //cout<<"Message ID: " << wsmdup->getGlobalMessageIdentificaton() << " WSM data: "<<wsmdup->getWsmData() << " Received at time: " << simTime() << endl;
-
-//            //measure the distance between this and the RSU
-//            Coord posCar = traci->getCurrentPosition();
-//            //Coord posRSU = Coord(240, 1000, 3);
-//            Coord posRSU = wsmdup->getTargetPos();
-//            double distance;
-//            distance = TraCIMobilityAccess().get(getParentModule())->commandDistanceRequest(posCar, posRSU, false);
-//            //cout<<"I am: "<< findHost()->getFullName() << " at position: "<< posCar <<" timeStamp: "<<simTime()<<" Dist to RSU: "<<distance<<endl;
-
-            //before sending the message the hopCount and the senderAddress have to be setted
-            //counting the hop from the previous node to this
-            //wsmdup->setHopCount(wsmdup->getHopCount()-1);
-
-            //wsmdup->setSenderAddress(MACToInteger(myMac));
-
-            // delete old messages
-            deleteMessage();
-
-            cout << "number os messages: " << countMessage << endl;
-            if (countMessage >= par("messageBufferSize").doubleValue()){
-                removeMessageOutSizeBuffer();
-            }
-            cout << "number os messages: " << countMessage << endl;
+        if (messagesBuffer.empty() || search == messagesBuffer.end()) { //verify if the message isn't in the buffer
+            //cout << findHost()->getFullName() << " buffer empty or the vehicle don't have the message at simtime: " << simTime() << endl;
 
             //add the msg in the  vehicle buffer
-            wsmdup->setTimestamp(simTime());
-            messagesBuffer.insert(make_pair(wsmdup->getGlobalMessageIdentificaton(),*wsmdup));
+            messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm));
 
-            countMessage++;
-            ordemMessages.insert(make_pair(countMessage, wsmdup->getGlobalMessageIdentificaton()));
-
-//            cout<<" (onData)GlobalMessageID " << messagesBuffer.begin()->first<<" ";
-//            cout<<" (onData)Source " << messagesBuffer.begin()->second.getSource()<<endl;
-
-            cout << "I am: "<<findHost()->getFullName() << " recive the message from (source): ";
-            cout << wsmdup->getSource() << " sender: " << wsmdup->getSenderAddressString() << " hopCount: " << wsmdup->getHopCount() << endl;
-            delete wsmdup;
-            //move in all the position of the data structure printing, //sending and excluding the message from the buffer
-            // map<string, WaveShortMessage*>::iterator it;
-            // for(it = messagesBuffer.begin(); it != messagesBuffer.end(); it++){
-
-            //wsmReceived = it->second;
-            //cout<<"Received: "<<wsmReceived->getSenderAddress()<<endl;
-            //cout<<" Received updated! "<<endl;
-            //sendWSM(it->second);
-            //cout<<findHost()->getFullName()<<"sending the message at the time: "<<simTime()<<endl;
-            //sendWSM(it->second);
-            //messagesBuffer.erase(it);
-
-            //}
+            //cout << findHost()->getFullName() << " recive the message " << endl;
+            //cout << "from (source): " << wsm->getSource() << endl;
+            //cout << " sender: " << wsm->getSenderAddressString() << endl;
+            //cout << " hopCount: " << wsm->getHopCount() << endl;
+            //cout << " At: " << simTime() << endl;
         }else if(search != messagesBuffer.end()){
-                cout<<findHost()->getFullName() << " message is on the buffer at simtime " << simTime() << endl;
+             cout<<findHost()->getFullName() << " message is on the buffer at simtime " << simTime() << endl;
         }
     }
-    //cout<<"Printing the messagesBuffer after erase a element"<<endl;
     //printmessagesBuffer();
+}
 
-    //sendWSM(wsm);
-
-    //if(wsm->getRecipientAddress() == MACToInteger()){
-
-    //Putting the message in the messagesBuffer
-    //messagesBuffer.insert(make_pair<string, WaveShortMessage>(wsm->getGlobalMessageIdentificaton(),wsm));
-
-
-    //diminuir hopCount
-
-    //se hopcount >=1
-    //se o alvo esta na lista de vizinhos, enviar pra ele e diminuir o hopcount
-
-
-    //else escolher na lista de vizinhos o que tem menor distancia até o nó
-    //percorrer todas as posições do vetor, calculando a distância até o target
-    //substituindo o valor da variavel "menor" pelo index da posição correspondente do vetor.
-    //o recipient da mensagem será o menor.
-
-    //}
-
-
-    //se target ta na lista de vizinhos, mandar pra ele
-    //if(strcmp(findHost()->getFullName(), wsm->getTarget()) == 0){}
-
+void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit){
+    //cout << "veh: " << findHost()->getFullName() << " Buffercount: " << data->size() << endl;
+    if (data->empty()) {
+        //cout << "Data buffer from " << findHost()->getFullName() << " is empty now " << endl;
+        return;
+    } else {
+        unordered_map<string, WaveShortMessage>::iterator itData;
+        itData = data->begin();
+        string type = itData->second.getName();
+        simtime_t minTime = itData->second.getTimestamp();
+        string key = itData->first;
+        itData++;
+        for (; itData != data->end(); itData++) {
+            if (minTime > itData->second.getTimestamp()){
+                minTime = itData->second.getTimestamp();
+                key = itData->first;
+            }
+        }
+        if((minTime + timeValid) < simTime()){
+            //cout << findHost()->getFullName() << " remove one " << type << " by time " << "Timestamp: " << minTime << " at: " << simTime() << " timeValid: " << timeValid << endl;
+            data->erase(key);
+        } else if (data->size() > bufferLimit) {
+            //cout << findHost()->getFullName() << " remove one " << type << " by space" << "Timestamp: " << minTime << " at: " << simTime() << " timeValid: " << timeValid << endl;
+            data->erase(key);
+        }
+    }
 }
 
 void vehDist::sendDataMessage() {
-    //cout << endl<<findHost()->getFullName() << " in sendDataMessage" << endl;
-    //verify if the vehicle received any message since the beginning
+
+    removeOldestInput(&messagesBuffer, par("timeDeleteMessage").doubleValue(), par("messageBufferSize").doubleValue());
+    removeOldestInput(&beaconNeighbors, par("timeValidBeacon").doubleValue(), par("beaconBufferSize").doubleValue());
+
     if (messagesBuffer.empty()) {
-        cout << findHost()->getFullName() << " messagesBuffer is empty at simtime "<< simTime() << endl;
+        //cout << findHost()->getFullName() << " messagesBuffer is empty at " << simTime() << endl;
+        return;
     } else {
-        cout << findHost()->getFullName() << " messagesBuffer with messages " << " at "<< simTime() << endl;
+        cout << findHost()->getFullName() << " messagesBuffer with message(s) at " << simTime() << endl;
 
         if (beaconNeighbors.empty()) {
             cout << "beaconNeighbors on sendDataMessage from " << findHost()->getFullName() << " is empty now " << endl;
         } else {
 
-            unordered_map<string, WaveShortMessage>::iterator messageIt;
-            for (messageIt = messagesBuffer.begin(); messageIt != messagesBuffer.end(); messageIt++) {
-                unordered_map<int, string>::iterator beaconIt;
-                for (beaconIt = ordemBeacons.begin(); beaconIt != ordemBeacons.end(); beaconIt++) {
-                    if (strcmp(messageIt->second.getTarget(), beaconIt->second.c_str()) == 0){
-                        string rcvId = messageIt->second.getTarget();
-                        cout << "Send message to:" << rcvId << endl;
-                        sendWSM(updateMessageWSM(messageIt->second.dup(), rcvId));
-                        //remove message send
-                    }
-                    cout << "aquiaqui: " << beaconIt->second.c_str() << endl;
-                }
+            //cout << "Before sendBeaconNeighborsTarget messagesBuffer.size(): " << messagesBuffer.size() << endl;
+            sendMessageNeighborsTarget();
+            if (messagesBuffer.empty()) {
+               return;
             }
+            //cout << "After sendBeaconNeighborsTarget messagesBuffer.size(): " << messagesBuffer.size() << endl;
 
+            string key = returnLastMessageInsert();
 
             bool send = false;
 
-            unordered_map<string, WaveShortMessage>::iterator it;
-            for (it = beaconNeighbors.begin(); it != beaconNeighbors.end(); it++) {
+            unordered_map<string, WaveShortMessage>::iterator itBeacon;
+            for (itBeacon = beaconNeighbors.begin(); itBeacon != beaconNeighbors.end(); itBeacon++){
 
                 //test send distante e heading to target
-                send = sendtoTargetbyVeh(it->second.getSenderPosBack(), it->second.getSenderPos(), it->second.getHeading(), messagesBuffer[ordemMessages[countMessage]].getTargetPos());
+                //cout => car[x] distance <is more, is less, not change> to [target](rsu[0]) by car[y]
+                cout << findHost()->getFullName() << " distance";
+                send = sendtoTargetbyVeh(itBeacon->second.getSenderPosBack(), itBeacon->second.getSenderPos(), itBeacon->second.getHeading(), messagesBuffer[key].getTargetPos());
+                cout << "to " << messagesBuffer[key].getTarget() << " by " << itBeacon->second.getSenderAddressString() << endl;
 
-                cout << " SenderPosBack: " << it->second.getSenderPosBack() << endl;
-                cout << " SenderPos: " << it->second.getSenderPos() << endl;
-                cout << " Heading: " << it->second.getHeading() << endl;
-                cout << " TargetPos: " << messagesBuffer[ordemMessages[countMessage]].getTargetPos() << endl;
-                if (send)
+                cout << endl;
+                cout << " SenderPosBack: " << itBeacon->second.getSenderPosBack() << endl;
+                cout << " SenderPos: " << itBeacon->second.getSenderPos() << endl;
+                cout << " Heading: " << itBeacon->second.getHeading() << endl;
+                cout << " Message id: " << key << endl;
+                cout << " TargetPos: " << messagesBuffer[key].getTargetPos() << endl;
+                cout << endl;
+                if (send){
                     break;
+                }
             }
 
-            // unsigned int rcvId = BROADCAST;
-            string id = ordemMessages[countMessage];
             if (send){
-                string rcvId = it->second.getSenderAddressString();
-                cout << "Send message to:" << rcvId << endl;
-                sendWSM(updateMessageWSM(messagesBuffer[id].dup(), rcvId));
+                string rcvId = itBeacon->first;
+
+                sendWSM(updateMessageWSM(messagesBuffer[key].dup(), rcvId));
+
+                cout << findHost()->getFullName() << " send message to " << rcvId << " at "<< simTime() << endl;
+                cout << " MessageID: " << messagesBuffer[key].getGlobalMessageIdentificaton() << endl;
+                cout << " Source: " << messagesBuffer[key].getSource() << endl;
+                cout << " Message Content: " << messagesBuffer[key].getWsmData() << endl;
+                cout << " Target: " << messagesBuffer[key].getTarget() << endl;
+                cout << " Timestamp: " << messagesBuffer[key].getTimestamp() << endl;
+                cout << " HopCount:" << (messagesBuffer[key].getHopCount() - 1) << endl;
             }
             else{
-                cout << "Not send message to: " << endl;
+                cout << endl << "Not send message to" << endl;
             }
             //printMessagesBuffer();
-            cout << "("<<findHost()->getFullName()<<")" << endl;
-            cout << " MessageID: " << messagesBuffer[id].getGlobalMessageIdentificaton() << endl;
-            cout << " Source: " << messagesBuffer[id].getSource() << endl;
-            cout << " SenderString: " << messagesBuffer[id].getSenderAddressString() << endl;
-            cout << " Message Content: " << messagesBuffer[id].getWsmData() << endl;
-            cout << " Target: " << messagesBuffer[id].getTarget() << endl;
-            cout << " Timestamp: " << messagesBuffer[id].getTimestamp() << endl;
-            cout << " HopCount: " << messagesBuffer[id].getHopCount() << endl;
         }
     }
 }
 
-void vehDist::deleteMessage() {
-    cout << "on deleteMessage" << endl;
-    if (messagesBuffer.empty()) {
-        cout << "messagesBuffer from " << findHost()->getFullName() << " is empty now " << endl;
-    } else {
-        //        printMessagesBuffer();
-        //        printOrdemMessages();
-        unordered_map<string, WaveShortMessage>::iterator it;
-        for (it = messagesBuffer.begin(); it != messagesBuffer.end(); it++) {
-            if ((it->second.getTimestamp() + par("timeDeleteMessage").doubleValue()) <= simTime()){
-                //                cout << " found search on for, simTime(): " << simTime() << endl;
-                //                cout << "messagesBuffer.size(): " << messagesBuffer.size() << endl;
-                //                cout << "ordemMessages.size(): " << ordemMessages.size() << endl;
-
-                if (it->second.getGlobalMessageIdentificaton() != ordemMessages[0]) {
-                    //                    cout << "it->second.getGlobalMessageIdentificaton() != ordemMessages[0], message to delete is not the last" << endl;
-                    //                    cout << "it " << it->second.getGlobalMessageIdentificaton() << " od " << ordemMessages[0] << endl;
-
-                    unordered_map<int, string>::iterator it2;
-                    int now = countMessage;
-                    for (it2 = ordemMessages.begin(); it2 != ordemMessages.end(); it2++) {
-                        //for (int i = 1; i <= countMessage; i++) {
-                        if (it2->second == messagesBuffer[ordemMessages[1]].getGlobalMessageIdentificaton()){
-                            //                            cout << "Encontrado " << it2->first << " " << it2->second << endl;
-                            now = it2->first;
-                            break;
-                        }
-                    }
-                    for (; now < countMessage; now++) {
-                        //                        cout << "moving messages " << now  << " recive " << (now+1) << endl;
-                        //                        cout << ordemMessages[now] << " " << ordemMessages[now+1] << endl;
-                        //                        cout << "messagesBuffer[ordemMessages[now]] "<< " " << messagesBuffer[ordemMessages[now]] << endl;
-                        messagesBuffer[ordemMessages[now]] = messagesBuffer[ordemMessages[now+1]];
-                        ordemMessages[now] = ordemMessages[now+1];
-                        //                        cout << "moved" << endl;
-                        //                        printMessagesBuffer();
-                        //                        printOrdemMessages();
-                        //                        cout << ordemMessages[now] << " " << ordemMessages[now+1] << endl;
-                    }
-                }
-                //                cout << "countMessage: " << countMessage << endl;
-                //                cout << "messagesBuffer[ordemMessages[countMessage]].getGlobalMessageIdentificaton()  " << messagesBuffer[ordemMessages[countMessage]].getGlobalMessageIdentificaton() << endl;
-                //                cout << "ordemMessages[ordemMessages] " << ordemMessages[countMessage] << endl;
-                messagesBuffer.erase(ordemMessages[countMessage]);
-                ordemMessages.erase(countMessage);
-                //                cout << "messagesBuffer.size(): " << messagesBuffer.size() << endl;
-                //                cout << "ordemMessages.size(): " << ordemMessages.size() << endl;
-                countMessage--;
-                //                cout << "countMessage: " << countMessage << endl;
-                //                printMessagesBuffer();
-                //                cout << "end" << endl;
-                break;
-            }
-        }
-    }
+void vehDist:: finish(){
+    printCountMessagesDrop();
 }
 
-void vehDist::removeMessageOutSizeBuffer() {
-    cout << "on removeMessageOutSizeBuffer" << endl;
-    if (messagesBuffer.empty()) {
-        cout << "messagesBuffer from " << findHost()->getFullName() << " is empty now " << endl;
+// mudar criar outra função que imprime depois dessa
+void vehDist::printCountMessagesDrop(){
+    myfile.open (fileMessagesDrop, std::ios_base::app);
+
+    if (messagesDrop.empty()) {
+        myfile << "messagesDrop from " << findHost()->getFullName() << " is empty now" << endl;
+        return;
     } else {
-//        printMessagesBuffer();
-//        printOrdemMessages();
-        unordered_map<string, WaveShortMessage>::iterator it;
-        for (it = messagesBuffer.begin(); it != messagesBuffer.end(); it++) {
-            bool t = true;
-            //if ((it->second.getTimestamp() + par("timeDeleteMessage").doubleValue()) <= simTime()){
-            if (countMessage >= par("messageBufferSize").doubleValue()){
-                if(!t)
-                    cout << endl << endl << endl << "duas mensagens para apagar? como?" << endl << endl << endl;
+        myfile << "messagesDrop from " << findHost()->getFullName() << endl;
+        //mudar para map
+        unordered_map<string, int>::iterator it;
+        for (it = messagesDrop.begin(); it != messagesDrop.end(); it++) {
+            myfile << "Message Id: " << it->first << endl;
+            myfile << "Count received: " << it->second << endl;
+            countMesssageDrop += it->second;
+        }
+    }
+    //mudar para Current count messages drop:
+    myfile << "Current: " << countMesssageDrop << endl;
+    myfile << endl;
+    myfile.close();
+}
 
-//                cout << " found search on for, simTime(): " << simTime() << endl;
-//                cout << "messagesBuffer.size(): " << messagesBuffer.size() << endl;
-//                cout << "ordemMessages.size(): " << ordemMessages.size() << endl;
+string vehDist::returnLastMessageInsert(){
+    unordered_map<string, WaveShortMessage>::iterator itMessage;
+    itMessage = messagesBuffer.begin();
+    simtime_t minTime;
+    minTime = itMessage->second.getTimestamp();
+    string key = itMessage->first;
+    itMessage++;
+    for (; itMessage != messagesBuffer.end(); itMessage++) {
+        if (minTime > itMessage->second.getTimestamp()){
+            minTime = itMessage->second.getTimestamp();
+            key = itMessage->first;
+        }
+    }
+    return key;
+}
 
-                if (it->second.getGlobalMessageIdentificaton() != ordemMessages[0]) {
-//                    cout << "it->second.getGlobalMessageIdentificaton() != ordemMessages[0], message to delete is not the last" << endl;
-//                    cout << "it " << it->second.getGlobalMessageIdentificaton() << " od " << ordemMessages[0] << endl;
+void vehDist::sendMessageNeighborsTarget(){
 
-                    unordered_map<int, string>::iterator it2;
-                    int now = countMessage;
-                    for (it2 = ordemMessages.begin(); it2 != ordemMessages.end(); it2++) {
-                    //for (int i = 1; i <= countMessage; i++) {
-                        if (it2->second == messagesBuffer[ordemMessages[1]].getGlobalMessageIdentificaton()){
-//                            cout << "Encontrado " << it2->first << " " << it2->second << endl;
-                            now = it2->first;
-                            break;
-                        }
-                    }
-                    for (; now < countMessage; now++) {
-//                        cout << "moving messages " << now  << " recive " << (now+1) << endl;
-//                        cout << ordemMessages[now] << " " << ordemMessages[now+1] << endl;
-//                        cout << "messagesBuffer[ordemMessages[now]] "<< " " << messagesBuffer[ordemMessages[now]] << endl;
-                        messagesBuffer[ordemMessages[now]] = messagesBuffer[ordemMessages[now+1]];
-                        ordemMessages[now] = ordemMessages[now+1];
-//                        cout << "moved" << endl;
-//                        printMessagesBuffer();
-//                        printOrdemMessages();
-//                        cout << ordemMessages[now] << " " << ordemMessages[now+1] << endl;
-                    }
-                }
-//                cout << "countMessage: " << countMessage << endl;
-//                cout << "messagesBuffer[ordemMessages[countMessage]].getGlobalMessageIdentificaton()  " << messagesBuffer[ordemMessages[countMessage]].getGlobalMessageIdentificaton() << endl;
-//                cout << "ordemMessages[ordemMessages] " << ordemMessages[countMessage] << endl;
-                messagesBuffer.erase(ordemMessages[countMessage]);
-                ordemMessages.erase(countMessage);
-                t = false;
-//                cout << "messagesBuffer.size(): " << messagesBuffer.size() << endl;
-//                cout << "ordemMessages.size(): " << ordemMessages.size() << endl;
-                countMessage--;
-//                cout << "countMessage: " << countMessage << endl;
-//                printMessagesBuffer();
-//                cout << "end" << endl;
-                break;
+    unordered_map<string, WaveShortMessage>::iterator itMessage;
+    vector<string> messageToRemove;
+
+    for (itMessage = messagesBuffer.begin(); itMessage != messagesBuffer.end(); itMessage++){
+        unordered_map<string, WaveShortMessage>::iterator itBeacon;
+        for (itBeacon = beaconNeighbors.begin(); itBeacon != beaconNeighbors.end(); itBeacon++){
+            if (strcmp(itMessage->second.getTarget(), itBeacon->second.getSenderAddressString()) == 0){
+                string rcvId = itMessage->second.getTarget();
+                cout << "Send message to:" << rcvId << endl;
+                sendWSM(updateMessageWSM(itMessage->second.dup(), rcvId));
+                messageToRemove.push_back(itMessage->second.getGlobalMessageIdentificaton());
             }
         }
     }
+    vector<string>::iterator itVector;
+    for (itVector = messageToRemove.begin(); itVector != messageToRemove.end(); ++itVector){
+        cout << "send and remove message" << endl;
+        messagesBuffer.erase(*itVector);
+    }
+    //messageToRemove.clear();
 }
 
 int vehDist::getCategory(){
@@ -480,28 +323,27 @@ bool vehDist::sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemot
      double distanceNow = traci->commandDistanceRequest(vehicleRemoteCoordNow, targetCoord, false);
 
      if(distanceNow < distanceBefore){
-         cout << "Distance to the target is less" << endl;
+         cout << " is less ";
          return true;
      }else if(distanceNow == distanceBefore){
-         cout << "Distance not change" << endl;
+         cout << " not change ";
      }else{
-         cout << "Distance to the target is more" << endl;
+         cout << " is more ";
      }
      return false;
 }
 
 //###################################################  OK Function ####################################################
 
-// Save vehicle start position
 void vehDist::saveVehStartPosition(){
-    int repeatNumber = par("repeatNumber");
     if (source.compare("car[0]") == 0) {
         if (repeatNumber == 0) {
             myfile.open ("results/vehicle_position_initialize.txt");
         } else {
             myfile.open ("results/vehicle_position_initialize.txt", std::ios_base::app);
         }
-        myfile << "Start Position Vehicles, repeatNumber: " << repeatNumber << endl;
+        printHeaderfileExecution();
+        myfile << "Start Position Vehicles" << endl;
     } else {
         myfile.open ("results/vehicle_position_initialize.txt", std::ios_base::app);
     }
@@ -509,18 +351,51 @@ void vehDist::saveVehStartPosition(){
     myfile.close();
 }
 
+void vehDist::printHeaderfileExecution(){
+    myfile << "#############################################################################################";
+    myfile << "#############################################################################################" << endl;
+    myfile << "Execution number: " << repeatNumber << endl << endl;
+}
 
 void vehDist::restartFilesResult(){
-    int repeatNumber = par("repeatNumber");
-    if ((source.compare("car[0]") == 0) && (repeatNumber == 0)) {
-        //Open a new file for the current simulation
 
-        fileMessagesNameUnicast ="results/VehMessages.txt";
-        myfile.open (fileMessagesNameUnicast);
+
+    fileMessagesNameBroadcast = "results/VehBroadcastMessages.txt";
+    fileMessagesNameUnicast ="results/VehMessages.txt";
+    fileMessagesCount = "results/VehMessagesCount.txt";
+    fileMessagesDrop = "results/VehMessagesDrop.txt";
+
+    if ((source.compare("car[0]") == 0) && (repeatNumber == 0)) {
+        myfile.open (fileMessagesNameBroadcast);
+        printHeaderfileExecution();
         myfile.close();
 
-        fileMessagesNameBroadcast = "results/VehBroadcastMessages.txt";
-        myfile.open (fileMessagesNameBroadcast);
+        myfile.open (fileMessagesNameUnicast);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesCount);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesDrop);
+        printHeaderfileExecution();
+        myfile.close();
+    } else if ((source.compare("car[0]") == 0) && (repeatNumber != 0)) {
+        myfile.open (fileMessagesNameBroadcast, std::ios_base::app);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesNameUnicast, std::ios_base::app);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesCount, std::ios_base::app);
+        printHeaderfileExecution();
+        myfile.close();
+
+        myfile.open (fileMessagesDrop, std::ios_base::app);
+        printHeaderfileExecution();
         myfile.close();
     }
 }
@@ -539,18 +414,21 @@ void vehDist::vehUpdatePosition(){
 
 
 void vehDist::vehSendData(){
-    //cout << "sendData: " << findHost()->getFullName() << sendData << endl;
     if (sendData){
         sendDataEvt = new cMessage("data evt", SEND_DATA_EVT);
-        if(strcmp(findHost()->getFullName(), "car[0]") == 0){
-            cout << endl << findHost()->getFullName() << ": Generating the message" << endl;
+        string host = findHost()->getFullName();
+        //if(strcmp(findHost()->getFullName(), "car[0]") == 0){
+        // 012345
+        // car[0]
+        if (host.compare(5,1, "]") == 0){
             generateMessage();
         }
+
         //simulate asynchronous channel access
         double offSet = (dblrand())/10;
         //cout << "SendData: " << findHost()->getFullName() << " offset: " << offSet << endl;
-        //cout << findHost()->getFullName() << " at simtime "<< simTime() << "schedule created sendData" << endl;
-        scheduleAt((simTime() + par("dataInterval").doubleValue() + offSet), sendDataEvt);
+        //cout << findHost()->getFullName() << " at simtime: "<< simTime() << "schedule created sendData to: "<< (simTime() + par("dataInterval").doubleValue() + par("timeUpdatePosition").doubleValue()+ offSet) << endl;
+        scheduleAt((simTime() + par("dataInterval").doubleValue() + par("timeUpdatePosition").doubleValue()+ offSet), sendDataEvt);
     }
 }
 
@@ -571,7 +449,7 @@ WaveShortMessage* vehDist::prepareBeaconWSM(std::string name, int lengthBits, t_
     wsm->setSenderAddressString(findHost()->getFullName());
 
     //beacon don't need
-    //wsm->setRecipientAddressString("BROADCAST");
+    //wsm->setRecipientAddressString(); => "BROADCAST"
     //wsm->setSource(source);
     //wsm->setTarget(target);
 
@@ -597,9 +475,6 @@ WaveShortMessage* vehDist::prepareBeaconWSM(std::string name, int lengthBits, t_
 
 
 WaveShortMessage* vehDist::updateMessageWSM(WaveShortMessage* wsm, string rcvId) {
-    wsm->setTimestamp(simTime());
-
-    //wsm->setSenderAddress(MACToInteger(myMac));
     wsm->setSenderAddressString(findHost()->getFullName());
 
     wsm->setRecipientAddressString(rcvId.c_str());
@@ -607,9 +482,8 @@ WaveShortMessage* vehDist::updateMessageWSM(WaveShortMessage* wsm, string rcvId)
     wsm->setRoadId(traci->getRoadId().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
     wsm->setVehicleId(traci->getId());
-    wsm->setTimestamp(simTime());
     wsm->setSenderPosBack(vehPositionBack);
-    wsm->setHopCount(wsm->getHopCount()-1);
+    wsm->setHopCount(wsm->getHopCount() -1);
 
     DBG << "Creating Data with Priority " << wsm->getPriority() << " at Applayer at " << wsm->getTimestamp() << std::endl;
     return wsm;
@@ -623,7 +497,7 @@ void vehDist::generateTarget(){
 }
 
 
-WaveShortMessage* vehDist::generateMessage(){
+void vehDist::generateMessage(){
     WaveShortMessage* wsm = new WaveShortMessage("data");
     wsm->setName("data");
 
@@ -642,12 +516,13 @@ WaveShortMessage* vehDist::generateMessage(){
     wsm->setWsmVersion(1);
     wsm->setSenderPos(curPosition);
     wsm->setSerial(2);
-    wsm->setTimestamp(simTime());
+    //wsm->setMessageTimestampGenerate(simTime());
+    //wsm->setTimestamp(simTime() + par("dataInterval").doubleValue());
+    wsm->setTimestamp(simTime() + par("dataInterval").doubleValue() + par("timeUpdatePosition").doubleValue());
 
-    //wsm->setSenderAddress(MACToInteger(myMac));
     wsm->setSenderAddressString(findHost()->getFullName());
     // define before send
-    //wsm->setRecipientAddress(BROADCAST);
+    //wsm->setRecipientAddress();
     wsm->setRecipientAddressString("initial");
     wsm->setSource(source.c_str());
     wsm->setTarget(target.c_str());
@@ -657,28 +532,14 @@ WaveShortMessage* vehDist::generateMessage(){
     wsm->setWsmData(data.c_str());
     wsm->setGlobalMessageIdentificaton(to_string(vehDist::messageId).c_str());
     vehDist::messageId++;
-    wsm->setHopCount((hopCount - 1));
-    //wsm->setMessageTimestampGenerate(simTime());
+    wsm->setHopCount(hopCount);
+
     wsm->setTargetPos(Coord(par("target_x"), par("target_y"), 3));
 
     // Adding the message on the buffer
     messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm));
-    cout<<endl<<"Message generated by " << findHost()->getFullName() << " at simTime " << simTime() << endl;
-
-    countMessage++;
-    ordemMessages.insert(make_pair(countMessage, wsm->getGlobalMessageIdentificaton()));
-    return wsm;
+    cout << endl << findHost()->getFullName() << " generated one message at simTime: " << simTime() << endl;
 }
-
-
-unsigned int vehDist::MACToInteger(WaveAppToMac1609_4Interface* myMac){
-    unsigned int macInt;
-    std::stringstream ss;
-    ss << std::hex << myMac;
-    ss >> macInt;
-    return macInt;
-}
-
 
 void vehDist::handleSelfMsg(cMessage* msg) {
     switch (msg->getKind()) {
@@ -710,9 +571,10 @@ void vehDist::handleSelfMsg(cMessage* msg) {
 
 void vehDist::printMessagesBuffer() {
     if (messagesBuffer.empty()) {
-        cout << "messagesBuffer from " << findHost()->getFullName() << " is empty now " << endl;
+        //cout << "messagesBuffer from " << findHost()->getFullName() << " is empty now: " << simTime() << endl;
+        return;
     } else {
-        cout << "Printing the messagesBuffer from " << findHost()->getFullName() << "(" << MACToInteger(myMac) <<"):" << endl;
+        cout << endl <<"messagesBuffer from " << findHost()->getFullName() << " at " << simTime() << endl;
         unordered_map<string, WaveShortMessage>::iterator it;
         for (it = messagesBuffer.begin(); it != messagesBuffer.end(); it++) {
             cout << " Id: " << it->second.getGlobalMessageIdentificaton()<< endl;
@@ -720,55 +582,29 @@ void vehDist::printMessagesBuffer() {
             cout << " Source: " << it->second.getSource() << endl;
             cout << " Target: " << it->second.getTarget() << endl;
             cout << " Timestamp: " << it->second.getTimestamp() << endl;
-            cout << " HopCount: " << it->second.getHopCount() << endl << endl;
+            cout << " HopCount: " << it->second.getHopCount() << endl;
+            cout << endl;
         }
     }
 }
-
-
-void vehDist::printOrdemMessages() {
-    if (ordemMessages.empty()) {
-        cout << "ordemMessages from " << findHost()->getFullName() << " is empty now " << endl;
-    } else {
-        cout << "Printing the ordemMmessages from " << findHost()->getFullName() << "(" << MACToInteger(myMac) <<"):" << endl;
-        unordered_map<int, string>::iterator it;
-        for (it = ordemMessages.begin(); it != ordemMessages.end(); it++) {
-            cout << " it: " << it->first <<" valor: " << it->second << endl;
-        }
-    }
-}
-
-
-void vehDist::printOrdemBeacons() {
-    if (ordemBeacons.empty()) {
-        cout << "ordemordemBeacons from " << findHost()->getFullName() << " is empty now " << endl;
-    } else {
-        cout << "Printing the ordemBeacons from " << findHost()->getFullName() << "(" << MACToInteger(myMac) <<"):" << endl;
-        unordered_map<int, string>::iterator it;
-        for (it = ordemBeacons.begin(); it != ordemBeacons.end(); it++) {
-            cout << " it: " << it->first <<" valor: " << it->second << endl;
-        }
-    }
-}
-
 
 void vehDist::printBeaconNeighbors() {
-    cout << " in printBeaconNeighbors" << endl;
     if (beaconNeighbors.empty()) {
-        cout << "beaconNeighbors from " << findHost()->getFullName() << " is empty now " << endl;
+        //cout << "beaconNeighbors from " << findHost()->getFullName() << " is empty now: " << simTime() << endl;
     } else {
-        cout << "Printing the beaconNeighbors from " << findHost()->getFullName() << "(" << MACToInteger(myMac) <<"):" << endl;
+        cout << endl << "beaconNeighbors from " << findHost()->getFullName() << " at " << simTime() << endl;
         unordered_map<string, WaveShortMessage>::iterator it;
         for (it = beaconNeighbors.begin(); it != beaconNeighbors.end(); it++) {
             cout << " Id(veh): " << it->first << endl;
             cout << " VehicleId: " << it->second.getVehicleId() << endl;
-            cout << " position: " << it->second.getSenderPos() << endl;
-            cout << " positionBack: " << it->second.getSenderPosBack() << endl;
-            cout << " speed: " << it->second.getSenderSpeed() << endl;
-            cout << " category: " << it->second.getCategory() << endl;
-            cout << " roadId: " << it->second.getRoadId() << endl;
-            cout << " heading: " << it->second.getHeading() << endl;
-            cout << " timestamp: " << it->second.getTimestamp()<< endl << endl;
+            cout << " PositionBack: " << it->second.getSenderPosBack() << endl;
+            cout << " Position: " << it->second.getSenderPos() << endl;
+            cout << " Speed: " << it->second.getSenderSpeed() << endl;
+            cout << " Category: " << it->second.getCategory() << endl;
+            cout << " RoadId: " << it->second.getRoadId() << endl;
+            cout << " Heading: " << it->second.getHeading() << endl;
+            cout << " Timestamp: " << it->second.getTimestamp()<< endl;
+            cout << endl;
         }
     }
 }
@@ -817,7 +653,7 @@ unsigned int vehDist::getHeading8(){
      angle >= 67.5  && angle < 112,5                                 return 3; // N => 90º
      angle >= 112.5  && angle < 157.5                                return 4; // NO => 135º
      angle >= 157,5  && angle < 202,5                                return 5; // O or W => 180º
-     angle >= 247.5  && angle < 292.5                              return 7; // S => 270º
+     angle >= 247.5  && angle < 292.5                                return 7; // S => 270º
      angle >= 202.5  && angle < 247.5                                return 6; // SO => 225º
      angle >= 292.5  && angle < 337.5                                return 8; // SE => 315º
      angle >= 360                                                    return 9; // Error */
@@ -868,13 +704,9 @@ void vehDist::updatePosition(){
 }
 
 void vehDist::saveMessagesOnFile(WaveShortMessage* wsm, string fileName){
-        //Open file for just apeend
-        myfile.open (fileName, std::ios_base::app);
-        fieldsToSave(wsm);
-        myfile.close();
-}
+    //Open file for just apeend
+    myfile.open (fileName, std::ios_base::app);
 
-void vehDist::fieldsToSave(WaveShortMessage* wsm){
     //Send "strings" to be saved on the file
     myfile << "Data from " << wsm->getSenderAddressString() << " at " << simTime();
     myfile << " to " << wsm->getRecipientAddressString() << endl;
@@ -897,9 +729,10 @@ void vehDist::fieldsToSave(WaveShortMessage* wsm){
     myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
     myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
     myfile << "Time to generate and recived: " << (simTime() - wsm->getTimestamp()) << endl;
-    myfile << endl << endl;
-}
+    myfile << endl;
 
+    myfile.close();
+}
 
 //########################################################  Default Function #############################################
 
@@ -909,16 +742,6 @@ void vehDist::sendWSM(WaveShortMessage* wsm) {
     sendDelayedDown(wsm,individualOffset);
 }
 
-
-void vehDist::sendMessage(std::string blockedRoadId) {
-    sentMessage = true;
-    t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
-    wsm->setWsmData(blockedRoadId.c_str());
-    sendWSM(wsm);
-}
-
-
 void vehDist::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj) {
     Enter_Method_Silent();
     if (signalID == mobilityStateChangedSignal) {
@@ -927,7 +750,6 @@ void vehDist::receiveSignal(cComponent* source, simsignal_t signalID, cObject* o
         handleParkingUpdate(obj);
     }
 }
-
 
 void vehDist::handleParkingUpdate(cObject* obj) {
     isParking = traci->getParkingState();
@@ -941,7 +763,6 @@ void vehDist::handleParkingUpdate(cObject* obj) {
     }
 }
 
-
 void vehDist::handlePositionUpdate(cObject* obj) {
     BaseWaveApplLayer::handlePositionUpdate(obj);
 
@@ -949,10 +770,18 @@ void vehDist::handlePositionUpdate(cObject* obj) {
     if (traci->getSpeed() < 1) {
         if (simTime() - lastDroveAt >= 10) {
             findHost()->getDisplayString().updateWith("r=16,red");
-            if (!sentMessage)
-                sendMessage(traci->getRoadId());
+            //if (!sentMessage)
+            //    sendMessage(traci->getRoadId());
         }
     } else {
         lastDroveAt = simTime();
     }
+}
+
+void vehDist::sendMessage(std::string blockedRoadId) {
+    sentMessage = true;
+    t_channel channel = dataOnSch ? type_SCH : type_CCH;
+    WaveShortMessage* wsm = prepareWSM("data2veh", dataLengthBits, channel, dataPriority, -1,2);
+    wsm->setWsmData(blockedRoadId.c_str());
+    sendWSM(wsm);
 }

@@ -45,28 +45,27 @@ class vehDist : public BaseWaveApplLayer {
         bool sendWhileParking;
         static const simsignalwrap_t parkingStateChangedSignal;
 
-        unordered_map<string, WaveShortMessage> messagesBuffer;
         static unsigned short int messageId;
-        int countMessage = 0;
-        int countBeacon = 0;
         cMessage* sendDataEvt;
         Coord vehPositionBack;
         cMessage* updatePosVeh;
+        unordered_map<string, WaveShortMessage> messagesBuffer;
         unordered_map<string, WaveShortMessage> beaconNeighbors;
-        unordered_map<int, string> ordemMessages;
-        unordered_map<int, string> ordemBeacons;
+        unordered_map<string, int> messagesDrop;
+        static unsigned short int countMesssageDrop;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
-        void sendMessage(std::string blockedRoadId);
         virtual void handlePositionUpdate(cObject* obj);
         virtual void handleParkingUpdate(cObject* obj);
         virtual void sendWSM(WaveShortMessage* wsm);
 
+        void sendMessage(std::string blockedRoadId);
+
         void sendDataMessage();
         void generateTarget();
-        WaveShortMessage* generateMessage();
+        void generateMessage();
         void handleSelfMsg(cMessage* msg);
         void printMessagesBuffer();
         void printBeaconNeighbors();
@@ -75,21 +74,21 @@ class vehDist : public BaseWaveApplLayer {
         void updatePosition();
         unsigned int getHeading8();
         unsigned int getHeading4();
-        unsigned int MACToInteger(WaveAppToMac1609_4Interface* myMac);
-        void deleteMessage();
-        void printOrdemMessages();
-        void printOrdemBeacons();
         bool sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
-        void removeMessageOutSizeBuffer();
-        void removeBeaconOutSizeBuffer();
         void saveVehStartPosition();
         void restartFilesResult();
         void vehUpdatePosition();
         void vehSendData();
-        void fieldsToSave(WaveShortMessage* wsm);
         int getCategory();
         void saveMessagesOnFile(WaveShortMessage* wsm, string file);
+        void removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit);
+        void sendMessageNeighborsTarget();
+        string returnLastMessageInsert();
+        void printHeaderfileExecution();
+        void finish();
+        void printCountMessagesDrop();
 };
 
 unsigned short int vehDist::messageId = 0;
+unsigned short int vehDist::countMesssageDrop=0;
 #endif
