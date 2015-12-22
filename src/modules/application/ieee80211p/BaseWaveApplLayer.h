@@ -148,6 +148,9 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         string fileMessagesNameUnicast;
         string fileMessagesNameBroadcast;
+        string fileMessagesCount;
+        string fileMessagesDrop;
+        int repeatNumber;
 };
 
 #endif /* BASEWAVEAPPLLAYER_H_ */
