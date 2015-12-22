@@ -36,30 +36,33 @@ class vehDist_rsu : public BaseWaveApplLayer {
         bool sentMessage;
 
         struct messages {
-          int HopsCount;
+          unsigned int HopsCount;
           string hops;
-          int minHop;
-          int maxHop;
+          unsigned  int minHop;
+          unsigned  int maxHop;
           double averageHops;
           string wsmData;
+          simtime_t timeAverage;
+          string times;
         };
 
-        unordered_map<string,  struct messages> messagesReceived;
+        map<string, struct messages> messagesReceived;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
-        void sendMessage(std::string blockedRoadId);
         virtual void sendWSM(WaveShortMessage* wsm);
+
+        void sendMessage(std::string blockedRoadId);
 
         WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
         void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
-        void fieldsToSave(WaveShortMessage* wsm);
         void handleSelfMsg(cMessage* msg);
         void restartFilesResult();
         virtual void finish();
         void printCountMessagesReceived();
         void messagesReceivedMeasuring(WaveShortMessage* wsm);
+        void printHeaderfileExecution();
 };
 
 #endif
