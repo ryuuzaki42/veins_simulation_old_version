@@ -51,6 +51,7 @@ class vehDist : public BaseWaveApplLayer {
         cMessage* updatePosVeh;
         unordered_map<string, WaveShortMessage> messagesBuffer;
         unordered_map<string, WaveShortMessage> beaconNeighbors;
+        vector <string> messagesDelivered;
         unordered_map<string, int> messagesDrop;
         static unsigned short int countMesssageDrop;
 
