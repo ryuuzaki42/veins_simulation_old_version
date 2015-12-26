@@ -34,6 +34,9 @@
 #include <fstream>
 #include <map>
 #include <unordered_map>
+#include <algorithm>    // std::find
+#include <vector>
+
 using namespace std;
 
 //Define a constant to support send beacons or send messages in a broadcast fashion
