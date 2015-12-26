@@ -17,23 +17,18 @@ template <typename T>
 std::string to_string(T value){
     //create an output string stream
     std::ostringstream os ;
-
     //throw the value into the string stream
     os << value ;
-
     //convert the string stream into a string and return
     return os.str() ;
 }
 
 int main(){
-
     freopen("test.rou.xml","r",stdin); //Arquivo de entrada gerado com script randomTrips.py
 
     string line;
     ofstream output;
     output.open("test_end.rou.xml"); //Arquivo que será criado com todas rotas e a definição do tipo de veículo
-
-    //output << "<routes>\n\t<vType id=\"Car\" maxSpeed=\"14.0\"/>\n"; //Escrita da definição do tipo de veículo no arquivo de saída
 
     //Escrita da definição do tipo de veículo no arquivo de saída
     output << "<routes>\n    <vType id=\"vtype0\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>\n\n";
@@ -83,6 +78,7 @@ int main(){
         }
     }
     output << endl;
+
     //count=0;
     //int quantVeh = 50;
     //for (int i = 0; i < quantVeh; i++){
@@ -96,7 +92,7 @@ int main(){
         if (it->second == 80){
             cout << it->first << " " << it->second << endl;
         } else {
-          cout <<"      " << it->first << " " << it->second << endl;
+          cout <<"    " << it->first << " " << it->second << endl;
         }
     }
 
