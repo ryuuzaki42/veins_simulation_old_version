@@ -24,12 +24,11 @@ import org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer;
 simple vehDist extends BaseWaveApplLayer {
     @class(vehDist);
     @display("i=block/app2");
-    bool sendWhileParking  = default(false); //send messages when the car is parked
+    bool sendWhileParking = default(false); //send messages when the car is parked
 
-//    int timeTrySendMessage @unit("s") = default(1s);
-    int timeDeleteMessage @unit("s") = default(1s);
+    int ttlMessage @unit("s") = default(1s);
     int messageBufferSize = default(10);
 
-    int timeValidBeacon  @unit("s") = default(10s);
+    int ttlBeacon @unit("s") = default(10s);
     int beaconBufferSize = default(10);
 }
