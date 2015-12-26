@@ -132,7 +132,6 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
         simtime_t tmpTime = (simTime() - wsm->getTimestamp());
         m.times = tmpTime.str();
         messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), m));
-
     }
 }
 
@@ -227,7 +226,7 @@ void vehDist_rsu::printCountMessagesReceived(){
     } else {
         myfile << "messagesReceived from " << findHost()->getFullName() << endl;
 
-        map<string,  struct messages>::iterator it;
+        map<string, struct messages>::iterator it;
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
             myfile << endl;
             myfile << "Message Id: " << it->first << endl;
