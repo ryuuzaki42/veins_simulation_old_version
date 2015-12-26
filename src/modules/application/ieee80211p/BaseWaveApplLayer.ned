@@ -31,8 +31,7 @@ import org.car2x.veins.base.modules.IBaseApplLayer;
 // @see Mac1609_4
 // @see PhyLayer80211p
 //
-simple BaseWaveApplLayer like IBaseApplLayer
-{
+simple BaseWaveApplLayer like IBaseApplLayer {
     parameters:
         bool debug = default(false); //whether to print debug output
         int headerLength = default(88bit) @unit(bit); //header length of the application
