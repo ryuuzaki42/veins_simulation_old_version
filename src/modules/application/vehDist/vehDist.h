@@ -88,6 +88,7 @@ class vehDist : public BaseWaveApplLayer {
         void printHeaderfileExecution();
         void finish();
         void printCountMessagesDrop();
+        void colorCarryMessage();
 };
 
 unsigned short int vehDist::messageId = 0;

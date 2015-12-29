@@ -111,6 +111,7 @@ void vehDist::onData(WaveShortMessage* wsm) {
 
             //add the msg in the  vehicle buffer
             messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm));
+            colorCarryMessage();
 
             //cout << findHost()->getFullName() << " recive the message " << endl;
             //cout << "from (source): " << wsm->getSource() << endl;
@@ -126,6 +127,15 @@ void vehDist::onData(WaveShortMessage* wsm) {
     }
     //printmessagesBuffer();
 }
+
+void vehDist::colorCarryMessage(){
+    if (messagesBuffer.empty()){
+        findHost()->getDisplayString().updateWith("r=0,green");
+    } else {
+        findHost()->getDisplayString().updateWith("r=12,green");
+    }
+}
+
 
 void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit){
     //cout << "veh: " << findHost()->getFullName() << " Buffercount: " << data->size() << endl;
@@ -153,6 +163,7 @@ void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, d
             data->erase(key);
         }
     }
+    colorCarryMessage();
 }
 
 void vehDist::sendDataMessage() {
@@ -289,6 +300,7 @@ void vehDist::sendMessageNeighborsTarget(){
         cout << "send and remove message" << endl;
         messagesBuffer.erase(*itVector);
     }
+    colorCarryMessage();
     //messageToRemove.clear();
 }
 
@@ -547,6 +559,7 @@ void vehDist::generateMessage(){
 
     // Adding the message on the buffer
     messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm));
+    colorCarryMessage();
     cout << endl << findHost()->getFullName() << " generated one message at simTime: " << simTime() << endl;
 }
 
@@ -778,7 +791,7 @@ void vehDist::handlePositionUpdate(cObject* obj) {
     // stopped for for at least 10s?
     if (traci->getSpeed() < 1) {
         if (simTime() - lastDroveAt >= 10) {
-            findHost()->getDisplayString().updateWith("r=16,red");
+            //findHost()->getDisplayString().updateWith("r=16,red");
             //if (!sentMessage)
             //    sendMessage(traci->getRoadId());
         }
