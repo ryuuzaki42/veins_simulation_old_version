@@ -58,11 +58,9 @@ packet WaveShortMessage {
     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
     unsigned int recipientAddress = 268435455;
 
-
     string senderAddressString;
-    // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
     string recipientAddressString;
-    
+
     // Add for Epidemic
     // Set the source which generate the message, e.g., car[0], car[1] etc.
     string source;
@@ -90,8 +88,6 @@ packet WaveShortMessage {
     // MFCV
     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
     unsigned short category = 0;
-    // vehicle ID (wsm->setVehicleId(traci->getId());)
-    int vehicleId;
     // Path history of the vehicle, calculated from time to time
     //string pathHistory;
     // Radius of Gyration of the vehicle, calculated from time to time.

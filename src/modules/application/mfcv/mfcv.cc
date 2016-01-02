@@ -161,7 +161,6 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
     //
     wsm->setRoadId(traci->getRoadId().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
-    wsm->setVehicleId(traci->getId());
 
     // ver como definir o id, traci->getId()
     int veh_id = traci->getId();
@@ -201,7 +200,6 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
 void mfcv::imprime_wsm(WaveShortMessage* wsm) {
     std::cout << "\n\n wsm:" << wsm;
     std::cout << "\n traci->getId():" << traci->getId();
-    std::cout << "\n wsm->getVehicleId():" << wsm->getVehicleId();
     std::cout << "\n wsm->getId():" << wsm->getId();
     std::cout << "\n wsm->getArrivalTime():" << wsm->getArrivalTime();
     std::cout << "\n traci->getRoadId():" << traci->getRoadId();

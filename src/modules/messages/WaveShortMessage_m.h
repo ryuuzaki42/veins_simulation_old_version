@@ -57,9 +57,7 @@
  *     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
  *     unsigned int recipientAddress = 268435455;
  * 
- * 
  *     string senderAddressString;
- *     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
  *     string recipientAddressString;
  * 
  *     // Add for Epidemic
@@ -89,8 +87,6 @@
  *     // MFCV
  *     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
  *     unsigned short category = 0;
- *     // vehicle ID (wsm->setVehicleId(traci->getId());)
- *     int vehicleId;
  *     // Path history of the vehicle, calculated from time to time
  *     //string pathHistory;
  *     // Radius of Gyration of the vehicle, calculated from time to time.
@@ -135,7 +131,6 @@ class WaveShortMessage : public ::cPacket
     opp_string roadId_var;
     double senderSpeed_var;
     unsigned short category_var;
-    int vehicleId_var;
     unsigned short heading_var;
     Coord TargetPos_var;
     Coord senderPosBack_var;
@@ -212,8 +207,6 @@ class WaveShortMessage : public ::cPacket
     virtual void setSenderSpeed(double senderSpeed);
     virtual unsigned short getCategory() const;
     virtual void setCategory(unsigned short category);
-    virtual int getVehicleId() const;
-    virtual void setVehicleId(int vehicleId);
     virtual unsigned short getHeading() const;
     virtual void setHeading(unsigned short heading);
     virtual Coord& getTargetPos();

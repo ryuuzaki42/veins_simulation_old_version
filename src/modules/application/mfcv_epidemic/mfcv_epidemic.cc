@@ -882,7 +882,6 @@ WaveShortMessage* mfcv_epidemic::prepareWSM_mfcv_epidemic(std::string name, int 
     wsm->setSerial(serial);
     wsm->setRoadId(traci->getRoadId().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
-    wsm->setVehicleId(traci->getId());
 
     // ver como definir o id, traci->getId(), e a categoria
     if (traci->getId() < 5) {

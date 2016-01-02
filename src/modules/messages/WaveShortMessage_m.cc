@@ -83,7 +83,6 @@ WaveShortMessage::WaveShortMessage(const char *name, int kind) : ::cPacket(name,
     this->roadId_var = "";
     this->senderSpeed_var = 0.0;
     this->category_var = 0;
-    this->vehicleId_var = 0;
     this->heading_var = 0;
 }
 
@@ -133,7 +132,6 @@ void WaveShortMessage::copy(const WaveShortMessage& other)
     this->roadId_var = other.roadId_var;
     this->senderSpeed_var = other.senderSpeed_var;
     this->category_var = other.category_var;
-    this->vehicleId_var = other.vehicleId_var;
     this->heading_var = other.heading_var;
     this->TargetPos_var = other.TargetPos_var;
     this->senderPosBack_var = other.senderPosBack_var;
@@ -169,7 +167,6 @@ void WaveShortMessage::parsimPack(cCommBuffer *b)
     doPacking(b,this->roadId_var);
     doPacking(b,this->senderSpeed_var);
     doPacking(b,this->category_var);
-    doPacking(b,this->vehicleId_var);
     doPacking(b,this->heading_var);
     doPacking(b,this->TargetPos_var);
     doPacking(b,this->senderPosBack_var);
@@ -205,7 +202,6 @@ void WaveShortMessage::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->roadId_var);
     doUnpacking(b,this->senderSpeed_var);
     doUnpacking(b,this->category_var);
-    doUnpacking(b,this->vehicleId_var);
     doUnpacking(b,this->heading_var);
     doUnpacking(b,this->TargetPos_var);
     doUnpacking(b,this->senderPosBack_var);
@@ -481,16 +477,6 @@ void WaveShortMessage::setCategory(unsigned short category)
     this->category_var = category;
 }
 
-int WaveShortMessage::getVehicleId() const
-{
-    return vehicleId_var;
-}
-
-void WaveShortMessage::setVehicleId(int vehicleId)
-{
-    this->vehicleId_var = vehicleId;
-}
-
 unsigned short WaveShortMessage::getHeading() const
 {
     return heading_var;
@@ -568,7 +554,7 @@ const char *WaveShortMessageDescriptor::getProperty(const char *propertyname) co
 int WaveShortMessageDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 31+basedesc->getFieldCount(object) : 31;
+    return basedesc ? 30+basedesc->getFieldCount(object) : 30;
 }
 
 unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -608,11 +594,10 @@ unsigned int WaveShortMessageDescriptor::getFieldTypeFlags(void *object, int fie
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
-        FD_ISEDITABLE,
         FD_ISCOMPOUND,
         FD_ISCOMPOUND,
     };
-    return (field>=0 && field<31) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<30) ? fieldTypeFlags[field] : 0;
 }
 
 const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) const
@@ -651,12 +636,11 @@ const char *WaveShortMessageDescriptor::getFieldName(void *object, int field) co
         "roadId",
         "senderSpeed",
         "category",
-        "vehicleId",
         "heading",
         "TargetPos",
         "senderPosBack",
     };
-    return (field>=0 && field<31) ? fieldNames[field] : NULL;
+    return (field>=0 && field<30) ? fieldNames[field] : NULL;
 }
 
 int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) const
@@ -690,10 +674,9 @@ int WaveShortMessageDescriptor::findField(void *object, const char *fieldName) c
     if (fieldName[0]=='r' && strcmp(fieldName, "roadId")==0) return base+24;
     if (fieldName[0]=='s' && strcmp(fieldName, "senderSpeed")==0) return base+25;
     if (fieldName[0]=='c' && strcmp(fieldName, "category")==0) return base+26;
-    if (fieldName[0]=='v' && strcmp(fieldName, "vehicleId")==0) return base+27;
-    if (fieldName[0]=='h' && strcmp(fieldName, "heading")==0) return base+28;
-    if (fieldName[0]=='T' && strcmp(fieldName, "TargetPos")==0) return base+29;
-    if (fieldName[0]=='s' && strcmp(fieldName, "senderPosBack")==0) return base+30;
+    if (fieldName[0]=='h' && strcmp(fieldName, "heading")==0) return base+27;
+    if (fieldName[0]=='T' && strcmp(fieldName, "TargetPos")==0) return base+28;
+    if (fieldName[0]=='s' && strcmp(fieldName, "senderPosBack")==0) return base+29;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -733,12 +716,11 @@ const char *WaveShortMessageDescriptor::getFieldTypeString(void *object, int fie
         "string",
         "double",
         "unsigned short",
-        "int",
         "unsigned short",
         "Coord",
         "Coord",
     };
-    return (field>=0 && field<31) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<30) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *WaveShortMessageDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -805,10 +787,9 @@ std::string WaveShortMessageDescriptor::getFieldAsString(void *object, int field
         case 24: return oppstring2string(pp->getRoadId());
         case 25: return double2string(pp->getSenderSpeed());
         case 26: return ulong2string(pp->getCategory());
-        case 27: return long2string(pp->getVehicleId());
-        case 28: return ulong2string(pp->getHeading());
-        case 29: {std::stringstream out; out << pp->getTargetPos(); return out.str();}
-        case 30: {std::stringstream out; out << pp->getSenderPosBack(); return out.str();}
+        case 27: return ulong2string(pp->getHeading());
+        case 28: {std::stringstream out; out << pp->getTargetPos(); return out.str();}
+        case 29: {std::stringstream out; out << pp->getSenderPosBack(); return out.str();}
         default: return "";
     }
 }
@@ -849,8 +830,7 @@ bool WaveShortMessageDescriptor::setFieldAsString(void *object, int field, int i
         case 24: pp->setRoadId((value)); return true;
         case 25: pp->setSenderSpeed(string2double(value)); return true;
         case 26: pp->setCategory(string2ulong(value)); return true;
-        case 27: pp->setVehicleId(string2long(value)); return true;
-        case 28: pp->setHeading(string2ulong(value)); return true;
+        case 27: pp->setHeading(string2ulong(value)); return true;
         default: return false;
     }
 }
@@ -865,8 +845,8 @@ const char *WaveShortMessageDescriptor::getFieldStructName(void *object, int fie
     }
     switch (field) {
         case 10: return opp_typename(typeid(Coord));
+        case 28: return opp_typename(typeid(Coord));
         case 29: return opp_typename(typeid(Coord));
-        case 30: return opp_typename(typeid(Coord));
         default: return NULL;
     };
 }
@@ -882,8 +862,8 @@ void *WaveShortMessageDescriptor::getFieldStructPointer(void *object, int field,
     WaveShortMessage *pp = (WaveShortMessage *)object; (void)pp;
     switch (field) {
         case 10: return (void *)(&pp->getSenderPos()); break;
-        case 29: return (void *)(&pp->getTargetPos()); break;
-        case 30: return (void *)(&pp->getSenderPosBack()); break;
+        case 28: return (void *)(&pp->getTargetPos()); break;
+        case 29: return (void *)(&pp->getSenderPosBack()); break;
         default: return NULL;
     }
 }
