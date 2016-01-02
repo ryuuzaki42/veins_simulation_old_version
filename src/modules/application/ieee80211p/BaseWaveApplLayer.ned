@@ -67,9 +67,10 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int target_x = default(0);
         int target_y = default(0);
 
-        int timeUpdatePosition @unit("s") = default(1s);
-        int repeatNumber = default(0);
-        int dataInterval @unit("s") = default(1s);
+        int hopLimit = default(0); // Limit of hops
+        int timeUpdatePosition @unit("s") = default(1s); //time for update vehicle position
+        int repeatNumber = default(0); // number of execution (${repetition})
+        int dataInterval @unit("s") = default(1s); // interval to try send message(s)
 
     gates:
         input lowerLayerIn; // from mac layer

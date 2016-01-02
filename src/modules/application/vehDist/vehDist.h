@@ -54,15 +54,16 @@ class vehDist : public BaseWaveApplLayer {
         vector <string> messagesDelivered;
         unordered_map<string, int> messagesDrop;
         static unsigned short int countMesssageDrop;
+        int vehID;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
         virtual void handlePositionUpdate(cObject* obj);
         virtual void handleParkingUpdate(cObject* obj);
-        virtual void sendWSM(WaveShortMessage* wsm);
-
         void sendMessage(std::string blockedRoadId);
+
+        virtual void sendWSM(WaveShortMessage* wsm);
 
         void sendDataMessage();
         void generateTarget();
@@ -70,7 +71,7 @@ class vehDist : public BaseWaveApplLayer {
         void handleSelfMsg(cMessage* msg);
         void printMessagesBuffer();
         void printBeaconNeighbors();
-        WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
+        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
         WaveShortMessage* updateMessageWSM(WaveShortMessage* wsm, string rcvId);
         void updatePosition();
         unsigned int getHeading8();
@@ -81,14 +82,16 @@ class vehDist : public BaseWaveApplLayer {
         void vehUpdatePosition();
         void vehSendData();
         int getCategory();
-        void saveMessagesOnFile(WaveShortMessage* wsm, string file);
         void removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit);
         void sendMessageNeighborsTarget();
         string returnLastMessageInsert();
-        void printHeaderfileExecution();
         void finish();
         void printCountMessagesDrop();
         void colorCarryMessage();
+        void handleLowerMsg(cMessage* msg);
+        void onBeaconStatus(WaveShortMessage* wsm);
+        void onBeaconMessage(WaveShortMessage* wsm);
+        void setVehID();
 };
 
 unsigned short int vehDist::messageId = 0;

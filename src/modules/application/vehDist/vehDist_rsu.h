@@ -55,14 +55,16 @@ class vehDist_rsu : public BaseWaveApplLayer {
 
         void sendMessage(std::string blockedRoadId);
 
-        WaveShortMessage* prepareBeaconWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
-        void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
+        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
         void handleSelfMsg(cMessage* msg);
         void restartFilesResult();
         virtual void finish();
         void printCountMessagesReceived();
         void messagesReceivedMeasuring(WaveShortMessage* wsm);
-        void printHeaderfileExecution();
+        void handleLowerMsg(cMessage* msg);
+        void onBeaconStatus(WaveShortMessage* wsm);
+        void onBeaconMessage(WaveShortMessage* wsm);
+
 };
 
 #endif

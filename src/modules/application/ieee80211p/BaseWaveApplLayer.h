@@ -82,6 +82,12 @@ class BaseWaveApplLayer : public BaseApplLayer {
             SEND_BEACON_EVT_mfcv_epidemic
         };
 
+//######################################### vehDist #########################################
+        void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
+        void printHeaderfileExecution();
+        void openFileAndClose(string fileName, bool append);
+//######################################### vehDist #########################################
+
     protected:
 
         static const simsignalwrap_t mobilityStateChangedSignal;
@@ -154,6 +160,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         string fileMessagesCount;
         string fileMessagesDrop;
         int repeatNumber;
+        unsigned int hopLimit;
 };
 
 #endif /* BASEWAVEAPPLLAYER_H_ */

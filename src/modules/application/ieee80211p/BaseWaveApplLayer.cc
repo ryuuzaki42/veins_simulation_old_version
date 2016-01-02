@@ -64,6 +64,63 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
     }
 }
 
+//######################################### vehDist #########################################
+
+void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileName){
+    myfile.open (fileName, std::ios_base::app); //Open file for just apeend
+
+    //Send "strings" to be saved on the file
+    myfile << "BeaconMessage from " << wsm->getSenderAddressString() << " at " << simTime();
+    myfile << " to " << wsm->getRecipientAddressString() << endl;
+    myfile << "wsm->getGlobalMessageIdentificaton(): " << wsm->getGlobalMessageIdentificaton() << endl;
+    myfile << "wsm->getName(): " << wsm->getName() << endl;
+    myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
+    myfile << "wsm->getPriority(): " << wsm->getPriority() << endl;
+    myfile << "wsm->getSerial(): " << wsm->getSerial() << endl;
+    myfile << "wsm->getSecurityType(): " << wsm->getSecurityType() << endl;
+    myfile << "wsm->getDataRate(): " << wsm->getDataRate() << endl;
+    myfile << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
+    myfile << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
+    myfile << "wsm->getPsid(): " << wsm->getPsid() << endl;
+    myfile << "wsm->getPsc(): " << wsm->getPsc() << endl;
+    myfile << "wsm->getHeading(): " << wsm->getHeading() << endl;
+    myfile << "wsm->getCategory(): " << wsm->getCategory() << endl;
+    myfile << "wsm->getRoadId(): " << wsm->getRoadId() << endl;
+    myfile << "wsm->getSenderSpeed(): " << wsm->getSenderSpeed() << endl;
+    myfile << "wsm->getSenderAddressString(): " << wsm->getSenderAddressString() << endl;
+    myfile << "wsm->getRecipientAddressString(): " << wsm->getRecipientAddressString() << endl;
+    myfile << "wsm->getSource(): " << wsm->getSource() << endl;
+    myfile << "wsm->getTarget(): " << wsm->getTarget() << endl;
+    myfile << "findHost()->getFullName(): " << findHost()->getFullName() << endl;
+    myfile << "wsm->getTargetPos(): " << wsm->getTargetPos() << endl;
+    myfile << "wsm->getHopCount(): " << wsm->getHopCount() << endl;
+    myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
+    myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
+    myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
+    myfile << "Time to generate and recived: " << (simTime() - wsm->getTimestamp()) << endl;
+    myfile << endl;
+
+    myfile.close();
+}
+
+void BaseWaveApplLayer::openFileAndClose(string fileName, bool append){
+    if (append) {
+        myfile.open(fileName, std::ios_base::app);
+    } else {
+        myfile.open(fileName);
+    }
+    printHeaderfileExecution();
+    myfile.close();
+}
+
+void BaseWaveApplLayer::printHeaderfileExecution(){
+    myfile << "#############################################################################################";
+    myfile << "#############################################################################################" << endl;
+    myfile << "Execution number: " << repeatNumber << endl << endl;
+}
+
+//######################################### vehDist #########################################
+
 void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
     BaseApplLayer::initialize(stage);
 
@@ -323,14 +380,6 @@ void BaseWaveApplLayer::handleLowerMsg(cMessage* msg) {
     else if (std::string(wsm->getName()) == "data") {
         onData(wsm);
     }
-//
-    else if (std::string(wsm->getName()) == "data2veh") {
-        cout << "data2veh now" << endl;
-    }
-    else if (std::string(wsm->getName()) == "data2rsu") {
-            cout << "data2rsu now" << endl;
-    }
-//
     else if (std::string(wsm->getName()) == "beacon_minicurso") {
         onBeacon(wsm);
     }
