@@ -1,5 +1,5 @@
 <map id="WaveShortMessage::setGlobalMessageIdentificaton" name="WaveShortMessage::setGlobalMessageIdentificaton">
-<area shape="rect" id="node2" href="$classveh_dist.html#a11fa0f572ada2a8872c6387a841f98f1" title="vehDist::generateMessage" alt="" coords="277,5,456,32"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#ad39be929c20bd08497e8ac3999804f95" title="vehDist::generateMessage" alt="" coords="277,5,456,32"/>
 <area shape="rect" id="node5" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="274,56,459,83"/>
 <area shape="rect" id="node6" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="256,107,477,133"/>
 <area shape="rect" id="node3" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="525,5,680,32"/>

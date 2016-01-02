@@ -1,5 +1,4 @@
 <map id="vehDist::printMessagesBuffer" name="vehDist::printMessagesBuffer">
-<area shape="rect" id="node2" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="249,5,399,32"/>
-<area shape="rect" id="node4" href="$class_base_wave_appl_layer.html#a3838ef2e8dba7ab8767cf3c3d3d9883b" title="BaseWaveApplLayer::\lMACToInteger" alt="" coords="248,57,400,98"/>
-<area shape="rect" id="node3" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="448,5,595,32"/>
+<area shape="rect" id="node2" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="248,5,399,32"/>
+<area shape="rect" id="node3" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="447,5,593,32"/>
 </map>

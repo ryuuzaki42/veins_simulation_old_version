@@ -1,31 +1,27 @@
 <map id="BaseWaveApplLayer::MACToInteger" name="BaseWaveApplLayer::MACToInteger">
-<area shape="rect" id="node2" href="$classepidemic__rsu.html#a2f48c5f77c7d3eb705a75182c54da4c2" title="Initialization of the module and some variables. " alt="" coords="239,5,393,32"/>
-<area shape="rect" id="node3" href="$classmfcv__epidemic__rsu.html#aff5d1aa2c3f71cc1f322da6b2d172e66" title="Initialization of the module and some variables. " alt="" coords="245,57,387,98"/>
-<area shape="rect" id="node4" href="$classmfcv__epidemic__rsu.html#a8b1a7244c81666fc6f48bd1c9d413e4c" title="mfcv_epidemic_rsu::\lonBeacon" alt="" coords="777,770,919,811"/>
-<area shape="rect" id="node5" href="$classepidemic__rsu.html#a198b769137de21b435a90f9092eb0df3" title="epidemic_rsu::onBeacon" alt="" coords="765,180,931,207"/>
-<area shape="rect" id="node6" href="$classepidemic__rsu.html#addc6771a70b0cb8f01df46df120357cb" title="epidemic_rsu::onData" alt="" coords="773,516,923,543"/>
-<area shape="rect" id="node7" href="$classmfcv__epidemic__rsu.html#a4e90c012caa8cc897fc32047fdbe3e7f" title="mfcv_epidemic_rsu::\lonData" alt="" coords="777,1126,919,1167"/>
-<area shape="rect" id="node8" href="$class_base_wave_appl_layer.html#a9b516ecd60c5272098aeaa8c49f12a87" title="BaseWaveApplLayer::\lprepareWSM_epidemic" alt="" coords="237,387,395,429"/>
-<area shape="rect" id="node13" href="$classepidemic__rsu.html#aff93c911e10e4b1c29d2d1e4a0b3b931" title="epidemic_rsu::sendMessages\lRequested" alt="" coords="499,479,693,521"/>
-<area shape="rect" id="node15" href="$classmfcv__epidemic__rsu.html#a1712bae9a4cca9f38b1e75d8ce999fbc" title="mfcv_epidemic_rsu::\lprepareWSM_mfcv_epidemic" alt="" coords="219,894,413,935"/>
-<area shape="rect" id="node18" href="$classmfcv__epidemic__rsu.html#aef4403f88d46bfd445c8577757b7214b" title="mfcv_epidemic_rsu::\lsendMessagesRequested" alt="" coords="509,1155,683,1197"/>
-<area shape="rect" id="node21" href="$classveh_dist.html#a359006f8f28cef3c628ad4fa276fa8a3" title="vehDist::printBeaconNeighbors" alt="" coords="215,764,417,791"/>
-<area shape="rect" id="node22" href="$classepidemic__rsu.html#a14dbefb5a48ac9183fb05bea8a0a5320" title="epidemic_rsu::printEpidemic\lLocalMessageBuffer" alt="" coords="223,530,409,571"/>
-<area shape="rect" id="node23" href="$classepidemic__rsu.html#a18a51c79a1568bbec08f0444286d0803" title="epidemic_rsu::printEpidemic\lLocalSummaryVectorData" alt="" coords="223,647,409,689"/>
-<area shape="rect" id="node24" href="$classveh_dist.html#a1b21181052bb7ae17a254e062cda0d25" title="vehDist::printMessagesBuffer" alt="" coords="219,960,413,987"/>
-<area shape="rect" id="node25" href="$classmfcv__epidemic__rsu.html#a3faac558edcbd7fed30fe62514bd5f45" title="mfcv_epidemic_rsu::\lprintMfcv_EpidemicLocalMessage\lBuffer" alt="" coords="205,1176,427,1232"/>
-<area shape="rect" id="node26" href="$classmfcv__epidemic__rsu.html#a1fc5368e7a71258d73ff916ca1b00c4a" title="mfcv_epidemic_rsu::\lprintMfcv_EpidemicLocalSummary\lVectorData" alt="" coords="484,1272,708,1328"/>
-<area shape="rect" id="node27" href="$classepidemic__rsu.html#a9d38991442b41e646f2594c4bc364f36" title="epidemic_rsu::printNodes\lIRecentlySentSummaryVector" alt="" coords="217,122,415,163"/>
-<area shape="rect" id="node28" href="$classmfcv__epidemic__rsu.html#a05ea04feb30435be147327bc053fb222" title="mfcv_epidemic_rsu::\lprintNodesIRecentlySentSummary\lVector" alt="" coords="484,697,708,753"/>
-<area shape="rect" id="node29" href="$classveh_dist.html#a7e0df0976d79f7bb0dbe7bcf5815a268" title="vehDist::printOrdemBeacons" alt="" coords="221,1307,411,1333"/>
-<area shape="rect" id="node30" href="$classveh_dist.html#acc19f82305b1e6a5cde46811d07d2204" title="vehDist::printOrdemMessages" alt="" coords="217,1357,415,1384"/>
-<area shape="rect" id="node9" href="$class_base_wave_appl_layer.html#a830e58e379655c6d24319c16f8db5e3d" title="handle self messages " alt="" coords="520,231,672,273"/>
-<area shape="rect" id="node11" href="$classepidemic__rsu.html#a4045ee27460db38accde23708b09dc5f" title="epidemic_rsu::sendBeacon" alt="" coords="507,428,685,455"/>
-<area shape="rect" id="node12" href="$classepidemic__rsu.html#a7d5f30ee2711fa57054e8a63e278a62f" title="epidemic_rsu::sendLocalSummary\lVector" alt="" coords="485,297,707,338"/>
-<area shape="rect" id="node14" href="$classepidemic__rsu.html#a0aad04c7373d719394ad1927aa4aa7a0" title="epidemic_rsu::sendEpidemic\lRequestMessageVector" alt="" coords="501,362,691,403"/>
-<area shape="rect" id="node10" href="$classminicurso___u_f_p_i___tra_c_i.html#a13623ac92684ab2f823c0a58be229686" title="handle self messages " alt="" coords="770,231,926,273"/>
-<area shape="rect" id="node16" href="$classmfcv__epidemic__rsu.html#a0b89e2e4a8ead31c82617d0fd6590429" title="mfcv_epidemic_rsu::\lsendBeacon" alt="" coords="525,829,667,870"/>
-<area shape="rect" id="node17" href="$classmfcv__epidemic__rsu.html#a49698aa80fb85be536d634a50f56b49d" title="mfcv_epidemic_rsu::\lsendLocalSummaryVector" alt="" coords="509,959,683,1001"/>
-<area shape="rect" id="node19" href="$classmfcv__epidemic__rsu.html#a3010ba72019bb957dbce21e84e92f486" title="mfcv_epidemic_rsu::\lsendMfcv_EpidemicRequestMessage\lVector" alt="" coords="475,1024,717,1080"/>
-<area shape="rect" id="node20" href="$classmfcv__epidemic__rsu.html#a9dcb000dae4360982c69150b93d57d7a" title="handle self messages " alt="" coords="525,894,667,935"/>
+<area shape="rect" id="node2" href="$classepidemic__rsu.html#a2f48c5f77c7d3eb705a75182c54da4c2" title="Initialization of the module and some variables. " alt="" coords="240,5,395,32"/>
+<area shape="rect" id="node3" href="$classmfcv__epidemic__rsu.html#aff5d1aa2c3f71cc1f322da6b2d172e66" title="Initialization of the module and some variables. " alt="" coords="246,57,389,98"/>
+<area shape="rect" id="node4" href="$classmfcv__epidemic__rsu.html#a8b1a7244c81666fc6f48bd1c9d413e4c" title="mfcv_epidemic_rsu::\lonBeacon" alt="" coords="779,751,922,793"/>
+<area shape="rect" id="node5" href="$classepidemic__rsu.html#a198b769137de21b435a90f9092eb0df3" title="epidemic_rsu::onBeacon" alt="" coords="768,180,933,207"/>
+<area shape="rect" id="node6" href="$classepidemic__rsu.html#addc6771a70b0cb8f01df46df120357cb" title="epidemic_rsu::onData" alt="" coords="776,516,925,543"/>
+<area shape="rect" id="node7" href="$classmfcv__epidemic__rsu.html#a4e90c012caa8cc897fc32047fdbe3e7f" title="mfcv_epidemic_rsu::\lonData" alt="" coords="779,1107,922,1149"/>
+<area shape="rect" id="node8" href="$class_base_wave_appl_layer.html#a9b516ecd60c5272098aeaa8c49f12a87" title="BaseWaveApplLayer::\lprepareWSM_epidemic" alt="" coords="239,383,396,425"/>
+<area shape="rect" id="node13" href="$classepidemic__rsu.html#aff93c911e10e4b1c29d2d1e4a0b3b931" title="epidemic_rsu::sendMessages\lRequested" alt="" coords="501,479,696,521"/>
+<area shape="rect" id="node15" href="$classmfcv__epidemic__rsu.html#a1712bae9a4cca9f38b1e75d8ce999fbc" title="mfcv_epidemic_rsu::\lprepareWSM_mfcv_epidemic" alt="" coords="221,907,414,949"/>
+<area shape="rect" id="node18" href="$classmfcv__epidemic__rsu.html#aef4403f88d46bfd445c8577757b7214b" title="mfcv_epidemic_rsu::\lsendMessagesRequested" alt="" coords="512,1137,685,1178"/>
+<area shape="rect" id="node21" href="$classepidemic__rsu.html#a14dbefb5a48ac9183fb05bea8a0a5320" title="epidemic_rsu::printEpidemic\lLocalMessageBuffer" alt="" coords="224,522,411,563"/>
+<area shape="rect" id="node22" href="$classepidemic__rsu.html#a18a51c79a1568bbec08f0444286d0803" title="epidemic_rsu::printEpidemic\lLocalSummaryVectorData" alt="" coords="224,639,411,681"/>
+<area shape="rect" id="node23" href="$classmfcv__epidemic__rsu.html#a3faac558edcbd7fed30fe62514bd5f45" title="mfcv_epidemic_rsu::\lprintMfcv_EpidemicLocalMessage\lBuffer" alt="" coords="207,1179,428,1235"/>
+<area shape="rect" id="node24" href="$classmfcv__epidemic__rsu.html#a1fc5368e7a71258d73ff916ca1b00c4a" title="mfcv_epidemic_rsu::\lprintMfcv_EpidemicLocalSummary\lVectorData" alt="" coords="205,1259,429,1315"/>
+<area shape="rect" id="node25" href="$classepidemic__rsu.html#a9d38991442b41e646f2594c4bc364f36" title="epidemic_rsu::printNodes\lIRecentlySentSummaryVector" alt="" coords="218,122,417,163"/>
+<area shape="rect" id="node26" href="$classmfcv__epidemic__rsu.html#a05ea04feb30435be147327bc053fb222" title="mfcv_epidemic_rsu::\lprintNodesIRecentlySentSummary\lVector" alt="" coords="205,704,429,760"/>
+<area shape="rect" id="node9" href="$class_base_wave_appl_layer.html#a830e58e379655c6d24319c16f8db5e3d" title="handle self messages " alt="" coords="523,231,675,273"/>
+<area shape="rect" id="node11" href="$classepidemic__rsu.html#a4045ee27460db38accde23708b09dc5f" title="epidemic_rsu::sendBeacon" alt="" coords="509,428,688,455"/>
+<area shape="rect" id="node12" href="$classepidemic__rsu.html#a7d5f30ee2711fa57054e8a63e278a62f" title="epidemic_rsu::sendLocalSummary\lVector" alt="" coords="487,297,710,338"/>
+<area shape="rect" id="node14" href="$classepidemic__rsu.html#a0aad04c7373d719394ad1927aa4aa7a0" title="epidemic_rsu::sendEpidemic\lRequestMessageVector" alt="" coords="504,362,693,403"/>
+<area shape="rect" id="node10" href="$classminicurso___u_f_p_i___tra_c_i.html#a13623ac92684ab2f823c0a58be229686" title="handle self messages " alt="" coords="773,231,929,273"/>
+<area shape="rect" id="node16" href="$classmfcv__epidemic__rsu.html#a0b89e2e4a8ead31c82617d0fd6590429" title="mfcv_epidemic_rsu::\lsendBeacon" alt="" coords="527,810,670,851"/>
+<area shape="rect" id="node17" href="$classmfcv__epidemic__rsu.html#a49698aa80fb85be536d634a50f56b49d" title="mfcv_epidemic_rsu::\lsendLocalSummaryVector" alt="" coords="511,941,686,982"/>
+<area shape="rect" id="node19" href="$classmfcv__epidemic__rsu.html#a3010ba72019bb957dbce21e84e92f486" title="mfcv_epidemic_rsu::\lsendMfcv_EpidemicRequestMessage\lVector" alt="" coords="477,1005,720,1061"/>
+<area shape="rect" id="node20" href="$classmfcv__epidemic__rsu.html#a9dcb000dae4360982c69150b93d57d7a" title="handle self messages " alt="" coords="527,875,670,917"/>
 </map>

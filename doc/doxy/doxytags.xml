@@ -8679,6 +8679,27 @@
       <anchor>ab403cdb2a546bada74a3df37b477f72c</anchor>
       <arglist>(cComponent *source, simsignal_t signalID, cObject *obj)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveMessagesOnFile</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a8aff49c45cf2a87c5cd6daf14df487c7</anchor>
+      <arglist>(WaveShortMessage *wsm, string fileName)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>printHeaderfileExecution</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>abf5674a21fd87847ef3a806a84a96213</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>openFileAndClose</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>ab615e539531a341987ef29001633a754</anchor>
+      <arglist>(string fileName, bool append)</arglist>
+    </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>handleLowerMsg</name>
@@ -8894,6 +8915,34 @@
       <name>fileMessagesNameBroadcast</name>
       <anchorfile>class_base_wave_appl_layer.html</anchorfile>
       <anchor>ad17baefcf81545ae08e54542f03744af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>string</type>
+      <name>fileMessagesCount</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a25ed829d2c1a29f71fb62a1986acca0d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>string</type>
+      <name>fileMessagesDrop</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a3f2cdfa90744be22b075dd1b9bf800d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>repeatNumber</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a714972d64c30321718d224b5a8012f14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unsigned int</type>
+      <name>hopLimit</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a77f25afa1fd40d281ebecaf7828fbe0a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -14074,20 +14123,6 @@
       <arglist>(unsigned short category)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual int</type>
-      <name>getVehicleId</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a3514a24893254d6b1691b2915d3f6e4a</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setVehicleId</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>aedc2467543d47137f3553f20bd5677a3</anchor>
-      <arglist>(int vehicleId)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
       <type>virtual unsigned short</type>
       <name>getHeading</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
@@ -14358,13 +14393,6 @@
       <name>category_var</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
       <anchor>ac7afd2856bf758868586658db67f073a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>vehicleId_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a8e589d8db8e7d50f7849f51acbb102d5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -23246,13 +23274,6 @@
       <anchor>a03edc1939453fccdebcbc0a4eb14c2a0</anchor>
       <arglist>(WaveShortMessage *wsm)</arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>sendMessage</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a31a60a33d9d0337901a92a106cbf4e38</anchor>
-      <arglist>(std::string blockedRoadId)</arglist>
-    </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>handlePositionUpdate</name>
@@ -23266,6 +23287,13 @@
       <anchorfile>classveh_dist.html</anchorfile>
       <anchor>a73831ce4b648405e1468c553b12492be</anchor>
       <arglist>(cObject *obj)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendMessage</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a31a60a33d9d0337901a92a106cbf4e38</anchor>
+      <arglist>(std::string blockedRoadId)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
@@ -23289,10 +23317,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>WaveShortMessage *</type>
+      <type>void</type>
       <name>generateMessage</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a11fa0f572ada2a8872c6387a841f98f1</anchor>
+      <anchor>ad39be929c20bd08497e8ac3999804f95</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23318,9 +23346,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>WaveShortMessage *</type>
-      <name>prepareBeaconWSM</name>
+      <name>prepareBeaconStatusWSM</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ab37f9248461664ccd839bb09b7bd34cf</anchor>
+      <anchor>a11c6b985a4d2d341f3644409630963ad</anchor>
       <arglist>(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial)</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23352,53 +23380,11 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>unsigned int</type>
-      <name>MACToInteger</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ac7caa82d983e03b954c669f0e416d9dd</anchor>
-      <arglist>(WaveAppToMac1609_4Interface *myMac)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>deleteMessage</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a0002db506cbd6c74c9aed17b1f42700b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>printOrdemMessages</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>acc19f82305b1e6a5cde46811d07d2204</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>printOrdemBeacons</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a7e0df0976d79f7bb0dbe7bcf5815a268</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
       <type>bool</type>
       <name>sendtoTargetbyVeh</name>
       <anchorfile>classveh_dist.html</anchorfile>
       <anchor>abb6bea55eb2e6915cacfe0206bccc368</anchor>
       <arglist>(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>removeMessageOutSizeBuffer</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>aa3a1d1c261dd2781d22683d358f314a7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>removeBeaconOutSizeBuffer</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a8f4ed9e0f742658774542e6152dc7509</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -23429,13 +23415,6 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>void</type>
-      <name>fieldsToSave</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a4f1221dae90cc67d866d611ebaa80f60</anchor>
-      <arglist>(WaveShortMessage *wsm)</arglist>
-    </member>
-    <member kind="function" protection="protected">
       <type>int</type>
       <name>getCategory</name>
       <anchorfile>classveh_dist.html</anchorfile>
@@ -23444,10 +23423,73 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>saveMessagesOnFile</name>
+      <name>removeOldestInput</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ac6eababe9063bb948595be363fc0b8a1</anchor>
-      <arglist>(WaveShortMessage *wsm, string file)</arglist>
+      <anchor>a5f4415bd92835300f7e6bbf9b0258a7c</anchor>
+      <arglist>(unordered_map&lt; string, WaveShortMessage &gt; *data, double timeValid, unsigned int bufferLimit)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendMessageNeighborsTarget</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a93e9c98fef45bfaa8783f7782c57cfbb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>string</type>
+      <name>returnLastMessageInsert</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a72e37476cdb36888a983f489494e592c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>finish</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a6e30f1dcc1c73a992f99afc48bc2d079</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>printCountMessagesDrop</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>ab6865e2c623f0c54764c0f599f8a6e11</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>colorCarryMessage</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a72f1466874af1a6b3c6aca95c9505a48</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handleLowerMsg</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a23793246f0ba305a68461e6ba14884ef</anchor>
+      <arglist>(cMessage *msg)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>onBeaconStatus</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>aad4cc10dbbfb5a647fa1be16fccbcaf9</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>onBeaconMessage</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a99092f76694fc10035624417e1b454e6</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setVehID</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a3d93ae04ddc86f15da44d9de766dc263</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>TraCIMobility *</type>
@@ -23492,27 +23534,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>unordered_map&lt; string, WaveShortMessage &gt;</type>
-      <name>messagesBuffer</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ae6c2e29766bc282dd173d2d1255d03cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>countMessage</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ae31ef4db5d50f779d158f4205850e6cf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>countBeacon</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a17fa3dbc86f96097d6fcded5bb643ddf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
       <type>cMessage *</type>
       <name>sendDataEvt</name>
       <anchorfile>classveh_dist.html</anchorfile>
@@ -23535,23 +23556,37 @@
     </member>
     <member kind="variable" protection="protected">
       <type>unordered_map&lt; string, WaveShortMessage &gt;</type>
+      <name>messagesBuffer</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>ae6c2e29766bc282dd173d2d1255d03cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unordered_map&lt; string, WaveShortMessage &gt;</type>
       <name>beaconNeighbors</name>
       <anchorfile>classveh_dist.html</anchorfile>
       <anchor>a2b9882c0dd7018d54c2f80125f7cca54</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>unordered_map&lt; int, string &gt;</type>
-      <name>ordemMessages</name>
+      <type>vector&lt; string &gt;</type>
+      <name>messagesDelivered</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a0dd093799b378868edbc868678819a8b</anchor>
+      <anchor>af16b6c2652b35a8c43b9723d2c8b548a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>unordered_map&lt; int, string &gt;</type>
-      <name>ordemBeacons</name>
+      <type>unordered_map&lt; string, int &gt;</type>
+      <name>messagesDrop</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>adf9287b79b1fb8cbda70637ddf780dfc</anchor>
+      <anchor>a4a06e0c4df8f93b85f46bdca46c46d0d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>vehID</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a69edf12ad44c0cc1f140ef2928a21273</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -23566,6 +23601,13 @@
       <name>messageId</name>
       <anchorfile>classveh_dist.html</anchorfile>
       <anchor>aa0c4f1725f373c98a7fe3fcc734c3bae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static unsigned short int</type>
+      <name>countMesssageDrop</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a436335daf5b759429aea934db2fec8b5</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -23595,13 +23637,6 @@
       <anchor>ae75c14310c557d1383da4165dc92c05a</anchor>
       <arglist>(WaveShortMessage *wsm)</arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>sendMessage</name>
-      <anchorfile>classveh_dist__rsu.html</anchorfile>
-      <anchor>a0eacc13c3e30ec03508ff02681741d01</anchor>
-      <arglist>(std::string blockedRoadId)</arglist>
-    </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>sendWSM</name>
@@ -23610,25 +23645,18 @@
       <arglist>(WaveShortMessage *wsm)</arglist>
     </member>
     <member kind="function" protection="protected">
+      <type>void</type>
+      <name>sendMessage</name>
+      <anchorfile>classveh_dist__rsu.html</anchorfile>
+      <anchor>a0eacc13c3e30ec03508ff02681741d01</anchor>
+      <arglist>(std::string blockedRoadId)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>WaveShortMessage *</type>
-      <name>prepareBeaconWSM</name>
+      <name>prepareBeaconStatusWSM</name>
       <anchorfile>classveh_dist__rsu.html</anchorfile>
-      <anchor>a8b02b075ac428f6ef0e8eeae33145483</anchor>
+      <anchor>ab5d96c5dd6d2f7a1e0496a2693d87d9f</anchor>
       <arglist>(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>saveMessagesOnFile</name>
-      <anchorfile>classveh_dist__rsu.html</anchorfile>
-      <anchor>a406cc86e92767427797227c407289448</anchor>
-      <arglist>(WaveShortMessage *wsm, string fileName)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>fieldsToSave</name>
-      <anchorfile>classveh_dist__rsu.html</anchorfile>
-      <anchor>ac5e0cae06b25bb79e8c54d6cdbfa7e59</anchor>
-      <arglist>(WaveShortMessage *wsm)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -23665,6 +23693,27 @@
       <anchor>a7f25344fb1d8b1aaee227f2957a46f24</anchor>
       <arglist>(WaveShortMessage *wsm)</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handleLowerMsg</name>
+      <anchorfile>classveh_dist__rsu.html</anchorfile>
+      <anchor>aeb0d4969f1765a0eab6bd9e6f0c4f0ee</anchor>
+      <arglist>(cMessage *msg)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>onBeaconStatus</name>
+      <anchorfile>classveh_dist__rsu.html</anchorfile>
+      <anchor>ab453c23d44f00ae7a3bf5c5bdb766b8a</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>onBeaconMessage</name>
+      <anchorfile>classveh_dist__rsu.html</anchorfile>
+      <anchor>aec5ea45bc741e1b7685d354660b179fb</anchor>
+      <arglist>(WaveShortMessage *wsm)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>AnnotationManager *</type>
       <name>annotations</name>
@@ -23687,10 +23736,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>unordered_map&lt; string, struct messages &gt;</type>
+      <type>map&lt; string, struct messages &gt;</type>
       <name>messagesReceived</name>
       <anchorfile>classveh_dist__rsu.html</anchorfile>
-      <anchor>a7015510ef2506ef034c93818daddde9b</anchor>
+      <anchor>a3123a0633dda77a84010f1cfe77e30f3</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -23698,10 +23747,10 @@
     <name>vehDist_rsu::messages</name>
     <filename>structveh_dist__rsu_1_1messages.html</filename>
     <member kind="variable">
-      <type>int</type>
+      <type>unsigned int</type>
       <name>HopsCount</name>
       <anchorfile>structveh_dist__rsu_1_1messages.html</anchorfile>
-      <anchor>a90e50c85d11deb68a008033a92dc0c43</anchor>
+      <anchor>acbb8cb2f53a27f764e1d0147826d8707</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -23712,17 +23761,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
+      <type>unsigned int</type>
       <name>minHop</name>
       <anchorfile>structveh_dist__rsu_1_1messages.html</anchorfile>
-      <anchor>a71b3603692be22064933c59e1c93eb70</anchor>
+      <anchor>a596f54a063699b226de2197824b3b3d2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
+      <type>unsigned int</type>
       <name>maxHop</name>
       <anchorfile>structveh_dist__rsu_1_1messages.html</anchorfile>
-      <anchor>ae1f59c291578a56ae8971df9d31ab580</anchor>
+      <anchor>a35fcbd59f94e22d18e6f143b9ca24155</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -23737,6 +23786,20 @@
       <name>wsmData</name>
       <anchorfile>structveh_dist__rsu_1_1messages.html</anchorfile>
       <anchor>a01078a897ef4f29e0359887642e7fe3e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>simtime_t</type>
+      <name>timeAverage</name>
+      <anchorfile>structveh_dist__rsu_1_1messages.html</anchorfile>
+      <anchor>accd2d45b7c723b3a8d4cf43b2afa63f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>string</type>
+      <name>times</name>
+      <anchorfile>structveh_dist__rsu_1_1messages.html</anchorfile>
+      <anchor>adf608823e4ea903ed7410fd4fc344b53</anchor>
       <arglist></arglist>
     </member>
   </compound>

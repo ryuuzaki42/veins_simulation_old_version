@@ -1,5 +1,10 @@
 <map id="WaveShortMessage::getRoadId" name="WaveShortMessage::getRoadId">
 <area shape="rect" id="node2" href="$classmfcv__rsu.html#afc3ef12d3b68959a98d45c14fcc7b6dc" title="mfcv_rsu::onBeacon" alt="" coords="268,5,411,32"/>
 <area shape="rect" id="node4" href="$classminicurso___u_f_p_i___tra_c_i.html#aa65508209535beb4d0beeee035c14a5f" title="minicurso_UFPI_TraCI\l::onBeacon" alt="" coords="261,57,417,98"/>
-<area shape="rect" id="node3" href="$classmfcv__rsu.html#a81a66a29d8002b072d2db7ad57f29742" title="handle messages from below " alt="" coords="465,5,648,32"/>
+<area shape="rect" id="node5" href="$class_base_wave_appl_layer.html#a8aff49c45cf2a87c5cd6daf14df487c7" title="BaseWaveApplLayer::\lsaveMessagesOnFile" alt="" coords="263,122,415,163"/>
+<area shape="rect" id="node3" href="$classmfcv__rsu.html#a81a66a29d8002b072d2db7ad57f29742" title="handle messages from below " alt="" coords="479,5,662,32"/>
+<area shape="rect" id="node6" href="$classveh_dist__rsu.html#aec5ea45bc741e1b7685d354660b179fb" title="vehDist_rsu::onBeaconMessage" alt="" coords="465,104,676,131"/>
+<area shape="rect" id="node8" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="477,155,664,181"/>
+<area shape="rect" id="node7" href="$classveh_dist__rsu.html#aeb0d4969f1765a0eab6bd9e6f0c4f0ee" title="handle messages from below " alt="" coords="724,104,923,131"/>
+<area shape="rect" id="node9" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="737,155,910,181"/>
 </map>

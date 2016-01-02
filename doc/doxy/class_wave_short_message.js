@@ -35,7 +35,6 @@ var class_wave_short_message =
     [ "getTargetPos", "class_wave_short_message.html#aa03397b0fa8625852af7babc1609d35d", null ],
     [ "getTargetPos", "class_wave_short_message.html#a8c947f4ea59370f9cb122cb707d4c877", null ],
     [ "getTimestamp", "class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956", null ],
-    [ "getVehicleId", "class_wave_short_message.html#a3514a24893254d6b1691b2915d3f6e4a", null ],
     [ "getWsmData", "class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0", null ],
     [ "getWsmLength", "class_wave_short_message.html#a72950d93ddfe661721a53389e293c5c4", null ],
     [ "getWsmVersion", "class_wave_short_message.html#a6851e8a2af35b6e55d5bec81057ae51f", null ],
@@ -70,7 +69,6 @@ var class_wave_short_message =
     [ "setTarget", "class_wave_short_message.html#ab089299581a136da502bf3dec5475436", null ],
     [ "setTargetPos", "class_wave_short_message.html#a5ec14d3f179b57cea6c6c42901b5d856", null ],
     [ "setTimestamp", "class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6", null ],
-    [ "setVehicleId", "class_wave_short_message.html#aedc2467543d47137f3553f20bd5677a3", null ],
     [ "setWsmData", "class_wave_short_message.html#a138e7425f6286d388541280dceab0352", null ],
     [ "setWsmLength", "class_wave_short_message.html#ae4d6bd7437dd170241b3d95c754a39a2", null ],
     [ "setWsmVersion", "class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e", null ],
@@ -101,7 +99,6 @@ var class_wave_short_message =
     [ "target_var", "class_wave_short_message.html#a9c53d91dc9c7e82b32f9a44d3f2a17ff", null ],
     [ "TargetPos_var", "class_wave_short_message.html#a8abed9de100e949724cb3b4697508331", null ],
     [ "timestamp_var", "class_wave_short_message.html#a33b24de6e0d97218a2f69cc4ad575e2a", null ],
-    [ "vehicleId_var", "class_wave_short_message.html#a8e589d8db8e7d50f7849f51acbb102d5", null ],
     [ "wsmData_var", "class_wave_short_message.html#a451aac501c89cfe9cae36d82739e0311", null ],
     [ "wsmLength_var", "class_wave_short_message.html#aa006bd6b37a2d4cfa316d91cead6247b", null ],
     [ "wsmVersion_var", "class_wave_short_message.html#a046c5f1ea5c6a3682a428ca45530024c", null ]

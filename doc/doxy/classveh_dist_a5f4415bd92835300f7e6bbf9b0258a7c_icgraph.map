@@ -1,0 +1,7 @@
+<map id="vehDist::removeOldestInput" name="vehDist::removeOldestInput">
+<area shape="rect" id="node2" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="239,5,425,32"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#aad4cc10dbbfb5a647fa1be16fccbcaf9" title="vehDist::onBeaconStatus" alt="" coords="247,56,417,83"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="240,107,424,133"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="473,31,647,57"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="479,107,641,133"/>
+</map>

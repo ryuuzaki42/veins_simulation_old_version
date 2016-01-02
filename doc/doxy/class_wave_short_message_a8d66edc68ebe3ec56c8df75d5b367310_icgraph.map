@@ -1,5 +1,4 @@
 <map id="WaveShortMessage::WaveShortMessage" name="WaveShortMessage::WaveShortMessage">
-<area shape="rect" id="node2" href="$class_wave_short_message.html#a2a994de6e6306a0d3b6792e35ae40a64" title="WaveShortMessage::dup" alt="" coords="267,31,436,57"/>
-<area shape="rect" id="node3" href="$class_mac1609__4.html#a551d295ebf0b23896f4d272e3db3961d" title="Handle self messages such as timers. " alt="" coords="484,5,667,32"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="517,56,634,83"/>
+<area shape="rect" id="node2" href="$class_wave_short_message.html#a2a994de6e6306a0d3b6792e35ae40a64" title="WaveShortMessage::dup" alt="" coords="267,13,436,39"/>
+<area shape="rect" id="node3" href="$class_mac1609__4.html#a551d295ebf0b23896f4d272e3db3961d" title="Handle self messages such as timers. " alt="" coords="484,13,667,39"/>
 </map>

@@ -1,3 +1,8 @@
 <map id="WaveShortMessage::getSenderSpeed" name="WaveShortMessage::getSenderSpeed">
 <area shape="rect" id="node2" href="$classminicurso___u_f_p_i___tra_c_i.html#aa65508209535beb4d0beeee035c14a5f" title="minicurso_UFPI_TraCI\l::onBeacon" alt="" coords="260,5,416,47"/>
+<area shape="rect" id="node3" href="$class_base_wave_appl_layer.html#a8aff49c45cf2a87c5cd6daf14df487c7" title="BaseWaveApplLayer::\lsaveMessagesOnFile" alt="" coords="262,71,414,112"/>
+<area shape="rect" id="node4" href="$classveh_dist__rsu.html#aec5ea45bc741e1b7685d354660b179fb" title="vehDist_rsu::onBeaconMessage" alt="" coords="464,53,675,79"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="476,103,663,130"/>
+<area shape="rect" id="node5" href="$classveh_dist__rsu.html#aeb0d4969f1765a0eab6bd9e6f0c4f0ee" title="handle messages from below " alt="" coords="723,53,921,79"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="735,103,909,130"/>
 </map>

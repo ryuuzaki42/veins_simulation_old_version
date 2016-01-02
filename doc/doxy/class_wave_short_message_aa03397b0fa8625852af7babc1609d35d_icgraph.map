@@ -1,3 +1,8 @@
 <map id="WaveShortMessage::getTargetPos" name="WaveShortMessage::getTargetPos">
 <area shape="rect" id="node2" href="$classmfcv__epidemic.html#a6f82cfc277cc02930f6c5a4da2151ad5" title="mfcv_epidemic::onBeacon" alt="" coords="280,5,456,32"/>
+<area shape="rect" id="node3" href="$class_base_wave_appl_layer.html#a8aff49c45cf2a87c5cd6daf14df487c7" title="BaseWaveApplLayer::\lsaveMessagesOnFile" alt="" coords="292,57,444,98"/>
+<area shape="rect" id="node4" href="$classveh_dist__rsu.html#aec5ea45bc741e1b7685d354660b179fb" title="vehDist_rsu::onBeaconMessage" alt="" coords="504,39,715,65"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="516,89,703,116"/>
+<area shape="rect" id="node5" href="$classveh_dist__rsu.html#aeb0d4969f1765a0eab6bd9e6f0c4f0ee" title="handle messages from below " alt="" coords="763,39,961,65"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="775,89,949,116"/>
 </map>

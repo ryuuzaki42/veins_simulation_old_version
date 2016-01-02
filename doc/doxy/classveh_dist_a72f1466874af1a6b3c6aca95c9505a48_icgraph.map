@@ -1,0 +1,12 @@
+<map id="vehDist::colorCarryMessage" name="vehDist::colorCarryMessage">
+<area shape="rect" id="node2" href="$classveh_dist.html#ad39be929c20bd08497e8ac3999804f95" title="vehDist::generateMessage" alt="" coords="259,5,438,32"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="504,60,691,87"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a5f4415bd92835300f7e6bbf9b0258a7c" title="vehDist::removeOldestInput" alt="" coords="256,107,441,133"/>
+<area shape="rect" id="node11" href="$classveh_dist.html#a93e9c98fef45bfaa8783f7782c57cfbb" title="vehDist::sendMessageNeighbors\lTarget" alt="" coords="241,158,456,199"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="520,5,675,32"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="764,5,887,32"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="739,85,912,112"/>
+<area shape="rect" id="node8" href="$classveh_dist.html#aad4cc10dbbfb5a647fa1be16fccbcaf9" title="vehDist::onBeaconStatus" alt="" coords="512,111,683,137"/>
+<area shape="rect" id="node9" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="505,161,689,188"/>
+<area shape="rect" id="node10" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="745,161,906,188"/>
+</map>

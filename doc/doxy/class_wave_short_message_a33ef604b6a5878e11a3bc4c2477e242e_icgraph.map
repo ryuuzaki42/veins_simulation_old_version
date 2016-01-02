@@ -1,51 +1,51 @@
 <map id="WaveShortMessage::setChannelNumber" name="WaveShortMessage::setChannelNumber">
-<area shape="rect" id="node2" href="$classveh_dist.html#a11fa0f572ada2a8872c6387a841f98f1" title="vehDist::generateMessage" alt="" coords="289,251,468,277"/>
-<area shape="rect" id="node4" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="286,521,471,548"/>
-<area shape="rect" id="node5" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="268,572,489,599"/>
-<area shape="rect" id="node6" href="$class_mac1609__4.html#ac93bf319ea2065fd7e8c041697e49919" title="Handle messages from upper layer. " alt="" coords="281,623,476,649"/>
-<area shape="rect" id="node7" href="$classveh_dist__rsu.html#a8b02b075ac428f6ef0e8eeae33145483" title="vehDist_rsu::prepareBeaconWSM" alt="" coords="269,673,489,700"/>
-<area shape="rect" id="node9" href="$classveh_dist.html#ab37f9248461664ccd839bb09b7bd34cf" title="vehDist::prepareBeaconWSM" alt="" coords="281,724,476,751"/>
-<area shape="rect" id="node11" href="$class_flooding.html#ad178c82a21aea2971d9a9cba5b287c8d" title="Flooding::prepareWSM" alt="" coords="301,775,456,801"/>
-<area shape="rect" id="node13" href="$class_advanced_flooding.html#adb41696856da4e8383208e363df6d037" title="AdvancedFlooding::prepareWSM" alt="" coords="272,825,485,852"/>
-<area shape="rect" id="node15" href="$class_base_wave_appl_layer.html#a99419f231627d477c13b2b4573174295" title="BaseWaveApplLayer::\lprepareWSM" alt="" coords="303,877,455,918"/>
-<area shape="rect" id="node38" href="$class_base_wave_appl_layer.html#a9b516ecd60c5272098aeaa8c49f12a87" title="BaseWaveApplLayer::\lprepareWSM_epidemic" alt="" coords="300,1546,457,1587"/>
-<area shape="rect" id="node43" href="$classmfcv__epidemic__rsu.html#a1712bae9a4cca9f38b1e75d8ce999fbc" title="mfcv_epidemic_rsu::\lprepareWSM_mfcv_epidemic" alt="" coords="282,1702,475,1743"/>
-<area shape="rect" id="node48" href="$classmfcv__epidemic.html#a2cd3921e36abdb886422be87be0f6a28" title="mfcv_epidemic::prepareWSM\l_mfcv_epidemic" alt="" coords="281,1767,476,1809"/>
-<area shape="rect" id="node49" href="$classmfcv.html#aa9342e16ddb4c110992eca1cd438f60c" title="mfcv::prepareWSM_node" alt="" coords="293,1833,464,1860"/>
-<area shape="rect" id="node50" href="$classmfcv__rsu.html#ade8aaabaa0bdd838ad2dd248fb758183" title="mfcv_rsu::prepareWSM_rsu" alt="" coords="286,1884,471,1911"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="571,5,726,32"/>
-<area shape="rect" id="node8" href="$classveh_dist__rsu.html#a3be9ef029cadf611185d8ee64ba67fb6" title="handle self messages " alt="" coords="555,56,742,83"/>
-<area shape="rect" id="node10" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="568,107,729,133"/>
-<area shape="rect" id="node12" href="$class_flooding.html#a570dbd7017fd5f13590e2446cadc114c" title="Flooding::generateMessage" alt="" coords="557,157,740,184"/>
-<area shape="rect" id="node14" href="$class_advanced_flooding.html#a68afee498f785bf4087973f4dff5d9a1" title="AdvancedFlooding::generate\lMessage" alt="" coords="555,209,742,250"/>
-<area shape="rect" id="node16" href="$classosdp___r_s_u.html#a269aea680183bede17e5fabeaf3d5a9d" title="handle self messages " alt="" coords="808,1204,988,1231"/>
-<area shape="rect" id="node17" href="$classtest1__rsu.html#a14cc632f49ca87aab471a5effc82cd39" title="handle self messages " alt="" coords="813,1372,983,1399"/>
-<area shape="rect" id="node18" href="$classservice__discovery___r_s_u.html#afe02898eac7b682878c7259532668935" title="handle self messages " alt="" coords="817,698,979,739"/>
-<area shape="rect" id="node19" href="$classosdp.html#af3522ed4ff583a86e5b841dc76c3d461" title="handle self messages " alt="" coords="826,1103,970,1129"/>
-<area shape="rect" id="node20" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a3287965076aa410f9394d6a9ab7e02fb" title="handle self messages " alt="" coords="571,1281,727,1322"/>
-<area shape="rect" id="node21" href="$classtest1.html#adea56f23113457f0a7c389574bdaa614" title="handle self messages " alt="" coords="825,300,971,327"/>
-<area shape="rect" id="node22" href="$classservice__discovery.html#a56dbb650c091f9721d2fd56326f19aee" title="handle self messages " alt="" coords="831,398,965,439"/>
-<area shape="rect" id="node23" href="$class_base_wave_appl_layer.html#a830e58e379655c6d24319c16f8db5e3d" title="handle self messages " alt="" coords="573,1449,725,1490"/>
-<area shape="rect" id="node24" href="$classosdp___r_s_u.html#a8f575733dac8cd7da01d562aef34803d" title="osdp_RSU::sendMessage" alt="" coords="561,1179,736,1205"/>
-<area shape="rect" id="node25" href="$classservice__discovery___r_s_u.html#a94b01929201fdd4db5c14e4dc89f6ea4" title="service_discovery_RSU\l::sendMessage" alt="" coords="567,727,730,769"/>
-<area shape="rect" id="node26" href="$classtest1__rsu.html#a7b8fd0738f085479f6a7bffdd4d1de1b" title="test1_rsu::sendMessage" alt="" coords="566,1397,731,1424"/>
-<area shape="rect" id="node27" href="$classosdp.html#acd607862e391194afc33ab9e0e45d0db" title="osdp::sendMessage" alt="" coords="579,1077,718,1104"/>
-<area shape="rect" id="node28" href="$classmfcv__rsu.html#a41e52e27ab203a6e7a4ff368b40e09a4" title="mfcv_rsu::sendMessage" alt="" coords="566,493,731,520"/>
-<area shape="rect" id="node29" href="$classdefault__veins___tra_c_i___r_s_u.html#ad7392c71bd043b15d29c9f875e21b0b2" title="default_veins_TraCI\l_RSU::sendMessage" alt="" coords="575,545,722,586"/>
-<area shape="rect" id="node30" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a264efd8f4dedfd5539896858eec5b0e9" title="minicurso_UFPI_TraCI\l_RSU::sendMessage" alt="" coords="571,610,727,651"/>
-<area shape="rect" id="node31" href="$classtest1.html#acb96bd471e86c4276ba010fef6f3062b" title="test1::sendMessage" alt="" coords="579,275,719,301"/>
-<area shape="rect" id="node32" href="$classservice__discovery.html#a20bbbd60af7eb2673f46ca399b70723a" title="service_discovery::\lsendMessage" alt="" coords="581,427,716,469"/>
-<area shape="rect" id="node33" href="$classdefault__veins___tra_c_i.html#a8d4d22301ab6eb1af8904bd8a4023be9" title="default_veins_TraCI\l::sendMessage" alt="" coords="579,793,718,834"/>
-<area shape="rect" id="node34" href="$classveh_dist__rsu.html#a0eacc13c3e30ec03508ff02681741d01" title="vehDist_rsu::sendMessage" alt="" coords="558,859,739,885"/>
-<area shape="rect" id="node35" href="$classmfcv.html#a23d37a267ae8e4e826d5ee71a8d1d4ec" title="mfcv::sendMessage" alt="" coords="579,909,719,936"/>
-<area shape="rect" id="node36" href="$classveh_dist.html#a31a60a33d9d0337901a92a106cbf4e38" title="vehDist::sendMessage" alt="" coords="571,960,727,987"/>
-<area shape="rect" id="node37" href="$classminicurso___u_f_p_i___tra_c_i.html#a6e9e716b8c720da4a2d1a763b4da59ab" title="minicurso_UFPI_TraCI\l::sendMessage" alt="" coords="571,1011,727,1053"/>
-<area shape="rect" id="node39" href="$classepidemic__rsu.html#a4045ee27460db38accde23708b09dc5f" title="epidemic_rsu::sendBeacon" alt="" coords="559,1711,738,1737"/>
-<area shape="rect" id="node40" href="$classepidemic__rsu.html#a0aad04c7373d719394ad1927aa4aa7a0" title="epidemic_rsu::sendEpidemic\lRequestMessageVector" alt="" coords="554,1514,743,1555"/>
-<area shape="rect" id="node41" href="$classepidemic__rsu.html#a7d5f30ee2711fa57054e8a63e278a62f" title="epidemic_rsu::sendLocalSummary\lVector" alt="" coords="537,1579,760,1621"/>
-<area shape="rect" id="node42" href="$classepidemic__rsu.html#aff93c911e10e4b1c29d2d1e4a0b3b931" title="epidemic_rsu::sendMessages\lRequested" alt="" coords="551,1645,746,1686"/>
-<area shape="rect" id="node44" href="$classmfcv__epidemic__rsu.html#a9dcb000dae4360982c69150b93d57d7a" title="handle self messages " alt="" coords="577,1958,720,1999"/>
-<area shape="rect" id="node45" href="$classmfcv__epidemic__rsu.html#a0b89e2e4a8ead31c82617d0fd6590429" title="mfcv_epidemic_rsu::\lsendBeacon" alt="" coords="577,1762,720,1803"/>
-<area shape="rect" id="node46" href="$classmfcv__epidemic__rsu.html#a49698aa80fb85be536d634a50f56b49d" title="mfcv_epidemic_rsu::\lsendLocalSummaryVector" alt="" coords="561,1827,736,1869"/>
-<area shape="rect" id="node47" href="$classmfcv__epidemic__rsu.html#aef4403f88d46bfd445c8577757b7214b" title="mfcv_epidemic_rsu::\lsendMessagesRequested" alt="" coords="562,1893,735,1934"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#ad39be929c20bd08497e8ac3999804f95" title="vehDist::generateMessage" alt="" coords="295,243,474,269"/>
+<area shape="rect" id="node4" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="292,505,477,532"/>
+<area shape="rect" id="node5" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="274,556,495,583"/>
+<area shape="rect" id="node6" href="$class_mac1609__4.html#ac93bf319ea2065fd7e8c041697e49919" title="Handle messages from upper layer. " alt="" coords="287,607,482,633"/>
+<area shape="rect" id="node7" href="$classveh_dist__rsu.html#ab5d96c5dd6d2f7a1e0496a2693d87d9f" title="vehDist_rsu::prepareBeacon\lStatusWSM" alt="" coords="291,658,478,699"/>
+<area shape="rect" id="node9" href="$classveh_dist.html#a11c6b985a4d2d341f3644409630963ad" title="vehDist::prepareBeaconStatusWSM" alt="" coords="268,724,501,751"/>
+<area shape="rect" id="node11" href="$class_flooding.html#ad178c82a21aea2971d9a9cba5b287c8d" title="Flooding::prepareWSM" alt="" coords="307,775,462,801"/>
+<area shape="rect" id="node13" href="$class_advanced_flooding.html#adb41696856da4e8383208e363df6d037" title="AdvancedFlooding::prepareWSM" alt="" coords="278,825,491,852"/>
+<area shape="rect" id="node15" href="$class_base_wave_appl_layer.html#a99419f231627d477c13b2b4573174295" title="BaseWaveApplLayer::\lprepareWSM" alt="" coords="309,877,461,918"/>
+<area shape="rect" id="node38" href="$class_base_wave_appl_layer.html#a9b516ecd60c5272098aeaa8c49f12a87" title="BaseWaveApplLayer::\lprepareWSM_epidemic" alt="" coords="306,1546,463,1587"/>
+<area shape="rect" id="node43" href="$classmfcv__epidemic__rsu.html#a1712bae9a4cca9f38b1e75d8ce999fbc" title="mfcv_epidemic_rsu::\lprepareWSM_mfcv_epidemic" alt="" coords="288,1702,481,1743"/>
+<area shape="rect" id="node48" href="$classmfcv__epidemic.html#a2cd3921e36abdb886422be87be0f6a28" title="mfcv_epidemic::prepareWSM\l_mfcv_epidemic" alt="" coords="287,1767,482,1809"/>
+<area shape="rect" id="node49" href="$classmfcv.html#aa9342e16ddb4c110992eca1cd438f60c" title="mfcv::prepareWSM_node" alt="" coords="299,1833,470,1860"/>
+<area shape="rect" id="node50" href="$classmfcv__rsu.html#ade8aaabaa0bdd838ad2dd248fb758183" title="mfcv_rsu::prepareWSM_rsu" alt="" coords="292,1884,477,1911"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="583,5,738,32"/>
+<area shape="rect" id="node8" href="$classveh_dist__rsu.html#a3be9ef029cadf611185d8ee64ba67fb6" title="handle self messages " alt="" coords="567,56,754,83"/>
+<area shape="rect" id="node10" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="580,107,741,133"/>
+<area shape="rect" id="node12" href="$class_flooding.html#a570dbd7017fd5f13590e2446cadc114c" title="Flooding::generateMessage" alt="" coords="569,157,752,184"/>
+<area shape="rect" id="node14" href="$class_advanced_flooding.html#a68afee498f785bf4087973f4dff5d9a1" title="AdvancedFlooding::generate\lMessage" alt="" coords="567,209,754,250"/>
+<area shape="rect" id="node16" href="$classosdp___r_s_u.html#a269aea680183bede17e5fabeaf3d5a9d" title="handle self messages " alt="" coords="820,1204,1000,1231"/>
+<area shape="rect" id="node17" href="$classtest1__rsu.html#a14cc632f49ca87aab471a5effc82cd39" title="handle self messages " alt="" coords="825,1372,995,1399"/>
+<area shape="rect" id="node18" href="$classservice__discovery___r_s_u.html#afe02898eac7b682878c7259532668935" title="handle self messages " alt="" coords="829,698,991,739"/>
+<area shape="rect" id="node19" href="$classosdp.html#af3522ed4ff583a86e5b841dc76c3d461" title="handle self messages " alt="" coords="838,1103,982,1129"/>
+<area shape="rect" id="node20" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a3287965076aa410f9394d6a9ab7e02fb" title="handle self messages " alt="" coords="583,1281,739,1322"/>
+<area shape="rect" id="node21" href="$classtest1.html#adea56f23113457f0a7c389574bdaa614" title="handle self messages " alt="" coords="837,300,983,327"/>
+<area shape="rect" id="node22" href="$classservice__discovery.html#a56dbb650c091f9721d2fd56326f19aee" title="handle self messages " alt="" coords="843,398,977,439"/>
+<area shape="rect" id="node23" href="$class_base_wave_appl_layer.html#a830e58e379655c6d24319c16f8db5e3d" title="handle self messages " alt="" coords="585,1449,737,1490"/>
+<area shape="rect" id="node24" href="$classosdp___r_s_u.html#a8f575733dac8cd7da01d562aef34803d" title="osdp_RSU::sendMessage" alt="" coords="573,1179,748,1205"/>
+<area shape="rect" id="node25" href="$classservice__discovery___r_s_u.html#a94b01929201fdd4db5c14e4dc89f6ea4" title="service_discovery_RSU\l::sendMessage" alt="" coords="579,727,742,769"/>
+<area shape="rect" id="node26" href="$classtest1__rsu.html#a7b8fd0738f085479f6a7bffdd4d1de1b" title="test1_rsu::sendMessage" alt="" coords="578,1397,743,1424"/>
+<area shape="rect" id="node27" href="$classosdp.html#acd607862e391194afc33ab9e0e45d0db" title="osdp::sendMessage" alt="" coords="591,1077,730,1104"/>
+<area shape="rect" id="node28" href="$classmfcv__rsu.html#a41e52e27ab203a6e7a4ff368b40e09a4" title="mfcv_rsu::sendMessage" alt="" coords="578,493,743,520"/>
+<area shape="rect" id="node29" href="$classdefault__veins___tra_c_i___r_s_u.html#ad7392c71bd043b15d29c9f875e21b0b2" title="default_veins_TraCI\l_RSU::sendMessage" alt="" coords="587,545,734,586"/>
+<area shape="rect" id="node30" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a264efd8f4dedfd5539896858eec5b0e9" title="minicurso_UFPI_TraCI\l_RSU::sendMessage" alt="" coords="583,610,739,651"/>
+<area shape="rect" id="node31" href="$classtest1.html#acb96bd471e86c4276ba010fef6f3062b" title="test1::sendMessage" alt="" coords="591,275,731,301"/>
+<area shape="rect" id="node32" href="$classservice__discovery.html#a20bbbd60af7eb2673f46ca399b70723a" title="service_discovery::\lsendMessage" alt="" coords="593,427,728,469"/>
+<area shape="rect" id="node33" href="$classdefault__veins___tra_c_i.html#a8d4d22301ab6eb1af8904bd8a4023be9" title="default_veins_TraCI\l::sendMessage" alt="" coords="591,793,730,834"/>
+<area shape="rect" id="node34" href="$classmfcv.html#a23d37a267ae8e4e826d5ee71a8d1d4ec" title="mfcv::sendMessage" alt="" coords="591,859,731,885"/>
+<area shape="rect" id="node35" href="$classveh_dist__rsu.html#a0eacc13c3e30ec03508ff02681741d01" title="vehDist_rsu::sendMessage" alt="" coords="570,909,751,936"/>
+<area shape="rect" id="node36" href="$classveh_dist.html#a31a60a33d9d0337901a92a106cbf4e38" title="vehDist::sendMessage" alt="" coords="583,960,739,987"/>
+<area shape="rect" id="node37" href="$classminicurso___u_f_p_i___tra_c_i.html#a6e9e716b8c720da4a2d1a763b4da59ab" title="minicurso_UFPI_TraCI\l::sendMessage" alt="" coords="583,1011,739,1053"/>
+<area shape="rect" id="node39" href="$classepidemic__rsu.html#a4045ee27460db38accde23708b09dc5f" title="epidemic_rsu::sendBeacon" alt="" coords="571,1711,750,1737"/>
+<area shape="rect" id="node40" href="$classepidemic__rsu.html#a0aad04c7373d719394ad1927aa4aa7a0" title="epidemic_rsu::sendEpidemic\lRequestMessageVector" alt="" coords="566,1514,755,1555"/>
+<area shape="rect" id="node41" href="$classepidemic__rsu.html#a7d5f30ee2711fa57054e8a63e278a62f" title="epidemic_rsu::sendLocalSummary\lVector" alt="" coords="549,1579,772,1621"/>
+<area shape="rect" id="node42" href="$classepidemic__rsu.html#aff93c911e10e4b1c29d2d1e4a0b3b931" title="epidemic_rsu::sendMessages\lRequested" alt="" coords="563,1645,758,1686"/>
+<area shape="rect" id="node44" href="$classmfcv__epidemic__rsu.html#a9dcb000dae4360982c69150b93d57d7a" title="handle self messages " alt="" coords="589,1958,732,1999"/>
+<area shape="rect" id="node45" href="$classmfcv__epidemic__rsu.html#a0b89e2e4a8ead31c82617d0fd6590429" title="mfcv_epidemic_rsu::\lsendBeacon" alt="" coords="589,1762,732,1803"/>
+<area shape="rect" id="node46" href="$classmfcv__epidemic__rsu.html#a49698aa80fb85be536d634a50f56b49d" title="mfcv_epidemic_rsu::\lsendLocalSummaryVector" alt="" coords="573,1827,748,1869"/>
+<area shape="rect" id="node47" href="$classmfcv__epidemic__rsu.html#aef4403f88d46bfd445c8577757b7214b" title="mfcv_epidemic_rsu::\lsendMessagesRequested" alt="" coords="574,1893,747,1934"/>
 </map>

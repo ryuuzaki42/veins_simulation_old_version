@@ -1,38 +1,43 @@
 <map id="vehDist::sendDataMessage" name="vehDist::sendDataMessage">
-<area shape="rect" id="node2" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="525,56,676,83"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#a31ec33e94fb239f79197465f872fb000" title="vehDist::sendWSM" alt="" coords="269,64,405,91"/>
-<area shape="rect" id="node7" href="$classveh_dist.html#ac744d5b0d7e5a45033e6bc5528295980" title="vehDist::updateMessageWSM" alt="" coords="237,428,437,455"/>
-<area shape="rect" id="node22" href="$classveh_dist.html#abb6bea55eb2e6915cacfe0206bccc368" title="vehDist::sendtoTargetbyVeh" alt="" coords="243,697,431,724"/>
-<area shape="rect" id="node3" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="794,56,941,83"/>
-<area shape="rect" id="node5" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="487,5,715,32"/>
-<area shape="rect" id="node6" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="783,5,952,32"/>
-<area shape="rect" id="node8" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="485,275,716,301"/>
-<area shape="rect" id="node9" href="$class_wave_short_message.html#a4399563d7757c005340a4a364afdf858" title="WaveShortMessage::setSender\lAddressString" alt="" coords="497,326,704,367"/>
-<area shape="rect" id="node10" href="$class_wave_short_message.html#a36b1f29fe99809b6609b5e01483cccff" title="WaveShortMessage::setRecipient\lAddressString" alt="" coords="490,391,711,433"/>
-<area shape="rect" id="node11" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="485,457,716,484"/>
-<area shape="rect" id="node12" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="497,508,705,535"/>
-<area shape="rect" id="node13" href="$class_veins_1_1_tra_c_i_mobility.html#afd3a0636a9a5bbe834f71a59108eeda4" title="Veins::TraCIMobility\l::getRoadId" alt="" coords="530,559,671,601"/>
-<area shape="rect" id="node14" href="$class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf" title="WaveShortMessage::setSender\lSpeed" alt="" coords="497,625,704,666"/>
-<area shape="rect" id="node15" href="$class_veins_1_1_tra_c_i_mobility.html#a0c0e1114d451023eeb819c443f81bb89" title="Veins::TraCIMobility\l::getSpeed" alt="" coords="530,690,671,731"/>
-<area shape="rect" id="node16" href="$class_wave_short_message.html#aedc2467543d47137f3553f20bd5677a3" title="WaveShortMessage::setVehicleId" alt="" coords="491,756,711,783"/>
-<area shape="rect" id="node17" href="$class_wave_short_message.html#a3b8983eb038c9357e2aef4036c482fff" title="WaveShortMessage::setSender\lPosBack" alt="" coords="497,807,704,849"/>
-<area shape="rect" id="node18" href="$class_wave_short_message.html#ae8f272dda7636725afecbf45a2ae8c0f" title="WaveShortMessage::setHop\lCount" alt="" coords="505,873,696,914"/>
-<area shape="rect" id="node19" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="505,107,696,149"/>
-<area shape="rect" id="node20" href="$class_wave_short_message.html#ac3117615566fa0a605f81bbaf53d5921" title="WaveShortMessage::getPriority" alt="" coords="497,173,704,200"/>
-<area shape="rect" id="node21" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="485,224,716,251"/>
-<area shape="rect" id="node23" href="$class_veins_1_1_tra_c_i_mobility.html#ad12b4eeeda71908c5ef92e2c898bb223" title="Veins::TraCIMobility\l::commandDistanceRequest" alt="" coords="507,938,695,979"/>
-<area shape="rect" id="node24" href="$class_veins_1_1_tra_c_i_mobility.html#a180ae1e009f8c81f66a167e21b7b5b89" title="Veins::TraCIMobility\l::getCommandInterface" alt="" coords="788,879,947,921"/>
-<area shape="rect" id="node25" href="$class_veins_1_1_tra_c_i_mobility.html#a9112501e8dffb3ef22fc5c571a016ed1" title="Veins::TraCIMobility\l::getManager" alt="" coords="1047,938,1188,979"/>
-<area shape="rect" id="node30" href="$class_veins_1_1_tra_c_i_command_interface.html#a78362723702727e640628bef4d5b13ef" title="Veins::TraCICommandInterface\l::distanceRequest" alt="" coords="764,997,971,1038"/>
-<area shape="rect" id="node29" href="$class_veins_1_1_tra_c_i_scenario_manager.html#af9d96f6e40de409df2f1d04b617433d5" title="Veins::TraCIScenarioManager\l::getCommandInterface" alt="" coords="1019,873,1216,914"/>
-<area shape="rect" id="node26" href="$class_veins_1_1_tra_c_i_scenario_manager_access.html#af6404515b1b992848f352b03d325b10d" title="Veins::TraCIScenarioManager\lAccess::get" alt="" coords="1264,938,1461,979"/>
-<area shape="rect" id="node27" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="1509,945,1707,972"/>
-<area shape="rect" id="node28" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="1755,945,1937,972"/>
-<area shape="rect" id="node31" href="$class_veins_1_1_tra_c_i_connection.html#ac0f5129ad1e50365588ec39112432c7d" title="sends a single command via TraCI, checks status response, returns additional responses ..." alt="" coords="1036,1055,1199,1097"/>
-<area shape="rect" id="node37" href="$class_veins_1_1_tra_c_i_buffer.html#a0065f3b4bf17cac8e10dc94b551eb9f8" title="Veins::TraCIBuffer::eof" alt="" coords="1039,1004,1196,1031"/>
-<area shape="rect" id="node32" href="$class_veins_1_1_tra_c_i_connection.html#aaf6acde79a0ba73113c46ea92bd567d2" title="sends a message via TraCI (after adding the header) " alt="" coords="1281,1055,1444,1097"/>
-<area shape="rect" id="node35" href="$namespace_veins.html#ab52db5bfe6d9095440c0b0ac309bb99d" title="returns byte&#45;buffer containing a TraCI command with optional parameters " alt="" coords="1269,1004,1457,1031"/>
-<area shape="rect" id="node36" href="$class_veins_1_1_tra_c_i_connection.html#a634ce6c27d5e98f7d96f65706f3460df" title="receives a message via TraCI (and strips the header) " alt="" coords="1281,1121,1444,1162"/>
-<area shape="rect" id="node33" href="$namespace_veins.html#a6eeefaf3bbdaff6c10cfcd01200016d3" title="Veins::socket" alt="" coords="1557,1121,1659,1148"/>
-<area shape="rect" id="node34" href="$class_veins_1_1_tra_c_i_buffer.html#ae0833eeb81079e14eed3f13d0ae5d2b3" title="Veins::TraCIBuffer::str" alt="" coords="1531,1033,1685,1060"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#a5f4415bd92835300f7e6bbf9b0258a7c" title="vehDist::removeOldestInput" alt="" coords="252,333,437,360"/>
+<area shape="rect" id="node4" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="788,5,939,32"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#a93e9c98fef45bfaa8783f7782c57cfbb" title="vehDist::sendMessageNeighbors\lTarget" alt="" coords="237,385,452,426"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a31ec33e94fb239f79197465f872fb000" title="vehDist::sendWSM" alt="" coords="532,501,668,528"/>
+<area shape="rect" id="node10" href="$classveh_dist.html#ac744d5b0d7e5a45033e6bc5528295980" title="vehDist::updateMessageWSM" alt="" coords="500,421,700,448"/>
+<area shape="rect" id="node26" href="$classveh_dist.html#a72e37476cdb36888a983f489494e592c" title="vehDist::returnLastMessage\lInsert" alt="" coords="251,553,438,594"/>
+<area shape="rect" id="node27" href="$classveh_dist.html#abb6bea55eb2e6915cacfe0206bccc368" title="vehDist::sendtoTargetbyVeh" alt="" coords="251,809,439,836"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#a72f1466874af1a6b3c6aca95c9505a48" title="vehDist::colorCarryMessage" alt="" coords="506,333,694,360"/>
+<area shape="rect" id="node5" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="1052,5,1199,32"/>
+<area shape="rect" id="node8" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="749,888,977,915"/>
+<area shape="rect" id="node9" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="1041,884,1210,911"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#a4399563d7757c005340a4a364afdf858" title="WaveShortMessage::setSender\lAddressString" alt="" coords="760,122,967,163"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#a36b1f29fe99809b6609b5e01483cccff" title="WaveShortMessage::setRecipient\lAddressString" alt="" coords="753,187,974,229"/>
+<area shape="rect" id="node13" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="748,253,979,280"/>
+<area shape="rect" id="node14" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="759,304,967,331"/>
+<area shape="rect" id="node15" href="$class_veins_1_1_tra_c_i_mobility.html#afd3a0636a9a5bbe834f71a59108eeda4" title="Veins::TraCIMobility\l::getRoadId" alt="" coords="793,355,934,397"/>
+<area shape="rect" id="node16" href="$class_wave_short_message.html#a4acb5b6972c734e5aa0194364943463f" title="WaveShortMessage::setCategory" alt="" coords="754,421,973,448"/>
+<area shape="rect" id="node17" href="$classveh_dist.html#a4c542def7b31445ecb0f0da2b33764ee" title="vehDist::getCategory" alt="" coords="790,472,937,499"/>
+<area shape="rect" id="node18" href="$class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf" title="WaveShortMessage::setSender\lSpeed" alt="" coords="760,523,967,565"/>
+<area shape="rect" id="node19" href="$class_veins_1_1_tra_c_i_mobility.html#a0c0e1114d451023eeb819c443f81bb89" title="Veins::TraCIMobility\l::getSpeed" alt="" coords="793,589,934,630"/>
+<area shape="rect" id="node20" href="$class_wave_short_message.html#a3b8983eb038c9357e2aef4036c482fff" title="WaveShortMessage::setSender\lPosBack" alt="" coords="760,654,967,695"/>
+<area shape="rect" id="node21" href="$class_wave_short_message.html#a2b4f4892ec4142abbcff25c335271050" title="WaveShortMessage::setHeading" alt="" coords="756,720,971,747"/>
+<area shape="rect" id="node22" href="$classveh_dist.html#ad5fb330662e4372d63bb5699bfe8064a" title="vehDist::getHeading4" alt="" coords="789,771,937,797"/>
+<area shape="rect" id="node24" href="$class_wave_short_message.html#ae8f272dda7636725afecbf45a2ae8c0f" title="WaveShortMessage::setHop\lCount" alt="" coords="768,822,959,863"/>
+<area shape="rect" id="node25" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="768,57,959,98"/>
+<area shape="rect" id="node23" href="$class_veins_1_1_tra_c_i_mobility.html#a6b9658651943c7ed6dc4825ccad654c5" title="returns angle in rads, 0 being east, with &#45;M_PI &lt;= angle &lt; M_PI. " alt="" coords="1055,763,1196,805"/>
+<area shape="rect" id="node28" href="$class_veins_1_1_tra_c_i_mobility.html#ad12b4eeeda71908c5ef92e2c898bb223" title="Veins::TraCIMobility\l::commandDistanceRequest" alt="" coords="506,965,694,1006"/>
+<area shape="rect" id="node29" href="$class_veins_1_1_tra_c_i_mobility.html#a180ae1e009f8c81f66a167e21b7b5b89" title="Veins::TraCIMobility\l::getCommandInterface" alt="" coords="784,994,943,1035"/>
+<area shape="rect" id="node30" href="$class_veins_1_1_tra_c_i_mobility.html#a9112501e8dffb3ef22fc5c571a016ed1" title="Veins::TraCIMobility\l::getManager" alt="" coords="1055,935,1196,977"/>
+<area shape="rect" id="node35" href="$class_veins_1_1_tra_c_i_command_interface.html#a78362723702727e640628bef4d5b13ef" title="Veins::TraCICommandInterface\l::distanceRequest" alt="" coords="760,1059,967,1101"/>
+<area shape="rect" id="node34" href="$class_veins_1_1_tra_c_i_scenario_manager.html#af9d96f6e40de409df2f1d04b617433d5" title="Veins::TraCIScenarioManager\l::getCommandInterface" alt="" coords="1027,1001,1224,1042"/>
+<area shape="rect" id="node31" href="$class_veins_1_1_tra_c_i_scenario_manager_access.html#af6404515b1b992848f352b03d325b10d" title="Veins::TraCIScenarioManager\lAccess::get" alt="" coords="1272,935,1469,977"/>
+<area shape="rect" id="node32" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="1517,943,1715,969"/>
+<area shape="rect" id="node33" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="1763,943,1945,969"/>
+<area shape="rect" id="node36" href="$class_veins_1_1_tra_c_i_connection.html#ac0f5129ad1e50365588ec39112432c7d" title="sends a single command via TraCI, checks status response, returns additional responses ..." alt="" coords="1044,1118,1207,1159"/>
+<area shape="rect" id="node42" href="$class_veins_1_1_tra_c_i_buffer.html#a0065f3b4bf17cac8e10dc94b551eb9f8" title="Veins::TraCIBuffer::eof" alt="" coords="1047,1067,1204,1093"/>
+<area shape="rect" id="node37" href="$class_veins_1_1_tra_c_i_connection.html#aaf6acde79a0ba73113c46ea92bd567d2" title="sends a message via TraCI (after adding the header) " alt="" coords="1289,1118,1452,1159"/>
+<area shape="rect" id="node40" href="$namespace_veins.html#ab52db5bfe6d9095440c0b0ac309bb99d" title="returns byte&#45;buffer containing a TraCI command with optional parameters " alt="" coords="1277,1184,1465,1211"/>
+<area shape="rect" id="node41" href="$class_veins_1_1_tra_c_i_connection.html#a634ce6c27d5e98f7d96f65706f3460df" title="receives a message via TraCI (and strips the header) " alt="" coords="1289,1053,1452,1094"/>
+<area shape="rect" id="node38" href="$namespace_veins.html#a6eeefaf3bbdaff6c10cfcd01200016d3" title="Veins::socket" alt="" coords="1565,1099,1667,1125"/>
+<area shape="rect" id="node39" href="$class_veins_1_1_tra_c_i_buffer.html#ae0833eeb81079e14eed3f13d0ae5d2b3" title="Veins::TraCIBuffer::str" alt="" coords="1539,1153,1693,1180"/>
 </map>

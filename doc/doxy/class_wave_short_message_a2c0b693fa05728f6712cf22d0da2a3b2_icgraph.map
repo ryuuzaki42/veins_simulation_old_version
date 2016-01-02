@@ -1,11 +1,10 @@
 <map id="WaveShortMessage::getHeading" name="WaveShortMessage::getHeading">
-<area shape="rect" id="node2" href="$classveh_dist__rsu.html#ac5e0cae06b25bb79e8c54d6cdbfa7e59" title="vehDist_rsu::fieldsToSave" alt="" coords="276,17,452,43"/>
-<area shape="rect" id="node5" href="$classveh_dist.html#a4f1221dae90cc67d866d611ebaa80f60" title="vehDist::fieldsToSave" alt="" coords="289,69,439,95"/>
-<area shape="rect" id="node8" href="$classmfcv__epidemic.html#a6f82cfc277cc02930f6c5a4da2151ad5" title="mfcv_epidemic::onBeacon" alt="" coords="276,119,452,146"/>
-<area shape="rect" id="node9" href="$classmfcv__epidemic.html#a99d02ada1ef214584d69ec3bb5627cd3" title="mfcv_epidemic::printWave\lShortMessage" alt="" coords="275,171,453,212"/>
-<area shape="rect" id="node10" href="$classmfcv__epidemic.html#a600b446b20f9657763545b664231a526" title="mfcv_epidemic::recordOnFile" alt="" coords="268,237,460,263"/>
-<area shape="rect" id="node3" href="$classveh_dist__rsu.html#a406cc86e92767427797227c407289448" title="vehDist_rsu::saveMessages\lOnFile" alt="" coords="515,5,703,47"/>
-<area shape="rect" id="node4" href="$classveh_dist__rsu.html#ae75c14310c557d1383da4165dc92c05a" title="vehDist_rsu::onData" alt="" coords="757,13,900,39"/>
-<area shape="rect" id="node6" href="$classveh_dist.html#ac6eababe9063bb948595be363fc0b8a1" title="vehDist::saveMessagesOnFile" alt="" coords="508,71,709,98"/>
-<area shape="rect" id="node7" href="$classveh_dist.html#a03edc1939453fccdebcbc0a4eb14c2a0" title="vehDist::onData" alt="" coords="770,71,887,98"/>
+<area shape="rect" id="node2" href="$classmfcv__epidemic.html#a6f82cfc277cc02930f6c5a4da2151ad5" title="mfcv_epidemic::onBeacon" alt="" coords="276,5,452,32"/>
+<area shape="rect" id="node3" href="$classmfcv__epidemic.html#a99d02ada1ef214584d69ec3bb5627cd3" title="mfcv_epidemic::printWave\lShortMessage" alt="" coords="275,57,453,98"/>
+<area shape="rect" id="node4" href="$classmfcv__epidemic.html#a600b446b20f9657763545b664231a526" title="mfcv_epidemic::recordOnFile" alt="" coords="268,123,460,149"/>
+<area shape="rect" id="node5" href="$class_base_wave_appl_layer.html#a8aff49c45cf2a87c5cd6daf14df487c7" title="BaseWaveApplLayer::\lsaveMessagesOnFile" alt="" coords="288,174,440,215"/>
+<area shape="rect" id="node6" href="$classveh_dist__rsu.html#aec5ea45bc741e1b7685d354660b179fb" title="vehDist_rsu::onBeaconMessage" alt="" coords="508,156,719,183"/>
+<area shape="rect" id="node8" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="520,207,707,233"/>
+<area shape="rect" id="node7" href="$classveh_dist__rsu.html#aeb0d4969f1765a0eab6bd9e6f0c4f0ee" title="handle messages from below " alt="" coords="767,156,965,183"/>
+<area shape="rect" id="node9" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="779,207,953,233"/>
 </map>

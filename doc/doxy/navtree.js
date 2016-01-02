@@ -47,17 +47,17 @@ var NAVTREEINDEX =
 "_tra_c_i_constants_8h.html#a88b616d763ed7052b2341f6d08040135",
 "class_argument.html#a20805e35e4f766088dccfa2bbd8faf03",
 "class_base_mac_layer.html#ab3111737703e0d4b5198478fb1f75e60",
-"class_channel_info.html#a035fb2c30e213a68436d78776bb08dae",
-"class_decider80211p.html#aab3907b37bd0779d82550e4016925a20",
-"class_interpolator_base.html#a809a32fb20618d965208bd82424bb853",
-"class_mac_to_netw_control_info.html#a69d09f2d4b0f7603b5cfa0bd8efafe61",
-"class_phy_to_mac_control_info.html#a695fcb4091796018a3315486acafc9b0",
-"class_veins_1_1_air_frame.html#af1ec37559d035b9b870009724628255a",
-"class_veins_1_1_tra_c_i_connection.html#a634ce6c27d5e98f7d96f65706f3460df",
-"class_wave_short_message.html#a1d089fb4eb35580a32b7d89f9ac17dc8",
-"classmfcv__epidemic.html#a83fe07bd54f2f3824fe09d4c9bed1f02",
-"classtest1.html",
-"functions_vars_0x6b.html"
+"class_breakpoint_pathloss_model.html#aa9f8dbeb8e7e0f3a9200652d1f81a88c",
+"class_decider80211p.html#a6ba46e0992f59bc2100ab1b38c5c3d8e",
+"class_interpolator_base.html#a2a4373ff4faec82f586e83ef61e49ca7",
+"class_mac_pkt.html#aee59ef903831b032bb47e54f34466c4e",
+"class_phy_layer80211p.html#aa8d28b20b02c1fe2356202ba40032c38",
+"class_veins_1_1_air_frame.html#abac89b81d2c1fdce7f64bd6c91811032",
+"class_veins_1_1_tra_c_i_command_interface.html#afbf9fb50998c427ef9a788e9c8ade7ff",
+"class_wave_short_message.html#a088963cd05b8b2d4ba9da752e91c06f8",
+"classmfcv__epidemic.html#a6f82cfc277cc02930f6c5a4da2151ad5",
+"classsimsignalwrap__t.html#a4235d46c336709e687bb1aced9983318",
+"functions_vars_0x64.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

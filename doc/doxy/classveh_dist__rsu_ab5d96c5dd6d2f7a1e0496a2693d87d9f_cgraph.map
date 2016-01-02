@@ -1,0 +1,13 @@
+<map id="vehDist_rsu::prepareBeaconStatusWSM" name="vehDist_rsu::prepareBeaconStatusWSM">
+<area shape="rect" id="node2" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="248,5,463,47"/>
+<area shape="rect" id="node3" href="$class_wave_short_message.html#adaf66b336060aff74a296c29f41509d6" title="WaveShortMessage::setPsid" alt="" coords="259,71,451,98"/>
+<area shape="rect" id="node4" href="$class_wave_short_message.html#a21ccdbb5f448dbc3853885bc16bc3b3c" title="WaveShortMessage::setPriority" alt="" coords="252,122,459,149"/>
+<area shape="rect" id="node5" href="$class_wave_short_message.html#a980ce99a99ced19d20878103bb5a671e" title="WaveShortMessage::setWsm\lVersion" alt="" coords="257,173,454,215"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e" title="WaveShortMessage::setSerial" alt="" coords="256,239,455,266"/>
+<area shape="rect" id="node7" href="$class_wave_short_message.html#aed9bcc826c641cf992fe9bd82b2d5ca6" title="WaveShortMessage::setTimestamp" alt="" coords="240,290,471,317"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="240,341,471,367"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#a4399563d7757c005340a4a364afdf858" title="WaveShortMessage::setSender\lAddressString" alt="" coords="252,392,459,433"/>
+<area shape="rect" id="node10" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="280,458,431,485"/>
+<area shape="rect" id="node12" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="240,509,471,535"/>
+<area shape="rect" id="node11" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="519,458,665,485"/>
+</map>
