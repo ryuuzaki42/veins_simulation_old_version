@@ -91,7 +91,7 @@ void vehDist_rsu::restartFilesResult(){
 
     repeatNumber = par("repeatNumber");
     if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0) && (repeatNumber == 0)) { //Open a new file (blank)
-        system("mkdir results"); //create a folder results
+        system("mkdir results 2> /dev/null"); //create a folder results
         openFileAndClose(fileMessagesNameBroadcast, false);
         openFileAndClose(fileMessagesNameUnicast, false);
         openFileAndClose(fileMessagesCount, false);
