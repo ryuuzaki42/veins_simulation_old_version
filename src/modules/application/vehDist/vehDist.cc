@@ -554,7 +554,7 @@ void vehDist::generateMessage(){
     wsm->setWsmData(data.c_str());
     wsm->setGlobalMessageIdentificaton(to_string(vehDist::messageId).c_str());
     vehDist::messageId++;
-    wsm->setHopCount(hopLimit);
+    wsm->setHopCount(hopLimit+1); // Is hopLimit+1 because hops count is equals to routes in the path, not hops.
 
     wsm->setTargetPos(Coord(par("target_x"), par("target_y"), 3));
 
