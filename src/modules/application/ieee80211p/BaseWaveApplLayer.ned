@@ -71,6 +71,9 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int timeUpdatePosition @unit("s") = default(1s); //time for update vehicle position
         int repeatNumber = default(0); // number of execution (${repetition})
         int dataInterval @unit("s") = default(1s); // interval to try send message(s)
+        int timeGenerateMessage @unit("s") = default(1s); // time for generate messages
+        int countGenerateMessage = default(0); // count messages generate by time
+        int numVehicles = default(0); // number of vehicles
 
     gates:
         input lowerLayerIn; // from mac layer
