@@ -103,8 +103,8 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile.close();
 }
 
-void BaseWaveApplLayer::openFileAndClose(string fileName, bool append){
-    if (append) {
+void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend){
+    if (justForAppend) {
         myfile.open(fileName, std::ios_base::app);
     } else {
         myfile.open(fileName);
@@ -114,9 +114,9 @@ void BaseWaveApplLayer::openFileAndClose(string fileName, bool append){
 }
 
 void BaseWaveApplLayer::printHeaderfileExecution(){
-    myfile << "#############################################################################################";
-    myfile << "#############################################################################################" << endl;
-    myfile << "Execution number: " << repeatNumber << endl << endl;
+    myfile << "############################################################################################";
+    myfile << "############################################################################################" << endl;
+    myfile << "Execution number: " << repeatNumber << endl;
 }
 
 //######################################### vehDist #########################################
