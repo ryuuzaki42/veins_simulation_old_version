@@ -1,7 +1,5 @@
 //
-// Copyright (C) 2006-2011 Christoph Sommer <christoph.sommer@uibk.ac.at>
-//
-// Documentation for these modules is at http://veins.car2x.org/
+// Copyright (C) 2015-2016 João Batista <joao.b@usp.br>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -64,7 +62,5 @@ class vehDist_rsu : public BaseWaveApplLayer {
         void handleLowerMsg(cMessage* msg);
         void onBeaconStatus(WaveShortMessage* wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
-
 };
-
 #endif
