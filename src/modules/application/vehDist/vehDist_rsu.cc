@@ -1,7 +1,5 @@
 //
-// Copyright (C) 2006-2011 Christoph Sommer <christoph.sommer@uibk.ac.at>
-//
-// Documentation for these modules is at http://veins.car2x.org/
+// Copyright (C) 2015-2016 João Batista <joao.b@usp.br>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,7 +30,11 @@ void vehDist_rsu::initialize(int stage) {
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
-        hopLimit = par("hopLimit").doubleValue();
+        beaconMessageHopLimit = par("beaconMessageHopLimit").doubleValue();
+
+        stringTmp = ev.getConfig()->getConfigValue("seed-set");
+        repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
+
         restartFilesResult();
         //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
     }
@@ -89,7 +91,6 @@ void vehDist_rsu::restartFilesResult(){
 
      //fileMessagesDrop = ...
 
-    repeatNumber = par("repeatNumber");
     if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0) && (repeatNumber == 0)) { //Open a new file (blank)
         system("mkdir results 2> /dev/null"); //create a folder results
         openFileAndClose(fileMessagesNameBroadcast, false);
@@ -106,7 +107,7 @@ void vehDist_rsu::onData(WaveShortMessage* wsm){
 }
 
 void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm){
-    if (strcmp(wsm->getRecipientAddressString(), findHost()->getFullName()) == 0){
+    if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0){
         findHost()->bubble("Received Message");
         saveMessagesOnFile(wsm, fileMessagesNameUnicast);
 
@@ -118,18 +119,18 @@ void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm){
 }
 
 void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
-    auto it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
+    map<string, struct messages>::iterator it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
     if (it != messagesReceived.end()){
 
         it->second.hops += ", ";
-        it->second.hops += to_string(hopLimit - wsm->getHopCount());
+        it->second.hops += to_string(beaconMessageHopLimit - wsm->getHopCount());
         it->second.HopsCount = it->second.HopsCount + 1;
-        it->second.averageHops += (hopLimit - wsm->getHopCount());
-        if ((hopLimit - wsm->getHopCount()) > it->second. maxHop){
-            it->second.maxHop = (hopLimit - wsm->getHopCount());
+        it->second.averageHops += (beaconMessageHopLimit - wsm->getHopCount());
+        if ((beaconMessageHopLimit - wsm->getHopCount()) > it->second. maxHop){
+            it->second.maxHop = (beaconMessageHopLimit - wsm->getHopCount());
         }
-        if ((hopLimit - wsm->getHopCount()) < it->second. minHop){
-             it->second.minHop = (hopLimit - wsm->getHopCount());
+        if ((beaconMessageHopLimit - wsm->getHopCount()) < it->second. minHop){
+             it->second.minHop = (beaconMessageHopLimit - wsm->getHopCount());
          }
 
         it->second.timeAverage += (simTime() - wsm->getTimestamp());
@@ -141,9 +142,9 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
         struct messages m;
         m.HopsCount = 1;
         m.wsmData = wsm->getWsmData();
-        m.hops = to_string(hopLimit - wsm->getHopCount());
-        m.maxHop = m.minHop = m.averageHops = hopLimit - wsm->getHopCount();
-        m.averageHops = (hopLimit - wsm->getHopCount());
+        m.hops = to_string(beaconMessageHopLimit - wsm->getHopCount());
+        m.maxHop = m.minHop = m.averageHops = beaconMessageHopLimit - wsm->getHopCount();
+        m.averageHops = (beaconMessageHopLimit - wsm->getHopCount());
         m.timeAverage = (simTime() - wsm->getTimestamp());
         simtime_t tmpTime = (simTime() - wsm->getTimestamp());
         m.times = tmpTime.str();
@@ -166,7 +167,7 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int leng
     wsm->setTimestamp(simTime());
     wsm->setSenderPos(curPosition);
 
-    wsm->setSenderAddressString(findHost()->getFullName());
+    wsm->setSenderAddressTemporary(findHost()->getFullName());
 
     //beacon don't need
     //wsm->setRecipientAddressString(); => "BROADCAST"
@@ -217,7 +218,8 @@ void vehDist_rsu::printCountMessagesReceived(){
             myfile << "Avegare time to received: " << (it->second.timeAverage/it->second.HopsCount) << endl;
 
         }
-        myfile << "Count Messages Received: " << messagesReceived.size() << endl;
+        myfile << endl << "### Count Messages Received: " << messagesReceived.size() << " ###" << endl << endl;
+        // ver: 34 geradas, mas só 2* entregues
         myfile << endl;
     }
     myfile.close();
