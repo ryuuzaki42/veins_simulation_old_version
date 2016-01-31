@@ -1,7 +1,5 @@
 //
-// Copyright (C) 2006-2011 Christoph Sommer <christoph.sommer@uibk.ac.at>
-//
-// Documentation for these modules is at http://veins.car2x.org/
+// Copyright (C) 2015-2016 João Batista <joao.b@usp.br>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,33 +39,82 @@ void vehDist::initialize(int stage) {
         sendWhileParking = par("sendWhileParking").boolValue();
 
         source = findHost()->getFullName();
-        hopLimit = par("hopLimit").longValue();
-        repeatNumber = par("repeatNumber");
+        beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
 
-        vehSendData();
-        vehUpdatePosition();
+        stringTmp = ev.getConfig()->getConfigValue("seed-set");
+        repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
+
+        //initialize random seed (Seed the RNG)
+        srand(repeatNumber + 1); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
+
+        //simulate asynchronous channel access
+        vehOffSet = (dblrand()/10);
+
+        setVehNumber();
+        if(vehNumber == 0){
+            vehOffSet = 0;
+        } else {
+            vehOffSet = vehOffSet + 0.001;
+        }
+        numVehicles = par("numVehicles").longValue();
+
+        experimentNumber = par("experimentNumber").longValue();
+        if (experimentNumber == 11){
+            ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+            countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
+        } else if (experimentNumber == 12) {
+            ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+            countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
+        } else if (experimentNumber == 21){
+            ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+            countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
+        } else if (experimentNumber == 22) {
+            countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
+            ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+        }else {
+            cout << "Error: Number of experiment not configured. Go to VehDist.cc line 75." << endl;
+            exit(1); // Coments this for use the values below
+            countGenerateBeaconMessage = 0; // Will not generate any message
+            ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
+        }
+
+        stringTmp = ev.getConfig()->getConfigValue("sim-time-limit");
+        timeLimitGenerateBeaconMessage = atof(stringTmp.c_str());
+        doubleTmp = par("ttlBeaconMessage_two").doubleValue();
+        timeLimitGenerateBeaconMessage = timeLimitGenerateBeaconMessage - doubleTmp;
+
+        if (vehNumber == 0) {
+           cout << endl << "Experiment: " << experimentNumber << endl;
+           cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
+           cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
+           cout << "timeLimitGenerateMessage: " << timeLimitGenerateBeaconMessage << endl << endl;
+        }
+
+
         restartFilesResult();
-        setVehID();
+        //if(vehNumber < 1){
+            vehGenerateBeaconMessageBegin();
+        //}
+        vehUpdatePosition();
+        vehCreateEventTrySendBeaconMessage();
 
         saveVehStartPosition();
-        //cout << endl << findHost()->getFullName() << " entered in the scenario" << endl;
+        //cout << endl << findHost()->getFullName() << " entered in the scenario at " << simTime() << endl;
     }
 }
-// Add more messages on scenario [on buffer 60s (1.2 to 61.2 )]
 // Generate them with static bool genetateMsg (true when messagesToGenerate is empty, turn false when one veh start generate
 
 void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
     //cout << "OnBeacon Id(veh): " << wsm->getVehicleId() << " timestamp: " << wsm->getTimestamp() << endl;
+    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize").longValue());
 
-    removeOldestInput(&beaconNeighbors, par("ttlBeacon").doubleValue(), par("beaconBufferSize").doubleValue());
-
-    auto it = beaconNeighbors.find(wsm->getSenderAddressString());
-    if (it != beaconNeighbors.end()){
+    auto it = beaconStatusNeighbors.find(wsm->getSenderAddressTemporary());
+    if (it != beaconStatusNeighbors.end()){
         //cout << "Update wsm beacon (Key: " << wsm->getSenderAddressString() << ", timestamp: " << beaconNeighbors[wsm->getSenderAddressString()].getTimestamp() << ")" << endl;
         wsm->setTimestamp(simTime());
         it->second = *wsm;
     } else {
-        beaconNeighbors.insert(make_pair(wsm->getSenderAddressString(), *wsm));
+        beaconStatusNeighbors.insert(make_pair(wsm->getSenderAddressTemporary(), *wsm));
     }
     //cout << "veh: " << findHost()->getFullName() << "beaconNeighbors.size(): " << beaconNeighbors.size() << endl;
     //printBeaconNeighbors();
@@ -77,28 +124,22 @@ void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
 
 void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
     //findHost()->bubble("Received a Message");
-
-    removeOldestInput(&messagesBuffer, par("ttlMessage").doubleValue(), par("messageBufferSize").doubleValue());
+    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize").longValue());
 
     //verify if this is the recipient of the message
-    if (strcmp(wsm->getRecipientAddressString(), findHost()->getFullName()) == 0){
+    if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0){
 
         if (!messagesDelivered.empty()){
-            vector<string>::iterator itMessageDelivered;
-            itMessageDelivered = find(messagesDelivered.begin(), messagesDelivered.end(), wsm->getGlobalMessageIdentificaton());
-
-            if (itMessageDelivered != messagesDelivered.end()) { // message has been delivered to the target before.
+            if (messagesDelivered.end() != find(messagesDelivered.begin(), messagesDelivered.end(), wsm->getGlobalMessageIdentificaton())){ // message has been delivered to the target before.
                 cout << "This message has been delivered to the target before." << endl;
                 return;
             }
         }
-
-        cout << "Save message from: " << wsm->getSenderAddressString() << " to " << findHost()->getFullName() << endl;
+        cout << "Saving message from: " << wsm->getSenderAddressTemporary() << " to " << findHost()->getFullName() << endl;
         saveMessagesOnFile(wsm, fileMessagesNameUnicast);
 
         if (wsm->getHopCount() == 0){
-            unordered_map<string, int>::const_iterator searchDrop = messagesDrop.find(wsm->getGlobalMessageIdentificaton());
-            if(messagesDrop.empty() || searchDrop == messagesDrop.end()){
+            if(messagesDrop.empty() || (messagesDrop.find(wsm->getGlobalMessageIdentificaton()) == messagesDrop.end())){
                 messagesDrop.insert(make_pair(wsm->getGlobalMessageIdentificaton(), 1));
             } else {
                 messagesDrop[wsm->getGlobalMessageIdentificaton()] += 1;
@@ -106,24 +147,21 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
             return;
         }
 
-        unordered_map<string, WaveShortMessage>::const_iterator search = messagesBuffer.find(wsm->getGlobalMessageIdentificaton());
-        if (messagesBuffer.empty() || search == messagesBuffer.end()) { //verify if the message isn't in the buffer
+        if (messagesBuffer.empty() || messagesBuffer.find(wsm->getGlobalMessageIdentificaton()) == messagesBuffer.end()) { //verify if the message isn't in the buffer
             //cout << findHost()->getFullName() << " buffer empty or the vehicle don't have the message at simtime: " << simTime() << endl;
-
-            //add the msg in the  vehicle buffer
-            messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm));
+            messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); //add the msg in the  vehicle buffer
             colorCarryMessage();
 
-            //cout << findHost()->getFullName() << " recive the message " << endl;
+            //cout << findHost()->getFullName() << " received the message " << endl;
             //cout << "from (source): " << wsm->getSource() << endl;
             //cout << " sender: " << wsm->getSenderAddressString() << endl;
             //cout << " hopCount: " << wsm->getHopCount() << endl;
             //cout << " At: " << simTime() << endl;
-        }else if(search != messagesBuffer.end()){
+        } else {
             cout<<findHost()->getFullName() << " message is on the buffer at simtime " << simTime() << endl;
         }
     } else { // to another veh
-        //cout << "Save message from: " << wsm->getSenderAddressString() << " to " << findHost()->getFullName() << endl;
+        //cout << "Saving broadcast message from: " << wsm->getSenderAddressString() << " to " << findHost()->getFullName() << endl;
         saveMessagesOnFile(wsm, fileMessagesNameBroadcast);
     }
     //printmessagesBuffer();
@@ -139,10 +177,7 @@ void vehDist::colorCarryMessage(){
 
 void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit){
     //cout << "veh: " << findHost()->getFullName() << " Buffercount: " << data->size() << endl;
-    if (data->empty()) {
-        //cout << "Data buffer from " << findHost()->getFullName() << " is empty now " << endl;
-        return;
-    } else {
+    if (!data->empty()) {
         unordered_map<string, WaveShortMessage>::iterator itData;
         itData = data->begin();
         string type = itData->second.getName();
@@ -162,14 +197,16 @@ void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, d
             //cout << findHost()->getFullName() << " remove one " << type << " by space" << "Timestamp: " << minTime << " at: " << simTime() << " timeValid: " << timeValid << endl;
             data->erase(key);
         }
+    } else {
+        //cout << "Data buffer from " << findHost()->getFullName() << " is empty now " << endl;
     }
     colorCarryMessage();
 }
 
-void vehDist::sendDataMessage() {
+void vehDist::sendBeaconMessage() {
 
-    removeOldestInput(&messagesBuffer, par("ttlMessage").doubleValue(), par("messageBufferSize").doubleValue());
-    removeOldestInput(&beaconNeighbors, par("ttlBeacon").doubleValue(), par("beaconBufferSize").doubleValue());
+    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize").longValue());
+    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize").longValue());
 
     if (messagesBuffer.empty()) {
         //cout << findHost()->getFullName() << " messagesBuffer is empty at " << simTime() << endl;
@@ -177,10 +214,9 @@ void vehDist::sendDataMessage() {
     } else {
         cout << findHost()->getFullName() << " messagesBuffer with message(s) at " << simTime() << endl;
 
-        if (beaconNeighbors.empty()) {
+        if (beaconStatusNeighbors.empty()) {
             cout << "beaconNeighbors on sendDataMessage from " << findHost()->getFullName() << " is empty now " << endl;
         } else {
-
             //cout << "Before sendBeaconNeighborsTarget messagesBuffer.size(): " << messagesBuffer.size() << endl;
             sendMessageNeighborsTarget();
             if (messagesBuffer.empty()) {
@@ -189,20 +225,18 @@ void vehDist::sendDataMessage() {
             //cout << "After sendBeaconNeighborsTarget messagesBuffer.size(): " << messagesBuffer.size() << endl;
 
             string key = returnLastMessageInsert();
-
             bool send = false;
 
             unordered_map<string, WaveShortMessage>::iterator itBeacon;
-            for (itBeacon = beaconNeighbors.begin(); itBeacon != beaconNeighbors.end(); itBeacon++){
-
+            for (itBeacon = beaconStatusNeighbors.begin(); itBeacon != beaconStatusNeighbors.end(); itBeacon++){
                 //test send distante e heading to target
                 //cout => car[x] distance <is more, is less, not change> to [target](rsu[0]) by car[y]
                 cout << findHost()->getFullName() << " distance";
-                send = sendtoTargetbyVeh(itBeacon->second.getSenderPosBack(), itBeacon->second.getSenderPos(), itBeacon->second.getHeading(), messagesBuffer[key].getTargetPos());
-                cout << "to " << messagesBuffer[key].getTarget() << " by " << itBeacon->second.getSenderAddressString() << endl;
+                send = sendtoTargetbyVeh(itBeacon->second.getSenderPosPrevious(), itBeacon->second.getSenderPos(), itBeacon->second.getHeading(), messagesBuffer[key].getTargetPos());
+                cout << "to " << messagesBuffer[key].getTarget() << " by " << itBeacon->second.getSenderAddressTemporary() << endl;
 
                 cout << endl;
-                cout << " SenderPosBack: " << itBeacon->second.getSenderPosBack() << endl;
+                cout << " SenderPosBack: " << itBeacon->second.getSenderPosPrevious() << endl;
                 cout << " SenderPos: " << itBeacon->second.getSenderPos() << endl;
                 cout << " Heading: " << itBeacon->second.getHeading() << endl;
                 cout << " Message id: " << key << endl;
@@ -215,8 +249,7 @@ void vehDist::sendDataMessage() {
 
             if (send){
                 string rcvId = itBeacon->first;
-
-                sendWSM(updateMessageWSM(messagesBuffer[key].dup(), rcvId));
+                sendWSM(updateBeaconMessageWSM(messagesBuffer[key].dup(), rcvId));
 
                 cout << findHost()->getFullName() << " send message to " << rcvId << " at "<< simTime() << endl;
                 cout << " MessageID: " << messagesBuffer[key].getGlobalMessageIdentificaton() << endl;
@@ -224,7 +257,7 @@ void vehDist::sendDataMessage() {
                 cout << " Message Content: " << messagesBuffer[key].getWsmData() << endl;
                 cout << " Target: " << messagesBuffer[key].getTarget() << endl;
                 cout << " Timestamp: " << messagesBuffer[key].getTimestamp() << endl;
-                cout << " HopCount:" << (messagesBuffer[key].getHopCount() - 1) << endl;
+                cout << " HopCount: " << (messagesBuffer[key].getHopCount() - 1) << endl;
             }
             else{
                 cout << endl << "Not send message to" << endl;
@@ -235,11 +268,11 @@ void vehDist::sendDataMessage() {
 }
 
 void vehDist:: finish(){
-    printCountMessagesDrop();
+    printCountBeaconMessagesDrop();
 }
 
 // mudar criar outra função que imprime depois dessa
-void vehDist::printCountMessagesDrop(){
+void vehDist::printCountBeaconMessagesDrop(){
     myfile.open (fileMessagesDrop, std::ios_base::app);
 
     if (messagesDrop.empty()) {
@@ -247,8 +280,8 @@ void vehDist::printCountMessagesDrop(){
         return;
     } else {
         myfile << "messagesDrop from " << findHost()->getFullName() << endl;
-        //mudar para map
-        unordered_map<string, int>::iterator it;
+
+        map<string, int>::iterator it;
         for (it = messagesDrop.begin(); it != messagesDrop.end(); it++) {
             myfile << "Message Id: " << it->first << endl;
             myfile << "Count received: " << it->second << endl;
@@ -278,17 +311,16 @@ string vehDist::returnLastMessageInsert(){
 }
 
 void vehDist::sendMessageNeighborsTarget(){
-
     unordered_map<string, WaveShortMessage>::iterator itMessage;
     vector<string> messageToRemove;
 
     for (itMessage = messagesBuffer.begin(); itMessage != messagesBuffer.end(); itMessage++){
         unordered_map<string, WaveShortMessage>::iterator itBeacon;
-        for (itBeacon = beaconNeighbors.begin(); itBeacon != beaconNeighbors.end(); itBeacon++){
-            if (strcmp(itMessage->second.getTarget(), itBeacon->second.getSenderAddressString()) == 0){
+        for (itBeacon = beaconStatusNeighbors.begin(); itBeacon != beaconStatusNeighbors.end(); itBeacon++){
+            if (strcmp(itMessage->second.getTarget(), itBeacon->second.getSenderAddressTemporary()) == 0){
                 string rcvId = itMessage->second.getTarget();
-                cout << "Send message to:" << rcvId << endl;
-                sendWSM(updateMessageWSM(itMessage->second.dup(), rcvId));
+                cout << "Send message to: " << rcvId << endl;
+                sendWSM(updateBeaconMessageWSM(itMessage->second.dup(), rcvId));
                 messageToRemove.push_back(itMessage->second.getGlobalMessageIdentificaton());
 
                 messagesDelivered.push_back(itMessage->second.getGlobalMessageIdentificaton());
@@ -334,15 +366,15 @@ void vehDist::handleLowerMsg(cMessage* msg) {
     delete(msg);
 }
 
-int vehDist::getCategory(){
+int vehDist::getVehCategory(){
     // ver como definir a categoria
-    if (vehID < 13) {
+    if (vehNumber < 13) {
         return 1;
-    } else if ((vehID >= 13) && (vehID < 26)){
+    } else if ((vehNumber >= 13) && (vehNumber < 26)){
         return 2;
-    } else if ((vehID >= 26) && (vehID < 39)){
+    } else if ((vehNumber >= 26) && (vehNumber < 39)){
         return 3;
-    } else if ((vehID >= 39) && (vehID < 52)){
+    } else if ((vehNumber >= 39) && (vehNumber < 52)){
         return 4;
     } else {
         return 5;
@@ -400,66 +432,88 @@ void vehDist::saveVehStartPosition(){
     myfile.close();
 }
 
-void vehDist::setVehID() {
-    if (source.size() == 6){
-        vehID = atoi(source.substr(4,1).c_str());
-    } else if (source.size() == 7){
-        vehID = atoi(source.substr(4,2).c_str());
-    } else if (source.size() == 8){
-        vehID = atoi(source.substr(4,3).c_str());
-    }
-    //cout << findHost()->getFullName() << " vehID: " << vehID << endl;
+void vehDist::setVehNumber() {
+    string vehNumberString = (source.substr(source.find("[") + 1, source.find("]") - source.find("[") - 1));
+    vehNumber = atoi(vehNumberString.c_str());
+    //cout << findHost()->getFullName() << " vehID: " << vehNumber << endl;
 }
 
 void vehDist::restartFilesResult(){
-
     fileMessagesNameBroadcast = "results/VehBroadcastMessages.txt";
     fileMessagesNameUnicast ="results/VehMessages.txt";
     fileMessagesCount = "results/VehMessagesCount.txt";
     fileMessagesDrop = "results/VehMessagesDrop.txt";
+    fileMessagesGenerated = "results/VehMessagesgenerated.txt";
 
-    if ((source.compare("car[0]") == 0) && (repeatNumber == 0)) {
-        openFileAndClose(fileMessagesNameBroadcast, false);
-        openFileAndClose(fileMessagesNameUnicast, false);
-        openFileAndClose(fileMessagesCount, false);
-        openFileAndClose(fileMessagesDrop, false);
-    } else if ((source.compare("car[0]") == 0) && (repeatNumber != 0)) { // open just for append
-        openFileAndClose(fileMessagesNameBroadcast, true);
-        openFileAndClose(fileMessagesNameUnicast, true);
-        openFileAndClose(fileMessagesCount, true);
-        openFileAndClose(fileMessagesDrop, true);
+    if (vehNumber == 0) {
+        if (repeatNumber == 0) {
+            openFileAndClose(fileMessagesNameBroadcast, false);
+            openFileAndClose(fileMessagesNameUnicast, false);
+            openFileAndClose(fileMessagesCount, false);
+            openFileAndClose(fileMessagesDrop, false);
+            openFileAndClose(fileMessagesGenerated, false);
+        } else { // (repeatNumber != 0)) // open just for append
+            openFileAndClose(fileMessagesNameBroadcast, true);
+            openFileAndClose(fileMessagesNameUnicast, true);
+            openFileAndClose(fileMessagesCount, true);
+            openFileAndClose(fileMessagesDrop, true);
+            openFileAndClose(fileMessagesGenerated, true);
+        }
     }
 }
 
 void vehDist::vehUpdatePosition(){
-    vehPositionBack = traci->getCurrentPosition();
-    //cout << "initial positionBack :" << vehPositionBack << endl;
-    updatePosVeh = new cMessage("UpdatePos evt", SEND_updatePosVeh);
-    //cout << findHost()->getFullName() << " at simtime "<< simTime() << "schedule created updatePosVeh" << endl;
+    vehPositionPrevious = traci->getCurrentPosition();
+    //cout << "initial positionBack: " << vehPositionBack << endl;
+    sendUpdatePosisitonVeh = new cMessage("Event update position vehicle", SendEvtUpdatePositionVeh);
 
-    //simulate asynchronous channel access
-    double offSet = (dblrand())/10;
-    //cout << "UpdatePosition: " <<  findHost()->getFullName() << " offset: " << offSet << endl;
-    scheduleAt((simTime()+ par("timeUpdatePosition").doubleValue() + offSet), updatePosVeh);
+    //cout << findHost()->getFullName() << " at simtime: "<< simTime() << "schedule created UpdatePosition to: "<< (simTime() + vehOffSet) << endl;
+    scheduleAt((simTime()+ par("vehTimeUpdatePosition").doubleValue() + vehOffSet), sendUpdatePosisitonVeh);
 }
 
-void vehDist::vehSendData(){
+void vehDist::vehCreateEventTrySendBeaconMessage(){
     if (sendData){
-        sendDataEvt = new cMessage("data evt", SEND_DATA_EVT);
-        string host = findHost()->getFullName();
-        //if(strcmp(findHost()->getFullName(), "car[0]") == 0){
-        // 012345
-        // car[0]
-        //if (host.compare(5,1, "]") == 0){
-        if (host.compare(4,2, "0]") == 0){
-            generateMessage();
-        }
+        sendBeaconMessageEvt = new cMessage("Event send beacon message", SendEvtBeaconMessage);
+        //cout << findHost()->getFullName() << " at simtime: "<< simTime() << "schedule created sendData to: "<< (simTime() + vehOffSet) << endl;
+        scheduleAt((simTime() + vehOffSet), sendBeaconMessageEvt);
+    }
+}
 
-        //simulate asynchronous channel access
-        double offSet = (dblrand())/10;
-        //cout << "SendData: " << findHost()->getFullName() << " offset: " << offSet << endl;
-        //cout << findHost()->getFullName() << " at simtime: "<< simTime() << "schedule created sendData to: "<< (simTime() + par("dataInterval").doubleValue() + par("timeUpdatePosition").doubleValue()+ offSet) << endl;
-        scheduleAt((simTime() + offSet), sendDataEvt);
+void vehDist::selectVehGenerateMessage(){
+    if(strcmp(findHost()->getFullName(), "car[0]") == 0){
+    //if (vehNumber == 0) { // if true, some veh has (in past) selected the veh to generate messages
+        if (simTime() <= timeLimitGenerateBeaconMessage){
+            int vehSelected;
+            // Save info (Id and veh generate) on fileMessagesGenerated
+            myfile.open(fileMessagesGenerated, std::ios_base::app);
+            for (int i = 0; i < countGenerateBeaconMessage;){ // select <countGenerateBeaconMessage> distinct veh to generate messages
+                vehSelected = rand() % numVehicles; // random car to generate message
+                if(vehDist::vehGenerateMessage.find(vehSelected) == vehDist::vehGenerateMessage.end()){
+                    vehDist::vehGenerateMessage.insert(make_pair(vehSelected,true));
+                    cout << findHost()->getFullName() << " select the car[" << vehSelected << "] generate message at simTime: " << simTime() << endl;
+                    myfile << findHost()->getFullName() << " select the car[" << vehSelected << "] to generated at simTime: " << simTime() << endl;
+                    i++;
+                }
+            }
+            myfile.close();
+        }
+    }
+}
+
+void vehDist::vehGenerateBeaconMessageBegin() {
+    if (sendData){
+        sendGenerateBeaconMessageEvt = new cMessage("Event generate beacon message", SendEvtGenerateBeaconMessage);
+        //cout << findHost()->getFullName() << " at simtime: "<< simTime() << "schedule created sendGenerateMessageEvt to: "<< (simTime() + vehOffSet) << endl;
+        scheduleAt((simTime() + vehOffSet), sendGenerateBeaconMessageEvt);
+    }
+}
+
+void vehDist::vehGenerateBeaconMessageAfterBegin() {
+    selectVehGenerateMessage();
+
+    if(vehDist::vehGenerateMessage.find(vehNumber) != vehDist::vehGenerateMessage.end()) { // if have vehDist::vehGenerateMessage[vehNumber], will generate one message
+        generateBeaconMessage();
+        vehDist::vehGenerateMessage.erase(vehNumber);
     }
 }
 
@@ -477,7 +531,7 @@ WaveShortMessage* vehDist::prepareBeaconStatusWSM(std::string name, int lengthBi
     wsm->setSerial(serial);
 
     wsm->setTimestamp(simTime());
-    wsm->setSenderAddressString(findHost()->getFullName());
+    wsm->setSenderAddressTemporary(findHost()->getFullName());
 
     //beacon don't need
     //wsm->setRecipientAddressString(); => "BROADCAST"
@@ -488,29 +542,27 @@ WaveShortMessage* vehDist::prepareBeaconStatusWSM(std::string name, int lengthBi
     wsm->setRoadId(traci->getRoadId().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
 
-    wsm->setCategory(getCategory());
-    wsm->setSenderPosBack(vehPositionBack);
+    wsm->setCategory(getVehCategory());
+    wsm->setSenderPosPrevious(vehPositionPrevious);
 
     // heading 1 to 4 or 1 to 8
-    wsm->setHeading(getHeading4());
-    //wsm->setHeading(getHeading8());
+    wsm->setHeading(getVehHeading4());
+    //wsm->setHeading(getVehHeading8());
 
     DBG << "Creating BeaconStatus with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
     return wsm;
 }
 
-WaveShortMessage* vehDist::updateMessageWSM(WaveShortMessage* wsm, string rcvId) {
-    wsm->setSenderAddressString(findHost()->getFullName());
-
-    wsm->setRecipientAddressString(rcvId.c_str());
+WaveShortMessage* vehDist::updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId) {
+    wsm->setSenderAddressTemporary(findHost()->getFullName());
+    wsm->setRecipientAddressTemporary(rcvId.c_str());
     wsm->setSenderPos(curPosition);
     wsm->setRoadId(traci->getRoadId().c_str());
-    wsm->setCategory(getCategory());
+    wsm->setCategory(getVehCategory());
     wsm->setSenderSpeed(traci->getSpeed());
-    wsm->setSenderPosBack(vehPositionBack);
-    wsm->setHeading(getHeading4());
+    wsm->setSenderPosPrevious(vehPositionPrevious);
+    wsm->setHeading(getVehHeading4());
     wsm->setHopCount(wsm->getHopCount() -1);
-
     return wsm;
 }
 
@@ -518,13 +570,16 @@ WaveShortMessage* vehDist::updateMessageWSM(WaveShortMessage* wsm, string rcvId)
 void vehDist::generateTarget(){
     //Set the target node to whom my message has to be delivered
     target = "rsu[0]";
+    target_x = par("vehBeaconMessageTarget_x").longValue();
+    target_y = par("vehBeaconMessageTarget_y").longValue();
 }
 
-void vehDist::generateMessage(){
+void vehDist::generateBeaconMessage(){
     WaveShortMessage* wsm = new WaveShortMessage("beaconMessage");
 
-    //target = rsu[0] rsu[1] or car[*].
+    //target = rsu[0], rsu[1] or car[*] and the repective position.
     generateTarget();
+    wsm->setTargetPos(Coord(target_x, target_y, 3));
 
     wsm->addBitLength(headerLength);
     wsm->addBitLength(dataLengthBits);
@@ -539,29 +594,35 @@ void vehDist::generateMessage(){
     wsm->setSenderPos(curPosition);
     wsm->setSerial(2);
     //wsm->setMessageTimestampGenerate(simTime());
-    //wsm->setTimestamp(simTime() + par("dataInterval").doubleValue());
+    //wsm->setTimestamp(simTime() + par("beaconMessageInterval").doubleValue());
     wsm->setTimestamp(simTime());
 
-    wsm->setSenderAddressString(findHost()->getFullName());
-    // define before send
+    wsm->setSenderAddressTemporary(findHost()->getFullName());
+    // defined before send
     //wsm->setRecipientAddress();
-    wsm->setRecipientAddressString("initial");
+    wsm->setRecipientAddressTemporary("Initial");
     wsm->setSource(source.c_str());
     wsm->setTarget(target.c_str());
 
     string data = "WSMData generated by ";
     data += findHost()->getFullName();
     wsm->setWsmData(data.c_str());
-    wsm->setGlobalMessageIdentificaton(to_string(vehDist::messageId).c_str());
-    vehDist::messageId++;
-    wsm->setHopCount(hopLimit+1); // Is hopLimit+1 because hops count is equals to routes in the path, not hops.
-
-    wsm->setTargetPos(Coord(par("target_x"), par("target_y"), 3));
+    wsm->setGlobalMessageIdentificaton(to_string(vehDist::beaconMessageId).c_str());
+    vehDist::beaconMessageId++;
+    wsm->setHopCount(beaconMessageHopLimit+1); // Is beaconMessageHopLimit+1 because hops count is equals to routes in the path, not hops.
 
     // Adding the message on the buffer
     messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm));
     colorCarryMessage();
-    cout << endl << findHost()->getFullName() << " generated one message at simTime: " << simTime() << endl;
+
+    cout << findHost()->getFullName() << " generated the message ID:" << vehDist::beaconMessageId << " at simTime: " << simTime() << endl;
+
+    // Save info (Id and veh generate) on fileMessagesGenerated
+    myfile.open(fileMessagesGenerated, std::ios_base::app);
+    myfile << "                                                   ";
+    myfile << "                                                   ";
+    myfile << "### " << findHost()->getFullName() << " generated the message ID:" << vehDist::beaconMessageId << " at simTime: " << simTime() << endl;
+    myfile.close();
 }
 
 void vehDist::handleSelfMsg(cMessage* msg) {
@@ -569,18 +630,23 @@ void vehDist::handleSelfMsg(cMessage* msg) {
         case SEND_BEACON_EVT: {
             //sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
             sendWSM(prepareBeaconStatusWSM("beaconStatus", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
-            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+            scheduleAt((simTime() + par("beaconInterval").doubleValue()), sendBeaconEvt);
             break;
         }
-        case SEND_DATA_EVT: {
-            sendDataMessage();
+        case SendEvtBeaconMessage: {
+            sendBeaconMessage();
             //cout << "create schedule for send_data_evt" << endl;
-            scheduleAt(simTime() + par("dataInterval").doubleValue(), sendDataEvt);
+            scheduleAt((simTime() + par("beaconMessageInterval").doubleValue()), sendBeaconMessageEvt);
             break;
         }
-        case SEND_updatePosVeh: {
-            updatePosition();
-            scheduleAt(simTime() + par("timeUpdatePosition").doubleValue(), updatePosVeh);
+        case SendEvtUpdatePositionVeh: {
+            updateVehPosition();
+            scheduleAt((simTime() + par("vehTimeUpdatePosition").doubleValue()), sendUpdatePosisitonVeh);
+            break;
+        }
+        case SendEvtGenerateBeaconMessage: {
+            vehGenerateBeaconMessageAfterBegin();
+            scheduleAt((simTime() + par("timeGenerateBeaconMessage").doubleValue()), sendGenerateBeaconMessageEvt);
             break;
         }
         default: {
@@ -610,15 +676,13 @@ void vehDist::printMessagesBuffer() {
     }
 }
 
-void vehDist::printBeaconNeighbors() {
-    if (beaconNeighbors.empty()) {
-        //cout << "beaconNeighbors from " << findHost()->getFullName() << " is empty now: " << simTime() << endl;
-    } else {
+void vehDist::printBeaconStatusNeighbors() {
+    if (!beaconStatusNeighbors.empty()) {
         cout << endl << "beaconNeighbors from " << findHost()->getFullName() << " at " << simTime() << endl;
         unordered_map<string, WaveShortMessage>::iterator it;
-        for (it = beaconNeighbors.begin(); it != beaconNeighbors.end(); it++) {
+        for (it = beaconStatusNeighbors.begin(); it != beaconStatusNeighbors.end(); it++) {
             cout << " Id(veh): " << it->first << endl;
-            cout << " PositionBack: " << it->second.getSenderPosBack() << endl;
+            cout << " PositionBack: " << it->second.getSenderPosPrevious() << endl;
             cout << " Position: " << it->second.getSenderPos() << endl;
             cout << " Speed: " << it->second.getSenderSpeed() << endl;
             cout << " Category: " << it->second.getCategory() << endl;
@@ -628,9 +692,12 @@ void vehDist::printBeaconNeighbors() {
             cout << endl;
         }
     }
+    else {
+        //cout << "beaconNeighbors from " << findHost()->getFullName() << " is empty now: " << simTime() << endl;
+    }
 }
 
-unsigned int vehDist::getHeading4(){
+unsigned int vehDist::getVehHeading4(){
   /* return angle <0º - 359º>
      marcospaiva.com.br/images/rosa_dos_ventos%2002.GIF
      marcospaiva.com.br/localizacao.htm
@@ -663,7 +730,7 @@ unsigned int vehDist::getHeading4(){
     }
 }
 
-unsigned int vehDist::getHeading8(){
+unsigned int vehDist::getVehHeading8(){
   /* return angle <0º - 359º>
      marcospaiva.com.br/images/rosa_dos_ventos%2002.GIF
      marcospaiva.com.br/localizacao.htm
@@ -712,13 +779,13 @@ unsigned int vehDist::getHeading8(){
     }
 }
 
-void vehDist::updatePosition(){
+void vehDist::updateVehPosition(){
 //    cout << "Vehicle: " << findHost()->getFullName();
 //    cout << " Update position: " <<  "time: "<< simTime() << " next update: ";
-//    cout << (simTime() + par("timeUpdatePosition").doubleValue()) << endl;
-//    cout << "positionBack :" << vehPositionBack;
-    vehPositionBack = traci->getPositionAt(simTime() - par("timeUpdatePosition").doubleValue());
-//    cout << " and update positionBack :" << vehPositionBack << endl << endl;
+//    cout << (simTime() + par("vehTimeUpdatePosition").doubleValue()) << endl;
+//    cout << "positionBack: " << vehPositionBack;
+    vehPositionPrevious = traci->getPositionAt(simTime() - par("vehTimeUpdatePosition").doubleValue());
+//    cout << " and update positionBack: " << vehPositionBack << endl << endl;
 }
 
 //########################################################  Default Function #############################################
