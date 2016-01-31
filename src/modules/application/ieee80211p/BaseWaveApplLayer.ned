@@ -64,15 +64,24 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         //@statistic[numMessageReceived](source=sum(messageReceived); title="Total Number or Message Received"; record=stats,histogram,vector);
 
         //jonh test
-        int target_x = default(0);
-        int target_y = default(0);
+        int vehBeaconMessageTarget_x = default(0);
+        int vehBeaconMessageTarget_y = default(0);
 
-        int hopLimit = default(0); // Limit of hops
-        int timeUpdatePosition @unit("s") = default(1s); //time for update vehicle position
-        int repeatNumber = default(0); // number of execution (${repetition})
-        int dataInterval @unit("s") = default(1s); // interval to try send message(s)
-        int timeGenerateMessage @unit("s") = default(1s); // time for generate messages
-        int countGenerateMessage = default(0); // count messages generate by time
+        int beaconMessageHopLimit = default(0); // Limit of hops
+        int vehTimeUpdatePosition @unit("s") = default(1s); //time for update vehicle position
+        int beaconMessageInterval @unit("s") = default(1s); // interval to try send message(s)
+        int timeGenerateBeaconMessage @unit("s") = default(30s); // time for generate messages
+
+        int ttlBeaconMessage_one @unit("s") = default(60s);
+        int ttlBeaconMessage_two @unit("s") = default(60s);
+
+        int countGenerateBeaconMessage_one = default(0); // count messages generate by time
+        int countGenerateBeaconMessage_two = default(0);
+
+        int experimentNumber = default(0); // Experiment number to use _one or _two variables
+        int ttlBeaconStatus @unit("s") = default(3s);
+        int beaconMessageBufferSize = default(50);
+        int beaconStatusBufferSize = default(50);
         int numVehicles = default(0); // number of vehicles
 
     gates:
