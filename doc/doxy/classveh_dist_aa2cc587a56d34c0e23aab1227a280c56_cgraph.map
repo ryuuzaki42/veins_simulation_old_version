@@ -1,0 +1,5 @@
+<map id="vehDist::updateVehPosition" name="vehDist::updateVehPosition">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#af3dcd8e7c2046fa939aaee6e3a087e03" title="Veins::TraCIMobility\l::getPositionAt" alt="" coords="237,5,379,47"/>
+<area shape="rect" id="node3" href="$class_move.html#a170899b061efdeb55ead25e17bd88b8d" title="Returns the position of the Move (Host) at the specified point in time. " alt="" coords="427,13,567,39"/>
+<area shape="rect" id="node4" href="$class_f_w_math.html#a38d2500887b49de2a2b5f8610f7ba6d1" title="Tests whether two doubles are close enough to be declared equal. " alt="" coords="615,13,725,39"/>
+</map>

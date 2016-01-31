@@ -1,11 +1,11 @@
 <map id="Veins::TraCIMobility::getAngleRad" name="Veins::TraCIMobility::getAngleRad">
-<area shape="rect" id="node2" href="$classveh_dist.html#ad5fb330662e4372d63bb5699bfe8064a" title="vehDist::getHeading4" alt="" coords="195,31,343,57"/>
-<area shape="rect" id="node10" href="$classveh_dist.html#a0b580ff0304ca871132864712fc340ab" title="vehDist::getHeading8" alt="" coords="195,81,343,108"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#a11c6b985a4d2d341f3644409630963ad" title="vehDist::prepareBeaconStatusWSM" alt="" coords="639,5,872,32"/>
-<area shape="rect" id="node5" href="$classveh_dist.html#ac744d5b0d7e5a45033e6bc5528295980" title="vehDist::updateMessageWSM" alt="" coords="391,56,591,83"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="1158,31,1319,57"/>
-<area shape="rect" id="node6" href="$classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d" title="vehDist::sendDataMessage" alt="" coords="920,56,1104,83"/>
-<area shape="rect" id="node7" href="$classveh_dist.html#a93e9c98fef45bfaa8783f7782c57cfbb" title="vehDist::sendMessageNeighbors\lTarget" alt="" coords="648,107,863,149"/>
-<area shape="rect" id="node8" href="$classveh_dist.html#aad4cc10dbbfb5a647fa1be16fccbcaf9" title="vehDist::onBeaconStatus" alt="" coords="927,115,1097,141"/>
-<area shape="rect" id="node9" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="1152,115,1325,141"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#a493923f8028dee7eee2485bd37523111" title="vehDist::getVehHeading4" alt="" coords="195,31,365,57"/>
+<area shape="rect" id="node10" href="$classveh_dist.html#a86fad78c38b4d0641e2eec0d34db75c0" title="vehDist::getVehHeading8" alt="" coords="195,81,365,108"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#a11c6b985a4d2d341f3644409630963ad" title="vehDist::prepareBeaconStatusWSM" alt="" coords="705,5,939,32"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a749faa340dea3a819e52fd328d0cf17e" title="vehDist::updateBeaconMessageWSM" alt="" coords="413,56,657,83"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="1241,31,1402,57"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#ae540b3b1caea2af0f6668a85b449cf16" title="vehDist::sendBeaconMessage" alt="" coords="987,56,1187,83"/>
+<area shape="rect" id="node7" href="$classveh_dist.html#a93e9c98fef45bfaa8783f7782c57cfbb" title="vehDist::sendMessageNeighbors\lTarget" alt="" coords="715,107,929,149"/>
+<area shape="rect" id="node8" href="$classveh_dist.html#aad4cc10dbbfb5a647fa1be16fccbcaf9" title="vehDist::onBeaconStatus" alt="" coords="1001,115,1172,141"/>
+<area shape="rect" id="node9" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="1235,115,1408,141"/>
 </map>

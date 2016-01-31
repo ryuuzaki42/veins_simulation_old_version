@@ -1,6 +1,6 @@
 <map id="BaseWaveApplLayer::saveMessagesOnFile" name="BaseWaveApplLayer::saveMessagesOnFile">
-<area shape="rect" id="node2" href="$class_wave_short_message.html#ad670b89d9f8db77ee076ef3f04183970" title="WaveShortMessage::getSender\lAddressString" alt="" coords="223,5,430,47"/>
-<area shape="rect" id="node3" href="$class_wave_short_message.html#ac0d2a04942ab72d58695888dc08204fd" title="WaveShortMessage::getRecipient\lAddressString" alt="" coords="216,71,437,112"/>
+<area shape="rect" id="node2" href="$class_wave_short_message.html#a8e7ecffbfe552225952d3c3f68dc3408" title="WaveShortMessage::getSender\lAddressTemporary" alt="" coords="223,5,430,47"/>
+<area shape="rect" id="node3" href="$class_wave_short_message.html#a61f33b5133fcd3d14e3c1a130eb0c566" title="WaveShortMessage::getRecipient\lAddressTemporary" alt="" coords="216,71,437,112"/>
 <area shape="rect" id="node4" href="$class_wave_short_message.html#a45f745e1750b2a1b6ca9c31f5e513a89" title="WaveShortMessage::getGlobal\lMessageIdentificaton" alt="" coords="225,136,428,177"/>
 <area shape="rect" id="node5" href="$class_wave_short_message.html#a6851e8a2af35b6e55d5bec81057ae51f" title="WaveShortMessage::getWsm\lVersion" alt="" coords="228,201,425,243"/>
 <area shape="rect" id="node6" href="$class_wave_short_message.html#ac3117615566fa0a605f81bbaf53d5921" title="WaveShortMessage::getPriority" alt="" coords="223,267,430,294"/>

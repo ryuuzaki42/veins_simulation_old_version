@@ -1,0 +1,3 @@
+<map id="vehDist::getVehHeading4" name="vehDist::getVehHeading4">
+<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#a6b9658651943c7ed6dc4825ccad654c5" title="returns angle in rads, 0 being east, with &#45;M_PI &lt;= angle &lt; M_PI. " alt="" coords="224,5,365,47"/>
+</map>

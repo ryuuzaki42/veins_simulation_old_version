@@ -10,13 +10,13 @@
 <area shape="rect" id="node6" href="org.car2x.veins.base.modules.BaseMacLayer.html" title="Simple Module BaseMacLayer" alt="" coords="547,5,657,31">
 <area shape="rect" id="node7" href="org.car2x.veins.base.modules.BaseMobility.html" title="Simple Module BaseMobility" alt="" coords="1097,152,1195,177">
 <area shape="rect" id="node8" href="org.car2x.veins.nodes.RSU.html" title="Compound Module RSU" alt="" coords="1303,79,1375,104">
-<area shape="rect" id="node14" href="org.car2x.veins.modules.nic.INic80211p.html" title="Module Interface INic80211p" alt="" coords="1358,152,1446,177">
-<area shape="rect" id="node15" href="org.car2x.veins.base.modules.IBaseApplLayer.html" title="Module Interface IBaseApplLayer" alt="" coords="1219,152,1334,177">
-<area shape="rect" id="node16" href="ned.IdealChannel.html" title="Channel IdealChannel" alt="" coords="1470,152,1569,177">
+<area shape="rect" id="node13" href="ned.IdealChannel.html" title="Channel IdealChannel" alt="" coords="1566,152,1665,177">
+<area shape="rect" id="node15" href="org.car2x.veins.modules.nic.INic80211p.html" title="Module Interface INic80211p" alt="" coords="1358,152,1446,177">
+<area shape="rect" id="node16" href="org.car2x.veins.base.modules.IBaseApplLayer.html" title="Module Interface IBaseApplLayer" alt="" coords="1219,152,1334,177">
 <area shape="rect" id="node9" href="org.car2x.veins.base.phyLayer.BasePhyLayer.html" title="Simple Module BasePhyLayer" alt="" coords="1925,5,2031,31">
 <area shape="rect" id="node10" href="org.car2x.veins.modules.application.ieee80211p.BaseWaveApplLayer.html" title="Simple Module BaseWaveApplLayer" alt="" coords="2055,5,2199,31">
-<area shape="rect" id="node12" href="org.car2x.veins.nodes.Car.html" title="Compound Module Car" alt="" coords="1442,79,1514,104">
-<area shape="rect" id="node13" href="org.car2x.veins.base.modules.IMobility.html" title="Module Interface IMobility" alt="" coords="1593,152,1665,177">
+<area shape="rect" id="node12" href="org.car2x.veins.nodes.Car.html" title="Compound Module Car" alt="" coords="1435,79,1507,104">
+<area shape="rect" id="node14" href="org.car2x.veins.base.modules.IMobility.html" title="Module Interface IMobility" alt="" coords="1470,152,1542,177">
 <area shape="rect" id="node18" href="ned.DatarateChannel.html" title="Channel DatarateChannel" alt="" coords="2223,5,2343,31">
 <area shape="rect" id="node19" href="org.car2x.veins.modules.application.default_veins_TraCI.default_veins_TraCI.html" title="Simple Module default_veins_TraCI" alt="" coords="2367,5,2506,31">
 <area shape="rect" id="node20" href="org.car2x.veins.modules.application.default_veins_TraCI.default_veins_TraCI_RSU.html" title="Simple Module default_veins_TraCI_RSU" alt="" coords="2531,5,2705,31">

@@ -3,12 +3,12 @@
 <area shape="rect" id="node3" href="$classveh_dist__rsu.html#ae75c14310c557d1383da4165dc92c05a" title="vehDist_rsu::onData" alt="" coords="286,346,429,373"/>
 <area shape="rect" id="node4" href="$classveh_dist__rsu.html#ab453c23d44f00ae7a3bf5c5bdb766b8a" title="vehDist_rsu::onBeaconStatus" alt="" coords="259,397,455,423"/>
 <area shape="rect" id="node5" href="$classveh_dist__rsu.html#aec5ea45bc741e1b7685d354660b179fb" title="vehDist_rsu::onBeaconMessage" alt="" coords="252,447,463,474"/>
-<area shape="rect" id="node6" href="$class_wave_short_message.html#ac0d2a04942ab72d58695888dc08204fd" title="WaveShortMessage::getRecipient\lAddressString" alt="" coords="784,5,1005,47"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a61f33b5133fcd3d14e3c1a130eb0c566" title="WaveShortMessage::getRecipient\lAddressTemporary" alt="" coords="784,5,1005,47"/>
 <area shape="rect" id="node7" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="819,71,970,98"/>
 <area shape="rect" id="node9" href="$class_base_wave_appl_layer.html#a8aff49c45cf2a87c5cd6daf14df487c7" title="BaseWaveApplLayer::\lsaveMessagesOnFile" alt="" coords="542,592,694,633"/>
 <area shape="rect" id="node31" href="$classveh_dist__rsu.html#a7f25344fb1d8b1aaee227f2957a46f24" title="vehDist_rsu::messagesReceived\lMeasuring" alt="" coords="511,1105,725,1147"/>
 <area shape="rect" id="node8" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="1064,71,1211,98"/>
-<area shape="rect" id="node10" href="$class_wave_short_message.html#ad670b89d9f8db77ee076ef3f04183970" title="WaveShortMessage::getSender\lAddressString" alt="" coords="791,173,998,215"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#a8e7ecffbfe552225952d3c3f68dc3408" title="WaveShortMessage::getSender\lAddressTemporary" alt="" coords="791,173,998,215"/>
 <area shape="rect" id="node11" href="$class_wave_short_message.html#a45f745e1750b2a1b6ca9c31f5e513a89" title="WaveShortMessage::getGlobal\lMessageIdentificaton" alt="" coords="793,1215,996,1256"/>
 <area shape="rect" id="node12" href="$class_wave_short_message.html#a6851e8a2af35b6e55d5bec81057ae51f" title="WaveShortMessage::getWsm\lVersion" alt="" coords="796,239,993,280"/>
 <area shape="rect" id="node13" href="$class_wave_short_message.html#ac3117615566fa0a605f81bbaf53d5921" title="WaveShortMessage::getPriority" alt="" coords="791,305,998,331"/>

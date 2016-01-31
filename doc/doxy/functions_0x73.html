@@ -151,6 +151,9 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>seed
 : <a class="el" href="class_veins_1_1_tra_c_i_scenario_manager_launchd.html#ab917fd44dcdbf873c314ff4a7271b070">Veins::TraCIScenarioManagerLaunchd</a>
 </li>
+<li>selectVehGenerateMessage()
+: <a class="el" href="classveh_dist.html#a8aec16f34d9042cc122749f78a626fc3">vehDist</a>
+</li>
 <li>SEND_BEACON_EVT
 : <a class="el" href="class_advanced_flooding.html#aa3732b04e40210efcaf35daa43e44f98a510c324fda6b69dbf4fca48bca5c0ad6">AdvancedFlooding</a>
 , <a class="el" href="class_flooding.html#a43f71756427b932c7dd3ba3f37bc69d0a8ecd80cd072bf2c0231a0b673988cd89">Flooding</a>
@@ -165,16 +168,11 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>SEND_BEACON_EVT_minicurso
 : <a class="el" href="class_base_wave_appl_layer.html#a4a3db8fff925c8783c21fa9dde853dc5aa203ab3097aeb8698f540a4d0e1b346a">BaseWaveApplLayer</a>
 </li>
-<li>SEND_DATA_EVT
-: <a class="el" href="classveh_dist.html#a7dff86e7464d9302343adefa33d39f46a93e3141f28acc89ca58ca27a3d032791">vehDist</a>
-</li>
 <li>SEND_updatePosVeh
 : <a class="el" href="classmfcv__epidemic.html#ac6b921d282bedbebe84df721ef5439c4ab898eb214e7bbcdcda9bb63ad66d4855">mfcv_epidemic</a>
-, <a class="el" href="classveh_dist.html#a7dff86e7464d9302343adefa33d39f46a91c237bfc25e932fcea025e71fae1a1f">vehDist</a>
 </li>
 <li>sendBeacon()
-: <a class="el" href="classmfcv__epidemic.html#a32c4a05525807aac493f9fab82671e65">mfcv_epidemic</a>
-, <a class="el" href="classmfcv__epidemic__rsu.html#a0b89e2e4a8ead31c82617d0fd6590429">mfcv_epidemic_rsu</a>
+: <a class="el" href="classmfcv__epidemic__rsu.html#a0b89e2e4a8ead31c82617d0fd6590429">mfcv_epidemic_rsu</a>
 , <a class="el" href="classepidemic.html#ac54157f21a4358897f483117855e8c07">epidemic</a>
 , <a class="el" href="classepidemic__rsu.html#a4045ee27460db38accde23708b09dc5f">epidemic_rsu</a>
 , <a class="el" href="classmfcv__epidemic.html#aba42f174643b7a2a3896d321c68998e0">mfcv_epidemic</a>
@@ -183,6 +181,12 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_advanced_flooding.html#abd6b22d9a8948533c0f3353dbe92689b">AdvancedFlooding</a>
 , <a class="el" href="class_flooding.html#adcafd290d54cd1d70158fbf9efb3e2b2">Flooding</a>
 , <a class="el" href="class_base_wave_appl_layer.html#a167ca3ea974c9853e52e8e995c120d3f">BaseWaveApplLayer</a>
+</li>
+<li>sendBeaconMessage()
+: <a class="el" href="classveh_dist.html#ae540b3b1caea2af0f6668a85b449cf16">vehDist</a>
+</li>
+<li>sendBeaconMessageEvt
+: <a class="el" href="classveh_dist.html#ae5da9ac22e9e4a392f193923923d379a">vehDist</a>
 </li>
 <li>sendBeacons
 : <a class="el" href="class_advanced_flooding.html#a1a57ac63dfe560a3b28f874fb71edbed">AdvancedFlooding</a>
@@ -207,12 +211,6 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="class_flooding.html#abfef8f8773cb73a2500f857746df5c85">Flooding</a>
 , <a class="el" href="class_base_wave_appl_layer.html#a5a97137fd055fd8ec70609cdf6d2d673">BaseWaveApplLayer</a>
 </li>
-<li>sendDataEvt
-: <a class="el" href="classveh_dist.html#ac9d0318921d01a2e9809f933bdee6e1f">vehDist</a>
-</li>
-<li>sendDataMessage()
-: <a class="el" href="classveh_dist.html#a5cf66a5f8b135873fa1c5c8bb603df4d">vehDist</a>
-</li>
 <li>sendDelayedDown()
 : <a class="el" href="class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979">BaseApplLayer</a>
 </li>
@@ -229,8 +227,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>senderAddress_var
 : <a class="el" href="class_wave_short_message.html#ae1773ce56c973b9d25783f30ba617e91">WaveShortMessage</a>
 </li>
-<li>senderAddressString_var
-: <a class="el" href="class_wave_short_message.html#a01fd244b2e87da281b50534caf08af46">WaveShortMessage</a>
+<li>senderAddressTemporary_var
+: <a class="el" href="class_wave_short_message.html#a3e138b721c0cbe40f702896fdb121a1b">WaveShortMessage</a>
 </li>
 <li>senderFromGateID
 : <a class="el" href="class_signal.html#a7355857ae0852dfe9e415d475585396b">Signal</a>
@@ -244,11 +242,23 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>senderPos_var
 : <a class="el" href="class_wave_short_message.html#aadbb99ab6b73089e01967ec6d57ad9df">WaveShortMessage</a>
 </li>
-<li>senderPosBack_var
-: <a class="el" href="class_wave_short_message.html#a03aa7406c916896f203fc78458233011">WaveShortMessage</a>
+<li>senderPosPrevious_var
+: <a class="el" href="class_wave_short_message.html#a712bde9de43f14e52902ca354f9d5332">WaveShortMessage</a>
 </li>
 <li>senderSpeed_var
 : <a class="el" href="class_wave_short_message.html#a0b52e3fb5fdd4fe37005673462c7ebaa">WaveShortMessage</a>
+</li>
+<li>SendEvtBeaconMessage
+: <a class="el" href="classveh_dist.html#a7dff86e7464d9302343adefa33d39f46a0d173706230762512ab73f7dd8dc9612">vehDist</a>
+</li>
+<li>SendEvtGenerateBeaconMessage
+: <a class="el" href="classveh_dist.html#a7dff86e7464d9302343adefa33d39f46ac935f844080afa539ebbe34e2dbe600f">vehDist</a>
+</li>
+<li>SendEvtUpdatePositionVeh
+: <a class="el" href="classveh_dist.html#a7dff86e7464d9302343adefa33d39f46a88be0ae1bc232929443146419a36e456">vehDist</a>
+</li>
+<li>sendGenerateBeaconMessageEvt
+: <a class="el" href="classveh_dist.html#aca186bcf844dbe80328bb243e640c4a7">vehDist</a>
 </li>
 <li>sendingStart
 : <a class="el" href="class_signal.html#a56c032041881146f469092037028affb">Signal</a>
@@ -322,6 +332,9 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="class_base_phy_layer.html#a0e9f0ccf4ed1d8377aa3f00b931a3e71">BasePhyLayer</a>
 , <a class="el" href="class_decider_to_phy_interface.html#a3c0676323e402449d0972890c6a14df3">DeciderToPhyInterface</a>
 </li>
+<li>sendUpdatePosisitonVeh
+: <a class="el" href="classveh_dist.html#a3d4bfab77f01995f644b3f58c5d0288a">vehDist</a>
+</li>
 <li>sendWhileParking
 : <a class="el" href="classdefault__veins___tra_c_i.html#ac3b8c6d06d2e30d3dc8dc7ac8903ed03">default_veins_TraCI</a>
 , <a class="el" href="classepidemic.html#a8cc934674c7bc4a2fffc76ecc68c5b3a">epidemic</a>
@@ -331,7 +344,11 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="classveh_dist.html#aed50672cf8c120d3288126bd31eaab06">vehDist</a>
 </li>
 <li>sendWSM()
-: <a class="el" href="classveh_dist.html#a31ec33e94fb239f79197465f872fb000">vehDist</a>
+: <a class="el" href="classminicurso___u_f_p_i___tra_c_i___r_s_u.html#af7ac0956cfb79dd3cb99b1a5c5c7d958">minicurso_UFPI_TraCI_RSU</a>
+, <a class="el" href="classosdp___r_s_u.html#a7d05038c80d089db60a19999c20c7145">osdp_RSU</a>
+, <a class="el" href="classservice__discovery___r_s_u.html#afcd6e3be81b7078ff4034fb1e8489376">service_discovery_RSU</a>
+, <a class="el" href="classtest1__rsu.html#aa1e809680cd284f0e460662eabe208de">test1_rsu</a>
+, <a class="el" href="classveh_dist.html#a31ec33e94fb239f79197465f872fb000">vehDist</a>
 , <a class="el" href="classveh_dist__rsu.html#a641fd3c495950ad00dd8c47ced82a352">vehDist_rsu</a>
 , <a class="el" href="class_advanced_flooding.html#abd9511abc9743fc23d7e9e20f81e4b75">AdvancedFlooding</a>
 , <a class="el" href="classdefault__veins___tra_c_i.html#aa8f2d266ed9ba5f4e76f11aa30c33555">default_veins_TraCI</a>
@@ -345,10 +362,6 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="classmfcv__epidemic.html#a5b8a93c084b5245407c40c217a3f004b">mfcv_epidemic</a>
 , <a class="el" href="classmfcv__epidemic__rsu.html#aae1efadb0ac218eeee99623900a2849b">mfcv_epidemic_rsu</a>
 , <a class="el" href="classminicurso___u_f_p_i___tra_c_i.html#a160678fe2e96ad95f15c43834bcecc47">minicurso_UFPI_TraCI</a>
-, <a class="el" href="classminicurso___u_f_p_i___tra_c_i___r_s_u.html#af7ac0956cfb79dd3cb99b1a5c5c7d958">minicurso_UFPI_TraCI_RSU</a>
-, <a class="el" href="classosdp___r_s_u.html#a7d05038c80d089db60a19999c20c7145">osdp_RSU</a>
-, <a class="el" href="classservice__discovery___r_s_u.html#afcd6e3be81b7078ff4034fb1e8489376">service_discovery_RSU</a>
-, <a class="el" href="classtest1__rsu.html#aa1e809680cd284f0e460662eabe208de">test1_rsu</a>
 </li>
 <li>senseMode_var
 : <a class="el" href="class_channel_sense_request.html#ab24bad0e2c81643a3c8f74695dc2283b">ChannelSenseRequest</a>
@@ -598,8 +611,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>setRecipientAddress()
 : <a class="el" href="class_wave_short_message.html#ad7cbabdfdaf2620d1ad8f7ea6eea9c89">WaveShortMessage</a>
 </li>
-<li>setRecipientAddressString()
-: <a class="el" href="class_wave_short_message.html#a36b1f29fe99809b6609b5e01483cccff">WaveShortMessage</a>
+<li>setRecipientAddressTemporary()
+: <a class="el" href="class_wave_short_message.html#a7d3ff0270139e9e1257c2bc104d20fa7">WaveShortMessage</a>
 </li>
 <li>setRequest()
 : <a class="el" href="struct_base_decider_1_1_c_s_r_info.html#afad3f1e0a61cccc6f6c4fcd2eec42520">BaseDecider::CSRInfo</a>
@@ -625,14 +638,14 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>setSenderAddress()
 : <a class="el" href="class_wave_short_message.html#a088963cd05b8b2d4ba9da752e91c06f8">WaveShortMessage</a>
 </li>
-<li>setSenderAddressString()
-: <a class="el" href="class_wave_short_message.html#a4399563d7757c005340a4a364afdf858">WaveShortMessage</a>
+<li>setSenderAddressTemporary()
+: <a class="el" href="class_wave_short_message.html#a81df92e079e5966e6c968c7ba96c4605">WaveShortMessage</a>
 </li>
 <li>setSenderPos()
 : <a class="el" href="class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3">WaveShortMessage</a>
 </li>
-<li>setSenderPosBack()
-: <a class="el" href="class_wave_short_message.html#a3b8983eb038c9357e2aef4036c482fff">WaveShortMessage</a>
+<li>setSenderPosPrevious()
+: <a class="el" href="class_wave_short_message.html#a4ef8b7847a9ea236f3fde74a4bce0c65">WaveShortMessage</a>
 </li>
 <li>setSenderSpeed()
 : <a class="el" href="class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf">WaveShortMessage</a>
@@ -656,9 +669,9 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_wave_short_message.html#a89a1fd291250ae9c6e16b104d3a76e8e">WaveShortMessage</a>
 </li>
 <li>setServices()
-: <a class="el" href="classosdp___r_s_u.html#a3f795d6e7ab5e0cf2588465e35be292e">osdp_RSU</a>
-, <a class="el" href="classservice__discovery___r_s_u.html#a479d921465e079d51118a95f7e6ca76a">service_discovery_RSU</a>
+: <a class="el" href="classservice__discovery___r_s_u.html#a479d921465e079d51118a95f7e6ca76a">service_discovery_RSU</a>
 , <a class="el" href="classtest1__rsu.html#aa74bfba1cac54621985869e9da05e9cf">test1_rsu</a>
+, <a class="el" href="classosdp___r_s_u.html#a3f795d6e7ab5e0cf2588465e35be292e">osdp_RSU</a>
 </li>
 <li>setShape()
 : <a class="el" href="class_veins_1_1_obstacle.html#a805aed4d3b239e0163f06aa70bfb0b73">Veins::Obstacle</a>
@@ -671,8 +684,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_wave_short_message.html#aefc55f16ac16be615b58ecb0b724ea87">WaveShortMessage</a>
 </li>
 <li>setSpeed()
-: <a class="el" href="class_veins_1_1_tra_c_i_command_interface.html#a2217dba9af605fa6c8a4ed3cad2ef8c8">Veins::TraCICommandInterface</a>
-, <a class="el" href="class_move.html#af80f74d5fc42ec7fcedf9940c9d01655">Move</a>
+: <a class="el" href="class_move.html#af80f74d5fc42ec7fcedf9940c9d01655">Move</a>
+, <a class="el" href="class_veins_1_1_tra_c_i_command_interface.html#a2217dba9af605fa6c8a4ed3cad2ef8c8">Veins::TraCICommandInterface</a>
 </li>
 <li>setSpeedMode()
 : <a class="el" href="class_veins_1_1_tra_c_i_command_interface.html#afc80a994bf28aed81292800c59ea8766">Veins::TraCICommandInterface</a>
@@ -682,7 +695,7 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="class_flooding_message.html#a7c89f2f8bd49a3ecc8ac5418b495ad71">FloodingMessage</a>
 </li>
 <li>setStart()
-: <a class="el" href="class_move.html#ab8205e35a3bb42f18da9a3ff7df19c7c">Move</a>
+: <a class="el" href="class_move.html#a385a1d6229f2490fdbe26f9266f29188">Move</a>
 </li>
 <li>setStartPos()
 : <a class="el" href="class_border_msg.html#afc208cb998b157e7fbe712401c5f686a">BorderMsg</a>
@@ -723,40 +736,40 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_signal.html#ad8c5494d0f7bd564bf14dc0c90f9a361">Signal</a>
 </li>
 <li>setType()
-: <a class="el" href="class_draw_amount.html#a7fffdcf0b57e6b1609f16351e9d4dad0">DrawAmount</a>
-, <a class="el" href="class_veins_1_1_air_frame.html#a0fb208736c55183a306f9f446798a683">Veins::AirFrame</a>
+: <a class="el" href="class_veins_1_1_air_frame.html#a0fb208736c55183a306f9f446798a683">Veins::AirFrame</a>
+, <a class="el" href="class_draw_amount.html#a7fffdcf0b57e6b1609f16351e9d4dad0">DrawAmount</a>
 </li>
 <li>setUnderSensitivity()
 : <a class="el" href="class_air_frame11p.html#ad9c2571b011c2b081ad1689218f0d0ac">AirFrame11p</a>
 </li>
 <li>setUpControlInfo()
-: <a class="el" href="class_base_mac_layer.html#a7ff1f42ff72aee9670a012ebffb54881">BaseMacLayer</a>
-, <a class="el" href="class_base_phy_layer.html#a39b6850ec657a0c898ccc59ca1ba9b4b">BasePhyLayer</a>
+: <a class="el" href="class_base_phy_layer.html#a39b6850ec657a0c898ccc59ca1ba9b4b">BasePhyLayer</a>
+, <a class="el" href="class_base_mac_layer.html#a7ff1f42ff72aee9670a012ebffb54881">BaseMacLayer</a>
 </li>
 <li>setValue()
-: <a class="el" href="class_interpolateable_iterator.html#ac9ff6164dadb0782ba712d238fc5fa86">InterpolateableIterator&lt; TInterpolator &gt;</a>
-, <a class="el" href="class_filled_up_mapping_iterator.html#acbc14ef74831e90fbb6ea7c31264667d">FilledUpMappingIterator</a>
-, <a class="el" href="class_time_mapping.html#a453ce64062fa7afd7398735a9cf499a6">TimeMapping&lt; Interpolator &gt;</a>
+: <a class="el" href="class_filled_up_mapping_iterator.html#acbc14ef74831e90fbb6ea7c31264667d">FilledUpMappingIterator</a>
+, <a class="el" href="class_delayed_mapping.html#a27c3282471353c1e6def96b4e1604c56">DelayedMapping</a>
 , <a class="el" href="class_mapping_iterator.html#a68c80b10de257d7cfd68f49bfd6a2cbe">MappingIterator</a>
 , <a class="el" href="class_draw_amount.html#a8e411a80838eea09c6b38bc232e902ff">DrawAmount</a>
 , <a class="el" href="class_filtered_mapping_iterator.html#ac13e829a51e0065ab435f51af0e0eb9e">FilteredMappingIterator</a>
 , <a class="el" href="class_linear_intpl_mapping.html#a8d7ca5d97f319d6f971564f5fd1dc94e">LinearIntplMapping</a>
+, <a class="el" href="class_constant_simple_const_mapping.html#a63d0eab4f014a7d8094544c0dca5d7f7">ConstantSimpleConstMapping</a>
+, <a class="el" href="class_const_mapping_iterator_wrapper.html#ab2f4649d596e15816b2503c6fd092b92">ConstMappingIteratorWrapper</a>
 , <a class="el" href="class_multi_dim_mapping_iterator.html#af1b499c6d24b81cee68e09ad224087c9">MultiDimMappingIterator&lt; Interpolator &gt;</a>
 , <a class="el" href="class_multi_dim_mapping.html#a7b50181a1d5e38902c6468bc739f6aa7">MultiDimMapping&lt; Interpolator &gt;</a>
 , <a class="el" href="class_radio_state_analogue_model_1_1_list_entry.html#aa15158ad239ac703da7d93c77ac35e68">RadioStateAnalogueModel::ListEntry</a>
-, <a class="el" href="class_mapping.html#ab8906dfac661d5c6a0a35cf1744f06ed">Mapping</a>
-, <a class="el" href="class_constant_simple_const_mapping.html#a63d0eab4f014a7d8094544c0dca5d7f7">ConstantSimpleConstMapping</a>
-, <a class="el" href="class_const_mapping_iterator_wrapper.html#ab2f4649d596e15816b2503c6fd092b92">ConstMappingIteratorWrapper</a>
+, <a class="el" href="class_time_mapping.html#a453ce64062fa7afd7398735a9cf499a6">TimeMapping&lt; Interpolator &gt;</a>
 , <a class="el" href="class_time_mapping_iterator.html#ac4eef2a5a0b2c899e270048c86d6ec66">TimeMappingIterator&lt; Interpolator &gt;</a>
-, <a class="el" href="class_delayed_mapping.html#a27c3282471353c1e6def96b4e1604c56">DelayedMapping</a>
+, <a class="el" href="class_mapping.html#ab8906dfac661d5c6a0a35cf1744f06ed">Mapping</a>
+, <a class="el" href="class_interpolateable_iterator.html#ac9ff6164dadb0782ba712d238fc5fa86">InterpolateableIterator&lt; TInterpolator &gt;</a>
 , <a class="el" href="class_const_mapping_wrapper.html#ac5deda52edead17377c6c01a018baf62">ConstMappingWrapper</a>
 , <a class="el" href="class_linear_intpl_mapping_iterator.html#a7d03bb45b115f011b4a1175f67506211">LinearIntplMappingIterator</a>
 </li>
 <li>setVehicleParking()
 : <a class="el" href="class_veins_1_1_tra_c_i_command_interface.html#a0e7ff21d0f70a5e9bcf19c1cb2911bbb">Veins::TraCICommandInterface</a>
 </li>
-<li>setVehID()
-: <a class="el" href="classveh_dist.html#a3d93ae04ddc86f15da44d9de766dc263">vehDist</a>
+<li>setVehNumber()
+: <a class="el" href="classveh_dist.html#a4c14abbfc7843e7e1518b7b585caa9dd">vehDist</a>
 </li>
 <li>setWasTransmitting()
 : <a class="el" href="class_air_frame11p.html#aa00aa01ba7302cd1078a5a51f6bc5cb5">AirFrame11p</a>
@@ -779,14 +792,11 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>sign()
 : <a class="el" href="class_f_w_math.html#aa9f55c74f3cb5eb99d5ff3d00ca3d281">FWMath</a>
 </li>
-<li>Signal()
-: <a class="el" href="class_signal.html#a079cc6bee7380f5744001d5f26505b2c">Signal</a>
-</li>
 <li>signal
 : <a class="el" href="class_mac_to_phy_control_info.html#a05a564d743e50aa370ee796ee932c8a6">MacToPhyControlInfo</a>
 </li>
 <li>Signal()
-: <a class="el" href="class_signal.html#a0da19733584d5de330474ee32b6bc186">Signal</a>
+: <a class="el" href="class_signal.html#a079cc6bee7380f5744001d5f26505b2c">Signal</a>
 </li>
 <li>signal_var
 : <a class="el" href="class_veins_1_1_air_frame.html#ab1716ce0e24eaa8eb4ca13e7985215e0">Veins::AirFrame</a>
@@ -809,7 +819,7 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_decider80211p.html#a11184426be32a5830853612faf0e917d">Decider80211p</a>
 </li>
 <li>SimpleConstMapping()
-: <a class="el" href="class_simple_const_mapping.html#a2e89eb287b66b66bec570afa716a7e78">SimpleConstMapping</a>
+: <a class="el" href="class_simple_const_mapping.html#a8ad8dfd538dabda7d637819a2f34a1b5">SimpleConstMapping</a>
 </li>
 <li>SimpleConstMappingIterator()
 : <a class="el" href="class_simple_const_mapping_iterator.html#aef703d1c7304041f2594886e902134ed">SimpleConstMappingIterator</a>
@@ -830,16 +840,14 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>size
 : <a class="el" href="class_base_connection_manager_1_1_coord_set.html#a81adb787e364efa97276766eb19fe644">BaseConnectionManager::CoordSet</a>
 </li>
-<li>sleep
-: <a class="el" href="classservice__discovery___r_s_u.html#a5e4c80e515282ebfa815e96156620256">service_discovery_RSU</a>
-, <a class="el" href="classtest1__rsu.html#ad3ce73202235107bef88b7b64bf75492">test1_rsu</a>
-</li>
 <li>SLEEP
 : <a class="el" href="class_host_state.html#a5002302e0f07bbd982c6e5d65eaa9c3ca7270c313de38886faaab80c7dd9b9864">HostState</a>
 , <a class="el" href="class_veins_1_1_radio.html#afab1f516f9defc9c79e022c4f0d13267af7a031c37e397e9cb27fa719a0602f16">Veins::Radio</a>
 </li>
 <li>sleep
 : <a class="el" href="classosdp___r_s_u.html#aa6686cbac3477886d59b8e7862ccc779">osdp_RSU</a>
+, <a class="el" href="classtest1__rsu.html#ad3ce73202235107bef88b7b64bf75492">test1_rsu</a>
+, <a class="el" href="classservice__discovery___r_s_u.html#a5e4c80e515282ebfa815e96156620256">service_discovery_RSU</a>
 </li>
 <li>slowDown()
 : <a class="el" href="class_veins_1_1_tra_c_i_command_interface.html#a09e1fc2850dc6eaebc14b12afee971e8">Veins::TraCICommandInterface</a>
@@ -848,8 +856,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_decider_result80211.html#a1fe1171bdbc17bfca48bcf700472375d">DeciderResult80211</a>
 </li>
 <li>snrThreshold
-: <a class="el" href="class_decider80211p.html#aab3907b37bd0779d82550e4016925a20">Decider80211p</a>
-, <a class="el" href="class_s_n_r_threshold_decider.html#abdb6b19743460a19e900c4b6d38c483b">SNRThresholdDecider</a>
+: <a class="el" href="class_s_n_r_threshold_decider.html#abdb6b19743460a19e900c4b6d38c483b">SNRThresholdDecider</a>
+, <a class="el" href="class_decider80211p.html#aab3907b37bd0779d82550e4016925a20">Decider80211p</a>
 </li>
 <li>SNRThresholdDecider()
 : <a class="el" href="class_s_n_r_threshold_decider.html#a5de72610fa410544fd6ff678b6f72f56">SNRThresholdDecider</a>
@@ -871,8 +879,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_base_world_utility.html#a84d040f815027b3098451b02733ac63d">BaseWorldUtility</a>
 </li>
 <li>speedsList
-: <a class="el" href="classmfcv.html#a72ad24674d245b3a8f738dafa13fd60d">mfcv</a>
-, <a class="el" href="classminicurso___u_f_p_i___tra_c_i.html#a3594ce025253add489776a680089bb4c">minicurso_UFPI_TraCI</a>
+: <a class="el" href="classminicurso___u_f_p_i___tra_c_i.html#a3594ce025253add489776a680089bb4c">minicurso_UFPI_TraCI</a>
+, <a class="el" href="classmfcv.html#a72ad24674d245b3a8f738dafa13fd60d">mfcv</a>
 </li>
 <li>sqrdist()
 : <a class="el" href="class_coord.html#a9245e5acb794d95128e191e6faef99d4">Coord</a>
@@ -922,8 +930,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="class_move.html#acffecfba78dc80213910498f1afd7cb6">Move</a>
 </li>
 <li>state
-: <a class="el" href="class_veins_1_1_radio.html#aa9faccaa07ecb115e054d56a6f6e27f4">Veins::Radio</a>
-, <a class="el" href="class_host_state.html#a891b154c7213fb04e5f3d42fdc22b0d3">HostState</a>
+: <a class="el" href="class_host_state.html#a891b154c7213fb04e5f3d42fdc22b0d3">HostState</a>
+, <a class="el" href="class_veins_1_1_radio.html#aa9faccaa07ecb115e054d56a6f6e27f4">Veins::Radio</a>
 </li>
 <li>state_var
 : <a class="el" href="class_veins_1_1_air_frame.html#a78f69395e9da4bba43803fb40a8175b4">Veins::AirFrame</a>
@@ -942,8 +950,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="class_mac1609__4.html#a590a7ab360ba581bdefaf7d03918a1d0">Mac1609_4</a>
 </li>
 <li>statsNumInternalContention
-: <a class="el" href="class_mac1609__4.html#aea096de5e89047c661f55e5b5b419ef8">Mac1609_4</a>
-, <a class="el" href="class_mac1609__4_1_1_e_d_c_a.html#a856a0c0c2659e1e0019cc485950bc793">Mac1609_4::EDCA</a>
+: <a class="el" href="class_mac1609__4_1_1_e_d_c_a.html#a856a0c0c2659e1e0019cc485950bc793">Mac1609_4::EDCA</a>
+, <a class="el" href="class_mac1609__4.html#aea096de5e89047c661f55e5b5b419ef8">Mac1609_4</a>
 </li>
 <li>statsNumTooLittleTime
 : <a class="el" href="class_mac1609__4.html#a2fd24f63561e5537924afca373a32fd2">Mac1609_4</a>
@@ -995,18 +1003,21 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_veins_1_1_tra_c_i_mobility_1_1_statistics.html#ac5b49b1c5689826d270e69037a913a29">Veins::TraCIMobility::Statistics</a>
 </li>
 <li>storage_type
-: <a class="el" href="class_interpolator_base.html#a5425b9d0d46fc00e73bfbfd5dac2235b">InterpolatorBase&lt; _ContainerType &gt;</a>
+: <a class="el" href="class_linear_3_01std_1_1map_3_01_argument_1_1mapped__type_00_01_mapping_01_5_01_4_01_4.html#a4040145fe6161ede2994bd6762a1d533">Linear&lt; std::map&lt; Argument::mapped_type, Mapping * &gt; &gt;</a>
 , <a class="el" href="class_linear.html#ae4aff7c07b3e286d4231b3528e20f534">Linear&lt; _ContainerType &gt;</a>
-, <a class="el" href="class_linear_3_01std_1_1map_3_01_argument_1_1mapped__type_00_01_mapping_01_5_01_4_01_4.html#a4040145fe6161ede2994bd6762a1d533">Linear&lt; std::map&lt; Argument::mapped_type, Mapping * &gt; &gt;</a>
-, <a class="el" href="class_nearest.html#a9739a423107cd104922bb74e2d385f93">Nearest&lt; _ContainerType &gt;</a>
 , <a class="el" href="class_next_smaller.html#a8c5692345e6644703fe7269de2dab1f4">NextSmaller&lt; _ContainerType &gt;</a>
+, <a class="el" href="class_interpolator_base.html#a5425b9d0d46fc00e73bfbfd5dac2235b">InterpolatorBase&lt; _ContainerType &gt;</a>
+, <a class="el" href="class_nearest.html#a9739a423107cd104922bb74e2d385f93">Nearest&lt; _ContainerType &gt;</a>
 </li>
 <li>store_serv
-: <a class="el" href="classservice__discovery.html#a4332c5e62985e8ebb157aaa482977afd">service_discovery</a>
-, <a class="el" href="classtest1.html#ac47b3cbea6b96388bce22ec408035b53">test1</a>
+: <a class="el" href="classtest1.html#ac47b3cbea6b96388bce22ec408035b53">test1</a>
+, <a class="el" href="classservice__discovery.html#a4332c5e62985e8ebb157aaa482977afd">service_discovery</a>
 </li>
 <li>str()
 : <a class="el" href="class_veins_1_1_tra_c_i_buffer.html#ae0833eeb81079e14eed3f13d0ae5d2b3">Veins::TraCIBuffer</a>
+</li>
+<li>stringTmp
+: <a class="el" href="class_base_wave_appl_layer.html#a8796da98156426dd8bd03e52532ca673">BaseWaveApplLayer</a>
 </li>
 <li>subIterator
 : <a class="el" href="class_multi_dim_mapping_iterator.html#ac2c7a223c07841c72d0ff860b0513e06">MultiDimMappingIterator&lt; Interpolator &gt;</a>
@@ -1021,7 +1032,7 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_veins_1_1_tra_c_i_scenario_manager.html#a999d945fca20d45532a24b492430d742">Veins::TraCIScenarioManager</a>
 </li>
 <li>subtract()
-: <a class="el" href="class_mapping_utils.html#a37d38fd0a9593e6f055ac8d90758965e">MappingUtils</a>
+: <a class="el" href="class_mapping_utils.html#a217539e608efcc8ccf7766c9b9733a17">MappingUtils</a>
 </li>
 <li>summaryVector_var
 : <a class="el" href="class_wave_short_message.html#ac3b379c273f11f3fc075d25bd4c33a87">WaveShortMessage</a>
@@ -1044,7 +1055,7 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Jan 2 2016 01:31:09 for Veins Framework by
+    <li class="footer">Generated on Sun Jan 31 2016 15:07:37 for Veins Framework by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

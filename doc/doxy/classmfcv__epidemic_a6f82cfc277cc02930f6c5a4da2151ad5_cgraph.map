@@ -2,7 +2,7 @@
 <area shape="rect" id="node2" href="$class_wave_short_message.html#a47e866d383c3454e186dbe9c869fbc38" title="WaveShortMessage::getSenderPos" alt="" coords="229,5,460,32"/>
 <area shape="rect" id="node3" href="$class_coord.html#ab6a7bfcc5c55e5d8edbc7c0cb5a11626" title="Returns the distance to Coord &#39;a&#39;. " alt="" coords="287,56,402,83"/>
 <area shape="rect" id="node5" href="$class_wave_short_message.html#a2c0b693fa05728f6712cf22d0da2a3b2" title="WaveShortMessage::getHeading" alt="" coords="237,107,452,133"/>
-<area shape="rect" id="node6" href="$class_wave_short_message.html#a30be1e5799ca9cc5711a8ac04b550aa4" title="WaveShortMessage::getSender\lPosBack" alt="" coords="241,158,448,199"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a5b6c7b86347ce354fb7cf05434274c1b" title="WaveShortMessage::getSender\lPosPrevious" alt="" coords="241,158,448,199"/>
 <area shape="rect" id="node7" href="$class_wave_short_message.html#aa03397b0fa8625852af7babc1609d35d" title="WaveShortMessage::getTargetPos" alt="" coords="231,224,458,251"/>
 <area shape="rect" id="node8" href="$class_wave_short_message.html#a71a1969325dc1e97be41c1163f31af3c" title="WaveShortMessage::getSender\lAddress" alt="" coords="241,275,448,317"/>
 <area shape="rect" id="node4" href="$class_coord.html#acc536671c07e1af44e6ad9676a6c39ad" title="Returns the length of this Coords position vector. " alt="" coords="508,56,608,83"/>

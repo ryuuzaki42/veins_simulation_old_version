@@ -184,23 +184,6 @@ unsigned int</i>
 </td>
 </tr>
 <tr class="local">
-   <td>senderAddressString</td>
-   <td>
-      <i>
-string</i>
-   </td>
-   <td></td>
-</tr>
-<tr class="local">
-   <td>recipientAddressString</td>
-   <td>
-      <i>
-string</i>
-   </td>
-   <td>
-</td>
-</tr>
-<tr class="local">
    <td>source</td>
    <td>
       <i>
@@ -303,14 +286,31 @@ double</i>
 </td>
 </tr>
 <tr class="local">
+   <td>senderAddressTemporary</td>
+   <td>
+      <i>
+string</i>
+   </td>
+   <td>
+<p>MFCV</p>
+</td>
+</tr>
+<tr class="local">
+   <td>recipientAddressTemporary</td>
+   <td>
+      <i>
+string</i>
+   </td>
+   <td></td>
+</tr>
+<tr class="local">
    <td>category</td>
    <td>
       <i>
 unsigned short</i>
    </td>
    <td>
-<p>MFCV
-Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete</p>
+<p>Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete</p>
 </td>
 </tr>
 <tr class="local">
@@ -330,11 +330,11 @@ unsigned short</i>
 Coord</i>
    </td>
    <td>
-<p>targetPost</p>
+<p>targetPosition</p>
 </td>
 </tr>
 <tr class="local">
-   <td>senderPosBack</td>
+   <td>senderPosPrevious</td>
    <td>
       <i>
 Coord</i>
@@ -378,9 +378,6 @@ Coord</i>
     </span><span style="color: #808080; font-style: italic; ">// Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">int</span><span style="color: #000000; "> </span><span style="color: #000000; ">recipientAddress</span><span style="color: #000000; "> = </span><span style="color: #008000; ">268435455</span><span style="color: #000000; ">;
 
-    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderAddressString</span><span style="color: #000000; ">;
-    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">recipientAddressString</span><span style="color: #000000; ">;
-
     </span><span style="color: #808080; font-style: italic; ">// Add for Epidemic
 </span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Set the source which generate the message, e.g., car[0], car[1] etc.
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">source</span><span style="color: #000000; ">;
@@ -406,7 +403,9 @@ Coord</i>
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">double</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderSpeed</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">.</span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
 
     </span><span style="color: #808080; font-style: italic; ">// MFCV
-</span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">// Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
+</span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderAddressTemporary</span><span style="color: #000000; ">;
+    </span><span style="color: #000080; font-weight: bold; ">string</span><span style="color: #000000; "> </span><span style="color: #000000; ">recipientAddressTemporary</span><span style="color: #000000; ">;
+    </span><span style="color: #808080; font-style: italic; ">// Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">short</span><span style="color: #000000; "> </span><span style="color: #000000; ">category</span><span style="color: #000000; "> = </span><span style="color: #008000; ">0</span><span style="color: #000000; ">;
     </span><span style="color: #808080; font-style: italic; ">// Path history of the vehicle, calculated from time to time
 </span><span style="color: #000000; ">    </span><span style="color: #808080; font-style: italic; ">//string pathHistory;
@@ -416,9 +415,9 @@ Coord</i>
 </span><span style="color: #000000; ">
     </span><span style="color: #808080; font-style: italic; ">// test Jonh
 </span><span style="color: #000000; ">    </span><span style="color: #000080; font-weight: bold; ">unsigned</span><span style="color: #000000; "> </span><span style="color: #000080; font-weight: bold; ">short</span><span style="color: #000000; "> </span><span style="color: #000000; ">heading</span><span style="color: #000000; ">;
-    </span><span style="color: #808080; font-style: italic; ">// targetPost
+    </span><span style="color: #808080; font-style: italic; ">// targetPosition
 </span><span style="color: #000000; ">    </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">TargetPos</span><span style="color: #000000; ">;
-    </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderPosBack</span><span style="color: #000000; ">;
+    </span><span style="color: #000000; ">Coord</span><span style="color: #000000; "> </span><span style="color: #000000; ">senderPosPrevious</span><span style="color: #000000; ">;
 }
 </span></pre>
    <hr><p class="footer"><a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top"><img src="by-sa.png"></a> This documentation is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_top">Creative Commons license</a></p>

@@ -206,7 +206,7 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    </td>
 </tr>
 <tr class="inherited">
-   <td>target_x</td>
+   <td>vehBeaconMessageTarget_x</td>
    <td>
       <i>int</i>
    </td>
@@ -216,7 +216,7 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    </td>
 </tr>
 <tr class="inherited">
-   <td>target_y</td>
+   <td>vehBeaconMessageTarget_y</td>
    <td>
       <i>int</i>
    </td>
@@ -225,7 +225,7 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    </td>
 </tr>
 <tr class="inherited">
-   <td>hopLimit</td>
+   <td>beaconMessageHopLimit</td>
    <td>
       <i>int</i>
    </td>
@@ -235,7 +235,7 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    </td>
 </tr>
 <tr class="inherited">
-   <td>timeUpdatePosition</td>
+   <td>vehTimeUpdatePosition</td>
    <td>
       <i>int</i>
    </td>
@@ -245,23 +245,103 @@ Unresolved types are missing from the diagram. Click <a href="full-ned-inheritan
    </td>
 </tr>
 <tr class="inherited">
-   <td>repeatNumber</td>
-   <td>
-      <i>int</i>
-   </td>
-   <td>0</td>
-   <td>
-<p>number of execution (${repetition})</p>
-   </td>
-</tr>
-<tr class="inherited">
-   <td>dataInterval</td>
+   <td>beaconMessageInterval</td>
    <td>
       <i>int</i>
    </td>
    <td>1s</td>
    <td>
 <p>interval to try send message(s)</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>timeGenerateBeaconMessage</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>30s</td>
+   <td>
+<p>time for generate messages</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>ttlBeaconMessage_one</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>60s</td>
+   <td>   </td>
+</tr>
+<tr class="inherited">
+   <td>ttlBeaconMessage_two</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>60s</td>
+   <td>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>countGenerateBeaconMessage_one</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+<p>count messages generate by time</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>countGenerateBeaconMessage_two</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>experimentNumber</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+<p>Experiment number to use _one or _two variables</p>
+   </td>
+</tr>
+<tr class="inherited">
+   <td>ttlBeaconStatus</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>3s</td>
+   <td>   </td>
+</tr>
+<tr class="inherited">
+   <td>beaconMessageBufferSize</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>50</td>
+   <td>   </td>
+</tr>
+<tr class="inherited">
+   <td>beaconStatusBufferSize</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>50</td>
+   <td>   </td>
+</tr>
+<tr class="inherited">
+   <td>numVehicles</td>
+   <td>
+      <i>int</i>
+   </td>
+   <td>0</td>
+   <td>
+<p>number of vehicles</p>
    </td>
 </tr>
 <tr class="local">

@@ -1,7 +1,7 @@
 <map id="WaveShortMessage::setGlobalMessageIdentificaton" name="WaveShortMessage::setGlobalMessageIdentificaton">
-<area shape="rect" id="node2" href="$classveh_dist.html#ad39be929c20bd08497e8ac3999804f95" title="vehDist::generateMessage" alt="" coords="277,5,456,32"/>
-<area shape="rect" id="node5" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="274,56,459,83"/>
-<area shape="rect" id="node6" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="256,107,477,133"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#aabbffd5442eea703a83378de71e160b8" title="vehDist::vehSendData" alt="" coords="525,5,680,32"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#aab9cfe4130f8d89c07cbd33052749cbd" title="Initialization of the module and some variables. " alt="" coords="728,5,851,32"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#aaf692c51fcce2fb0b4055e11eacc4b0d" title="vehDist::generateBeaconMessage" alt="" coords="256,13,479,39"/>
+<area shape="rect" id="node5" href="$classepidemic.html#ad6a045ae2994f7bffad8d9c97f9126fe" title="epidemic::generateMessage" alt="" coords="275,63,460,90"/>
+<area shape="rect" id="node6" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="257,114,478,141"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#adfffed3e039c936825ab963b964f1193" title="vehDist::vehGenerateBeacon\lMessageAfterBegin" alt="" coords="527,5,720,47"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="768,13,929,39"/>
 </map>

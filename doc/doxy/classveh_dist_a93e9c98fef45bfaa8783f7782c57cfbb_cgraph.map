@@ -1,24 +1,24 @@
 <map id="vehDist::sendMessageNeighborsTarget" name="vehDist::sendMessageNeighborsTarget">
-<area shape="rect" id="node2" href="$classveh_dist.html#a31ec33e94fb239f79197465f872fb000" title="vehDist::sendWSM" alt="" coords="300,5,436,32"/>
-<area shape="rect" id="node5" href="$classveh_dist.html#ac744d5b0d7e5a45033e6bc5528295980" title="vehDist::updateMessageWSM" alt="" coords="268,432,468,459"/>
-<area shape="rect" id="node23" href="$classveh_dist.html#a72f1466874af1a6b3c6aca95c9505a48" title="vehDist::colorCarryMessage" alt="" coords="274,56,462,83"/>
-<area shape="rect" id="node3" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="517,5,745,32"/>
-<area shape="rect" id="node4" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="795,5,964,32"/>
-<area shape="rect" id="node6" href="$class_wave_short_message.html#a4399563d7757c005340a4a364afdf858" title="WaveShortMessage::setSender\lAddressString" alt="" coords="528,107,735,149"/>
-<area shape="rect" id="node7" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="556,56,707,83"/>
-<area shape="rect" id="node9" href="$class_wave_short_message.html#a36b1f29fe99809b6609b5e01483cccff" title="WaveShortMessage::setRecipient\lAddressString" alt="" coords="521,173,742,214"/>
-<area shape="rect" id="node10" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="516,239,747,265"/>
-<area shape="rect" id="node11" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="527,289,735,316"/>
-<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_mobility.html#afd3a0636a9a5bbe834f71a59108eeda4" title="Veins::TraCIMobility\l::getRoadId" alt="" coords="561,341,702,382"/>
-<area shape="rect" id="node13" href="$class_wave_short_message.html#a4acb5b6972c734e5aa0194364943463f" title="WaveShortMessage::setCategory" alt="" coords="522,407,741,433"/>
-<area shape="rect" id="node14" href="$classveh_dist.html#a4c542def7b31445ecb0f0da2b33764ee" title="vehDist::getCategory" alt="" coords="558,457,705,484"/>
-<area shape="rect" id="node15" href="$class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf" title="WaveShortMessage::setSender\lSpeed" alt="" coords="528,509,735,550"/>
-<area shape="rect" id="node16" href="$class_veins_1_1_tra_c_i_mobility.html#a0c0e1114d451023eeb819c443f81bb89" title="Veins::TraCIMobility\l::getSpeed" alt="" coords="561,574,702,615"/>
-<area shape="rect" id="node17" href="$class_wave_short_message.html#a3b8983eb038c9357e2aef4036c482fff" title="WaveShortMessage::setSender\lPosBack" alt="" coords="528,639,735,681"/>
-<area shape="rect" id="node18" href="$class_wave_short_message.html#a2b4f4892ec4142abbcff25c335271050" title="WaveShortMessage::setHeading" alt="" coords="524,705,739,732"/>
-<area shape="rect" id="node19" href="$classveh_dist.html#ad5fb330662e4372d63bb5699bfe8064a" title="vehDist::getHeading4" alt="" coords="557,756,705,783"/>
-<area shape="rect" id="node21" href="$class_wave_short_message.html#ae8f272dda7636725afecbf45a2ae8c0f" title="WaveShortMessage::setHop\lCount" alt="" coords="536,807,727,849"/>
-<area shape="rect" id="node22" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="536,873,727,914"/>
-<area shape="rect" id="node8" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="806,56,953,83"/>
-<area shape="rect" id="node20" href="$class_veins_1_1_tra_c_i_mobility.html#a6b9658651943c7ed6dc4825ccad654c5" title="returns angle in rads, 0 being east, with &#45;M_PI &lt;= angle &lt; M_PI. " alt="" coords="809,749,950,790"/>
+<area shape="rect" id="node2" href="$classveh_dist.html#a31ec33e94fb239f79197465f872fb000" title="vehDist::sendWSM" alt="" coords="322,5,458,32"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#a749faa340dea3a819e52fd328d0cf17e" title="vehDist::updateBeaconMessageWSM" alt="" coords="268,432,512,459"/>
+<area shape="rect" id="node23" href="$classveh_dist.html#a72f1466874af1a6b3c6aca95c9505a48" title="vehDist::colorCarryMessage" alt="" coords="296,56,484,83"/>
+<area shape="rect" id="node3" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="561,5,789,32"/>
+<area shape="rect" id="node4" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="839,5,1008,32"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a81df92e079e5966e6c968c7ba96c4605" title="WaveShortMessage::setSender\lAddressTemporary" alt="" coords="572,107,779,149"/>
+<area shape="rect" id="node7" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="600,56,751,83"/>
+<area shape="rect" id="node9" href="$class_wave_short_message.html#a7d3ff0270139e9e1257c2bc104d20fa7" title="WaveShortMessage::setRecipient\lAddressTemporary" alt="" coords="565,173,786,214"/>
+<area shape="rect" id="node10" href="$class_wave_short_message.html#a66e2d0a9a7bb00d63cf79837fe0de6a3" title="WaveShortMessage::setSenderPos" alt="" coords="560,239,791,265"/>
+<area shape="rect" id="node11" href="$class_wave_short_message.html#a48b6d8b5e1e6bbc9cc45524bc5abef41" title="WaveShortMessage::setRoadId" alt="" coords="571,289,779,316"/>
+<area shape="rect" id="node12" href="$class_veins_1_1_tra_c_i_mobility.html#afd3a0636a9a5bbe834f71a59108eeda4" title="Veins::TraCIMobility\l::getRoadId" alt="" coords="605,341,746,382"/>
+<area shape="rect" id="node13" href="$class_wave_short_message.html#a4acb5b6972c734e5aa0194364943463f" title="WaveShortMessage::setCategory" alt="" coords="566,407,785,433"/>
+<area shape="rect" id="node14" href="$classveh_dist.html#a5a9c152bd58b918569d07e1f42421dac" title="vehDist::getVehCategory" alt="" coords="591,457,760,484"/>
+<area shape="rect" id="node15" href="$class_wave_short_message.html#a1fc976c2340d3c7b10e3f560efb9dbbf" title="WaveShortMessage::setSender\lSpeed" alt="" coords="572,509,779,550"/>
+<area shape="rect" id="node16" href="$class_veins_1_1_tra_c_i_mobility.html#a0c0e1114d451023eeb819c443f81bb89" title="Veins::TraCIMobility\l::getSpeed" alt="" coords="605,574,746,615"/>
+<area shape="rect" id="node17" href="$class_wave_short_message.html#a4ef8b7847a9ea236f3fde74a4bce0c65" title="WaveShortMessage::setSender\lPosPrevious" alt="" coords="572,639,779,681"/>
+<area shape="rect" id="node18" href="$class_wave_short_message.html#a2b4f4892ec4142abbcff25c335271050" title="WaveShortMessage::setHeading" alt="" coords="568,705,783,732"/>
+<area shape="rect" id="node19" href="$classveh_dist.html#a493923f8028dee7eee2485bd37523111" title="vehDist::getVehHeading4" alt="" coords="590,756,761,783"/>
+<area shape="rect" id="node21" href="$class_wave_short_message.html#ae8f272dda7636725afecbf45a2ae8c0f" title="WaveShortMessage::setHop\lCount" alt="" coords="580,807,771,849"/>
+<area shape="rect" id="node22" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="580,873,771,914"/>
+<area shape="rect" id="node8" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="850,56,997,83"/>
+<area shape="rect" id="node20" href="$class_veins_1_1_tra_c_i_mobility.html#a6b9658651943c7ed6dc4825ccad654c5" title="returns angle in rads, 0 being east, with &#45;M_PI &lt;= angle &lt; M_PI. " alt="" coords="853,749,994,790"/>
 </map>

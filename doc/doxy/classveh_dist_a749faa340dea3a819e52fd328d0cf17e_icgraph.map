@@ -1,0 +1,7 @@
+<map id="vehDist::updateBeaconMessageWSM" name="vehDist::updateBeaconMessageWSM">
+<area shape="rect" id="node2" href="$classveh_dist.html#ae540b3b1caea2af0f6668a85b449cf16" title="vehDist::sendBeaconMessage" alt="" coords="560,5,760,32"/>
+<area shape="rect" id="node4" href="$classveh_dist.html#a93e9c98fef45bfaa8783f7782c57cfbb" title="vehDist::sendMessageNeighbors\lTarget" alt="" coords="297,53,512,94"/>
+<area shape="rect" id="node3" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="814,5,975,32"/>
+<area shape="rect" id="node5" href="$classveh_dist.html#aad4cc10dbbfb5a647fa1be16fccbcaf9" title="vehDist::onBeaconStatus" alt="" coords="575,60,745,87"/>
+<area shape="rect" id="node6" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="808,60,981,87"/>
+</map>

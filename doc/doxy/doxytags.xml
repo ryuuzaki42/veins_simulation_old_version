@@ -8904,6 +8904,20 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>target_x</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a42fe59fe6f7e69a250672720dba1f09e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>target_y</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>aedaaee823507ab6345ddc649a498a3ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>string</type>
       <name>fileMessagesNameUnicast</name>
       <anchorfile>class_base_wave_appl_layer.html</anchorfile>
@@ -8932,6 +8946,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>string</type>
+      <name>fileMessagesGenerated</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a016b1757970d5edf969ff6470eb8c012</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>int</type>
       <name>repeatNumber</name>
       <anchorfile>class_base_wave_appl_layer.html</anchorfile>
@@ -8940,9 +8961,51 @@
     </member>
     <member kind="variable" protection="protected">
       <type>unsigned int</type>
-      <name>hopLimit</name>
+      <name>beaconMessageHopLimit</name>
       <anchorfile>class_base_wave_appl_layer.html</anchorfile>
-      <anchor>a77f25afa1fd40d281ebecaf7828fbe0a</anchor>
+      <anchor>aa6c4005eb263a507229bdd11272adbea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>numVehicles</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a8172397516cb4e1ff84289a5e5874961</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>countGenerateBeaconMessage</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a1b672f9ebadd78b103959bf75f77763b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>ttlBeaconMessage</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>aa62396d5b0b22306752a2e52084f1d11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>timeLimitGenerateBeaconMessage</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>aba764dd6364b1add4449d4b82579814c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>string</type>
+      <name>stringTmp</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>a8796da98156426dd8bd03e52532ca673</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>doubleTmp</name>
+      <anchorfile>class_base_wave_appl_layer.html</anchorfile>
+      <anchor>ac0d11a7603de552fc4cae5af82a8eef2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -13942,34 +14005,6 @@
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual const char *</type>
-      <name>getSenderAddressString</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>ad670b89d9f8db77ee076ef3f04183970</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setSenderAddressString</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a4399563d7757c005340a4a364afdf858</anchor>
-      <arglist>(const char *senderAddressString)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const char *</type>
-      <name>getRecipientAddressString</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>ac0d2a04942ab72d58695888dc08204fd</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>setRecipientAddressString</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a36b1f29fe99809b6609b5e01483cccff</anchor>
-      <arglist>(const char *recipientAddressString)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const char *</type>
       <name>getSource</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
       <anchor>a9fee46e80789894357a0da88fc0f8458</anchor>
@@ -14109,6 +14144,34 @@
       <arglist>(double senderSpeed)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getSenderAddressTemporary</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a8e7ecffbfe552225952d3c3f68dc3408</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setSenderAddressTemporary</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a81df92e079e5966e6c968c7ba96c4605</anchor>
+      <arglist>(const char *senderAddressTemporary)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getRecipientAddressTemporary</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a61f33b5133fcd3d14e3c1a130eb0c566</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setRecipientAddressTemporary</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a7d3ff0270139e9e1257c2bc104d20fa7</anchor>
+      <arglist>(const char *recipientAddressTemporary)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
       <type>virtual unsigned short</type>
       <name>getCategory</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
@@ -14159,24 +14222,24 @@
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual Coord &amp;</type>
-      <name>getSenderPosBack</name>
+      <name>getSenderPosPrevious</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a30be1e5799ca9cc5711a8ac04b550aa4</anchor>
+      <anchor>a5b6c7b86347ce354fb7cf05434274c1b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual const Coord &amp;</type>
-      <name>getSenderPosBack</name>
+      <name>getSenderPosPrevious</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a1d59ebba74f5dd80ac87ad7f8715305f</anchor>
+      <anchor>afea962a8c8543647f5d41bf025163af2</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
-      <name>setSenderPosBack</name>
+      <name>setSenderPosPrevious</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a3b8983eb038c9357e2aef4036c482fff</anchor>
-      <arglist>(const Coord &amp;senderPosBack)</arglist>
+      <anchor>a4ef8b7847a9ea236f3fde74a4bce0c65</anchor>
+      <arglist>(const Coord &amp;senderPosPrevious)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>bool</type>
@@ -14306,20 +14369,6 @@
     </member>
     <member kind="variable" protection="protected">
       <type>opp_string</type>
-      <name>senderAddressString_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a01fd244b2e87da281b50534caf08af46</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>opp_string</type>
-      <name>recipientAddressString_var</name>
-      <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>ade42fce49b8df9b3d3a58f3f587037ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>opp_string</type>
       <name>source_var</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
       <anchor>a44093530d9b4d192a0c578334d0457c6</anchor>
@@ -14389,6 +14438,20 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>opp_string</type>
+      <name>senderAddressTemporary_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a3e138b721c0cbe40f702896fdb121a1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>opp_string</type>
+      <name>recipientAddressTemporary_var</name>
+      <anchorfile>class_wave_short_message.html</anchorfile>
+      <anchor>a8f45e2b0c024011409e6843bebd18ead</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>unsigned short</type>
       <name>category_var</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
@@ -14411,9 +14474,9 @@
     </member>
     <member kind="variable" protection="protected">
       <type>Coord</type>
-      <name>senderPosBack_var</name>
+      <name>senderPosPrevious_var</name>
       <anchorfile>class_wave_short_message.html</anchorfile>
-      <anchor>a03aa7406c916896f203fc78458233011</anchor>
+      <anchor>a712bde9de43f14e52902ca354f9d5332</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="private">
@@ -23234,16 +23297,23 @@
     </member>
     <member kind="enumvalue">
       <type>@</type>
-      <name>SEND_updatePosVeh</name>
+      <name>SendEvtUpdatePositionVeh</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a7dff86e7464d9302343adefa33d39f46a91c237bfc25e932fcea025e71fae1a1f</anchor>
+      <anchor>a7dff86e7464d9302343adefa33d39f46a88be0ae1bc232929443146419a36e456</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <type>@</type>
-      <name>SEND_DATA_EVT</name>
+      <name>SendEvtBeaconMessage</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a7dff86e7464d9302343adefa33d39f46a93e3141f28acc89ca58ca27a3d032791</anchor>
+      <anchor>a7dff86e7464d9302343adefa33d39f46a0d173706230762512ab73f7dd8dc9612</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <type>@</type>
+      <name>SendEvtGenerateBeaconMessage</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a7dff86e7464d9302343adefa33d39f46ac935f844080afa539ebbe34e2dbe600f</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="virtual">
@@ -23304,9 +23374,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>sendDataMessage</name>
+      <name>sendBeaconMessage</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a5cf66a5f8b135873fa1c5c8bb603df4d</anchor>
+      <anchor>ae540b3b1caea2af0f6668a85b449cf16</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23318,9 +23388,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>generateMessage</name>
+      <name>generateBeaconMessage</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ad39be929c20bd08497e8ac3999804f95</anchor>
+      <anchor>aaf692c51fcce2fb0b4055e11eacc4b0d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23339,9 +23409,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>printBeaconNeighbors</name>
+      <name>printBeaconStatusNeighbors</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a359006f8f28cef3c628ad4fa276fa8a3</anchor>
+      <anchor>a38c4325ad403e5536e7fea288301b251</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23353,30 +23423,30 @@
     </member>
     <member kind="function" protection="protected">
       <type>WaveShortMessage *</type>
-      <name>updateMessageWSM</name>
+      <name>updateBeaconMessageWSM</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ac744d5b0d7e5a45033e6bc5528295980</anchor>
+      <anchor>a749faa340dea3a819e52fd328d0cf17e</anchor>
       <arglist>(WaveShortMessage *wsm, string rcvId)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>updatePosition</name>
+      <name>updateVehPosition</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>abbad85aa93d368b43e1112c62c4b1911</anchor>
+      <anchor>aa2cc587a56d34c0e23aab1227a280c56</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>unsigned int</type>
-      <name>getHeading8</name>
+      <name>getVehHeading8</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a0b580ff0304ca871132864712fc340ab</anchor>
+      <anchor>a86fad78c38b4d0641e2eec0d34db75c0</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>unsigned int</type>
-      <name>getHeading4</name>
+      <name>getVehHeading4</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ad5fb330662e4372d63bb5699bfe8064a</anchor>
+      <anchor>a493923f8028dee7eee2485bd37523111</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23409,16 +23479,16 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>vehSendData</name>
+      <name>vehCreateEventTrySendBeaconMessage</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>aabbffd5442eea703a83378de71e160b8</anchor>
+      <anchor>a2be3018cddbf65b2065d5f9587d7bbb9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>int</type>
-      <name>getCategory</name>
+      <name>getVehCategory</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a4c542def7b31445ecb0f0da2b33764ee</anchor>
+      <anchor>a5a9c152bd58b918569d07e1f42421dac</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23451,9 +23521,9 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>printCountMessagesDrop</name>
+      <name>printCountBeaconMessagesDrop</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ab6865e2c623f0c54764c0f599f8a6e11</anchor>
+      <anchor>a909869ea5a2a68d1596704f552ce4c93</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -23486,9 +23556,30 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>setVehID</name>
+      <name>setVehNumber</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a3d93ae04ddc86f15da44d9de766dc263</anchor>
+      <anchor>a4c14abbfc7843e7e1518b7b585caa9dd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>vehGenerateBeaconMessageBegin</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a019ebe74a6d9c13b969fc73ad51de057</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>vehGenerateBeaconMessageAfterBegin</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>adfffed3e039c936825ab963b964f1193</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>selectVehGenerateMessage</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a8aec16f34d9042cc122749f78a626fc3</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -23535,23 +23626,30 @@
     </member>
     <member kind="variable" protection="protected">
       <type>cMessage *</type>
-      <name>sendDataEvt</name>
+      <name>sendBeaconMessageEvt</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>ac9d0318921d01a2e9809f933bdee6e1f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>Coord</type>
-      <name>vehPositionBack</name>
-      <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a0e829bf68b18f3984d35705592dbf1ab</anchor>
+      <anchor>ae5da9ac22e9e4a392f193923923d379a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>cMessage *</type>
-      <name>updatePosVeh</name>
+      <name>sendGenerateBeaconMessageEvt</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a14beaefd577523004dd040c4bbfb1e2a</anchor>
+      <anchor>aca186bcf844dbe80328bb243e640c4a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>cMessage *</type>
+      <name>sendUpdatePosisitonVeh</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a3d4bfab77f01995f644b3f58c5d0288a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Coord</type>
+      <name>vehPositionPrevious</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>ae3ba91d686cac808aa337685cc6af660</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -23563,9 +23661,9 @@
     </member>
     <member kind="variable" protection="protected">
       <type>unordered_map&lt; string, WaveShortMessage &gt;</type>
-      <name>beaconNeighbors</name>
+      <name>beaconStatusNeighbors</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a2b9882c0dd7018d54c2f80125f7cca54</anchor>
+      <anchor>ae9a98936a0ed1c1f98e0ec4aae51ac4b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -23576,17 +23674,31 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>unordered_map&lt; string, int &gt;</type>
+      <type>map&lt; string, int &gt;</type>
       <name>messagesDrop</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a4a06e0c4df8f93b85f46bdca46c46d0d</anchor>
+      <anchor>a8352c508543e91a66722a87999f0da2b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>int</type>
-      <name>vehID</name>
+      <name>vehNumber</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>a69edf12ad44c0cc1f140ef2928a21273</anchor>
+      <anchor>ab3cca34dfff91eee188b2646652eef67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>vehOffSet</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a73f294b8ec7293edc6436645274ad3dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>experimentNumber</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>ae6de8d4e0f3bf75b8419518986d0a654</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -23598,9 +23710,9 @@
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static unsigned short int</type>
-      <name>messageId</name>
+      <name>beaconMessageId</name>
       <anchorfile>classveh_dist.html</anchorfile>
-      <anchor>aa0c4f1725f373c98a7fe3fcc734c3bae</anchor>
+      <anchor>a52f5d523e6bf0750f8d511aece9261a2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
@@ -23608,6 +23720,13 @@
       <name>countMesssageDrop</name>
       <anchorfile>classveh_dist.html</anchorfile>
       <anchor>a436335daf5b759429aea934db2fec8b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static unordered_map&lt; int, bool &gt;</type>
+      <name>vehGenerateMessage</name>
+      <anchorfile>classveh_dist.html</anchorfile>
+      <anchor>a616c04bd90109fa7dee11a2877f8649a</anchor>
       <arglist></arglist>
     </member>
   </compound>

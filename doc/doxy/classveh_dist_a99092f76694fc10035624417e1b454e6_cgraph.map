@@ -2,9 +2,9 @@
 <area shape="rect" id="node2" href="$classveh_dist.html#a5f4415bd92835300f7e6bbf9b0258a7c" title="vehDist::removeOldestInput" alt="" coords="240,59,425,85"/>
 <area shape="rect" id="node3" href="$classveh_dist.html#a72f1466874af1a6b3c6aca95c9505a48" title="vehDist::colorCarryMessage" alt="" coords="501,61,689,88"/>
 <area shape="rect" id="node4" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="764,61,915,88"/>
-<area shape="rect" id="node6" href="$class_wave_short_message.html#ac0d2a04942ab72d58695888dc08204fd" title="WaveShortMessage::getRecipient\lAddressString" alt="" coords="484,119,705,161"/>
+<area shape="rect" id="node6" href="$class_wave_short_message.html#a61f33b5133fcd3d14e3c1a130eb0c566" title="WaveShortMessage::getRecipient\lAddressTemporary" alt="" coords="484,119,705,161"/>
 <area shape="rect" id="node7" href="$class_wave_short_message.html#a45f745e1750b2a1b6ca9c31f5e513a89" title="WaveShortMessage::getGlobal\lMessageIdentificaton" alt="" coords="493,185,696,226"/>
-<area shape="rect" id="node8" href="$class_wave_short_message.html#ad670b89d9f8db77ee076ef3f04183970" title="WaveShortMessage::getSender\lAddressString" alt="" coords="491,250,698,291"/>
+<area shape="rect" id="node8" href="$class_wave_short_message.html#a8e7ecffbfe552225952d3c3f68dc3408" title="WaveShortMessage::getSender\lAddressTemporary" alt="" coords="491,250,698,291"/>
 <area shape="rect" id="node9" href="$class_base_wave_appl_layer.html#a8aff49c45cf2a87c5cd6daf14df487c7" title="BaseWaveApplLayer::\lsaveMessagesOnFile" alt="" coords="257,721,409,762"/>
 <area shape="rect" id="node25" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="499,1327,690,1369"/>
 <area shape="rect" id="node5" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="963,61,1109,88"/>
