@@ -70,8 +70,8 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile.open (fileName, std::ios_base::app); //Open file for just apeend
 
     //Send "strings" to be saved on the file
-    myfile << "BeaconMessage from " << wsm->getSenderAddressString() << " at " << simTime();
-    myfile << " to " << wsm->getRecipientAddressString() << endl;
+    myfile << "BeaconMessage from " << wsm->getSenderAddressTemporary() << " at " << simTime();
+    myfile << " to " << wsm->getRecipientAddressTemporary() << endl;
     myfile << "wsm->getGlobalMessageIdentificaton(): " << wsm->getGlobalMessageIdentificaton() << endl;
     myfile << "wsm->getName(): " << wsm->getName() << endl;
     myfile << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
@@ -87,8 +87,8 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile << "wsm->getCategory(): " << wsm->getCategory() << endl;
     myfile << "wsm->getRoadId(): " << wsm->getRoadId() << endl;
     myfile << "wsm->getSenderSpeed(): " << wsm->getSenderSpeed() << endl;
-    myfile << "wsm->getSenderAddressString(): " << wsm->getSenderAddressString() << endl;
-    myfile << "wsm->getRecipientAddressString(): " << wsm->getRecipientAddressString() << endl;
+    myfile << "wsm->getSenderAddressTemporary(): " << wsm->getSenderAddressTemporary() << endl;
+    myfile << "wsm->getRecipientAddressTemporary(): " << wsm->getRecipientAddressTemporary() << endl;
     myfile << "wsm->getSource(): " << wsm->getSource() << endl;
     myfile << "wsm->getTarget(): " << wsm->getTarget() << endl;
     myfile << "findHost()->getFullName(): " << findHost()->getFullName() << endl;
@@ -116,7 +116,7 @@ void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend){
 void BaseWaveApplLayer::printHeaderfileExecution(){
     myfile << "############################################################################################";
     myfile << "############################################################################################" << endl;
-    myfile << "Execution number: " << repeatNumber << endl;
+    myfile << "Execution number: " << repeatNumber << endl << endl;
 }
 
 //######################################### vehDist #########################################
