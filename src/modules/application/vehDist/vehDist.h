@@ -1,7 +1,5 @@
 //
-// Copyright (C) 2006-2011 Christoph Sommer <christoph.sommer@uibk.ac.at>
-//
-// Documentation for these modules is at http://veins.car2x.org/
+// Copyright (C) 2015-2016 João Batista <joao.b@usp.br>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,7 +31,7 @@ class vehDist : public BaseWaveApplLayer {
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
 
         enum WaveApplMessageKinds {
-            SEND_updatePosVeh, SEND_DATA_EVT
+            SendEvtUpdatePositionVeh, SendEvtBeaconMessage, SendEvtGenerateBeaconMessage
         };
 
     protected:
@@ -45,16 +43,20 @@ class vehDist : public BaseWaveApplLayer {
         bool sendWhileParking;
         static const simsignalwrap_t parkingStateChangedSignal;
 
-        static unsigned short int messageId;
-        cMessage* sendDataEvt;
-        Coord vehPositionBack;
-        cMessage* updatePosVeh;
+        static unsigned short int beaconMessageId;
+        cMessage* sendBeaconMessageEvt;
+        cMessage* sendGenerateBeaconMessageEvt;
+        cMessage* sendUpdatePosisitonVeh;
+        Coord vehPositionPrevious;
         unordered_map<string, WaveShortMessage> messagesBuffer;
-        unordered_map<string, WaveShortMessage> beaconNeighbors;
+        unordered_map<string, WaveShortMessage> beaconStatusNeighbors;
         vector <string> messagesDelivered;
-        unordered_map<string, int> messagesDrop;
+        map<string, int> messagesDrop;
         static unsigned short int countMesssageDrop;
-        int vehID;
+        int vehNumber;
+        double vehOffSet;
+        static unordered_map<int, bool> vehGenerateMessage;
+        int experimentNumber;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -65,35 +67,40 @@ class vehDist : public BaseWaveApplLayer {
 
         virtual void sendWSM(WaveShortMessage* wsm);
 
-        void sendDataMessage();
+        void sendBeaconMessage();
         void generateTarget();
-        void generateMessage();
+        void generateBeaconMessage();
         void handleSelfMsg(cMessage* msg);
         void printMessagesBuffer();
-        void printBeaconNeighbors();
+        void printBeaconStatusNeighbors();
         WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial);
-        WaveShortMessage* updateMessageWSM(WaveShortMessage* wsm, string rcvId);
-        void updatePosition();
-        unsigned int getHeading8();
-        unsigned int getHeading4();
+        WaveShortMessage* updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId);
+        void updateVehPosition();
+        unsigned int getVehHeading8();
+        unsigned int getVehHeading4();
         bool sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
         void saveVehStartPosition();
         void restartFilesResult();
         void vehUpdatePosition();
-        void vehSendData();
-        int getCategory();
+        void vehCreateEventTrySendBeaconMessage();
+        int getVehCategory();
         void removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit);
         void sendMessageNeighborsTarget();
         string returnLastMessageInsert();
         void finish();
-        void printCountMessagesDrop();
+        void printCountBeaconMessagesDrop();
         void colorCarryMessage();
         void handleLowerMsg(cMessage* msg);
         void onBeaconStatus(WaveShortMessage* wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
-        void setVehID();
+        void setVehNumber();
+        void vehGenerateBeaconMessageBegin();
+        void vehGenerateBeaconMessageAfterBegin();
+        void selectVehGenerateMessage();
 };
 
-unsigned short int vehDist::messageId = 0;
+unsigned short int vehDist::beaconMessageId = 0;
 unsigned short int vehDist::countMesssageDrop=0;
+unordered_map<int, bool> vehDist::vehGenerateMessage;
+
 #endif
