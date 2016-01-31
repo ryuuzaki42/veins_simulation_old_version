@@ -169,7 +169,7 @@ void mfcv_epidemic::onBeacon(WaveShortMessage* wsm) {
     cout << "testSendHeading is " << testSendHeading(getHeading(), wsm->getHeading()) << endl;
 
     //test send distante e heading to target
-    testSendtoTarget(wsm->getSenderPosBack(), wsm->getSenderPos(), wsm->getHeading(), wsm->getTargetPos());
+    testSendtoTarget(wsm->getSenderPosPrevious(), wsm->getSenderPos(), wsm->getHeading(), wsm->getTargetPos());
 
 
     //Verifying if I have the smaller address in order to start the anti-entropy session sending out my summary vector
@@ -623,7 +623,7 @@ void mfcv_epidemic::generateMessage(){
      cout << "y: " << y << endl;
      wsm.setTargetPos(Coord(par("target_x"), par("target_y"), 3));
 
-     wsm.setSenderPosBack(vehPositionBack);
+     wsm.setSenderPosPrevious(vehPositionBack);
 
     wsm.setSource(source.c_str());
     wsm.setTarget(target.c_str());
@@ -898,7 +898,7 @@ WaveShortMessage* mfcv_epidemic::prepareWSM_mfcv_epidemic(std::string name, int 
     }
 
     wsm->setTargetPos(Coord(par("target_x"), par("target_y"), 3));
-    wsm->setSenderPosBack(vehPositionBack);
+    wsm->setSenderPosPrevious(vehPositionBack);
     wsm->setHeading(getHeading());
     //wsm->setHeading(((traci->getAngleRad() * 180) / M_PI));
     cout << endl << endl;
