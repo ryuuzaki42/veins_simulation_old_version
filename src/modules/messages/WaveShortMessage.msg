@@ -58,9 +58,6 @@ packet WaveShortMessage {
     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
     unsigned int recipientAddress = 268435455;
 
-    string senderAddressString;
-    string recipientAddressString;
-
     // Add for Epidemic
     // Set the source which generate the message, e.g., car[0], car[1] etc.
     string source;
@@ -86,6 +83,8 @@ packet WaveShortMessage {
     double senderSpeed = 0.0;
 
     // MFCV
+    string senderAddressTemporary;
+    string recipientAddressTemporary;
     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
     unsigned short category = 0;
     // Path history of the vehicle, calculated from time to time
@@ -96,7 +95,7 @@ packet WaveShortMessage {
 
     // test Jonh
     unsigned short heading;
-    // targetPost
+    // targetPosition
     Coord TargetPos;
-    Coord senderPosBack;
+    Coord senderPosPrevious;
 }

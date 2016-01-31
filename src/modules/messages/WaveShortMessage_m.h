@@ -57,9 +57,6 @@
  *     // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
  *     unsigned int recipientAddress = 268435455;
  * 
- *     string senderAddressString;
- *     string recipientAddressString;
- * 
  *     // Add for Epidemic
  *     // Set the source which generate the message, e.g., car[0], car[1] etc.
  *     string source;
@@ -85,6 +82,8 @@
  *     double senderSpeed = 0.0;
  * 
  *     // MFCV
+ *     string senderAddressTemporary;
+ *     string recipientAddressTemporary;
  *     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
  *     unsigned short category = 0;
  *     // Path history of the vehicle, calculated from time to time
@@ -95,9 +94,9 @@
  * 
  *     // test Jonh
  *     unsigned short heading;
- *     // targetPost
+ *     // targetPosition
  *     Coord TargetPos;
- *     Coord senderPosBack;
+ *     Coord senderPosPrevious;
  * }
  * </pre>
  */
@@ -118,8 +117,6 @@ class WaveShortMessage : public ::cPacket
     simtime_t timestamp_var;
     unsigned int senderAddress_var;
     unsigned int recipientAddress_var;
-    opp_string senderAddressString_var;
-    opp_string recipientAddressString_var;
     opp_string source_var;
     opp_string target_var;
     bool summaryVector_var;
@@ -130,10 +127,12 @@ class WaveShortMessage : public ::cPacket
     bool ackRequest_var;
     opp_string roadId_var;
     double senderSpeed_var;
+    opp_string senderAddressTemporary_var;
+    opp_string recipientAddressTemporary_var;
     unsigned short category_var;
     unsigned short heading_var;
     Coord TargetPos_var;
-    Coord senderPosBack_var;
+    Coord senderPosPrevious_var;
 
   private:
     void copy(const WaveShortMessage& other);
@@ -181,10 +180,6 @@ class WaveShortMessage : public ::cPacket
     virtual void setSenderAddress(unsigned int senderAddress);
     virtual unsigned int getRecipientAddress() const;
     virtual void setRecipientAddress(unsigned int recipientAddress);
-    virtual const char * getSenderAddressString() const;
-    virtual void setSenderAddressString(const char * senderAddressString);
-    virtual const char * getRecipientAddressString() const;
-    virtual void setRecipientAddressString(const char * recipientAddressString);
     virtual const char * getSource() const;
     virtual void setSource(const char * source);
     virtual const char * getTarget() const;
@@ -205,6 +200,10 @@ class WaveShortMessage : public ::cPacket
     virtual void setRoadId(const char * roadId);
     virtual double getSenderSpeed() const;
     virtual void setSenderSpeed(double senderSpeed);
+    virtual const char * getSenderAddressTemporary() const;
+    virtual void setSenderAddressTemporary(const char * senderAddressTemporary);
+    virtual const char * getRecipientAddressTemporary() const;
+    virtual void setRecipientAddressTemporary(const char * recipientAddressTemporary);
     virtual unsigned short getCategory() const;
     virtual void setCategory(unsigned short category);
     virtual unsigned short getHeading() const;
@@ -212,9 +211,9 @@ class WaveShortMessage : public ::cPacket
     virtual Coord& getTargetPos();
     virtual const Coord& getTargetPos() const {return const_cast<WaveShortMessage*>(this)->getTargetPos();}
     virtual void setTargetPos(const Coord& TargetPos);
-    virtual Coord& getSenderPosBack();
-    virtual const Coord& getSenderPosBack() const {return const_cast<WaveShortMessage*>(this)->getSenderPosBack();}
-    virtual void setSenderPosBack(const Coord& senderPosBack);
+    virtual Coord& getSenderPosPrevious();
+    virtual const Coord& getSenderPosPrevious() const {return const_cast<WaveShortMessage*>(this)->getSenderPosPrevious();}
+    virtual void setSenderPosPrevious(const Coord& senderPosPrevious);
 };
 
 inline void doPacking(cCommBuffer *b, WaveShortMessage& obj) {obj.parsimPack(b);}
