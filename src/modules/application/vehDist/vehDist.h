@@ -68,6 +68,7 @@ class vehDist : public BaseWaveApplLayer {
         virtual void sendWSM(WaveShortMessage* wsm);
 
         void sendBeaconMessage();
+        void initializeVariables();
         void generateTarget();
         void generateBeaconMessage();
         void handleSelfMsg(cMessage* msg);

@@ -38,71 +38,69 @@ void vehDist::initialize(int stage) {
         isParking = false;
         sendWhileParking = par("sendWhileParking").boolValue();
 
-        source = findHost()->getFullName();
-        beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
-
-        stringTmp = ev.getConfig()->getConfigValue("seed-set");
-        repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
-
-        //initialize random seed (Seed the RNG)
-        srand(repeatNumber + 1); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
-
-        //simulate asynchronous channel access
-        vehOffSet = (dblrand()/10);
-
-        setVehNumber();
-        if(vehNumber == 0){
-            vehOffSet = 0;
-        } else {
-            vehOffSet = vehOffSet + 0.001;
-        }
-        numVehicles = par("numVehicles").longValue();
-
-        experimentNumber = par("experimentNumber").longValue();
-        if (experimentNumber == 11){
-            ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
-            countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
-        } else if (experimentNumber == 12) {
-            ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
-            countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
-        } else if (experimentNumber == 21){
-            ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
-            countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
-        } else if (experimentNumber == 22) {
-            countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
-            ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
-        }else {
-            cout << "Error: Number of experiment not configured. Go to VehDist.cc line 75." << endl;
-            exit(1); // Coments this for use the values below
-            countGenerateBeaconMessage = 0; // Will not generate any message
-            ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
-        }
-
-        stringTmp = ev.getConfig()->getConfigValue("sim-time-limit");
-        timeLimitGenerateBeaconMessage = atof(stringTmp.c_str());
-        doubleTmp = par("ttlBeaconMessage_two").doubleValue();
-        timeLimitGenerateBeaconMessage = timeLimitGenerateBeaconMessage - doubleTmp;
-
-        if (vehNumber == 0) {
-           cout << endl << "Experiment: " << experimentNumber << endl;
-           cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
-           cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
-           cout << "timeLimitGenerateMessage: " << timeLimitGenerateBeaconMessage << endl << endl;
-        }
-
-
-        restartFilesResult();
-        //if(vehNumber < 1){
-            vehGenerateBeaconMessageBegin();
-        //}
-        vehUpdatePosition();
-        vehCreateEventTrySendBeaconMessage();
-
-        saveVehStartPosition();
-        //cout << endl << findHost()->getFullName() << " entered in the scenario at " << simTime() << endl;
+        initializeVariables();
     }
 }
-// Generate them with static bool genetateMsg (true when messagesToGenerate is empty, turn false when one veh start generate
+
+void vehDist::initializeVariables(){
+    source = findHost()->getFullName();
+    beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
+
+    stringTmp = ev.getConfig()->getConfigValue("seed-set");
+    repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
+
+    setVehNumber();
+    if(vehNumber == 0){ // Veh must be the first to generate messages, so your offset is 0;
+        vehOffSet = 0;
+        //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (seed for the rand is "static")
+        srand(repeatNumber + 1); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
+    } else {
+        //simulate asynchronous channel access
+        vehOffSet = dblrand(); // Values betwen 0 and 1
+        vehOffSet = vehOffSet + 0.001;
+    }
+    numVehicles = par("numVehicles").longValue();
+
+    experimentNumber = par("experimentNumber").longValue();
+    if (experimentNumber == 11){
+        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
+    } else if (experimentNumber == 12) {
+        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
+    } else if (experimentNumber == 21){
+        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
+    } else if (experimentNumber == 22) {
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
+        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+    }else {
+        cout << "Error: Number of experiment not configured. Go to VehDist.cc line 75." << endl;
+        exit(1); // Coments this line for use the values below
+        countGenerateBeaconMessage = 0; // Will not generate any message
+        ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
+    }
+
+    stringTmp = ev.getConfig()->getConfigValue("sim-time-limit");
+    timeLimitGenerateBeaconMessage = atof(stringTmp.c_str());
+    doubleTmp = par("ttlBeaconMessage_two").doubleValue();
+    timeLimitGenerateBeaconMessage = timeLimitGenerateBeaconMessage - doubleTmp;
+
+    if (vehNumber == 0) {
+       cout << endl << "Experiment: " << experimentNumber << endl;
+       cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
+       cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
+       cout << "timeLimitGenerateMessage: " << timeLimitGenerateBeaconMessage << endl << endl;
+    }
+
+    restartFilesResult(); // Start the file for save results
+    vehGenerateBeaconMessageBegin(); // Create Evt to generate messages
+    vehUpdatePosition(); // Create Evt to update the position of vehicle
+    vehCreateEventTrySendBeaconMessage(); // Create one Evt to try send messages in buffer
+
+    saveVehStartPosition(); // Save the start position of vehicle. Just for test the seed.
+    //cout << endl << findHost()->getFullName() << " entered in the scenario at " << simTime() << endl;
+}
 
 void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
     //cout << "OnBeacon Id(veh): " << wsm->getVehicleId() << " timestamp: " << wsm->getTimestamp() << endl;
@@ -224,6 +222,7 @@ void vehDist::sendBeaconMessage() {
             }
             //cout << "After sendBeaconNeighborsTarget messagesBuffer.size(): " << messagesBuffer.size() << endl;
 
+            // #to_do Procurar por um atigo em que afirme que enviar a última messagem recebeida é a melhor
             string key = returnLastMessageInsert();
             bool send = false;
 
@@ -346,7 +345,7 @@ void vehDist::handleLowerMsg(cMessage* msg) {
     else if (std::string(wsm->getName()) == "data") {
         onData(wsm);
     }
-//
+//###############################################################
     else if (std::string(wsm->getName()) == "data2veh") {
         cout << "data2veh now" << endl;
     }
@@ -359,7 +358,7 @@ void vehDist::handleLowerMsg(cMessage* msg) {
     else if (std::string(wsm->getName()) == "beaconMessage") {
         onBeaconMessage(wsm);
     }
-//
+//###############################################################
     else {
         DBG << "unknown message (" << wsm->getName() << ")  received\n";
     }
@@ -480,12 +479,10 @@ void vehDist::vehCreateEventTrySendBeaconMessage(){
 }
 
 void vehDist::selectVehGenerateMessage(){
-    if(strcmp(findHost()->getFullName(), "car[0]") == 0){
-    //if (vehNumber == 0) { // if true, some veh has (in past) selected the veh to generate messages
+    if (vehNumber == 0) { // if true, some veh has (in past) selected the veh to generate messages
         if (simTime() <= timeLimitGenerateBeaconMessage){
             int vehSelected;
-            // Save info (Id and veh generate) on fileMessagesGenerated
-            myfile.open(fileMessagesGenerated, std::ios_base::app);
+            myfile.open(fileMessagesGenerated, std::ios_base::app); // To save infos (Id and veh generate) on fileMessagesGenerated
             for (int i = 0; i < countGenerateBeaconMessage;){ // select <countGenerateBeaconMessage> distinct veh to generate messages
                 vehSelected = rand() % numVehicles; // random car to generate message
                 if(vehDist::vehGenerateMessage.find(vehSelected) == vehDist::vehGenerateMessage.end()){
