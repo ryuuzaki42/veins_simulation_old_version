@@ -162,6 +162,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         string fileMessagesCount;
         string fileMessagesDrop;
         string fileMessagesGenerated;
+
         int repeatNumber;
         unsigned int beaconMessageHopLimit;
         int numVehicles;
