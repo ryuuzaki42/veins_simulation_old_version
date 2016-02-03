@@ -114,9 +114,11 @@ void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, in
 }
 
 void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int countGenerateBeaconMessage){
-    myfile << endl;
+    if (repeatNumber != 0) {
+        myfile << endl;
+    }
     myfile << "#######################################################################################";
-    myfile << "#######################################################################################" << endl;
+    myfile << "#######################################################################################" << endl << endl;
     myfile << "Execution number: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
     myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;
 }
