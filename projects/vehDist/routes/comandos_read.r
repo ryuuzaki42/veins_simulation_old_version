@@ -4,7 +4,7 @@ python /media/sda4/prog/sumo-0.21.0/tools/trip/randomTrips.py --help
 http://sumo.dlr.de/wiki/FAQ#How_do_I_generate_random_routes.3F
 
 ## Generate the Grid
-netgenerate  -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o test.net.xml
+netgenerate  -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 15 -o test.net.xml
 # Change --default.lanenumber to 1; added --no-turnarounds and the default.speed to 85
 
 ## Generate the trips and the routes (with various distance)
