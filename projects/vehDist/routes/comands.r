@@ -11,6 +11,18 @@ netgenerate  -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --no-tu
 python /media/sda4/prog/sumo-0.21.0/tools/trip/randomTrips.py -n test.net.xml --min-distance=100000 -b 0 -e 30000 -i 200 -s 1 -r test.rou.xml
 # Change added -s (seed) 1, for the same routes everytime.
 
-To test "is the same routes?"
+## To test "is the same routes?"
 cat test.rou.xml | grep -v generated | md5sum
 f649688c8178367ce3f5dade28de4f3b  -
+
+## Test same start position
+cat [folder]/vehicle_position_initialize.r | grep -v number  | md5sum
+
+## Change maxSpeed
+sed -i 's/maxSpeed=".."/maxSpeed="15"/g' test_end.rou.xml
+sed -i 's/maxSpeed=".."/maxSpeed="25"/g' test_end.rou.xml
+
+## See iterations from ini file
+cat General-* | grep "attr iterationvars2"
+
+##
