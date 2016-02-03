@@ -400,9 +400,9 @@ bool vehDist::sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemot
 void vehDist::saveVehStartPosition(){
     if (source.compare("car[0]") == 0) {
         if (repeatNumber == 0) {
-            myfile.open ("results/vehicle_position_initialize.txt");
+            myfile.open ("results/vehicle_position_initialize.r");
         } else {
-            myfile.open ("results/vehicle_position_initialize.txt", std::ios_base::app);
+            myfile.open ("results/vehicle_position_initialize.r", std::ios_base::app);
         }
         printHeaderfileExecution(ttlBeaconMessage, countGenerateBeaconMessage);
         myfile << "Start Position Vehicles" << endl;
