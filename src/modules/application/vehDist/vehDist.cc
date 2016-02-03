@@ -38,11 +38,11 @@ void vehDist::initialize(int stage) {
         isParking = false;
         sendWhileParking = par("sendWhileParking").boolValue();
 
-        initializeVariables();
+        vehInitializeVariables();
     }
 }
 
-void vehDist::initializeVariables(){
+void vehDist::vehInitializeVariables(){
     source = findHost()->getFullName();
     beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
 
@@ -61,25 +61,7 @@ void vehDist::initializeVariables(){
     }
     numVehicles = par("numVehicles").longValue();
 
-    experimentNumber = par("experimentNumber").longValue();
-    if (experimentNumber == 11){
-        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
-    } else if (experimentNumber == 12) {
-        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
-    } else if (experimentNumber == 21){
-        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
-    } else if (experimentNumber == 22) {
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
-        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
-    }else {
-        cout << "Error: Number of experiment not configured. Go to VehDist.cc line 75." << endl;
-        exit(1); // Coments this line for use the values below
-        countGenerateBeaconMessage = 0; // Will not generate any message
-        ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
-    }
+    executionByNumExperiment(); // set value for one experiment
 
     stringTmp = ev.getConfig()->getConfigValue("sim-time-limit");
     timeLimitGenerateBeaconMessage = atof(stringTmp.c_str());
@@ -422,7 +404,7 @@ void vehDist::saveVehStartPosition(){
         } else {
             myfile.open ("results/vehicle_position_initialize.txt", std::ios_base::app);
         }
-        printHeaderfileExecution();
+        printHeaderfileExecution(ttlBeaconMessage, countGenerateBeaconMessage);
         myfile << "Start Position Vehicles" << endl;
     } else {
         myfile.open ("results/vehicle_position_initialize.txt", std::ios_base::app);
@@ -438,25 +420,25 @@ void vehDist::setVehNumber() {
 }
 
 void vehDist::restartFilesResult(){
-    fileMessagesNameBroadcast = "results/VehBroadcastMessages.txt";
-    fileMessagesNameUnicast ="results/VehMessages.txt";
-    fileMessagesCount = "results/VehMessagesCount.txt";
-    fileMessagesDrop = "results/VehMessagesDrop.txt";
-    fileMessagesGenerated = "results/VehMessagesgenerated.txt";
+    fileMessagesNameBroadcast = "results/VehBroadcastMessages.r";
+    fileMessagesNameUnicast ="results/VehMessages.r";
+    fileMessagesCount = "results/VehMessagesCount.r";
+    fileMessagesDrop = "results/VehMessagesDrop.r";
+    fileMessagesGenerated = "results/VehMessagesgenerated.r";
 
     if (vehNumber == 0) {
         if (repeatNumber == 0) {
-            openFileAndClose(fileMessagesNameBroadcast, false);
-            openFileAndClose(fileMessagesNameUnicast, false);
-            openFileAndClose(fileMessagesCount, false);
-            openFileAndClose(fileMessagesDrop, false);
-            openFileAndClose(fileMessagesGenerated, false);
+            openFileAndClose(fileMessagesNameBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesNameUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesDrop, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesGenerated, false, ttlBeaconMessage, countGenerateBeaconMessage);
         } else { // (repeatNumber != 0)) // open just for append
-            openFileAndClose(fileMessagesNameBroadcast, true);
-            openFileAndClose(fileMessagesNameUnicast, true);
-            openFileAndClose(fileMessagesCount, true);
-            openFileAndClose(fileMessagesDrop, true);
-            openFileAndClose(fileMessagesGenerated, true);
+            openFileAndClose(fileMessagesNameBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesNameUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesDrop, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesGenerated, true, ttlBeaconMessage, countGenerateBeaconMessage);
         }
     }
 }

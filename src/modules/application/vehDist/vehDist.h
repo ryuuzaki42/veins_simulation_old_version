@@ -56,7 +56,6 @@ class vehDist : public BaseWaveApplLayer {
         int vehNumber;
         double vehOffSet;
         static unordered_map<int, bool> vehGenerateMessage;
-        int experimentNumber;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -68,7 +67,6 @@ class vehDist : public BaseWaveApplLayer {
         virtual void sendWSM(WaveShortMessage* wsm);
 
         void sendBeaconMessage();
-        void initializeVariables();
         void generateTarget();
         void generateBeaconMessage();
         void handleSelfMsg(cMessage* msg);
@@ -98,6 +96,7 @@ class vehDist : public BaseWaveApplLayer {
         void vehGenerateBeaconMessageBegin();
         void vehGenerateBeaconMessageAfterBegin();
         void selectVehGenerateMessage();
+        void vehInitializeVariables();
 };
 
 unsigned short int vehDist::beaconMessageId = 0;
