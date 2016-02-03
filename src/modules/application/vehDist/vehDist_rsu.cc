@@ -204,9 +204,8 @@ void vehDist_rsu::handleSelfMsg(cMessage* msg) {
 void vehDist_rsu::printCountMessagesReceived(){
     myfile.open (fileMessagesCount, std::ios_base::app);
 
-    if (messagesReceived.empty()) {
-        myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;
-    } else {
+    SimTime avgTimeMessageReceived = 0;
+    if (!messagesReceived.empty()) {
         myfile << "messagesReceived from " << findHost()->getFullName() << endl;
 
         map<string, struct messages>::iterator it;
@@ -224,11 +223,16 @@ void vehDist_rsu::printCountMessagesReceived(){
             myfile << "Times: " << it->second.times << endl;
             myfile << "Sum times: " << it->second.timeAverage << endl;
             myfile << "Avegare time to received: " << (it->second.timeAverage/it->second.HopsCount) << endl;
+            avgTimeMessageReceived += (it->second.timeAverage/it->second.HopsCount);
 
         }
-        myfile << endl << "### Count Messages Received: " << messagesReceived.size() << " ###" << endl << endl;
-        // ver: 34 geradas, mas só 2* entregues
+        myfile << endl << "### Count Messages Received: " << messagesReceived.size() << " ###" << endl;
+        avgTimeMessageReceived = avgTimeMessageReceived/messagesReceived.size();
+        myfile << "### General avegare time to received: " << avgTimeMessageReceived << endl;
+        // ver: 34 geradas, mas só 29 recebidas
         myfile << endl;
+    } else {
+        myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;
     }
     myfile.close();
 }
