@@ -30,14 +30,20 @@ void vehDist_rsu::initialize(int stage) {
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
-        beaconMessageHopLimit = par("beaconMessageHopLimit").doubleValue();
-
-        stringTmp = ev.getConfig()->getConfigValue("seed-set");
-        repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
-
-        restartFilesResult();
-        //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
+        rsuInitializeVariables();
     }
+}
+
+void vehDist_rsu::rsuInitializeVariables(){
+    beaconMessageHopLimit = par("beaconMessageHopLimit").doubleValue();
+
+    stringTmp = ev.getConfig()->getConfigValue("seed-set");
+    repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
+
+    executionByNumExperiment(); // set value for one experiment
+
+    restartFilesResult();
+    //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
 }
 
 void vehDist_rsu::onBeacon(WaveShortMessage* wsm) {
@@ -79,27 +85,29 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
 
 void vehDist_rsu::restartFilesResult(){
 
-    fileMessagesNameBroadcast = "results/rsuBroadcastMessages.txt";
+    fileMessagesNameBroadcast = "results/rsuBroadcastMessages.r";
 
     fileMessagesNameUnicast = "results/";
     fileMessagesNameUnicast += findHost()->getFullName();
-    fileMessagesNameUnicast += "MessagesReceived.txt";
+    fileMessagesNameUnicast += "MessagesReceived.r";
 
     fileMessagesCount = "results/";
     fileMessagesCount += findHost()->getFullName();
-    fileMessagesCount += "CountMessagesReceived.txt";
+    fileMessagesCount += "CountMessagesReceived.r";
 
      //fileMessagesDrop = ...
 
-    if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0) && (repeatNumber == 0)) { //Open a new file (blank)
+    if (strcmp(findHost()->getFullName(), "rsu[0]") == 0){
+        if (repeatNumber == 0) { //Open a new file (blank)
         system("mkdir results 2> /dev/null"); //create a folder results
-        openFileAndClose(fileMessagesNameBroadcast, false);
-        openFileAndClose(fileMessagesNameUnicast, false);
-        openFileAndClose(fileMessagesCount, false);
-    }else if ((strcmp(findHost()->getFullName(), "rsu[0]") == 0) && (repeatNumber != 0)) { // for just append
-        openFileAndClose(fileMessagesNameBroadcast, true);
-        openFileAndClose(fileMessagesNameUnicast, true);
-        openFileAndClose(fileMessagesCount, true);
+            openFileAndClose(fileMessagesNameBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesNameUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
+        } else { // (repeatNumber != 0)) // for just append
+            openFileAndClose(fileMessagesNameBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesNameUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
+        }
     }
 }
 
