@@ -34,13 +34,8 @@ void vehDist_rsu::initialize(int stage) {
     }
 }
 
-void vehDist_rsu::rsuInitializeVariables(){
-    beaconMessageHopLimit = par("beaconMessageHopLimit").doubleValue();
-
-    stringTmp = ev.getConfig()->getConfigValue("seed-set");
-    repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
-
-    executionByNumExperiment(); // set value for one experiment
+void vehDist_rsu::rsuInitializeVariables() {
+    generalInitializeVariables_executionByExperimentNumber();
 
     restartFilesResult();
     //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
@@ -77,33 +72,48 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
         onBeaconMessage(wsm);
     }
 //
-    else {
+    else{
         DBG << "unknown message (" << wsm->getName() << ")  received\n";
     }
     delete(msg);
 }
 
-void vehDist_rsu::restartFilesResult(){
+void vehDist_rsu::restartFilesResult() {
+    stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
+    stringTmp += "_" + to_string(ttlBeaconMessage) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
-    fileMessagesNameBroadcast = "results/rsuBroadcastMessages.r";
+    fileMessagesNameBroadcast = fileMessagesNameUnicast = fileMessagesCount = stringTmp;
 
-    fileMessagesNameUnicast = "results/";
+
+    fileMessagesNameBroadcast += "rsuBroadcastMessages.r";
+
     fileMessagesNameUnicast += findHost()->getFullName();
     fileMessagesNameUnicast += "MessagesReceived.r";
 
-    fileMessagesCount = "results/";
     fileMessagesCount += findHost()->getFullName();
     fileMessagesCount += "CountMessagesReceived.r";
 
-     //fileMessagesDrop = ...
+    //fileMessagesDrop = ...
 
-    if (strcmp(findHost()->getFullName(), "rsu[0]") == 0){
+    if (strcmp(findHost()->getFullName(), "rsu[0]") == 0) {
         if (repeatNumber == 0) { //Open a new file (blank)
-        system("mkdir results 2> /dev/null"); //create a folder results
+
+            if (experimentNumber == 1) { // maxSpeed 15 m/s
+                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end.rou.xml");
+            } else if (experimentNumber == 5){  // maxSpeed 25 m/s
+                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' test_end.rou.xml");
+            }
+
+            //system("mkdir results 2> /dev/null"); //create a folder results
+            stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
+            cout << "stringTmp " << stringTmp << endl;
+            cout << "repeatNumber " << repeatNumber << endl;
+            system(stringTmp.c_str()); //create a folder results
+
             openFileAndClose(fileMessagesNameBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesNameUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
-        } else { // (repeatNumber != 0)) // for just append
+        } else{ // (repeatNumber != 0)) // for just append
             openFileAndClose(fileMessagesNameBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesNameUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
@@ -111,11 +121,11 @@ void vehDist_rsu::restartFilesResult(){
     }
 }
 
-void vehDist_rsu::onData(WaveShortMessage* wsm){
+void vehDist_rsu::onData(WaveShortMessage* wsm) {
 }
 
-void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm){
-    if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0){
+void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
+    if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0) {
         findHost()->bubble("Received Message");
         saveMessagesOnFile(wsm, fileMessagesNameUnicast);
 
@@ -126,18 +136,18 @@ void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm){
     }
 }
 
-void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
+void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm) {
     map<string, struct messages>::iterator it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
-    if (it != messagesReceived.end()){
+    if (it != messagesReceived.end()) {
 
         it->second.hops += ", ";
         it->second.hops += to_string(beaconMessageHopLimit - wsm->getHopCount());
         it->second.HopsCount = it->second.HopsCount + 1;
         it->second.averageHops += (beaconMessageHopLimit - wsm->getHopCount());
-        if ((beaconMessageHopLimit - wsm->getHopCount()) > it->second. maxHop){
+        if ((beaconMessageHopLimit - wsm->getHopCount()) > it->second. maxHop) {
             it->second.maxHop = (beaconMessageHopLimit - wsm->getHopCount());
         }
-        if ((beaconMessageHopLimit - wsm->getHopCount()) < it->second. minHop){
+        if ((beaconMessageHopLimit - wsm->getHopCount()) < it->second. minHop) {
              it->second.minHop = (beaconMessageHopLimit - wsm->getHopCount());
          }
 
@@ -146,7 +156,7 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm){
         simtime_t tmpTime = (simTime() - wsm->getTimestamp());
         it->second.times += tmpTime.str();
 
-    } else {
+    } else{
         struct messages m;
         m.HopsCount = 1;
         m.wsmData = wsm->getWsmData();
@@ -201,7 +211,7 @@ void vehDist_rsu::handleSelfMsg(cMessage* msg) {
         }
     }
 }
-void vehDist_rsu::printCountMessagesReceived(){
+void vehDist_rsu::printCountMessagesReceived() {
     myfile.open (fileMessagesCount, std::ios_base::app);
 
     SimTime avgTimeMessageReceived = 0;
@@ -231,13 +241,13 @@ void vehDist_rsu::printCountMessagesReceived(){
         myfile << "### General avegare time to received: " << avgTimeMessageReceived << endl;
         // ver: 34 geradas, mas só 29 recebidas
         myfile << endl;
-    } else {
+    } else{
         myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;
     }
     myfile.close();
 }
 
-void vehDist_rsu:: finish(){
+void vehDist_rsu:: finish() {
     printCountMessagesReceived();
 }
 
