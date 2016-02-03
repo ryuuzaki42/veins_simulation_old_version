@@ -31,7 +31,7 @@ int main(){
     output.open("test_end.rou.xml"); //Arquivo que será criado com todas rotas
 
     //Escrita da definição do tipo de veículo no arquivo de saída
-    output << "<routes>\n    <vType id=\"vtype0\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"85\" color=\"1,1,0\"/>\n\n";
+    output << "<routes>\n    <vType id=\"vtype0\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>\n\n";
 
     int count = 0;
     int countRoutes = 80;
