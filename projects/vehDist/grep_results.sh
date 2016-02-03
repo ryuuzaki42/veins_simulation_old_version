@@ -24,5 +24,13 @@
 #
 # Última atualização: 02/02/2016
 #
-echo "Scrpit to collect the simulation result in one place"
-cat VehMessagesgenerated.r | egrep "Execution number"" 
+echo -e "\nScrpit to collect the simulation result in one place\n"
+
+# rsu[0] count messages received
+cat results/rsu[0]CountMessagesReceived.r | grep -E "#####|Execution number|### Count Messages Received|### General avegare time to received" | sed 's/#####*//g'
+ #echo -n "########################################################################################"
+ #echo "######################################################################################"
+echo
+
+echo -e "\nEnd of script\n"
+#end
