@@ -135,7 +135,7 @@ void BaseWaveApplLayer::executionByNumExperiment(){
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
         ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
     }else {
-        cout << "Error: Number of experiment not configured. Go to VehDist.cc line 151." << endl;
+        cout << "Error: Number of experiment not configured. Go to VehDist.cc line 138." << endl;
         exit(1); // Coments this line for use the values below
         countGenerateBeaconMessage = 0; // Will not generate any message
         ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
