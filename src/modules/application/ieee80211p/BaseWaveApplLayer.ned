@@ -78,7 +78,7 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int countGenerateBeaconMessage_one = default(0); // count messages generate by time
         int countGenerateBeaconMessage_two = default(0);
 
-        int experimentNumber = default(0); // Experiment number to use _one or _two variables
+        int experimentNumber = default(0); // Experiment number by table 2^k, number to use _one or _two variables
         int ttlBeaconStatus @unit("s") = default(3s);
         int beaconMessageBufferSize = default(50);
         int beaconStatusBufferSize = default(50);

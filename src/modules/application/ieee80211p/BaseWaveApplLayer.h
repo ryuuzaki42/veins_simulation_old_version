@@ -86,7 +86,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
         void printHeaderfileExecution(int ttlBeaconMessage, int countGenerateBeaconMessage);
         void openFileAndClose(string fileName, bool justForAppend, int ttlBeaconMessage, int countGenerateBeaconMessage);
-        void executionByNumExperiment();
+        void generalInitializeVariables_executionByExperimentNumber();
 //######################################### vehDist #########################################
 
     protected:
@@ -169,7 +169,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         unsigned int beaconMessageHopLimit;
         int numVehicles;
         int countGenerateBeaconMessage;
-        double ttlBeaconMessage;
+        int ttlBeaconMessage;
         double timeLimitGenerateBeaconMessage;
         string stringTmp;
         double doubleTmp;
