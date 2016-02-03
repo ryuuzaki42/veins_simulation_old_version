@@ -78,7 +78,7 @@ class vehDist : public BaseWaveApplLayer {
         unsigned int getVehHeading8();
         unsigned int getVehHeading4();
         bool sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
-        void saveVehStartPosition();
+        void saveVehStartPosition(string fileNameLocation);
         void restartFilesResult();
         void vehUpdatePosition();
         void vehCreateEventTrySendBeaconMessage();
