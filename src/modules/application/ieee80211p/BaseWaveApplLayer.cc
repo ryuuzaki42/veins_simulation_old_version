@@ -64,7 +64,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
     }
 }
 
-//######################################### vehDist #########################################
+//######################################### vehDist ###############################################################################################
 
 void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileName){
     myfile.open (fileName, std::ios_base::app); //Open file for just apeend
@@ -114,8 +114,9 @@ void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, in
 }
 
 void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int countGenerateBeaconMessage){
-    myfile << endl << "############################################################################################";
-    myfile << "############################################################################################" << endl;
+    myfile << endl;
+    myfile << "#######################################################################################";
+    myfile << "#######################################################################################" << endl;
     myfile << "Execution number: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
     myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;
 }
@@ -142,7 +143,7 @@ void BaseWaveApplLayer::executionByNumExperiment(){
     }
 }
 // end
-//######################################### vehDist #########################################
+//######################################### vehDist ###############################################################################################
 
 void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
     BaseApplLayer::initialize(stage);
