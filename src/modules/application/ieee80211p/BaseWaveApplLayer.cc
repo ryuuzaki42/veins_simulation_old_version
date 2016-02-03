@@ -103,22 +103,45 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile.close();
 }
 
-void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend){
+void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, int ttlBeaconMessage, int countGenerateBeaconMessage ){
     if (justForAppend) {
         myfile.open(fileName, std::ios_base::app);
     } else {
         myfile.open(fileName);
     }
-    printHeaderfileExecution();
+    printHeaderfileExecution(ttlBeaconMessage ,countGenerateBeaconMessage);
     myfile.close();
 }
 
-void BaseWaveApplLayer::printHeaderfileExecution(){
-    myfile << "############################################################################################";
+void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int countGenerateBeaconMessage){
+    myfile << endl << "############################################################################################";
     myfile << "############################################################################################" << endl;
-    myfile << "Execution number: " << repeatNumber << endl << endl;
+    myfile << "Execution number: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
+    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;
 }
 
+void BaseWaveApplLayer::executionByNumExperiment(){
+    experimentNumber = par("experimentNumber").longValue();
+    if (experimentNumber == 11){
+        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
+    } else if (experimentNumber == 12) {
+        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
+    } else if (experimentNumber == 21){
+        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
+    } else if (experimentNumber == 22) {
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
+        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+    }else {
+        cout << "Error: Number of experiment not configured. Go to VehDist.cc line 151." << endl;
+        exit(1); // Coments this line for use the values below
+        countGenerateBeaconMessage = 0; // Will not generate any message
+        ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
+    }
+}
+// end
 //######################################### vehDist #########################################
 
 void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
