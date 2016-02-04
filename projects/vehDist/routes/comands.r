@@ -23,6 +23,17 @@ sed -i 's/maxSpeed=".."/maxSpeed="15"/g' test_end.rou.xml
 sed -i 's/maxSpeed=".."/maxSpeed="25"/g' test_end.rou.xml
 
 ## See iterations from ini file
-cat General-* | grep "attr iterationvars2"
+ #cat General-*.sca | grep "attr iterationvars2"
+i=0; while [ $i -lt 32 ]; do cat General-$i.sca | grep "attr iterationvars2"; i=$((i+1)); done
 
-##
+## Run on terminal
+
+-u = mode, -f = arquivo ini -r = nº de execucão -l = libveins -n = arquivos ned
+ # sem GUI
+opp_run -u Cmdenv -n .:../../src/ -f vehDist.ini -r 0 -l ../../src/libveins.so
+ # com GUI
+opp_run -u Tkenv -n .:../../src/ -f vehDist.ini -r 0 -l ../../src/libveins.so
+
+ #sem repeat
+opp_run -u Cmdenv -n .:../../src/ -f vehDist.ini -l ../../src/libveins.so
+opp_run -u Tkenv -n .:../../src/ -f vehDist.ini -l ../../src/libveins.so
