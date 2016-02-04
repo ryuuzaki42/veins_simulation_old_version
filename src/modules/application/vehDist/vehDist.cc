@@ -99,7 +99,7 @@ void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
 
 void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
     //findHost()->bubble("Received a Message");
-    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize").longValue());
+    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
 
     //verify if this is the recipient of the message
     if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0) {
@@ -114,11 +114,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
         saveMessagesOnFile(wsm, fileMessagesNameUnicast);
 
         if (wsm->getHopCount() == 0) {
-            if(messagesDrop.empty() || (messagesDrop.find(wsm->getGlobalMessageIdentificaton()) == messagesDrop.end())) {
-                messagesDrop.insert(make_pair(wsm->getGlobalMessageIdentificaton(), 1));
-            } else {
-                messagesDrop[wsm->getGlobalMessageIdentificaton()] += 1;
-            }
+            insertMessageDrop(wsm->getGlobalMessageIdentificaton(), 3); // by ttl (1 buffer, 2 ttl, 3 hop
             return;
         }
 
@@ -135,10 +131,10 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
         } else {
             cout<<findHost()->getFullName() << " message is on the buffer at simtime " << simTime() << endl;
         }
-    } else { // to another veh
+    } //else { // to another veh
         //cout << "Saving broadcast message from: " << wsm->getSenderAddressString() << " to " << findHost()->getFullName() << endl;
-        saveMessagesOnFile(wsm, fileMessagesNameBroadcast);
-    }
+        //saveMessagesOnFile(wsm, fileMessagesNameBroadcast);
+    //}
     //printmessagesBuffer();
 }
 
@@ -165,21 +161,54 @@ void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, d
                 key = itData->first;
             }
         }
+
         if((minTime + timeValid) < simTime()) {
-            //cout << findHost()->getFullName() << " remove one " << type << " by time " << "Timestamp: " << minTime << " at: " << simTime() << " timeValid: " << timeValid << endl;
+            //cout << findHost()->getFullName() << " remove one " << type << " by time Timestamp: " << minTime << " at: " << simTime() << " timeValid: " << timeValid << endl;
+            if (strcmp(type.c_str(), "beaconMessage") == 0) {
+                insertMessageDrop(key, 2); // by ttl (1 buffer, 2 ttl, 3 hop
+            }
+
             data->erase(key);
         } else if (data->size() > bufferLimit) {
-            //cout << findHost()->getFullName() << " remove one " << type << " by space" << "Timestamp: " << minTime << " at: " << simTime() << " timeValid: " << timeValid << endl;
+            //cout << findHost()->getFullName() << " remove one " << type << " by space Timestamp: " << minTime << " at: " << simTime() << " timeValid: " << timeValid << endl;
+            if (strcmp(type.c_str(), "beaconMessage") == 0) {
+                insertMessageDrop(key, 1); // by ttl (1 buffer, 2 ttl, 3 hop
+            }
             data->erase(key);
         }
-    } else{
+
+    } //else{
         //cout << "Data buffer from " << findHost()->getFullName() << " is empty now " << endl;
-    }
+    //}
     colorCarryMessage();
 }
 
-void vehDist::sendBeaconMessage() {
+void vehDist::insertMessageDrop(string ID, int type) {
+    struct messagesDropStruct mD_tmp;
+    mD_tmp.byBuffer = 0;
+    mD_tmp.byHop = 0;
+    mD_tmp.byTime = 0;
 
+    if (type == 1) { // by buffer limit
+        mD_tmp.byBuffer = 1;
+    } else if (type == 2) { // by hop limit
+        mD_tmp.byHop = 1;
+    } else if (type == 3) { // by ttl
+        mD_tmp.byTime = 1;
+    }
+
+    if(messagesDrop.empty() || (messagesDrop.find(ID) == messagesDrop.end())) {
+        messagesDrop.insert(make_pair(ID, mD_tmp));
+    } else if (type == 1) {
+        messagesDrop[ID].byBuffer += 1;
+    } else if (type == 2) {
+        messagesDrop[ID].byHop += 1;
+    } else if (type == 3) {
+        messagesDrop[ID].byTime += 1;
+    }
+}
+
+void vehDist::sendBeaconMessage() {
     removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize").longValue());
     removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize").longValue());
 
@@ -256,16 +285,16 @@ void vehDist::printCountBeaconMessagesDrop() {
     } else{
         myfile << "messagesDrop from " << findHost()->getFullName() << endl;
 
-        map<string, int>::iterator it;
+        map<string, struct messagesDropStruct>::iterator it;
         for (it = messagesDrop.begin(); it != messagesDrop.end(); it++) {
             myfile << "Message Id: " << it->first << endl;
-            myfile << "Count received: " << it->second << endl;
-            countMesssageDrop += it->second;
+            myfile << "By Buffer: " << it->second.byBuffer << endl;
+            myfile << "By Hop: " << it->second.byHop << endl;
+            myfile << "By Time: " << it->second.byTime << endl;
+            countMesssageDrop += it->second.byBuffer + it->second.byHop + it->second.byTime;
         }
     }
-    //mudar para Current count messages drop:
-    myfile << "Current: " << countMesssageDrop << endl;
-    myfile << endl;
+    myfile << endl << "## Count messages drop: " << countMesssageDrop << endl << endl;
     myfile.close();
 }
 
@@ -401,8 +430,6 @@ void vehDist::saveVehStartPosition(string fileNameLocation) {
         }
         printHeaderfileExecution(ttlBeaconMessage, countGenerateBeaconMessage);
 
-        myfile << "ExperimentNumber: " << experimentNumber << endl << endl;
-
         myfile << "Start Position Vehicles" << endl;
     } else{
         myfile.open (fileNameLocation, std::ios_base::app);
@@ -425,7 +452,7 @@ void vehDist::restartFilesResult() {
 
     fileMessagesNameUnicast = fileMessagesCount =  fileMessagesDrop = fileMessagesGenerated = fileMessagesNameBroadcast = stringTmp;
 
-    fileMessagesNameBroadcast += "VehBroadcastMessages.r";
+    //fileMessagesNameBroadcast += "VehBroadcastMessages.r";
     fileMessagesNameUnicast += "VehMessages.r";
     fileMessagesCount += "VehMessagesCount.r";
     fileMessagesDrop += "VehMessagesDrop.r";
@@ -433,13 +460,13 @@ void vehDist::restartFilesResult() {
 
     if (vehNumber == 0) {
         if (repeatNumber == 0) {
-            openFileAndClose(fileMessagesNameBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            //openFileAndClose(fileMessagesNameBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesNameUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesDrop, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesGenerated, false, ttlBeaconMessage, countGenerateBeaconMessage);
         } else{ // (repeatNumber != 0)) // open just for append
-            openFileAndClose(fileMessagesNameBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            //openFileAndClose(fileMessagesNameBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesNameUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesDrop, true, ttlBeaconMessage, countGenerateBeaconMessage);
