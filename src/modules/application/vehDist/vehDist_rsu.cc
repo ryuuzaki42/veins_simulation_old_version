@@ -143,28 +143,28 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm) {
 
         it->second.hops += ", ";
         it->second.hops += to_string(beaconMessageHopLimit - wsm->getHopCount());
-        it->second.HopsCount = it->second.HopsCount + 1;
-        it->second.averageHops += (beaconMessageHopLimit - wsm->getHopCount());
-        if ((beaconMessageHopLimit - wsm->getHopCount()) > it->second. maxHop) {
+        it->second.copyMessage = it->second.copyMessage + 1;
+        it->second.sumHops += (beaconMessageHopLimit - wsm->getHopCount());
+
+        if ((beaconMessageHopLimit - wsm->getHopCount()) > it->second.maxHop) {
             it->second.maxHop = (beaconMessageHopLimit - wsm->getHopCount());
         }
-        if ((beaconMessageHopLimit - wsm->getHopCount()) < it->second. minHop) {
+        if ((beaconMessageHopLimit - wsm->getHopCount()) < it->second.minHop) {
              it->second.minHop = (beaconMessageHopLimit - wsm->getHopCount());
          }
 
-        it->second.timeAverage += (simTime() - wsm->getTimestamp());
+        it->second.sumTimeRecived += (simTime() - wsm->getTimestamp());
         it->second.times += ", ";
         simtime_t tmpTime = (simTime() - wsm->getTimestamp());
         it->second.times += tmpTime.str();
 
     } else{
         struct messages m;
-        m.HopsCount = 1;
+        m.copyMessage = 1;
         m.wsmData = wsm->getWsmData();
         m.hops = to_string(beaconMessageHopLimit - wsm->getHopCount());
-        m.maxHop = m.minHop = m.averageHops = beaconMessageHopLimit - wsm->getHopCount();
-        m.averageHops = (beaconMessageHopLimit - wsm->getHopCount());
-        m.timeAverage = (simTime() - wsm->getTimestamp());
+        m.maxHop = m.minHop = m.sumHops = (beaconMessageHopLimit - wsm->getHopCount());
+        m.sumTimeRecived = (simTime() - wsm->getTimestamp());
         simtime_t tmpTime = (simTime() - wsm->getTimestamp());
         m.times = tmpTime.str();
         messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), m));
@@ -215,7 +215,10 @@ void vehDist_rsu::handleSelfMsg(cMessage* msg) {
 void vehDist_rsu::printCountMessagesReceived() {
     myfile.open (fileMessagesCount, std::ios_base::app);
 
-    SimTime avgTimeMessageReceived = 0;
+    SimTime avgGeneralCopyMessageReceived = 0;
+    double avgGeneralHopsMessage = 0;
+    SimTime avgGeneralTimeMessageReceived = 0;
+
     if (!messagesReceived.empty()) {
         myfile << "messagesReceived from " << findHost()->getFullName() << endl;
 
@@ -223,24 +226,29 @@ void vehDist_rsu::printCountMessagesReceived() {
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
             myfile << endl;
             myfile << "Message Id: " << it->first << endl;
-            myfile << "Count received: " << it->second.HopsCount << endl;
+            myfile << "Count received: " << it->second.copyMessage << endl;
+            avgGeneralCopyMessageReceived += it->second.copyMessage;
             myfile << it->second.wsmData << endl;
             myfile << "Hops: " << it->second.hops << endl;
-            myfile << "Sum hops: " << it->second.averageHops << endl;
-            it->second.averageHops = (it->second.averageHops/it->second.HopsCount);
-            myfile << "Average Hops: " << it->second.averageHops << endl;
+            myfile << "Sum hops: " << it->second.sumHops << endl;
+            myfile << "Average Hops: " << (it->second.sumHops/it->second.copyMessage) << endl;
+            avgGeneralHopsMessage += it->second.sumHops;
             myfile << "Max Hop: " << it->second.maxHop << endl;
             myfile << "Min Hop: " << it->second.minHop << endl;
             myfile << "Times: " << it->second.times << endl;
-            myfile << "Sum times: " << it->second.timeAverage << endl;
-            myfile << "Avegare time to received: " << (it->second.timeAverage/it->second.HopsCount) << endl;
-            avgTimeMessageReceived += (it->second.timeAverage/it->second.HopsCount);
-
+            myfile << "Sum times: " << it->second.sumTimeRecived << endl;
+            myfile << "Avegare time to received: " << (it->second.sumTimeRecived/it->second.copyMessage) << endl;
+            avgGeneralTimeMessageReceived += (it->second.sumTimeRecived/it->second.copyMessage);
         }
-        myfile << endl << "### Count Messages Received: " << messagesReceived.size() << " ###" << endl;
-        avgTimeMessageReceived = avgTimeMessageReceived/messagesReceived.size();
-        myfile << "### General avegare time to received: " << avgTimeMessageReceived << endl;
-        // ver: 34 geradas, mas só 29 recebidas
+
+        avgGeneralTimeMessageReceived = avgGeneralTimeMessageReceived/messagesReceived.size();
+        avgGeneralCopyMessageReceived = avgGeneralCopyMessageReceived/messagesReceived.size();
+        avgGeneralHopsMessage = avgGeneralHopsMessage/messagesReceived.size();
+        myfile << endl << "### Count Messages Received: " << messagesReceived.size() << endl;
+        myfile << "### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
+        myfile << "### avg copy received: " << avgGeneralCopyMessageReceived << endl;
+        myfile << "### avg hops to received: " << avgGeneralHopsMessage << endl;
+        // to_do: 34 geradas, mas só 2* recebidas
         myfile << endl;
     } else{
         myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;
