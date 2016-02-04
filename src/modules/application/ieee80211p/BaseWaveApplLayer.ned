@@ -67,22 +67,20 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int vehBeaconMessageTarget_x = default(0);
         int vehBeaconMessageTarget_y = default(0);
 
-        int beaconMessageHopLimit = default(0); // Limit of hops
-        int vehTimeUpdatePosition @unit("s") = default(1s); //time for update vehicle position
+        int beaconMessageBufferSize = default(50);
         int beaconMessageInterval @unit("s") = default(1s); // interval to try send message(s)
+        int beaconMessageHopLimit = default(0); // Limit of hops
         int timeGenerateBeaconMessage @unit("s") = default(30s); // time for generate messages
 
-        int ttlBeaconMessage_one @unit("s") = default(60s);
+        int ttlBeaconMessage_one @unit("s") = default(60s); // ttl beacon message
         int ttlBeaconMessage_two @unit("s") = default(60s);
-
         int countGenerateBeaconMessage_one = default(0); // count messages generate by time
         int countGenerateBeaconMessage_two = default(0);
 
         int experimentNumber = default(0); // Experiment number by table 2^k, number to use _one or _two variables
         int ttlBeaconStatus @unit("s") = default(3s);
-        int beaconMessageBufferSize = default(50);
         int beaconStatusBufferSize = default(50);
-        int numVehicles = default(0); // number of vehicles
+        int vehTimeUpdatePosition @unit("s") = default(1s); //time for update vehicle position
 
     gates:
         input lowerLayerIn; // from mac layer

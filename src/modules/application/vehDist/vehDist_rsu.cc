@@ -82,16 +82,17 @@ void vehDist_rsu::restartFilesResult() {
     stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
     stringTmp += "_" + to_string(ttlBeaconMessage) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
-    fileMessagesNameBroadcast = fileMessagesNameUnicast = fileMessagesCount = stringTmp;
+    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = fileMessagesDrop = stringTmp;
 
 
-    fileMessagesNameBroadcast += "rsuBroadcastMessages.r";
+    fileMessagesBroadcast += findHost()->getFullName();
+    fileMessagesBroadcast += "_Broadcast_Messages.r";
 
-    fileMessagesNameUnicast += findHost()->getFullName();
-    fileMessagesNameUnicast += "MessagesReceived.r";
+    fileMessagesUnicast += findHost()->getFullName();
+    fileMessagesUnicast += "_Messages_Received.r";
 
     fileMessagesCount += findHost()->getFullName();
-    fileMessagesCount += "CountMessagesReceived.r";
+    fileMessagesCount += "_Count_Messages_Received.r";
 
     //fileMessagesDrop = ...
 
@@ -110,12 +111,12 @@ void vehDist_rsu::restartFilesResult() {
             cout << "repeatNumber " << repeatNumber << endl;
             system(stringTmp.c_str()); //create a folder results
 
-            openFileAndClose(fileMessagesNameBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesNameUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
         } else{ // (repeatNumber != 0)) // for just append
-            openFileAndClose(fileMessagesNameBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesNameUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
         }
     }
@@ -127,12 +128,12 @@ void vehDist_rsu::onData(WaveShortMessage* wsm) {
 void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
     if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0) {
         findHost()->bubble("Received Message");
-        saveMessagesOnFile(wsm, fileMessagesNameUnicast);
+        saveMessagesOnFile(wsm, fileMessagesUnicast);
 
         messagesReceivedMeasuring(wsm);
     }
     else{
-        saveMessagesOnFile(wsm, fileMessagesNameBroadcast);
+        saveMessagesOnFile(wsm, fileMessagesBroadcast);
     }
 }
 
@@ -249,6 +250,9 @@ void vehDist_rsu::printCountMessagesReceived() {
 
 void vehDist_rsu:: finish() {
     printCountMessagesReceived();
+    if (experimentNumber == 8) { // maxSpeed 15 m/s
+        system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end.rou.xml");
+    }
 }
 
 void vehDist_rsu::sendWSM(WaveShortMessage* wsm) {

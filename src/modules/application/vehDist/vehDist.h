@@ -51,6 +51,7 @@ class vehDist : public BaseWaveApplLayer {
         unordered_map<string, WaveShortMessage> messagesBuffer;
         unordered_map<string, WaveShortMessage> beaconStatusNeighbors;
         vector <string> messagesDelivered;
+        static unordered_map<string, string> numVehicles;
 
         int vehNumber;
         double vehOffSet;
@@ -110,5 +111,6 @@ class vehDist : public BaseWaveApplLayer {
 unsigned short int vehDist::beaconMessageId = 0;
 unsigned short int vehDist::countMesssageDrop=0;
 unordered_map<int, bool> vehDist::vehGenerateMessage;
+unordered_map<string, string> vehDist::numVehicles;
 
 #endif

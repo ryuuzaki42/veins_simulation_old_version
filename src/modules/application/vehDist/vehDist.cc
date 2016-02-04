@@ -46,36 +46,34 @@ void vehDist::vehInitializeVariables() {
     generalInitializeVariables_executionByExperimentNumber();
 
     source = findHost()->getFullName();
-
-    setVehNumber();
-    if(vehNumber == 0) { // Veh must be the first to generate messages, so your offset is 0;
-        vehOffSet = 0;
-        //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (seed for the rand is "static")
-        srand(repeatNumber + 1); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
-    } else {
-        //simulate asynchronous channel access
-        vehOffSet = dblrand(); // Values betwen 0 and 1
-        vehOffSet = vehOffSet + 0.001;
-    }
-    numVehicles = par("numVehicles").longValue();
-
     stringTmp = ev.getConfig()->getConfigValue("sim-time-limit");
     timeLimitGenerateBeaconMessage = atof(stringTmp.c_str());
     doubleTmp = par("ttlBeaconMessage_two").doubleValue();
     timeLimitGenerateBeaconMessage = timeLimitGenerateBeaconMessage - doubleTmp;
 
-    if (vehNumber == 0) {
-       cout << endl << "Experiment: " << experimentNumber << endl;
-       cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
-       cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
-       cout << "timeLimitGenerateMessage: " << timeLimitGenerateBeaconMessage << endl << endl;
+    setVehNumber();
+    if(vehNumber == 0) { // Veh must be the first to generate messages, so your offset is 0;
+        vehOffSet = 0.1;
+        //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (seed for the rand is "static")
+        srand(repeatNumber + 1); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
+    } else {
+        //simulate asynchronous channel access
+        vehOffSet = dblrand(); // Values betwen 0 and 1
+        vehOffSet = vehOffSet + 0.1;
     }
+    if (vehNumber == 0) {
+        cout << endl << "Experiment: " << experimentNumber << endl;
+        cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
+        cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
+        cout << "timeLimitGenerateMessage: " << timeLimitGenerateBeaconMessage << endl << endl;
+    }
+    vehDist::numVehicles.insert(make_pair(source, source));
+    //cout << "numVehicles: " << numVehicles.size() << " at: " << simTime() << endl;
 
     restartFilesResult(); // Start the file for save results
     vehGenerateBeaconMessageBegin(); // Create Evt to generate messages
     vehUpdatePosition(); // Create Evt to update the position of vehicle
     vehCreateEventTrySendBeaconMessage(); // Create one Evt to try send messages in buffer
-
     //cout << endl << findHost()->getFullName() << " entered in the scenario at " << simTime() << endl;
 }
 
@@ -111,7 +109,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
             }
         }
         cout << "Saving message from: " << wsm->getSenderAddressTemporary() << " to " << findHost()->getFullName() << endl;
-        saveMessagesOnFile(wsm, fileMessagesNameUnicast);
+        saveMessagesOnFile(wsm, fileMessagesUnicast);
 
         if (wsm->getHopCount() == 0) {
             insertMessageDrop(wsm->getGlobalMessageIdentificaton(), 3); // by ttl (1 buffer, 2 ttl, 3 hop
@@ -199,11 +197,11 @@ void vehDist::insertMessageDrop(string ID, int type) {
 
     if(messagesDrop.empty() || (messagesDrop.find(ID) == messagesDrop.end())) {
         messagesDrop.insert(make_pair(ID, mD_tmp));
-    } else if (type == 1) {
+    } else if (type == 1) { // Increment the number of bybuffer (limit)
         messagesDrop[ID].byBuffer += 1;
-    } else if (type == 2) {
+    } else if (type == 2) { // Increment the number of byHop (limit)
         messagesDrop[ID].byHop += 1;
-    } else if (type == 3) {
+    } else if (type == 3) { // Increment the number of byTime (limit)
         messagesDrop[ID].byTime += 1;
     }
 }
@@ -273,6 +271,7 @@ void vehDist::sendBeaconMessage() {
 
 void vehDist:: finish() {
     printCountBeaconMessagesDrop();
+    vehDist::numVehicles.erase(source);
 }
 
 // mudar criar outra função que imprime depois dessa
@@ -280,21 +279,26 @@ void vehDist::printCountBeaconMessagesDrop() {
     myfile.open (fileMessagesDrop, std::ios_base::app);
 
     if (messagesDrop.empty()) {
-        myfile << "messagesDrop from " << findHost()->getFullName() << " is empty now" << endl;
+        myfile << endl << "messagesDrop from " << findHost()->getFullName() << " is empty now" << endl;
         return;
     } else{
-        myfile << "messagesDrop from " << findHost()->getFullName() << endl;
-
+        myfile << endl << "messagesDrop from " << findHost()->getFullName() << endl;
+        int messageDropbyOneVeh = 0;
         map<string, struct messagesDropStruct>::iterator it;
         for (it = messagesDrop.begin(); it != messagesDrop.end(); it++) {
             myfile << "Message Id: " << it->first << endl;
             myfile << "By Buffer: " << it->second.byBuffer << endl;
             myfile << "By Hop: " << it->second.byHop << endl;
             myfile << "By Time: " << it->second.byTime << endl;
-            countMesssageDrop += it->second.byBuffer + it->second.byHop + it->second.byTime;
+            messageDropbyOneVeh += it->second.byBuffer + it->second.byHop + it->second.byTime;
         }
+        countMesssageDrop += messageDropbyOneVeh;
+        myfile << endl << "## This veh" << source << " droped: " << messageDropbyOneVeh << endl;
     }
-    myfile << endl << "## Count messages drop: " << countMesssageDrop << endl << endl;
+    myfile << "## Count messages drop: " << countMesssageDrop << endl;
+    if (vehDist::numVehicles.size() == 1){
+        myfile << endl << "## Final count messages drop: " << countMesssageDrop << endl << endl;
+    }
     myfile.close();
 }
 
@@ -421,7 +425,7 @@ bool vehDist::sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemot
 //###################################################  OK Function ####################################################
 
 void vehDist::saveVehStartPosition(string fileNameLocation) {
-    fileNameLocation += "vehicle_position_initialize.r";
+    fileNameLocation += "Veh_Position_Initialize.r";
     if (source.compare("car[0]") == 0) {
         if (repeatNumber == 0) {
             myfile.open (fileNameLocation);
@@ -450,25 +454,25 @@ void vehDist::restartFilesResult() {
 
     saveVehStartPosition(stringTmp); // Save the start position of vehicle. Just for test the seed.
 
-    fileMessagesNameUnicast = fileMessagesCount =  fileMessagesDrop = fileMessagesGenerated = fileMessagesNameBroadcast = stringTmp;
+    fileMessagesUnicast = fileMessagesCount =  fileMessagesDrop = fileMessagesGenerated = fileMessagesBroadcast = stringTmp;
 
-    //fileMessagesNameBroadcast += "VehBroadcastMessages.r";
-    fileMessagesNameUnicast += "VehMessages.r";
-    fileMessagesCount += "VehMessagesCount.r";
-    fileMessagesDrop += "VehMessagesDrop.r";
-    fileMessagesGenerated += "VehMessagesgenerated.r";
+    //fileMessagesBroadcast += "Veh_Broadcast_Messages.r";
+    fileMessagesUnicast += "Veh_Unicast_Messages.r";
+    //fileMessagesCount += "Veh_Messages_Count.r";
+    fileMessagesDrop += "Veh_Messages_Drop.r";
+    fileMessagesGenerated += "Veh_Messages_Generated.r";
 
     if (vehNumber == 0) {
         if (repeatNumber == 0) {
-            //openFileAndClose(fileMessagesNameBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesNameUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            //openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+            //openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesDrop, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesGenerated, false, ttlBeaconMessage, countGenerateBeaconMessage);
         } else{ // (repeatNumber != 0)) // open just for append
-            //openFileAndClose(fileMessagesNameBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesNameUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            //openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+            //openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesDrop, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesGenerated, true, ttlBeaconMessage, countGenerateBeaconMessage);
         }
@@ -479,7 +483,6 @@ void vehDist::vehUpdatePosition() {
     vehPositionPrevious = traci->getCurrentPosition();
     //cout << "initial positionBack: " << vehPositionBack << endl;
     sendUpdatePosisitonVeh = new cMessage("Event update position vehicle", SendEvtUpdatePositionVeh);
-
     //cout << findHost()->getFullName() << " at simtime: "<< simTime() << "schedule created UpdatePosition to: "<< (simTime() + vehOffSet) << endl;
     scheduleAt((simTime()+ par("vehTimeUpdatePosition").doubleValue() + vehOffSet), sendUpdatePosisitonVeh);
 }
@@ -498,7 +501,7 @@ void vehDist::selectVehGenerateMessage() {
             int vehSelected;
             myfile.open(fileMessagesGenerated, std::ios_base::app); // To save infos (Id and veh generate) on fileMessagesGenerated
             for (int i = 0; i < countGenerateBeaconMessage;) { // select <countGenerateBeaconMessage> distinct veh to generate messages
-                vehSelected = rand() % numVehicles; // random car to generate message
+                vehSelected = rand() % vehDist::numVehicles.size(); // random car to generate message
                 if(vehDist::vehGenerateMessage.find(vehSelected) == vehDist::vehGenerateMessage.end()) {
                     vehDist::vehGenerateMessage.insert(make_pair(vehSelected,true));
                     cout << findHost()->getFullName() << " select the car[" << vehSelected << "] generate message at simTime: " << simTime() << endl;
@@ -577,8 +580,7 @@ WaveShortMessage* vehDist::updateBeaconMessageWSM(WaveShortMessage* wsm, string 
     return wsm;
 }
 
-//Generate a target in order to send a message
-void vehDist::generateTarget() {
+void vehDist::generateTarget() { //Generate a target in order to send a message
     //Set the target node to whom my message has to be delivered
     target = "rsu[0]";
     target_x = par("vehBeaconMessageTarget_x").longValue();
@@ -588,8 +590,7 @@ void vehDist::generateTarget() {
 void vehDist::generateBeaconMessage() {
     WaveShortMessage* wsm = new WaveShortMessage("beaconMessage");
 
-    //target = rsu[0], rsu[1] or car[*] and the repective position.
-    generateTarget();
+    generateTarget(); //target = rsu[0], rsu[1] or car[*] and the repective position.
     wsm->setTargetPos(Coord(target_x, target_y, 3));
 
     wsm->addBitLength(headerLength);
@@ -628,8 +629,7 @@ void vehDist::generateBeaconMessage() {
 
     cout << findHost()->getFullName() << " generated the message ID:" << vehDist::beaconMessageId << " at simTime: " << simTime() << endl;
 
-    // Save info (Id and veh generate) on fileMessagesGenerated
-    myfile.open(fileMessagesGenerated, std::ios_base::app);
+    myfile.open(fileMessagesGenerated, std::ios_base::app); // Save info (Id and veh generate) on fileMessagesGenerated
     myfile << "                                                   ";
     myfile << "                                                   ";
     myfile << "### " << findHost()->getFullName() << " generated the message ID:" << vehDist::beaconMessageId << " at simTime: " << simTime() << endl;
@@ -669,10 +669,7 @@ void vehDist::handleSelfMsg(cMessage* msg) {
 }
 
 void vehDist::printMessagesBuffer() {
-    if (messagesBuffer.empty()) {
-        //cout << "messagesBuffer from " << findHost()->getFullName() << " is empty now: " << simTime() << endl;
-        return;
-    } else {
+    if (!messagesBuffer.empty()) {
         cout << endl <<"messagesBuffer from " << findHost()->getFullName() << " at " << simTime() << endl;
         unordered_map<string, WaveShortMessage>::iterator it;
         for (it = messagesBuffer.begin(); it != messagesBuffer.end(); it++) {
@@ -684,7 +681,9 @@ void vehDist::printMessagesBuffer() {
             cout << " HopCount: " << it->second.getHopCount() << endl;
             cout << endl;
         }
-    }
+    } //else {
+        //cout << "messagesBuffer from " << findHost()->getFullName() << " is empty now: " << simTime() << endl;
+    //}
 }
 
 void vehDist::printBeaconStatusNeighbors() {
@@ -703,9 +702,9 @@ void vehDist::printBeaconStatusNeighbors() {
             cout << endl;
         }
     }
-    else {
+    //else {
         //cout << "beaconNeighbors from " << findHost()->getFullName() << " is empty now: " << simTime() << endl;
-    }
+    //}
 }
 
 unsigned int vehDist::getVehHeading4() {
