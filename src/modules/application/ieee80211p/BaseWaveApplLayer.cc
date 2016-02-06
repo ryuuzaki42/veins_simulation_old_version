@@ -119,11 +119,12 @@ void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int count
     }
     myfile << "#######################################################################################";
     myfile << "#######################################################################################" << endl << endl;
-    myfile << "Experiment number: " << experimentNumber << " Execution number: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
+    myfile << "Experiment: " << experimentNumber << " Execution: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
     myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;
 }
 
 void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber(){
+    source = findHost()->getFullName();
     beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
     stringTmp = ev.getConfig()->getConfigValue("seed-set");
     repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})

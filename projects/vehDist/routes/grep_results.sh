@@ -22,15 +22,16 @@
 #
 # Script: Scrpit to collect the simulation result in one place
 #
-# Última atualização: 02/02/2016
+# Última atualização: 06/02/2016
 #
 echo -e "\nScrpit to collect the simulation result in one place\n"
 
-# rsu[0] count messages received
-cat results/rsu[0]CountMessagesReceived.r | grep -E "#####|Execution number|### Count Messages Received|### General avegare time to received" | sed 's/#####*//g'
- #echo -n "########################################################################################"
- #echo "######################################################################################"
+echo -e "\t## rsu[0] count messages received ##"
+cat ../results/resultsEnd/*/rsu\[0\]_Count_Messages_Received.r | grep -E "#####|Execution|### Count|### avg" | sed 's/#####*//g'
 echo
 
-echo -e "\nEnd of script\n"
+echo -e "\t## veh[*] messages droped ##"
+cat ../results/resultsEnd/*/Veh_Messages_Drop.r | grep -E "#####|Execution|## Final" | sed 's/#####*//g'
+
+echo -e "\n\nEnd of script\n"
 #end

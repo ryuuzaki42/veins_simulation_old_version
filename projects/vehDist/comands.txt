@@ -1,4 +1,0 @@
-cat rsu\[0\]MessagesReceived.txt | grep  "wsm->getRecipientAddressString(): rsu" >> a.txt
-
-Veículos juntos, indo em direção da RSU, um (x) na frente recebia tinha a  mensagem (recebida de algum (y) atrás
-há um bom tempo), x recebia um beacon da RSU e envia, logo mais, y envia a mensagem para x que envia para a RSU.
