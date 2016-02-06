@@ -58,7 +58,7 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
     else if (std::string(wsm->getName()) == "data") {
         onData(wsm);
     }
-//
+//#################################################################
     else if (std::string(wsm->getName()) == "data2veh") {
         cout << "data2veh now" << endl;
     }
@@ -71,7 +71,7 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
     else if (std::string(wsm->getName()) == "beaconMessage") {
         onBeaconMessage(wsm);
     }
-//
+//#################################################################
     else{
         DBG << "unknown message (" << wsm->getName() << ")  received\n";
     }
@@ -170,7 +170,7 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm) {
     }
 }
 
-WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
+WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial) {
     WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
     wsm->addBitLength(headerLength);
     wsm->addBitLength(lengthBits);
@@ -184,13 +184,12 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int leng
     wsm->setSerial(serial);
     wsm->setTimestamp(simTime());
     wsm->setSenderPos(curPosition);
-
-    wsm->setSenderAddressTemporary(findHost()->getFullName());
+    wsm->setSource(source.c_str());
 
     //beacon don't need
     //wsm->setRecipientAddressString(); => "BROADCAST"
-    //wsm->setSource(source);
-    //wsm->setTarget(target);
+    // wsm->setSenderAddressTemporary();
+    //wsm->setTarget(); => "BROADCAST"
 
     DBG << "Creating BeaconStatus with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
     return wsm;
@@ -200,7 +199,7 @@ void vehDist_rsu::handleSelfMsg(cMessage* msg) {
     switch (msg->getKind()) {
         case SEND_BEACON_EVT: {
             //sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
-            sendWSM(prepareBeaconStatusWSM("beaconStatus", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+            sendWSM(prepareBeaconStatusWSM("beaconStatus", beaconLengthBits, type_CCH, beaconPriority, -1));
             scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
             break;
         }
