@@ -54,7 +54,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
         double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
         offSet = offSet + floor(offSet/0.050)*0.050;
         individualOffset = dblrand() * maxOffset;
-        //cout << findHost()->getFullName() << " Beacon offSet: " << offSet << endl;
+        //cout << findHost()->getFullName() << " Beacon offSet: " << offSet << endl; // betwen 0 and 1
 
         findHost()->subscribe(mobilityStateChangedSignal, this);
 

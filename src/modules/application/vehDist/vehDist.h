@@ -85,14 +85,14 @@ class vehDist : public BaseWaveApplLayer {
         void updateVehPosition();
         unsigned int getVehHeading8();
         unsigned int getVehHeading4();
-        bool sendtoTargetbyVeh(Coord vehicleRemoteCoordBack, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
+        bool sendtoTargetbyVeh(Coord vehicleRemoteCoordPrevious, Coord vehicleRemoteCoordNow, int vehicleRemoteHeading, Coord targetCoord);
         void saveVehStartPosition(string fileNameLocation);
         void restartFilesResult();
         void vehUpdatePosition();
         void vehCreateEventTrySendBeaconMessage();
         int getVehCategory();
         void removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit);
-        void sendMessageNeighborsTarget();
+        void sendMessageNeighborsTarget(string key);
         string returnLastMessageInsert();
         void finish();
         void printCountBeaconMessagesDrop();
@@ -106,10 +106,11 @@ class vehDist : public BaseWaveApplLayer {
         void selectVehGenerateMessage();
         void vehInitializeVariables();
         void insertMessageDrop(string ID, int type);
+        string getNeighborSmallDistanceToTarge(string key);
 };
 
-unsigned short int vehDist::beaconMessageId = 0;
-unsigned short int vehDist::countMesssageDrop=0;
+unsigned short int vehDist::beaconMessageId = 1;
+unsigned short int vehDist::countMesssageDrop = 0;
 unordered_map<int, bool> vehDist::vehGenerateMessage;
 unordered_map<string, string> vehDist::numVehicles;
 

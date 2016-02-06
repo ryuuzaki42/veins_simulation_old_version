@@ -107,7 +107,7 @@ void vehDist_rsu::restartFilesResult() {
 
             //system("mkdir results 2> /dev/null"); //create a folder results
             stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
-            cout << "stringTmp " << stringTmp << endl;
+            cout << endl << "Created the folder, comand: \"" << stringTmp << "\"" << endl;
             cout << "repeatNumber " << repeatNumber << endl;
             system(stringTmp.c_str()); //create a folder results
 
@@ -140,7 +140,6 @@ void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
 void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm) {
     map<string, struct messages>::iterator it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
     if (it != messagesReceived.end()) {
-
         it->second.hops += ", ";
         it->second.hops += to_string(beaconMessageHopLimit - wsm->getHopCount());
         it->second.copyMessage = it->second.copyMessage + 1;
