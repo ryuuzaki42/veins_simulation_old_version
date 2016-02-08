@@ -75,7 +75,7 @@ void vehDist::vehInitializeVariables() {
 }
 
 void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
-    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize").longValue());
+    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize"));
 
     auto it = beaconStatusNeighbors.find(wsm->getSenderAddressTemporary());
     if (it != beaconStatusNeighbors.end()) { // Update the beaconStatus
@@ -92,7 +92,7 @@ void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
 }
 
 void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
-    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize").longValue());
+    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
 
     if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0) { //verify if this is the recipient of the message
         if (!messagesDelivered.empty()) {
@@ -147,7 +147,7 @@ void vehDist::colorCarryMessage() {
     }
 }
 
-void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, int bufferLimit) {
+void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit) {
     if (!data->empty()) {
         unordered_map<string, WaveShortMessage>::iterator itData;
         itData = data->begin();
@@ -208,8 +208,8 @@ void vehDist::insertMessageDrop(string messageId, int type) {
 }
 
 void vehDist::sendBeaconMessage() {
-    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize").longValue());
-    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize").longValue());
+    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
+    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize"));
 
     if (!messagesBuffer.empty()) {
         cout << findHost()->getFullName() << " messagesBuffer with message(s) at " << simTime() << endl;
@@ -303,12 +303,12 @@ void vehDist::printCountBeaconMessagesDrop() {
             messageDropbyOneVeh += it->second.byBuffer + it->second.byHop + it->second.byTime;
         }
         countMesssageDrop += messageDropbyOneVeh;
-        myfile << endl << "## This veh (" << source << ") droped: " << messageDropbyOneVeh << endl;
+        myfile << endl << "### This veh (" << source << ") droped: " << messageDropbyOneVeh << endl;
     }
     myfile << "## Count messages drop: " << countMesssageDrop << endl;
 
     if (vehDist::numVehicles.size() == 1) {
-        myfile << endl << "## Final count messages drop: " << countMesssageDrop << endl << endl;
+        myfile << endl << "Exp: " << experimentNumber << " ### Final count messages drop: " << countMesssageDrop << endl << endl;
     }
     myfile.close();
 }

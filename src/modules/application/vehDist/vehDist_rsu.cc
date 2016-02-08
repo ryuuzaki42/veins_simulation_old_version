@@ -242,10 +242,10 @@ void vehDist_rsu::printCountMessagesReceived() {
         avgGeneralTimeMessageReceived = avgGeneralTimeMessageReceived/messagesReceived.size();
         avgGeneralCopyMessageReceived = avgGeneralCopyMessageReceived/messagesReceived.size();
         avgGeneralHopsMessage = avgGeneralHopsMessage/messagesReceived.size();
-        myfile << endl << "### Count Messages Received: " << messagesReceived.size() << endl;
-        myfile << "### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
-        myfile << "### avg copy received: " << avgGeneralCopyMessageReceived << endl;
-        myfile << "### avg hops to received: " << avgGeneralHopsMessage << endl;
+        myfile << endl << "Exp: " << experimentNumber << " ### Count Messages Received: " << messagesReceived.size() << endl;
+        myfile << "Exp: " << experimentNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
+        myfile << "Exp: " << experimentNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
+        myfile << "Exp: " << experimentNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
         // to_do: 34 geradas, mas só 2* recebidas
         myfile << endl;
     } else{
