@@ -131,8 +131,7 @@ void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
         saveMessagesOnFile(wsm, fileMessagesUnicast);
 
         messagesReceivedMeasuring(wsm);
-    }
-    else{
+    } else {
         saveMessagesOnFile(wsm, fileMessagesBroadcast);
     }
 }
@@ -223,19 +222,19 @@ void vehDist_rsu::printCountMessagesReceived() {
         map<string, struct messages>::iterator it;
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
             myfile << endl;
-            myfile << "Message Id: " << it->first << endl;
+            myfile << "Message ID: " << it->first << endl;
             myfile << "Count received: " << it->second.copyMessage << endl;
             avgGeneralCopyMessageReceived += it->second.copyMessage;
             myfile << it->second.wsmData << endl;
             myfile << "Hops: " << it->second.hops << endl;
             myfile << "Sum hops: " << it->second.sumHops << endl;
-            myfile << "Average Hops: " << (it->second.sumHops/it->second.copyMessage) << endl;
+            myfile << "Average hops: " << (it->second.sumHops/it->second.copyMessage) << endl;
             avgGeneralHopsMessage += it->second.sumHops;
-            myfile << "Max Hop: " << it->second.maxHop << endl;
-            myfile << "Min Hop: " << it->second.minHop << endl;
+            myfile << "Max hop: " << it->second.maxHop << endl;
+            myfile << "Min hop: " << it->second.minHop << endl;
             myfile << "Times: " << it->second.times << endl;
             myfile << "Sum times: " << it->second.sumTimeRecived << endl;
-            myfile << "Avegare time to received: " << (it->second.sumTimeRecived/it->second.copyMessage) << endl;
+            myfile << "Average time to received: " << (it->second.sumTimeRecived/it->second.copyMessage) << endl;
             avgGeneralTimeMessageReceived += (it->second.sumTimeRecived/it->second.copyMessage);
         }
 
@@ -246,7 +245,7 @@ void vehDist_rsu::printCountMessagesReceived() {
         myfile << "Exp: " << experimentNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
         myfile << "Exp: " << experimentNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
         myfile << "Exp: " << experimentNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
-        // to_do: 34 geradas, mas só 2* recebidas
+        // TODO: 34 geradas, mas só 2* recebidas
         myfile << endl;
     } else{
         myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;

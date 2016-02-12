@@ -117,7 +117,7 @@ void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int count
     if (repeatNumber != 0) {
         myfile << endl;
     }
-    myfile << "Exp: " << experimentNumber <<  "#################################################################################";
+    myfile << "Exp: " << experimentNumber <<  " ######################################################";
     myfile << "#######################################################################################" << endl << endl;
     myfile << "Exp: " << experimentNumber << " ### Experiment: " << experimentNumber << " Execution: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
     myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;

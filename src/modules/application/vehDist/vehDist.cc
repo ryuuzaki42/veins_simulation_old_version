@@ -217,7 +217,7 @@ void vehDist::sendBeaconMessage() {
         if (beaconStatusNeighbors.empty()) {
             cout << "beaconNeighbors on sendDataMessage from " << findHost()->getFullName() << " is empty now " << endl;
         } else {
-            // #to_do Procurar por um atigo em que afirme que enviar a última messagem recebeida é a melhor
+            // TODO: Procurar por um atigo em que afirme que enviar a última messagem recebeida é a melhor
             string key = returnLastMessageInserted(); // Return the ID of the last message inserted in the messageBuffer
 
             string rcvId = getNeighborSmallDistanceToTarge(key); // Look for a "good" veh to send the [key] (with is the last inserted) message
@@ -381,7 +381,7 @@ void vehDist::handleLowerMsg(cMessage* msg) {
 }
 
 int vehDist::getVehCategory() {
-    // to_do ver como definir a categoria
+    // TODO: ver como definir a categoria
     if (vehNumber < 13) {
         return 1;
     } else if ((vehNumber >= 13) && (vehNumber < 26)) {
