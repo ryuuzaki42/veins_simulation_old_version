@@ -122,7 +122,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
             cout << " At: " << simTime() << endl;
              */
         } else {
-            cout<<findHost()->getFullName() << " message is on the buffer at simtime " << simTime() << endl;
+            cout<<findHost()->getFullName() << " message is on the buffer at: " << simTime() << endl;
         }
     }/*else { // to another veh
         cout << "Saving broadcast message from: " << wsm->getSenderAddressTemporary() << " to " << findHost()->getFullName() << endl;
@@ -139,7 +139,7 @@ void vehDist::colorCarryMessage() {
                 findHost()->getDisplayString().updateWith("r=12,green"); // Has one message with himself was generated
                 return;
             } else {
-                findHost()->getDisplayString().updateWith("r=12,blue"); // Has only message with another was genarated
+                findHost()->getDisplayString().updateWith("r=12,blue"); // Has only message with another was generated
             }
         }
     } else {
@@ -576,7 +576,7 @@ void vehDist::generateBeaconMessage() {
     wsm->setRecipientAddressTemporary("Initial");
     wsm->setSource(source.c_str());
 
-    generateTarget(); //target = rsu[0], rsu[1] or car[*] and the repective position.
+    generateTarget(); //target = rsu[0], rsu[1] or car[*] and the respective position.
     wsm->setTargetPos(Coord(target_x, target_y, 3));
     wsm->setTarget(target.c_str());
 
@@ -679,7 +679,7 @@ unsigned int vehDist::getVehHeading4() {
      */
 
     double angle;
-    if (traci->getAngleRad() < 0) // radians are negtive, so degrees negative
+    if (traci->getAngleRad() < 0) // radians are negative, so degrees negative
         angle = (((traci->getAngleRad() + 2*M_PI ) * 180)/ M_PI);
     else //radians are positive, so degrees positive
         angle = ((traci->getAngleRad() * 180) / M_PI);
