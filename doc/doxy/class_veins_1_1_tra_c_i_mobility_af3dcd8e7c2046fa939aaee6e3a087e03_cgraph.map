@@ -1,4 +1,0 @@
-<map id="Veins::TraCIMobility::getPositionAt" name="Veins::TraCIMobility::getPositionAt">
-<area shape="rect" id="node2" href="$class_move.html#a170899b061efdeb55ead25e17bd88b8d" title="Returns the position of the Move (Host) at the specified point in time. " alt="" coords="195,13,335,39"/>
-<area shape="rect" id="node3" href="$class_f_w_math.html#a38d2500887b49de2a2b5f8610f7ba6d1" title="Tests whether two doubles are close enough to be declared equal. " alt="" coords="383,13,493,39"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="Veins::ObstacleControlAccess::getIfExists" name="Veins::ObstacleControlAccess::getIfExists">
-<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a5389f3fc889b1fe3fd126c33a7d9ae36" title="Veins::TraCIScenarioManager\l::init_traci" alt="" coords="255,71,452,112"/>
-<area shape="rect" id="node6" href="$class_phy_layer80211p.html#adfe098a981b32aa82c0cf369bdca29b3" title="Creates and initializes a SimpleObstacleShadowing with the passed parameter values. " alt="" coords="264,136,443,177"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a86a0b91aab8823c087c33b99f3a06b1f" title="Veins::TraCIScenarioManager\l::handleSelfMsg" alt="" coords="501,5,698,47"/>
-<area shape="rect" id="node5" href="$class_veins_1_1_tra_c_i_scenario_manager_launchd.html#a4c5b4cac20e03a2e333fd3e49a6a7e0e" title="Veins::TraCIScenarioManager\lLaunchd::init_traci" alt="" coords="501,71,698,112"/>
-<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a7ca227c28f036e04e42ef08d1639dbf1" title="Veins::TraCIScenarioManager\l::handleMessage" alt="" coords="747,5,944,47"/>
-<area shape="rect" id="node7" href="$class_phy_layer80211p.html#aa9c19a4e9aec074db1585455a7474a6a" title="Creates and returns an instance of the AnalogueModel with the specified name. " alt="" coords="500,136,699,177"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="MappingUtils::pre" name="MappingUtils::pre">
-<area shape="rect" id="node2" href="$class_base_mac_layer.html#a23ed373dcfd98255df5f5ffa7e30eec6" title="Creates a simple Mapping with a constant curve progression at the passed value and discontinuities at..." alt="" coords="177,5,389,47"/>
-<area shape="rect" id="node4" href="$class_s_n_r_threshold_decider.html#a6002f2ee8ffa35ded0162c72f93c9fba" title="Processes a received AirFrame. " alt="" coords="207,71,360,112"/>
-<area shape="rect" id="node5" href="$class_r_s_a_m_const_mapping_iterator.html#a082fa16cd2eaa7ac2dd0b16b66660317" title="Helper function that sets member nextPosition. " alt="" coords="190,136,377,177"/>
-<area shape="rect" id="node3" href="$class_base_mac_layer.html#a28ca155ff241c3e202a94724cc87b232" title="Creates a simple Signal defined over time with the passed parameters. " alt="" coords="437,13,627,39"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="NicEntry" name="NicEntry">
-<area shape="rect" id="node3" href="$class_nic_entry_debug.html" title="NicEntry is used by ConnectionManager to store the necessary information for each nic..." alt="" coords="5,155,116,181"/>
-<area shape="rect" id="node4" href="$class_nic_entry_direct.html" title="NicEntry is used by ConnectionManager to store the necessary information for each nic..." alt="" coords="140,155,248,181"/>
-</map>

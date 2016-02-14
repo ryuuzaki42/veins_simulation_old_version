@@ -1,4 +1,0 @@
-<map id="MacToPhyInterface::setRadioState" name="MacToPhyInterface::setRadioState">
-<area shape="rect" id="node2" href="$class_mac1609__4.html#acd9a4c2d76215c064e5ce9dbc717c280" title="Handle control messages from lower layer. " alt="" coords="197,5,409,32"/>
-<area shape="rect" id="node3" href="$class_mac1609__4.html#a551d295ebf0b23896f4d272e3db3961d" title="Handle self messages such as timers. " alt="" coords="212,56,395,83"/>
-</map>

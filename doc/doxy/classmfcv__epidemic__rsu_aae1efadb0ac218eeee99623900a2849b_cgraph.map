@@ -1,4 +1,0 @@
-<map id="mfcv_epidemic_rsu::sendWSM" name="mfcv_epidemic_rsu::sendWSM">
-<area shape="rect" id="node2" href="$class_base_appl_layer.html#a08d91ffcf2598556db4dd3ba845e4979" title="Sends a message delayed to the lower layer. " alt="" coords="196,13,424,39"/>
-<area shape="rect" id="node3" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="472,13,641,39"/>
-</map>

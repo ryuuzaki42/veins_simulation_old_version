@@ -1,7 +1,0 @@
-<map id="PhyLayer80211p::getDeciderFromName" name="PhyLayer80211p::getDeciderFromName">
-<area shape="rect" id="node2" href="$class_phy_layer80211p.html#a91727110b53120bd4f008b59ffba2b8f" title="Initializes a new Decider80211 from the passed parameter map. " alt="" coords="246,23,421,65"/>
-<area shape="rect" id="node6" href="$class_base_phy_layer.html#a095d1b5fd25b9ada3ac86d3c9237c3f8" title="Creates and returns an instance of the Decider with the specified name. " alt="" coords="244,89,423,130"/>
-<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="477,5,627,32"/>
-<area shape="rect" id="node5" href="$class_decider80211p.html#a72b8fdcfd0e5380592d4771739c88f53" title="Decider80211p::setPath" alt="" coords="471,56,633,83"/>
-<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="681,5,828,32"/>
-</map>

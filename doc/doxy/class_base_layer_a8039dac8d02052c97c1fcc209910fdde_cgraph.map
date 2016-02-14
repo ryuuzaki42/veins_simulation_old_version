@@ -1,8 +1,0 @@
-<map id="BaseLayer::handleMessage" name="BaseLayer::handleMessage">
-<area shape="rect" id="node2" href="$class_base_layer.html#a87d7e1e5aa73216f07e35d7be4358924" title="Handle self messages such as timer... " alt="" coords="250,5,429,32"/>
-<area shape="rect" id="node3" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="255,56,424,83"/>
-<area shape="rect" id="node4" href="$class_base_layer.html#a8c0fcfb2e806357a65d5bdb1c338627b" title="Handle messages from upper layer. " alt="" coords="244,107,435,133"/>
-<area shape="rect" id="node5" href="$class_base_layer.html#ab412568faae75040194e01d5e541dd67" title="Handle control messages from upper layer. " alt="" coords="236,157,443,184"/>
-<area shape="rect" id="node6" href="$class_base_layer.html#aa37925527fae20a5de1a755103056219" title="Handle control messages from lower layer. " alt="" coords="236,208,443,235"/>
-<area shape="rect" id="node7" href="$class_base_layer.html#a5ca2278405070baa474dfbf059930247" title="Handle messages from lower layer. " alt="" coords="244,259,435,285"/>
-</map>

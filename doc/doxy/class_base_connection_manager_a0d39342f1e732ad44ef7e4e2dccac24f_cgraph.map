@@ -1,8 +1,0 @@
-<map id="BaseConnectionManager::initialize" name="BaseConnectionManager::initialize">
-<area shape="rect" id="node2" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="221,5,419,32"/>
-<area shape="rect" id="node4" href="$class_base_world_utility.html#a179c8bf9d4613cbb1af0a85d779827a6" title="Returns the playgroundSize. " alt="" coords="235,56,405,83"/>
-<area shape="rect" id="node5" href="$class_base_world_utility.html#a37a1abb90a220afdaf6dbdab58299e51" title="Returns true if our playground represents a torus (borders are connected) " alt="" coords="229,107,411,133"/>
-<area shape="rect" id="node6" href="$class_base_connection_manager.html#a00b2487d2565c70a46101964a2767643" title="Calculate interference distance. " alt="" coords="236,158,404,199"/>
-<area shape="rect" id="node7" href="$class_coord.html#a86994bfa7096155d951abb03dcf30bf1" title="Returns a string with the value of the coordinate. " alt="" coords="277,224,363,251"/>
-<area shape="rect" id="node3" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="467,5,649,32"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="SimpleObstacleShadowing" name="SimpleObstacleShadowing">
-<area shape="rect" id="node2" href="$class_analogue_model.html" title="Interface for the analogue models of the physical layer. " alt="" coords="13,185,124,212"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_obstacle_control.html" title="Veins::ObstacleControl" alt="" coords="149,185,306,212"/>
-<area shape="rect" id="node5" href="$class_veins_1_1_annotation_manager.html" title="Veins::AnnotationManager" alt="" coords="60,89,235,115"/>
-<area shape="rect" id="node6" href="$class_veins_1_1_annotation_manager_1_1_group.html" title="Veins::AnnotationManager\l::Group" alt="" coords="259,81,433,123"/>
-<area shape="rect" id="node7" href="$class_coord.html" title="Class for storing 3D coordinates. " alt="" coords="436,185,493,212"/>
-</map>

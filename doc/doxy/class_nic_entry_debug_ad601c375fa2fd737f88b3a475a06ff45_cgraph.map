@@ -1,4 +1,0 @@
-<map id="NicEntryDebug::requestOutGate" name="NicEntryDebug::requestOutGate">
-<area shape="rect" id="node2" href="$class_nic_entry_debug.html#aac3b943e56b211541596a73f6437608a" title="Iterates over all existing gates of this NicEntries nic and host and checks wether they are useable b..." alt="" coords="264,5,447,47"/>
-<area shape="rect" id="node3" href="$class_nic_entry_debug.html#ae4c6e480d8b2f3fc4199a7a8314ab2df" title="Collects all free gates with a certain pattern as names and puts them on a stack. ..." alt="" coords="495,13,687,39"/>
-</map>

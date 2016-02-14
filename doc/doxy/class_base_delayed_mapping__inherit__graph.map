@@ -1,6 +1,0 @@
-<map id="BaseDelayedMapping&lt; Base &gt;" name="BaseDelayedMapping&lt; Base &gt;">
-<area shape="rect" id="node3" href="$class_base_delayed_mapping.html" title="BaseDelayedMapping\l\&lt; ConstMapping \&gt;" alt="" coords="8,185,157,227"/>
-<area shape="rect" id="node5" href="$class_base_delayed_mapping.html" title="BaseDelayedMapping\l\&lt; Mapping \&gt;" alt="" coords="181,185,331,227"/>
-<area shape="rect" id="node4" href="$class_const_delayed_mapping.html" title="Moves another ConstMapping in its time dimension. " alt="" coords="5,276,160,303"/>
-<area shape="rect" id="node6" href="$class_delayed_mapping.html" title="Moves another Mapping in its time dimension. " alt="" coords="197,276,315,303"/>
-</map>

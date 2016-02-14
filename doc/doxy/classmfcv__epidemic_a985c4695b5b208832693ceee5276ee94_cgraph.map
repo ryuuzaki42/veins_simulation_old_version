@@ -1,7 +1,0 @@
-<map id="mfcv_epidemic::printMfcv_EpidemicLocalMessageBufferOnFile" name="mfcv_epidemic::printMfcv_EpidemicLocalMessageBufferOnFile">
-<area shape="rect" id="node2" href="$class_wave_short_message.html#a88e397ba4444c1e4bb00f94d344014f0" title="WaveShortMessage::getWsmData" alt="" coords="296,5,521,32"/>
-<area shape="rect" id="node3" href="$class_wave_short_message.html#a9fee46e80789894357a0da88fc0f8458" title="WaveShortMessage::getSource" alt="" coords="305,56,512,83"/>
-<area shape="rect" id="node4" href="$class_wave_short_message.html#a2bdb99e260528ad12afd44b16f8c1e10" title="WaveShortMessage::getTarget" alt="" coords="307,107,510,133"/>
-<area shape="rect" id="node5" href="$class_wave_short_message.html#a26d848cf954f3c04bc78063e8c16d956" title="WaveShortMessage::getTimestamp" alt="" coords="293,157,524,184"/>
-<area shape="rect" id="node6" href="$class_wave_short_message.html#a03e76e79afecdc031715444921f9ba6e" title="WaveShortMessage::getHop\lCount" alt="" coords="313,209,504,250"/>
-</map>

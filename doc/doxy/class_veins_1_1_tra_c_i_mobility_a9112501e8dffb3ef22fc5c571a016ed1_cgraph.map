@@ -1,5 +1,0 @@
-<map id="Veins::TraCIMobility::getManager" name="Veins::TraCIMobility::getManager">
-<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_scenario_manager_access.html#af6404515b1b992848f352b03d325b10d" title="Veins::TraCIScenarioManager\lAccess::get" alt="" coords="195,5,392,47"/>
-<area shape="rect" id="node3" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="440,13,637,39"/>
-<area shape="rect" id="node4" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="685,13,868,39"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="Dimension::frequency_static" name="Dimension::frequency_static">
-<area shape="rect" id="node2" href="$class_decider80211p.html#a09e54d78f37b5e61aa100ea5b9f3083f" title="Calculates the RSSI value for the passed ChannelSenseRequest. " alt="" coords="215,5,404,47"/>
-<area shape="rect" id="node3" href="$class_decider80211p.html#aeba984a7f23ef26ce8b22b0bfef88947" title="Decider80211p::cca" alt="" coords="240,122,379,149"/>
-<area shape="rect" id="node5" href="$class_decider80211p.html#a2a8f4a380e5a2ba44c36e43cc2033270" title="Processes a new Signal. " alt="" coords="480,49,671,91"/>
-<area shape="rect" id="node7" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="203,177,416,203"/>
-<area shape="rect" id="node4" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="481,115,669,156"/>
-<area shape="rect" id="node6" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="464,181,687,207"/>
-</map>

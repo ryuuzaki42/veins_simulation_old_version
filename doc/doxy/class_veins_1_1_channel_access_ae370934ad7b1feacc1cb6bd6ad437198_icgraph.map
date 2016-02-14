@@ -1,5 +1,0 @@
-<map id="Veins::ChannelAccess::sendToChannel" name="Veins::ChannelAccess::sendToChannel">
-<area shape="rect" id="node2" href="$class_base_phy_layer.html#a1fe847ed3e50ccf3a3740234dfee42b1" title="Sends the passed AirFrame to the channel. " alt="" coords="208,13,439,39"/>
-<area shape="rect" id="node3" href="$class_base_phy_layer.html#a17b1d469775962d23835dd5f43a639ac" title="Handles messages received from the upper layer through the data gate. " alt="" coords="487,5,675,47"/>
-<area shape="rect" id="node4" href="$class_base_phy_layer.html#a3880154c8db8b8efb5315cb6ef8f6c41" title="OMNeT++ handle message function. " alt="" coords="723,13,929,39"/>
-</map>

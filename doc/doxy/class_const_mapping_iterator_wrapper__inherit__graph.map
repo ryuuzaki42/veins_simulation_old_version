@@ -1,4 +1,0 @@
-<map id="ConstMappingIteratorWrapper" name="ConstMappingIteratorWrapper">
-<area shape="rect" id="node2" href="$class_mapping_iterator.html" title="Defines an iterator for a Mapping which is able to iterate over the Mapping. " alt="" coords="47,80,159,107"/>
-<area shape="rect" id="node3" href="$class_const_mapping_iterator.html" title="Defines an const iterator for a ConstMapping which is able to iterate over the Mapping. " alt="" coords="30,5,177,32"/>
-</map>

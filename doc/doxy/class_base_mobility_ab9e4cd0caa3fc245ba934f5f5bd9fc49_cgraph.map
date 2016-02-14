@@ -1,6 +1,0 @@
-<map id="BaseMobility::reflectIfOutside" name="BaseMobility::reflectIfOutside">
-<area shape="rect" id="node2" href="$class_base_mobility.html#a6c817348be2c3586777a85bb60e2b3f1" title="helperfunction for reflectIfOutside() to reflect a Coordinate at a given border " alt="" coords="248,78,452,105"/>
-<area shape="rect" id="node3" href="$class_base_mobility.html#afd83457f242d92ccdc2e2b5a3b2c4dd8" title="Returns the width of the playground. " alt="" coords="500,5,668,47"/>
-<area shape="rect" id="node4" href="$class_base_mobility.html#a09941dabdb81e67c77fc4794167c9351" title="Returns the height of the playground. " alt="" coords="500,71,668,112"/>
-<area shape="rect" id="node5" href="$class_base_mobility.html#a1245dec457a2d33c8dd1a70ccd74ea33" title="Returns the height of the playground. " alt="" coords="500,136,668,177"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="ChannelInfo::canDiscardInterval" name="ChannelInfo::canDiscardInterval">
-<area shape="rect" id="node2" href="$class_channel_info.html#a2a4e738d7d51c1dc53ba7404b68103ec" title="Returns true if there is at least one AirFrame in the passed AirFrameMatrix which intersect with the ..." alt="" coords="263,13,441,39"/>
-<area shape="rect" id="node3" href="$class_channel_info_1_1_base_intersection_iterator.html#a2acff6a4c595060ffc74872cdc0be1db" title="Increases the iterator to the next intersecting AirFrame and returns a pointer to this AirFrame..." alt="" coords="489,5,688,47"/>
-</map>

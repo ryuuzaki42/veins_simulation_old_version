@@ -1,5 +1,0 @@
-<map id="Dimension::getDimensionID" name="Dimension::getDimensionID">
-<area shape="rect" id="node2" href="$class_dimension.html#ada939a13a34a9c28edff67670caf873d" title="stores the registered dimensions ids. " alt="" coords="251,5,423,32"/>
-<area shape="rect" id="node3" href="$class_dimension.html#a7b9273f9c3c429aa1cc924964645936e" title="Stores the next free ID for a new dimension. " alt="" coords="258,56,415,83"/>
-<area shape="rect" id="node4" href="$class_dimension.html#a5dd35619b73de635a0a57aca248af68a" title="ConstMapping from id to name of registered dimensions. " alt="" coords="240,107,433,133"/>
-</map>

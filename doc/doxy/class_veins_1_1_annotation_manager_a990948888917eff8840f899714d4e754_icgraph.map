@@ -1,7 +1,0 @@
-<map id="Veins::AnnotationManager::erase" name="Veins::AnnotationManager::erase">
-<area shape="rect" id="node2" href="$class_veins_1_1_obstacle_control.html#a3c5fb281ac00c947afe86d5e4bf99759" title="Veins::ObstacleControl\l::erase" alt="" coords="237,5,394,47"/>
-<area shape="rect" id="node4" href="$class_veins_1_1_annotation_manager.html#ae4e81c01b715f94d40b5e6cfdb81279a" title="Veins::AnnotationManager\l::eraseAll" alt="" coords="228,71,403,112"/>
-<area shape="rect" id="node5" href="$class_veins_1_1_annotation_manager.html#a15b1bc8dc418c545c8ff4e2b1f14833b" title="Veins::AnnotationManager\l::handleSelfMsg" alt="" coords="228,136,403,177"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_obstacle_control.html#a9c07fdcd59de3e83ff27779c262a58b8" title="Veins::ObstacleControl\l::finish" alt="" coords="459,5,617,47"/>
-<area shape="rect" id="node6" href="$class_veins_1_1_annotation_manager.html#a030910f3c70bf5205be6f7865bbf3073" title="Veins::AnnotationManager\l::handleMessage" alt="" coords="451,136,625,177"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="minicurso_UFPI_TraCI::sendWSM" name="minicurso_UFPI_TraCI::sendWSM">
-<area shape="rect" id="node2" href="$classminicurso___u_f_p_i___tra_c_i.html#a6e9e716b8c720da4a2d1a763b4da59ab" title="minicurso_UFPI_TraCI\l::sendMessage" alt="" coords="209,39,365,80"/>
-<area shape="rect" id="node3" href="$classminicurso___u_f_p_i___tra_c_i.html#a79b8501a853a65fc0b4e3bac86af9371" title="minicurso_UFPI_TraCI\l::onData" alt="" coords="453,5,609,47"/>
-<area shape="rect" id="node4" href="$classminicurso___u_f_p_i___tra_c_i.html#a0b204910fdf88dd8e2e54e61946f1c28" title="minicurso_UFPI_TraCI\l::verifyAndSendCongestionMessage" alt="" coords="413,71,648,112"/>
-<area shape="rect" id="node5" href="$classminicurso___u_f_p_i___tra_c_i.html#a13623ac92684ab2f823c0a58be229686" title="handle self messages " alt="" coords="696,71,852,112"/>
-</map>

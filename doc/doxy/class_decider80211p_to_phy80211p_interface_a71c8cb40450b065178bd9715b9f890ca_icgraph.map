@@ -1,4 +1,0 @@
-<map id="Decider80211pToPhy80211pInterface::getRadioState" name="Decider80211pToPhy80211pInterface::getRadioState">
-<area shape="rect" id="node2" href="$class_decider80211p.html#a2a8f4a380e5a2ba44c36e43cc2033270" title="Processes a new Signal. " alt="" coords="259,5,449,47"/>
-<area shape="rect" id="node3" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="243,71,465,98"/>
-</map>

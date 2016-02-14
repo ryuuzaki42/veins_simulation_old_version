@@ -1,7 +1,0 @@
-<map id="BaseWorldUtility::useTorus" name="BaseWorldUtility::useTorus">
-<area shape="rect" id="node2" href="$class_base_connection_manager.html#a0d39342f1e732ad44ef7e4e2dccac24f" title="Reads init parameters and calculates a maximal interference distance. " alt="" coords="241,5,409,47"/>
-<area shape="rect" id="node3" href="$class_phy_layer80211p.html#a87d6370515d5d7867abb5105c2095a76" title="Creates and initializes a BreakpointPathlossModel with the passed parameter values. " alt="" coords="238,71,413,112"/>
-<area shape="rect" id="node5" href="$class_phy_layer80211p.html#adfe098a981b32aa82c0cf369bdca29b3" title="Creates and initializes a SimpleObstacleShadowing with the passed parameter values. " alt="" coords="236,136,415,177"/>
-<area shape="rect" id="node6" href="$class_phy_layer80211p.html#a1694c2434fb374bcbbe3ea7b6aea68e8" title="Creates and initializes a SimplePathlossModel with the passed parameter values. " alt="" coords="238,201,413,243"/>
-<area shape="rect" id="node4" href="$class_phy_layer80211p.html#aa9c19a4e9aec074db1585455a7474a6a" title="Creates and returns an instance of the AnalogueModel with the specified name. " alt="" coords="463,136,661,177"/>
-</map>

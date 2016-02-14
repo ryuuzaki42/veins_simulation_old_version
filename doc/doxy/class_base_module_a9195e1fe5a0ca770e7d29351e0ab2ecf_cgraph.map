@@ -1,4 +1,0 @@
-<map id="BaseModule::receiveSignal" name="BaseModule::receiveSignal">
-<area shape="rect" id="node2" href="$class_base_module.html#a44220aa650488eee8ad121f8bc599265" title="Called whenever the hosts state changes. " alt="" coords="233,5,432,32"/>
-<area shape="rect" id="node3" href="$class_host_state.html#a3167de707748fd5280fce231d6cbcf90" title="Returns the host state. " alt="" coords="480,5,587,32"/>
-</map>

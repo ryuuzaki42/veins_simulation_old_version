@@ -1,5 +1,0 @@
-<map id="vehDist::generateTarget" name="vehDist::generateTarget">
-<area shape="rect" id="node2" href="$classveh_dist.html#aaf692c51fcce2fb0b4055e11eacc4b0d" title="vehDist::generateBeaconMessage" alt="" coords="216,13,439,39"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#adfffed3e039c936825ab963b964f1193" title="vehDist::vehGenerateBeacon\lMessageAfterBegin" alt="" coords="487,5,680,47"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="728,13,889,39"/>
-</map>

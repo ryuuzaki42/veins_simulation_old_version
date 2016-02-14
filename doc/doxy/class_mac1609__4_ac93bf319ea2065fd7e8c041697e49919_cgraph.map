@@ -1,7 +1,0 @@
-<map id="Mac1609_4::handleUpperMsg" name="Mac1609_4::handleUpperMsg">
-<area shape="rect" id="node2" href="$class_mac1609__4.html#ab9af38c017be622de450cec6aeab649c" title="maps a application layer priority (up) to an EDCA access category. " alt="" coords="274,5,437,32"/>
-<area shape="rect" id="node3" href="$class_wave_short_message.html#ac3117615566fa0a605f81bbaf53d5921" title="WaveShortMessage::getPriority" alt="" coords="252,56,459,83"/>
-<area shape="rect" id="node4" href="$class_wave_short_message.html#a52905629f571c9c91557e744b199722f" title="WaveShortMessage::getChannel\lNumber" alt="" coords="248,107,463,149"/>
-<area shape="rect" id="node5" href="$class_wave_short_message.html#a33ef604b6a5878e11a3bc4c2477e242e" title="WaveShortMessage::setChannel\lNumber" alt="" coords="248,173,463,214"/>
-<area shape="rect" id="node6" href="$class_mac1609__4.html#a621bca21c2e13d7312361fd86d648a2e" title="Mac1609_4::guardActive" alt="" coords="272,239,439,265"/>
-</map>

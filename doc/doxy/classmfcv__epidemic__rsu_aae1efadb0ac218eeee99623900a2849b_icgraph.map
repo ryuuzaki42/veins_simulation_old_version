@@ -1,9 +1,0 @@
-<map id="mfcv_epidemic_rsu::sendWSM" name="mfcv_epidemic_rsu::sendWSM">
-<area shape="rect" id="node2" href="$classmfcv__epidemic__rsu.html#a9dcb000dae4360982c69150b93d57d7a" title="handle self messages " alt="" coords="246,5,389,47"/>
-<area shape="rect" id="node3" href="$classmfcv__epidemic__rsu.html#a0b89e2e4a8ead31c82617d0fd6590429" title="mfcv_epidemic_rsu::\lsendBeacon" alt="" coords="246,71,389,112"/>
-<area shape="rect" id="node4" href="$classmfcv__epidemic__rsu.html#a49698aa80fb85be536d634a50f56b49d" title="mfcv_epidemic_rsu::\lsendLocalSummaryVector" alt="" coords="230,136,405,177"/>
-<area shape="rect" id="node7" href="$classmfcv__epidemic__rsu.html#aef4403f88d46bfd445c8577757b7214b" title="mfcv_epidemic_rsu::\lsendMessagesRequested" alt="" coords="231,201,404,243"/>
-<area shape="rect" id="node8" href="$classmfcv__epidemic__rsu.html#a3010ba72019bb957dbce21e84e92f486" title="mfcv_epidemic_rsu::\lsendMfcv_EpidemicRequestMessage\lVector" alt="" coords="196,266,439,322"/>
-<area shape="rect" id="node5" href="$classmfcv__epidemic__rsu.html#a8b1a7244c81666fc6f48bd1c9d413e4c" title="mfcv_epidemic_rsu::\lonBeacon" alt="" coords="487,136,629,177"/>
-<area shape="rect" id="node6" href="$classmfcv__epidemic__rsu.html#a4e90c012caa8cc897fc32047fdbe3e7f" title="mfcv_epidemic_rsu::\lonData" alt="" coords="487,201,629,243"/>
-</map>

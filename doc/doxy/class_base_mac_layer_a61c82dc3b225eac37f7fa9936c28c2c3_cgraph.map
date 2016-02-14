@@ -1,9 +1,0 @@
-<map id="BaseMacLayer::initialize" name="BaseMacLayer::initialize">
-<area shape="rect" id="node2" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="253,5,392,32"/>
-<area shape="rect" id="node3" href="$class_mac_to_phy_interface.html#adf27aa5a5e5cbee6f8be1ec58cb9306f" title="Returns the length of the phy header in bits. " alt="" coords="251,57,395,98"/>
-<area shape="rect" id="node4" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="231,123,414,149"/>
-<area shape="rect" id="node5" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="247,173,398,200"/>
-<area shape="rect" id="node7" href="$class_addressing_interface.html#a7d81614e8dea6e3a7316184e6b9e959c" title="Returns the L2 address for the passed mac. " alt="" coords="253,225,392,266"/>
-<area shape="rect" id="node8" href="$class_base_mac_layer.html#adc87295362ca7859cb6fe2a5bbe3c90d" title="Registers this bridge&#39;s NIC with INET&#39;s InterfaceTable. " alt="" coords="217,291,428,317"/>
-<area shape="rect" id="node6" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="476,173,623,200"/>
-</map>

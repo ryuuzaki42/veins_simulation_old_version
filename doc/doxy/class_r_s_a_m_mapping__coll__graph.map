@@ -1,6 +1,0 @@
-<map id="RSAMMapping" name="RSAMMapping">
-<area shape="rect" id="node2" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="57,173,164,200"/>
-<area shape="rect" id="node3" href="$class_dimension_set.html" title="Represents a set of dimensions which is used to define over which dimensions a mapping is defined (th..." alt="" coords="25,83,129,109"/>
-<area shape="rect" id="node5" href="$class_radio_state_analogue_model.html" title="This special AnalogueModel provides filtering of a Signal according to the actual RadioStates the Rad..." alt="" coords="232,173,408,200"/>
-<area shape="rect" id="node6" href="$class_analogue_model.html" title="Interface for the analogue models of the physical layer. " alt="" coords="275,83,386,109"/>
-</map>

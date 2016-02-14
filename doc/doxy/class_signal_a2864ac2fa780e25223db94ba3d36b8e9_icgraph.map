@@ -1,7 +1,0 @@
-<map id="Signal::setPropagationDelay" name="Signal::setPropagationDelay">
-<area shape="rect" id="node2" href="$class_base_phy_layer.html#a671f083680882230b754b7e9578e6274" title="Handles incoming AirFrames with the state START_RECEIVE. " alt="" coords="240,25,447,67"/>
-<area shape="rect" id="node3" href="$class_base_phy_layer.html#a8d6f371fa6ea6ca89cb78764a05f31dd" title="Handles messages received from the channel (probably AirFrames). " alt="" coords="495,33,701,59"/>
-<area shape="rect" id="node4" href="$class_base_phy_layer.html#a3880154c8db8b8efb5315cb6ef8f6c41" title="OMNeT++ handle message function. " alt="" coords="985,37,1192,63"/>
-<area shape="rect" id="node5" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="749,25,937,67"/>
-<area shape="rect" id="node6" href="$class_base_phy_layer.html#a17088ad93f59e143ff6c7ba866a31982" title="Handles self scheduled messages. " alt="" coords="755,91,931,132"/>
-</map>

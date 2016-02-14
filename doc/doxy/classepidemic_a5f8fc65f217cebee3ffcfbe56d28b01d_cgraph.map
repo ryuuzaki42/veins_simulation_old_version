@@ -1,5 +1,0 @@
-<map id="epidemic::sendEpidemicRequestMessageVector" name="epidemic::sendEpidemicRequestMessageVector">
-<area shape="rect" id="node2" href="$class_wave_short_message.html#a5ce6a4923a9e3a9908cf0ab236597445" title="WaveShortMessage::setSummary\lVector" alt="" coords="268,5,491,47"/>
-<area shape="rect" id="node3" href="$class_wave_short_message.html#a8d42f5967b9f16bae543f3b6bcbd1e08" title="WaveShortMessage::setRequest\lMessages" alt="" coords="272,71,487,112"/>
-<area shape="rect" id="node4" href="$class_wave_short_message.html#a138e7425f6286d388541280dceab0352" title="WaveShortMessage::setWsmData" alt="" coords="267,137,492,163"/>
-</map>

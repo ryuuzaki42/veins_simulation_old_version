@@ -1,7 +1,0 @@
-<map id="mfcv_epidemic_rsu" name="mfcv_epidemic_rsu">
-<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html" title="WAVE application layer base class. " alt="" coords="47,379,191,405"/>
-<area shape="rect" id="node3" href="$class_base_appl_layer.html" title="Base class for the application layer. " alt="" coords="64,304,175,331"/>
-<area shape="rect" id="node4" href="$class_base_layer.html" title="A very simple layer template. " alt="" coords="77,229,161,256"/>
-<area shape="rect" id="node5" href="$class_veins_1_1_battery_access.html" title="Veins::BatteryAccess" alt="" coords="45,155,194,181"/>
-<area shape="rect" id="node6" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="72,80,167,107"/>
-</map>

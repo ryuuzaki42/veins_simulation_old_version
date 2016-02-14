@@ -1,5 +1,0 @@
-<map id="vehDist_rsu::finish" name="vehDist_rsu::finish">
-<area shape="rect" id="node2" href="$classveh_dist__rsu.html#a416a7bcacc71fde71eeee4d67f0046a1" title="vehDist_rsu::printCountMessages\lReceived" alt="" coords="184,5,404,47"/>
-<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="452,13,603,39"/>
-<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="651,13,797,39"/>
-</map>

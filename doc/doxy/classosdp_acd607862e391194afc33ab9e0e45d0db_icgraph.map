@@ -1,5 +1,0 @@
-<map id="osdp::sendMessage" name="osdp::sendMessage">
-<area shape="rect" id="node2" href="$classosdp.html#af3522ed4ff583a86e5b841dc76c3d461" title="handle self messages " alt="" coords="192,5,336,32"/>
-<area shape="rect" id="node3" href="$classosdp.html#a6e3148393f11441339e46b7ed7d1c73c" title="osdp::queryService" alt="" coords="197,56,331,83"/>
-<area shape="rect" id="node4" href="$classosdp.html#aba653dea9e259b39cec4cc372a7c3918" title="osdp::onData" alt="" coords="384,56,484,83"/>
-</map>

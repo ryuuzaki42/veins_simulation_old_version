@@ -1,6 +1,0 @@
-<map id="NicEntryDebug::collectGates" name="NicEntryDebug::collectGates">
-<area shape="rect" id="node2" href="$class_nic_entry_debug.html#aac3b943e56b211541596a73f6437608a" title="Iterates over all existing gates of this NicEntries nic and host and checks wether they are useable b..." alt="" coords="245,23,428,65"/>
-<area shape="rect" id="node3" href="$class_nic_entry_debug.html#aa028678e801ba669ad47a6588b2ad90a" title="Returns a free in gate of the nic. " alt="" coords="481,5,682,32"/>
-<area shape="rect" id="node5" href="$class_nic_entry_debug.html#ad601c375fa2fd737f88b3a475a06ff45" title="Returns a free out gate of the nic. " alt="" coords="476,56,687,83"/>
-<area shape="rect" id="node4" href="$class_nic_entry_debug.html#af97ebc8c81c1f7d8094344d2f7fb6a17" title="Connect two nics. " alt="" coords="735,31,915,57"/>
-</map>

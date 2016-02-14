@@ -1,5 +1,0 @@
-<map id="Decider80211p::setChannelIdleStatus" name="Decider80211p::setChannelIdleStatus">
-<area shape="rect" id="node2" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="253,5,441,47"/>
-<area shape="rect" id="node3" href="$class_decider80211p.html#a2a8f4a380e5a2ba44c36e43cc2033270" title="Processes a new Signal. " alt="" coords="252,71,443,112"/>
-<area shape="rect" id="node4" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="236,137,459,163"/>
-</map>

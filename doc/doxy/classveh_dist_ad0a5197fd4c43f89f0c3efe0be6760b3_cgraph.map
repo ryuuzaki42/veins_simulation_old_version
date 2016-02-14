@@ -1,6 +1,0 @@
-<map id="vehDist::saveVehStartPosition" name="vehDist::saveVehStartPosition">
-<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#abf5674a21fd87847ef3a806a84a96213" title="BaseWaveApplLayer::\lprintHeaderfileExecution" alt="" coords="256,5,420,47"/>
-<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="263,71,413,98"/>
-<area shape="rect" id="node5" href="$class_base_mobility.html#a43e40c6e56445ca9439d7d44a37b12c1" title="Returns the current position at the current simulation time. " alt="" coords="255,123,421,164"/>
-<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="469,71,616,98"/>
-</map>

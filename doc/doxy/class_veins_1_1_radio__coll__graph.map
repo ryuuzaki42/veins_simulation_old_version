@@ -1,4 +1,0 @@
-<map id="Veins::Radio" name="Veins::Radio">
-<area shape="rect" id="node2" href="$class_radio_state_analogue_model.html" title="This special AnalogueModel provides filtering of a Signal according to the actual RadioStates the Rad..." alt="" coords="5,81,181,108"/>
-<area shape="rect" id="node3" href="$class_analogue_model.html" title="Interface for the analogue models of the physical layer. " alt="" coords="38,5,149,32"/>
-</map>

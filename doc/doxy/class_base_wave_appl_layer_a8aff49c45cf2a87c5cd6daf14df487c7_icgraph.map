@@ -1,6 +1,0 @@
-<map id="BaseWaveApplLayer::saveMessagesOnFile" name="BaseWaveApplLayer::saveMessagesOnFile">
-<area shape="rect" id="node2" href="$classveh_dist__rsu.html#aec5ea45bc741e1b7685d354660b179fb" title="vehDist_rsu::onBeaconMessage" alt="" coords="205,5,416,32"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="217,56,404,83"/>
-<area shape="rect" id="node3" href="$classveh_dist__rsu.html#aeb0d4969f1765a0eab6bd9e6f0c4f0ee" title="handle messages from below " alt="" coords="464,5,663,32"/>
-<area shape="rect" id="node5" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="477,56,650,83"/>
-</map>

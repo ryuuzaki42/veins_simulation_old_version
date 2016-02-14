@@ -1,6 +1,0 @@
-<map id="ConstInterpolateableIterator::hasNext" name="ConstInterpolateableIterator::hasNext">
-<area shape="rect" id="node2" href="$class_const_interpolateable_iterator.html#aa545c5da980cbc9a5889ac6cf42d7b7e" title="ConstInterpolateableIterator\l\&lt; TInterpolator, TInterpolator\l::iterator \&gt;::getNextPosition" alt="" coords="243,5,431,61"/>
-<area shape="rect" id="node3" href="$class_multi_dim_mapping_iterator.html#a99bbed82612268040bb8f5162871fb48" title="Returns true if the iterator has a valid next value a call to &quot;next()&quot; could jump to..." alt="" coords="255,85,419,126"/>
-<area shape="rect" id="node4" href="$class_const_interpolateable_iterator.html#aa9b9aaf1491ef6ef251bc7399aecdf52" title="Iterates to the next entry in the underlying data structure. " alt="" coords="243,149,431,205"/>
-<area shape="rect" id="node5" href="$class_multi_dim_mapping_iterator.html#a1eb04551f2a3ae22f0eae4844f14ac97" title="Helper method which updates the nextPosition member. " alt="" coords="236,229,439,270"/>
-</map>

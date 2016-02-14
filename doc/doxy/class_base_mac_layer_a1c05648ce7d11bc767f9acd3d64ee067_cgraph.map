@@ -1,5 +1,0 @@
-<map id="BaseMacLayer::createConstantMapping" name="BaseMacLayer::createConstantMapping">
-<area shape="rect" id="node2" href="$class_mapping_utils.html#a0c61c76ba04339162563339b23bf42e9" title="Returns an appropriate changeable Mapping with the specified domain and the specified interpolation m..." alt="" coords="260,5,451,32"/>
-<area shape="rect" id="node4" href="$class_mapping.html#ab8906dfac661d5c6a0a35cf1744f06ed" title="Changes the value of the Mapping at the specified position. " alt="" coords="290,56,421,83"/>
-<area shape="rect" id="node3" href="$class_dimension_set.html#a015cb6fa6c77b26b8c7b1e65827b8342" title="Returns true if the passed Dimension is inside this DimensionSet. " alt="" coords="499,5,693,32"/>
-</map>

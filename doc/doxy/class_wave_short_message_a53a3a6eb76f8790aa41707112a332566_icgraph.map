@@ -1,7 +1,0 @@
-<map id="WaveShortMessage::getCategory" name="WaveShortMessage::getCategory">
-<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a8aff49c45cf2a87c5cd6daf14df487c7" title="BaseWaveApplLayer::\lsaveMessagesOnFile" alt="" coords="272,23,424,65"/>
-<area shape="rect" id="node3" href="$classveh_dist__rsu.html#aec5ea45bc741e1b7685d354660b179fb" title="vehDist_rsu::onBeaconMessage" alt="" coords="472,5,683,32"/>
-<area shape="rect" id="node5" href="$classveh_dist.html#a99092f76694fc10035624417e1b454e6" title="vehDist::onBeaconMessage" alt="" coords="484,56,671,83"/>
-<area shape="rect" id="node4" href="$classveh_dist__rsu.html#aeb0d4969f1765a0eab6bd9e6f0c4f0ee" title="handle messages from below " alt="" coords="731,5,929,32"/>
-<area shape="rect" id="node6" href="$classveh_dist.html#a23793246f0ba305a68461e6ba14884ef" title="handle messages from below " alt="" coords="743,56,917,83"/>
-</map>

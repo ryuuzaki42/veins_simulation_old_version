@@ -1,6 +1,0 @@
-<map id="BasePhyLayer::handleChannelSenseRequest" name="BasePhyLayer::handleChannelSenseRequest">
-<area shape="rect" id="node2" href="$class_decider.html#a93548ff29f4d880ed488785509dd4dd9" title="This function is called by the PhyLayer to hand over a ChannelSenseRequest. " alt="" coords="265,5,463,47"/>
-<area shape="rect" id="node3" href="$class_base_phy_layer.html#aa59aef501cadd36c94d4f82efe9b64be" title="Schedule self message to passed point in time. " alt="" coords="255,71,473,98"/>
-<area shape="rect" id="node4" href="$class_channel_info.html#a5b1b8d56aa2fa64b5d79c0cf5c3167a9" title="Returns true if ChannelInfo is currently recording. " alt="" coords="279,122,449,149"/>
-<area shape="rect" id="node5" href="$class_channel_info.html#abab4a17344f3b254693ed34309c6466f" title="Tells ChannelInfo to keep from now on all channel information until the passed time in history..." alt="" coords="271,173,457,199"/>
-</map>

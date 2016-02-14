@@ -1,6 +1,0 @@
-<map id="FilledUpMappingIterator" name="FilledUpMappingIterator">
-<area shape="rect" id="node2" href="$class_multi_dim_mapping_iterator.html" title="MultiDimMappingIterator\l\&lt; Linear \&gt;" alt="" coords="21,261,185,303"/>
-<area shape="rect" id="node3" href="$class_mapping_iterator.html" title="Defines an iterator for a Mapping which is able to iterate over the Mapping. " alt="" coords="23,81,135,108"/>
-<area shape="rect" id="node5" href="$class_multi_dim_mapping_iterator.html" title="Implementation of the MappingIterator&#45;interface which is able to iterate over every value in a MultiD..." alt="" coords="101,157,265,199"/>
-<area shape="rect" id="node4" href="$class_const_mapping_iterator.html" title="Defines an const iterator for a ConstMapping which is able to iterate over the Mapping. " alt="" coords="5,5,152,32"/>
-</map>

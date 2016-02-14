@@ -1,6 +1,0 @@
-<map id="BaseConnectionManager::checkGrid" name="BaseConnectionManager::checkGrid">
-<area shape="rect" id="node2" href="$class_base_connection_manager.html#a997a62d3bc3ca2d220a36609e4b7f4e5" title="Updates the connections of the nic with &quot;nicID&quot;. " alt="" coords="221,39,389,80"/>
-<area shape="rect" id="node3" href="$class_base_connection_manager.html#ab9d82c54244e022ee41f3d1017cd74f1" title="Registers a nic to have its connections managed by ConnectionManager. " alt="" coords="437,5,605,47"/>
-<area shape="rect" id="node5" href="$class_base_connection_manager.html#a075ad308e1ae744f4f7ff1d6517da324" title="Updates the position information of a registered nic. " alt="" coords="437,71,605,112"/>
-<area shape="rect" id="node4" href="$class_veins_1_1_channel_access.html#ad7c56c9ed2db85ecba91900c35e795a0" title="Called by the signalling mechanism to inform of changes. " alt="" coords="653,39,808,80"/>
-</map>

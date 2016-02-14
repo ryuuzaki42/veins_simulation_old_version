@@ -1,7 +1,0 @@
-<map id="BaseMacLayer::createSingleFrequencyMapping" name="BaseMacLayer::createSingleFrequencyMapping">
-<area shape="rect" id="node2" href="$class_mapping_utils.html#a0c61c76ba04339162563339b23bf42e9" title="Returns an appropriate changeable Mapping with the specified domain and the specified interpolation m..." alt="" coords="243,5,433,32"/>
-<area shape="rect" id="node4" href="$class_argument.html#a27bd7000e865670a673039233424d2ab" title="Changes the value for the specified dimension. " alt="" coords="259,56,417,83"/>
-<area shape="rect" id="node5" href="$class_argument.html#a8087982f050bdc61d787b128ca9ac8f9" title="Changes the time value of this argument. " alt="" coords="271,107,405,133"/>
-<area shape="rect" id="node6" href="$class_mapping.html#ab8906dfac661d5c6a0a35cf1744f06ed" title="Changes the value of the Mapping at the specified position. " alt="" coords="273,157,403,184"/>
-<area shape="rect" id="node3" href="$class_dimension_set.html#a015cb6fa6c77b26b8c7b1e65827b8342" title="Returns true if the passed Dimension is inside this DimensionSet. " alt="" coords="481,5,676,32"/>
-</map>

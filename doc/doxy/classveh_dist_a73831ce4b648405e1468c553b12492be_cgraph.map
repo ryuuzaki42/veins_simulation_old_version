@@ -1,6 +1,0 @@
-<map id="vehDist::handleParkingUpdate" name="vehDist::handleParkingUpdate">
-<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#ac730da06609e16bbf5ce9e8588c0c388" title="Veins::TraCIMobility\l::getParkingState" alt="" coords="280,5,421,47"/>
-<area shape="rect" id="node3" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="252,71,449,98"/>
-<area shape="rect" id="node5" href="$class_base_mobility.html#a43e40c6e56445ca9439d7d44a37b12c1" title="Returns the current position at the current simulation time. " alt="" coords="267,123,434,164"/>
-<area shape="rect" id="node4" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="497,71,680,98"/>
-</map>

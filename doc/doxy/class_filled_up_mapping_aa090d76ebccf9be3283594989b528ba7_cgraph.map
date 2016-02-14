@@ -1,9 +1,0 @@
-<map id="FilledUpMapping::FilledUpMapping" name="FilledUpMapping::FilledUpMapping">
-<area shape="rect" id="node2" href="$class_const_mapping.html#a5ff3a15fe6d536fa7a26a3fe1ff1b274" title="Returns a pointer of a new Iterator which is able to iterate over this Mapping. " alt="" coords="228,5,413,47"/>
-<area shape="rect" id="node3" href="$class_const_mapping_iterator.html#a4a6348a453418da95978e570fec046fc" title="Returns true if the current position of the iterator is in range of the function. ..." alt="" coords="247,71,394,112"/>
-<area shape="rect" id="node4" href="$class_mapping.html#a2a63bc33cabcddf8c0f5938afd2e3328" title="Appends the passed value at the passed position to the mapping. " alt="" coords="243,137,398,163"/>
-<area shape="rect" id="node5" href="$class_const_mapping_iterator.html#a047e853613d5a19ff34526d0cff8fcf9" title="Returns the current position of the iterator. " alt="" coords="247,188,394,229"/>
-<area shape="rect" id="node6" href="$class_const_mapping_iterator.html#ad4419c259e747867f003d07d62d4259f" title="Returns the value of the Mapping at the current position. " alt="" coords="247,253,394,295"/>
-<area shape="rect" id="node7" href="$class_const_mapping_iterator.html#ad4bac7233c154b7086c6124d2e21be49" title="Returns true if the iterator has a next value it can iterate to on a call to &quot;next()&quot;. " alt="" coords="247,319,394,360"/>
-<area shape="rect" id="node8" href="$class_const_mapping_iterator.html#afdafa6870cd19b3d35674a7bc777585d" title="Iterates to the next position of the Mapping. " alt="" coords="247,384,394,425"/>
-</map>

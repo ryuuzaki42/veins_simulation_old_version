@@ -1,5 +1,0 @@
-<map id="PhyLayer80211p::initializeSimpleObstacleShadowing" name="PhyLayer80211p::initializeSimpleObstacleShadowing">
-<area shape="rect" id="node2" href="$class_base_world_utility.html#a37a1abb90a220afdaf6dbdab58299e51" title="Returns true if our playground represents a torus (borders are connected) " alt="" coords="241,5,424,32"/>
-<area shape="rect" id="node3" href="$class_base_world_utility.html#a179c8bf9d4613cbb1af0a85d779827a6" title="Returns the playgroundSize. " alt="" coords="248,56,417,83"/>
-<area shape="rect" id="node4" href="$class_veins_1_1_obstacle_control_access.html#aa91c56b9eab7ff107096256d861b7ca4" title="Veins::ObstacleControlAccess\l::getIfExists" alt="" coords="232,107,433,149"/>
-</map>

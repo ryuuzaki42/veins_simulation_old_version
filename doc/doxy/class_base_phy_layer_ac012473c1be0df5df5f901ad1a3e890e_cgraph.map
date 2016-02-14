@@ -1,3 +1,0 @@
-<map id="BasePhyLayer::rescheduleMessage" name="BasePhyLayer::rescheduleMessage">
-<area shape="rect" id="node2" href="$class_base_phy_layer.html#aa4c75db0828cf579907b1e9a9c683e99" title="Tells the PhyLayer to cancel a scheduled message (AirFrame or ControlMessage). " alt="" coords="232,5,447,47"/>
-</map>

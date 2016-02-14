@@ -1,9 +1,0 @@
-<map id="BatteryAccess.cc" name="BatteryAccess.cc">
-<area shape="rect" id="node2" href="$_battery_access_8h.html" title="BatteryAccess.h" alt="" coords="243,80,362,107"/>
-<area shape="rect" id="node10" href="$_find_module_8h.html" title="FindModule.h" alt="" coords="19,155,119,181"/>
-<area shape="rect" id="node3" href="$_mi_xi_m_defs_8h.html" title="MiXiMDefs.h" alt="" coords="253,379,352,405"/>
-<area shape="rect" id="node6" href="$_base_module_8h.html" title="BaseModule.h" alt="" coords="295,229,401,256"/>
-<area shape="rect" id="node9" href="$_base_battery_8h.html" title="BaseBattery.h" alt="" coords="205,155,310,181"/>
-<area shape="rect" id="node5" href="$miximkerneldefs_8h.html" title="miximkerneldefs.h" alt="" coords="239,453,367,480"/>
-<area shape="rect" id="node8" href="$_host_state_8h.html" title="HostState.h" alt="" coords="86,304,178,331"/>
-</map>

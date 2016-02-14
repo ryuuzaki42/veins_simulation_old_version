@@ -1,8 +1,0 @@
-<map id="ChannelInfo::stopRecording" name="ChannelInfo::stopRecording">
-<area shape="rect" id="node2" href="$class_base_phy_layer.html#a76d0386516d18d1cc64af5ef6fb315cd" title="Called by the Decider to send a control message to the MACLayer. " alt="" coords="237,64,423,105"/>
-<area shape="rect" id="node3" href="$class_base_phy_layer.html#ada6c556e50ead146f822dadf6ea2a472" title="Called the moment the simulated switching process of the Radio is finished. " alt="" coords="471,64,651,105"/>
-<area shape="rect" id="node4" href="$class_phy_layer80211p.html#a6ab453897d17cd1dab056d03594dbb72" title="Handles self scheduled messages. " alt="" coords="704,5,892,47"/>
-<area shape="rect" id="node5" href="$class_base_phy_layer.html#a17088ad93f59e143ff6c7ba866a31982" title="Handles self scheduled messages. " alt="" coords="710,123,886,164"/>
-<area shape="rect" id="node7" href="$class_base_phy_layer.html#a5170b3aadae25dc6b9e61974076be04b" title="Tells the BasePhyLayer to switch to the specified radio state. " alt="" coords="699,71,897,98"/>
-<area shape="rect" id="node6" href="$class_base_phy_layer.html#a3880154c8db8b8efb5315cb6ef8f6c41" title="OMNeT++ handle message function. " alt="" coords="945,130,1152,157"/>
-</map>

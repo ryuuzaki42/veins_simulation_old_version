@@ -1,5 +1,0 @@
-<map id="minicurso_UFPI_TraCI::onBeacon" name="minicurso_UFPI_TraCI::onBeacon">
-<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#afd3a0636a9a5bbe834f71a59108eeda4" title="Veins::TraCIMobility\l::getRoadId" alt="" coords="243,5,384,47"/>
-<area shape="rect" id="node3" href="$class_wave_short_message.html#adf5cb9bc6fecd753f31f94ce36a7dddc" title="WaveShortMessage::getRoadId" alt="" coords="209,71,417,98"/>
-<area shape="rect" id="node4" href="$class_wave_short_message.html#a0d77d3d5803131eaa252e9344964ef70" title="WaveShortMessage::getSender\lSpeed" alt="" coords="210,123,417,164"/>
-</map>

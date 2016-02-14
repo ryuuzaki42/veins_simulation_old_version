@@ -1,4 +1,0 @@
-<map id="SNRThresholdDecider" name="SNRThresholdDecider">
-<area shape="rect" id="node2" href="$class_base_decider.html" title="Provides some base functionality for most common deciders. " alt="" coords="33,80,131,107"/>
-<area shape="rect" id="node3" href="$class_decider.html" title="The basic Decider class. " alt="" coords="49,5,115,32"/>
-</map>

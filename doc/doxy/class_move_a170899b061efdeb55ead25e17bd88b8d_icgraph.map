@@ -1,9 +1,0 @@
-<map id="Move::getPositionAt" name="Move::getPositionAt">
-<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#af3dcd8e7c2046fa939aaee6e3a087e03" title="Veins::TraCIMobility\l::getPositionAt" alt="" coords="193,93,335,135"/>
-<area shape="rect" id="node3" href="$classdefault__veins___tra_c_i.html#a87e402f998805bb76652b1e7774f79ed" title="default_veins_TraCI\l::onData" alt="" coords="405,5,544,47"/>
-<area shape="rect" id="node4" href="$classmfcv.html#a38a6f05fceb02f9ccc823fe4e1fbda57" title="mfcv::onData" alt="" coords="424,71,525,98"/>
-<area shape="rect" id="node6" href="$classminicurso___u_f_p_i___tra_c_i.html#a79b8501a853a65fc0b4e3bac86af9371" title="minicurso_UFPI_TraCI\l::onData" alt="" coords="397,123,553,164"/>
-<area shape="rect" id="node7" href="$classveh_dist.html#aa2cc587a56d34c0e23aab1227a280c56" title="vehDist::updateVehPosition" alt="" coords="383,189,567,215"/>
-<area shape="rect" id="node5" href="$classmfcv.html#a5761d767ad551990b1fa52d1d531a5ce" title="handle messages from below " alt="" coords="617,71,774,98"/>
-<area shape="rect" id="node8" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="615,189,776,215"/>
-</map>

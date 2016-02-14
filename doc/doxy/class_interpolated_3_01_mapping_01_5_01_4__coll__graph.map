@@ -1,6 +1,0 @@
-<map id="Interpolated&lt; Mapping * &gt;" name="Interpolated&lt; Mapping * &gt;">
-<area shape="rect" id="node2" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="56,251,127,277"/>
-<area shape="rect" id="node6" href="$class_linear_intpl_mapping.html" title="Helper class which represents a linear interpolation between two other mappings. " alt="" coords="110,328,241,355"/>
-<area shape="rect" id="node3" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="101,173,207,200"/>
-<area shape="rect" id="node4" href="$class_dimension_set.html" title="Represents a set of dimensions which is used to define over which dimensions a mapping is defined (th..." alt="" coords="102,83,206,109"/>
-</map>

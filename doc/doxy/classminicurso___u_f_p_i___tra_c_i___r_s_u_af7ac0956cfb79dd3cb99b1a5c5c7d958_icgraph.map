@@ -1,5 +1,0 @@
-<map id="minicurso_UFPI_TraCI_RSU::sendWSM" name="minicurso_UFPI_TraCI_RSU::sendWSM">
-<area shape="rect" id="node2" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a3287965076aa410f9394d6a9ab7e02fb" title="handle self messages " alt="" coords="209,5,365,47"/>
-<area shape="rect" id="node3" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a264efd8f4dedfd5539896858eec5b0e9" title="minicurso_UFPI_TraCI\l_RSU::sendMessage" alt="" coords="209,71,365,112"/>
-<area shape="rect" id="node4" href="$classminicurso___u_f_p_i___tra_c_i___r_s_u.html#a255f88382c6c0ca098329eaa8942c935" title="minicurso_UFPI_TraCI\l_RSU::onData" alt="" coords="413,71,569,112"/>
-</map>

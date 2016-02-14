@@ -1,5 +1,0 @@
-<area shape="rect" id="node1" href="org.car2x.veins.nodes.Car.html" title="Compound Module Car" alt="" coords="180,5,252,31">
-<area shape="rect" id="node2" href="ned.IdealChannel.html" title="Channel IdealChannel" alt="" coords="5,79,104,104">
-<area shape="rect" id="node3" href="org.car2x.veins.base.modules.IMobility.html" title="Module Interface IMobility" alt="" coords="128,79,200,104">
-<area shape="rect" id="node4" href="org.car2x.veins.modules.nic.INic80211p.html" title="Module Interface INic80211p" alt="" coords="224,79,312,104">
-<area shape="rect" id="node5" href="org.car2x.veins.base.modules.IBaseApplLayer.html" title="Module Interface IBaseApplLayer" alt="" coords="336,79,451,104">

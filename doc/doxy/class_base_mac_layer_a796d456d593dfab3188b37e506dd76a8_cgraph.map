@@ -1,4 +1,0 @@
-<map id="BaseMacLayer::handleLowerControl" name="BaseMacLayer::handleLowerControl">
-<area shape="rect" id="node2" href="$class_base_layer.html#aa1190a06fb4dfb15d8ff001468335dc8" title="Sends a control message to an upper layer. " alt="" coords="244,13,423,39"/>
-<area shape="rect" id="node3" href="$class_base_layer.html#a33f4f320f4b6c4ec48651847338ff47f" title="BaseLayer::recordPacket" alt="" coords="471,13,640,39"/>
-</map>

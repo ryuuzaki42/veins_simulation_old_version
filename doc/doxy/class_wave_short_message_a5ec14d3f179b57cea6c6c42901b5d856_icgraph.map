@@ -1,7 +1,0 @@
-<map id="WaveShortMessage::setTargetPos" name="WaveShortMessage::setTargetPos">
-<area shape="rect" id="node2" href="$classveh_dist.html#aaf692c51fcce2fb0b4055e11eacc4b0d" title="vehDist::generateBeaconMessage" alt="" coords="280,13,503,39"/>
-<area shape="rect" id="node5" href="$classmfcv__epidemic.html#adfabb2aae5a6be2758e0ccfc2821824c" title="mfcv_epidemic::generateMessage" alt="" coords="281,63,502,90"/>
-<area shape="rect" id="node6" href="$classmfcv__epidemic.html#a2cd3921e36abdb886422be87be0f6a28" title="mfcv_epidemic::prepareWSM\l_mfcv_epidemic" alt="" coords="294,115,489,156"/>
-<area shape="rect" id="node3" href="$classveh_dist.html#adfffed3e039c936825ab963b964f1193" title="vehDist::vehGenerateBeacon\lMessageAfterBegin" alt="" coords="551,5,744,47"/>
-<area shape="rect" id="node4" href="$classveh_dist.html#a44ce4ae39b516324fdc9865f6af48b62" title="handle self messages " alt="" coords="792,13,953,39"/>
-</map>

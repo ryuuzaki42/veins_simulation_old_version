@@ -1,9 +1,0 @@
-<map id="Veins::TraCIMobility::commandGetPolygonShape" name="Veins::TraCIMobility::commandGetPolygonShape">
-<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#a9112501e8dffb3ef22fc5c571a016ed1" title="Veins::TraCIMobility\l::getManager" alt="" coords="519,5,660,47"/>
-<area shape="rect" id="node6" href="$class_veins_1_1_tra_c_i_scenario_manager.html#a29b5e7883ae664783dc581bbf7e10084" title="convert TraCI coordinates to OMNeT++ coordinates " alt="" coords="245,35,443,76"/>
-<area shape="rect" id="node7" href="$class_veins_1_1_tra_c_i_mobility.html#a180ae1e009f8c81f66a167e21b7b5b89" title="Veins::TraCIMobility\l::getCommandInterface" alt="" coords="265,100,423,141"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_scenario_manager_access.html#af6404515b1b992848f352b03d325b10d" title="Veins::TraCIScenarioManager\lAccess::get" alt="" coords="736,5,933,47"/>
-<area shape="rect" id="node4" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="981,13,1179,39"/>
-<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="1227,13,1409,39"/>
-<area shape="rect" id="node8" href="$class_veins_1_1_tra_c_i_scenario_manager.html#af9d96f6e40de409df2f1d04b617433d5" title="Veins::TraCIScenarioManager\l::getCommandInterface" alt="" coords="491,100,688,141"/>
-</map>

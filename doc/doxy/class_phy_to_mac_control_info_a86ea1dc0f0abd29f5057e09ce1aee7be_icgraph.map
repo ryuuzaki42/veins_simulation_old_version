@@ -1,4 +1,0 @@
-<map id="PhyToMacControlInfo::setControlInfo" name="PhyToMacControlInfo::setControlInfo">
-<area shape="rect" id="node2" href="$class_base_phy_layer.html#a39b6850ec657a0c898ccc59ca1ba9b4b" title="Attaches a &quot;control info&quot; (PhyToMac) structure (object) to the message pMsg. " alt="" coords="203,13,417,39"/>
-<area shape="rect" id="node3" href="$class_base_phy_layer.html#a0e9f0ccf4ed1d8377aa3f00b931a3e71" title="Called to send an AirFrame with DeciderResult to the MACLayer. " alt="" coords="465,13,625,39"/>
-</map>

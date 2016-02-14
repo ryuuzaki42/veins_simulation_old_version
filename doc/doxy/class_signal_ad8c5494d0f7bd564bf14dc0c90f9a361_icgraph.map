@@ -1,6 +1,0 @@
-<map id="Signal::setTransmissionPower" name="Signal::setTransmissionPower">
-<area shape="rect" id="node2" href="$class_mac1609__4.html#a595e16f42f8bcaca1d4dc0a366ac9208" title="Mac1609_4::createSignal" alt="" coords="262,5,431,32"/>
-<area shape="rect" id="node5" href="$class_base_mac_layer.html#a28ca155ff241c3e202a94724cc87b232" title="Creates a simple Signal defined over time with the passed parameters. " alt="" coords="252,56,441,83"/>
-<area shape="rect" id="node3" href="$class_mac1609__4.html#a4b45a21c4ab3abe61001009363d0fba0" title="Mac1609_4::attachSignal" alt="" coords="489,5,659,32"/>
-<area shape="rect" id="node4" href="$class_mac1609__4.html#a551d295ebf0b23896f4d272e3db3961d" title="Handle self messages such as timers. " alt="" coords="707,5,889,32"/>
-</map>

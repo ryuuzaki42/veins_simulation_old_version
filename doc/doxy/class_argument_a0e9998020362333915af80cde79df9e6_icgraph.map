@@ -1,7 +1,0 @@
-<map id="Argument::hasArgVal" name="Argument::hasArgVal">
-<area shape="rect" id="node2" href="$class_simple_pathloss_const_mapping.html#aa263547a6e528cc1acf88fc496510e40" title="Calculates attenuation from the distance factor and the current positions frequency (or the models ca..." alt="" coords="200,5,397,47"/>
-<area shape="rect" id="node3" href="$class_two_ray_interference_model_1_1_mapping.html#ac293b9b7bf938aa591ec122d5b1172a4" title="Returns the value of the mapping at the passed position. " alt="" coords="211,71,386,112"/>
-<area shape="rect" id="node4" href="$class_multi_dim_mapping.html#a524f27f6b8f01dc973dbe54f0f9c5ed2" title="Returns the value of this Mapping at position specified by the passed Argument. " alt="" coords="213,136,384,177"/>
-<area shape="rect" id="node5" href="$class_multi_dim_mapping_iterator.html#a3a3b5ddc5aa1636772b9a89c085acdfc" title="Iterates to the specified position. " alt="" coords="217,201,381,243"/>
-<area shape="rect" id="node6" href="$class_multi_dim_mapping_iterator.html#a71f35cd0d6fabecb65019466018c51ca" title="Lets the iterator point to the passed position. " alt="" coords="217,267,381,308"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="Veins::TraCICommandInterface::getLaneLength" name="Veins::TraCICommandInterface::getLaneLength">
-<area shape="rect" id="node2" href="$class_veins_1_1_tra_c_i_mobility.html#af8ba92d5ff2801b04fdf66268a2bb73a" title="Veins::TraCIMobility\l::commandGetLaneLength" alt="" coords="260,39,435,80"/>
-<area shape="rect" id="node3" href="$classminicurso___u_f_p_i___tra_c_i.html#a0b204910fdf88dd8e2e54e61946f1c28" title="minicurso_UFPI_TraCI\l::verifyAndSendCongestionMessage" alt="" coords="483,5,717,47"/>
-<area shape="rect" id="node5" href="$classminicurso___u_f_p_i___tra_c_i.html#a79b8501a853a65fc0b4e3bac86af9371" title="minicurso_UFPI_TraCI\l::onData" alt="" coords="522,71,678,112"/>
-<area shape="rect" id="node4" href="$classminicurso___u_f_p_i___tra_c_i.html#a13623ac92684ab2f823c0a58be229686" title="handle self messages " alt="" coords="765,5,921,47"/>
-</map>

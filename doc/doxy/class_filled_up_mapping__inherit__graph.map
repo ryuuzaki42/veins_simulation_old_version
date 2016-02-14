@@ -1,6 +1,0 @@
-<map id="FilledUpMapping" name="FilledUpMapping">
-<area shape="rect" id="node2" href="$class_multi_dim_mapping.html" title="MultiDimMapping\&lt; Linear \&gt;" alt="" coords="5,247,188,273"/>
-<area shape="rect" id="node3" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="31,81,101,108"/>
-<area shape="rect" id="node5" href="$class_multi_dim_mapping.html" title="Implementation of the Mapping&#45;interface which is able to represent arbitrary dimensional instances of..." alt="" coords="87,157,299,184"/>
-<area shape="rect" id="node4" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="13,5,119,32"/>
-</map>

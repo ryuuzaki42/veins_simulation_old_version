@@ -1,4 +1,0 @@
-<map id="BaseDecider::CSRInfo::setRequest" name="BaseDecider::CSRInfo::setRequest">
-<area shape="rect" id="node2" href="$class_base_decider.html#a1dba383c238fba606279ef483b435f78" title="Handles a new incoming ChannelSenseRequest and returns the next (or latest) time to handle the reques..." alt="" coords="209,5,416,47"/>
-<area shape="rect" id="node3" href="$class_base_decider.html#afd31e5a65d1798d329ace9bdbec25d64" title="This function is called by the PhyLayer to hand over a ChannelSenseRequest. " alt="" coords="464,5,655,47"/>
-</map>

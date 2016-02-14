@@ -1,8 +1,0 @@
-<map id="Veins::mfcv_epidemic_app::initialize" name="Veins::mfcv_epidemic_app::initialize">
-<area shape="rect" id="node2" href="$class_base_appl_layer.html#aa3ebaf5d1d1bdbec4648b07f65eb4145" title="Initialization of the module and some variables. " alt="" coords="227,5,392,32"/>
-<area shape="rect" id="node4" href="$class_veins_1_1_tra_c_i_mobility_access.html#aa2788845910c6afc0b6068d9bf71bdd3" title="Veins::TraCIMobilityAccess::get" alt="" coords="204,56,415,83"/>
-<area shape="rect" id="node6" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="234,107,385,133"/>
-<area shape="rect" id="node3" href="$class_base_layer.html#a70f5ea30a9980d57b8384faed29ec3eb" title="Initialization of the module and some variables. " alt="" coords="485,5,623,32"/>
-<area shape="rect" id="node5" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="463,56,645,83"/>
-<area shape="rect" id="node7" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="481,107,627,133"/>
-</map>

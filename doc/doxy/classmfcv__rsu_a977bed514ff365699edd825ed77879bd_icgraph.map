@@ -1,6 +1,0 @@
-<map id="mfcv_rsu::sendWSM" name="mfcv_rsu::sendWSM">
-<area shape="rect" id="node2" href="$classmfcv__rsu.html#a812da8da6b5321b1de2e83b99d32c0f6" title="handle self messages " alt="" coords="199,5,369,32"/>
-<area shape="rect" id="node3" href="$classmfcv__rsu.html#a41e52e27ab203a6e7a4ff368b40e09a4" title="mfcv_rsu::sendMessage" alt="" coords="201,56,367,83"/>
-<area shape="rect" id="node4" href="$classmfcv__rsu.html#a9a1df5b0aa5c8d3d4098cdfdbd646c1a" title="mfcv_rsu::onData" alt="" coords="417,56,544,83"/>
-<area shape="rect" id="node5" href="$classmfcv__rsu.html#a81a66a29d8002b072d2db7ad57f29742" title="handle messages from below " alt="" coords="592,56,775,83"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="BaseDecider::canAnswerCSR" name="BaseDecider::canAnswerCSR">
-<area shape="rect" id="node2" href="$class_channel_sense_request.html#a27ef56313d2b2b273fba86467906518b" title="ChannelSenseRequest\l::getSenseMode" alt="" coords="252,5,408,47"/>
-<area shape="rect" id="node3" href="$class_decider_to_phy_interface.html#a73660771f127a990489fb04da07ea39e" title="Returns the current simulation time. " alt="" coords="252,71,408,112"/>
-<area shape="rect" id="node4" href="$class_channel_sense_request.html#a174933b0466807743cee69e497b39543" title="ChannelSenseRequest\l::getSenseTimeout" alt="" coords="252,136,408,177"/>
-</map>

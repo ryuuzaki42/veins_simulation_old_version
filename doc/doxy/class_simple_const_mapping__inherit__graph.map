@@ -1,7 +1,0 @@
-<map id="SimpleConstMapping" name="SimpleConstMapping">
-<area shape="rect" id="node3" href="$class_constant_simple_const_mapping.html" title="Represents a constant mathematical mapping (f(x) = c) " alt="" coords="355,5,553,32"/>
-<area shape="rect" id="node4" href="$class_jakes_fading_mapping.html" title="Mapping used to represent attenuation of a signal by JakesFading. " alt="" coords="381,56,527,83"/>
-<area shape="rect" id="node5" href="$class_simple_pathloss_const_mapping.html" title="Mapping that represents a Pathloss&#45;function. " alt="" coords="355,107,553,133"/>
-<area shape="rect" id="node6" href="$class_two_ray_interference_model_1_1_mapping.html" title="TwoRayInterferenceModel\l::Mapping" alt="" coords="367,158,541,199"/>
-<area shape="rect" id="node2" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="5,81,112,108"/>
-</map>

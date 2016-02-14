@@ -1,4 +1,0 @@
-<map id="Veins::TraCIScenarioManagerLaunchdAccess::get" name="Veins::TraCIScenarioManagerLaunchdAccess::get">
-<area shape="rect" id="node2" href="$class_find_module.html#a36e4632a6c8c7dbdc177639957a8e62a" title="Returns a pointer to the module with the type of this template. " alt="" coords="251,13,448,39"/>
-<area shape="rect" id="node3" href="$class_find_module.html#a661c335281d62d8df4affc46cc4fff9f" title="Returns a pointer to a sub module of the passed module with the type of this template. " alt="" coords="496,13,679,39"/>
-</map>

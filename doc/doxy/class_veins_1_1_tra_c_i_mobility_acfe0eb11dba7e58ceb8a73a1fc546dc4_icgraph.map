@@ -1,5 +1,0 @@
-<map id="Veins::TraCIMobility::commandSetColor" name="Veins::TraCIMobility::commandSetColor">
-<area shape="rect" id="node2" href="$class_advanced_flooding.html#a68afee498f785bf4087973f4dff5d9a1" title="AdvancedFlooding::generate\lMessage" alt="" coords="195,5,381,47"/>
-<area shape="rect" id="node4" href="$class_advanced_flooding.html#aab321bedb7b5c1a9c0d7028fb02bcdff" title="handle messages from below " alt="" coords="201,71,375,112"/>
-<area shape="rect" id="node3" href="$class_advanced_flooding.html#a025749ad0047324a9e4e4eaddc8b525c" title="handle self messages " alt="" coords="429,5,604,47"/>
-</map>

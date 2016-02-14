@@ -1,5 +1,0 @@
-<map id="BaseDecider::setChannelIdleStatus" name="BaseDecider::setChannelIdleStatus">
-<area shape="rect" id="node2" href="$class_base_decider.html#a6a480f87157d0509c0c1fccf94ea9fef" title="Processes a new Signal. " alt="" coords="245,5,460,32"/>
-<area shape="rect" id="node4" href="$class_base_decider.html#ab9cfef6c04e12d2524d45e881f341300" title="Processes the end of a received Signal. " alt="" coords="247,56,458,83"/>
-<area shape="rect" id="node3" href="$class_base_decider.html#a273892d7b0c9874e4efe3c7755aa7a17" title="Processes an AirFrame given by the PhyLayer. " alt="" coords="508,31,695,57"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="ConstMappingWrapper" name="ConstMappingWrapper">
-<area shape="rect" id="node2" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="47,80,118,107"/>
-<area shape="rect" id="node3" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="29,5,136,32"/>
-</map>

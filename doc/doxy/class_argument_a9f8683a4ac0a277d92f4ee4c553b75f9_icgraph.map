@@ -1,8 +1,0 @@
-<map id="Argument::insertValue" name="Argument::insertValue">
-<area shape="rect" id="node2" href="$class_argument.html#a72ac36c91caaeb8f34eb091abff19c51" title="Update the values of this Argument with the values of the passed Argument. " alt="" coords="204,143,368,170"/>
-<area shape="rect" id="node3" href="$class_multi_dim_mapping_iterator.html#a1eb04551f2a3ae22f0eae4844f14ac97" title="Helper method which updates the nextPosition member. " alt="" coords="416,5,619,47"/>
-<area shape="rect" id="node4" href="$class_multi_dim_mapping_iterator.html#a71f35cd0d6fabecb65019466018c51ca" title="Lets the iterator point to the passed position. " alt="" coords="435,71,599,112"/>
-<area shape="rect" id="node5" href="$class_multi_dim_mapping_iterator.html#a3a3b5ddc5aa1636772b9a89c085acdfc" title="Iterates to the specified position. " alt="" coords="435,136,599,177"/>
-<area shape="rect" id="node6" href="$class_multi_dim_mapping_iterator.html#a8928195a1fe4bb3af81d3ffe2391827e" title="Iterates to the next position of the function. " alt="" coords="435,201,599,243"/>
-<area shape="rect" id="node7" href="$class_multi_dim_mapping_iterator.html#ab41125ce8959de6fafb3347a7691ca52" title="Lets the iterator point to the begin of the function. " alt="" coords="435,267,600,308"/>
-</map>

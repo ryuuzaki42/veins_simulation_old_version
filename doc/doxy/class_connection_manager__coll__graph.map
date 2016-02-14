@@ -1,5 +1,0 @@
-<map id="ConnectionManager" name="ConnectionManager">
-<area shape="rect" id="node2" href="$class_base_connection_manager.html" title="Module to control the channel and handle all connection related stuff. " alt="" coords="85,200,253,227"/>
-<area shape="rect" id="node4" href="$class_coord.html" title="Class for storing 3D coordinates. " alt="" coords="140,89,197,115"/>
-<area shape="rect" id="node6" href="$class_base_connection_manager_1_1_grid_coord.html" title="Represents a position inside a grid. " alt="" coords="287,81,455,123"/>
-</map>

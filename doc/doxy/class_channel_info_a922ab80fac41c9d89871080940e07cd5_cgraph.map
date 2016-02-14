@@ -1,4 +1,0 @@
-<map id="ChannelInfo::addAirFrame" name="ChannelInfo::addAirFrame">
-<area shape="rect" id="node2" href="$class_channel_info.html#a5af012c57b6bb9930b1634138ab65bf8" title="Returns true if there are currently no active or inactive AirFrames on the channel. " alt="" coords="228,5,424,32"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_air_frame.html#a713e5d23b4ccb3d89d29468ff1dd7b89" title="Veins::AirFrame::getDuration" alt="" coords="231,56,421,83"/>
-</map>

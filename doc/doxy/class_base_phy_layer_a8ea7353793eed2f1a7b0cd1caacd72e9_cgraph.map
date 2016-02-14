@@ -1,5 +1,0 @@
-<map id="BasePhyLayer::initializeAnalogueModels" name="BasePhyLayer::initializeAnalogueModels">
-<area shape="rect" id="node2" href="$class_base_phy_layer.html#a419df7f53684ee758de1dcabb959e10f" title="Creates and returns an instance of the AnalogueModel with the specified name. " alt="" coords="223,5,409,47"/>
-<area shape="rect" id="node4" href="$class_base_phy_layer.html#aa89a9272b99ab3005347301c2effc254" title="Utility function. " alt="" coords="216,71,416,112"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_radio.html#a38a6c78b55f1442108b44a0bd27abb9f" title="Returns a pointer to the RadioStateAnalogueModel. " alt="" coords="464,5,641,47"/>
-</map>

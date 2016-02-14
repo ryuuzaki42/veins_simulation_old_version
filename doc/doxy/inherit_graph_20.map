@@ -1,4 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_decider_result.html" title="A class to represent the result of a processed packet (that is not noise) by the Decider. " alt="" coords="5,5,111,32"/>
-<area shape="rect" id="node2" href="$class_decider_result80211.html" title="Defines an extended DeciderResult for the 80211 protocol which stores the bit&#45;rate of the transmissio..." alt="" coords="159,5,299,32"/>
-</map>

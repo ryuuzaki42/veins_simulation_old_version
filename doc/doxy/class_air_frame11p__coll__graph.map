@@ -1,8 +1,0 @@
-<map id="AirFrame11p" name="AirFrame11p">
-<area shape="rect" id="node2" href="$class_veins_1_1_air_frame.html" title="Class generated from base/messages/AirFrame.msg:33 by nedtool. " alt="" coords="16,471,132,497"/>
-<area shape="rect" id="node4" href="$class_signal.html" title="The signal class stores the physical representation of the signal of an AirFrame. ..." alt="" coords="101,381,159,408"/>
-<area shape="rect" id="node5" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="95,270,165,297"/>
-<area shape="rect" id="node6" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="114,173,221,200"/>
-<area shape="rect" id="node9" href="$class_concat_const_mapping.html" title="Defines it values by concatenating one or more Mappings to a reference Mapping. " alt="" coords="189,263,337,304"/>
-<area shape="rect" id="node7" href="$class_dimension_set.html" title="Represents a set of dimensions which is used to define over which dimensions a mapping is defined (th..." alt="" coords="115,83,219,109"/>
-</map>

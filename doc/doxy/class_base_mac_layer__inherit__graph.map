@@ -1,6 +1,0 @@
-<map id="BaseMacLayer" name="BaseMacLayer">
-<area shape="rect" id="node7" href="$class_mac1609__4.html" title="Manages timeslots for CCH and SCH listening and sending. " alt="" coords="75,379,164,405"/>
-<area shape="rect" id="node2" href="$class_base_layer.html" title="A very simple layer template. " alt="" coords="77,229,161,256"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_battery_access.html" title="Veins::BatteryAccess" alt="" coords="45,155,194,181"/>
-<area shape="rect" id="node4" href="$class_base_module.html" title="Base class for all simple modules of a host. " alt="" coords="72,80,167,107"/>
-</map>

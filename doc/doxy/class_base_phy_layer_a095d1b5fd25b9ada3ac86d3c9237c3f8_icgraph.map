@@ -1,6 +1,0 @@
-<map id="BasePhyLayer::getDeciderFromName" name="BasePhyLayer::getDeciderFromName">
-<area shape="rect" id="node2" href="$class_phy_layer80211p.html#aba4ff7d43c6ee3c6fa550722db94aa86" title="Creates and returns an instance of the Decider with the specified name. " alt="" coords="232,5,423,47"/>
-<area shape="rect" id="node3" href="$class_base_phy_layer.html#a9da4f8ffaa373a0de7895cbea524816b" title="Initializes the Decider with the data from the passed XML&#45;config data. " alt="" coords="246,71,409,112"/>
-<area shape="rect" id="node4" href="$class_base_phy_layer.html#a08704deaf03b73c8eda67cc60e670853" title="OMNeT++ initialization function. " alt="" coords="471,78,633,105"/>
-<area shape="rect" id="node5" href="$class_phy_layer80211p.html#aa3a10ad37436ef978aa9a0874b0da561" title="This is needed to circumvent a bug in MiXiM that allows different header length interpretations for r..." alt="" coords="681,78,856,105"/>
-</map>

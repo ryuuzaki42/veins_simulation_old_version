@@ -1,4 +1,0 @@
-<map id="Decider80211p::calculateSinrAndSnrMapping" name="Decider80211p::calculateSinrAndSnrMapping">
-<area shape="rect" id="node2" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="223,13,436,39"/>
-<area shape="rect" id="node3" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="484,13,707,39"/>
-</map>

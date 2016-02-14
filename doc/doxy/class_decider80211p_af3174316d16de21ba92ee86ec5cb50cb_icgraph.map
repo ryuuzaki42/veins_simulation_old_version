@@ -1,5 +1,0 @@
-<map id="Decider80211p::calculateNoiseRSSIMapping" name="Decider80211p::calculateNoiseRSSIMapping">
-<area shape="rect" id="node2" href="$class_decider80211p.html#aed94d240800692fe3a7c604a6d11e54e" title="Calculates a SNR&#45;Mapping for a Signal. " alt="" coords="223,5,392,47"/>
-<area shape="rect" id="node3" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="440,13,653,39"/>
-<area shape="rect" id="node4" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="701,13,924,39"/>
-</map>

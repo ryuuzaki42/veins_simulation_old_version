@@ -1,8 +1,0 @@
-<map id="MappingUtils::divide" name="MappingUtils::divide">
-<area shape="rect" id="node2" href="$class_decider80211p.html#aed94d240800692fe3a7c604a6d11e54e" title="Calculates a SNR&#45;Mapping for a Signal. " alt="" coords="197,5,367,47"/>
-<area shape="rect" id="node5" href="$class_base_decider.html#abac709d59f48d292f147919854c002e2" title="Calculates a SNR&#45;Mapping for a Signal. " alt="" coords="193,71,371,112"/>
-<area shape="rect" id="node7" href="$_mapping_utils_8h.html#a4dd8d69004180c73deb537f4f7fb85a0" title="operator/" alt="" coords="245,137,319,163"/>
-<area shape="rect" id="node3" href="$class_decider80211p.html#a01349c12df6c01678d1e25553b754819" title="Checks a mapping against a specific threshold (element&#45;wise). " alt="" coords="419,17,632,43"/>
-<area shape="rect" id="node4" href="$class_decider80211p.html#ac39637b3c4cfad57ba0b4518fea264d9" title="Processes a received AirFrame. " alt="" coords="680,17,903,43"/>
-<area shape="rect" id="node6" href="$class_s_n_r_threshold_decider.html#a6002f2ee8ffa35ded0162c72f93c9fba" title="Processes a received AirFrame. " alt="" coords="449,71,602,112"/>
-</map>

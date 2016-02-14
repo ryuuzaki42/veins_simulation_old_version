@@ -1,4 +1,0 @@
-<map id="PhyLayer80211p::initializeBreakpointPathlossModel" name="PhyLayer80211p::initializeBreakpointPathlossModel">
-<area shape="rect" id="node2" href="$class_base_world_utility.html#a37a1abb90a220afdaf6dbdab58299e51" title="Returns true if our playground represents a torus (borders are connected) " alt="" coords="228,5,411,32"/>
-<area shape="rect" id="node3" href="$class_base_world_utility.html#a179c8bf9d4613cbb1af0a85d779827a6" title="Returns the playgroundSize. " alt="" coords="235,56,404,83"/>
-</map>

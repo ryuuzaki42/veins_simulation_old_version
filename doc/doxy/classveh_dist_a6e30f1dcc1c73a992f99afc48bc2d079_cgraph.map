@@ -1,5 +1,0 @@
-<map id="vehDist::finish" name="vehDist::finish">
-<area shape="rect" id="node2" href="$classveh_dist.html#a909869ea5a2a68d1596704f552ce4c93" title="vehDist::printCountBeacon\lMessagesDrop" alt="" coords="160,5,339,47"/>
-<area shape="rect" id="node3" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="387,13,537,39"/>
-<area shape="rect" id="node4" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="585,13,732,39"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="Signal::getTransmissionPower" name="Signal::getTransmissionPower">
-<area shape="rect" id="node2" href="$class_two_ray_interference_model.html#a4488ba8c6127ff2e016edaa6bbd6a4c0" title="Has to be overriden by every implementation. " alt="" coords="254,5,429,47"/>
-<area shape="rect" id="node3" href="$class_simple_obstacle_shadowing.html#ab8f4e9c3b104f4b7fe18e4f275af79ac" title="Filters a specified Signal by adding an attenuation over time to the Signal. " alt="" coords="252,71,431,112"/>
-<area shape="rect" id="node4" href="$class_simple_pathloss_model.html#a632b408d1c0ecac4fd90da5d48d73c5e" title="Filters a specified AirFrame&#39;s Signal by adding an attenuation over time to the Signal. " alt="" coords="267,136,415,177"/>
-</map>

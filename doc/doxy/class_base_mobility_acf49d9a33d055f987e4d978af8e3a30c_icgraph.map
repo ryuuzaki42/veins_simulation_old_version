@@ -1,4 +1,0 @@
-<map id="BaseMobility::fixIfHostGetsOutside" name="BaseMobility::fixIfHostGetsOutside">
-<area shape="rect" id="node2" href="$class_base_mobility.html#a1cd10753592e8eeb018d8f774ce862c6" title="Called upon arrival of a border messages. " alt="" coords="236,13,443,39"/>
-<area shape="rect" id="node3" href="$class_base_mobility.html#aad7ebb839ae5726f97ccf149ae661333" title="This modules should only receive self&#45;messages. " alt="" coords="491,13,687,39"/>
-</map>

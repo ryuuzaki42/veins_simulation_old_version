@@ -1,6 +1,0 @@
-<map id="MultiDimMapping&lt; Interpolator &gt;" name="MultiDimMapping&lt; Interpolator &gt;">
-<area shape="rect" id="node4" href="$class_multi_dim_mapping.html" title="MultiDimMapping\&lt; Linear \&gt;" alt="" coords="20,247,203,273"/>
-<area shape="rect" id="node2" href="$class_mapping.html" title="Represents a changeable mapping (mathematical function) from at least time to Argument::mapped_type. " alt="" coords="76,81,147,108"/>
-<area shape="rect" id="node3" href="$class_const_mapping.html" title="Represents a not changeable mapping (mathematical function) from domain with at least the time to a A..." alt="" coords="58,5,165,32"/>
-<area shape="rect" id="node5" href="$class_filled_up_mapping.html" title="Takes a source ConstMapping with a domain A and a set of KeyEntries for a domain B and creates a clon..." alt="" coords="52,323,171,349"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="Veins::ObstacleControl::calculateAttenuation" name="Veins::ObstacleControl::calculateAttenuation">
-<area shape="rect" id="node2" href="$class_veins_1_1_obstacle.html#aca5158acb83145623179b40756afbc76" title="Veins::Obstacle::getBboxP2" alt="" coords="211,5,397,32"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_obstacle.html#a85c7631c055aa999d73c1f57a2f01d46" title="Veins::Obstacle::getBboxP1" alt="" coords="211,56,397,83"/>
-<area shape="rect" id="node4" href="$class_veins_1_1_obstacle.html#a637ef6f4ebd448f7f2f3f68a6fb7466a" title="Veins::Obstacle::calculate\lAttenuation" alt="" coords="217,107,391,149"/>
-<area shape="rect" id="node8" href="$class_veins_1_1_annotation_manager.html#a0b53a21c767d536a5a7ed72335cb9331" title="Veins::AnnotationManager\l::drawBubble" alt="" coords="217,173,391,214"/>
-<area shape="rect" id="node5" href="$class_veins_1_1_obstacle.html#a1e5a701e21f19186862a7e93fbf3727f" title="Veins::Obstacle::getShape" alt="" coords="445,89,624,116"/>
-<area shape="rect" id="node6" href="$class_coord.html#ab6a7bfcc5c55e5d8edbc7c0cb5a11626" title="Returns the distance to Coord &#39;a&#39;. " alt="" coords="477,140,592,167"/>
-<area shape="rect" id="node7" href="$class_coord.html#acc536671c07e1af44e6ad9676a6c39ad" title="Returns the length of this Coords position vector. " alt="" coords="672,140,772,167"/>
-</map>

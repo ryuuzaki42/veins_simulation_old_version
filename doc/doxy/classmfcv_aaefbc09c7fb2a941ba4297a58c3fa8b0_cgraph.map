@@ -1,6 +1,0 @@
-<map id="mfcv::handlePositionUpdate" name="mfcv::handlePositionUpdate">
-<area shape="rect" id="node2" href="$class_base_wave_appl_layer.html#a7e2f6b90747de344330137567d30fe65" title="BaseWaveApplLayer::\lhandlePositionUpdate" alt="" coords="240,5,392,47"/>
-<area shape="rect" id="node3" href="$class_veins_1_1_tra_c_i_mobility.html#a0c0e1114d451023eeb819c443f81bb89" title="Veins::TraCIMobility\l::getSpeed" alt="" coords="245,71,387,112"/>
-<area shape="rect" id="node4" href="$class_base_module.html#a1d2d2af49918dfb9ae036b1d086b123a" title="Function to get a pointer to the host module. " alt="" coords="241,137,391,163"/>
-<area shape="rect" id="node5" href="$class_find_module.html#ad213402248cfa94efe6513d4944a44b3" title="Returns a pointer to the host module of the passed module. " alt="" coords="440,137,587,163"/>
-</map>
