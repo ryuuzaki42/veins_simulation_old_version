@@ -178,6 +178,10 @@ class TraCIMobility : public BaseMobility
 		    return getCommandInterface()->getLaneLength(laneId);
 		}
 
+        std::string getVehicleType() {
+            return getCommandInterface()->getVehicleTypeId(getExternalId());
+        }
+
 	protected:
 		bool debug; /**< whether to emit debug messages */
 		int accidentCount; /**< number of accidents */
