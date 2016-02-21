@@ -467,12 +467,12 @@ void WaveShortMessage::setRecipientAddressTemporary(const char * recipientAddres
     this->recipientAddressTemporary_var = recipientAddressTemporary;
 }
 
-unsigned short WaveShortMessage::getCategory() const
+const char * WaveShortMessage::getCategory() const
 {
-    return category_var;
+    return category_var.c_str();
 }
 
-void WaveShortMessage::setCategory(unsigned short category)
+void WaveShortMessage::setCategory(const char * category)
 {
     this->category_var = category;
 }
@@ -715,7 +715,7 @@ const char *WaveShortMessageDescriptor::getFieldTypeString(void *object, int fie
         "double",
         "string",
         "string",
-        "unsigned short",
+        "string",
         "unsigned short",
         "Coord",
         "Coord",
@@ -786,7 +786,7 @@ std::string WaveShortMessageDescriptor::getFieldAsString(void *object, int field
         case 23: return double2string(pp->getSenderSpeed());
         case 24: return oppstring2string(pp->getSenderAddressTemporary());
         case 25: return oppstring2string(pp->getRecipientAddressTemporary());
-        case 26: return ulong2string(pp->getCategory());
+        case 26: return oppstring2string(pp->getCategory());
         case 27: return ulong2string(pp->getHeading());
         case 28: {std::stringstream out; out << pp->getTargetPos(); return out.str();}
         case 29: {std::stringstream out; out << pp->getSenderPosPrevious(); return out.str();}
@@ -829,7 +829,7 @@ bool WaveShortMessageDescriptor::setFieldAsString(void *object, int field, int i
         case 23: pp->setSenderSpeed(string2double(value)); return true;
         case 24: pp->setSenderAddressTemporary((value)); return true;
         case 25: pp->setRecipientAddressTemporary((value)); return true;
-        case 26: pp->setCategory(string2ulong(value)); return true;
+        case 26: pp->setCategory((value)); return true;
         case 27: pp->setHeading(string2ulong(value)); return true;
         default: return false;
     }

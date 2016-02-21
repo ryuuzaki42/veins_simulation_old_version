@@ -85,7 +85,7 @@
  *     string senderAddressTemporary;
  *     string recipientAddressTemporary;
  *     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
- *     unsigned short category = 0;
+ *     string category;
  *     // Path history of the vehicle, calculated from time to time
  *     //string pathHistory;
  *     // Radius of Gyration of the vehicle, calculated from time to time.
@@ -129,7 +129,7 @@ class WaveShortMessage : public ::cPacket
     double senderSpeed_var;
     opp_string senderAddressTemporary_var;
     opp_string recipientAddressTemporary_var;
-    unsigned short category_var;
+    opp_string category_var;
     unsigned short heading_var;
     Coord TargetPos_var;
     Coord senderPosPrevious_var;
@@ -204,8 +204,8 @@ class WaveShortMessage : public ::cPacket
     virtual void setSenderAddressTemporary(const char * senderAddressTemporary);
     virtual const char * getRecipientAddressTemporary() const;
     virtual void setRecipientAddressTemporary(const char * recipientAddressTemporary);
-    virtual unsigned short getCategory() const;
-    virtual void setCategory(unsigned short category);
+    virtual const char * getCategory() const;
+    virtual void setCategory(const char * category);
     virtual unsigned short getHeading() const;
     virtual void setHeading(unsigned short heading);
     virtual Coord& getTargetPos();

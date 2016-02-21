@@ -86,7 +86,7 @@ packet WaveShortMessage {
     string senderAddressTemporary;
     string recipientAddressTemporary;
     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
-    unsigned short category = 0;
+    string category;
     // Path history of the vehicle, calculated from time to time
     //string pathHistory;
     // Radius of Gyration of the vehicle, calculated from time to time.
