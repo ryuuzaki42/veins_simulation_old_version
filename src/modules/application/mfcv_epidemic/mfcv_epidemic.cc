@@ -884,18 +884,18 @@ WaveShortMessage* mfcv_epidemic::prepareWSM_mfcv_epidemic(std::string name, int 
     wsm->setSenderSpeed(traci->getSpeed());
 
     // ver como definir o id, traci->getId(), e a categoria
-    if (traci->getId() < 5) {
-        wsm->setCategory(1);
-    }
-    else if (traci->getId() > 5) {
-         wsm->setCategory(2);
-    }
-    else if (traci->getId() < 10) {
-             wsm->setCategory(3);
-    }
-    else {
-        wsm->setCategory(4);
-    }
+//    if (traci->getId() < 5) {
+//        wsm->setCategory(1);
+//    }
+//    else if (traci->getId() > 5) {
+//         wsm->setCategory(2);
+//    }
+//    else if (traci->getId() < 10) {
+//             wsm->setCategory(3);
+//    }
+//    else {
+//        wsm->setCategory(4);
+//    }
 
     wsm->setTargetPos(Coord(par("target_x"), par("target_y"), 3));
     wsm->setSenderPosPrevious(vehPositionBack);

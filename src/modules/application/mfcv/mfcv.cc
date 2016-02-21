@@ -163,16 +163,16 @@ WaveShortMessage* mfcv::prepareWSM_node(std::string name, int lengthBits, t_chan
     wsm->setSenderSpeed(traci->getSpeed());
 
     // ver como definir o id, traci->getId()
-    int veh_id = traci->getId();
-    if (veh_id = 10) {
-         wsm->setCategory(1);
-     }
-    else if (veh_id = 16) {
-        wsm->setCategory(2);
-    }
-    else {
-       wsm->setCategory(10);
-    }
+//    int veh_id = traci->getId();
+//    if (veh_id = 10) {
+//         wsm->setCategory(1);
+//     }
+//    else if (veh_id = 16) {
+//        wsm->setCategory(2);
+//    }
+//    else {
+//       wsm->setCategory(10);
+//    }
 
 
     wsm->setTimestamp(simTime());
