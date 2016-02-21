@@ -89,7 +89,7 @@ class vehDist : public BaseWaveApplLayer {
         void restartFilesResult();
         void vehUpdatePosition();
         void vehCreateEventTrySendBeaconMessage();
-        int getVehCategory();
+        const char * getVehCategory();
         void removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit);
         void sendMessageNeighborsTarget(string key);
         string returnLastMessageInserted();

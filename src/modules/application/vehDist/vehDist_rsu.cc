@@ -219,6 +219,9 @@ void vehDist_rsu::printCountMessagesReceived() {
     if (!messagesReceived.empty()) {
         myfile << "messagesReceived from " << findHost()->getFullName() << endl;
 
+        int countCP, countT;
+        size_t countTmp;
+        countCP = countT = 0;
         map<string, struct messages>::iterator it;
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
             myfile << endl;
@@ -236,7 +239,14 @@ void vehDist_rsu::printCountMessagesReceived() {
             myfile << "Sum times: " << it->second.sumTimeRecived << endl;
             myfile << "Average time to received: " << (it->second.sumTimeRecived/it->second.copyMessage) << endl;
             avgGeneralTimeMessageReceived += (it->second.sumTimeRecived/it->second.copyMessage);
-        }
+
+            countTmp =  count(it->second.wsmData.begin(), it->second.wsmData.end(), 'T');
+            myfile << "Category T count: " << countTmp << endl;
+            countT += countTmp;
+            countTmp = count(it->second.wsmData.begin(), it->second.wsmData.end(), 'P');
+            myfile << "Category P count: " << countTmp << endl;
+            countCP += countTmp;
+        }//
 
         avgGeneralTimeMessageReceived = avgGeneralTimeMessageReceived/messagesReceived.size();
         avgGeneralCopyMessageReceived = avgGeneralCopyMessageReceived/messagesReceived.size();
@@ -245,6 +255,10 @@ void vehDist_rsu::printCountMessagesReceived() {
         myfile << "Exp: " << experimentNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
         myfile << "Exp: " << experimentNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
         myfile << "Exp: " << experimentNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
+
+        myfile << "Category T geral: " << countT << endl;
+        myfile << "Category P geral: " << countCP << endl;
+
         // TODO: 34 geradas, mas só 2* recebidas
         myfile << endl;
     } else{
