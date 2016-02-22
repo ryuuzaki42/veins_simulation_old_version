@@ -101,8 +101,10 @@ void vehDist_rsu::restartFilesResult() {
 
             if (experimentNumber == 1) { // maxSpeed 15 m/s
                 system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end.rou.xml");
+                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end2.rou.xml");
             } else if (experimentNumber == 5){  // maxSpeed 25 m/s
                 system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' test_end.rou.xml");
+                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' test_end2.rou.xml");
             }
 
             //system("mkdir results 2> /dev/null"); //create a folder results
@@ -246,8 +248,9 @@ void vehDist_rsu::printCountMessagesReceived() {
             countTmp = count(it->second.wsmData.begin(), it->second.wsmData.end(), 'P');
             myfile << "Category P count: " << countTmp << endl;
             countCP += countTmp;
-        }//
+        }
 
+        // TODO: 34 geradas, mas só 2* recebidas
         avgGeneralTimeMessageReceived = avgGeneralTimeMessageReceived/messagesReceived.size();
         avgGeneralCopyMessageReceived = avgGeneralCopyMessageReceived/messagesReceived.size();
         avgGeneralHopsMessage = avgGeneralHopsMessage/messagesReceived.size();
@@ -256,12 +259,11 @@ void vehDist_rsu::printCountMessagesReceived() {
         myfile << "Exp: " << experimentNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
         myfile << "Exp: " << experimentNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
 
-        myfile << "Category T geral: " << countT << endl;
-        myfile << "Category P geral: " << countCP << endl;
+        myfile << "Exp: " << experimentNumber << " ### Category T geral: " << countT << endl;
+        myfile << "Exp: " << experimentNumber << " ### Category P geral: " << countCP << endl;
 
-        // TODO: 34 geradas, mas só 2* recebidas
         myfile << endl;
-    } else{
+    } else {
         myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;
     }
     myfile.close();
@@ -271,6 +273,7 @@ void vehDist_rsu:: finish() {
     printCountMessagesReceived();
     if (experimentNumber == 8) { // maxSpeed 15 m/s
         system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end.rou.xml");
+        system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end2.rou.xml");
     }
 }
 

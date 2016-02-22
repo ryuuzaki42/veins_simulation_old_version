@@ -5,8 +5,7 @@
 
 namespace Veins {
 
-TraCICommandInterface::TraCICommandInterface(TraCIConnection& c) : connection(c)
-{
+TraCICommandInterface::TraCICommandInterface(TraCIConnection& c) : connection(c) {
 }
 
 std::pair<uint32_t, std::string> TraCICommandInterface::getVersion() {
@@ -83,7 +82,7 @@ std::list<std::string> TraCICommandInterface::getVehicleTypeIds() {
 // Added to get vehicle category
 std::string TraCICommandInterface::getVehicleTypeId(std::string nodeId) {
     return genericGetString(CMD_GET_VEHICLE_VARIABLE, nodeId, VAR_TYPE, RESPONSE_GET_VEHICLE_VARIABLE);
-}
+} // See more in https://groups.google.com/forum/#!topic/omnetpp/vUwNbwBjyjA
 
 std::list<std::string> TraCICommandInterface::getRouteIds() {
     return genericGetStringList(CMD_GET_ROUTE_VARIABLE, "", ID_LIST, RESPONSE_GET_ROUTE_VARIABLE);
