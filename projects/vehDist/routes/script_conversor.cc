@@ -3,30 +3,15 @@
 // g++ -std=c++0x -o script_conversor script_conversor.cc #
 //#########################################################
 
-#include <sstream>
-#include <string>
 #include <iostream>
 #include <fstream>
-#include <map>
 #include <unordered_map>
-#include <algorithm> // std::find
 
 using namespace std;
-
-template <typename T>
-std::string to_string(T value){
-    //create an output string stream
-    std::ostringstream os ;
-    //throw the value into the string stream
-    os << value ;
-    //convert the string stream into a string and return
-    return os.str() ;
-}
 
 int main(){
     freopen("test.rou.xml","r",stdin); //Arquivo de entrada gerado com script randomTrips.py
 
-    string line;
     ofstream output;
     output.open("test_end.rou.xml"); //Arquivo que será criado com todas rotas
 
@@ -35,7 +20,7 @@ int main(){
 
     int count = 0;
     int countRoutes = 80;
-    string route;
+    string route, line;
     unordered_map<string, int>::iterator it;
     unordered_map<string, int> routes;
     bool print = false;
@@ -49,8 +34,7 @@ int main(){
             to +="\"";
             to += line.substr(14) + "\n";
             // 23 no início [        <route edges="] + 3 no final ["/>] => 26; 1 tem 9 [1/2to1/1 ], como uma rua tem 250 m, logo 1 km => 4 *9 => 36; 10 km => 360. 360 + 26 = 386
-            // logo X km, x * 36 + 26; Para 100 km, 100 * 36 + 26 = 3626, para ter certeza 3700
-            if (to.size() > 3700){
+            if (to.size() > 3700){ // logo X km, x * 36 + 26; Para 100 km, 100 * 36 + 26 = 3626, para ter certeza 3700
                 route = line.substr(22,8); // Pega o primeiro ponto (ponto de partida)
                 it = routes.find(route);
                 if (it != routes.end()){ // Testa se ele já foi inserido ou existe

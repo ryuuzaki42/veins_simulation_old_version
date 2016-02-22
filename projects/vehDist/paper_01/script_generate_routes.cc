@@ -3,7 +3,6 @@
 // g++ -std=c++0x -o script_generate_routes script_generate_routes.cc #
 //#####################################################################
 
-#include <sstream>
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -57,7 +56,7 @@ int main(){
                                 }
                                 toTmp += "\"/>\n";
                                 output << toTmp;
-                                p2 += toTmp.size();
+                                p2 = toTmp.size();
 
                                 count++;
                                 if (count > countVehicleCagegoryA){
@@ -73,7 +72,7 @@ int main(){
                 }
             } else {
                 if (to.size() > routeComp){
-                    output << to; //Escrita da rota no arquivo de saída
+                    output << to; // Escrita da rota no arquivo de saída
                     count++;
                 } else {
                     //cout << endl << "to.size, menor que" << routeComp << " : " << to.size() << endl;
@@ -97,7 +96,7 @@ int main(){
         output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh" << count <<"\" route=\"route" << count << "\" type=\"T\"/>\n";
         count++;
     }
-    output << endl << "</routes>"; //Finalização do arquivo de saída
+    output << endl << "</routes>"; // Finalização do arquivo de saída
     cout << endl;
     return 0;
 }
