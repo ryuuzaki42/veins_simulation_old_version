@@ -3,7 +3,7 @@
 <launch>
     <copy file="vehDist.net.xml" />
     <!-- <copy file="vehDist.rou.xml" /> -->
-    <copy file="t1.rou.xml" />
+    <copy file="test_end2.rou.xml" />
     <copy file="gui-settings.cfg" />
     <copy file="vehDist.sumo2.cfg" type="config" />
 </launch>
