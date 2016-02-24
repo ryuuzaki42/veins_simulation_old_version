@@ -8,6 +8,10 @@ projects/**/valgrind.out
 #
 projects/**/resultsEnd
 #
+*.out
+*/*.out
+*/*/*.out
+*/*/*/*.out
 #/images
 #/tests
 /doc
