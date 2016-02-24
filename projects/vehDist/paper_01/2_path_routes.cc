@@ -1,7 +1,7 @@
-//###################################################################################
-//                  To compile:                                                     #
-// g++ -std=c++0x -o script_generate_routes_2_path script_generate_routes_2_path.cc #
-//###################################################################################
+//#######################################################
+//                  To compile:                         #
+// g++ -std=c++0x -o 2_path_routes.out 2_path_routes.cc #
+//#######################################################
 
 #include <iostream>
 #include <fstream>
@@ -14,11 +14,9 @@ int main(){
 
     ofstream output;
     output.open("test_end2.rou.xml"); // Arquivo que será criado com todas rotas
-
     output << "<routes>\n" << endl; // Escrita da definição do tipo de veículo no arquivo de saída
 
     bool parte1 = true;
-    bool print = false;
     string routePart1, routePart2, to, toTmp, line;
     int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes, routeComp;
     count = 1;
@@ -29,7 +27,6 @@ int main(){
     routeComp = 3700; // logo X km, x * 36 + 26; Para 100 km, 100 * 36 + 26 = 3626, para ter certeza 3700
 
     cout << endl << "Por favor espere, gerando rotas..." << endl << endl;
-
     while (getline(cin,line) && count <= countVehicleRoutes) { // count < 50 to create 50 rotas
         if (line.compare(0,15,"        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
             to = "    <route id=\"";
