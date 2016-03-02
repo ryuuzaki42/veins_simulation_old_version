@@ -185,6 +185,7 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int leng
     wsm->setSerial(serial);
     wsm->setTimestamp(simTime());
     wsm->setSenderPos(curPosition);
+    wsm->setSenderPosPrevious(curPosition); // RSU can't move
     wsm->setSource(source.c_str());
 
     //beacon don't need
