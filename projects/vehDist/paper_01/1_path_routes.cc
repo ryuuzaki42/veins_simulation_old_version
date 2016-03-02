@@ -16,10 +16,14 @@ struct distributionCategory {
 };
 
 int main(){
-    freopen("test.rou.xml","r",stdin); // Arquivo de entrada gerado com script randomTrips.py
+    string fileInput, fileOutput, fileDist;
+    fileInput = "test.rou.xml";
+    fileOutput = "test_end2.rou.xml";
+    fileDist = "distributionCategory_end.r";
+    freopen(fileInput.c_str(),"r",stdin); // Arquivo de entrada gerado com script randomTrips.py
 
     ofstream output;
-    output.open("test_end2.rou.xml"); // Arquivo que será criado com todas rotas
+    output.open(fileOutput.c_str()); // Arquivo que será criado com todas rotas
 
     output << "<routes>\n" << endl; // Escrita da definição do tipo de veículo no arquivo de saída
 
@@ -39,7 +43,7 @@ int main(){
     // logo 1 km => 4 *9 => 36 + 26 + 9 (ponto inicial). x km = x * 36 + 26 + 9
     routeComp = 580; // Para 15 km, 15 * 36 + 26 + 9 = 575, para ter certeza 580
 
-    cout << endl << "Por favor espere, gerando rotas..." << endl << endl;
+    cout << "Por favor espere, gerando rotas..." << endl << endl;
 
     while (getline(cin,line) && count < countVehicleRoutes) { // count < 50 to create 50 rotas
         if (line.compare(0,15,"        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
@@ -145,14 +149,16 @@ int main(){
     output << endl << "</routes>"; // Finalização do arquivo de saída
     output.close();
 
+    cout << "Rotas salvas no arquivo " << fileOutput << "..." << endl << endl;
+
     // verificar dispersão de veículo no cenário
-    freopen("test_end2.rou.xml","r",stdin); // Arquivo de entrada gerado com script randomTrips.py
+    freopen(fileOutput.c_str(),"r",stdin); // Arquivo de entrada gerado com script randomTrips.py
 
     count = 0;
     map<string, struct distributionCategory> routes;
     map<string, struct distributionCategory>::iterator it;
 
-    output.open("distributionCategory_end.r"); // Arquivo de saída da distribuição de veículos nos locais
+    output.open(fileDist.c_str()); // Arquivo de saída da distribuição de veículos nos locais
     output << "Resultado da distibuição dos veículos pela ruas" << endl;
     output << "cP = Veículos de Passeio.   cT = Táxi" << endl << endl;
     output << "          Nome da rua    Count cP  Count cT   %% cP           %% cT" << endl << endl;
@@ -195,8 +201,9 @@ int main(){
     count = 0;
     cout.precision(2);
     output.precision(2);
-    double percentage, percentA, percentB;
-    percentA = percentB = 0;
+    double percentage;
+    int countA, countB;
+    countA = countB = 0;
     for (it = routes.begin(); it != routes.end(); it++) {
         if (count < 10){
             output << "   Street_0" << count << ": " << it->first << "    cP: " << it->second.categoryA;
@@ -216,17 +223,25 @@ int main(){
         percentage = it->second.categoryA + it->second.categoryB;
         percentage = it->second.categoryA/percentage;
         output << "   %%cP: " << percentage;
-        percentA +=percentage;
+        countA += it->second.categoryA;
 
         percentage = it->second.categoryA + it->second.categoryB;
         percentage = it->second.categoryB/percentage;
-        percentB +=percentage;
         output << "     %%cT: " << percentage << endl;
+        countB += it->second.categoryB;
+
         count++;
      }
-    percentA = percentA/routes.size();
-    percentB = percentB/routes.size();
-    output << endl << "Porcentagem geral, %%GcP: " << percentB << "    %%GcT: " << percentA;
+
+    output << endl << "CountTotal: " << (countA + countB) << " CountA: " << countA << "    CountB: " << countB << endl << endl;
+    percentage = countA + countB;
+    percentage  = countA/percentage;
+    output << "Porcentagem geral, %%GcP: " << percentage;
+    percentage = countA + countB;
+    percentage  = countB/percentage;
+    output << "    %%GcT: " << percentage;
+
     output.close();
+    cout << "Distibuição de veículos pelas rotas salvas no arquivo " << fileDist << "..." << endl << endl;
     return 0;
 }
