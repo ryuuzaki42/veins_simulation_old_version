@@ -28,7 +28,7 @@ int main(){
     string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
     int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes;
     int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
-    count = 1;
+    count = 0;
     pathComp = 4; // Metade do percurso em blocos (quarteirão)
     countVehicleRoutes = 50;
     countVehicleCagegoryA = 40;
@@ -41,7 +41,7 @@ int main(){
 
     cout << endl << "Por favor espere, gerando rotas..." << endl << endl;
 
-    while (getline(cin,line) && count <= countVehicleRoutes) { // count < 50 to create 50 rotas
+    while (getline(cin,line) && count < countVehicleRoutes) { // count < 50 to create 50 rotas
         if (line.compare(0,15,"        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
             to = "    <route id=\"";
             if (count < 10) {
@@ -96,7 +96,7 @@ int main(){
                         output << toTmp;
                         count++;
 
-                        if (count > countVehicleCagegoryA){
+                        if (count >= countVehicleCagegoryA){
                             parte1 = false;
                         }
                     } else {
@@ -122,7 +122,7 @@ int main(){
     // Um com id=P e outro com id=T
     output << "\n    <!-- P => Carro de Passeio -->\n";
     output << "    <vType id=\"P\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"0,1,0\"/>\n\n";
-    count = 1;
+    count = 0;
     while (count < countVehicleCagegoryA) {
         if (count < 10){
             output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"P\"/>\n";
@@ -134,7 +134,7 @@ int main(){
 
     output << "\n    <!-- T => Taxi -->\n";
     output << "    <vType id=\"T\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>\n\n";
-    while (count <= countVehicleRoutes) {
+    while (count < countVehicleRoutes) {
         if (count < 10){
             output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"T\"/>\n";
         } else {
@@ -148,7 +148,7 @@ int main(){
     // verificar dispersão de veículo no cenário
     freopen("test_end2.rou.xml","r",stdin); // Arquivo de entrada gerado com script randomTrips.py
 
-    count = 1;
+    count = 0;
     map<string, struct distributionCategory> routes;
     map<string, struct distributionCategory>::iterator it;
 
@@ -157,7 +157,7 @@ int main(){
     output << "cP = Veículos de Passeio.   cT = Táxi" << endl << endl;
     output << "          Nome da rua    Count cP  Count cT   %% cP           %% cT" << endl << endl;
 
-    while (getline(cin,line) && count <= countVehicleRoutes) { // count < 50 to create 50 rotas
+    while (getline(cin,line) && count < countVehicleRoutes) { // count < 50 to create 50 rotas
         if (line.compare(0,11,"    <route ") == 0) {
             p1 = 31;
             to = line.substr(p1);
@@ -192,16 +192,16 @@ int main(){
         }
     }
 
-    count = 1;
+    count = 0;
     cout.precision(2);
     output.precision(2);
     double percentage, percentA, percentB;
     percentA = percentB = 0;
     for (it = routes.begin(); it != routes.end(); it++) {
         if (count < 10){
-            output << "   Street_0" << count <<": " << it->first << "    cP: " << it->second.categoryA;
+            output << "   Street_0" << count << ": " << it->first << "    cP: " << it->second.categoryA;
         } else {
-            output << "   Street_" << count <<": " << it->first << "    cP: " << it->second.categoryA;
+            output << "   Street_" << count << ": " << it->first << "    cP: " << it->second.categoryA;
         }
 
         if (it->second.categoryA < 10) {
