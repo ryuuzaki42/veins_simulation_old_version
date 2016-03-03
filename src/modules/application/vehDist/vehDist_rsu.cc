@@ -100,11 +100,9 @@ void vehDist_rsu::restartFilesResult() {
         if (repeatNumber == 0) { //Open a new file (blank)
 
             if (experimentNumber == 1) { // maxSpeed 15 m/s
-                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end.rou.xml");
-                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end2.rou.xml");
+                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' vehDist.rou.xml");
             } else if (experimentNumber == 5){  // maxSpeed 25 m/s
-                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' test_end.rou.xml");
-                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' test_end2.rou.xml");
+                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' vehDist.rou.xml");
             }
 
             //system("mkdir results 2> /dev/null"); //create a folder results
@@ -273,8 +271,7 @@ void vehDist_rsu::printCountMessagesReceived() {
 void vehDist_rsu:: finish() {
     printCountMessagesReceived();
     if (experimentNumber == 8) { // maxSpeed 15 m/s
-        system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end.rou.xml");
-        system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' test_end2.rou.xml");
+        system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' vehDist.rou.xml");
     }
 }
 
