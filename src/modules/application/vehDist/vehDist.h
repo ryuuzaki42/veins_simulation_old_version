@@ -52,7 +52,6 @@ class vehDist : public BaseWaveApplLayer {
         unordered_map<string, WaveShortMessage> beaconStatusNeighbors;
         vector <string> messagesDelivered;
         static unordered_map<string, string> numVehicles;
-        unordered_map<string, WaveShortMessage> vehSmallDistanceToTarget;
 
         int vehNumber;
         double vehOffSet;
@@ -65,6 +64,12 @@ class vehDist : public BaseWaveApplLayer {
         };
         map<string, struct messagesDropStruct> messagesDrop;
         static unsigned short int countMesssageDrop;
+
+        struct smallDistance {
+            int distance;
+            string category;
+        };
+        unordered_map<string, smallDistance> vehSmallDistanceToTarget;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -107,7 +112,7 @@ class vehDist : public BaseWaveApplLayer {
         void vehInitializeVariables();
         void insertMessageDrop(string ID, int type);
         string getNeighborSmallDistanceToTarge(string key);
-        void NeighborWithSmallDistanceToTarge(string key);
+        void neighborWithSmallDistanceToTarge(string key);
 };
 
 unsigned short int vehDist::beaconMessageId = 1;
