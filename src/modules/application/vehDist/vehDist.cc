@@ -57,7 +57,7 @@ void vehDist::vehInitializeVariables() {
         srand(repeatNumber + 1); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
     } else {
         vehOffSet = dblrand(); //simulate asynchronous channel access. Values betwen 0 and 1
-        vehOffSet = vehOffSet + 0.1;
+        vehOffSet += 0.1;
     }
     if (vehNumber == 0) {
         cout << endl << "Experiment: " << experimentNumber << endl;
@@ -250,6 +250,31 @@ void vehDist::sendBeaconMessage() {
     }*/
 }
 
+void vehDist::NeighborWithSmallDistanceToTarge(string key) {
+    int neighborDistanceBefore, neighborDistanceNow; // They are Integer in way to ignore small differences
+    vehSmallDistanceToTarget.clear();
+
+    unordered_map<string, WaveShortMessage>::iterator itBeacon;
+    for (itBeacon = beaconStatusNeighbors.begin(); itBeacon != beaconStatusNeighbors.end(); itBeacon++) {
+        neighborDistanceBefore = traci->commandDistanceRequest(itBeacon->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceNow = traci->commandDistanceRequest(itBeacon->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
+
+        if (neighborDistanceNow < neighborDistanceBefore){
+            vehSmallDistanceToTarget.insert(make_pair(itBeacon->first, itBeacon->second));
+        }
+
+    }
+
+    cout << "Print of vehSmallDistanceToTarget to " << findHost()->getFullName() << " at " << simTime() << endl;
+    if (vehSmallDistanceToTarget.empty()){
+        cout << "vehSmallDistanceToTarget is empty." << endl;
+    } else {
+        for (itBeacon = vehSmallDistanceToTarget.begin(); itBeacon != vehSmallDistanceToTarget.end(); itBeacon++) {
+            cout << "Id: " << itBeacon->first << " category << " << itBeacon->second.getCategory() << endl;
+        }
+    }
+}
+
 string vehDist::getNeighborSmallDistanceToTarge(string key) {
     string vehID = findHost()->getFullName();
     int neighborSmallDistance, neighborDistanceBefore, neighborDistanceNow, senderTmpDistance; // They are Integer in way to ignore small differences
@@ -262,11 +287,11 @@ string vehDist::getNeighborSmallDistanceToTarge(string key) {
         neighborDistanceBefore = traci->commandDistanceRequest(itBeacon->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
         neighborDistanceNow = traci->commandDistanceRequest(itBeacon->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
 
-        if (neighborDistanceNow < neighborDistanceBefore) { // Veh is goind in direction to target
+        if (neighborDistanceNow < neighborDistanceBefore) { // Veh is going in direction to target
             if (neighborDistanceNow < senderTmpDistance) { // the distance of this veh to target is small than the carry veh now
 
                 cout << " The distance is smaller to target " << endl;
-                cout << " Position of this veh [" << findHost()->getFullName() << "]: " << traci->getCurrentPosition() << endl;
+                cout << " Position of this veh (" << findHost()->getFullName() << "): " << traci->getCurrentPosition() << endl;
                 cout << " Sender beacon pos previous: " << itBeacon->second.getSenderPosPrevious() << endl;
                 cout << " Sender beacon pos now: " << itBeacon->second.getSenderPos() << endl;
                 cout << " Message id: " << key << endl;
@@ -275,7 +300,7 @@ string vehDist::getNeighborSmallDistanceToTarge(string key) {
                 if (neighborDistanceNow < neighborSmallDistance) {
                     neighborSmallDistance = neighborDistanceNow; // Found one veh with small distance to target to send a [ke] message
                     vehID = itBeacon->first;
-                    cout << "  Selected one veh in the neighbor [" << vehID <<"] with small distance to the target" << endl;
+                    cout << "  Selected one veh in the neighbor (" << vehID <<") with small distance to the target" << endl;
                 } else if (neighborDistanceNow == neighborSmallDistance) {
                     if (beaconStatusNeighbors[itBeacon->first].getSenderSpeed() > beaconStatusNeighbors[vehID].getSenderSpeed()) {
                         neighborSmallDistance = neighborDistanceNow; // Found one veh with equal distance to target to another veh, but with > speed
@@ -537,7 +562,8 @@ WaveShortMessage* vehDist::prepareBeaconStatusWSM(std::string name, int lengthBi
     wsm->setRoadId(traci->getRoadId().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
     wsm->setCategory(getVehCategory());
-    wsm->setSenderPos(curPosition);
+    //wsm->setSenderPos(curPosition);
+    wsm->setSenderPos(traci->getCurrentPosition());
     wsm->setSenderPosPrevious(vehPositionPrevious);
 
     // heading 1 to 4 or 1 to 8

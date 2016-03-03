@@ -148,10 +148,9 @@ int main(){
     }
     output << endl << "</routes>"; // Finalização do arquivo de saída
     output.close();
-
     cout << "Rotas salvas no arquivo " << fileOutput << "..." << endl << endl;
 
-    // verificar dispersão de veículo no cenário
+    // verifica dispersão de veículo no cenário
     freopen(fileOutput.c_str(),"r",stdin); // Arquivo de entrada gerado com script randomTrips.py
 
     count = 0;
