@@ -11,8 +11,8 @@
 using namespace std;
 
 struct distributionCategory {
-    int categoryA;
-    int categoryB;
+    int categoryP;
+    int categoryT;
 };
 
 int main(){
@@ -174,19 +174,19 @@ int main(){
                 it = routes.find(routeTmp);
                 if (it != routes.end()) { // Testa se ele já foi inserido ou existe
                     if (count < countVehicleCagegoryA){
-                        it->second.categoryA++;
+                        it->second.categoryP++;
 
                     } else {
-                        it->second.categoryB++;
+                        it->second.categoryT++;
                     }
                 } else {
                     struct distributionCategory dC;
-                    dC.categoryA = 0;
-                    dC.categoryB = 0;
+                    dC.categoryP = 0;
+                    dC.categoryT = 0;
                     if (count < countVehicleCagegoryA){
-                        dC.categoryA++;
+                        dC.categoryP++;
                     } else {
-                        dC.categoryB++;
+                        dC.categoryT++;
                     }
                     routes.insert(make_pair(routeTmp, dC));
                 }
@@ -201,43 +201,43 @@ int main(){
     cout.precision(2);
     output.precision(2);
     double percentage;
-    int countA, countB;
-    countA = countB = 0;
+    int countP, countT;
+    countP = countT = 0;
     for (it = routes.begin(); it != routes.end(); it++) {
         if (count < 10){
-            output << "   Street_0" << count << ": " << it->first << "    cP: " << it->second.categoryA;
+            output << "   Street_0" << count << ": " << it->first << "    cP: " << it->second.categoryP;
         } else {
-            output << "   Street_" << count << ": " << it->first << "    cP: " << it->second.categoryA;
+            output << "   Street_" << count << ": " << it->first << "    cP: " << it->second.categoryP;
         }
 
-        if (it->second.categoryA < 10) {
+        if (it->second.categoryP < 10) {
             output << " ";
         }
 
-        output << "    cT: " << it->second.categoryB;
-        if (it->second.categoryB < 10) {
+        output << "    cT: " << it->second.categoryT;
+        if (it->second.categoryT < 10) {
             output << " ";
         }
 
-        percentage = it->second.categoryA + it->second.categoryB;
-        percentage = it->second.categoryA/percentage;
+        percentage = it->second.categoryP + it->second.categoryT;
+        percentage = it->second.categoryP/percentage;
         output << "   %%cP: " << percentage;
-        countA += it->second.categoryA;
+        countP += it->second.categoryP;
 
-        percentage = it->second.categoryA + it->second.categoryB;
-        percentage = it->second.categoryB/percentage;
+        percentage = it->second.categoryP + it->second.categoryT;
+        percentage = it->second.categoryT/percentage;
         output << "     %%cT: " << percentage << endl;
-        countB += it->second.categoryB;
+        countT += it->second.categoryT;
 
         count++;
      }
 
-    output << endl << "CountTotal: " << (countA + countB) << " CountA: " << countA << "    CountB: " << countB << endl << endl;
-    percentage = countA + countB;
-    percentage  = countA/percentage;
+    output << endl << "CountTotal: " << (countP + countT) << " countP: " << countP << "    countT: " << countT << endl << endl;
+    percentage = countP + countT;
+    percentage  = countP/percentage;
     output << "Porcentagem geral, %%GcP: " << percentage;
-    percentage = countA + countB;
-    percentage  = countB/percentage;
+    percentage = countP + countT;
+    percentage  = countT/percentage;
     output << "    %%GcT: " << percentage;
 
     output.close();
