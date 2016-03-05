@@ -59,9 +59,11 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
 
     if (std::string(wsm->getName()) == "beacon") {
         onBeacon(wsm);
+        exit(1);
     }
     else if (std::string(wsm->getName()) == "data") {
         onData(wsm);
+        exit(1);
     }
 //#################################################################
     else if (wsm->getType() == 1) {
@@ -73,6 +75,7 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
 //#################################################################
     else{
         DBG << "unknown message (" << wsm->getName() << ")  received\n";
+        exit(1);
     }
     delete(msg);
 }
