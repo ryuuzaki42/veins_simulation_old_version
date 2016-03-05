@@ -42,6 +42,11 @@ void vehDist_rsu::rsuInitializeVariables() {
 }
 
 void vehDist_rsu::onBeacon(WaveShortMessage* wsm) {
+    if (wsm->getType() == 1){
+        onBeaconStatus(wsm); // Beacon of status
+    } else if (wsm->getType() == 2){
+        onBeaconMessage(wsm); // Beacon of Message
+    }
 }
 
 void vehDist_rsu::onBeaconStatus(WaveShortMessage* wsm) {
@@ -59,16 +64,10 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
         onData(wsm);
     }
 //#################################################################
-    else if (std::string(wsm->getName()) == "data2veh") {
-        cout << "data2veh now" << endl;
-    }
-    else if (std::string(wsm->getName()) == "data2rsu") {
-        cout << "data2rsu now" << endl;
-    }
-    else if (std::string(wsm->getName()) == "beaconStatus") {
+    else if (wsm->getType() == 1) {
         onBeaconStatus(wsm);
     }
-    else if (std::string(wsm->getName()) == "beaconMessage") {
+    else if (wsm->getType() == 2) {
         onBeaconMessage(wsm);
     }
 //#################################################################
@@ -171,6 +170,7 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm) {
 
 WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial) {
     WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
+    wsm->setType(1); // Beacon of Status
     wsm->addBitLength(headerLength);
     wsm->addBitLength(lengthBits);
     switch (channel) {
@@ -282,7 +282,7 @@ void vehDist_rsu::sendWSM(WaveShortMessage* wsm) {
 void vehDist_rsu::sendMessage(std::string blockedRoadId) {
     sentMessage = true;
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM("data2rsu", dataLengthBits, channel, dataPriority, -1,2);
+    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
     wsm->setWsmData(blockedRoadId.c_str());
     sendWSM(wsm);
 }

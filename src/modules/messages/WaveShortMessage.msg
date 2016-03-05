@@ -98,4 +98,5 @@ packet WaveShortMessage {
     // targetPosition
     Coord TargetPos;
     Coord senderPosPrevious;
+    unsigned short type;
 }
