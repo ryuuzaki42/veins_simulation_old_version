@@ -14,7 +14,9 @@ python /media/sda4/prog/sumo-0.21.0/tools/trip/randomTrips.py -n test.net.xml --
 
 ## To test "is the same routes?"
 cat test.rou.xml | grep -v generated | md5sum
-f649688c8178367ce3f5dade28de4f3b  -
+
+f649688c8178367ce3f5dade28de4f3b  - with --no-turnarounds
+026a7f8c52c9f5c6e613ccd82e00d831  - without --no-turnarounds
 
 ## Test same start position
 cat [folder]/vehicle_position_initialize.r | grep -v number  | md5sum
