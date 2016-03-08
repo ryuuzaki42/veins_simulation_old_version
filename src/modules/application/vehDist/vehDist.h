@@ -43,19 +43,20 @@ class vehDist : public BaseWaveApplLayer {
         bool sendWhileParking;
         static const simsignalwrap_t parkingStateChangedSignal;
 
-        static unsigned short int beaconMessageId;
         cMessage* sendBeaconMessageEvt;
         cMessage* sendGenerateBeaconMessageEvt;
         cMessage* sendUpdatePosisitonVeh;
+
+        static unsigned short int countMesssageDrop;
+        static unsigned short int beaconMessageId;
+        static unordered_map<string, string> numVehicles;
+        static unordered_map<int, bool> vehGenerateMessage;
+
         Coord vehPositionPrevious;
         unordered_map<string, WaveShortMessage> messagesBuffer;
         unordered_map<string, WaveShortMessage> beaconStatusNeighbors;
         vector <string> messagesDelivered;
-        static unordered_map<string, string> numVehicles;
-
-        int vehNumber;
-        double vehOffSet;
-        static unordered_map<int, bool> vehGenerateMessage;
+        float vehOffSet;
 
         struct messagesDropStruct {
             int byBuffer;
@@ -63,7 +64,6 @@ class vehDist : public BaseWaveApplLayer {
             int byTime;
         };
         map<string, struct messagesDropStruct> messagesDrop;
-        static unsigned short int countMesssageDrop;
 
         struct smallDistance {
             int distance;
@@ -94,7 +94,6 @@ class vehDist : public BaseWaveApplLayer {
         void restartFilesResult();
         void vehUpdatePosition();
         void vehCreateEventTrySendBeaconMessage();
-        const char * getVehCategory();
         void removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit);
         void sendMessageNeighborsTarget(string key);
         string returnLastMessageInserted();
@@ -104,7 +103,6 @@ class vehDist : public BaseWaveApplLayer {
         void handleLowerMsg(cMessage* msg);
         void onBeaconStatus(WaveShortMessage* wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
-        void setVehNumber();
         void vehGenerateBeaconMessageBegin();
         void vehGenerateBeaconMessageAfterBegin();
         void selectVehGenerateMessage();

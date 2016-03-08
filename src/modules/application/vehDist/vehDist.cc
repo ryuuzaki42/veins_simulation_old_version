@@ -50,8 +50,7 @@ void vehDist::vehInitializeVariables() {
     doubleTmp = par("ttlBeaconMessage_two").doubleValue();
     timeLimitGenerateBeaconMessage = timeLimitGenerateBeaconMessage - doubleTmp;
 
-    setVehNumber();
-    if(vehNumber == 0) { // Veh must be the first to generate messages, so your offset is 0;
+    if(myId == 0) { // Veh must be the first to generate messages, so your offset is 0;
         vehOffSet = 0;
         //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (seed for the rand is "static")
         srand(repeatNumber + 1); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
@@ -59,7 +58,7 @@ void vehDist::vehInitializeVariables() {
         vehOffSet = dblrand(); //simulate asynchronous channel access. Values betwen 0 and 1
         vehOffSet += 0.1;
     }
-    if (vehNumber == 0) {
+    if (myId == 0) {
         cout << endl << "Experiment: " << experimentNumber << endl;
         cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
         cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
@@ -117,7 +116,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
             } else {
                 stringTmp +=", ";
             }
-            stringTmp += getVehCategory();
+            stringTmp += traci->getVehicleType().c_str();
             wsm->setWsmData(stringTmp.c_str());
 
             messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); //add the msg in the  vehicle buffer
@@ -474,24 +473,6 @@ void vehDist::handleLowerMsg(cMessage* msg) {
     delete(msg);
 }
 
-const char * vehDist::getVehCategory() {
-    // TODO: ver como definir a categoria
-
-    return (traci->getVehicleType()).c_str();
-
-//    if (vehNumber < 13) {
-//        return 1;
-//    } else if ((vehNumber >= 13) && (vehNumber < 26)) {
-//        return 2;
-//    } else if ((vehNumber >= 26) && (vehNumber < 39)) {
-//        return 3;
-//    } else if ((vehNumber >= 39) && (vehNumber < 52)) {
-//        return 4;
-//    } else {
-//        return 5;
-//    }
-}
-
 //###################################################  OK Function ####################################################
 
 void vehDist::saveVehStartPosition(string fileNameLocation) {
@@ -511,12 +492,6 @@ void vehDist::saveVehStartPosition(string fileNameLocation) {
     myfile.close();
 }
 
-void vehDist::setVehNumber() {
-    string vehNumberString = (source.substr(source.find("[") + 1, source.find("]") - source.find("[") - 1));
-    vehNumber = atoi(vehNumberString.c_str());
-    //cout << findHost()->getFullName() << " vehID: " << vehNumber << endl;
-}
-
 void vehDist::restartFilesResult() {
     stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
     stringTmp += "_" + to_string(ttlBeaconMessage) + "_" + to_string(countGenerateBeaconMessage) +"/";
@@ -530,7 +505,7 @@ void vehDist::restartFilesResult() {
     fileMessagesDrop += "Veh_Messages_Drop.r";
     fileMessagesGenerated += "Veh_Messages_Generated.r";
 
-    if (vehNumber == 0) {
+    if (myId == 0) {
         if (repeatNumber == 0) {
             //openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
@@ -564,7 +539,7 @@ void vehDist::vehCreateEventTrySendBeaconMessage() {
 }
 
 void vehDist::selectVehGenerateMessage() {
-    if (vehNumber == 0) { // if true, some veh has (in past) selected the veh to generate messages
+    if (myId == 0) { // if true, some veh has (in past) selected the veh to generate messages
         if (simTime() <= timeLimitGenerateBeaconMessage) {
             int vehSelected;
             myfile.open(fileMessagesGenerated, std::ios_base::app); // To save infos (Id and veh generate) on fileMessagesGenerated
@@ -593,9 +568,9 @@ void vehDist::vehGenerateBeaconMessageBegin() {
 void vehDist::vehGenerateBeaconMessageAfterBegin() {
     selectVehGenerateMessage();
 
-    if(vehDist::vehGenerateMessage.find(vehNumber) != vehDist::vehGenerateMessage.end()) { // if have "vehNumber" on buffer, will generate one message
+    if(vehDist::vehGenerateMessage.find(myId) != vehDist::vehGenerateMessage.end()) { // if have "vehNumber" on buffer, will generate one message
         generateBeaconMessage();
-        vehDist::vehGenerateMessage.erase(vehNumber);
+        vehDist::vehGenerateMessage.erase(myId);
     }
 }
 
@@ -622,7 +597,7 @@ WaveShortMessage* vehDist::prepareBeaconStatusWSM(std::string name, int lengthBi
 
     wsm->setRoadId(traci->getRoadId().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
-    wsm->setCategory(getVehCategory());
+    wsm->setCategory(traci->getVehicleType().c_str());
     //wsm->setSenderPos(curPosition);
     wsm->setSenderPos(traci->getCurrentPosition());
     wsm->setSenderPosPrevious(vehPositionPrevious);
@@ -639,7 +614,7 @@ WaveShortMessage* vehDist::updateBeaconMessageWSM(WaveShortMessage* wsm, string 
     wsm->setSenderAddressTemporary(findHost()->getFullName());
     wsm->setRecipientAddressTemporary(rcvId.c_str());
     wsm->setRoadId(traci->getRoadId().c_str());
-    wsm->setCategory(getVehCategory());
+    wsm->setCategory(traci->getVehicleType().c_str());
     wsm->setSenderSpeed(traci->getSpeed());
     wsm->setSenderPos(curPosition);
     wsm->setSenderPosPrevious(vehPositionPrevious);

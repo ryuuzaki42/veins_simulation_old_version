@@ -98,29 +98,26 @@ void vehDist_rsu::restartFilesResult() {
 
     //fileMessagesDrop = ...
 
-    if (strcmp(findHost()->getFullName(), "rsu[0]") == 0) {
-        if (repeatNumber == 0) { //Open a new file (blank)
-
-            if (experimentNumber == 1) { // maxSpeed 15 m/s
-                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' vehDist.rou.xml");
-            } else if (experimentNumber == 5){  // maxSpeed 25 m/s
-                system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' vehDist.rou.xml");
-            }
-
-            //system("mkdir results 2> /dev/null"); //create a folder results
-            stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
-            cout << endl << "Created the folder, comand: \"" << stringTmp << "\"" << endl;
-            cout << "repeatNumber " << repeatNumber << endl;
-            system(stringTmp.c_str()); //create a folder results
-
-            openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
-        } else{ // (repeatNumber != 0)) // for just append
-            openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-            openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
+    if ((myId == 0) && (repeatNumber == 0)) { //Open a new file (blank)
+        if (experimentNumber == 1) { // maxSpeed 15 m/s
+            system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' vehDist.rou.xml");
+        } else if (experimentNumber == 5){  // maxSpeed 25 m/s
+            system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' vehDist.rou.xml");
         }
+
+        //system("mkdir results 2> /dev/null"); //create a folder results
+        stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
+        cout << endl << "Created the folder, comand: \"" << stringTmp << "\"" << endl;
+        cout << "repeatNumber " << repeatNumber << endl;
+        system(stringTmp.c_str()); //create a folder results
+
+        openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+        openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
+        openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
+    } else { // (repeatNumber != 0)) // for just append
+        openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+        openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
+        openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
     }
 }
 
