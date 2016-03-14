@@ -141,7 +141,7 @@ void minicurso_UFPI_TraCI::handleSelfMsg(cMessage* msg){
 void minicurso_UFPI_TraCI::updateSpeedList() {
     vector<pair<simtime_t, double> > newSpeedsList;
 
-    for(int i=0;i < speedsList.size(); ++i)
+    for(unsigned int i=0;i < speedsList.size(); ++i)
         if(simTime() - speedsList[i].first < 5.0)
             newSpeedsList.push_back(speedsList[i]);
 
@@ -152,7 +152,7 @@ void minicurso_UFPI_TraCI::updateCongestionTable() {
     map<string, vector<pair<simtime_t, double> > > newMap;
     for(map<string, vector<pair<simtime_t, double> > >::iterator it=congestionTable.begin(); it!= congestionTable.end(); ++it){
         vector<pair<simtime_t, double> > newList;
-        for(int i=0; i < it->second.size(); ++i)
+        for(unsigned int i=0; i < it->second.size(); ++i)
             if(simTime() - it->second[i].first < 20.0)
                 newList.push_back(it->second[i]);
         newMap[it->first] = newList;
@@ -166,7 +166,7 @@ void minicurso_UFPI_TraCI::verifyAndSendCongestionMessage() {
     if(speedsList.size() == 0)
             return;
     double sum = 0;
-    for(int i = 0; i < speedsList.size(); ++i)
+    for(unsigned int i = 0; i < speedsList.size(); ++i)
         sum += speedsList[i].second;
     double avg = sum/speedsList.size();
     if(avg < 5.0){
@@ -187,7 +187,7 @@ void minicurso_UFPI_TraCI::onData(WaveShortMessage* wsm) {
     string data(wsm->getWsmData());
     string road, speed, messageIdentifier;
     std::cout << "\nminicurso_UFPI_TraCI::onData, wsm-data:\n" << data;
-    int i = 0;
+    unsigned int i = 0;
     while(i < data.size() && data[i] != '|'){
         road.push_back(data[i]);
         ++i;

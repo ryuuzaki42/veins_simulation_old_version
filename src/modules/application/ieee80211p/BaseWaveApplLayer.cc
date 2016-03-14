@@ -131,16 +131,16 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber()
 
     experimentNumber = par("experimentNumber");
     if ((experimentNumber == 1) || (experimentNumber == 5)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_one");
+        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_one");
     } else if ((experimentNumber == 2) || (experimentNumber == 6)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_one");
+        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two");
     } else if ((experimentNumber == 3) || (experimentNumber == 7)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_two");
+        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_one");
     } else if ((experimentNumber == 4) || (experimentNumber == 8)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_two");
+        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two");
     } else {
         cout << "Error: Number of experiment not configured. Go to VehDist.cc line 146." << endl;

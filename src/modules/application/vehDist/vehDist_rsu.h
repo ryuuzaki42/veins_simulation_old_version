@@ -36,14 +36,13 @@ class vehDist_rsu : public BaseWaveApplLayer {
         struct messages {
           unsigned int copyMessage;
           string hops;
-          unsigned  int minHop;
-          unsigned  int maxHop;
-          double sumHops;
+          int minHop;
+          int maxHop;
+          int sumHops;
           string wsmData;
           simtime_t sumTimeRecived;
           string times;
         };
-
         map<string, struct messages> messagesReceived;
 
     protected:

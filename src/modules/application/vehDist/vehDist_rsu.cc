@@ -82,7 +82,7 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
 
 void vehDist_rsu::restartFilesResult() {
     stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
-    stringTmp += "_" + to_string(ttlBeaconMessage) + "_" + to_string(countGenerateBeaconMessage) +"/";
+    stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
     fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = fileMessagesDrop = stringTmp;
 
