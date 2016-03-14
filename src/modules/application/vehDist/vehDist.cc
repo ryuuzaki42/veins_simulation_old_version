@@ -45,10 +45,12 @@ void vehDist::initialize(int stage) {
 void vehDist::vehInitializeVariables() {
     generalInitializeVariables_executionByExperimentNumber();
 
-    stringTmp = ev.getConfig()->getConfigValue("sim-time-limit");
-    timeLimitGenerateBeaconMessage = atof(stringTmp.c_str());
-    doubleTmp = par("ttlBeaconMessage_two").doubleValue();
+    timeLimitGenerateBeaconMessage = atof(ev.getConfig()->getConfigValue("sim-time-limit"));
+    double doubleTmp = par("ttlBeaconMessage_two").doubleValue();
     timeLimitGenerateBeaconMessage = timeLimitGenerateBeaconMessage - doubleTmp;
+    beaconMessageBufferSize = par("beaconMessageBufferSize");
+    beaconStatusBufferSize = par("beaconStatusBufferSize");
+    ttlBeaconStatus = par("ttlBeaconStatus").doubleValue();
 
     if(myId == 0) { // Veh must be the first to generate messages, so your offset is 0;
         vehOffSet = 0;
@@ -74,7 +76,8 @@ void vehDist::vehInitializeVariables() {
 }
 
 void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
-    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize"));
+    removeOldestInputBeaconStatus();
+    //removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize"));
 
     auto it = beaconStatusNeighbors.find(wsm->getSenderAddressTemporary());
     if (it != beaconStatusNeighbors.end()) { // Update the beaconStatus
@@ -91,7 +94,8 @@ void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
 }
 
 void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
-    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
+    removeOldestInputBeaconMessage();
+    //removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
 
     if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0) { //verify if this is the recipient of the message
         if (!messagesDelivered.empty()) {
@@ -120,6 +124,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
             wsm->setWsmData(stringTmp.c_str());
 
             messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); //add the msg in the  vehicle buffer
+            messagesOrderReceived.push_back(wsm->getGlobalMessageIdentificaton());
             colorCarryMessage();
 
             /*
@@ -156,6 +161,7 @@ void vehDist::colorCarryMessage() {
 }
 
 void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit) {
+    exit(1);
     if (!data->empty()) {
         unordered_map<string, WaveShortMessage>::iterator itData;
         itData = data->begin();
@@ -191,6 +197,70 @@ void vehDist::removeOldestInput(unordered_map<string, WaveShortMessage>* data, d
     }*/
 }
 
+void vehDist::removeOldestInputBeaconMessage() {
+    // removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
+
+    if (!messagesBuffer.empty()) {
+        string idMessage = messagesOrderReceived.front();
+        cout << "idMessage: " << idMessage << endl;
+        cout << "messagesOrderReceived.front(): " << messagesOrderReceived.front() << endl;
+        cout << "messagesOrderReceived[0]: " << messagesOrderReceived[0] << endl;
+        WaveShortMessage wsm = messagesBuffer[idMessage];
+        simtime_t minTime = wsm.getTimestamp();
+
+        int typeRemoved = 0;
+        if(simTime() > (minTime + ttlBeaconMessage)) {
+            cout << findHost()->getFullName() << " remove one message(" << idMessage << ") by time, minTime: " << minTime << " at: " << simTime() << " ttlBeaconMessage: " << ttlBeaconMessage << endl;
+            typeRemoved = 2; // by ttl (1 buffer, 2 ttl, 3 hop)
+        } else if (messagesBuffer.size() >= beaconMessageBufferSize) {
+            cout << findHost()->getFullName() << " remove one message(" << idMessage << ") by space, MessageBuffer.size(): " << messagesBuffer.size() << " at: " << simTime() << " beaconMessageBufferSize: " << beaconMessageBufferSize << endl;
+            typeRemoved = 1; // by buffer (1 buffer, 2 ttl, 3 hop)
+        }
+
+        if(typeRemoved != 0){
+            insertMessageDrop(idMessage, typeRemoved); // Removed by the value of tyRemoved (1 buffer, 2 ttl, 3 hop)
+            messagesBuffer.erase(idMessage);
+            messagesOrderReceived.erase(messagesOrderReceived.begin());
+            colorCarryMessage();
+            removeOldestInputBeaconMessage();
+        }
+    } /*else {
+        cout << "messagesBuffer from " << findHost()->getFullName() << " is empty now" << endl;
+    }*/
+}
+
+void vehDist::removeOldestInputBeaconStatus() {
+    printBeaconStatusNeighbors();
+    //removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize"));
+    if (!beaconStatusNeighbors.empty()) {
+        unordered_map<string, WaveShortMessage>::iterator itBeaconStatus;
+        itBeaconStatus = beaconStatusNeighbors.begin();
+        string type = itBeaconStatus->second.getName();
+        simtime_t minTime = itBeaconStatus->second.getTimestamp();
+        string key = itBeaconStatus->first;
+        itBeaconStatus++;
+
+        for (; itBeaconStatus != beaconStatusNeighbors.end(); itBeaconStatus++) {
+            if (minTime > itBeaconStatus->second.getTimestamp()) {
+                minTime = itBeaconStatus->second.getTimestamp();
+                key = itBeaconStatus->first;
+            }
+        }
+
+        if(simTime() > (minTime + ttlBeaconStatus)) {
+            cout << findHost()->getFullName() << " remove one beaconStatus(" << key << ") by time, minTime: " << minTime << " at: " << simTime() << " ttlBeaconStatus: " << ttlBeaconStatus << endl;
+            beaconStatusNeighbors.erase(key);
+            removeOldestInputBeaconStatus();
+        } else if (beaconStatusNeighbors.size() >= beaconStatusBufferSize) {
+            cout << findHost()->getFullName() << " remove one beaconStatus(" << key << ") by space, beaconStatusNeighbors.size(): " << beaconStatusNeighbors.size() << " at: " << simTime() << " beaconMessageBufferSize: " << beaconMessageBufferSize << endl;
+            beaconStatusNeighbors.erase(key);
+            removeOldestInputBeaconStatus();
+        }
+    } /*else {
+        cout << "beaconStatusNeighbors from " << findHost()->getFullName() << " is empty now" << endl;
+    }*/
+}
+
 void vehDist::insertMessageDrop(string messageId, int type) {
     struct messagesDropStruct mD_tmp;
     mD_tmp.byBuffer = 0;
@@ -217,8 +287,10 @@ void vehDist::insertMessageDrop(string messageId, int type) {
 }
 
 void vehDist::sendBeaconMessage() {
-    removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
-    removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize"));
+    removeOldestInputBeaconMessage();
+    //removeOldestInput(&messagesBuffer, ttlBeaconMessage, par("beaconMessageBufferSize"));
+    removeOldestInputBeaconStatus();
+    //removeOldestInput(&beaconStatusNeighbors, par("ttlBeaconStatus").doubleValue(), par("beaconStatusBufferSize"));
 
     if (!messagesBuffer.empty()) {
         cout << findHost()->getFullName() << " messagesBuffer with message(s) at " << simTime() << endl;
@@ -387,6 +459,7 @@ void vehDist::printCountBeaconMessagesDrop() {
 
     if (messagesDrop.empty()) {
         myfile << endl << "messagesDrop from " << findHost()->getFullName() << " is empty now" << endl;
+        myfile << "### " << source << " droped: " << 0 << endl;
     } else {
         myfile << endl << "messagesDrop from " << findHost()->getFullName() << endl;
         int messageDropbyOneVeh = 0;
@@ -399,9 +472,8 @@ void vehDist::printCountBeaconMessagesDrop() {
             messageDropbyOneVeh += it->second.byBuffer + it->second.byHop + it->second.byTime;
         }
         countMesssageDrop += messageDropbyOneVeh;
-        myfile << endl << "### This veh (" << source << ") droped: " << messageDropbyOneVeh << endl;
+        myfile << "### " << source << " droped: " << messageDropbyOneVeh << endl;
     }
-    myfile << "## Count messages drop: " << countMesssageDrop << endl;
 
     if (vehDist::numVehicles.size() == 1) {
         myfile << endl << "Exp: " << experimentNumber << " ### Final count messages drop: " << countMesssageDrop << endl << endl;
@@ -442,6 +514,13 @@ void vehDist::sendMessageNeighborsTarget(string key) {
     if (strcmp(messageID.c_str(), findHost()->getFullName()) != 0) {
         cout << "Removing message that was send" << endl;
         messagesBuffer.erase(messageID);
+        auto it = find(messagesOrderReceived.begin(), messagesOrderReceived.end(), messageID);
+        if(it != messagesOrderReceived.end()){
+            messagesOrderReceived.erase(it);
+        } else {
+            cout << "Error in messagesOrderReceived, need to have the same entries as messagesBuffer" << endl;
+            exit (1);
+        }
         colorCarryMessage();
     }
 }
@@ -494,7 +573,7 @@ void vehDist::saveVehStartPosition(string fileNameLocation) {
 
 void vehDist::restartFilesResult() {
     stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
-    stringTmp += "_" + to_string(ttlBeaconMessage) + "_" + to_string(countGenerateBeaconMessage) +"/";
+    stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
     saveVehStartPosition(stringTmp); // Save the start position of vehicle. Just for test the seed.
 
@@ -662,6 +741,7 @@ void vehDist::generateBeaconMessage() {
     wsm->setHopCount(beaconMessageHopLimit+1); // Is beaconMessageHopLimit+1 because hops count is equals to routes in the path, not hops.
 
     messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm));  // Adding the message on the buffer
+    messagesOrderReceived.push_back(wsm->getGlobalMessageIdentificaton());
     colorCarryMessage(); // Change the range-color in the veh (GUI)
 
     cout << findHost()->getFullName() << " generated the message ID:" << vehDist::beaconMessageId << " at simTime: " << simTime() << endl;
