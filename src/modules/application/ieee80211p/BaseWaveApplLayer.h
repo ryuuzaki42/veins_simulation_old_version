@@ -153,6 +153,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         //simsignal_t delayToDeliverSignal;
         //simsignal_t messageArrivalSignal;
 
+//######################################### vehDist #########################################
         string source;
         string target;
         int target_x;
@@ -166,11 +167,10 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         int repeatNumber;
         int experimentNumber;
-        unsigned int beaconMessageHopLimit;
-        int countGenerateBeaconMessage;
-        int ttlBeaconMessage;
-        double timeLimitGenerateBeaconMessage;
         string stringTmp;
-        double doubleTmp;
+        double ttlBeaconMessage;
+        int countGenerateBeaconMessage;
+        int beaconMessageHopLimit;
+//######################################### vehDist #########################################
 };
 #endif /* BASEWAVEAPPLLAYER_H_ */
