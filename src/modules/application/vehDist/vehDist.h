@@ -49,7 +49,7 @@ class vehDist : public BaseWaveApplLayer {
 
         static unsigned short int countMesssageDrop;
         static unsigned short int beaconMessageId;
-        static unordered_map<string, string> numVehicles;
+        static vector<string> numVehicles;
         static unordered_map<int, bool> vehGenerateMessage;
 
         Coord vehPositionPrevious;
@@ -100,8 +100,7 @@ class vehDist : public BaseWaveApplLayer {
         void restartFilesResult();
         void vehUpdatePosition();
         void vehCreateEventTrySendBeaconMessage();
-        void removeOldestInput(unordered_map<string, WaveShortMessage>* data, double timeValid, unsigned int bufferLimit);
-        void sendMessageNeighborsTarget(string key);
+        void sendMessageNeighborsTarget(string beaconSource);
         string returnLastMessageInserted();
         void finish();
         void printCountBeaconMessagesDrop();
@@ -123,6 +122,6 @@ class vehDist : public BaseWaveApplLayer {
 unsigned short int vehDist::beaconMessageId = 1;
 unsigned short int vehDist::countMesssageDrop = 0;
 unordered_map<int, bool> vehDist::vehGenerateMessage;
-unordered_map<string, string> vehDist::numVehicles;
+vector<string> vehDist::numVehicles;
 
 #endif
