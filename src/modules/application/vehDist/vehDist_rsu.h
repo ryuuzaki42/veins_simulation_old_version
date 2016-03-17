@@ -34,11 +34,11 @@ class vehDist_rsu : public BaseWaveApplLayer {
         bool sentMessage;
 
         struct messages {
-          unsigned int copyMessage;
+          unsigned short int copyMessage;
           string hops;
-          int minHop;
-          int maxHop;
-          int sumHops;
+          unsigned short int minHop;
+          unsigned short int maxHop;
+          unsigned short int sumHops;
           string wsmData;
           simtime_t sumTimeRecived;
           string times;
@@ -51,11 +51,11 @@ class vehDist_rsu : public BaseWaveApplLayer {
         virtual void sendWSM(WaveShortMessage* wsm);
 
         void sendMessage(std::string blockedRoadId);
+        void handleSelfMsg(cMessage* msg);
+        void finish();
 
         WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
-        void handleSelfMsg(cMessage* msg);
         void restartFilesResult();
-        virtual void finish();
         void printCountMessagesReceived();
         void messagesReceivedMeasuring(WaveShortMessage* wsm);
         void handleLowerMsg(cMessage* msg);
