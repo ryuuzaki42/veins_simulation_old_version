@@ -156,8 +156,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
 //######################################### vehDist #########################################
         string source;
         string target;
-        int target_x;
-        int target_y;
+        unsigned short int target_x;
+        unsigned short int target_y;
 
         string fileMessagesUnicast;
         string fileMessagesBroadcast;
@@ -165,12 +165,12 @@ class BaseWaveApplLayer : public BaseApplLayer {
         string fileMessagesDrop;
         string fileMessagesGenerated;
 
-        int repeatNumber;
-        int experimentNumber;
+        unsigned short int repeatNumber;
+        unsigned short int experimentNumber;
         string stringTmp;
         double ttlBeaconMessage;
-        int countGenerateBeaconMessage;
-        int beaconMessageHopLimit;
+        unsigned short int countGenerateBeaconMessage;
+        unsigned short int beaconMessageHopLimit;
 //######################################### vehDist #########################################
 };
 #endif /* BASEWAVEAPPLLAYER_H_ */
