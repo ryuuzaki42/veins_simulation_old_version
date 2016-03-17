@@ -58,11 +58,13 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
     ASSERT(wsm);
 
     if (std::string(wsm->getName()) == "beacon") {
-        onBeacon(wsm);
+        //onBeacon(wsm);
+        cout << " Received one message with name \"beacon\"" << endl;
         exit(1);
     }
     else if (std::string(wsm->getName()) == "data") {
-        onData(wsm);
+        //onData(wsm);
+        cout << " Received one message with name \"data\"" << endl;
         exit(1);
     }
 //#################################################################
@@ -107,7 +109,7 @@ void vehDist_rsu::restartFilesResult() {
 
         //system("mkdir results 2> /dev/null"); //create a folder results
         stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
-        cout << endl << "Created the folder, comand: \"" << stringTmp << "\"" << endl;
+        cout << endl << "Created the folder, command: \"" << stringTmp << "\"" << endl;
         cout << "repeatNumber " << repeatNumber << endl;
         system(stringTmp.c_str()); //create a folder results
 
@@ -190,6 +192,7 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int leng
     //wsm->setRecipientAddressString(); => "BROADCAST"
     // wsm->setSenderAddressTemporary();
     //wsm->setTarget(); => "BROADCAST"
+    // wsm->setTimeToSend();
 
     DBG << "Creating BeaconStatus with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
     return wsm;
@@ -214,19 +217,19 @@ void vehDist_rsu::printCountMessagesReceived() {
     myfile.open (fileMessagesCount, std::ios_base::app);
 
     SimTime avgGeneralCopyMessageReceived = 0;
-    double avgGeneralHopsMessage = 0;
+    float avgGeneralHopsMessage = 0;
     SimTime avgGeneralTimeMessageReceived = 0;
 
     if (!messagesReceived.empty()) {
         myfile << "messagesReceived from " << findHost()->getFullName() << endl;
 
-        int countCP, countT;
+        unsigned short int countCP = 0;
+        unsigned short int countT = 0;
         size_t countTmp;
-        countCP = countT = 0;
         map<string, struct messages>::iterator it;
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
             myfile << endl;
-            myfile << "Message ID: " << it->first << endl;
+            myfile << "## Message ID: " << it->first << endl;
             myfile << "Count received: " << it->second.copyMessage << endl;
             avgGeneralCopyMessageReceived += it->second.copyMessage;
             myfile << it->second.wsmData << endl;
@@ -241,7 +244,7 @@ void vehDist_rsu::printCountMessagesReceived() {
             myfile << "Average time to received: " << (it->second.sumTimeRecived/it->second.copyMessage) << endl;
             avgGeneralTimeMessageReceived += (it->second.sumTimeRecived/it->second.copyMessage);
 
-            countTmp =  count(it->second.wsmData.begin(), it->second.wsmData.end(), 'T');
+            countTmp =  count(it->second.wsmData.begin(), it->second.wsmData.end(), 'T'); // Be aware, don't use the category identification as a value insert in the wsmData in the begin
             myfile << "Category T count: " << countTmp << endl;
             countT += countTmp;
             countTmp = count(it->second.wsmData.begin(), it->second.wsmData.end(), 'P');
@@ -249,7 +252,7 @@ void vehDist_rsu::printCountMessagesReceived() {
             countCP += countTmp;
         }
 
-        // TODO: 34 geradas, mas só 2* recebidas
+        // TODO: 32 geradas, mas só 2* recebidas
         avgGeneralTimeMessageReceived = avgGeneralTimeMessageReceived/messagesReceived.size();
         avgGeneralCopyMessageReceived = avgGeneralCopyMessageReceived/messagesReceived.size();
         avgGeneralHopsMessage = avgGeneralHopsMessage/messagesReceived.size();
@@ -258,8 +261,8 @@ void vehDist_rsu::printCountMessagesReceived() {
         myfile << "Exp: " << experimentNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
         myfile << "Exp: " << experimentNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
 
-        myfile << "Exp: " << experimentNumber << " ### Category T geral: " << countT << endl;
-        myfile << "Exp: " << experimentNumber << " ### Category P geral: " << countCP << endl;
+        myfile << "Exp: " << experimentNumber << " ### Category T general: " << countT << endl;
+        myfile << "Exp: " << experimentNumber << " ### Category P general: " << countCP << endl;
 
         myfile << endl;
     } else {
