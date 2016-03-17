@@ -20,7 +20,7 @@
 #
 # Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 #
-# Script: Scrpit to collect the simulation result in one place
+# Script: Script to collect the simulation result in one place
 #
 # Última atualização: 06/02/2016
 #

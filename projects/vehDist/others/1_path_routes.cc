@@ -45,7 +45,7 @@ int main(){
 
     cout << "Por favor espere, gerando rotas..." << endl << endl;
 
-    while (getline(cin,line) && count < countVehicleRoutes) { // count < 50 to create 50 rotas
+    while (getline(cin,line) && count < countVehicleRoutes) { // count < 50 para criar 50 rotas
         if (line.compare(0,15,"        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
             to = "    <route id=\"";
             if (count < 10) {
@@ -158,7 +158,7 @@ int main(){
     map<string, struct distributionCategory>::iterator it;
 
     output.open(fileDist.c_str()); // Arquivo de saída da distribuição de veículos nos locais
-    output << "Resultado da distibuição dos veículos pela ruas" << endl;
+    output << "Resultado da distribuição dos veículos pela ruas" << endl;
     output << "cP = Veículos de Passeio.   cT = Táxi" << endl << endl;
     output << "          Nome da rua    Count cP  Count cT   %% cP           %% cT" << endl << endl;
 
@@ -241,6 +241,6 @@ int main(){
     output << "    %%GcT: " << percentage;
 
     output.close();
-    cout << "Distibuição de veículos pelas rotas salvas no arquivo " << fileDist << "..." << endl << endl;
+    cout << "Distribuição de veículos pelas rotas salvas no arquivo " << fileDist << "..." << endl << endl;
     return 0;
 }
