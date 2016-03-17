@@ -31,7 +31,7 @@ class vehDist : public BaseWaveApplLayer {
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
 
         enum WaveApplMessageKinds {
-            SendEvtUpdatePositionVeh, SendEvtBeaconMessage, SendEvtGenerateBeaconMessage
+            SendEvtUpdatePositionVeh, SendEvtBeaconMessage, SendEvtGenerateBeaconMessage, SendEvtUpdateTimeToSendVeh
         };
 
     protected:
@@ -46,11 +46,12 @@ class vehDist : public BaseWaveApplLayer {
         cMessage* sendBeaconMessageEvt;
         cMessage* sendGenerateBeaconMessageEvt;
         cMessage* sendUpdatePosisitonVeh;
+        cMessage* sendUpdateTimeToSendVeh;
 
         static unsigned short int countMesssageDrop;
         static unsigned short int beaconMessageId;
         static vector<string> numVehicles;
-        static unordered_map<int, bool> vehGenerateMessage;
+        static unordered_map<unsigned short int, bool> vehGenerateMessage;
 
         Coord vehPositionPrevious;
         unordered_map<string, WaveShortMessage> messagesBuffer;
@@ -58,22 +59,30 @@ class vehDist : public BaseWaveApplLayer {
         vector <string> messagesDelivered;
         vector <string> messagesOrderReceived;
 
-        double vehOffSet;
-        double ttlBeaconStatus;
-        double timeLimitGenerateBeaconMessage;
-        unsigned int beaconMessageBufferSize;
-        unsigned int beaconStatusBufferSize;
+        float timeToSend;
+        float distanceTimeToSend;
+        float timeSendLimitTime;
+        simtime_t timeToFinishLastStartSend;
+        float timeToUpdateTimeToSend;
+        unsigned short int messageToSend;
+
+        float vehOffSet;
+        float ttlBeaconStatus;
+        float timeLimitGenerateBeaconMessage;
+        unsigned short int beaconMessageBufferSize;
+        unsigned short int beaconStatusBufferSize;
 
         struct messagesDropStruct {
-            int byBuffer;
-            int byHop;
-            int byTime;
+            unsigned short int byBuffer;
+            unsigned short int byHop;
+            unsigned short int byTime;
         };
         map<string, struct messagesDropStruct> messagesDrop;
 
         struct smallDistance {
-            int distance; // Int to ignore small diferences
-            string category;
+            unsigned short int distanceToTarget; // Int to ignore small differences
+            float timeToSendVeh;
+            string categoryVeh;
         };
 
     protected:
@@ -85,7 +94,7 @@ class vehDist : public BaseWaveApplLayer {
 
         virtual void sendWSM(WaveShortMessage* wsm);
 
-        void sendBeaconMessage();
+        void sendBeaconMessage(string idMessage);
         void generateTarget();
         void generateBeaconMessage();
         void handleSelfMsg(cMessage* msg);
@@ -94,8 +103,8 @@ class vehDist : public BaseWaveApplLayer {
         WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
         WaveShortMessage* updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId);
         void updateVehPosition();
-        unsigned int getVehHeading8();
-        unsigned int getVehHeading4();
+        unsigned short int getVehHeading8();
+        unsigned short int getVehHeading4();
         void saveVehStartPosition(string fileNameLocation);
         void restartFilesResult();
         void vehUpdatePosition();
@@ -117,11 +126,13 @@ class vehDist : public BaseWaveApplLayer {
         string neighborWithSmallDistanceToTarge(string key);
         void removeOldestInputBeaconMessage();
         void removeOldestInputBeaconStatus();
+        void vehUpdateTimeToSend();
+        void vehCreateUpdateTimeToSendEvent();
 };
 
 unsigned short int vehDist::beaconMessageId = 1;
 unsigned short int vehDist::countMesssageDrop = 0;
-unordered_map<int, bool> vehDist::vehGenerateMessage;
+unordered_map<unsigned short int, bool> vehDist::vehGenerateMessage;
 vector<string> vehDist::numVehicles;
 
 #endif
