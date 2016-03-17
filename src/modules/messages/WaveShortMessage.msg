@@ -80,7 +80,7 @@ packet WaveShortMessage {
     //Current ID of the road, e. g., 1ato2b
     string roadId = "";
     // Speed of vehicle in the moment which send a message WSM, wsm->setSenderSpeed(traci->getSpeed());
-    double senderSpeed = 0.0;
+    float senderSpeed = 0.0;
 
     // MFCV
     string senderAddressTemporary;
@@ -95,8 +95,8 @@ packet WaveShortMessage {
 
     // test Jonh
     unsigned short heading;
-    // targetPosition
-    Coord TargetPos;
-    Coord senderPosPrevious;
-    unsigned short type;
+    Coord TargetPos; // Target position for de message
+    Coord senderPosPrevious; // Position previous of the veh
+    unsigned short type; // Type of message
+    float timeToSend; // TimeToSend to try another message
 }
