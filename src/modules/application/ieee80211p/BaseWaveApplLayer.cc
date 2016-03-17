@@ -67,7 +67,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
 //######################################### vehDist ###############################################################################################
 
 void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileName){
-    myfile.open (fileName, std::ios_base::app); //Open file for just apeend
+    myfile.open (fileName, std::ios_base::app); //Open file for just append
 
     //Send "strings" to be saved on the file
     myfile << "BeaconMessage from " << wsm->getSenderAddressTemporary() << " at " << simTime();
@@ -97,7 +97,7 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
     myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
     myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
-    myfile << "Time to generate and recived: " << (simTime() - wsm->getTimestamp()) << endl;
+    myfile << "Time to generate and received: " << (simTime() - wsm->getTimestamp()) << endl;
     myfile << endl;
 
     myfile.close();
@@ -144,7 +144,7 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber()
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two");
     } else {
         cout << "Error: Number of experiment not configured. Go to VehDist.cc line 146." << endl;
-        exit(1); // Coments this line for use the values below
+        exit(1); // Comets this line for use the values below
         ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
         countGenerateBeaconMessage = 0; // Will not generate any message
     }

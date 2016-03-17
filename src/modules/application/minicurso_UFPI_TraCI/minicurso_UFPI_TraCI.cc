@@ -212,7 +212,7 @@ void minicurso_UFPI_TraCI::onData(WaveShortMessage* wsm) {
         lastSent = simTime();
     vector<pair<simtime_t, double> > speeds = congestionTable[road];
     double sum = 0;
-    for(int i = 0; i < speeds.size(); ++i)
+    for(unsigned short int i = 0; i < speeds.size(); ++i)
         sum += speeds[i].second;
     double avg = sum/speeds.size();
     double length = traci->commandGetLaneLength(traci->commandGetLaneId());

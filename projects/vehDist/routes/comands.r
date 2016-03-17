@@ -40,3 +40,17 @@ opp_run -u Tkenv -n .:../../src/ -f vehDist.ini -r 0 -l ../../src/libveins.so
  #sem repeat
 opp_run -u Cmdenv -n .:../../src/ -f vehDist.ini -l ../../src/libveins.so
 opp_run -u Tkenv -n .:../../src/ -f vehDist.ini -l ../../src/libveins.so
+
+## Script in R ##
+## Execute R < script_r.r or source('script_r.r', echo=TRUE)
+
+calculeDistance <- function(){
+  ## copy in a=c("values") and b=c("values")
+  a=c(1030.0,1300.0,0)
+  b=c(520,520,3)
+  sqrt((a[1]-b[1])^2 + (a[2] - b[2])^2)
+}
+
+calculeDistance()
+
+## End
