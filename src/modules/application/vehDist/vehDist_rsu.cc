@@ -86,19 +86,13 @@ void vehDist_rsu::restartFilesResult() {
     stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
     stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
-    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = fileMessagesDrop = stringTmp;
+    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + findHost()->getFullName();
 
-
-    fileMessagesBroadcast += findHost()->getFullName();
     fileMessagesBroadcast += "_Broadcast_Messages.r";
-
-    fileMessagesUnicast += findHost()->getFullName();
     fileMessagesUnicast += "_Messages_Received.r";
-
-    fileMessagesCount += findHost()->getFullName();
     fileMessagesCount += "_Count_Messages_Received.r";
 
-    //fileMessagesDrop = ...
+    //fileMessagesDrop and fileMessagesGenerated not used yet to RSU
 
     if ((myId == 0) && (repeatNumber == 0)) { //Open a new file (blank)
         if (experimentNumber == 1) { // maxSpeed 15 m/s
@@ -107,7 +101,6 @@ void vehDist_rsu::restartFilesResult() {
             system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' vehDist.rou.xml");
         }
 
-        //system("mkdir results 2> /dev/null"); //create a folder results
         stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
         cout << endl << "Created the folder, command: \"" << stringTmp << "\"" << endl;
         cout << "repeatNumber " << repeatNumber << endl;

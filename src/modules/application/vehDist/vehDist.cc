@@ -53,7 +53,7 @@ void vehDist::vehInitializeVariables() {
     ttlBeaconStatus = static_cast<float>(par("ttlBeaconStatus").doubleValue());
 
     if(myId == 0) { // Veh must be the first to generate messages, so your offset is 0;
-        vehOffSet = 0.0f;
+        vehOffSet = 0;
         //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (seed for the rand is "static")
         srand((repeatNumber + 1)); // Instead srand(time(NULL)) for make the experiment more reproducible. srand(0) == srand(1), so reapeatNumber +1
     } else {
@@ -124,14 +124,6 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
             messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); //add the msg in the  vehicle buffer
             messagesOrderReceived.push_back(wsm->getGlobalMessageIdentificaton());
             colorCarryMessage();
-
-            /*
-            cout << findHost()->getFullName() << " received one message " << endl;
-            cout << "from (source): " << wsm->getSource() << endl;
-            cout << " sender: " << wsm->getSenderAddressTemporary() << endl;
-            cout << " hopCount: " << wsm->getHopCount() << endl;
-            cout << " At: " << simTime() << endl;
-             */
         } else {
             cout << findHost()->getFullName() << " message is on the buffer at: " << simTime() << endl;
         }
@@ -250,13 +242,50 @@ void vehDist::insertMessageDrop(string messageId, int type) {
     }
 }
 
-void vehDist::sendBeaconMessage(string idMessage) {
-    cout << "in sendBeaconMessage(string idMessage)" << endl;
+void vehDist::sendBeaconMessage() {
+//############################################################# run many times
+    removeOldestInputBeaconStatus();
+    removeOldestInputBeaconMessage();
+
+    unordered_map<string, WaveShortMessage>::iterator itbeaconStatus;
+    for (itbeaconStatus = beaconStatusNeighbors.begin(); itbeaconStatus != beaconStatusNeighbors.end(); itbeaconStatus++){
+        sendMessageNeighborsTarget(itbeaconStatus->second.getSource()); // Look in buffer it has messages for this new veh neighbor
+    }
+//############################################################# run many times
+
+    if (messageToSend < messagesOrderReceived.size()){
+        string idMesssage = messagesOrderReceived[messageToSend];
+
+        if( messagesBuffer.find(idMesssage) == messagesBuffer.end()){
+            cout << "Error message " << idMesssage << " not found in messagesBuffer. messageToSend: " << messageToSend << endl;
+            exit(1);
+        }
+
+        printMessagesBuffer();
+        trySendBeaconMessage(idMesssage); // is are null?
+        printMessagesBuffer();
+        messageToSend++; // Move to next message
+    }
+
+    if (messageToSend >= messagesOrderReceived.size()){
+        messageToSend = 0; // first position
+        if (simTime() > timeToFinishLastStartSend){
+            scheduleAt(simTime(), sendBeaconMessageEvt);
+        } else {
+            scheduleAt(timeToFinishLastStartSend, sendBeaconMessageEvt);
+        }
+        timeToFinishLastStartSend += timeSendLimitTime;
+    } else {
+        scheduleAt((simTime() + timeToSend), sendBeaconMessageEvt);
+    }
+}
+
+void vehDist::trySendBeaconMessage(string idMessage) {
     if (!messagesBuffer.empty()) { // needed?
         cout << findHost()->getFullName() << " messagesBuffer with message(s) at " << simTime() << endl;
 
         if (!beaconStatusNeighbors.empty()) {
-            // TODO: Procurar por um atigo em que afirme que enviar a última messagem recebeida é a melhor
+            // TODO: Procurar por um artigo em que afirme que enviar a última mensagem recebida é a melhor
             //string key = returnLastMessageInserted(); // Return the ID of the last message inserted in the messageBuffer
 
             printBeaconStatusNeighbors();
@@ -278,14 +307,12 @@ void vehDist::sendBeaconMessage(string idMessage) {
             } else {
                 cout << endl << "Not send any message" << endl;
             }
-            //printMessagesBuffer();
         } else {
             cout << "beaconNeighbors on sendDataMessage from " << findHost()->getFullName() << " is empty now " << endl;
         }
     } /*else {
         cout << findHost()->getFullName() << " messagesBuffer is empty at " << simTime() << endl;
     }*/
-    cout << "end of sendBeaconMessage()" << endl;
 }
 
 string vehDist::neighborWithSmallDistanceToTarge(string key) {
@@ -296,8 +323,7 @@ string vehDist::neighborWithSmallDistanceToTarge(string key) {
     int distance, smallDistanceT, smallDistanceP;
     string category, vehIdP, vehIdT;
     smallDistance sD;
-
-    // float timeToSendVeh; // TODO
+    float timeToSendVeh;
 
     unsigned short int percentP = 20; // 20 meaning 20%
 
@@ -343,6 +369,7 @@ string vehDist::neighborWithSmallDistanceToTarge(string key) {
     }
 
     smallDistanceP = smallDistanceT = INT_MAX;
+    // TODO Test timeToSend
     for(itSmallDistance = vehSmallDistanceToTarget.begin(); itSmallDistance != vehSmallDistanceToTarget.end(); itSmallDistance++) {
         category = itSmallDistance->second.categoryVeh;
         distance = itSmallDistance->second.distanceToTarget;
@@ -561,26 +588,22 @@ void vehDist::restartFilesResult() {
     stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
     stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
-    saveVehStartPosition(stringTmp); // Save the start position of vehicle. Just for test the seed.
+    saveVehStartPosition(stringTmp); // Save the start position of vehicle. Just for test of the seed.
 
-    fileMessagesUnicast = fileMessagesCount =  fileMessagesDrop = fileMessagesGenerated = fileMessagesBroadcast = stringTmp;
-    //fileMessagesBroadcast += "Veh_Broadcast_Messages.r";
+    fileMessagesUnicast = fileMessagesDrop = fileMessagesGenerated = stringTmp;
     fileMessagesUnicast += "Veh_Unicast_Messages.r";
-    //fileMessagesCount += "Veh_Messages_Count.r";
     fileMessagesDrop += "Veh_Messages_Drop.r";
     fileMessagesGenerated += "Veh_Messages_Generated.r";
 
+    // fileMessagesBroadcast and fileMessagesCount not used yet to Car
+
     if (myId == 0) {
         if (repeatNumber == 0) {
-            //openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-            //openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesDrop, false, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesGenerated, false, ttlBeaconMessage, countGenerateBeaconMessage);
         } else { // (repeatNumber != 0)) // open just for append
-            //openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-            //openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesDrop, true, ttlBeaconMessage, countGenerateBeaconMessage);
             openFileAndClose(fileMessagesGenerated, true, ttlBeaconMessage, countGenerateBeaconMessage);
         }
@@ -765,49 +788,7 @@ void vehDist::handleSelfMsg(cMessage* msg) {
             break;
         }
         case SendEvtBeaconMessage: {
-//############################### run many times
-                cout << "in case SendEvtBeaconMessage" << endl;
-                removeOldestInputBeaconStatus();
-                removeOldestInputBeaconMessage();
-
-                unordered_map<string, WaveShortMessage>::iterator itbeaconStatus;
-                for (itbeaconStatus = beaconStatusNeighbors.begin(); itbeaconStatus != beaconStatusNeighbors.end(); itbeaconStatus++){
-                    sendMessageNeighborsTarget(itbeaconStatus->second.getSource()); // Look in buffer it has messages for this new vehNeighbor
-                }
-//############################### run many times
-
-            if (messageToSend < messagesOrderReceived.size()){
-                cout << "2222222222222in case SendEvtBeaconMessage" << endl;
-                string idMesssage = messagesOrderReceived[messageToSend];
-
-                if( messagesBuffer.find(idMesssage) == messagesBuffer.end()){
-                    cout << "Error message " << idMesssage << " not found in messagesBuffer. messageToSend: " << messageToSend << endl;
-                    exit(1);
-                }
-
-                cout << "33333333333333in case SendEvtBeaconMessage" << endl;
-                printMessagesBuffer();
-                sendBeaconMessage(idMesssage); // is are null?
-                printMessagesBuffer();
-                messageToSend++; // Need to move to next message
-                cout << "after send SendEvtBeaconMessage" << endl;
-            }
-
-            if (messageToSend >= messagesOrderReceived.size()){
-                messageToSend = 0; // first position
-                if (simTime() > timeToFinishLastStartSend){
-                    scheduleAt(simTime(), sendBeaconMessageEvt);
-                } else {
-                    scheduleAt(timeToFinishLastStartSend, sendBeaconMessageEvt);
-                }
-                timeToFinishLastStartSend += timeSendLimitTime;
-            } else {
-                scheduleAt((simTime() + timeToSend), sendBeaconMessageEvt);
-            }
-
-            //sendBeaconMessage();
-            //scheduleAt((simTime() + par("beaconMessageInterval").doubleValue()), sendBeaconMessageEvt);
-            cout << "end of SendEvtBeaconMessage" << endl;
+            sendBeaconMessage();
             break;
         }
         case SendEvtUpdatePositionVeh: {

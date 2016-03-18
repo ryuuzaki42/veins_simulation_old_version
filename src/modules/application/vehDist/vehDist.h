@@ -94,7 +94,6 @@ class vehDist : public BaseWaveApplLayer {
 
         virtual void sendWSM(WaveShortMessage* wsm);
 
-        void sendBeaconMessage(string idMessage);
         void generateTarget();
         void generateBeaconMessage();
         void handleSelfMsg(cMessage* msg);
@@ -128,6 +127,8 @@ class vehDist : public BaseWaveApplLayer {
         void removeOldestInputBeaconStatus();
         void vehUpdateTimeToSend();
         void vehCreateUpdateTimeToSendEvent();
+        void sendBeaconMessage();
+        void trySendBeaconMessage(string idMessage);
 };
 
 unsigned short int vehDist::beaconMessageId = 1;
