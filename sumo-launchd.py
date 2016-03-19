@@ -114,10 +114,8 @@ def forward_connection(client_socket, server_socket, process):
         (r, w, e) = select.select([client_socket, server_socket], [], [client_socket, server_socket], 1)
         if client_socket in e:
             do_exit = True
-            break
         if server_socket in e:
             do_exit = True
-            break
         if client_socket in r:
             try:
                 data = client_socket.recv(65535)
@@ -137,11 +135,6 @@ def forward_connection(client_socket, server_socket, process):
             finally:
                 client_socket.send(data)
 
-        rc = process.poll()
-        if (rc != None):
-            do_exit = True
-            break
-
     logging.debug("Done with proxy mode")
 
 
@@ -149,9 +142,9 @@ def parse_launch_configuration(launch_xml_string):
     """
     Returns tuple of options set in launch configuration
     """
-    
+
     p = xml.dom.minidom.parseString(launch_xml_string)
-    
+
     # get root node "launch"
     launch_node = p.documentElement
     if (launch_node.tagName != "launch"):
@@ -177,7 +170,7 @@ def parse_launch_configuration(launch_xml_string):
 
     # get list of "launch.copy" entries
     copy_nodes = [x for x in launch_node.getElementsByTagName("copy") if x.parentNode==launch_node]
-    
+
     return (basedir, copy_nodes, seed)
 
 
@@ -268,7 +261,7 @@ def run_sumo(runpath, sumo_command, shlex, config_file_name, remote_port, seed, 
 
     except:
         raise
-    
+
     # statistics
     sumo_end = int(time.time())
 
@@ -326,7 +319,7 @@ def copy_and_modify_files(basedir, copy_nodes, runpath, remote_port, seed):
     """
     Copy (and modify) files, return config file name
     """
-    
+
     config_file_name = None
     for copy_node in copy_nodes:
 
@@ -402,8 +395,8 @@ def handle_launch_configuration(sumo_command, shlex, launch_xml_string, client_s
 
     result_xml = None
     unused_port_lock = UnusedPortLock()
-    try:    
-        # parse launch configuration 
+    try:
+        # parse launch configuration
         (basedir, copy_nodes, seed) = parse_launch_configuration(launch_xml_string)
 
         # find remote_port
@@ -414,7 +407,7 @@ def handle_launch_configuration(sumo_command, shlex, launch_xml_string, client_s
 
         # copy (and modify) files
         config_file_name = copy_and_modify_files(basedir, copy_nodes, runpath, remote_port, seed)
-        
+
         # run SUMO
         result_xml = run_sumo(runpath, sumo_command, shlex, config_file_name, remote_port, seed, client_socket, unused_port_lock, keep_temp)
 
@@ -507,10 +500,10 @@ def read_launch_config(conn):
     # Send OK response
     response = struct.pack("!iBBBi", 4+1+1+1+4, 1+1+1+4, _CMD_FILE_SEND, 0x00, 0x00)
     conn.send(response)
-    
+
     return data
-        
-        
+
+
 def handle_connection(sumo_command, shlex, conn, addr, keep_temp):
     """
     Handle incoming connection.
@@ -524,7 +517,7 @@ def handle_connection(sumo_command, shlex, conn, addr, keep_temp):
 
     except Exception, e:
         logging.error("Aborting on error: %s" % e)
-    
+
     finally:
         logging.debug("Closing connection from %s on port %d" % addr)
         conn.close()
@@ -534,10 +527,10 @@ def wait_for_connections(sumo_command, shlex, sumo_port, bind_address, do_daemon
     """
     Open TCP socket, wait for connections, call handle_connection for each
     """
-   
+
     if do_kill:
-        check_kill_daemon(pidfile)   
-    
+        check_kill_daemon(pidfile)
+
     listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     listener.bind((bind_address, sumo_port))
@@ -553,16 +546,16 @@ def wait_for_connections(sumo_command, shlex, sumo_port, bind_address, do_daemon
             conn, addr = listener.accept()
             logging.debug("Connection from %s on port %d" % addr)
             thread.start_new_thread(handle_connection, (sumo_command, shlex, conn, addr, keep_temp))
-    
+
     except exceptions.SystemExit:
         logging.warning("Killed.")
-    
+
     except exceptions.KeyboardInterrupt:
         logging.warning("Keyboard interrupt.")
-    
+
     except:
         raise
-    
+
     finally:
         # clean up
         logging.info("Shutting down.")
@@ -658,7 +651,7 @@ def main():
 
     # catch SIGTERM to exit cleanly when we're kill-ed
     signal.signal(signal.SIGTERM, lambda signum, stack_frame: sys.exit(1))
-    
+
     # configure logging
     logging.basicConfig(filename=options.logfile, level=loglevel)
     if not options.daemonize:

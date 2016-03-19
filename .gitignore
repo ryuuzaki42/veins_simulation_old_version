@@ -19,9 +19,8 @@ projects/**/resultsEnd
 #/images
 #/tests
 /doc
-images.zip
-tests.zip
-doc_original.zip
+#images.zip
+#tests.zip
 #
 #COPYING
 #Makefile

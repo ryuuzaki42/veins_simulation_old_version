@@ -22,10 +22,10 @@
 #
 # Script: inicia o SUMO (sumo ou sumo-gui) como requisitado pelo framework Veins
 #
-# Última atualização: 23/11/2015
+# Última atualização: 19/03/2016
 #
 # Pasta do Veins (altere se a sua for diferente
-cd /media/sda4/prog/veins-3.0/
+cd /media/sda4/prog/veins/
 
 echo -e "Deseja executar sumo com interface gráfica:\n (y)es - sumo-gui ou (n)o sumo"
 read resposta
