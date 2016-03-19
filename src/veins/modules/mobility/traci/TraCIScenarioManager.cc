@@ -19,7 +19,6 @@
 //
 
 #include <fstream>
-#include <functional>
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
@@ -27,26 +26,16 @@
 
 #define MYDEBUG EV
 
-#include "modules/mobility/traci/TraCIScenarioManager.h"
-#include "modules/mobility/traci/TraCICommandInterface.h"
-#include "modules/mobility/traci/TraCIConstants.h"
-#include "modules/mobility/traci/TraCIMobility.h"
-#include "modules/obstacle/ObstacleControl.h"
-#include "modules/mobility/traci/TraCIScenarioManagerInet.h"
+#include "veins/modules/mobility/traci/TraCIScenarioManager.h"
+#include "veins/modules/mobility/traci/TraCICommandInterface.h"
+#include "veins/modules/mobility/traci/TraCIConstants.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/obstacle/ObstacleControl.h"
+#include "veins/modules/mobility/traci/TraCIScenarioManagerInet.h"
 
 using Veins::TraCIScenarioManager;
 using Veins::TraCIBuffer;
 using Veins::TraCICoord;
-
-struct traci2omnet_functor : public std::unary_function<TraCICoord, Coord> {
-	traci2omnet_functor(const TraCIScenarioManager& m) : manager(m) {}
-
-	Coord operator()(const TraCICoord& coord) const {
-		return manager.traci2omnet(coord);
-	}
-
-	const TraCIScenarioManager& manager;
-};
 
 Define_Module(Veins::TraCIScenarioManager);
 
@@ -69,6 +58,128 @@ TraCIScenarioManager::~TraCIScenarioManager() {
 	delete connection;
 }
 
+TraCIScenarioManager::TypeMapping TraCIScenarioManager::parseMappings(std::string parameter, std::string parameterName, bool allowEmpty) {
+
+	/**
+	 * possible syntaxes
+	 *
+	 * "a"          : assign module type "a" to all nodes (for backward compatibility)
+	 * "a=b"        : assign module type "b" to vehicle type "a". the presence of any other vehicle type in the simulation will cause the simulation to stop
+	 * "a=b c=d"    : assign module type "b" to vehicle type "a" and "d" to "c". the presence of any other vehicle type in the simulation will cause the simulation to stop
+	 * "a=b c=d *=e": everything which is not of vehicle type "a" or "b", assign module type "e"
+	 * "a=b c="     : for vehicle type "c" no module should be instantiated
+	 * "a=b c=d *=" : everything which is not of vehicle type a or c should not be instantiated
+	 *
+	 */
+
+	unsigned int i;
+	TypeMapping map;
+
+	//tokenizer to split into mappings ("a=b c=d", -> ["a=b", "c=d"])
+	cStringTokenizer typesTz(parameter.c_str(), " ");
+	//get all mappings
+	std::vector<std::string> typeMappings = typesTz.asVector();
+	//and check that there exists at least one
+	if (typeMappings.size() == 0) {
+		if (!allowEmpty)
+			opp_error("parameter \"%s\" is empty", parameterName.c_str());
+		else
+			return map;
+	}
+
+	//loop through all mappings
+	for (i = 0; i < typeMappings.size(); i++) {
+
+		//tokenizer to find the mapping from vehicle type to module type
+		std::string typeMapping = typeMappings[i];
+		cStringTokenizer typeMappingTz(typeMapping.c_str(), "=");
+		std::vector<std::string> mapping = typeMappingTz.asVector();
+
+		if (mapping.size() == 1) {
+			//we are where there is no actual assignment
+			//"a": this is good
+			//"a b=c": this is not
+			if (typeMappings.size() != 1)
+				//stop simulation with an error
+				opp_error("parameter \"%s\" includes multiple mappings, but \"%s\" is not mapped to any vehicle type", parameterName.c_str(), mapping[0].c_str());
+			else
+				//all vehicle types should be instantiated with this module type
+				map["*"] = mapping[0];
+		}
+		else {
+
+			//check that mapping is valid (a=b and not like a=b=c)
+			if (mapping.size() != 2)
+				opp_error("invalid syntax for mapping \"%s\" for parameter \"%s\"", typeMapping.c_str(), parameterName.c_str());
+			//check that the mapping does not already exist
+			if (map.find(mapping[0]) != map.end())
+				opp_error("duplicated mapping for vehicle type \"%s\" for parameter \"%s\"", mapping[0].c_str(), parameterName.c_str());
+
+			//finally save the mapping
+			map[mapping[0]] = mapping[1];
+
+		}
+
+	}
+
+	return map;
+
+}
+
+void TraCIScenarioManager::parseModuleTypes() {
+
+	TypeMapping::iterator i;
+	std::vector<std::string> typeKeys, nameKeys, displayStringKeys;
+
+	std::string moduleTypes = par("moduleType").stdstringValue();
+	std::string moduleNames = par("moduleName").stdstringValue();
+	std::string moduleDisplayStrings = par("moduleDisplayString").stdstringValue();
+
+	moduleType = parseMappings(moduleTypes, "moduleType", false);
+	moduleName = parseMappings(moduleNames, "moduleName", false);
+	moduleDisplayString = parseMappings(moduleDisplayStrings, "moduleDisplayString", true);
+
+	//perform consistency check. for each vehicle type in moduleType there must be a vehicle type
+	//in moduleName (and in moduleDisplayString if moduleDisplayString is not empty)
+
+	//get all the keys
+	for (i = moduleType.begin(); i != moduleType.end(); i++)
+		typeKeys.push_back(i->first);
+	for (i = moduleName.begin(); i != moduleName.end(); i++)
+		nameKeys.push_back(i->first);
+	for (i = moduleDisplayString.begin(); i != moduleDisplayString.end(); i++)
+		displayStringKeys.push_back(i->first);
+
+	//sort them (needed for intersection)
+	std::sort(typeKeys.begin(), typeKeys.end());
+	std::sort(nameKeys.begin(), nameKeys.end());
+	std::sort(displayStringKeys.begin(), displayStringKeys.end());
+
+	std::vector<std::string> intersection;
+
+	//perform set intersection
+	std::set_intersection(
+	    typeKeys.begin(), typeKeys.end(),
+	    nameKeys.begin(), nameKeys.end(),
+	    std::back_inserter(intersection)
+	);
+	if (intersection.size() != typeKeys.size() || intersection.size() != nameKeys.size())
+		opp_error("keys of mappings of moduleType and moduleName are not the same");
+
+	if (displayStringKeys.size() == 0)
+		return;
+
+	intersection.clear();
+	std::set_intersection(
+	    typeKeys.begin(), typeKeys.end(),
+	    displayStringKeys.begin(), displayStringKeys.end(),
+	    std::back_inserter(intersection)
+	);
+	if (intersection.size() != displayStringKeys.size())
+		opp_error("keys of mappings of moduleType and moduleName are not the same");
+
+}
+
 void TraCIScenarioManager::initialize(int stage) {
 	cSimpleModule::initialize(stage);
 	if (stage != 1) {
@@ -81,14 +192,11 @@ void TraCIScenarioManager::initialize(int stage) {
 	firstStepAt = par("firstStepAt");
 	updateInterval = par("updateInterval");
 	if (firstStepAt == -1) firstStepAt = connectAt + updateInterval;
-	moduleType = par("moduleType").stdstringValue();
-	moduleName = par("moduleName").stdstringValue();
-	moduleDisplayString = par("moduleDisplayString").stdstringValue();
+	parseModuleTypes();
 	penetrationRate = par("penetrationRate").doubleValue();
 	host = par("host").stdstringValue();
 	port = par("port");
 	autoShutdown = par("autoShutdown");
-	margin = par("margin");
 	std::string roiRoads_s = par("roiRoads");
 	std::string roiRects_s = par("roiRects");
 
@@ -152,11 +260,11 @@ void TraCIScenarioManager::init_traci() {
 		uint32_t apiVersion = version.first;
 		std::string serverVersion = version.second;
 
-		if ((apiVersion == 8)) {
+		if (apiVersion == 10) {
 			MYDEBUG << "TraCI server \"" << serverVersion << "\" reports API version " << apiVersion << endl;
 		}
 		else {
-			error("TraCI server \"%s\" reports API version %d, which is unsupported. We recommend using SUMO 0.21.0.", serverVersion.c_str(), apiVersion);
+			error("TraCI server \"%s\" reports API version %d, which is unsupported. We recommend using SUMO 0.25.0.", serverVersion.c_str(), apiVersion);
 		}
 
 	}
@@ -175,10 +283,11 @@ void TraCIScenarioManager::init_traci() {
 		double y2; buf >> y2;
 		ASSERT(buf.eof());
 
-		netbounds1 = TraCICoord(x1, y1);
-		netbounds2 = TraCICoord(x2, y2);
+		TraCICoord netbounds1 = TraCICoord(x1, y1);
+		TraCICoord netbounds2 = TraCICoord(x2, y2);
 		MYDEBUG << "TraCI reports network boundaries (" << x1 << ", " << y1 << ")-(" << x2 << ", " << y2 << ")" << endl;
-		if ((traci2omnet(netbounds2).x > world->getPgs()->x) || (traci2omnet(netbounds1).y > world->getPgs()->y)) MYDEBUG << "WARNING: Playground size (" << world->getPgs()->x << ", " << world->getPgs()->y << ") might be too small for vehicle at network bounds (" << traci2omnet(netbounds2).x << ", " << traci2omnet(netbounds1).y << ")" << endl;
+		connection->setNetbounds(netbounds1, netbounds2, par("margin"));
+		if ((connection->traci2omnet(netbounds2).x > world->getPgs()->x) || (connection->traci2omnet(netbounds1).y > world->getPgs()->y)) MYDEBUG << "WARNING: Playground size (" << world->getPgs()->x << ", " << world->getPgs()->y << ") might be too small for vehicle at network bounds (" << connection->traci2omnet(netbounds2).x << ", " << connection->traci2omnet(netbounds1).y << ")" << endl;
 	}
 
 	{
@@ -218,15 +327,12 @@ void TraCIScenarioManager::init_traci() {
 			std::list<std::string> ids = getCommandInterface()->getPolygonIds();
 			for (std::list<std::string>::iterator i = ids.begin(); i != ids.end(); ++i) {
 				std::string id = *i;
-				std::string typeId = getCommandInterface()->getPolygonTypeId(id);
-				if (typeId == "building") {
-					std::list<TraCICoord> coords = getCommandInterface()->getPolygonShape(id);
-					Obstacle obs(id, 9, .4); // each building gets attenuation of 9 dB per wall, 0.4 dB per meter
-					std::vector<Coord> shape;
-					std::transform(coords.begin(), coords.end(), std::back_inserter(shape), traci2omnet_functor(*this));
-					obs.setShape(shape);
-					obstacles->add(obs);
-				}
+				std::string typeId = getCommandInterface()->polygon(id).getTypeId();
+				if (!obstacles->isTypeSupported(typeId)) continue;
+				std::list<Coord> coords = getCommandInterface()->polygon(id).getShape();
+				std::vector<Coord> shape;
+				std::copy(coords.begin(), coords.end(), std::back_inserter(shape));
+				obstacles->addFromTypeAndShape(id, typeId, shape);
 			}
 		}
 	}
@@ -237,7 +343,7 @@ void TraCIScenarioManager::finish() {
 		TraCIBuffer buf = connection->query(CMD_CLOSE, TraCIBuffer());
 	}
 	while (hosts.begin() != hosts.end()) {
-		deleteModule(hosts.begin()->first);
+		deleteManagedModule(hosts.begin()->first);
 	}
 }
 
@@ -262,7 +368,7 @@ void TraCIScenarioManager::handleSelfMsg(cMessage *msg) {
 				std::list<std::string> vehTypes = getCommandInterface()->getVehicleTypeIds();
 				for (std::list<std::string>::const_iterator i = vehTypes.begin(); i != vehTypes.end(); ++i) {
 					if (i->compare("DEFAULT_VEHTYPE")!=0) {
-						MYDEBUG  << *i << std::endl;
+						MYDEBUG << *i << std::endl;
 						vehicleTypeIds.push_back(*i);
 					}
 				}
@@ -299,7 +405,7 @@ void TraCIScenarioManager::addModule(std::string nodeId, std::string type, std::
 	if (hosts.find(nodeId) != hosts.end()) error("tried adding duplicate module");
 
 	if (queuedVehicles.find(nodeId) != queuedVehicles.end()) {
-	    queuedVehicles.erase(nodeId);
+		queuedVehicles.erase(nodeId);
 	}
 	double option1 = hosts.size() / (hosts.size() + unEquippedHosts.size() + 1.0);
 	double option2 = (hosts.size() + 1) / (hosts.size() + unEquippedHosts.size() + 1.0);
@@ -355,11 +461,14 @@ bool TraCIScenarioManager::isModuleUnequipped(std::string nodeId) {
 	return true;
 }
 
-void TraCIScenarioManager::deleteModule(std::string nodeId) {
+void TraCIScenarioManager::deleteManagedModule(std::string nodeId) {
 	cModule* mod = getManagedModule(nodeId);
 	if (!mod) error("no vehicle with Id \"%s\" found", nodeId.c_str());
 
-	cc->unregisterNic(mod->getSubmodule("nic"));
+	cModule* nic = mod->getSubmodule("nic");
+	if (nic) {
+	    cc->unregisterNic(nic);
+	}
 
 	hosts.erase(nodeId);
 	mod->callFinish();
@@ -407,8 +516,14 @@ void TraCIScenarioManager::executeOneTimestep() {
 }
 
 void TraCIScenarioManager::insertNewVehicle() {
-	int vehTypeId = mobRng->intRand(vehicleTypeIds.size());
-	std::string type = vehicleTypeIds[vehTypeId];
+	std::string type;
+	if (vehicleTypeIds.size()) {
+		int vehTypeId = mobRng->intRand(vehicleTypeIds.size());
+		type = vehicleTypeIds[vehTypeId];
+	}
+	else {
+		type = "DEFAULT_VEHTYPE";
+	}
 	int routeId = mobRng->intRand(routeIds.size());
 	vehicleInsertQueue[routeId].push(type);
 }
@@ -443,57 +558,6 @@ void TraCIScenarioManager::insertVehicles() {
 		i = tmp;
 
 	}
-}
-
-Coord TraCIScenarioManager::traci2omnet(TraCICoord coord) const {
-	return Coord(coord.x - netbounds1.x + margin, (netbounds2.y - netbounds1.y) - (coord.y - netbounds1.y) + margin);
-}
-
-std::list<Coord> TraCIScenarioManager::traci2omnet(const std::list<TraCICoord>& list) const {
-	std::list<Coord> result;
-	std::transform(list.begin(), list.end(), std::back_inserter(result), traci2omnet_functor(*this));
-	return result;
-}
-
-TraCICoord TraCIScenarioManager::omnet2traci(Coord coord) const {
-	return TraCICoord(coord.x + netbounds1.x - margin, (netbounds2.y - netbounds1.y) - (coord.y - netbounds1.y) + margin);
-}
-
-std::list<TraCICoord> TraCIScenarioManager::omnet2traci(const std::list<Coord>& list) const {
-	std::list<TraCICoord> result;
-	std::transform(list.begin(), list.end(), std::back_inserter(result),
-			std::bind1st(std::mem_fun<TraCICoord, TraCIScenarioManager, Coord>(&TraCIScenarioManager::omnet2traci), this));
-	return result;
-}
-
-double TraCIScenarioManager::traci2omnetAngle(double angle) const {
-
-	// rotate angle so 0 is east (in TraCI's angle interpretation 0 is south)
-	angle = angle - 90;
-
-	// convert to rad
-	angle = angle * M_PI / 180.0;
-
-	// normalize angle to -M_PI <= angle < M_PI
-	while (angle < -M_PI) angle += 2 * M_PI;
-	while (angle >= M_PI) angle -= 2 * M_PI;
-
-	return angle;
-}
-
-double TraCIScenarioManager::omnet2traciAngle(double angle) const {
-
-	// convert to degrees
-	angle = angle * 180 / M_PI;
-
-	// rotate angle so 0 is south (in OMNeT++'s angle interpretation 0 is east)
-	angle = angle + 90;
-
-	// normalize angle to -180 <= angle < 180
-	while (angle < -180) angle += 360;
-	while (angle >= 180) angle -= 360;
-
-	return angle;
 }
 
 void TraCIScenarioManager::subscribeToVehicleVariables(std::string vehicleId) {
@@ -565,7 +629,7 @@ void TraCIScenarioManager::processSimSubscription(std::string objectId, TraCIBuf
 
 				// check if this object has been deleted already (e.g. because it was outside the ROI)
 				cModule* mod = getManagedModule(idstring);
-				if (mod) deleteModule(idstring);
+				if (mod) deleteManagedModule(idstring);
 
 				if(unEquippedHosts.find(idstring) != unEquippedHosts.end()) {
 					unEquippedHosts.erase(idstring);
@@ -587,7 +651,7 @@ void TraCIScenarioManager::processSimSubscription(std::string objectId, TraCIBuf
 
 				// check if this object has been deleted already (e.g. because it was outside the ROI)
 				cModule* mod = getManagedModule(idstring);
-				if (mod) deleteModule(idstring);
+				if (mod) deleteManagedModule(idstring);
 
 				if(unEquippedHosts.find(idstring) != unEquippedHosts.end()) {
 					unEquippedHosts.erase(idstring);
@@ -752,10 +816,10 @@ void TraCIScenarioManager::processVehicleSubscription(std::string objectId, TraC
 	// make sure we got updates for all attributes
 	if (numRead != 5) return;
 
-	Coord p = traci2omnet(TraCICoord(px, py));
+	Coord p = connection->traci2omnet(TraCICoord(px, py));
 	if ((p.x < 0) || (p.y < 0)) error("received bad node position (%.2f, %.2f), translated to (%.2f, %.2f)", px, py, p.x, p.y);
 
-	double angle = traci2omnetAngle(angle_traci);
+	double angle = connection->traci2omnetAngle(angle_traci);
 
 	cModule* mod = getManagedModule(objectId);
 
@@ -763,7 +827,7 @@ void TraCIScenarioManager::processVehicleSubscription(std::string objectId, TraC
 	bool inRoi = isInRegionOfInterest(TraCICoord(px, py), edge, speed, angle);
 	if (!inRoi) {
 		if (mod) {
-			deleteModule(objectId);
+			deleteManagedModule(objectId);
 			MYDEBUG << "Vehicle #" << objectId << " left region of interest" << endl;
 		}
 		else if(unEquippedHosts.find(objectId) != unEquippedHosts.end()) {
@@ -779,8 +843,43 @@ void TraCIScenarioManager::processVehicleSubscription(std::string objectId, TraC
 
 	if (!mod) {
 		// no such module - need to create
-		addModule(objectId, moduleType, moduleName, moduleDisplayString, p, edge, speed, angle);
-		MYDEBUG << "Added vehicle #" << objectId << endl;
+		std::string vType = commandIfc->vehicle(objectId).getTypeId();
+		std::string mType, mName, mDisplayString;
+		TypeMapping::iterator iType, iName, iDisplayString;
+
+		TypeMapping::iterator i;
+		iType = moduleType.find(vType);
+		if (iType == moduleType.end()) {
+			iType = moduleType.find("*");
+			if (iType == moduleType.end())
+				opp_error("cannot find a module type for vehicle type \"%s\"", vType.c_str());
+		}
+		mType = iType->second;
+		//search for module name
+		iName = moduleName.find(vType);
+		if (iName == moduleName.end()) {
+			iName = moduleName.find(std::string("*"));
+			if (iName == moduleName.end())
+				opp_error("cannot find a module name for vehicle type \"%s\"", vType.c_str());
+		}
+		mName = iName->second;
+		if (moduleDisplayString.size() != 0) {
+			iDisplayString = moduleDisplayString.find(vType);
+			if (iDisplayString == moduleDisplayString.end()) {
+				iDisplayString = moduleDisplayString.find("*");
+				if (iDisplayString == moduleDisplayString.end())
+					opp_error("cannot find a module display string for vehicle type \"%s\"", vType.c_str());
+			}
+			mDisplayString = iDisplayString->second;
+		}
+		else {
+			mDisplayString = "";
+		}
+
+		if (mType != "") {
+			addModule(objectId, mType, mName, mDisplayString, p, edge, speed, angle);
+			MYDEBUG << "Added vehicle #" << objectId << endl;
+		}
 	} else {
 		// module existed - update position
 		for (cModule::SubmoduleIterator iter(mod); !iter.end(); iter++) {

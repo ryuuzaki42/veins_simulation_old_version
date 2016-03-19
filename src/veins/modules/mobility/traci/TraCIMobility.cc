@@ -22,7 +22,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
 
 using Veins::TraCIMobility;
 
@@ -32,13 +32,6 @@ const simsignalwrap_t TraCIMobility::parkingStateChangedSignal = simsignalwrap_t
 
 namespace {
 	const double MY_INFINITY = (std::numeric_limits<double>::has_infinity ? std::numeric_limits<double>::infinity() : std::numeric_limits<double>::max());
-
-	double roadIdAsDouble(std::string road_id) {
-		std::istringstream iss(road_id);
-		double d;
-		if (!(iss >> d)) return MY_INFINITY;
-		return d;
-	}
 }
 
 void TraCIMobility::Statistics::initialize()
@@ -146,13 +139,13 @@ void TraCIMobility::finish()
 void TraCIMobility::handleSelfMsg(cMessage *msg)
 {
 	if (msg == startAccidentMsg) {
-		commandSetSpeed(0);
+		getVehicleCommandInterface()->setSpeed(0);
 		simtime_t accidentDuration = par("accidentDuration");
 		scheduleAt(simTime() + accidentDuration, stopAccidentMsg);
 		accidentCount--;
 	}
 	else if (msg == stopAccidentMsg) {
-		commandSetSpeed(-1);
+		getVehicleCommandInterface()->setSpeed(-1);
 		if (accidentCount > 0) {
 			simtime_t accidentInterval = par("accidentInterval");
 			scheduleAt(simTime() + accidentInterval, startAccidentMsg);
@@ -238,10 +231,10 @@ void TraCIMobility::changePosition()
 	fixIfHostGetsOutside();
 	updatePosition();
 }
-void TraCIMobility::changeParkingState(bool newState)
-{
-    isParking = newState;
-    emit(parkingStateChangedSignal, this);
+
+void TraCIMobility::changeParkingState(bool newState) {
+	isParking = newState;
+	emit(parkingStateChangedSignal, this);
 }
 
 void TraCIMobility::updateDisplayString() {

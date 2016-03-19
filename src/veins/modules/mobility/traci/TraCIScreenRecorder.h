@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2006-2012 Christoph Sommer <christoph.sommer@uibk.ac.at>
+// Copyright (C) 2006-2014 Christoph Sommer <sommer@ccs-labs.org>
 //
 // Documentation for these modules is at http://veins.car2x.org/
 //
@@ -18,55 +18,39 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef WORLD_TRACI_TRACISCENARIOMANAGERLAUNCHD_H
-#define WORLD_TRACI_TRACISCENARIOMANAGERLAUNCHD_H
+#ifndef WORLD_TRACI_TRACISCREENRECORDER_H
+#define WORLD_TRACI_TRACISCREENRECORDER_H
 
 #include <omnetpp.h>
 
-#include "veins/modules/mobility/traci/TraCIScenarioManager.h"
-
 /**
  * @brief
- * Extends the TraCIScenarioManager for use with sumo-launchd.py and SUMO.
+ * Simple support module to take (a series of) screenshots of a simulation running in the TraCI server.
  *
- * Connects to a running instance of the sumo-launchd.py script
- * to automatically launch/kill SUMO when the simulation starts/ends.
+ * Note that the TraCI server needs to be run in GUI mode and support taking screenshots for this to work.
  *
- * All other functionality is provided by the TraCIScenarioManager.
+ * The screenshots can then be converted to a video using something along the lines of
+ * mencoder 'mf://results/screenshot-*.png' -mf w=800:h=600:fps=25:type=png -ovc lavc -lavcopts vcodec=mpeg4:mbd=2:trell -oac copy -o output.avi
  *
  * See the Veins website <a href="http://veins.car2x.org/"> for a tutorial, documentation, and publications </a>.
  *
- * @author Christoph Sommer, David Eckhoff
+ * @author Christoph Sommer
  *
- * @see TraCIMobility
  * @see TraCIScenarioManager
  *
  */
 namespace Veins {
-class TraCIScenarioManagerLaunchd : public TraCIScenarioManager
+class TraCIScreenRecorder : public cSimpleModule
 {
 	public:
 
-		virtual ~TraCIScenarioManagerLaunchd();
 		virtual void initialize(int stage);
+		virtual void handleMessage(cMessage *msg);
 		virtual void finish();
 
 	protected:
 
-		cXMLElement* launchConfig; /**< launch configuration to send to sumo-launchd */
-		int seed; /**< seed value to set in launch configuration, if missing (-1: current run number) */
-
-		virtual void init_traci();
-};
-}
-
-namespace Veins {
-class TraCIScenarioManagerLaunchdAccess
-{
-	public:
-		TraCIScenarioManagerLaunchd* get() {
-			return FindModule<TraCIScenarioManagerLaunchd*>::findGlobalModule();
-		};
+		cMessage* takeScreenshot;
 };
 }
 

@@ -27,15 +27,15 @@
 
 #include <omnetpp.h>
 
-#include "Coord.h"
-#include "BaseWorldUtility.h"
-#include "BaseConnectionManager.h"
-#include "FindModule.h"
-#include "modules/obstacle/ObstacleControl.h"
-#include "modules/mobility/traci/TraCIBuffer.h"
-#include "modules/mobility/traci/TraCIColor.h"
-#include "modules/mobility/traci/TraCIConnection.h"
-#include "modules/mobility/traci/TraCICoord.h"
+#include "veins/base/utils/Coord.h"
+#include "veins/base/modules/BaseWorldUtility.h"
+#include "veins/base/connectionManager/BaseConnectionManager.h"
+#include "veins/base/utils/FindModule.h"
+#include "veins/modules/obstacle/ObstacleControl.h"
+#include "veins/modules/mobility/traci/TraCIBuffer.h"
+#include "veins/modules/mobility/traci/TraCIColor.h"
+#include "veins/modules/mobility/traci/TraCIConnection.h"
+#include "veins/modules/mobility/traci/TraCICoord.h"
 
 /**
  * @brief
@@ -101,26 +101,16 @@ class TraCIScenarioManager : public cSimpleModule
 			return hosts;
 		}
 
-		/**
-		 * convert TraCI coordinates to OMNeT++ coordinates
-		 */
-		Coord traci2omnet(TraCICoord coord) const;
-		std::list<Coord> traci2omnet(const std::list<TraCICoord>&) const;
-
-		/**
-		 * convert OMNeT++ coordinates to TraCI coordinates
-		 */
-		TraCICoord omnet2traci(Coord coord) const;
-		std::list<TraCICoord> omnet2traci(const std::list<Coord>&) const;
-
 	protected:
 		bool debug; /**< whether to emit debug messages */
 		simtime_t connectAt; /**< when to connect to TraCI server (must be the initial timestep of the server) */
 		simtime_t firstStepAt; /**< when to start synchronizing with the TraCI server (-1: immediately after connecting) */
 		simtime_t updateInterval; /**< time interval of hosts' position updates */
-		std::string moduleType; /**< module type to be used in the simulation for each managed vehicle */
-		std::string moduleName; /**< module name to be used in the simulation for each managed vehicle */
-		std::string moduleDisplayString; /**< module displayString to be used in the simulation for each managed vehicle */
+		//maps from vehicle type to moduleType, moduleName, and moduleDisplayString
+		typedef std::map<std::string, std::string> TypeMapping;
+		TypeMapping moduleType; /**< module type to be used in the simulation for each managed vehicle */
+		TypeMapping moduleName; /**< module name to be used in the simulation for each managed vehicle */
+		TypeMapping moduleDisplayString; /**< module displayString to be used in the simulation for each managed vehicle */
 		std::string host;
 		int port;
 
@@ -136,15 +126,12 @@ class TraCIScenarioManager : public cSimpleModule
 		cRNG* mobRng;
 
 		bool autoShutdown; /**< Shutdown module as soon as no more vehicles are in the simulation */
-		int margin;
 		double penetrationRate;
 		std::list<std::string> roiRoads; /**< which roads (e.g. "hwy1 hwy2") are considered to consitute the region of interest, if not empty */
 		std::list<std::pair<TraCICoord, TraCICoord> > roiRects; /**< which rectangles (e.g. "0,0-10,10 20,20-30,30) are considered to consitute the region of interest, if not empty */
 
 		TraCIConnection* connection;
 		TraCICommandInterface* commandIfc;
-		TraCICoord netbounds1; /* network boundaries as reported by TraCI (x1, y1) */
-		TraCICoord netbounds2; /* network boundaries as reported by TraCI (x2, y2) */
 
 		size_t nextNodeVectorIndex; /**< next OMNeT++ module vector index to use */
 		std::map<std::string, cModule*> hosts; /**< vector of all hosts managed by us */
@@ -168,7 +155,7 @@ class TraCIScenarioManager : public cSimpleModule
 
 		void addModule(std::string nodeId, std::string type, std::string name, std::string displayString, const Coord& position, std::string road_id = "", double speed = -1, double angle = -1);
 		cModule* getManagedModule(std::string nodeId); /**< returns a pointer to the managed module named moduleName, or 0 if no module can be found */
-		void deleteModule(std::string nodeId);
+		void deleteManagedModule(std::string nodeId);
 
 		bool isModuleUnequipped(std::string nodeId); /**< returns true if this vehicle is Unequipped */
 
@@ -177,16 +164,6 @@ class TraCIScenarioManager : public cSimpleModule
 		 * Modules are destroyed and re-created as managed vehicles leave and re-enter the ROI
 		 */
 		bool isInRegionOfInterest(const TraCICoord& position, std::string road_id, double speed, double angle);
-
-		/**
-		 * convert TraCI angle to OMNeT++ angle (in rad)
-		 */
-		double traci2omnetAngle(double angle) const;
-
-		/**
-		 * convert OMNeT++ angle (in rad) to TraCI angle
-		 */
-		double omnet2traciAngle(double angle) const;
 
 		/**
 		 * adds a new vehicle to the queue which are tried to be inserted at the next SUMO time step;
@@ -203,6 +180,18 @@ class TraCIScenarioManager : public cSimpleModule
 		void processSimSubscription(std::string objectId, TraCIBuffer& buf);
 		void processVehicleSubscription(std::string objectId, TraCIBuffer& buf);
 		void processSubcriptionResult(TraCIBuffer& buf);
+
+		/**
+		 * parses the vector of module types in ini file
+		 *
+		 * in case of inconsistencies the function kills the simulation
+		 */
+		void parseModuleTypes();
+
+		/**
+		 * transforms a list of mappings of an omnetpp.ini parameter in a list
+		 */
+		TypeMapping parseMappings(std::string parameter, std::string parameterName, bool allowEmpty = false);
 
 };
 }
