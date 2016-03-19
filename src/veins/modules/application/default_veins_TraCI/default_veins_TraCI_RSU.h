@@ -21,8 +21,8 @@
 #ifndef default_veins_TraCI_RSU_H
 #define default_veins_TraCI_RSU_H
 
-#include "BaseWaveApplLayer.h"
-#include "modules/world/annotations/AnnotationManager.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+#include "veins/modules/world/annotations/AnnotationManager.h"
 
 using Veins::AnnotationManager;
 

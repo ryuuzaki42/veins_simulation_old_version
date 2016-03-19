@@ -18,10 +18,10 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+
 // Adicionado (Minicurso_UFPI)
 #include "modules/mobility/traci/TraCIMobility.h"
-
-#include "BaseWaveApplLayer.h"
 
 // Adicionado (Minicurso_UFPI)
 using Veins::TraCIMobilityAccess;

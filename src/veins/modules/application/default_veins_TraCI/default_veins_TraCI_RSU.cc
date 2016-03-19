@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/default_veins_TraCI/default_veins_TraCI_RSU.h"
+#include "veins/modules/application/traci/TraCIDemoRSU11p.h"
 
 using Veins::AnnotationManagerAccess;
 
@@ -31,6 +31,7 @@ void default_veins_TraCI_RSU::initialize(int stage) {
         ASSERT(mobi);
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
+		sentMessage = false;
     }
 }
 

@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/default_veins_TraCI/default_veins_TraCI.h"
+#include "veins/modules/application/traci/TraCIDemo11p.h"
 
 using Veins::TraCIMobilityAccess;
 using Veins::AnnotationManagerAccess;
@@ -30,7 +30,9 @@ Define_Module(default_veins_TraCI);
 void default_veins_TraCI::initialize(int stage) {
     BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     if (stage == 0) {
-        traci = TraCIMobilityAccess().get(getParentModule());
+        mobility = TraCIMobilityAccess().get(getParentModule());
+		traci = mobility->getCommandInterface();
+		traciVehicle = mobility->getVehicleCommandInterface();
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
@@ -47,9 +49,9 @@ void default_veins_TraCI::onBeacon(WaveShortMessage* wsm) {
 
 void default_veins_TraCI::onData(WaveShortMessage* wsm) {
     findHost()->getDisplayString().updateWith("r=16,green");
-    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), traci->getPositionAt(simTime()), "blue"));
+    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobility->getPositionAt(simTime()), "blue"));
 
-    if (traci->getRoadId()[0] != ':') traci->commandChangeRoute(wsm->getWsmData(), 9999);
+    if (mobility->getRoadId()[0] != ':') traciVehicle->changeRoute(wsm->getWsmData(), 9999);
     if (!sentMessage) sendMessage(wsm->getWsmData());
 }
 
@@ -71,13 +73,13 @@ void default_veins_TraCI::receiveSignal(cComponent* source, simsignal_t signalID
     }
 }
 void default_veins_TraCI::handleParkingUpdate(cObject* obj) {
-    isParking = traci->getParkingState();
+    isParking = mobility->getParkingState();
     if (sendWhileParking == false) {
         if (isParking == true) {
             (FindModule<BaseConnectionManager*>::findGlobalModule())->unregisterNic(this->getParentModule()->getSubmodule("nic"));
         }
         else {
-            Coord pos = traci->getCurrentPosition();
+            Coord pos = mobility->getCurrentPosition();
             (FindModule<BaseConnectionManager*>::findGlobalModule())->registerNic(this->getParentModule()->getSubmodule("nic"), (ChannelAccess*) this->getParentModule()->getSubmodule("nic")->getSubmodule("phy80211p"), &pos);
         }
     }
@@ -86,10 +88,10 @@ void default_veins_TraCI::handlePositionUpdate(cObject* obj) {
     BaseWaveApplLayer::handlePositionUpdate(obj);
 
     // stopped for for at least 10s?
-    if (traci->getSpeed() < 1) {
+    if (mobility->getSpeed() < 1) {
         if (simTime() - lastDroveAt >= 10) {
             findHost()->getDisplayString().updateWith("r=16,red");
-            if (!sentMessage) sendMessage(traci->getRoadId());
+            if (!sentMessage) sendMessage(mobility->getRoadId());
         }
     }
     else {
@@ -100,54 +102,3 @@ void default_veins_TraCI::sendWSM(WaveShortMessage* wsm) {
     if (isParking && !sendWhileParking) return;
     sendDelayedDown(wsm,individualOffset);
 }
-
-//
-/*void default_veins_TraCI::handleSelfMsg(cMessage* msg) {
-    switch (msg->getKind()) {
-        case SEND_BEACON_EVT: {
-            sendWSM(prepareWSM2("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
-            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
-            break;
-        }
-        default: {
-            if (msg)
-                DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
-            break;
-        }
-    }
-}
-
-WaveShortMessage* default_veins_TraCI::prepareWSM2(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial) {
-    WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
-    wsm->addBitLength(headerLength);
-    wsm->addBitLength(lengthBits);
-
-    switch (channel) {
-        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
-        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
-    }
-    wsm->setPsid(0);
-    wsm->setPriority(priority);
-    wsm->setWsmVersion(1);
-    wsm->setTimestamp(simTime());
-    wsm->setSenderAddress(myId);
-    wsm->setRecipientAddress(rcvId);
-    wsm->setSenderPos(curPosition);
-    wsm->setSerial(serial);
-
-    if (name == "beacon") {
-
-        // Adicionado (Minicurso_UFPI)
-        //wsm->setRoadId(TraCIMobilityAccess().get(getParentModule()) ->getRoadId().c_str());
-        //wsm->setSenderSpeed(TraCIMobilityAccess(). get(getParentModule())->getSpeed());
-
-       //DBG << "\n ttt" << wsm->getSenderSpeed() << " ttt\n";
-
-        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
-    }
-    if (name == "data") {
-        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
-    }
-    return wsm;
-}
-*/

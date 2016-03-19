@@ -26,10 +26,12 @@
 
 #include <omnetpp.h>
 
-#include "BaseApplLayer.h"
-#include "modules/mobility/traci/TraCIMobility.h"
+#include "veins/base/modules/BaseApplLayer.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/mobility/traci/TraCICommandInterface.h"
 
 using Veins::TraCIMobility;
+using Veins::TraCICommandInterface;
 
 /**
  * FIXME
@@ -49,7 +51,9 @@ class default_veins_TraCI_TestApp : public BaseApplLayer {
         bool debug;
         int testNumber;
 
-        TraCIMobility* traci;
+		TraCIMobility* mobility;
+        TraCICommandInterface* traci;
+		TraCICommandInterface::Vehicle* traciVehicle;
         std::set<std::string> visitedEdges; /**< set of edges this vehicle visited */
         bool hasStopped; /**< true if at some point in time this vehicle travelled at negligible speed */
 

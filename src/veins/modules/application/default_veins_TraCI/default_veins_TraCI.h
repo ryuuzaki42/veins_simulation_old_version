@@ -21,10 +21,12 @@
 #ifndef default_veins_TraCI_H
 #define efault_veins_TraCI_H
 
-#include "BaseWaveApplLayer.h"
-#include "modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/mobility/traci/TraCICommandInterface.h"
 
 using Veins::TraCIMobility;
+using Veins::TraCICommandInterface;
 using Veins::AnnotationManager;
 
 /**
@@ -35,7 +37,9 @@ class default_veins_TraCI : public BaseWaveApplLayer {
         virtual void initialize(int stage);
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
     protected:
-        TraCIMobility* traci;
+		TraCIMobility* mobility;
+		TraCICommandInterface* traci;
+		TraCICommandInterface::Vehicle* traciVehicle;
         AnnotationManager* annotations;
         simtime_t lastDroveAt;
         bool sentMessage;
@@ -49,11 +53,6 @@ class default_veins_TraCI : public BaseWaveApplLayer {
         virtual void handlePositionUpdate(cObject* obj);
         virtual void handleParkingUpdate(cObject* obj);
         virtual void sendWSM(WaveShortMessage* wsm);
-        //
-        /*
-        virtual void handleSelfMsg(cMessage* msg);
-        virtual WaveShortMessage* prepareWSM2(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
-        */
 };
 
 #endif

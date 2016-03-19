@@ -22,11 +22,11 @@
 #define BASEWAVEAPPLLAYER_H_
 
 #include <map>
-#include <BaseApplLayer.h>
-#include <Consts80211p.h>
-#include <WaveShortMessage_m.h>
-#include "base/connectionManager/ChannelAccess.h"
-#include <WaveAppToMac1609_4Interface.h>
+#include "veins/base/modules/BaseApplLayer.h"
+#include "veins/modules/utility/Consts80211p.h"
+#include "veins/modules/messages/WaveShortMessage_m.h"
+#include "veins/base/connectionManager/ChannelAccess.h"
+#include "veins/modules/mac/ieee80211p/WaveAppToMac1609_4Interface.h"
 
 // Add for Epidemic
 #include <stdio.h>
@@ -173,4 +173,5 @@ class BaseWaveApplLayer : public BaseApplLayer {
         unsigned short int beaconMessageHopLimit;
 //######################################### vehDist #########################################
 };
+
 #endif /* BASEWAVEAPPLLAYER_H_ */
