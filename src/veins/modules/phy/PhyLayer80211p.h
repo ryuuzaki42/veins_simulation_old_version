@@ -21,16 +21,16 @@
 #ifndef PHYLAYER80211P_H_
 #define PHYLAYER80211P_H_
 
-#include <BasePhyLayer.h>
-#include "Mac80211pToPhy11pInterface.h"
-#include <Decider80211p.h>
-#include <SimplePathlossModel.h>
-#include <LogNormalShadowing.h>
-#include <SNRThresholdDecider.h>
-#include <JakesFading.h>
-#include <BaseConnectionManager.h>
-#include "Decider80211pToPhy80211pInterface.h"
-#include <Move.h>
+#include "veins/base/phyLayer/BasePhyLayer.h"
+#include "veins/modules/mac/ieee80211p/Mac80211pToPhy11pInterface.h"
+#include "veins/modules/phy/Decider80211p.h"
+#include "veins/modules/analogueModel/SimplePathlossModel.h"
+#include "veins/modules/analogueModel/LogNormalShadowing.h"
+#include "veins/modules/phy/SNRThresholdDecider.h"
+#include "veins/modules/analogueModel/JakesFading.h"
+#include "veins/base/connectionManager/BaseConnectionManager.h"
+#include "veins/modules/phy/Decider80211pToPhy80211pInterface.h"
+#include "veins/base/utils/Move.h"
 
 using Veins::AirFrame;
 
@@ -57,7 +57,28 @@ class PhyLayer80211p	: 	public BasePhyLayer,
 {
 	public:
 		void initialize(int stage);
+		/**
+		 * @brief Set the carrier sense threshold
+		 * @param ccaThreshold_dBm the cca threshold in dBm
+		 */
+		void setCCAThreshold(double ccaThreshold_dBm);
+		/**
+		 * @brief Return the cca threshold in dBm
+		 */
+		double getCCAThreshold();
 	protected:
+
+		/** @brief CCA threshold. See Decider80211p for details */
+		double ccaThreshold;
+
+		/** @brief enable/disable detection of packet collisions */
+		bool collectCollisionStatistics;
+
+		/** @brief allows/disallows interruption of current reception for txing
+		 *
+		 * See detailed description in Decider80211p
+		 */
+		bool allowTxDuringRx;
 
 		enum ProtocolIds {
 			IEEE_80211 = 12123
@@ -113,6 +134,12 @@ class PhyLayer80211p	: 	public BasePhyLayer,
 		 */
 		AnalogueModel* initializeTwoRayInterferenceModel(ParameterMap& params);
 
+        /**
+         * @brief Creates and initializes a NakagamiFading with the
+         * passed parameter values.
+         */
+        AnalogueModel* initializeNakagamiFading(ParameterMap& params);
+
 		/**
 		 * @brief Creates and returns an instance of the Decider with the specified
 		 * name.
@@ -139,6 +166,7 @@ class PhyLayer80211p	: 	public BasePhyLayer,
 
 		virtual void handleSelfMessage(cMessage* msg);
 		virtual int getRadioState();
+		virtual simtime_t setRadioState(int rs);
 };
 
 #endif /* PHYLAYER80211P_H_ */

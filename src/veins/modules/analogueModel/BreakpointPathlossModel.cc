@@ -1,6 +1,6 @@
-#include "BreakpointPathlossModel.h"
+#include "veins/modules/analogueModel/BreakpointPathlossModel.h"
 
-#include "base/messages/AirFrame_m.h"
+#include "veins/base/messages/AirFrame_m.h"
 
 using Veins::AirFrame;
 

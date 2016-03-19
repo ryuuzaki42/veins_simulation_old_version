@@ -11,7 +11,7 @@
 // *************************************************************************/
 
 cplusplus {{
-#include "MacPkt_m.h"
+#include "veins/base/messages/MacPkt_m.h"
 }}
 
 

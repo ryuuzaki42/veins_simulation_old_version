@@ -13,16 +13,14 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#include "JakesFading.h"
+#include "veins/modules/analogueModel/JakesFading.h"
 
-#include "BaseWorldUtility.h"
-#include "base/messages/AirFrame_m.h"
-#include "base/connectionManager/ChannelAccess.h"
+#include "veins/base/modules/BaseWorldUtility.h"
+#include "veins/base/messages/AirFrame_m.h"
+#include "veins/base/connectionManager/ChannelAccess.h"
 
 using Veins::AirFrame;
 using Veins::ChannelAccess;
-
-DimensionSet JakesFadingMapping::dimensions(Dimension::time);
 
 double JakesFadingMapping::getValue(const Argument& pos) const {
 	double f = model->carrierFrequency;
@@ -32,7 +30,7 @@ double JakesFadingMapping::getValue(const Argument& pos) const {
 	double im_h = 0;
 
 	// Compute Doppler shift.
-	double doppler_shift = v * f / BaseWorldUtility::speedOfLight;
+	double doppler_shift = v * f / BaseWorldUtility::speedOfLight();
 
 	for (int i = 0; i < model->fadingPaths; i++) {
 		// Some math for complex numbers:

@@ -13,10 +13,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#include "LogNormalShadowing.h"
+#include "veins/modules/analogueModel/LogNormalShadowing.h"
 
-#include "Mapping.h"
-#include "base/messages/AirFrame_m.h"
+#include "veins/base/phyLayer/Mapping.h"
+#include "veins/base/messages/AirFrame_m.h"
 
 using Veins::AirFrame;
 
@@ -34,7 +34,7 @@ void LogNormalShadowing::filterSignal(AirFrame *frame, const Coord& sendersPos, 
 	Signal&   signal = frame->getSignal();
 	simtime_t start  = signal.getReceptionStart();
 	simtime_t end    = signal.getReceptionEnd();
-	Mapping*  att    = MappingUtils::createMapping(DimensionSet::timeDomain, Mapping::LINEAR);
+	Mapping*  att    = MappingUtils::createMapping(DimensionSet::timeDomain(), Mapping::LINEAR);
 
 	Argument pos;
 

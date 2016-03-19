@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2014 Michele Segata <segata@ccs-labs.org>
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -13,16 +15,13 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-cplusplus {{
-#include "veins/base/messages/AirFrame_m.h"
-using Veins::AirFrame;
-}}
-class AirFrame;
-
 //
-// Extension of base AirFrame message to have the underSensitivity field
+// Defines a control message that can be associated with a MAC frame to set
+// transmission power and datarate on a per packet basis
 //
-message AirFrame11p extends AirFrame {
-    bool underSensitivity = false;
-    bool wasTransmitting = false;
+message PhyControlMessage {
+    //modulation and coding scheme to be used (see enum TxMCS in ConstsPhy.h)
+    int mcs;
+    //transmission power to be used in mW
+    double txPower_mW;
 }

@@ -18,10 +18,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include <FWMath.h>
-
-#include "TwoRayInterferenceModel.h"
-#include "base/messages/AirFrame_m.h"
+#include "veins/modules/analogueModel/TwoRayInterferenceModel.h"
+#include "veins/base/messages/AirFrame_m.h"
 
 using Veins::AirFrame;
 
@@ -50,7 +48,7 @@ void TwoRayInterferenceModel::filterSignal(AirFrame *frame, const Coord& senderP
 		(sin_theta + sqrt(epsilon_r - pow(cos_theta,2)));
 
 	//is the signal defined to attenuate over frequency?
-	bool hasFrequency = s.getTransmissionPower()->getDimensionSet().hasDimension(Dimension::frequency);
+	bool hasFrequency = s.getTransmissionPower()->getDimensionSet().hasDimension(Dimension::frequency());
 	debugEV << "Signal contains frequency dimension: " << (hasFrequency ? "yes" : "no") << endl;
 
 	assert(hasFrequency);
@@ -60,13 +58,11 @@ void TwoRayInterferenceModel::filterSignal(AirFrame *frame, const Coord& senderP
         s.addAttenuation(new TwoRayInterferenceModel::Mapping(gamma, d, d_dir, d_ref, debug));
 }
 
-DimensionSet TwoRayInterferenceModel::Mapping::dimensions(DimensionSet::timeFreqDomain);
-
 double TwoRayInterferenceModel::Mapping::getValue(const Argument& pos) const {
 
-	assert(pos.hasArgVal(Dimension::frequency));
-	double freq = pos.getArgValue(Dimension::frequency);
-	double lambda = BaseWorldUtility::speedOfLight / freq;
+	assert(pos.hasArgVal(Dimension::frequency()));
+	double freq = pos.getArgValue(Dimension::frequency());
+	double lambda = BaseWorldUtility::speedOfLight() / freq;
 	double phi =  ( 2*M_PI/lambda * (d_dir - d_ref) );
 	double att = pow(4 * M_PI * (d/lambda) *
 				1/(sqrt(

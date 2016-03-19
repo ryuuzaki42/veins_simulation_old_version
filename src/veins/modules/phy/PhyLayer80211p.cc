@@ -23,20 +23,21 @@
  * and modifications by Christopher Saloman
  */
 
-#include "PhyLayer80211p.h"
+#include "veins/modules/phy/PhyLayer80211p.h"
 
-#include "Decider80211p.h"
-#include "SimplePathlossModel.h"
-#include "BreakpointPathlossModel.h"
-#include "LogNormalShadowing.h"
-#include "JakesFading.h"
-#include "PERModel.h"
-#include "SimpleObstacleShadowing.h"
-#include "TwoRayInterferenceModel.h"
-#include "BaseConnectionManager.h"
-#include <Consts80211p.h>
-#include "AirFrame11p_m.h"
-#include "MacToPhyControlInfo.h"
+#include "veins/modules/phy/Decider80211p.h"
+#include "veins/modules/analogueModel/SimplePathlossModel.h"
+#include "veins/modules/analogueModel/BreakpointPathlossModel.h"
+#include "veins/modules/analogueModel/LogNormalShadowing.h"
+#include "veins/modules/analogueModel/JakesFading.h"
+#include "veins/modules/analogueModel/PERModel.h"
+#include "veins/modules/analogueModel/SimpleObstacleShadowing.h"
+#include "veins/modules/analogueModel/TwoRayInterferenceModel.h"
+#include "veins/modules/analogueModel/NakagamiFading.h"
+#include "veins/base/connectionManager/BaseConnectionManager.h"
+#include "veins/modules/utility/Consts80211p.h"
+#include "veins/modules/messages/AirFrame11p_m.h"
+#include "veins/base/phyLayer/MacToPhyControlInfo.h"
 
 using Veins::ObstacleControlAccess;
 
@@ -44,6 +45,12 @@ Define_Module(PhyLayer80211p);
 
 /** This is needed to circumvent a bug in MiXiM that allows different header length interpretations for receiving and sending airframes*/
 void PhyLayer80211p::initialize(int stage) {
+	if (stage == 0) {
+		//get ccaThreshold before calling BasePhyLayer::initialize() which instantiates the deciders
+		ccaThreshold = pow(10, par("ccaThreshold").doubleValue() / 10);
+		allowTxDuringRx = par("allowTxDuringRx").boolValue();
+		collectCollisionStatistics = par("collectCollisionStatistics").boolValue();
+	}
 	BasePhyLayer::initialize(stage);
 	if (stage == 0) {
 		if (par("headerLength").longValue() != PHY_HDR_TOTAL_LENGTH) {
@@ -83,7 +90,10 @@ AnalogueModel* PhyLayer80211p::getAnalogueModelFromName(std::string name, Parame
 		if (world->use2D()) error("The TwoRayInterferenceModel uses nodes' z-position as the antenna height over ground. Refusing to work in a 2D world");
 		return initializeTwoRayInterferenceModel(params);
 	}
-
+	else if (name == "NakagamiFading")
+	{
+		return initializeNakagamiFading(params);
+	}
 	return BasePhyLayer::getAnalogueModelFromName(name, params);
 }
 
@@ -207,9 +217,20 @@ AnalogueModel* PhyLayer80211p::initializeBreakpointPathlossModel(ParameterMap& p
 }
 
 AnalogueModel* PhyLayer80211p::initializeTwoRayInterferenceModel(ParameterMap& params) {
+	ASSERT(params.count("DielectricConstant") == 1);
+
 	double dielectricConstant= params["DielectricConstant"].doubleValue();
 
 	return new TwoRayInterferenceModel(dielectricConstant, coreDebug);
+}
+
+AnalogueModel* PhyLayer80211p::initializeNakagamiFading(ParameterMap& params) {
+	bool constM = params["constM"].boolValue();
+	double m = 0;
+	if (constM) {
+		m = params["m"].doubleValue();
+	}
+	return new NakagamiFading(constM, m, coreDebug);
 }
 
 AnalogueModel* PhyLayer80211p::initializeSimplePathlossModel(ParameterMap& params){
@@ -348,16 +369,7 @@ AnalogueModel* PhyLayer80211p::initializeSimpleObstacleShadowing(ParameterMap& p
 
 Decider* PhyLayer80211p::initializeDecider80211p(ParameterMap& params) {
 	double centerFreq = params["centerFrequency"];
-
-	bool collectCollisionStatistics = false;
-	{
-		ParameterMap::iterator it = params.find("collectCollisionStatistics");
-		if (it != params.end()) {
-			collectCollisionStatistics = it->second.doubleValue();
-		}
-	}
-
-	Decider80211p* dec = new Decider80211p(this, sensitivity, centerFreq, findHost()->getIndex(), collectCollisionStatistics, coreDebug);
+	Decider80211p* dec = new Decider80211p(this, sensitivity, ccaThreshold, allowTxDuringRx, centerFreq, findHost()->getIndex(), collectCollisionStatistics, coreDebug);
 	dec->setPath(getParentModule()->getFullPath());
 	return dec;
 }
@@ -435,7 +447,7 @@ AirFrame *PhyLayer80211p::encapsMsg(cPacket *macPkt)
 	//channel consistency (before any thing else happens at a time
 	//point t make sure that the channel has removed every AirFrame
 	//ended at t and added every AirFrame started at t)
-	frame->setSchedulingPriority(airFramePriority);
+	frame->setSchedulingPriority(airFramePriority());
 	frame->setProtocolId(myProtocolId());
 	frame->setBitLength(headerLength);
 	frame->setId(world->getUniqueAirFrameId());
@@ -461,3 +473,17 @@ AirFrame *PhyLayer80211p::encapsMsg(cPacket *macPkt)
 int PhyLayer80211p::getRadioState() {
 	return BasePhyLayer::getRadioState();
 };
+
+simtime_t PhyLayer80211p::setRadioState(int rs) {
+	if (rs == Radio::TX)
+		decider->switchToTx();
+	return BasePhyLayer::setRadioState(rs);
+}
+
+void PhyLayer80211p::setCCAThreshold(double ccaThreshold_dBm) {
+	ccaThreshold = pow(10, ccaThreshold_dBm / 10);
+	((Decider80211p *)decider)->setCCAThreshold(ccaThreshold_dBm);
+}
+double PhyLayer80211p::getCCAThreshold() {
+	return 10 * log10(ccaThreshold);
+}

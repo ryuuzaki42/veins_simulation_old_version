@@ -16,9 +16,9 @@
 #ifndef JAKESFADING_H_
 #define JAKESFADING_H_
 
-#include "MiXiMDefs.h"
-#include "AnalogueModel.h"
-#include "Mapping.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/AnalogueModel.h"
+#include "veins/base/phyLayer/Mapping.h"
 
 using Veins::AirFrame;
 
@@ -32,8 +32,6 @@ class JakesFading;
  */
 class MIXIM_API JakesFadingMapping: public SimpleConstMapping {
 protected:
-	static DimensionSet dimensions;
-
 	/** @brief Pointer to the model.*/
 	JakesFading* model;
 
@@ -49,7 +47,7 @@ public:
 					   const Argument& start,
 					   const Argument& interval,
 					   const Argument& end):
-		SimpleConstMapping(dimensions, start, end, interval),
+		SimpleConstMapping(Dimension::time(), start, end, interval),
 		model(model), relSpeed(relSpeed)
 	{}
 

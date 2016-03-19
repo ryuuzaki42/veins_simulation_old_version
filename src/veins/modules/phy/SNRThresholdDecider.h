@@ -1,8 +1,8 @@
 #ifndef SNRTHRESHOLDDECIDER_H_
 #define SNRTHRESHOLDDECIDER_H_
 
-#include "MiXiMDefs.h"
-#include "BaseDecider.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/BaseDecider.h"
 
 using Veins::AirFrame;
 

@@ -1,13 +1,13 @@
 #ifndef SIMPLEOBSTACLEFADING_H_
 #define SIMPLEOBSTACLEFADING_H_
 
-#include "AnalogueModel.h"
-#include "Mapping.h"
-#include "BaseWorldUtility.h"
-#include "modules/obstacle/ObstacleControl.h"
-#include <Move.h>
-#include <Signal_.h>
-#include "base/messages/AirFrame_m.h"
+#include "veins/base/phyLayer/AnalogueModel.h"
+#include "veins/base/phyLayer/Mapping.h"
+#include "veins/base/modules/BaseWorldUtility.h"
+#include "veins/modules/obstacle/ObstacleControl.h"
+#include "veins/base/utils/Move.h"
+#include "veins/base/phyLayer/Signal_.h"
+#include "veins/base/messages/AirFrame_m.h"
 
 using Veins::AirFrame;
 using Veins::ObstacleControl;

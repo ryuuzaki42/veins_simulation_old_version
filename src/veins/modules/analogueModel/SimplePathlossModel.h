@@ -3,10 +3,10 @@
 
 #include <cstdlib>
 
-#include "MiXiMDefs.h"
-#include "AnalogueModel.h"
-#include "Mapping.h"
-#include "BaseWorldUtility.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/AnalogueModel.h"
+#include "veins/base/phyLayer/Mapping.h"
+#include "veins/base/modules/BaseWorldUtility.h"
 
 using Veins::AirFrame;
 

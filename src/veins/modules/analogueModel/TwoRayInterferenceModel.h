@@ -21,9 +21,9 @@
 #ifndef ANALOGUEMODEL_TWORAYINTERFERENCEMODEL_H
 #define ANALOGUEMODEL_TWORAYINTERFERENCEMODEL_H
 
-#include "AnalogueModel.h"
-#include "BaseWorldUtility.h"
-#include "MappingBase.h"
+#include "veins/base/phyLayer/AnalogueModel.h"
+#include "veins/base/modules/BaseWorldUtility.h"
+#include "veins/base/phyLayer/MappingBase.h"
 
 using Veins::AirFrame;
 
@@ -56,8 +56,6 @@ class TwoRayInterferenceModel: public AnalogueModel {
 
 		class Mapping: public SimpleConstMapping {
 			protected:
-				static DimensionSet dimensions;
-
 				double gamma;
 				double d;
 				double d_dir;
@@ -66,7 +64,7 @@ class TwoRayInterferenceModel: public AnalogueModel {
 				bool debug;
 			public:
 				Mapping(double gamma, double distance, double directDistance, double reflDistance, bool debug)
-					: SimpleConstMapping(dimensions),
+					: SimpleConstMapping(DimensionSet::timeFreqDomain()),
 					gamma(gamma),
 					d(distance),
 					d_dir(directDistance),

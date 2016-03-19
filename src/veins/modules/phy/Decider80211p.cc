@@ -24,11 +24,13 @@
  * and modifications by Christopher Saloman
  */
 
-#include <Decider80211p.h>
-#include <DeciderResult80211.h>
-#include <Mac80211Pkt_m.h>
-#include <Signal_.h>
-#include <AirFrame11p_m.h>
+#include "veins/modules/phy/Decider80211p.h"
+#include "veins/modules/phy/DeciderResult80211.h"
+#include "veins/modules/messages/Mac80211Pkt_m.h"
+#include "veins/base/phyLayer/Signal_.h"
+#include "veins/modules/messages/AirFrame11p_m.h"
+#include "veins/modules/phy/NistErrorRate.h"
+#include "veins/modules/utility/ConstsPhy.h"
 
 using Veins::AirFrame;
 using Veins::Radio;
@@ -40,9 +42,9 @@ simtime_t Decider80211p::processNewSignal(AirFrame* msg) {
 	// get the receiving power of the Signal at start-time and center frequency
 	Signal& signal = frame->getSignal();
 
-	Argument start(DimensionSet::timeFreqDomain);
+	Argument start(DimensionSet::timeFreqDomain());
 	start.setTime(signal.getReceptionStart());
-	start.setArgValue(Dimension::frequency_static(), centerFrequency);
+	start.setArgValue(Dimension::frequency(), centerFrequency);
 
 	signalStates[frame] = EXPECT_END;
 
@@ -68,9 +70,9 @@ simtime_t Decider80211p::processNewSignal(AirFrame* msg) {
 		}
 		else {
 
-			if (!curSyncFrame) {
+			if (!currentSignal.first) {
 				//NIC is not yet synced to any frame, so lock and try to decode this frame
-				curSyncFrame = frame;
+				currentSignal.first = frame;
 				DBG_D11P << "AirFrame: " << frame->getId() << " with (" << recvPower << " > " << sensitivity << ") -> Trying to receive AirFrame." << std::endl;
 			}
 			else {
@@ -101,12 +103,12 @@ double Decider80211p::calcChannelSenseRSSI(simtime_t_cref start, simtime_t_cref 
 
 	Mapping* rssiMap = calculateRSSIMapping(start, end);
 
-	Argument min(DimensionSet::timeFreqDomain);
+	Argument min(DimensionSet::timeFreqDomain());
 	min.setTime(start);
-	min.setArgValue(Dimension::frequency_static(), centerFrequency - 5e6);
-	Argument max(DimensionSet::timeFreqDomain);
+	min.setArgValue(Dimension::frequency(), centerFrequency - 5e6);
+	Argument max(DimensionSet::timeFreqDomain());
 	max.setTime(end);
-	max.setArgValue(Dimension::frequency_static(), centerFrequency + 5e6);
+	max.setArgValue(Dimension::frequency(), centerFrequency + 5e6);
 
 	double rssi = MappingUtils::findMax(*rssiMap, min, max);
 
@@ -134,8 +136,8 @@ void Decider80211p::calculateSinrAndSnrMapping(AirFrame* frame, Mapping **sinrMa
 	assert(recvPowerMap);
 
 	//TODO: handle noise of zero (must not devide with zero!)
-	*sinrMap = MappingUtils::divide( *recvPowerMap, *noiseInterferenceMap, Argument::MappedZero );
-	*snrMap = MappingUtils::divide( *recvPowerMap, *noiseMap, Argument::MappedZero );
+	*sinrMap = MappingUtils::divide( *recvPowerMap, *noiseInterferenceMap, Argument::MappedZero() );
+	*snrMap = MappingUtils::divide( *recvPowerMap, *noiseMap, Argument::MappedZero() );
 
 	delete noiseInterferenceMap;
 	noiseInterferenceMap = 0;
@@ -147,7 +149,7 @@ void Decider80211p::calculateSinrAndSnrMapping(AirFrame* frame, Mapping **sinrMa
 Mapping* Decider80211p::calculateNoiseRSSIMapping(simtime_t_cref start, simtime_t_cref end, AirFrame *exclude) {
 
 	// create an empty mapping
-	Mapping* resultMap = MappingUtils::createMapping(Argument::MappedZero, DimensionSet::timeDomain);
+	Mapping* resultMap = MappingUtils::createMapping(Argument::MappedZero(), DimensionSet::timeDomain());
 
 	// add thermal noise
 	ConstMapping* thermalNoise = phy->getThermalNoise(start, end);
@@ -195,14 +197,20 @@ DeciderResult* Decider80211p::checkIfSignalOk(AirFrame* frame) {
 	simtime_t start = s.getReceptionStart();
 	simtime_t end = s.getReceptionEnd();
 
+	//compute receive power
+	Argument st(DimensionSet::timeFreqDomain());
+	st.setTime(s.getReceptionStart());
+	st.setArgValue(Dimension::frequency(), centerFrequency);
+	double recvPower_dBm = 10*log10(s.getReceivingPower()->getValue(st));
+
 	start = start + PHY_HDR_PREAMBLE_DURATION; //its ok if something in the training phase is broken
 
-	Argument min(DimensionSet::timeFreqDomain);
+	Argument min(DimensionSet::timeFreqDomain());
 	min.setTime(start);
-	min.setArgValue(Dimension::frequency_static(), centerFrequency - 5e6);
-	Argument max(DimensionSet::timeFreqDomain);
+	min.setArgValue(Dimension::frequency(), centerFrequency - 5e6);
+	Argument max(DimensionSet::timeFreqDomain());
 	max.setTime(end);
-	max.setArgValue(Dimension::frequency_static(), centerFrequency + 5e6);
+	max.setArgValue(Dimension::frequency(), centerFrequency + 5e6);
 
 	double snirMin = MappingUtils::findMin(*sinrMap, min, max);
 	double snrMin;
@@ -226,7 +234,7 @@ DeciderResult* Decider80211p::checkIfSignalOk(AirFrame* frame) {
 
 		case DECODED:
 			DBG_D11P << "Packet is fine! We can decode it" << std::endl;
-			result = new DeciderResult80211(true, payloadBitrate, snirMin);
+			result = new DeciderResult80211(true, payloadBitrate, snirMin, recvPower_dBm, false);
 			break;
 
 		case NOT_DECODED:
@@ -236,13 +244,13 @@ DeciderResult* Decider80211p::checkIfSignalOk(AirFrame* frame) {
 			else {
 				DBG_D11P << "Packet has bit Errors due to low power. Lost " << std::endl;
 			}
-			result = new DeciderResult80211(false, payloadBitrate, snirMin);
+			result = new DeciderResult80211(false, payloadBitrate, snirMin, recvPower_dBm, false);
 			break;
 
 		case COLLISION:
 			DBG_D11P << "Packet has bit Errors due to collision. Lost " << std::endl;
 			collisions++;
-			result = new DeciderResult80211(false, payloadBitrate, snirMin);
+			result = new DeciderResult80211(false, payloadBitrate, snirMin, recvPower_dBm, true);
 			break;
 
 		default:
@@ -264,40 +272,18 @@ enum Decider80211p::PACKET_OK_RESULT Decider80211p::packetOk(double snirMin, dou
 	double packetOkSinr;
 	double packetOkSnr;
 
-	if (bitrate == 18E+6) {
-		//According to P. Fuxjaeger et al. "IEEE 802.11p Transmission Using GNURadio"
-		double ber = std::min(0.5 , 1.5 * erfc(0.45 * sqrt(snirMin)));
-		packetOkSinr = pow(1 - ber, lengthMPDU - PHY_HDR_PLCPSIGNAL_LENGTH);
-	}
-	else if (bitrate == 6E+6) {
-		//According to K. Sjoeberg et al. "Measuring and Using the RSSI of IEEE 802.11p"
-		double ber = std::min(0.5 , 8 * erfc(0.75 *sqrt(snirMin)));
-		packetOkSinr = pow(1 - ber, lengthMPDU - PHY_HDR_PLCPSIGNAL_LENGTH);
-	}
-	else {
-		opp_error("Currently this 11p-Model only provides accurate BER models for 6Mbit and 18Mbit. Please use one of these frequencies for now.");
-	}
+	//compute success rate depending on mcs and bw
+	packetOkSinr = NistErrorRate::getChunkSuccessRate(bitrate, BW_OFDM_10_MHZ, snirMin, lengthMPDU);
 
-	//check if header is broken, BER model for PSK taken from MiXiM 2.2
-	double berHeader = 0.5 * exp(-snirMin * 10E+6 / PHY_HDR_BANDWIDTH);
-	double headerNoError = pow(1.0 - berHeader, PHY_HDR_PLCPSIGNAL_LENGTH);
+	//check if header is broken
+	double headerNoError = NistErrorRate::getChunkSuccessRate(PHY_HDR_BITRATE, BW_OFDM_10_MHZ, snirMin, PHY_HDR_PLCPSIGNAL_LENGTH);
 
 	double headerNoErrorSnr;
 	//compute PER also for SNR only
 	if (collectCollisionStats) {
-		if (bitrate == 18E+6) {
-			//According to P. Fuxjaeger et al. "IEEE 802.11p Transmission Using GNURadio"
-			double ber = std::min(0.5, 1.5 * erfc(0.45 * sqrt(snrMin)));
-			packetOkSnr = pow(1 - ber, lengthMPDU - PHY_HDR_PLCPSIGNAL_LENGTH);
-		}
-		else if (bitrate == 6E+6) {
-			//According to K. Sjoeberg et al. "Measuring and Using the RSSI of IEEE 802.11p"
-			double ber = std::min(0.5, 8 * erfc(0.75 * sqrt(snrMin)));
-			packetOkSnr = pow(1 - ber, lengthMPDU - PHY_HDR_PLCPSIGNAL_LENGTH);
-		}
 
-		double berHeader = 0.5 * exp(-snrMin * 10E+6 / PHY_HDR_BANDWIDTH);
-		headerNoErrorSnr = pow(1.0 - berHeader, PHY_HDR_PLCPSIGNAL_LENGTH);
+		packetOkSnr = NistErrorRate::getChunkSuccessRate(bitrate, BW_OFDM_10_MHZ, snrMin, lengthMPDU);
+		headerNoErrorSnr = NistErrorRate::getChunkSuccessRate(PHY_HDR_BITRATE, BW_OFDM_10_MHZ, snrMin, PHY_HDR_PLCPSIGNAL_LENGTH);
 
 		//the probability of correct reception without considering the interference
 		//MUST be greater or equal than when consider it
@@ -373,7 +359,7 @@ bool Decider80211p::cca(simtime_t_cref time, AirFrame* exclude) {
 	// collect all AirFrames that intersect with [start, end]
 	getChannelInfo(time, time, airFrames);
 
-	Mapping* resultMap = MappingUtils::createMapping(Argument::MappedZero, DimensionSet::timeDomain);
+	Mapping* resultMap = MappingUtils::createMapping(Argument::MappedZero(), DimensionSet::timeDomain());
 
 
 	// iterate over all AirFrames (except exclude)
@@ -403,7 +389,7 @@ bool Decider80211p::cca(simtime_t_cref time, AirFrame* exclude) {
 
 		// Mapping* resultMapNew = Mapping::add( *(signal.getReceivingPower()), *resultMap, start, end );
 
-		Mapping* resultMapNew = MappingUtils::add(*recvPowerMap, *resultMap, Argument::MappedZero);
+		Mapping* resultMapNew = MappingUtils::add(*recvPowerMap, *resultMap, Argument::MappedZero());
 
 		// discard old mapping
 		delete resultMap;
@@ -419,12 +405,12 @@ bool Decider80211p::cca(simtime_t_cref time, AirFrame* exclude) {
 		delete tmp;
 	}
 
-	Argument min(DimensionSet::timeFreqDomain);
+	Argument min(DimensionSet::timeFreqDomain());
 	min.setTime(time);
-	min.setArgValue(Dimension::frequency_static(), centerFrequency - 5e6);
+	min.setArgValue(Dimension::frequency(), centerFrequency - 5e6);
 
-	DBG_D11P << MappingUtils::findMin(*resultMap, min, min) << " > " << sensitivity << " = " << (bool)(MappingUtils::findMin(*resultMap, min, min) > sensitivity) << std::endl;
-	bool isChannelIdle = MappingUtils::findMin(*resultMap, min, min) < sensitivity;
+	DBG_D11P << MappingUtils::findMin(*resultMap, min, min) << " > " << ccaThreshold << " = " << (bool)(MappingUtils::findMin(*resultMap, min, min) > ccaThreshold) << std::endl;
+	bool isChannelIdle = MappingUtils::findMin(*resultMap, min, min) < ccaThreshold;
 	delete resultMap;
 	return isChannelIdle;
 }
@@ -435,6 +421,13 @@ simtime_t Decider80211p::processSignalEnd(AirFrame* msg) {
 	AirFrame11p *frame = check_and_cast<AirFrame11p *>(msg);
 
 	// here the Signal is finally processed
+	Signal& signal = frame->getSignal();
+
+	Argument start(DimensionSet::timeFreqDomain());
+	start.setTime(signal.getReceptionStart());
+	start.setArgValue(Dimension::frequency(), centerFrequency);
+
+	double recvPower_dBm = 10*log10(signal.getReceivingPower()->getValue(start));
 
 	bool whileSending = false;
 
@@ -445,28 +438,28 @@ simtime_t Decider80211p::processSignalEnd(AirFrame* msg) {
 
 	if (frame->getUnderSensitivity()) {
 		//this frame was not even detected by the radio card
-		result = new DeciderResult80211(false,0,0);
+		result = new DeciderResult80211(false,0,0,recvPower_dBm);
 	}
 	else if (frame->getWasTransmitting() || phy11p->getRadioState() == Radio::TX) {
 		//this frame was received while sending
 		whileSending = true;
-		result = new DeciderResult80211(false,0,0);
+		result = new DeciderResult80211(false,0,0,recvPower_dBm);
 	}
 	else {
 
 		//first check whether this is the frame NIC is currently synced on
-		if (frame == curSyncFrame) {
+		if (frame == currentSignal.first) {
 			// check if the snrMapping is above the Decider's specific threshold,
 			// i.e. the Decider has received it correctly
 			result = checkIfSignalOk(frame);
 
 			//after having tried to decode the frame, the NIC is no more synced to the frame
 			//and it is ready for syncing on a new one
-			curSyncFrame = 0;
+			currentSignal.first = 0;
 		}
 		else {
 			//if this is not the frame we are synced on, we cannot receive it
-			result = new DeciderResult80211(false, 0, 0);
+			result = new DeciderResult80211(false, 0, 0,recvPower_dBm);
 		}
 	}
 
@@ -485,7 +478,12 @@ simtime_t Decider80211p::processSignalEnd(AirFrame* msg) {
 		}
 		else {
 			DBG_D11P << "packet was not received correctly, sending it as control message to upper layer\n";
-			phy->sendControlMsgToMac(new cMessage("Error",BITERROR));
+			if (((DeciderResult80211 *)result)->isCollision()) {
+				phy->sendControlMsgToMac(new cMessage("Error", Decider80211p::COLLISION));
+			}
+			else {
+				phy->sendControlMsgToMac(new cMessage("Error",BITERROR));
+			}
 		}
 		delete result;
 	}
@@ -494,7 +492,9 @@ simtime_t Decider80211p::processSignalEnd(AirFrame* msg) {
 		DBG_D11P << "I'm currently sending\n";
 	}
 	//check if channel is idle now
-	else if (cca(simTime(), frame) == false) {
+	//we declare channel busy if CCA tells us so, or if we are currently
+	//decoding a frame
+	else if (cca(simTime(), frame) == false || currentSignal.first != 0) {
 		DBG_D11P << "Channel not yet idle!\n";
 	}
 	else {
@@ -516,6 +516,33 @@ void Decider80211p::setChannelIdleStatus(bool isIdle) {
 
 void Decider80211p::changeFrequency(double freq) {
 	centerFrequency = freq;
+}
+
+double Decider80211p::getCCAThreshold() {
+	return 10 * log10(ccaThreshold);
+}
+
+void Decider80211p::setCCAThreshold(double ccaThreshold_dBm) {
+	ccaThreshold = pow(10, ccaThreshold_dBm / 10);
+}
+
+void Decider80211p::switchToTx() {
+	if (currentSignal.first != 0) {
+		//we are currently trying to receive a frame.
+		if (allowTxDuringRx) {
+			//if the above layer decides to transmit anyhow, we need to abort reception
+			AirFrame11p *currentFrame = dynamic_cast<AirFrame11p *>(currentSignal.first);
+			assert(currentFrame);
+			//flag the frame as "while transmitting"
+			currentFrame->setWasTransmitting(true);
+			currentFrame->setBitError(true);
+			//forget about the signal
+			currentSignal.first = 0;
+		}
+		else {
+			opp_error("Decider80211p: mac layer requested phy to transmit a frame while currently receiving another");
+		}
+	}
 }
 
 void Decider80211p::finish() {

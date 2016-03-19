@@ -3,8 +3,8 @@
 
 #include <cstdlib>
 
-#include "MiXiMDefs.h"
-#include "AnalogueModel.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/AnalogueModel.h"
 
 using Veins::AirFrame;
 
