@@ -20,8 +20,8 @@
  ***************************************************************************/
 
 
-#include "BaseApplLayer.h"
-#include "PassedMessage.h"
+#include "veins/base/modules/BaseApplLayer.h"
+#include "veins/base/utils/PassedMessage.h"
 
 /**
  * First we have to initialize the module from which we derived ours,

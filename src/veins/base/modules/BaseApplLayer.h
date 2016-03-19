@@ -25,9 +25,9 @@
 
 #include <assert.h>
 
-#include "MiXiMDefs.h"
-#include "BaseLayer.h"
-#include "SimpleAddress.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/modules/BaseLayer.h"
+#include "veins/base/utils/SimpleAddress.h"
 
 /**
  * @brief Base class for the application layer

@@ -18,8 +18,8 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "SimpleAddress.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/utils/SimpleAddress.h"
 
 /**
  * @brief Stores control information from mac to upper layer.
@@ -134,7 +134,7 @@ public:
     	if (cCtrlInfo)
     		return cCtrlInfo->getLastHopMac();
 
-    	return LAddress::L2NULL;
+    	return LAddress::L2NULL();
     }
 };
 

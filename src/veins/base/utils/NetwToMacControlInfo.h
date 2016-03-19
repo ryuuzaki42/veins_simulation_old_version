@@ -23,8 +23,8 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "SimpleAddress.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/utils/SimpleAddress.h"
 
 /**
  * @brief Control info to pass next hop L2 addr from netw to MAC layer
@@ -47,7 +47,7 @@ class MIXIM_API NetwToMacControlInfo : public cObject
 
   public:
     /** @brief Default constructor*/
-    NetwToMacControlInfo(const LAddress::L2Type& addr = LAddress::L2NULL)
+    NetwToMacControlInfo(const LAddress::L2Type& addr = LAddress::L2NULL())
       : cObject()
       , nextHopMac(addr)
     {

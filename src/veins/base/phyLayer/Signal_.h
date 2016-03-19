@@ -4,8 +4,8 @@
 #include <list>
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "Mapping.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/Mapping.h"
 
 /**
  * @brief The signal class stores the physical representation of the
@@ -239,7 +239,7 @@ public:
 			rcvPower = new MultipliedMapping(tmp,
 											  attenuations.begin(),
 											  attenuations.end(),
-											  false, Argument::MappedZero);
+											  false, Argument::MappedZero());
 		}
 
 		return rcvPower;

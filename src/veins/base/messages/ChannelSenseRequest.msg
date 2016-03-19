@@ -1,6 +1,6 @@
 
 cplusplus {{
-#include "ChannelState.h"
+#include "veins/base/phyLayer/ChannelState.h"
 }}
 
 class noncobject ChannelState;

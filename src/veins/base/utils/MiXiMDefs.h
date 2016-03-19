@@ -19,7 +19,7 @@
 #define __MIXIM_MIXIMDEFS_H
 
 #include <omnetpp.h>
-#include "miximkerneldefs.h"
+#include "veins/base/utils/miximkerneldefs.h"
 
 #if defined(MIXIM_EXPORT)
 #  define MIXIM_API OPP_DLLEXPORT

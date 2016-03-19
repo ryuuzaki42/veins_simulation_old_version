@@ -22,11 +22,7 @@
 
 #include <omnetpp.h>
 
-#ifdef MIXIM_INET
-#include <MACAddress.h>
-#endif
-
-#include "MiXiMDefs.h"
+#include "veins/base/utils/MiXiMDefs.h"
 
 /** @brief Layer address handling helper function.
  *
@@ -44,11 +40,7 @@ public:
      * The type should support initialization with long/string values and casting to long/double.
      * The type should be also support the ==,<, and > operators.
      */
-#ifdef MIXIM_INET
-    typedef MACAddress L2Type;
-#else
     typedef long L2Type;
-#endif
     /** @brief Type definition for a L3 (Network) address.
      *
      * The type should support initialization with long values and casting to long/double.
@@ -57,13 +49,25 @@ public:
     typedef long L3Type;
 
     /** @brief Broadcast address for L2 addresses. */
-    static const L2Type L2BROADCAST;
+    static const L2Type& L2BROADCAST() {
+        static L2Type o(-1);
+	return o;
+    }
     /** @brief NULL address for L2 addresses. */
-    static const L2Type L2NULL;
+    static const L2Type& L2NULL() {
+        static L2Type o(0);
+	return o;
+    }
     /** @brief Broadcast address for L3 addresses. */
-    static const L3Type L3BROADCAST;
+    static const L3Type& L3BROADCAST() {
+        static L3Type o(-1);
+	return o;
+    }
     /** @brief NULL address for L3 addresses. */
-    static const L3Type L3NULL;
+    static const L3Type& L3NULL() {
+        static L3Type o(0);
+	return o;
+    }
 public:
     /**
      * @brief Test if a L2 address (pSrcAddr) is a broadcast address.
@@ -72,11 +76,7 @@ public:
      * @return True if pSrcAddr is a braodcast address.
      */
     static inline bool isL2Broadcast(const L2Type& pSrcAddr) {
-#ifdef MIXIM_INET
-        return pSrcAddr.isBroadcast();
-#else
-        return pSrcAddr == L2BROADCAST;
-#endif
+        return pSrcAddr == L2BROADCAST();
     }
     /**
      * @brief Test if a L3 address (pSrcAddr) is a broadcast address.
@@ -85,7 +85,7 @@ public:
      * @return True if pSrcAddr is a braodcast address.
      */
     static inline bool isL3Broadcast(const L3Type& pSrcAddr) {
-        return pSrcAddr == L3BROADCAST;
+        return pSrcAddr == L3BROADCAST();
     }
 };
 

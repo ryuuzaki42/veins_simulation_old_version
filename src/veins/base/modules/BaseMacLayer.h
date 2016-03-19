@@ -23,10 +23,10 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "BaseLayer.h"
-#include "SimpleAddress.h"
-#include "MappingBase.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/modules/BaseLayer.h"
+#include "veins/base/utils/SimpleAddress.h"
+#include "veins/base/phyLayer/MappingBase.h"
 
 class BaseConnectionManager;
 class MacPkt;
@@ -97,12 +97,12 @@ public:
     BaseMacLayer() 
       : BaseLayer()
       , phy(NULL)
-      , myMacAddr(LAddress::L2NULL)
+      , myMacAddr(LAddress::L2NULL())
     {}
     BaseMacLayer(unsigned stacksize) 
       : BaseLayer(stacksize)
       , phy(NULL)
-      , myMacAddr(LAddress::L2NULL)
+      , myMacAddr(LAddress::L2NULL())
     {}
 
     /** @brief Initialization of the module and some variables*/

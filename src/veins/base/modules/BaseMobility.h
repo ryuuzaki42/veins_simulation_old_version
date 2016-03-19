@@ -23,11 +23,11 @@
 #ifndef BASE_MOBILITY_H
 #define BASE_MOBILITY_H
 
-#include "MiXiMDefs.h"
-#include "BatteryAccess.h"
-#include "Coord.h"
-#include "Move.h"
-#include "BaseWorldUtility.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/modules/BatteryAccess.h"
+#include "veins/base/utils/Coord.h"
+#include "veins/base/utils/Move.h"
+#include "veins/base/modules/BaseWorldUtility.h"
 
 using Veins::BatteryAccess;
 

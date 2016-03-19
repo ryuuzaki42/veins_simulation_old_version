@@ -5,7 +5,7 @@
  * @date 2007-08-14
  **/
 
-#include "winsupport.h"
+#include "veins/base/utils/winsupport.h"
 
 #ifdef _WIN32
 

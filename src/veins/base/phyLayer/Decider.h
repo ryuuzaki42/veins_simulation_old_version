@@ -9,10 +9,10 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "DeciderToPhyInterface.h"
-#include "ChannelSenseRequest_m.h"
-#include "ChannelState.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/DeciderToPhyInterface.h"
+#include "veins/base/messages/ChannelSenseRequest_m.h"
+#include "veins/base/phyLayer/ChannelState.h"
 
 using Veins::AirFrame;
 
@@ -134,6 +134,17 @@ public:
 	 * @param newChannel The new channel the radio has changed to.
 	 */
 	virtual void channelChanged(int newChannel) {}
+
+	/**
+	 * @brief Notifies the decider that phy layer is starting a transmission.
+	 *
+	 * This helps the decider interrupting a current reception. In a standard
+	 * 802.11 MAC, this should never happen, but in other MAC layers you might
+	 * decide to interrupt an ongoing reception and start transmitting. Thank
+	 * to this method, the decider can flag the ongoing frame as non received
+	 * because of the transmission.
+	 */
+	virtual void switchToTx() {}
 
 };
 

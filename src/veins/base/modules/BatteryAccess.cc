@@ -5,9 +5,9 @@
  *      Author: Karl Wessel
  */
 
-#include "BatteryAccess.h"
+#include "veins/base/modules/BatteryAccess.h"
 
-#include "FindModule.h"
+#include "veins/base/utils/FindModule.h"
 
 using Veins::BatteryAccess;
 

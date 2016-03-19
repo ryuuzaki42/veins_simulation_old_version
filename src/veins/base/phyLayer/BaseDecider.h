@@ -8,8 +8,8 @@
 #ifndef BASEDECIDER_H_
 #define BASEDECIDER_H_
 
-#include "MiXiMDefs.h"
-#include "Decider.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/Decider.h"
 
 class Mapping;
 

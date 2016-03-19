@@ -8,9 +8,9 @@
 #ifndef BATTERYACCESS_H_
 #define BATTERYACCESS_H_
 
-#include "MiXiMDefs.h"
-#include "BaseModule.h"
-#include "BaseBattery.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/modules/BaseModule.h"
+#include "veins/base/modules/BaseBattery.h"
 
 /**
  * @brief Extends BaseModule by several methods which provide

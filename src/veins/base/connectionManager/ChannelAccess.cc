@@ -26,13 +26,13 @@
  **************************************************************************/
 
 
-#include "base/connectionManager/ChannelAccess.h"
+#include "veins/base/connectionManager/ChannelAccess.h"
 
 #include <cassert>
 
-#include "FindModule.h"
-#include "BaseWorldUtility.h"
-#include "BaseConnectionManager.h"
+#include "veins/base/utils/FindModule.h"
+#include "veins/base/modules/BaseWorldUtility.h"
+#include "veins/base/connectionManager/BaseConnectionManager.h"
 
 using std::endl;
 
@@ -147,7 +147,7 @@ simtime_t ChannelAccess::calculatePropagationDelay(const NicEntry* nic) {
 	Coord           receiverPos = receiverModule->getMobilityModule()->getCurrentPosition(/*sStart*/);
 
 	// this time-point is used to calculate the distance between sending and receiving host
-	return receiverPos.distance(sendersPos) / BaseWorldUtility::speedOfLight;
+	return receiverPos.distance(sendersPos) / BaseWorldUtility::speedOfLight();
 }
 
 void ChannelAccess::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)

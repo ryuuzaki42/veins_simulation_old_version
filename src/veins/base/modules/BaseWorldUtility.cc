@@ -18,14 +18,12 @@
  *              provides world-required values
  **************************************************************************/
 
-#include "BaseWorldUtility.h"
-#include "FindModule.h"
-#include "BaseConnectionManager.h"
+#include "veins/base/modules/BaseWorldUtility.h"
+#include "veins/base/utils/FindModule.h"
+#include "veins/base/connectionManager/BaseConnectionManager.h"
 
 Define_Module(BaseWorldUtility);
 
-
-const double BaseWorldUtility::speedOfLight = 299792458.0; ///< meters per second
 
 BaseWorldUtility::BaseWorldUtility():
 		isInitialized(false)

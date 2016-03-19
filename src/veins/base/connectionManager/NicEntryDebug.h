@@ -22,7 +22,7 @@
 #ifndef NICENTRYDEBUG_H
 #define NICENTRYDEBUG_H
 
-#include "NicEntry.h"
+#include "veins/base/connectionManager/NicEntry.h"
 
 #include <map>
 #include <vector>

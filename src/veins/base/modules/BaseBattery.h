@@ -3,9 +3,9 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "BaseModule.h"
-#include "HostState.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/modules/BaseModule.h"
+#include "veins/base/utils/HostState.h"
 
 /**
  * @brief Defines the amount of power drawn by a device from

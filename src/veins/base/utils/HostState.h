@@ -16,7 +16,7 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
+#include "veins/base/utils/MiXiMDefs.h"
 
 /**
  * @brief HostState is published by the battery to announce host failure

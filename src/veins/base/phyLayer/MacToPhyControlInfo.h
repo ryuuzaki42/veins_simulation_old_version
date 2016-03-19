@@ -1,8 +1,8 @@
 #ifndef MACTOPHYCONTROLINFO_H_
 #define MACTOPHYCONTROLINFO_H_
 
-#include "MiXiMDefs.h"
-#include "Signal_.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/Signal_.h"
 
 /**
  * @brief Stores information which is needed by the physical layer

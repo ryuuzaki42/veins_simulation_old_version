@@ -13,15 +13,10 @@
  *              For further information see file COPYING
  *              in the top level directory
  ***************************************************************************/
-#include "NetwToMacControlInfo.h"
+#include "veins/base/utils/NetwToMacControlInfo.h"
 
 #include <cassert>
-#ifdef MIXIM_INET
-#include <Ieee802Ctrl_m.h>
-typedef Ieee802Ctrl           tNetwToMacControlInfoBase;
-#else
 typedef NetwToMacControlInfo  tNetwToMacControlInfoBase;
-#endif
 
 
 cObject *const NetwToMacControlInfo::setControlInfo(cMessage *const pMsg, const LAddress::L2Type& pDestAddr)

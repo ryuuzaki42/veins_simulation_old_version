@@ -23,9 +23,9 @@
 #ifndef BASE_LAYER_H
 #define BASE_LAYER_H
 
-#include "MiXiMDefs.h"
-#include "BatteryAccess.h"
-#include "PassedMessage.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/modules/BatteryAccess.h"
+#include "veins/base/utils/PassedMessage.h"
 
 using Veins::BatteryAccess;
 

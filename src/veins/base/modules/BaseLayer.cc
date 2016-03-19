@@ -24,7 +24,7 @@
  **************************************************************************/
 
 
-#include "BaseLayer.h"
+#include "veins/base/modules/BaseLayer.h"
 
 #include <assert.h>
 

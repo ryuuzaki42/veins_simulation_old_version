@@ -21,8 +21,8 @@
 #ifndef BASE_WORLD_UTIL_H
 #define BASE_WORLD_UTIL_H
 
-#include "MiXiMDefs.h"
-#include "Coord.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/utils/Coord.h"
 
 /**
  * @brief Provides information and utility methods for the whole simulation.
@@ -55,7 +55,9 @@ protected:
 
 public:
     /** @brief Speed of light in meters per second. */
-	static const double speedOfLight;
+	static const double speedOfLight() {
+		return 299792458.0; ///< meters per second
+	}
 
 protected:
     /**

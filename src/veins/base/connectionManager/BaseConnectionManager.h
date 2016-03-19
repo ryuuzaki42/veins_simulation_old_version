@@ -1,8 +1,8 @@
 #ifndef BASECONNECTIONMANAGER_H_
 #define BASECONNECTIONMANAGER_H_
 
-#include "MiXiMDefs.h"
-#include "NicEntry.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/connectionManager/NicEntry.h"
 
 namespace Veins {
 class ChannelAccess;

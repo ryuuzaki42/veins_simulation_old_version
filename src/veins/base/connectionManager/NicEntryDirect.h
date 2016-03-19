@@ -22,7 +22,7 @@
 #ifndef NICENTRYDIRECT_H
 #define NICENTRYDIRECT_H
 
-#include "NicEntry.h"
+#include "veins/base/connectionManager/NicEntry.h"
 
 
 /**

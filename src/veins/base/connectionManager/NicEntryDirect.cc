@@ -20,8 +20,8 @@
  **************************************************************************/
 
 
-#include "NicEntryDirect.h"
-#include "base/connectionManager/ChannelAccess.h"
+#include "veins/base/connectionManager/NicEntryDirect.h"
+#include "veins/base/connectionManager/ChannelAccess.h"
 
 #ifndef nicEV
 #define nicEV (ev.isDisabled()||!coreDebug) ? ev : ev << "NicEntry: "

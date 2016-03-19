@@ -25,8 +25,8 @@
 #include <sstream>
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "HostState.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/utils/HostState.h"
 
 #ifndef debugEV
 #define debugEV_clear (ev.isDisabled()||!debug) ? ev : ev
@@ -109,6 +109,15 @@ protected:
     const cModule *const findHost(void) const;
     /** @brief Function to get the logging name of id*/
     //std::string getLogName(int);
+
+    virtual void finish() {
+        cSimpleModule::finish();
+    }
+
+    virtual void finish(cComponent* component, simsignal_t signalID) {
+        cListener::finish(component, signalID);
+    }
+
   public:
 
     BaseModule();

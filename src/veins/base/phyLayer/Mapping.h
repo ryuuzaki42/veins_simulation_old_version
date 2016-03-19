@@ -8,8 +8,8 @@
 #ifndef MAPPING_H_
 #define MAPPING_H_
 
-#include "MappingBase.h"
-#include "MappingUtils.h"
+#include "veins/base/phyLayer/MappingBase.h"
+#include "veins/base/phyLayer/MappingUtils.h"
 
 
 #endif /* MAPPING_H_ */

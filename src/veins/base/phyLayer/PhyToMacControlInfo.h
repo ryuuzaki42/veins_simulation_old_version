@@ -3,8 +3,8 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "Decider.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/Decider.h"
 
 /**
  * @brief Controlinfo for packets which are send from Physical

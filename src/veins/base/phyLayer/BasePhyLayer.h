@@ -5,12 +5,12 @@
 #include <vector>
 #include <string>
 
-#include "MiXiMDefs.h"
-#include "base/connectionManager/ChannelAccess.h"
-#include "DeciderToPhyInterface.h"
-#include "MacToPhyInterface.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/connectionManager/ChannelAccess.h"
+#include "veins/base/phyLayer/DeciderToPhyInterface.h"
+#include "veins/base/phyLayer/MacToPhyInterface.h"
 
-#include "ChannelInfo.h"
+#include "veins/base/phyLayer/ChannelInfo.h"
 
 class AnalogueModel;
 class Decider;
@@ -90,13 +90,12 @@ protected:
 	 * the same time as an AirFrame starts (or ends). Depending on which message
 	 * is handled first the result of ChannelSenseRequest would differ.
 	 */
-	static short airFramePriority;
+	static short airFramePriority() {
+		return 10;
+	}
 
 	/** @brief Defines the strength of the thermal noise.*/
 	ConstantSimpleConstMapping* thermalNoise;
-
-	/** @brief The maximum transmission power a message can be send with */
-	double maxTXPower;
 
 	/** @brief The sensitivity describes the minimum strength a signal must have to be received.*/
 	double sensitivity;

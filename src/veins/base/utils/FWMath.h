@@ -17,6 +17,11 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
+// if we're linking with the INET Framework, FWMath.h is provided by there...
+#ifdef WITH_INET
+#else
+// ...otherwise we provide our own in this file.
+
 #ifndef FWMATH_H
 #define FWMATH_H
 
@@ -25,7 +30,7 @@
 //
 
 #include <math.h>
-#include "MiXiMDefs.h"
+#include "veins/base/utils/MiXiMDefs.h"
 
 /* Windows math.h doesn't define the the following variables: */
 #ifndef M_E
@@ -169,3 +174,5 @@ class MIXIM_API FWMath {
 };
 
 #endif
+
+#endif  // WITH_INET

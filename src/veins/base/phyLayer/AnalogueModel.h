@@ -1,8 +1,8 @@
 #ifndef ANALOGUEMODEL_
 #define ANALOGUEMODEL_
 
-#include "MiXiMDefs.h"
-#include "Coord.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/utils/Coord.h"
 
 namespace Veins {
 class AirFrame;

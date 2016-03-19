@@ -20,15 +20,14 @@
  **************************************************************************/
 
 
-#include "BaseMobility.h"
+#include "veins/base/modules/BaseMobility.h"
 
 #include <sstream>
 
-#include "Coord.h"
-#include "FWMath.h"
-#include "BorderMsg_m.h"
-#include "FindModule.h"
-#include "BaseWorldUtility.h"
+#include "veins/base/utils/Coord.h"
+#include "veins/base/messages/BorderMsg_m.h"
+#include "veins/base/utils/FindModule.h"
+#include "veins/base/modules/BaseWorldUtility.h"
 
 Define_Module(BaseMobility);
 

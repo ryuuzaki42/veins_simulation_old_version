@@ -20,7 +20,7 @@
 // **************************************************************************/
 
 cplusplus {{
-    #include "SimpleAddress.h"
+#include "veins/base/utils/SimpleAddress.h"
 }}
 
 class LAddress::L2Type extends void;
@@ -32,8 +32,9 @@ class LAddress::L2Type extends void;
 // The basic MAC packet only provides source and destination address
 //
 // @author Daniel Willkomm
-packet MacPkt {
+packet MacPkt
+{
     LAddress::L2Type destAddr; // destination mac address
-    LAddress::L2Type srcAddr; // source mac address
-    long sequenceId; // Sequence Number to detect duplicate messages
+    LAddress::L2Type srcAddr;  // source mac address
+    long             sequenceId; // Sequence Number to detect duplicate messages
 }

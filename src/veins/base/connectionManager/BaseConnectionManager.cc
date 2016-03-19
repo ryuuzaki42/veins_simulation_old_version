@@ -1,11 +1,11 @@
-#include "BaseConnectionManager.h"
+#include "veins/base/connectionManager/BaseConnectionManager.h"
 
 #include <cassert>
 
-#include "NicEntryDebug.h"
-#include "NicEntryDirect.h"
-#include "BaseWorldUtility.h"
-#include "FindModule.h"
+#include "veins/base/connectionManager/NicEntryDebug.h"
+#include "veins/base/connectionManager/NicEntryDirect.h"
+#include "veins/base/modules/BaseWorldUtility.h"
+#include "veins/base/utils/FindModule.h"
 
 #ifndef ccEV
 #define ccEV (ev.isDisabled()||!coreDebug) ? ev : ev << getName() << ": "

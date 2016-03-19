@@ -25,8 +25,7 @@
 
 #include <omnetpp.h>
 
-#include "Coord.h"
-#include "FWMath.h"
+#include "veins/base/utils/Coord.h"
 
 /**
  * @brief Class to store object position and movement

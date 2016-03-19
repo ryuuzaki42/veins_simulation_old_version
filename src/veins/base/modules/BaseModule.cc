@@ -18,11 +18,11 @@
  * part of:     framework implementation developed by tkn
  **************************************************************************/
 
-#include "BaseModule.h"
+#include "veins/base/modules/BaseModule.h"
 
 #include <cassert>
 
-#include "FindModule.h"
+#include "veins/base/utils/FindModule.h"
 
 // Could not initialize simsignal_t it here!? I got the POST_MODEL_CHANGE id!?
 const simsignalwrap_t BaseModule::catHostStateSignal = simsignalwrap_t(MIXIM_SIGNAL_HOSTSTATE_NAME);
@@ -44,7 +44,8 @@ BaseModule::BaseModule(unsigned stacksize):
  */
 void BaseModule::initialize(int stage) {
     if (stage == 0) {
-    	notAffectedByHostState = hasPar("notAffectedByHostState") && par("notAffectedByHostState").boolValue();
+    	notAffectedByHostState = 	hasPar("notAffectedByHostState")
+								 && par("notAffectedByHostState").boolValue();
         hasPar("debug") ? debug = par("debug").boolValue() : debug = true;
         findHost()->subscribe(catHostStateSignal, this);
     }

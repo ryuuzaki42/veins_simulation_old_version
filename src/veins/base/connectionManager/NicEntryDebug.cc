@@ -19,12 +19,12 @@
  *              ConnectionManager module
  **************************************************************************/
 
-#include "NicEntryDebug.h"
+#include "veins/base/connectionManager/NicEntryDebug.h"
 
 #include <cassert>
 
-#include "base/connectionManager/ChannelAccess.h"
-#include "FindModule.h"
+#include "veins/base/connectionManager/ChannelAccess.h"
+#include "veins/base/utils/FindModule.h"
 
 #ifndef nicEV
 #define nicEV (ev.isDisabled()||!coreDebug) ? ev : ev << "NicEntry: "

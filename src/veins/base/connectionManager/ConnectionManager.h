@@ -1,8 +1,8 @@
 #ifndef CONNECTIONMANAGER_H_
 #define CONNECTIONMANAGER_H_
 
-#include "MiXiMDefs.h"
-#include "BaseConnectionManager.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/connectionManager/BaseConnectionManager.h"
 
 /**
  * @brief BaseConnectionManager implementation which only defines a

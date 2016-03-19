@@ -18,7 +18,7 @@
 // **************************************************************************/
 
 cplusplus {{
-#include "Coord.h"
+#include "veins/base/utils/Coord.h"
 }}
 
 class noncobject Coord;

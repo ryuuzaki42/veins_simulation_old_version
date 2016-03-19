@@ -1,4 +1,4 @@
-#include "ChannelInfo.h"
+#include "veins/base/phyLayer/ChannelInfo.h"
 
 #include <iostream>
 #include <assert.h>

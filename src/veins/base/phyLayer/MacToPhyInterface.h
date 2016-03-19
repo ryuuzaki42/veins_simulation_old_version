@@ -3,10 +3,10 @@
 
 #include <omnetpp.h>
 
-#include "MiXiMDefs.h"
-#include "Signal_.h"
-#include "ChannelState.h"
-#include "PhyUtils.h"
+#include "veins/base/utils/MiXiMDefs.h"
+#include "veins/base/phyLayer/Signal_.h"
+#include "veins/base/phyLayer/ChannelState.h"
+#include "veins/base/phyLayer/PhyUtils.h"
 
 
 /**
