@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "veins/modules/application/traci/TraCIDemo11p.h"
+#include "veins/modules/application/default_veins_TraCI/default_veins_TraCI.h"
 
 using Veins::TraCIMobilityAccess;
 using Veins::AnnotationManagerAccess;

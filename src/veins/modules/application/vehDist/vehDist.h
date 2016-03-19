@@ -19,8 +19,8 @@
 #ifndef vehDist_H
 #define vehDist_H
 
-#include "BaseWaveApplLayer.h"
-#include "modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
 
 using Veins::TraCIMobility;
 using Veins::AnnotationManager;
@@ -35,7 +35,7 @@ class vehDist : public BaseWaveApplLayer {
         };
 
     protected:
-        TraCIMobility* traci;
+        TraCIMobility* traci; // Ver
         AnnotationManager* annotations;
         simtime_t lastDroveAt;
         bool sentMessage;

@@ -16,7 +16,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/vehDist/vehDist_rsu.h"
+#include "veins/modules/application/vehDist/vehDist_rsu.h"
 
 using Veins::AnnotationManagerAccess;
 

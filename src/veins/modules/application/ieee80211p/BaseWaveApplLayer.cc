@@ -21,10 +21,9 @@
 #include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
 
 // Adicionado (Minicurso_UFPI)
-#include "modules/mobility/traci/TraCIMobility.h"
-
-// Adicionado (Minicurso_UFPI)
+#include "veins/modules/mobility/traci/TraCIMobility.h"
 using Veins::TraCIMobilityAccess;
+//
 
 const simsignalwrap_t BaseWaveApplLayer::mobilityStateChangedSignal = simsignalwrap_t(MIXIM_SIGNAL_MOBILITY_CHANGE_NAME);
 

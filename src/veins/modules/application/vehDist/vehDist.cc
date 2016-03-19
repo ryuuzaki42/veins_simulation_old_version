@@ -16,7 +16,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/vehDist/vehDist.h"
+#include "veins/modules/application/vehDist/vehDist.h"
 
 using Veins::TraCIMobilityAccess;
 using Veins::AnnotationManagerAccess;
@@ -28,7 +28,7 @@ Define_Module(vehDist);
 void vehDist::initialize(int stage) {
     BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     if (stage == 0) {
-        traci = TraCIMobilityAccess().get(getParentModule());
+        traci = TraCIMobilityAccess().get(getParentModule()); //TODO VER
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
@@ -327,14 +327,14 @@ string vehDist::neighborWithSmallDistanceToTarge(string key) {
 
     unsigned short int percentP = 20; // 20 meaning 20%
 
-    neighborDistanceLocalVeh = traci->commandDistanceRequest(curPosition, messagesBuffer[key].getTargetPos(), false);
+    neighborDistanceLocalVeh = traci->getCommandInterface()->getDistance(curPosition, messagesBuffer[key].getTargetPos(), false);
     for (itBeaconNeighbors = beaconStatusNeighbors.begin(); itBeaconNeighbors != beaconStatusNeighbors.end(); itBeaconNeighbors++) {
-        neighborDistanceBefore = traci->commandDistanceRequest(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
-        neighborDistanceNow = traci->commandDistanceRequest(itBeaconNeighbors->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceBefore = traci->getCommandInterface()->getDistance(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceNow = traci->getCommandInterface()->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
 
-        if (neighborDistanceNow > 707){
+        if (neighborDistanceNow > 720){
             cout << "id: " << key << " source: " <<itBeaconNeighbors->second.getSource() << endl;
-            cout << "neighborDistanceNow > 700, value: " << neighborDistanceNow << " target: " << messagesBuffer[key].getTargetPos() << endl;
+            cout << "neighborDistanceNow > 720, value: " << neighborDistanceNow << " target: " << messagesBuffer[key].getTargetPos() << endl;
             exit(1);
         }
 
@@ -409,13 +409,13 @@ string vehDist::getNeighborSmallDistanceToTarge(string key) {
     string vehID = findHost()->getFullName();
     int neighborSmallDistance, neighborDistanceBefore, neighborDistanceNow, senderTmpDistance; // They are Integer in way to ignore small differences
 
-    senderTmpDistance = traci->commandDistanceRequest(traci->getCurrentPosition(), messagesBuffer[key].getTargetPos(), false);
+    senderTmpDistance = traci->getCommandInterface()->getDistance(traci->getCurrentPosition(), messagesBuffer[key].getTargetPos(), false);
     neighborSmallDistance = senderTmpDistance;
 
     unordered_map<string, WaveShortMessage>::iterator itBeacon;
     for (itBeacon = beaconStatusNeighbors.begin(); itBeacon != beaconStatusNeighbors.end(); itBeacon++) {
-        neighborDistanceBefore = traci->commandDistanceRequest(itBeacon->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
-        neighborDistanceNow = traci->commandDistanceRequest(itBeacon->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceBefore = traci->getCommandInterface()->getDistance(itBeacon->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceNow = traci->getCommandInterface()->getDistance(itBeacon->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
 
         if (neighborDistanceNow < neighborDistanceBefore) { // Veh is going in direction to target
             if (neighborDistanceNow < senderTmpDistance) { // The distance of this veh to target is small than the carry veh now
@@ -816,7 +816,7 @@ void vehDist::handleSelfMsg(cMessage* msg) {
 
 void vehDist::vehUpdateTimeToSend() {
     cout << "Vehicle: " << findHost()->getFullName() << " timeToSend: " << timeToSend;
-    double distance = traci->commandDistanceRequest(traci->getPositionAt(simTime() - timeToUpdateTimeToSend), curPosition, false);
+    double distance = traci->getCommandInterface()->getDistance(traci->getPositionAt(simTime() - timeToUpdateTimeToSend), curPosition, false);
 
     if (distance > distanceTimeToSend){
         if(fabs(timeToSend - 0.1) > 0.0000001f) { // timeToSend > 0.1f

@@ -11,10 +11,8 @@ projects/**/resultsEnd
 */*/*.out
 */*/*/*.out
 #
-*/*/*_m.h
-*/*/*_m.cc
-*/*/*/*_m.h
-*/*/*/*_m.cc
+*/*/*/*/*_m.h
+*/*/*/*/*_m.cc
 #
 #/images
 #/tests

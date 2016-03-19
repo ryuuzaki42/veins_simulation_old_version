@@ -22,7 +22,7 @@
 
 #include "veins/base/utils/asserts.h"
 
-#include "veins/modules/application/traci/TraCITestApp.h"
+#include "veins/modules/application/default_veins_TraCI/default_veins_TraCI_TestApp.h"
 #include "veins/modules/mobility/traci/TraCIColor.h"
 
 using Veins::TraCIMobility;
