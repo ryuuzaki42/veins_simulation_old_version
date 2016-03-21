@@ -37,9 +37,9 @@ class default_veins_TraCI : public BaseWaveApplLayer {
         virtual void initialize(int stage);
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
     protected:
-		TraCIMobility* mobility;
-		TraCICommandInterface* traci;
-		TraCICommandInterface::Vehicle* traciVehicle;
+        TraCIMobility* mobility;
+        TraCICommandInterface* traci;
+        TraCICommandInterface::Vehicle* traciVehicle;
         AnnotationManager* annotations;
         simtime_t lastDroveAt;
         bool sentMessage;

@@ -21,8 +21,8 @@
 #ifndef minicurso_UFPI_TraCI_RSU_H
 #define minicurso_UFPI_TraCI_RSU_H
 
-#include "BaseWaveApplLayer.h"
-#include "modules/world/annotations/AnnotationManager.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+#include "veins/modules/world/annotations/AnnotationManager.h"
 
 using Veins::AnnotationManager;
 

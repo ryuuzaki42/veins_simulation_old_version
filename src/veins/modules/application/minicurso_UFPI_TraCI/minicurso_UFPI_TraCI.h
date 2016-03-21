@@ -21,10 +21,12 @@
 #ifndef minicurso_UFPI_TraCI_H
 #define minicurso_UFPI_TraCI_H
 
-#include "BaseWaveApplLayer.h"
-#include "modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/mobility/traci/TraCICommandInterface.h"
 
 using Veins::TraCIMobility;
+using Veins::TraCICommandInterface;
 using Veins::AnnotationManager;
 
  // Adicionado (Minicurso_UFPI)
@@ -38,7 +40,10 @@ class minicurso_UFPI_TraCI : public BaseWaveApplLayer {
         virtual void initialize(int stage);
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
     protected:
-        TraCIMobility* traci;
+        TraCIMobility* mobility;
+        TraCICommandInterface* traci;
+        TraCICommandInterface::Vehicle* traciVehicle;
+        TraCICommandInterface::Lane* traciLane;
         AnnotationManager* annotations;
         simtime_t lastDroveAt;
 

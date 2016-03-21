@@ -21,8 +21,10 @@
 
 #include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
 #include "veins/modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/mobility/traci/TraCICommandInterface.h"
 
 using Veins::TraCIMobility;
+using Veins::TraCICommandInterface;
 using Veins::AnnotationManager;
 
 class vehDist : public BaseWaveApplLayer {
@@ -35,7 +37,9 @@ class vehDist : public BaseWaveApplLayer {
         };
 
     protected:
-        TraCIMobility* traci; // Ver
+        TraCIMobility* mobility;
+        TraCICommandInterface* traci;
+        TraCICommandInterface::Vehicle* traciVehicle;
         AnnotationManager* annotations;
         simtime_t lastDroveAt;
         bool sentMessage;
@@ -59,7 +63,7 @@ class vehDist : public BaseWaveApplLayer {
         vector <string> messagesDelivered;
         vector <string> messagesOrderReceived;
 
-        float timeToSend;
+        unsigned short int timeToSend;
         float distanceTimeToSend;
         float timeSendLimitTime;
         simtime_t timeToFinishLastStartSend;
@@ -68,6 +72,7 @@ class vehDist : public BaseWaveApplLayer {
 
         float vehOffSet;
         float ttlBeaconStatus;
+        string vehCategory;
         float timeLimitGenerateBeaconMessage;
         unsigned short int beaconMessageBufferSize;
         unsigned short int beaconStatusBufferSize;
@@ -81,7 +86,7 @@ class vehDist : public BaseWaveApplLayer {
 
         struct smallDistance {
             unsigned short int distanceToTarget; // Int to ignore small differences
-            float timeToSendVeh;
+            unsigned short int timeToSendVeh;
             string categoryVeh;
         };
 

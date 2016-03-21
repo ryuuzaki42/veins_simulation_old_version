@@ -29,6 +29,7 @@ void vehDist_rsu::initialize(int stage) {
         ASSERT(mobi);
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
+        sentMessage = false;
 
         rsuInitializeVariables();
     }
@@ -117,6 +118,11 @@ void vehDist_rsu::restartFilesResult() {
 }
 
 void vehDist_rsu::onData(WaveShortMessage* wsm) {
+//    findHost()->getDisplayString().updateWith("r=16,green");
+//
+//    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
+//
+//    if (!sentMessage) sendMessage(wsm->getWsmData());
 }
 
 void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {

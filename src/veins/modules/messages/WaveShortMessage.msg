@@ -72,7 +72,7 @@ packet WaveShortMessage {
     // Unique local message identification
     string localMessageIdentificaton;
     // Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
-    unsigned int hopCount = 0;
+    unsigned short hopCount = 0;
     // Determine if a message has been successfully received or not. False is default value assigned to it
     bool ackRequest = false;
 
@@ -98,5 +98,5 @@ packet WaveShortMessage {
     Coord TargetPos; // Target position for de message
     Coord senderPosPrevious; // Position previous of the veh
     unsigned short type; // Type of message
-    float timeToSend; // TimeToSend to try another message
+    unsigned short timeToSend; // TimeToSend to try another message
 }

@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/minicurso_UFPI_TraCI/minicurso_UFPI_TraCI_RSU.h"
+#include "veins/modules/application/minicurso_UFPI_TraCI/minicurso_UFPI_TraCI_RSU.h"
 
 using Veins::AnnotationManagerAccess;
 

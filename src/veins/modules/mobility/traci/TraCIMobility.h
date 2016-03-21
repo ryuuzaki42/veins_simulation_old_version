@@ -129,16 +129,6 @@ class TraCIMobility : public BaseMobility {
 			return vehicleCommandInterface;
         }
 
-        // Adicionado (Minicurso_UFPI)
-        double commandGetLaneLength(std::string laneId) {
-            return getCommandInterface()->getLaneLength(laneId);
-        }
-
-        // Added to get vehicle category
-        std::string getVehicleType() {
-            return getCommandInterface()->getVehicleTypeId(getExternalId());
-        }
-
     protected:
         bool debug; /**< whether to emit debug messages */
         int accidentCount; /**< number of accidents */

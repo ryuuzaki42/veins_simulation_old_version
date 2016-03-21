@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/minicurso_UFPI_TraCI/minicurso_UFPI_TraCI.h"
+#include "veins/modules/application/minicurso_UFPI_TraCI/minicurso_UFPI_TraCI.h"
 
 using Veins::TraCIMobilityAccess;
 using Veins::AnnotationManagerAccess;
@@ -30,7 +30,10 @@ Define_Module(minicurso_UFPI_TraCI);
 void minicurso_UFPI_TraCI::initialize(int stage) {
     BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(stage);
     if (stage == 0) {
-        traci = TraCIMobilityAccess().get(getParentModule());
+        mobility = TraCIMobilityAccess().get(getParentModule());
+        traci = mobility->getCommandInterface();
+        //traciLane = mobility->getLaneCommandInterface(); // TODO VER TEST
+        traciVehicle = mobility->getVehicleCommandInterface();
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
@@ -53,7 +56,7 @@ void minicurso_UFPI_TraCI::initialize(int stage) {
 
 void minicurso_UFPI_TraCI::onBeacon(WaveShortMessage* wsm) {
     // Adicionado (Minicurso_UFPI)
-    if (traci->getRoadId().compare(wsm->getRoadId()) == 0)
+    if (mobility->getRoadId().compare(wsm->getRoadId()) == 0)
         speedsList.push_back(make_pair(wsm->getArrivalTime(), wsm->getSenderSpeed()));
     std::cout << "\nminicurso_UFPI_TraCI::onBeacon, wsm-speed:" << wsm->getSenderSpeed() ;
 
@@ -87,13 +90,13 @@ void minicurso_UFPI_TraCI::receiveSignal(cComponent* source, simsignal_t signalI
     }
 }
 void minicurso_UFPI_TraCI::handleParkingUpdate(cObject* obj) {
-    isParking = traci->getParkingState();
+    isParking = mobility->getParkingState();
     if (sendWhileParking == false) {
         if (isParking == true) {
             (FindModule<BaseConnectionManager*>::findGlobalModule())->unregisterNic(this->getParentModule()->getSubmodule("nic"));
         }
         else {
-            Coord pos = traci->getCurrentPosition();
+            Coord pos = mobility->getCurrentPosition();
             (FindModule<BaseConnectionManager*>::findGlobalModule())->registerNic(this->getParentModule()->getSubmodule("nic"), (ChannelAccess*) this->getParentModule()->getSubmodule("nic")->getSubmodule("phy80211p"), &pos);
         }
     }
@@ -130,8 +133,8 @@ void minicurso_UFPI_TraCI::handleSelfMsg(cMessage* msg){
       scheduleAt(simTime() + 5.0, updateTablesEvt);
     }
     else if(msg ==  insertCurrentSpeedEvt){
-      speedsList.push_back(make_pair(simTime(),traci->getSpeed()));
-      congestionTable[traci->getRoadId()].push_back(make_pair(simTime(),traci->getSpeed()));
+      speedsList.push_back(make_pair(simTime(),mobility->getSpeed()));
+      congestionTable[mobility->getRoadId()].push_back(make_pair(simTime(),mobility->getSpeed()));
       scheduleAt(simTime() + 1.0, insertCurrentSpeedEvt);
     }
     else{
@@ -171,19 +174,20 @@ void minicurso_UFPI_TraCI::verifyAndSendCongestionMessage() {
     double avg = sum/speedsList.size();
     if(avg < 5.0){
         string toSend = "";
-        toSend += traci->getRoadId() + "|" + to_string(avg) + "|" + to_string(++minicurso_UFPI_TraCI::messageId);
+        toSend += mobility->getRoadId() + "|" + to_string(avg) + "|" + to_string(++minicurso_UFPI_TraCI::messageId);
         lastSent = simTime();
         sendMessage(toSend);
     }
-    double length = traci->commandGetLaneLength(traci->commandGetLaneId());
+    double length = traciLane->getLength();
     if(length > 0)
-        traci->commandChangeRoute(traci->getRoadId(), avg/length);
+        traciVehicle->changeRoute(mobility->getRoadId(), avg/length);
+
 }
 
 // Novo método onData
 void minicurso_UFPI_TraCI::onData(WaveShortMessage* wsm) {
     findHost()->getDisplayString().updateWith("r=16,green");
-    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), traci->getPositionAt(simTime()), "blue"));
+    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobility->getPositionAt(simTime()), "blue"));
     string data(wsm->getWsmData());
     string road, speed, messageIdentifier;
     std::cout << "\nminicurso_UFPI_TraCI::onData, wsm-data:\n" << data;
@@ -208,16 +212,16 @@ void minicurso_UFPI_TraCI::onData(WaveShortMessage* wsm) {
         ++i;
     }
     congestionTable[road].push_back(make_pair(simTime(), stod(speed,0)));
-    if(road.compare(traci->getRoadId()) == 0)
+    if(road.compare(mobility->getRoadId()) == 0)
         lastSent = simTime();
     vector<pair<simtime_t, double> > speeds = congestionTable[road];
     double sum = 0;
     for(unsigned short int i = 0; i < speeds.size(); ++i)
         sum += speeds[i].second;
     double avg = sum/speeds.size();
-    double length = traci->commandGetLaneLength(traci->commandGetLaneId());
+    double length = traciLane->getLength();
     if(length>0)
-        traci->commandChangeRoute(road,avg/length);
+        traciVehicle->changeRoute(road,avg/length);
     //if (traci->getRoadId()[0] != ':') traci->commandChangeRoute(wsm->getWsmData(), 9999);
     //if (!sentMessage) sendMessage(wsm->getWsmData());
 }

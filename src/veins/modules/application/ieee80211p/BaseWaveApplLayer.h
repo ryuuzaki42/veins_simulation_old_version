@@ -111,10 +111,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         virtual void handlePositionUpdate(cObject* obj);
 
-        // test Jonh
-        static unsigned short int vehCount;
-        static unsigned short int rsuCount;
-
         // record in file
         std::ofstream myfile;
 

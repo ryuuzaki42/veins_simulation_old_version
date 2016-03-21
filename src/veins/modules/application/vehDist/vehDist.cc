@@ -27,8 +27,10 @@ Define_Module(vehDist);
 
 void vehDist::initialize(int stage) {
     BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
-    if (stage == 0) {
-        traci = TraCIMobilityAccess().get(getParentModule()); //TODO VER
+    if (stage == 0) { // traci - mobility, traci->getComand - traci, new traciVehice
+        mobility = TraCIMobilityAccess().get(getParentModule());
+        traci = mobility->getCommandInterface();
+        traciVehicle = mobility->getVehicleCommandInterface();
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
@@ -51,6 +53,7 @@ void vehDist::vehInitializeVariables() {
     beaconMessageBufferSize = par("beaconMessageBufferSize");
     beaconStatusBufferSize = par("beaconStatusBufferSize");
     ttlBeaconStatus = static_cast<float>(par("ttlBeaconStatus").doubleValue());
+    vehCategory = traciVehicle->getTypeId();
 
     if(myId == 0) { // Veh must be the first to generate messages, so your offset is 0;
         vehOffSet = 0;
@@ -114,8 +117,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
             } else {
                 stringTmp +=", ";
             }
-            stringTmp += traci->getVehicleType().c_str();
-            wsm->setWsmData(stringTmp.c_str());
+            wsm->setWsmData(vehCategory.c_str());
 
             if(messagesBuffer.size() >= beaconMessageBufferSize){
                 removeOldestInputBeaconMessage();
@@ -276,7 +278,10 @@ void vehDist::sendBeaconMessage() {
         }
         timeToFinishLastStartSend += timeSendLimitTime;
     } else {
-        scheduleAt((simTime() + timeToSend), sendBeaconMessageEvt);
+        if(timeToSend < 0){
+            cout << "timeToSend < 0, value:" << timeToSend << endl;
+        }
+        scheduleAt((simTime() + (timeToSend/1000)), sendBeaconMessageEvt);
     }
 }
 
@@ -323,14 +328,14 @@ string vehDist::neighborWithSmallDistanceToTarge(string key) {
     int distance, smallDistanceT, smallDistanceP;
     string category, vehIdP, vehIdT;
     smallDistance sD;
-    float timeToSendVeh;
+    unsigned short int timeToSendVeh;
 
     unsigned short int percentP = 20; // 20 meaning 20%
 
-    neighborDistanceLocalVeh = traci->getCommandInterface()->getDistance(curPosition, messagesBuffer[key].getTargetPos(), false);
+    neighborDistanceLocalVeh = traci->getDistance(curPosition, messagesBuffer[key].getTargetPos(), false);
     for (itBeaconNeighbors = beaconStatusNeighbors.begin(); itBeaconNeighbors != beaconStatusNeighbors.end(); itBeaconNeighbors++) {
-        neighborDistanceBefore = traci->getCommandInterface()->getDistance(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
-        neighborDistanceNow = traci->getCommandInterface()->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceBefore = traci->getDistance(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceNow = traci->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
 
         if (neighborDistanceNow > 720){
             cout << "id: " << key << " source: " <<itBeaconNeighbors->second.getSource() << endl;
@@ -409,19 +414,19 @@ string vehDist::getNeighborSmallDistanceToTarge(string key) {
     string vehID = findHost()->getFullName();
     int neighborSmallDistance, neighborDistanceBefore, neighborDistanceNow, senderTmpDistance; // They are Integer in way to ignore small differences
 
-    senderTmpDistance = traci->getCommandInterface()->getDistance(traci->getCurrentPosition(), messagesBuffer[key].getTargetPos(), false);
+    senderTmpDistance = traci->getDistance(mobility->getCurrentPosition(), messagesBuffer[key].getTargetPos(), false);
     neighborSmallDistance = senderTmpDistance;
 
     unordered_map<string, WaveShortMessage>::iterator itBeacon;
     for (itBeacon = beaconStatusNeighbors.begin(); itBeacon != beaconStatusNeighbors.end(); itBeacon++) {
-        neighborDistanceBefore = traci->getCommandInterface()->getDistance(itBeacon->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
-        neighborDistanceNow = traci->getCommandInterface()->getDistance(itBeacon->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceBefore = traci->getDistance(itBeacon->second.getSenderPosPrevious(), messagesBuffer[key].getTargetPos(), false);
+        neighborDistanceNow = traci->getDistance(itBeacon->second.getSenderPos(), messagesBuffer[key].getTargetPos(), false);
 
         if (neighborDistanceNow < neighborDistanceBefore) { // Veh is going in direction to target
             if (neighborDistanceNow < senderTmpDistance) { // The distance of this veh to target is small than the carry veh now
 
                 cout << " The distance is smaller to target " << endl;
-                cout << " Position of this veh (" << findHost()->getFullName() << "): " << traci->getCurrentPosition() << endl;
+                cout << " Position of this veh (" << findHost()->getFullName() << "): " << mobility->getCurrentPosition() << endl;
                 cout << " Sender beacon pos previous: " << itBeacon->second.getSenderPosPrevious() << endl;
                 cout << " Sender beacon pos now: " << itBeacon->second.getSenderPos() << endl;
                 cout << " Message id: " << key << endl;
@@ -580,7 +585,7 @@ void vehDist::saveVehStartPosition(string fileNameLocation) {
     } else {
         myfile.open (fileNameLocation, std::ios_base::app);
     }
-    myfile << findHost()->getFullName() << ": "<< traci->getCurrentPosition() << endl;
+    myfile << findHost()->getFullName() << ": "<< mobility->getCurrentPosition() << endl;
     myfile.close();
 }
 
@@ -611,7 +616,7 @@ void vehDist::restartFilesResult() {
 }
 
 void vehDist::vehUpdatePosition() {
-    vehPositionPrevious = traci->getCurrentPosition();
+    vehPositionPrevious = mobility->getCurrentPosition();
     //cout << "initial positionPrevious: " << vehPositionPrevious << endl;
     sendUpdatePosisitonVeh = new cMessage("Event update position vehicle", SendEvtUpdatePositionVeh);
     //cout << findHost()->getFullName() << " at simtime: "<< simTime() << "schedule created UpdatePosition to: "<< (simTime() + par("vehTimeUpdatePosition").doubleValue()) << endl;
@@ -619,7 +624,7 @@ void vehDist::vehUpdatePosition() {
 }
 
 void vehDist::vehCreateUpdateTimeToSendEvent() {
-    timeToSend = 0.1; // Send in: 0.1, 0.2, ...
+    timeToSend = 100; // Send in: 100 ms or 0.1 s
     distanceTimeToSend = 10; // Equal to 10 m/s or 36 km/h
     timeSendLimitTime = par("beaconMessageInterval").doubleValue(); // #5; // Limit that timeToSend can be (one message by 5s), value must be (bufferMessage limit) * timeToSend, in this case 50 * 0.1 = 5
     timeToUpdateTimeToSend = 1; // Will update every one second
@@ -697,11 +702,11 @@ WaveShortMessage* vehDist::prepareBeaconStatusWSM(std::string name, int lengthBi
     //wsm->setSenderAddressTemporary(findHost()->getFullName());
     //wsm->setTarget(); // => "BROADCAST"
 
-    wsm->setRoadId(traci->getRoadId().c_str());
-    wsm->setSenderSpeed(traci->getSpeed());
-    wsm->setCategory(traci->getVehicleType().c_str());
+    wsm->setRoadId(mobility->getRoadId().c_str());
+    wsm->setSenderSpeed(mobility->getSpeed());
+    wsm->setCategory(vehCategory.c_str());
     //wsm->setSenderPos(curPosition);
-    wsm->setSenderPos(traci->getCurrentPosition());
+    wsm->setSenderPos(mobility->getCurrentPosition());
     wsm->setSenderPosPrevious(vehPositionPrevious);
     wsm->setTimeToSend(timeToSend);
 
@@ -716,9 +721,9 @@ WaveShortMessage* vehDist::prepareBeaconStatusWSM(std::string name, int lengthBi
 WaveShortMessage* vehDist::updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId) {
     wsm->setSenderAddressTemporary(findHost()->getFullName());
     wsm->setRecipientAddressTemporary(rcvId.c_str());
-    wsm->setRoadId(traci->getRoadId().c_str());
-    wsm->setCategory(traci->getVehicleType().c_str());
-    wsm->setSenderSpeed(traci->getSpeed());
+    wsm->setRoadId(mobility->getRoadId().c_str());
+    wsm->setCategory(vehCategory.c_str());
+    wsm->setSenderSpeed(mobility->getSpeed());
     wsm->setSenderPos(curPosition);
     wsm->setSenderPosPrevious(vehPositionPrevious);
     wsm->setHeading(getVehHeading4());
@@ -816,23 +821,38 @@ void vehDist::handleSelfMsg(cMessage* msg) {
 
 void vehDist::vehUpdateTimeToSend() {
     cout << "Vehicle: " << findHost()->getFullName() << " timeToSend: " << timeToSend;
-    double distance = traci->getCommandInterface()->getDistance(traci->getPositionAt(simTime() - timeToUpdateTimeToSend), curPosition, false);
+    double distance = traci->getDistance(mobility->getPositionAt(simTime() - timeToUpdateTimeToSend), curPosition, false);
+
+//    if (distance > distanceTimeToSend){
+//        if(fabs(timeToSend - 0.1) > 0.0000001f) { // timeToSend > 0.1f
+//            timeToSend -= 0.1;
+//
+//            if (fabs(timeToSend - 0.1) < -0.0000001f) {
+//                cout << endl << "Error timeToSend:" << timeToSend << " is less than 0.1" << endl;
+//                exit(1);
+//            }
+//        }
+//    } else {
+//        if (timeToSend < timeSendLimitTime){
+//            timeToSend += 0.1;
+//        }
+//    }
 
     if (distance > distanceTimeToSend){
-        if(fabs(timeToSend - 0.1) > 0.0000001f) { // timeToSend > 0.1f
-            timeToSend -= 0.1;
+         if(timeToSend > 100) { // timeToSend > 0.1f
+             timeToSend -= 100;
 
-            if (fabs(timeToSend - 0.1) < -0.0000001f) {
-                cout << endl << "Error timeToSend:" << timeToSend << " is less than 0.1" << endl;
-                exit(1);
-            }
-        }
-    } else {
-        if (timeToSend < timeSendLimitTime){
-            timeToSend += 0.1;
-        }
-    }
-    cout << " Updated to: " << timeToSend << " at: " << simTime() << " by: " <<  distance << " traveled ["<< traci->getPositionAt(simTime() - timeToUpdateTimeToSend) << " " << curPosition << "]" << endl;
+             if (timeToSend < 100) {
+                 cout << endl << "Error timeToSend:" << timeToSend << " is less than 1" << endl;
+                 exit(1);
+             }
+         }
+     } else {
+         if (timeToSend < timeSendLimitTime){
+             timeToSend += 100;
+         }
+     }
+    cout << " Updated to: " << timeToSend << " at: " << simTime() << " by: " <<  distance << " traveled ["<< mobility->getPositionAt(simTime() - timeToUpdateTimeToSend) << " " << curPosition << "]" << endl;
 }
 
 void vehDist::printMessagesBuffer() {
@@ -885,10 +905,10 @@ unsigned short int vehDist::getVehHeading4() {
      */
 
     double angle;
-    if (traci->getAngleRad() < 0) // radians are negative, so degrees negative
-        angle = (((traci->getAngleRad() + 2*M_PI ) * 180)/ M_PI);
+    if (mobility->getAngleRad() < 0) // radians are negative, so degrees negative
+        angle = (((mobility->getAngleRad() + 2*M_PI ) * 180)/ M_PI);
     else //radians are positive, so degrees positive
-        angle = ((traci->getAngleRad() * 180) / M_PI);
+        angle = ((mobility->getAngleRad() * 180) / M_PI);
 
     if ((angle >= 315 && angle < 360) || (angle >= 0 && angle < 45)) {
         return 1; // L or E => 0º
@@ -924,10 +944,10 @@ unsigned short int vehDist::getVehHeading8() {
      */
 
     double angle;
-    if (traci->getAngleRad() < 0) // radians are negative, so degrees negative
-        angle = (((traci->getAngleRad() + 2*M_PI ) * 180)/ M_PI);
+    if (mobility->getAngleRad() < 0) // radians are negative, so degrees negative
+        angle = (((mobility->getAngleRad() + 2*M_PI ) * 180)/ M_PI);
     else //radians are positive, so degrees positive
-        angle = ((traci->getAngleRad() * 180) / M_PI);
+        angle = ((mobility->getAngleRad() * 180) / M_PI);
 
     if ((angle >= 337.5 && angle < 360) || (angle >= 0 && angle < 22.5)) {
         return 1; // L or E => 0º
@@ -963,7 +983,7 @@ void vehDist::updateVehPosition() {
     //cout << " Update position: " <<  "time: "<< simTime() << " next update: ";
     //cout << (simTime() + par("vehTimeUpdatePosition").doubleValue()) << endl;
     //cout << "positionPrevious: " << vehPositionPrevious;
-    vehPositionPrevious = traci->getPositionAt(simTime() - par("vehTimeUpdatePosition").doubleValue());
+    vehPositionPrevious = mobility->getPositionAt(simTime() - par("vehTimeUpdatePosition").doubleValue());
     //cout << " and update positionPrevious: " << vehPositionPrevious << endl << endl;
 }
 
@@ -985,12 +1005,12 @@ void vehDist::receiveSignal(cComponent* source, simsignal_t signalID, cObject* o
 }
 
 void vehDist::handleParkingUpdate(cObject* obj) {
-    isParking = traci->getParkingState();
+    isParking = mobility->getParkingState();
     if (sendWhileParking == false) {
         if (isParking == true) {
             (FindModule<BaseConnectionManager*>::findGlobalModule())->unregisterNic(this->getParentModule()->getSubmodule("nic"));
         } else {
-            Coord pos = traci->getCurrentPosition();
+            Coord pos = mobility->getCurrentPosition();
             (FindModule<BaseConnectionManager*>::findGlobalModule())->registerNic(this->getParentModule()->getSubmodule("nic"), (ChannelAccess*) this->getParentModule()->getSubmodule("nic")->getSubmodule("phy80211p"), &pos);
         }
     }
@@ -1000,7 +1020,7 @@ void vehDist::handlePositionUpdate(cObject* obj) {
     BaseWaveApplLayer::handlePositionUpdate(obj);
 
     // stopped for for at least 10s?
-    if (traci->getSpeed() < 1) {
+    if (mobility->getSpeed() < 1) {
         if (simTime() - lastDroveAt >= 10) {
             //findHost()->getDisplayString().updateWith("r=16,red");
             //if (!sentMessage)

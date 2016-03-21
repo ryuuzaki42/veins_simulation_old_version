@@ -31,8 +31,8 @@ void default_veins_TraCI::initialize(int stage) {
     BaseWaveApplLayer::initialize_default_veins_TraCI(stage);
     if (stage == 0) {
         mobility = TraCIMobilityAccess().get(getParentModule());
-		traci = mobility->getCommandInterface();
-		traciVehicle = mobility->getVehicleCommandInterface();
+        traci = mobility->getCommandInterface();
+        traciVehicle = mobility->getVehicleCommandInterface();
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 

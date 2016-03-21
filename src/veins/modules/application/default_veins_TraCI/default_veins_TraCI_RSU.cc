@@ -31,7 +31,7 @@ void default_veins_TraCI_RSU::initialize(int stage) {
         ASSERT(mobi);
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
-		sentMessage = false;
+        sentMessage = false;
     }
 }
 

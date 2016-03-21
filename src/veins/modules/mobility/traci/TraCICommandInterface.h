@@ -208,12 +208,6 @@ class TraCICommandInterface
 		// Vehicletype methods
 		std::list<std::string> getVehicleTypeIds();
 
-        // Adicionado (Minicurso_UFPI)
-        double getLaneLength(std::string laneId);
-
-        // Added to get vehicle category
-        std::string getVehicleTypeId(std::string nodeId);
-
 		// GuiView methods
 		class GuiView {
 			public:
