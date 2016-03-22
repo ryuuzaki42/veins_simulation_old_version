@@ -10,6 +10,8 @@ projects/**/resultsEnd
 #
 */*/*.out
 */*/*/*.out
+*/*/*/*/*.out
+*/*/*/*/*/*.out
 #
 */*/*/*/*_m.h
 */*/*/*/*_m.cc
