@@ -1,7 +1,7 @@
 //
 // Copyright (C) 2014 Luz Marina Santos
 //
-#include "application/service_discovery/service_discovery.h"
+#include "veins/modules/application/service_discovery/service_discovery.h"
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -20,6 +20,17 @@ void service_discovery::initialize(int stage) {
     ns=0;
     if (stage == 0) {
         mobility = TraCIMobilityAccess().get(getParentModule());
+        traci = mobility->getCommandInterface();
+        traciVehicle = mobility->getVehicleCommandInterface();
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
+
+        sentMessage = false;
+        lastDroveAt = simTime();
+        findHost()->subscribe(parkingStateChangedSignal, this);
+        isParking = false;
+        sendWhileParking = par("sendWhileParking").boolValue();
+
         //Defining names to the results
         cont_beac.setName("ReceivedBeacons");  //received beacons of safety
         cont_adv.setName("ReceivedAdvert");    //received advertisements

@@ -5,9 +5,9 @@
 #ifndef TraCIDemo11p_H
 #define TraCIDemo11p_H
 
-#include "BaseWaveApplLayer.h"
-#include "modules/mobility/traci/TraCIMobility.h"
-#include "modules/mobility/traci/TraCICommandInterface.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/mobility/traci/TraCICommandInterface.h"
 
 using Veins::TraCIMobility;
 using Veins::AnnotationManager;
@@ -25,7 +25,15 @@ class service_discovery : public BaseWaveApplLayer {
     protected:
         TraCIMobility* mobility;
         TraCICommandInterface* traci;
-        bool sentMessage, sendQuery;
+        TraCICommandInterface::Vehicle* traciVehicle;
+        AnnotationManager* annotations;
+        simtime_t lastDroveAt;
+        bool sentMessage;
+        bool isParking;
+        bool sendWhileParking;
+        static const simsignalwrap_t parkingStateChangedSignal;
+
+        bool sendQuery;
         int query, cont_query, c;
         opp_string qservice;
         double queryInterval;

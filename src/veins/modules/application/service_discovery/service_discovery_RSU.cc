@@ -2,7 +2,7 @@
 // Copyright (C) 2014 Luz Marina Santos
 //
 
-#include "application/service_discovery/service_discovery_RSU.h"
+#include "veins/modules/application/service_discovery/service_discovery_RSU.h"
 
 using Veins::AnnotationManagerAccess;
 
@@ -19,10 +19,12 @@ void service_discovery_RSU::initialize(int stage) {
         sent_adv.setName("SentAdvertisements");
         sendServiceEvt = new cMessage("service evt", SERVICE_EVT);
         scheduleAt(simTime() + par("serviceInterval").doubleValue(), sendServiceEvt);
+
         mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
         ASSERT(mobi);
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
+        sentMessage = false;
     }
 }
 
