@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/epidemic/epidemic_rsu.h"
+#include "veins/modules/application/epidemic/epidemic_rsu.h"
 
 using Veins::AnnotationManagerAccess;
 
@@ -31,6 +31,7 @@ void epidemic_rsu::initialize(int stage) {
         ASSERT(mobi);
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
+        sentMessage = false;
 
         //To record some statistics about the simulation
         //hopCountStats.setName("hopCountStats"); //Histogram

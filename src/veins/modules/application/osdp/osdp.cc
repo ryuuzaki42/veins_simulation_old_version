@@ -1,7 +1,7 @@
 //
 // Copyright (C) 2014 Luz Marina Santos
 //
-#include "application/osdp/osdp.h"
+#include "veins/modules/application/osdp/osdp.h"
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -21,7 +21,18 @@ void osdp::initialize(int stage) {
     LastTime =0;
     lastQuery="servicex";
     if (stage == 0) {
-        traci = TraCIMobilityAccess().get(getParentModule());
+        mobility = TraCIMobilityAccess().get(getParentModule());
+        traci = mobility->getCommandInterface();
+        traciVehicle = mobility->getVehicleCommandInterface();
+        annotations = AnnotationManagerAccess().getIfExists();
+        ASSERT(annotations);
+
+        sentMessage = false;
+        lastDroveAt = simTime();
+        findHost()->subscribe(parkingStateChangedSignal, this);
+        isParking = false;
+        sendWhileParking = par("sendWhileParking").boolValue();
+
         outVector.setName("TimeQuery");
         outVector2.setName("TimeContact");
         cont_adv.setName("Advertisements");

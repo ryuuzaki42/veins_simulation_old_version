@@ -1,8 +1,0 @@
-Veins:
-
-Sumo:
-Cenário com 50 km (a cada 5 km, 10 veículos iniciam o movimento em direção ao fim da pista)
-
-Contém duas pista:
-A >
-B <

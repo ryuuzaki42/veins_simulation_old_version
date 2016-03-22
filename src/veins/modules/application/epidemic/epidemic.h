@@ -23,10 +23,12 @@
 
 
 #include <unordered_map>
-#include "BaseWaveApplLayer.h"
-#include "modules/mobility/traci/TraCIMobility.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
+#include "veins/modules/mobility/traci/TraCICommandInterface.h"
+#include "veins/modules/mobility/traci/TraCIMobility.h"
 
 using Veins::TraCIMobility;
+using Veins::TraCICommandInterface;
 using Veins::AnnotationManager;
 
 using namespace std;
@@ -39,9 +41,12 @@ class epidemic : public BaseWaveApplLayer {
         virtual void initialize(int stage);
         virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
     protected:
-        TraCIMobility* traci;
+        TraCIMobility* mobility;
+        TraCICommandInterface* traci;
+        TraCICommandInterface::Vehicle* traciVehicle;
         AnnotationManager* annotations;
         simtime_t lastDroveAt;
+        bool sentMessage;
         bool isParking;
         bool sendWhileParking;
         static const simsignalwrap_t parkingStateChangedSignal;
@@ -93,7 +98,6 @@ class epidemic : public BaseWaveApplLayer {
         void createEpidemicRequestMessageVector();
         void printQueueFIFO(queue<string> qFIFO);
         void createEpidemicRemoteSummaryVector(string s);
-
 
         //To manipulate self messages
         //virtual void handleSelfMsg(cMessage* msg);

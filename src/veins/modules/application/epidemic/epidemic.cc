@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#include "application/epidemic/epidemic.h"
+#include "veins/modules/application/epidemic/epidemic.h"
 
 using Veins::TraCIMobilityAccess;
 using Veins::AnnotationManagerAccess;
@@ -31,10 +31,13 @@ Define_Module(epidemic);
 void epidemic::initialize(int stage) {
     BaseWaveApplLayer::initialize_epidemic(stage);
     if (stage == 0) {
-        traci = TraCIMobilityAccess().get(getParentModule());
+        mobility = TraCIMobilityAccess().get(getParentModule());
+        traci = mobility->getCommandInterface();
+        traciVehicle = mobility->getVehicleCommandInterface();
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
 
+        sentMessage = false;
         lastDroveAt = simTime();
         findHost()->subscribe(parkingStateChangedSignal, this);
         isParking = false;
@@ -76,22 +79,20 @@ void epidemic::onBeacon(WaveShortMessage* wsm) {
     //cout << "I'm " << findHost()->getFullName() << "(" << MACToInteger() << ") and I received a Beacon from " << wsm->getSenderAddress() << " with destination " << wsm->getRecipientAddress() << endl;
 
     //Verifying if I have the smaller address in order to start the anti-entropy session sending out my summary vector
-    if(wsm->getSenderAddress() > MACToInteger()){ //true means that I have the smaller address
+    if(wsm->getSenderAddress() > MACToInteger()) { //true means that I have the smaller address
         //cout << "I'm " << findHost()->getFullName() << " and my ID is smaller than the Beacon sender." << endl;
         //Verifying if (current contact simutime - last contact simutime) is bigger than previous slide window defined
         //A new summary vector needs to be re-sent to the same contact node only "sendSummaryVectorInterval" seconds after the last one
         unordered_map<unsigned int,simtime_t>::const_iterator got = nodesIRecentlySentSummaryVector.find(wsm->getSenderAddress());
-        if(got == nodesIRecentlySentSummaryVector.end()){ //true value means that there is no entry in the nodesIRecentlySentSummaryVector for the current contact node
+        if(got == nodesIRecentlySentSummaryVector.end()) { //true value means that there is no entry in the nodesIRecentlySentSummaryVector for the current contact node
             //cout << "I'm " << findHost()->getFullName() << ". Contact not found in nodesIRecentlySentSummaryVector. Sending my summary vector to " << wsm->getSenderAddress() << endl;
             //Sending my summary vector to another mobile node
             sendLocalSummaryVector(wsm->getSenderAddress());
             nodesIRecentlySentSummaryVector.insert(make_pair<unsigned int, simtime_t>(wsm->getSenderAddress(),simTime()));
             printNodesIRecentlySentSummaryVector();
-        }
-        //An entry in the unordered_map was found
-        else{
+        } else { //An entry in the unordered_map was found
            //cout << "I'm " << findHost()->getFullName() << ". Contact found in nodesIRecentlySentSummaryVector. Node: " << got->first << " added at " << (simTime() - got->second) << " seconds ago." << endl;
-           if((simTime() - got->second) > sendSummaryVectorInterval){ //checking if I should update the nodesIRecentlySentSummaryVector entry
+           if((simTime() - got->second) > sendSummaryVectorInterval) { //checking if I should update the nodesIRecentlySentSummaryVector entry
                //cout << "I'm " << findHost()->getFullName() << " and I'm updating the entry in the nodesIRecentlySentSummaryVector." << endl;
                sendLocalSummaryVector(wsm->getSenderAddress());
                nodesIRecentlySentSummaryVector.erase(wsm->getSenderAddress());
@@ -99,9 +100,7 @@ void epidemic::onBeacon(WaveShortMessage* wsm) {
                printNodesIRecentlySentSummaryVector();
            }
         }
-    }
-    //My address is bigger than the Beacon sender
-    else{
+    } else { //My address is bigger than the Beacon sender
         //do nothing
         //std::cout << "My ID is bigger than the Beacon sender." << std::endl;
     }
@@ -110,9 +109,9 @@ void epidemic::onBeacon(WaveShortMessage* wsm) {
 void epidemic::onData(WaveShortMessage* wsm) {
 
     //Verifying the kind of a received message: if a summary vector (true) or a epidemic buffer data message (false).
-    if(wsm->getSummaryVector()){
+    if(wsm->getSummaryVector()) {
        //checking if the summary vector was sent to me
-       if(wsm->getRecipientAddress() == MACToInteger()){
+       if(wsm->getRecipientAddress() == MACToInteger()) {
           cout << "I'm " << findHost()->getFullName() << "(" << MACToInteger() << ") and I just recieved the summary vector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
           //Creating the remote summary vector with the data received in wsm->message field
           createEpidemicRemoteSummaryVector(wsm->getWsmData());
@@ -122,36 +121,31 @@ void epidemic::onData(WaveShortMessage* wsm) {
           createEpidemicRequestMessageVector();
           printEpidemicRequestMessageVector();
           //Verifying if this is the end of second round of the anti-entropy session when the EpidemicRemoteSummaryVector and EpidemicLocalSummaryVector are equals
-          if((epidemicRequestMessageVector.empty() ||(strcmp(wsm->getWsmData(),"") == 0)) && (wsm->getSenderAddress() > MACToInteger())){
+          if((epidemicRequestMessageVector.empty() ||(strcmp(wsm->getWsmData(),"") == 0)) && (wsm->getSenderAddress() > MACToInteger())) {
              //cout << "EpidemicRequestMessageVector from " << findHost()->getFullName() << " is empty now " << endl;
              //cout << "Or strcmp(wsm->getWsmData(),\"\") == 0) " << endl;
              //cout << "And  wsm->getSenderAddress() > MACToInteger() " << endl;
-          }
-          else if(epidemicRequestMessageVector.empty()){
+          } else if(epidemicRequestMessageVector.empty()) {
               //cout << "EpidemicRequestMessageVector from " << findHost()->getFullName() << " is empty now " << endl;
               //changing the turn of the anti-entropy session. In this case, I have not found any differences between EpidemicRemoteSummaryVector and EpidemicLocalSummaryVector but I need to change the round of anti-entropy session
               sendLocalSummaryVector(wsm->getSenderAddress());
-          }
-          else{
+          } else {
               //Sending a request vector in order to get messages that I don't have
               sendEpidemicRequestMessageVector(wsm->getSenderAddress());
           }
        }
-    }
-    //is a data message requisition or a data message content
-    else{
+    } else { //is a data message requisition or a data message content
         //cout << "I'm " << findHost()->getFullName() << ". This is not a summary vector" << endl;
         //Verifying if this is a request message
-        if(wsm->getRequestMessages()){
+        if(wsm->getRequestMessages()) {
             //checking if the request vector was sent to me
-            if(wsm->getRecipientAddress() == MACToInteger()){
+            if(wsm->getRecipientAddress() == MACToInteger()) {
                 //Searching for elements in the epidemicLocalMessageBuffer and sending them to requester
                 cout << "I'm " << findHost()->getFullName() << ". I received the epidemicRequestMessageVector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
                 sendMessagesRequested(wsm->getWsmData(), wsm->getSenderAddress());
             }
-        }
-        else{
-             if(wsm->getRecipientAddress() == MACToInteger()){
+        } else{
+             if(wsm->getRecipientAddress() == MACToInteger()) {
                  //WSMData generated by car[3]|car[3]|rsu[0]|1.2
                  cout << "I'm " << findHost()->getFullName() << "(" << MACToInteger() << "). I received all the message requested |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
                  cout << "Before message processing " << endl;
@@ -193,10 +187,10 @@ void epidemic::onData(WaveShortMessage* wsm) {
                         w.setTimestamp(st.parse(tokenTimestamp.c_str()));
                         w.setHopCount(stoi(tokenhopcount));
                         //checking if the maximum buffer size was reached
-                        if(queueFIFO.size() < maximumEpidemicBufferSize){
+                        if(queueFIFO.size() < maximumEpidemicBufferSize) {
                             //Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
                             unordered_map<string,WaveShortMessage>::const_iterator got = epidemicLocalMessageBuffer.find(tokenkey);
-                            if(got == epidemicLocalMessageBuffer.end()){ //true value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
+                            if(got == epidemicLocalMessageBuffer.end()) { //true value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
                                 //Putting the message in the epidemicLocalMessageBuffer
                                 epidemicLocalMessageBuffer.insert(MyPairEpidemicMessageBuffer(tokenkey,w));
                                 //Putting the message in the EpidemicLocalSummaryVector
@@ -204,16 +198,13 @@ void epidemic::onData(WaveShortMessage* wsm) {
                                 //FIFO strategy to set the maximum size that a node is willing to allocate epidemic messages in its buffer
                                 queueFIFO.push(tokenkey.c_str());
                                 //printQueueFIFO(queueFIFO);
-                            }
-                            //An entry in the unordered_map was found
-                            else{
+                            } else { //An entry in the unordered_map was found
                                 //do nothing
                             }
-                        }
-                        else{
+                        } else {
                             //Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
                             unordered_map<string,WaveShortMessage>::const_iterator got = epidemicLocalMessageBuffer.find(tokenkey.c_str());
-                            if(got == epidemicLocalMessageBuffer.end()){ //true value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
+                            if(got == epidemicLocalMessageBuffer.end()) { //true value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
                                 epidemicLocalMessageBuffer.erase(queueFIFO.front());
                                 epidemicLocalSummaryVector.erase(queueFIFO.front());
                                 queueFIFO.pop();
@@ -224,9 +215,7 @@ void epidemic::onData(WaveShortMessage* wsm) {
                                 //FIFO strategy to set the maximum size that a node is willing to allocate epidemic messages in its buffer
                                 queueFIFO.push(tokenkey.c_str());
                                 //printQueueFIFO(queueFIFO);
-                            }
-                            //An entry in the unordered_map was found
-                            else{
+                            } else { //An entry in the unordered_map was found
                                 //do nothing
                             }
                         }
@@ -244,14 +233,12 @@ void epidemic::onData(WaveShortMessage* wsm) {
         }// end of else
 
         //Verifying if I'm the target of a message
-        if(strcmp(wsm->getTarget(),findHost()->getFullName()) == 0){
+        if(strcmp(wsm->getTarget(),findHost()->getFullName()) == 0) {
           std::cout << "I'm " << findHost()->getFullName() << ", the recipient of the message." << " at " << simTime() << std::endl;
           //sendWSM(prepareWSM_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, wsm->getSenderAddress(), -1));
-        }
-        //this node is a relaying node because it is not the target of the message
-        else{
+        } else { //this node is a relaying node because it is not the target of the message
             findHost()->getDisplayString().updateWith("r=16,green");
-            annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), traci->getPositionAt(simTime()), "blue"));
+            annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobility->getPositionAt(simTime()), "blue"));
             //std::cout << findHost()->getFullName() << " will cache the message for forwarding it later." << " at " << simTime() << std::endl;
         }
     }
@@ -302,22 +289,22 @@ void epidemic::sendMessagesRequested(string s, unsigned int recipientAddress) {
 
     while ((pos = s.find(delimiter)) != std::string::npos) {
       //Catch jus the key of the local summary vector
-      if(i%2 == 0){
+      if(i%2 == 0) {
           ostringstream ss;
           //cout << "i = " << i << " - looking for the message key(s.substr(0, pos)): " << s.substr(0, pos) << endl;
           WaveShortMessage w;
           unordered_map<string,WaveShortMessage>::const_iterator got = epidemicLocalMessageBuffer.find(s.substr(0, pos));
-          if(got == epidemicLocalMessageBuffer.end()){ //true value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
-          }
-          else{
+          if(got == epidemicLocalMessageBuffer.end()) {
+               //true value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
+          } else {
                w = got->second;
                //WaveShortMessage w = getEpidemicLocalMessageBuffer(s.substr(0, pos));
                //Verifying if I'm still able to spread the message or not. If w.getHopCount == 1 I'm able to send the message only to its target
-               if(w.getHopCount() > 1){
+               if(w.getHopCount() > 1) {
                  ss << s.substr(0, pos) << "|" << w.getWsmData() << "|" << w.getSource() << "|" << w.getTarget() << "|" << w.getTimestamp() << "|" << w.getHopCount() - 1 << "|";
                }
-               else if(w.getHopCount() == 1){
-                 if((strcmp(tokenRequester.c_str(),w.getTarget()) == 0)){
+               else if(w.getHopCount() == 1) {
+                 if((strcmp(tokenRequester.c_str(),w.getTarget()) == 0)) {
                    ss << s.substr(0, pos) << "|" << w.getWsmData() << "|" << w.getSource() << "|" << w.getTarget() << "|" << w.getTimestamp() << "|" << w.getHopCount() - 1 << "|";
                  }
                }
@@ -356,19 +343,17 @@ void epidemic::receiveSignal(cComponent* source, simsignal_t signalID, cObject* 
     Enter_Method_Silent();
     if (signalID == mobilityStateChangedSignal) {
         handlePositionUpdate(obj);
-    }
-    else if (signalID == parkingStateChangedSignal) {
+    } else if (signalID == parkingStateChangedSignal) {
         handleParkingUpdate(obj);
     }
 }
 void epidemic::handleParkingUpdate(cObject* obj) {
-    isParking = traci->getParkingState();
+    isParking = mobility->getParkingState();
     if (sendWhileParking == false) {
         if (isParking == true) {
             (FindModule<BaseConnectionManager*>::findGlobalModule())->unregisterNic(this->getParentModule()->getSubmodule("nic"));
-        }
-        else {
-            Coord pos = traci->getCurrentPosition();
+        } else {
+            Coord pos = mobility->getCurrentPosition();
             (FindModule<BaseConnectionManager*>::findGlobalModule())->registerNic(this->getParentModule()->getSubmodule("nic"), (ChannelAccess*) this->getParentModule()->getSubmodule("nic")->getSubmodule("phy80211p"), &pos);
         }
     }
@@ -377,7 +362,7 @@ void epidemic::handlePositionUpdate(cObject* obj) {
     BaseWaveApplLayer::handlePositionUpdate(obj);
 }
 
-void epidemic::createEpidemicRemoteSummaryVector(string s){
+void epidemic::createEpidemicRemoteSummaryVector(string s) {
     //cout << "Creating the epidemicRemoteSummaryVector in " << findHost()->getFullName() << endl;
     string delimiter = "|";
     size_t pos = 0;
@@ -396,25 +381,23 @@ void epidemic::createEpidemicRemoteSummaryVector(string s){
     //std::cout << s << std::endl;
 }
 
-void epidemic::createEpidemicRequestMessageVector(){
+void epidemic::createEpidemicRequestMessageVector() {
     epidemicRequestMessageVector.clear();
-    for(auto& x: epidemicRemoteSummaryVector){
+    for(auto& x: epidemicRemoteSummaryVector) {
         unordered_map<string,bool>::const_iterator got = epidemicLocalSummaryVector.find(x.first);
         //cout << "I'm in createEpidemicRequestMessageVector().  x.first: " << x.first << " x.second: " << x.second << endl;
-        if(got == epidemicLocalSummaryVector.end()){ //true value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
+        if(got == epidemicLocalSummaryVector.end()) { //true value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
             //Putting the message in the EpidemicRequestMessageVector
             string s = x.first;
             epidemicRequestMessageVector.insert(make_pair<string, bool>(s.c_str(),true));
-        }
-        //An entry in the unordered_map was found
-        else{
+        } else { //An entry in the unordered_map was found
             //cout << "I'm in createEpidemicRequestMessageVector().  got->first: " << got->first << " got->second: " << got->second << endl;
             //cout << "The message " << got->first << " in the epidemicRemoteSummaryVector was found in my epidemicLocalSummaryVector." << endl;
         }
     }
 }
 
-string epidemic::getEpidemicRequestMessageVectorData(){
+string epidemic::getEpidemicRequestMessageVectorData() {
     ostringstream ss;
     //adding the requester name in order to identify if the requester is also the target of the messages with hopcount == 1.
     //In this case, hopcount == 1, the messages can be sent to the target. Otherwise, the message will not be spread
@@ -427,14 +410,14 @@ string epidemic::getEpidemicRequestMessageVectorData(){
     return s.c_str();
 }
 
-//WaveShortMessage epidemic::getEpidemicLocalMessageBuffer(string s){
+//WaveShortMessage epidemic::getEpidemicLocalMessageBuffer(string s) {
 //    //cout << "Getting the epidemicLocalMessageBuffer[" << s << "] from " << findHost()->getFullName() << endl;
 //    unordered_map<string,WaveShortMessage>::const_iterator got = epidemicLocalMessageBuffer.find(s.c_str());
 //    return got->second;
 //}
 
 //Method used to convert the unordered_map epidemicLocalSummaryVectorData in a string
-string epidemic::getLocalSummaryVectorData(){
+string epidemic::getLocalSummaryVectorData() {
     ostringstream ss;
     for(auto& x: epidemicLocalSummaryVector)
         ss << x.first << "|" << x.second << "|";
@@ -445,7 +428,7 @@ string epidemic::getLocalSummaryVectorData(){
 }
 
 //Generate a target in order to send a message
-void epidemic::generateTarget(){
+void epidemic::generateTarget() {
     //Set the target node to whom my message has to be delivered
     //target = rsu[0] rsu[1] or car[*].
     //if ((strcmp(findHost()->getFullName(),"car[4]") == 0) || (strcmp(findHost()->getFullName(),"car[13]") == 0))
@@ -456,13 +439,12 @@ void epidemic::generateTarget(){
 }
 
 //Generate a message in order to be sent to a target
-void epidemic::generateMessage(){
+void epidemic::generateMessage() {
     //Set the target node to whom my message has to be delivered
     //target = rsu[0] rsu[1] or car[*].
     generateTarget();
 
     //cout << findHost()->getFullName() << " generating a message to be sent (" << source << " -> " << target << ")"<< endl;
-
     WaveShortMessage wsm;
     wsm.setName("data");
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
@@ -503,36 +485,33 @@ void epidemic::generateMessage(){
     //printQueueFIFO(queueFIFO);
     //printEpidemicLocalMessageBuffer();
     //printEpidemicLocalSummaryVectorData();
-
 }
 
-void epidemic::printQueueFIFO(queue<string> qFIFO){
+void epidemic::printQueueFIFO(queue<string> qFIFO) {
     int i = 0;
-    while(!qFIFO.empty()){
+    while(!qFIFO.empty()) {
         cout << "I'm " << findHost()->getFullName() << " - queueFIFO Element " << ++i << ": " << qFIFO.front() << endl;
         qFIFO.pop();
     }
 }
 
-void epidemic::printEpidemicLocalMessageBuffer(){
-    if(epidemicLocalMessageBuffer.empty()){
+void epidemic::printEpidemicLocalMessageBuffer() {
+    if(epidemicLocalMessageBuffer.empty()) {
            cout << "EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    } else {
         int i = 0;
         cout << "Printing the epidemicLocalMessageBuffer from " << findHost()->getFullName() << "(" << MACToInteger() <<"):" << endl;
-        for(auto& x: epidemicLocalMessageBuffer){
+        for(auto& x: epidemicLocalMessageBuffer) {
             WaveShortMessage wsmBuffered = x.second;
             cout << " Key " << ++i << ": " << x.first << " - Message Content: " << wsmBuffered.getWsmData() << " source: " << wsmBuffered.getSource() << " target: " << wsmBuffered.getTarget() << " Timestamp: " << wsmBuffered.getTimestamp() << " HopCount: " << wsmBuffered.getHopCount() << endl;
         }
     }
 }
 
-void epidemic::printEpidemicLocalSummaryVectorData(){
-    if(epidemicLocalSummaryVector.empty()){
+void epidemic::printEpidemicLocalSummaryVectorData() {
+    if(epidemicLocalSummaryVector.empty()) {
            cout << "EpidemicLocalSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    } else {
         ostringstream ss;
         for(auto& x: epidemicLocalSummaryVector)
            ss << x.first << "|" << x.second << "|";
@@ -542,11 +521,10 @@ void epidemic::printEpidemicLocalSummaryVectorData(){
     }
 }
 
-void epidemic::printEpidemicRemoteSummaryVectorData(){
-    if(epidemicRemoteSummaryVector.empty()){
+void epidemic::printEpidemicRemoteSummaryVectorData() {
+    if(epidemicRemoteSummaryVector.empty()) {
            cout << "EpidemicRemoteSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    } else {
         ostringstream ss;
         for(auto& x: epidemicRemoteSummaryVector)
             ss << x.first << "|" << x.second << "|";
@@ -556,12 +534,11 @@ void epidemic::printEpidemicRemoteSummaryVectorData(){
     }
 }
 
-void epidemic::printEpidemicRequestMessageVector(){
+void epidemic::printEpidemicRequestMessageVector() {
 
-    if(epidemicRequestMessageVector.empty()){
+    if(epidemicRequestMessageVector.empty()) {
         cout << "EpidemicRequestMessageVector from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    } else {
         ostringstream ss;
         for(auto& x: epidemicRequestMessageVector)
             ss << x.first << "|" << x.second << "|";
@@ -571,11 +548,10 @@ void epidemic::printEpidemicRequestMessageVector(){
     }
 }
 
-void epidemic::printNodesIRecentlySentSummaryVector(){
-    if(nodesIRecentlySentSummaryVector.empty()){
+void epidemic::printNodesIRecentlySentSummaryVector() {
+    if(nodesIRecentlySentSummaryVector.empty()) {
            cout << "NodesIRecentlySentSummaryVector from " << findHost()->getFullName() << " is empty now " << endl;
-    }
-    else{
+    } else {
         int i = 0;
         cout << "NodesIRecentlySentSummaryVector from " << findHost()->getFullName() << " (" << MACToInteger() << "):" << endl;
         for(auto& x: nodesIRecentlySentSummaryVector)
@@ -583,7 +559,7 @@ void epidemic::printNodesIRecentlySentSummaryVector(){
     }
 }
 
-void epidemic::printWaveShortMessage(WaveShortMessage wsm){
+void epidemic::printWaveShortMessage(WaveShortMessage wsm) {
     cout << "wsm.getName():" << wsm.getName() << endl;
     cout << "wsm.getBitLength():" << wsm.getBitLength() << endl;
     cout << "wsm.getChannelNumber():" << wsm.getChannelNumber() << endl;
@@ -605,7 +581,7 @@ void epidemic::printWaveShortMessage(WaveShortMessage wsm){
     cout << "wsm.getHopCount(): " << wsm.getHopCount() << endl;
 }
 
-void epidemic::printWaveShortMessage(WaveShortMessage* wsm){
+void epidemic::printWaveShortMessage(WaveShortMessage* wsm) {
     cout << "wsm->getName()" << wsm->getName() << endl;
     cout << "wsm->getBitLength()" << wsm->getBitLength() << endl;
     cout << "wsm->getChannelNumber()" << wsm->getChannelNumber() << endl;
@@ -624,8 +600,7 @@ void epidemic::printWaveShortMessage(WaveShortMessage* wsm){
     cout << "wsm->getWsmData()" << wsm->getWsmData() << endl;
 }
 
-void epidemic::finish(){
+void epidemic::finish() {
     cout << "Number of Messages Generated: " << epidemic::messageId << endl;
     recordScalar("#numMessageGenerated", epidemic::messageId);
-
 }

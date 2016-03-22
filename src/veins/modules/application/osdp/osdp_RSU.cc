@@ -2,7 +2,7 @@
 // Copyright (C) 2014 Luz Marina Santos
 //
 
-#include "application/osdp/osdp_RSU.h"
+#include "veins/modules/application/osdp/osdp_RSU.h"
 
 using Veins::AnnotationManagerAccess;
 
@@ -16,14 +16,15 @@ void osdp_RSU::initialize(int stage) {
     setServices();
     sleep = 1;
     if (stage == 0) {
-            //Register of sent advertisements by the RSU
-           sent_adv.setName("SentAdvertisements");
+        //Register of sent advertisements by the RSU
+        sent_adv.setName("SentAdvertisements");
         sendServiceEvt = new cMessage("service evt", SERVICE_EVT);
         scheduleAt(simTime() + par("serviceInterval").doubleValue(), sendServiceEvt);
         mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
         ASSERT(mobi);
         annotations = AnnotationManagerAccess().getIfExists();
         ASSERT(annotations);
+        sentMessage = false;
     }
 }
 
