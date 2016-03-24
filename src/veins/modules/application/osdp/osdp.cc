@@ -29,7 +29,7 @@ void osdp::initialize(int stage) {
 
         sentMessage = false;
         lastDroveAt = simTime();
-        findHost()->subscribe(parkingStateChangedSignal, this);
+        //findHost()->subscribe(parkingStateChangedSignal, this);
         isParking = false;
         sendWhileParking = par("sendWhileParking").boolValue();
 
