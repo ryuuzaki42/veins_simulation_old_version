@@ -98,5 +98,5 @@ packet WaveShortMessage {
     Coord TargetPos; // Target position for de message
     Coord senderPosPrevious; // Position previous of the veh
     unsigned short type; // Type of message
-    unsigned short timeToSend; // TimeToSend to try another message
+    unsigned short rateTimeToSend; // TimeToSend to try another message
 }

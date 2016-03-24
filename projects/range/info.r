@@ -1,3 +1,6 @@
+## Good name for algoritm:
+	Message Forwarding by Categorization of Vehicles (MFCV)
+
 ## Link do pdf do minicurso
 http://www.eripi.ufpi.br/images/Minicursos/minicurso02.pdf
 
@@ -30,7 +33,6 @@ http://superuser.com/questions/906398/calculate-required-transmit-power-of-wi-fi
 ## Resposta do e-mail ao Roneil
 Realizei um equivoco quando escrevi o capítulo. Na verdade o raio é de aproximadamente 125m (250m seria o diâmetro). Cheguei a esses valores aproximados através de simulações, já que de acordo com o autor do Veins não existe uma formula fechada para calcular a distância exata. É um sistema probabilístico. Vale ressaltar que cheguei a estes valores utilizando um cenário sem obstáculos. Basta alterar o valor de txPower, como você já fez. 
 
-
 ##
 I am working on Veins framework, inside OMNET++. I set the property of RSU inside .ned file as follow:
 
@@ -56,3 +58,14 @@ Just to repeat: I am warning against calculating a "transmission range" for anyt
 Thanks for detailed reply. It helps to understand the concept of "transmission range". I need to write in my article the range (in meters). I used the default parameters of Veins. What should I write ? Is it 300 m , 400m or more ? – Kifayat Ullah Jun 27 at 17:45
 
 This really depends on the scenario. If you want to give your readers an idea of the absolute maximum distance you could ever send, or how far you could typically send, my suggestion is to simply record some result data: record the distances of successful and of failed packet transmissions and compute the success rate of transmissions at each distance. Then tell your readers at what distance the success rate was still above, for example, 95%. –  Christoph Sommer Jun 27 at 23:53
+
+## Executar no terminal
+ -u = mode, -f = arquivo ini -r = nº de execucão -l = libveins -n = arquivos ned
+ # sem GUI
+opp_run -u Cmdenv -n .:../../src/ -f app.ini -r 0 -l ../../src/libveins.so
+ # com GUI
+opp_run -u Tkenv -n .:../../src/ -f app.ini -r 0 -l ../../src/libveins.so
+
+ #sem repeat
+opp_run -u Cmdenv -n .:../../src/ -f app.ini -l ../../src/libveins.so
+opp_run -u Tkenv -n .:../../src/ -f app.ini -l ../../src/libveins.so
