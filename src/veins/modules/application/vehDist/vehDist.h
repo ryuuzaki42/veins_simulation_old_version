@@ -30,7 +30,7 @@ using Veins::AnnotationManager;
 class vehDist : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
-        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+        //virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
 
         enum WaveApplMessageKinds {
             SendEvtUpdatePositionVeh, SendEvtBeaconMessage, SendEvtGenerateBeaconMessage, SendEvtUpdateTimeToSendVeh
@@ -40,12 +40,12 @@ class vehDist : public BaseWaveApplLayer {
         TraCIMobility* mobility;
         TraCICommandInterface* traci;
         TraCICommandInterface::Vehicle* traciVehicle;
-        AnnotationManager* annotations;
-        simtime_t lastDroveAt;
-        bool sentMessage;
-        bool isParking;
-        bool sendWhileParking;
-        static const simsignalwrap_t parkingStateChangedSignal;
+//        AnnotationManager* annotations;
+//        simtime_t lastDroveAt;
+//        bool sentMessage;
+//        bool isParking;
+//        bool sendWhileParking;
+//        static const simsignalwrap_t parkingStateChangedSignal;
 
         cMessage* sendBeaconMessageEvt;
         cMessage* sendGenerateBeaconMessageEvt;
@@ -63,11 +63,11 @@ class vehDist : public BaseWaveApplLayer {
         vector <string> messagesDelivered;
         vector <string> messagesOrderReceived;
 
-        unsigned short int timeToSend;
-        float distanceTimeToSend;
-        float timeSendLimitTime;
+        unsigned short int rateTimeToSend;
+        unsigned short int rateTimeToSendDistanceControl;
+        unsigned short int rateTimeToSendLimitTime;
         simtime_t timeToFinishLastStartSend;
-        float timeToUpdateTimeToSend;
+        unsigned short int rateTimeToSendUpdateTime;
         unsigned short int messageToSend;
 
         float vehOffSet;
@@ -84,28 +84,31 @@ class vehDist : public BaseWaveApplLayer {
         };
         map<string, struct messagesDropStruct> messagesDrop;
 
-        struct smallDistance {
-            unsigned short int distanceToTarget; // Int to ignore small differences
-            unsigned short int timeToSendVeh;
+        struct shortestDistance {
             string categoryVeh;
+            float speedVeh;
+            unsigned short int rateTimeToSendVeh;
+            unsigned short int distanceToTarget; // Int to ignore small differences
+            unsigned short int decisionValueDistanceSpeed;
+            unsigned short int decisionValueDistanceSpeedRateTimeToSend;
         };
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
-        virtual void handlePositionUpdate(cObject* obj);
-        virtual void handleParkingUpdate(cObject* obj);
-        void sendMessage(std::string blockedRoadId);
+//        virtual void handlePositionUpdate(cObject* obj);
+//        virtual void handleParkingUpdate(cObject* obj);
 
-        virtual void sendWSM(WaveShortMessage* wsm);
+        void finish();
+        void handleSelfMsg(cMessage* msg);
+        void handleLowerMsg(cMessage* msg);
+        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
+        WaveShortMessage* updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId);
 
         void generateTarget();
         void generateBeaconMessage();
-        void handleSelfMsg(cMessage* msg);
         void printMessagesBuffer();
         void printBeaconStatusNeighbors();
-        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
-        WaveShortMessage* updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId);
         void updateVehPosition();
         unsigned short int getVehHeading8();
         unsigned short int getVehHeading4();
@@ -115,10 +118,8 @@ class vehDist : public BaseWaveApplLayer {
         void vehCreateEventTrySendBeaconMessage();
         void sendMessageNeighborsTarget(string beaconSource);
         string returnLastMessageInserted();
-        void finish();
         void printCountBeaconMessagesDrop();
         void colorCarryMessage();
-        void handleLowerMsg(cMessage* msg);
         void onBeaconStatus(WaveShortMessage* wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
         void vehGenerateBeaconMessageBegin();
@@ -126,14 +127,18 @@ class vehDist : public BaseWaveApplLayer {
         void selectVehGenerateMessage();
         void vehInitializeVariables();
         void insertMessageDrop(string ID, int type);
-        string getNeighborSmallDistanceToTarge(string key);
-        string neighborWithSmallDistanceToTarge(string key);
+        string getNeighborShortestDistanceToTarge(string key);
+        string neighborWithShortestDistanceToTarge(string key);
         void removeOldestInputBeaconMessage();
         void removeOldestInputBeaconStatus();
         void vehUpdateTimeToSend();
         void vehCreateUpdateTimeToSendEvent();
         void sendBeaconMessage();
         void trySendBeaconMessage(string idMessage);
+        string chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget);
+        string chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget);
+        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP);
+        string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP);
 };
 
 unsigned short int vehDist::beaconMessageId = 1;
