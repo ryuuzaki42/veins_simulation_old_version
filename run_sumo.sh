@@ -25,7 +25,7 @@
 # Última atualização: 19/03/2016
 #
 # Pasta do Veins (altere se a sua for diferente
-cd /media/sda4/prog/veins/
+cd /media/sda4/prog/simulation_veins/
 
 echo -e "Deseja executar sumo com interface gráfica:\n (y)es - sumo-gui ou (n)o sumo"
 read resposta

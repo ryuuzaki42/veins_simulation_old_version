@@ -25,7 +25,7 @@
 # Última atualização: 23/11/2015
 #
 # Pasta do Veins (altere se a sua for diferente
-cd /media/sda4/prog/veins-3.0/
+cd /media/sda4/prog/simulation_veins/
 
 echo -e "Deseja remover os results da pasta de projects?\n"
 echo -e "Irá apagar os arquivos projects/*/results e projects/*/.tkenvrc\n (y)es - (rm ...) ou (n)o (exit)"
