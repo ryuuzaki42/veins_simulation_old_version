@@ -42,49 +42,27 @@ void vehDist_rsu::rsuInitializeVariables() {
     //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
 }
 
-void vehDist_rsu::onBeacon(WaveShortMessage* wsm) {
-    if (wsm->getType() == 1){
-        onBeaconStatus(wsm); // Beacon of status
-    } else if (wsm->getType() == 2){
-        onBeaconMessage(wsm); // Beacon of Message
-    }
-}
-
-void vehDist_rsu::onBeaconStatus(WaveShortMessage* wsm) {
-    // to do?
-}
-
-void vehDist_rsu::handleLowerMsg(cMessage* msg) {
-    WaveShortMessage* wsm = dynamic_cast<WaveShortMessage*>(msg);
-    ASSERT(wsm);
-
-    if (std::string(wsm->getName()) == "beacon") {
-        //onBeacon(wsm);
-        cout << " Received one message with name \"beacon\"" << endl;
-        exit(1);
-    }
-    else if (std::string(wsm->getName()) == "data") {
-        //onData(wsm);
-        cout << " Received one message with name \"data\"" << endl;
-        exit(1);
-    }
-//#################################################################
-    else if (wsm->getType() == 1) {
-        onBeaconStatus(wsm);
-    }
-    else if (wsm->getType() == 2) {
-        onBeaconMessage(wsm);
-    }
-//#################################################################
-    else{
-        DBG << "unknown message (" << wsm->getName() << ")  received\n";
-        exit(1);
-    }
-    delete(msg);
-}
-
 void vehDist_rsu::restartFilesResult() {
-    stringTmp = "results/resultsEnd/E" + to_string(experimentNumber);
+    string result_part;
+    switch (experimentSendbyDSR){
+    case 1:
+        result_part = "1_chosenByDistance";
+        break;
+    case 2:
+        result_part = "2_chosenByDistance_Speed";
+        break;
+    case 3:
+        result_part = "3_chosenByDistance_Speed_Category";
+        break;
+    case 4:
+        result_part = "4_chosenByDistance_Speed_Category_RateTimeToSend";
+        break;
+    default:
+        cout << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
+        DBG << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
+        exit(1);
+    }
+    stringTmp = "results/resultsEnd/" + result_part + "/E" + to_string(experimentNumber);
     stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
     fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + findHost()->getFullName();
@@ -97,9 +75,13 @@ void vehDist_rsu::restartFilesResult() {
 
     if ((myId == 0) && (repeatNumber == 0)) { //Open a new file (blank)
         if (experimentNumber == 1) { // maxSpeed 15 m/s
-            system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' vehDist.rou.xml");
+            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
+            system(comand.c_str());
+            cout << endl << "Change the spped to 15 m/s, command: " << comand << endl;
         } else if (experimentNumber == 5){  // maxSpeed 25 m/s
-            system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"25\"/g' vehDist.rou.xml");
+            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
+            system(comand.c_str());
+            cout << endl << "Change the spped to 25 m/s, command: " << comand << endl;
         }
 
         stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
@@ -117,12 +99,25 @@ void vehDist_rsu::restartFilesResult() {
     }
 }
 
-void vehDist_rsu::onData(WaveShortMessage* wsm) {
-//    findHost()->getDisplayString().updateWith("r=16,green");
-//
-//    annotations->scheduleErase(1, annotations->drawLine(wsm->getSenderPos(), mobi->getCurrentPosition(), "blue"));
-//
-//    if (!sentMessage) sendMessage(wsm->getWsmData());
+void vehDist_rsu::handleLowerMsg(cMessage* msg) {
+    WaveShortMessage* wsm = dynamic_cast<WaveShortMessage*>(msg);
+    ASSERT(wsm);
+
+    if (wsm->getType() == 1) {
+        onBeaconStatus(wsm);
+    }
+    else if (wsm->getType() == 2) {
+        onBeaconMessage(wsm);
+    }
+    else{
+        DBG << "unknown message (" << wsm->getName() << ")  received\n";
+        cout << "unknown message (" << wsm->getName() << ")  received\n";
+        exit(1);
+    }
+    delete(msg);
+}
+
+void vehDist_rsu::onBeaconStatus(WaveShortMessage* wsm) {
 }
 
 void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
@@ -169,6 +164,22 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm) {
     }
 }
 
+void vehDist_rsu::handleSelfMsg(cMessage* msg) {
+    switch (msg->getKind()) {
+        case SEND_BEACON_EVT: {
+            //sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
+            sendWSM(prepareBeaconStatusWSM("beaconStatus", beaconLengthBits, type_CCH, beaconPriority, -1));
+            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
+            break;
+        }
+        default: {
+            if (msg)
+                DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
+            break;
+        }
+    }
+}
+
 WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial) {
     WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
     wsm->setType(1); // Beacon of Status
@@ -197,21 +208,15 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int leng
     return wsm;
 }
 
-void vehDist_rsu::handleSelfMsg(cMessage* msg) {
-    switch (msg->getKind()) {
-        case SEND_BEACON_EVT: {
-            //sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
-            sendWSM(prepareBeaconStatusWSM("beaconStatus", beaconLengthBits, type_CCH, beaconPriority, -1));
-            scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
-            break;
-        }
-        default: {
-            if (msg)
-                DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
-            break;
-        }
+void vehDist_rsu::finish() {
+    printCountMessagesReceived();
+    if (experimentNumber == 8) { // maxSpeed 15 m/s
+        string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
+        system(comand.c_str());
+        cout << endl << "Setting speed back to default (15 m/s), command: " << comand << endl;
     }
 }
+
 void vehDist_rsu::printCountMessagesReceived() {
     myfile.open (fileMessagesCount, std::ios_base::app);
 
@@ -270,21 +275,9 @@ void vehDist_rsu::printCountMessagesReceived() {
     myfile.close();
 }
 
-void vehDist_rsu:: finish() {
-    printCountMessagesReceived();
-    if (experimentNumber == 8) { // maxSpeed 15 m/s
-        system("sed -i 's/maxSpeed=\"..\"/maxSpeed=\"15\"/g' vehDist.rou.xml");
-    }
+// #####################################################################################################
+void vehDist_rsu::onBeacon(WaveShortMessage* wsm) {
 }
 
-void vehDist_rsu::sendWSM(WaveShortMessage* wsm) {
-    sendDelayedDown(wsm,individualOffset);
-}
-
-void vehDist_rsu::sendMessage(std::string blockedRoadId) {
-    sentMessage = true;
-    t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM("data", dataLengthBits, channel, dataPriority, -1,2);
-    wsm->setWsmData(blockedRoadId.c_str());
-    sendWSM(wsm);
+void vehDist_rsu::onData(WaveShortMessage* wsm) {
 }

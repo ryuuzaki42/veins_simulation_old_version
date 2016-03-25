@@ -47,19 +47,17 @@ class vehDist_rsu : public BaseWaveApplLayer {
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
-        virtual void sendWSM(WaveShortMessage* wsm);
 
-        void sendMessage(std::string blockedRoadId);
-        void handleSelfMsg(cMessage* msg);
         void finish();
-
-        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
-        void restartFilesResult();
-        void printCountMessagesReceived();
-        void messagesReceivedMeasuring(WaveShortMessage* wsm);
+        void handleSelfMsg(cMessage* msg);
         void handleLowerMsg(cMessage* msg);
+        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
+
+        void restartFilesResult();
+        void rsuInitializeVariables();
         void onBeaconStatus(WaveShortMessage* wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
-        void rsuInitializeVariables();
+        void messagesReceivedMeasuring(WaveShortMessage* wsm);
+        void printCountMessagesReceived();
 };
 #endif
