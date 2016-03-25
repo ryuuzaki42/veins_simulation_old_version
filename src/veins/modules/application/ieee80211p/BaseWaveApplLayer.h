@@ -163,6 +163,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         unsigned short int repeatNumber;
         unsigned short int experimentNumber;
+        unsigned short int experimentSendbyDSR;
         string stringTmp;
         double ttlBeaconMessage;
         unsigned short int countGenerateBeaconMessage;

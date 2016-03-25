@@ -127,6 +127,7 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber()
     beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
     stringTmp = ev.getConfig()->getConfigValue("seed-set");
     repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
+    experimentSendbyDSR = par("experimentSendbyDSR");
 
     experimentNumber = par("experimentNumber");
     if ((experimentNumber == 1) || (experimentNumber == 5)) {
