@@ -21,8 +21,6 @@
 using Veins::TraCIMobilityAccess;
 using Veins::AnnotationManagerAccess;
 
-//const simsignalwrap_t vehDist::parkingStateChangedSignal = simsignalwrap_t(TRACI_SIGNAL_PARKING_CHANGE_NAME);
-
 Define_Module(vehDist);
 
 void vehDist::initialize(int stage) {
@@ -31,14 +29,6 @@ void vehDist::initialize(int stage) {
         mobility = TraCIMobilityAccess().get(getParentModule());
         traci = mobility->getCommandInterface();
         traciVehicle = mobility->getVehicleCommandInterface();
-//        annotations = AnnotationManagerAccess().getIfExists();
-//        ASSERT(annotations);
-
-//        sentMessage = false;
-//        lastDroveAt = simTime();
-//        findHost()->subscribe(parkingStateChangedSignal, this);
-//        isParking = false;
-//        sendWhileParking = par("sendWhileParking").boolValue();
 
         vehInitializeVariables();
     }
@@ -264,7 +254,7 @@ void vehDist::sendBeaconMessage() {
         }
 
         printMessagesBuffer();
-        trySendBeaconMessage(idMesssage); // is are null?
+        trySendBeaconMessage(idMesssage);
         printMessagesBuffer();
         messageToSend++; // Move to next message
     }
@@ -342,19 +332,18 @@ string vehDist::neighborWithShortestDistanceToTarge(string key) {
             exit(1);
         }
 
-        if (neighborDistanceNow < neighborDistanceBefore) { // test if is closing to target
-            if (neighborDistanceNow < neighborDistanceLocalVeh){ // test if is more close to the target than the veh with are trying to send
+        if (neighborDistanceNow < neighborDistanceBefore) { // Test if is closing to target
+            if (neighborDistanceNow < neighborDistanceLocalVeh){ // Test if is more close to the target than the veh with are trying to send
                 sD.categoryVeh = itBeaconNeighbors->second.getCategory();
                 sD.distanceToTarget = neighborDistanceNow;
                 sD.speedVeh = itBeaconNeighbors->second.getSenderSpeed();
                 sD.rateTimeToSendVeh = itBeaconNeighbors->second.getRateTimeToSend();
                 sD.decisionValueDistanceSpeed = sD.distanceToTarget - (sD.speedVeh / 2);
                 sD.decisionValueDistanceSpeedRateTimeToSend = sD.distanceToTarget - (sD.speedVeh / 2) + (sD.rateTimeToSendVeh / 100);
-                // Decision
-                //  Distance = [0 - 125] - 720 m
-                //  veh Speed = 0 - 84 m/s
-                //  rateTimeToSend = 100 to 5000 ms
-                //  DecisonValue = distance - speed/2 + rateTimeToSend/100;
+
+                //  Distance = [0 - 125] - 720 m //  veh Speed = 0 - 84 m/s //  rateTimeToSend = 100 to 5000 ms
+                //  DecisonValueDS = distance - speed/2
+                //  DecisonValueDSR = distance - speed/2 + rateTimeToSend/100
 
                 vehShortestDistanceToTarget.insert(make_pair(itBeaconNeighbors->first, sD));
             } else {
@@ -419,7 +408,6 @@ string vehDist::chosenByDistance(unordered_map<string, shortestDistance> vehShor
             vehId = itShortestDistance->first;
         }
     }
-
     return vehId;
 }
 
@@ -436,7 +424,6 @@ string vehDist::chosenByDistance_Speed(unordered_map<string, shortestDistance> v
             vehId = itShortestDistance->first;
         }
     }
-
    return vehId;
 }
 
@@ -478,7 +465,6 @@ string vehDist::chosenByDistance_Speed_Category(unordered_map<string, shortestDi
     return findHost()->getFullName();
 }
 
-// TODO
 string vehDist::chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP) {
     int valueDSR, shortestDistanceT, shortestDistanceP;
     string category, vehIdP, vehIdT;
@@ -1073,52 +1059,14 @@ unsigned short int vehDist::getVehHeading8() {
 }
 
 void vehDist::updateVehPosition() {
-    //cout << "Vehicle: " << findHost()->getFullName();
-    //cout << " Update position: " <<  "time: "<< simTime() << " next update: ";
-    //cout << (simTime() + par("vehTimeUpdatePosition").doubleValue()) << endl;
+    //cout << "Vehicle: " << findHost()->getFullName() << " Update position: " << " at: "<< simTime();
+    //cout << " next update: " << (simTime() + par("vehTimeUpdatePosition").doubleValue()) << endl;
     //cout << "positionPrevious: " << vehPositionPrevious;
     vehPositionPrevious = mobility->getPositionAt(simTime() - par("vehTimeUpdatePosition").doubleValue());
-    //cout << " and update positionPrevious: " << vehPositionPrevious << endl << endl;
+    //cout << " updated to: " << vehPositionPrevious << endl << endl;
 }
 
 //##############################################################################################################
-//
-//void vehDist::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj) {
-//    Enter_Method_Silent();
-//    if (signalID == mobilityStateChangedSignal) {
-//        //handlePositionUpdate(obj);
-//    } else if (signalID == parkingStateChangedSignal) {
-//        //handleParkingUpdate(obj);
-//    }
-//}
-//
-//void vehDist::handleParkingUpdate(cObject* obj) {
-//    isParking = mobility->getParkingState();
-//    if (sendWhileParking == false) {
-//        if (isParking == true) {
-//            (FindModule<BaseConnectionManager*>::findGlobalModule())->unregisterNic(this->getParentModule()->getSubmodule("nic"));
-//        } else {
-//            Coord pos = mobility->getCurrentPosition();
-//            (FindModule<BaseConnectionManager*>::findGlobalModule())->registerNic(this->getParentModule()->getSubmodule("nic"), (ChannelAccess*) this->getParentModule()->getSubmodule("nic")->getSubmodule("phy80211p"), &pos);
-//        }
-//    }
-//}
-//
-//void vehDist::handlePositionUpdate(cObject* obj) {
-//    BaseWaveApplLayer::handlePositionUpdate(obj);
-//
-//    // stopped for for at least 10s?
-//    if (mobility->getSpeed() < 1) {
-//        if (simTime() - lastDroveAt >= 10) {
-//            //findHost()->getDisplayString().updateWith("r=16,red");
-//            //if (!sentMessage)
-//            //    sendMessage(traci->getRoadId());
-//        }
-//    } else {
-//        lastDroveAt = simTime();
-//    }
-//}
-
 void vehDist::onData(WaveShortMessage* wsm) {
 }
 
