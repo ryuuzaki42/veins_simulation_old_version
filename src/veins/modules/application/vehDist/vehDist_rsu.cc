@@ -62,7 +62,7 @@ void vehDist_rsu::restartFilesResult() {
         DBG << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
         exit(1);
     }
-    stringTmp = "results/resultsEnd/" + result_part + "/E" + to_string(experimentNumber);
+    stringTmp = "results/vehDist_resultsEnd/" + result_part + "/E" + to_string(experimentNumber);
     stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
     fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + findHost()->getFullName();
