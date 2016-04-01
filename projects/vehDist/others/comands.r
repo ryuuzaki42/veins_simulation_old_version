@@ -52,4 +52,11 @@
 
     calculeDistance()
 
-## End
+## See if the selected veh to generate messages are the same
+sublime_text E1*/Veh_Messages_Generated.r E3*/Veh_Messages_Generated.r E5*/Veh_Messages_Generated.r E7*/Veh_Messages_Generated.r
+
+sublime_text E2*/Veh_Messages_Generated.r E4*/Veh_Messages_Generated.r E6*/Veh_Messages_Generated.r E8*/Veh_Messages_Generated.r
+
+ sublime_text E*/Veh_Position_Initialize.r 
+
+##end
