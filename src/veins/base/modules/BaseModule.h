@@ -29,13 +29,13 @@
 #include "veins/base/utils/HostState.h"
 
 #ifndef debugEV
-#define debugEV_clear (ev.isDisabled()||!debug) ? ev : ev
-#define debugEV (ev.isDisabled()||!debug) ? ev : ev << logName() << "::" << getClassName() << ": "
+#define debugEV_clear EV
+#define debugEV EV << logName() << "::" << getClassName() << ": "
 #endif
 
 #ifndef coreEV
-#define coreEV_clear (ev.isDisabled()||!coreDebug) ? ev : ev
-#define coreEV (ev.isDisabled()||!coreDebug) ? ev : ev << logName() << "::" << getClassName() <<": "
+#define coreEV_clear EV
+#define coreEV EV << logName() << "::" << getClassName() << ": "
 #endif
 
 /**
@@ -164,7 +164,11 @@ protected:
      * In this base class just handle the host state switching and
      * some debug notifications
      */
-    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+    using cListener::receiveSignal;
+    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj, cObject* details);
+    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) {
+        receiveSignal(source, signalID, obj, 0);
+    }
 };
 
 #endif
