@@ -119,7 +119,7 @@ void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int count
     myfile << "Exp: " << experimentNumber <<  " ######################################################";
     myfile << "#######################################################################################" << endl << endl;
     myfile << "Exp: " << experimentNumber << " ### Experiment: " << experimentNumber << " Execution: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
-    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << "exp_DSR" << experimentSendbyDSR << endl << endl;
+    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << " exp_DSR" << experimentSendbyDSR << endl << endl;
 }
 
 void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber(){
