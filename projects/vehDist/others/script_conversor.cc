@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int main(){
+int main() {
     freopen("test.rou.xml","r",stdin); //Arquivo de entrada gerado com script randomTrips.py
 
     ofstream output;
@@ -21,14 +21,14 @@ int main(){
     int count = 1;
     int countRoutes = 80;
     string route, line;
-    unordered_map<string, int>::iterator it;
     unordered_map<string, int> routes;
+    unordered_map<string, int>::iterator it;
     bool print = false;
 
     cout  << endl << "Por favor espere, gerando rotas..." << endl << endl;
 
-    while (getline(cin,line)){
-        if (line.compare(0,15,"        <route ") == 0){ // Edita cada linha do arquivo de entrada que representa rotas
+    while (getline(cin,line)) {
+        if (line.compare(0,15,"        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
             string to = "    <route id=\"";
             to +="route" + to_string(count);
             to +="\"";
@@ -37,12 +37,12 @@ int main(){
             if (to.size() > 3700){ // logo X km, x * 36 + 26; Para 100 km, 100 * 36 + 26 = 3626, para ter certeza 3700
                 route = line.substr(22,8); // Pega o primeiro ponto (ponto de partida)
                 it = routes.find(route);
-                if (it != routes.end()){ // Testa se ele já foi inserido ou existe
+                if (it != routes.end()) { // Testa se ele já foi inserido ou existe
                     if (it->second < countRoutes) {
                         it->second += 1; // Incrementa a quantidade desta rota
                         print = true;
                     }
-                } else{
+                } else {
                     routes.insert(make_pair(route, 1));
                     print = true;
                 }
@@ -50,7 +50,7 @@ int main(){
                 //cout << endl << "to.size, menor que 3700: "<< to.size() << endl;
             }
 
-            if(print){
+            if (print) {
                 output << to; //Escrita da rota no arquivo de saída
                 //cout << to; //Imprime rotas geradas no terminal
                 count++;
@@ -63,8 +63,8 @@ int main(){
     output << "</routes>"; //Finalização do arquivo de saída
     cout << endl;
     int routesCount = 0;
-    for (it = routes.begin(); it != routes.end(); it++){
-        if (it->second == 80){
+    for (it = routes.begin(); it != routes.end(); it++) {
+        if (it->second == 80) {
             cout << it->first << " " << it->second << endl;
         } else {
             cout <<"    " << it->first << " " << it->second << endl;

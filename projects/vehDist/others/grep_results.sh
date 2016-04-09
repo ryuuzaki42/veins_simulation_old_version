@@ -22,57 +22,44 @@
 #
 # Script: Script to collect the simulation result in one place
 #
-# Última atualização: 25/03/2016
+# Última atualização: 09/04/2016
 #
 echo -e "\n## Scrpit to collect the simulation results in one place\n"
 
-pathFolder="../results/resultsEnd"
+pathFolder="../results/vehDist_resultsEnd"
 rsu_0_File="rsu\[0\]_Count_Messages_Received.r"
 vehs_file="Veh_Messages_Drop.r"
-experiment1="1_chosenByDistance"
-experiment2="2_chosenByDistance_Speed"
-experiment3="3_chosenByDistance_Speed_Category"
-experiment4="4_chosenByDistance_Speed_Category_RateTimeToSend"
 
-echo -e "\n## Values from experiment $experiment1\n"
-i=1
-while [ $i -lt 9 ]; do
-    echo -e "\n               ## Experiment $i\n"
-    cat $pathFolder/$experiment1/E*/$rsu_0_File | grep -E "Exp: $i"
-    echo
-    cat $pathFolder/$experiment1/E*/$vehs_file | grep -E "Exp: $i"
-    i=$((i+1))
-done
+count=1
+continue=1
 
-echo -e "\n\n## Values from experiment $experiment2\n"
-i=1
-while [ $i -lt 9 ]; do
-    echo -e "\n               ## Experiment $i\n"
-    cat $pathFolder/$experiment2/E*/$rsu_0_File | grep -E "Exp: $i"
-    echo
-    cat $pathFolder/$experiment2/E*/$vehs_file | grep -E "Exp: $i"
-    i=$((i+1))
-done
+while [ $continue == 1 ]; do
+    case $count in
+        1) experiment="1_chosenByDistance" ;;
+        2) experiment="12_chosenByDistance_Speed" ;;
+        3) experiment="13_chosenByDistance_Category" ;;
+        4) experiment="14_chosenByDistance_RateTimeToSend" ;;
+        5) experiment="123_chosenByDistance_Speed_Category" ;;
+        6) experiment="1234_chosenByDistance_Speed_Category_RateTimeToSend" ;;
+    esac
 
-echo -e "\n\n## Values from experiment $experiment3\n"
-i=1
-while [ $i -lt 9 ]; do
-    echo -e "\n               ## Experiment $i\n"
-    cat $pathFolder/$experiment3/E*/$rsu_0_File | grep -E "Exp: $i"
-    echo
-    cat $pathFolder/$experiment3/E*/$vehs_file | grep -E "Exp: $i"
-    i=$((i+1))
-done
+    echo -e "\n## Values from experiment $experiment\n"
+    i=1
+    while [ $i -lt 9 ]; do
+        echo -e "\n               ## Experiment $i\n"
+        cat $pathFolder/$experiment/E*/$rsu_0_File | grep -E "Exp: $i"
+        echo
+        cat $pathFolder/$experiment/E*/$vehs_file | grep -E "Exp: $i"
+        i=$((i+1))
+    done
 
-echo -e "\n\n## Values from experiment $experiment4\n"
-i=1
-while [ $i -lt 9 ]; do
-    echo -e "\n               ## Experiment $i\n"
-    cat $pathFolder/$experiment4/E*/$rsu_0_File | grep -E "Exp: $i"
-    echo
-    cat $pathFolder/$experiment4/E*/$vehs_file | grep -E "Exp: $i"
-    i=$((i+1))
+    ((count+=1))
+
+    if [ $count == 7 ]; then
+        continue=0
+    fi
 done
 
 echo -e "\n\n               ## End of script\n"
+exit 0
 #end
