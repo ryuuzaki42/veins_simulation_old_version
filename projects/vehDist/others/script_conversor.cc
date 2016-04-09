@@ -1,7 +1,7 @@
-//#########################################################
-//                  To compile:                           #
-// g++ -std=c++0x -o script_conversor script_conversor.cc #
-//#########################################################
+//#############################################################
+//                      To compile:                           #
+// g++ -std=c++0x -o script_conversor.out script_conversor.cc #
+//#############################################################
 
 #include <iostream>
 #include <fstream>
@@ -18,7 +18,7 @@ int main(){
     //Escrita da definição do tipo de veículo no arquivo de saída
     output << "<routes>\n    <vType id=\"vtype0\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>\n\n";
 
-    int count = 0;
+    int count = 1;
     int countRoutes = 80;
     string route, line;
     unordered_map<string, int>::iterator it;

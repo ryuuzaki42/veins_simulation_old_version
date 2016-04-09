@@ -46,7 +46,7 @@ int main(){
                         if (strcmp(routePart1.c_str(), routePart2.c_str()) == 0) {
 //     <route edges="0/3to1/3 1/3to1/2 1/2to1/1 1/1to2/1 2/1to3/1 3/1to4/1 4/1to4/0 4/0to3/0 3/0to2/0 2/0to2/1 2/1to2/2...
                             if (dist == 9) { // dist == 9 para ter 8 ponto na rota
-                                cout << line.substr(p1,(p2 - p1 + 8)) << " dist: " << dist << " p1: " << p1 << " p2: "<< p2 << endl;
+                                cout << " route: " << count << " " << line.substr(p1,(p2 - p1 + 8)) << " dist: " << dist << " p1: " << p1 << " p2: "<< p2 << endl;
                                 toTmp += " edges=\"";
                                 while (toTmp.size() < routeComp) {
                                     toTmp += line.substr(p1,(p2 - p1));
@@ -69,6 +69,7 @@ int main(){
                 }
             } else {
                 if (to.size() > routeComp){
+                    cout << " route: " << count << " \"random\"" << endl;
                     output << to; // Escrita da rota no arquivo de saída
                     count++;
                 } else {
