@@ -119,7 +119,7 @@ void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int count
     myfile << "Exp: " << experimentNumber <<  " ######################################################";
     myfile << "#######################################################################################" << endl << endl;
     myfile << "Exp: " << experimentNumber << " ### Experiment: " << experimentNumber << " Execution: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
-    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;
+    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << "exp_DSR" << experimentSendbyDSR << endl << endl;
 }
 
 void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber(){
@@ -149,6 +149,41 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber()
         countGenerateBeaconMessage = 0; // Will not generate any message
     }
 }
+
+string BaseWaveApplLayer::getFolderResult(unsigned short int experimentSendbyDSR){
+    string result_folder_part;
+    switch (experimentSendbyDSR){
+    case 1:
+        result_folder_part = "1_chosenByDistance";
+        break;
+    case 12:
+        result_folder_part = "12_chosenByDistance_Speed";
+        break;
+    case 13:
+        result_folder_part = "13_chosenByDistance_Category";
+        break;
+    case 14:
+        result_folder_part = "14_chosenByDistance_RateTimeToSend";
+        break;
+    case 123:
+        result_folder_part = "123_chosenByDistance_Speed_Category";
+        break;
+    case 1234:
+        result_folder_part = "1234_chosenByDistance_Speed_Category_RateTimeToSend";
+        break;
+
+    default:
+        cout << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
+        DBG << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
+        exit(1);
+    }
+
+    stringTmp = "results/vehDist_resultsEnd/" + result_folder_part + "/E" + to_string(experimentNumber);
+    stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
+
+    return stringTmp;
+}
+
 // end
 //######################################### vehDist ##############################################################################################
 
