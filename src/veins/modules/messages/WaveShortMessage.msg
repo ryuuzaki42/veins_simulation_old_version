@@ -69,8 +69,7 @@ packet WaveShortMessage {
     bool requestMessages = false;
     // Unique global message identification
     string globalMessageIdentificaton;
-    // Unique local message identification
-    string localMessageIdentificaton;
+
     // Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
     unsigned short hopCount = 0;
     // Determine if a message has been successfully received or not. False is default value assigned to it
