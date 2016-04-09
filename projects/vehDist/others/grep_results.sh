@@ -24,6 +24,7 @@
 #
 # Última atualização: 09/04/2016
 #
+cd /media/sda4/prog/simulation_veins/projects/vehDist/others/
 echo -e "\n## Scrpit to collect the simulation results in one place\n"
 
 pathFolder="../results/vehDist_resultsEnd"
