@@ -39,33 +39,13 @@ void vehDist_rsu::rsuInitializeVariables() {
     generalInitializeVariables_executionByExperimentNumber();
 
     restartFilesResult();
-    //cout << " " << findHost()->getFullName() << " entered in the scenario" << endl;
+    //cout << " " << source << " entered in the scenario" << endl;
 }
 
 void vehDist_rsu::restartFilesResult() {
-    string result_part;
-    switch (experimentSendbyDSR){
-    case 1:
-        result_part = "1_chosenByDistance";
-        break;
-    case 2:
-        result_part = "2_chosenByDistance_Speed";
-        break;
-    case 3:
-        result_part = "3_chosenByDistance_Speed_Category";
-        break;
-    case 4:
-        result_part = "4_chosenByDistance_Speed_Category_RateTimeToSend";
-        break;
-    default:
-        cout << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
-        DBG << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
-        exit(1);
-    }
-    stringTmp = "results/vehDist_resultsEnd/" + result_part + "/E" + to_string(experimentNumber);
-    stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
+    stringTmp = getFolderResult(experimentSendbyDSR);
 
-    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + findHost()->getFullName();
+    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + source;
 
     fileMessagesBroadcast += "_Broadcast_Messages.r";
     fileMessagesUnicast += "_Messages_Received.r";
@@ -121,7 +101,7 @@ void vehDist_rsu::onBeaconStatus(WaveShortMessage* wsm) {
 }
 
 void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
-    if (strcmp(wsm->getRecipientAddressTemporary(), findHost()->getFullName()) == 0) {
+    if (strcmp(wsm->getRecipientAddressTemporary(), source.c_str()) == 0) {
         findHost()->bubble("Received Message");
         saveMessagesOnFile(wsm, fileMessagesUnicast);
 
@@ -225,7 +205,7 @@ void vehDist_rsu::printCountMessagesReceived() {
     SimTime avgGeneralTimeMessageReceived = 0;
 
     if (!messagesReceived.empty()) {
-        myfile << "messagesReceived from " << findHost()->getFullName() << endl;
+        myfile << "messagesReceived from " << source << endl;
 
         unsigned short int countCP = 0;
         unsigned short int countT = 0;
@@ -270,7 +250,7 @@ void vehDist_rsu::printCountMessagesReceived() {
 
         myfile << endl;
     } else {
-        myfile << "messagesReceived from " << findHost()->getFullName() << " is empty now" << endl;
+        myfile << "messagesReceived from " << source << " is empty now" << endl;
     }
     myfile.close();
 }
