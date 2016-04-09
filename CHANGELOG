@@ -34,12 +34,12 @@ v2.2
 + refactored the NED files to simplify the usage and to make it more generic
 
 v2.1
-+ added LMAC layer implementation written by Anna Förster and ported to MiXiM
++ added LMAC layer implementation written by Anna Fï¿½rster and ported to MiXiM
   by Theodoros Kapourniotis
 + added WiseRoute and Flooding network layer modules ported for MiXiM by
   Theodoros Kapourniotis
 + added modules from MoBAN project from Majid Nabi, Marc Geilen and Twan Basten
-+ added BMAC layer implementation written by Anna Förster
++ added BMAC layer implementation written by Anna Fï¿½rster
 + new probabilistic broadcast routing modules
 + new packet error rate analogue model (PERModel) 
 + new BreakPointPathloss analogue model
