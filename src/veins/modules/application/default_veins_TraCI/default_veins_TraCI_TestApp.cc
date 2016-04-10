@@ -61,7 +61,7 @@ void default_veins_TraCI_TestApp::handleLowerMsg(cMessage* msg) {
     delete msg;
 }
 
-void default_veins_TraCI_TestApp::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) {
+void default_veins_TraCI_TestApp::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj, cObject* details) {
     if (signalID == mobilityStateChangedSignal) {
         handlePositionUpdate();
     }
@@ -247,3 +247,4 @@ void default_veins_TraCI_TestApp::handlePositionUpdate() {
         }
     }
 }
+

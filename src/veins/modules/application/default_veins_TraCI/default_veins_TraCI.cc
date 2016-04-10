@@ -63,7 +63,7 @@ void default_veins_TraCI::sendMessage(std::string blockedRoadId) {
     wsm->setWsmData(blockedRoadId.c_str());
     sendWSM(wsm);
 }
-void default_veins_TraCI::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj) {
+void default_veins_TraCI::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details) {
     Enter_Method_Silent();
     if (signalID == mobilityStateChangedSignal) {
         handlePositionUpdate(obj);

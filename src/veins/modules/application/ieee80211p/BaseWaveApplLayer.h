@@ -73,7 +73,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual void initialize_mfcv_epidemic(int stage);
         virtual void finish();
 
-        virtual  void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+        virtual  void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details);
 
         enum WaveApplMessageKinds {
             SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
@@ -103,7 +103,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
 
         //Add for Epidemic
-        virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
+        virtual WaveShortMessage* prepareWSM_epidemic(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
         virtual unsigned int MACToInteger();
 
         virtual void sendWSM(WaveShortMessage* wsm);

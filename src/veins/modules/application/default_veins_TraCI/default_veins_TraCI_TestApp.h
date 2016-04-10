@@ -18,8 +18,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef default_veins_TraCI_TestApp_H
-#define default_veins_TraCI_TestApp_H
+#ifndef TraCITestApp_H
+#define TraCITestApp_H
 
 #include <set>
 #include <list>
@@ -61,7 +61,7 @@ class default_veins_TraCI_TestApp : public BaseApplLayer {
         void handleSelfMsg(cMessage*);
         void handleLowerMsg(cMessage*);
 
-        void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+        void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj, cObject* details);
 
         void handlePositionUpdate();
 };
