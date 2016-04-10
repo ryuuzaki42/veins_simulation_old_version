@@ -103,7 +103,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
 
         //Add for Epidemic
-        virtual WaveShortMessage* prepareWSM_epidemic(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+        virtual WaveShortMessage* prepareWSM_epidemic(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
         virtual unsigned int MACToInteger();
 
         virtual void sendWSM(WaveShortMessage* wsm);
