@@ -61,7 +61,7 @@ void minicurso_UFPI_TraCI_TestApp::handleLowerMsg(cMessage* msg) {
     delete msg;
 }
 
-void minicurso_UFPI_TraCI_TestApp::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj) {
+void minicurso_UFPI_TraCI_TestApp::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj, cObject* details) {
     if (signalID == mobilityStateChangedSignal) {
         handlePositionUpdate();
     }

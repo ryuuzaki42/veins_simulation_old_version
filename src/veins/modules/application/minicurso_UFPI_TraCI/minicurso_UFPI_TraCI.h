@@ -38,7 +38,7 @@ using namespace std;
 class minicurso_UFPI_TraCI : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
-        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details);
     protected:
         TraCIMobility* mobility;
         TraCICommandInterface* traci;
