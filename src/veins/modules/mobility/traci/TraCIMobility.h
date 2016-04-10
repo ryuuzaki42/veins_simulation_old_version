@@ -121,8 +121,8 @@ class TraCIMobility : public BaseMobility {
             return manager;
         }
         virtual TraCICommandInterface* getCommandInterface() const {
-            return getManager()->getCommandInterface();
-			return commandInterface;
+            if (!commandInterface) commandInterface = getManager()->getCommandInterface();
+			    return commandInterface;
         }
 		virtual TraCICommandInterface::Vehicle* getVehicleCommandInterface() const {
 			if (!vehicleCommandInterface) vehicleCommandInterface = new TraCICommandInterface::Vehicle(getCommandInterface()->vehicle(getExternalId()));
