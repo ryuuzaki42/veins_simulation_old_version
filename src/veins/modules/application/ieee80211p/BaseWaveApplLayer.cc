@@ -102,7 +102,7 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile.close();
 }
 
-void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, int ttlBeaconMessage, int countGenerateBeaconMessage ){
+void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage ){
     if (justForAppend) {
         myfile.open(fileName, std::ios_base::app);
     } else {
@@ -112,7 +112,7 @@ void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, in
     myfile.close();
 }
 
-void BaseWaveApplLayer::printHeaderfileExecution(int ttlBeaconMessage, int countGenerateBeaconMessage){
+void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage){
     if (repeatNumber != 0) {
         myfile << endl;
     }
@@ -127,21 +127,21 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber()
     beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
     stringTmp = ev.getConfig()->getConfigValue("seed-set");
     repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
-    experimentSendbyDSR = par("experimentSendbyDSR");
+    experimentSendbyDSR = par("experimentSendbyDSR").longValue();
 
-    experimentNumber = par("experimentNumber");
+    experimentNumber = par("experimentNumber").longValue();
     if ((experimentNumber == 1) || (experimentNumber == 5)) {
         ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one");
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
     } else if ((experimentNumber == 2) || (experimentNumber == 6)) {
         ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two");
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
     } else if ((experimentNumber == 3) || (experimentNumber == 7)) {
         ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one");
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
     } else if ((experimentNumber == 4) || (experimentNumber == 8)) {
         ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
-        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two");
+        countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
     } else {
         cout << "Error: Number of experiment not configured. Go to VehDist.cc line 146." << endl;
         exit(1); // Comets this line for use the values below
