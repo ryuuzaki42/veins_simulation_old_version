@@ -119,7 +119,7 @@ void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsign
     myfile << "Exp: " << experimentNumber <<  " ######################################################";
     myfile << "#######################################################################################" << endl << endl;
     myfile << "Exp: " << experimentNumber << " ### Experiment: " << experimentNumber << " Execution: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
-    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << " exp_DSR" << experimentSendbyDSR << endl << endl;
+    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << " exp_DSCR" << experimentSendbyDSCR << endl << endl;
 }
 
 void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber(){
@@ -127,7 +127,7 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber()
     beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
     stringTmp = ev.getConfig()->getConfigValue("seed-set");
     repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
-    experimentSendbyDSR = par("experimentSendbyDSR").longValue();
+    experimentSendbyDSCR = par("experimentSendbyDSCR").longValue();
 
     experimentNumber = par("experimentNumber").longValue();
     if ((experimentNumber == 1) || (experimentNumber == 5)) {
@@ -150,9 +150,9 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber()
     }
 }
 
-string BaseWaveApplLayer::getFolderResult(unsigned short int experimentSendbyDSR){
+string BaseWaveApplLayer::getFolderResult(unsigned short int experimentSendbyDSCR){
     string result_folder_part;
-    switch (experimentSendbyDSR){
+    switch (experimentSendbyDSCR){
     case 1:
         result_folder_part = "1_chosenByDistance";
         break;
@@ -173,8 +173,8 @@ string BaseWaveApplLayer::getFolderResult(unsigned short int experimentSendbyDSR
         break;
 
     default:
-        cout << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
-        DBG << "Error! experimentSendbyDSR: " << experimentSendbyDSR << "not defined, class in vehDist.cc";
+        cout << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in vehDist.cc";
+        DBG << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in vehDist.cc";
         exit(1);
     }
 

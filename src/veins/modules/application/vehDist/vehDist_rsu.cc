@@ -43,7 +43,7 @@ void vehDist_rsu::rsuInitializeVariables() {
 }
 
 void vehDist_rsu::restartFilesResult() {
-    stringTmp = getFolderResult(experimentSendbyDSR);
+    stringTmp = getFolderResult(experimentSendbyDSCR);
 
     fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + source;
 
