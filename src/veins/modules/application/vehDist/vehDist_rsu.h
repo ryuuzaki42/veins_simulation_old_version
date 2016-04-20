@@ -38,6 +38,8 @@ class vehDist_rsu : public BaseWaveApplLayer {
           unsigned short int minHop;
           unsigned short int maxHop;
           unsigned short int sumHops;
+          unsigned short int countT;
+          unsigned short int countP;
           string wsmData;
           simtime_t sumTimeRecived;
           string times;
