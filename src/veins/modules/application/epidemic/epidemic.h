@@ -21,7 +21,6 @@
 #ifndef epidemic_H
 #define epidemic_H
 
-
 #include <unordered_map>
 #include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
 #include "veins/modules/mobility/traci/TraCICommandInterface.h"
@@ -33,13 +32,10 @@ using Veins::AnnotationManager;
 
 using namespace std;
 
-/**
- * Small IVC Demo using 11p
- */
 class epidemic : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
-        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj);
+        virtual void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details);
     protected:
         TraCIMobility* mobility;
         TraCICommandInterface* traci;

@@ -95,8 +95,11 @@ void epidemic::onBeacon(WaveShortMessage* wsm) {
            if((simTime() - got->second) > sendSummaryVectorInterval) { //checking if I should update the nodesIRecentlySentSummaryVector entry
                //cout << "I'm " << findHost()->getFullName() << " and I'm updating the entry in the nodesIRecentlySentSummaryVector." << endl;
                sendLocalSummaryVector(wsm->getSenderAddress());
+
                nodesIRecentlySentSummaryVector.erase(wsm->getSenderAddress());
                nodesIRecentlySentSummaryVector.insert(make_pair<unsigned int, simtime_t>(wsm->getSenderAddress(),simTime()));
+               //got->second = simTime();
+
                printNodesIRecentlySentSummaryVector();
            }
         }
@@ -112,7 +115,7 @@ void epidemic::onData(WaveShortMessage* wsm) {
     if(wsm->getSummaryVector()) {
        //checking if the summary vector was sent to me
        if(wsm->getRecipientAddress() == MACToInteger()) {
-          cout << "I'm " << findHost()->getFullName() << "(" << MACToInteger() << ") and I just recieved the summary vector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
+          cout << "I'm " << findHost()->getFullName() << "(" << MACToInteger() << ") and I just received the summary vector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
           //Creating the remote summary vector with the data received in wsm->message field
           createEpidemicRemoteSummaryVector(wsm->getWsmData());
           printEpidemicRemoteSummaryVectorData();
@@ -162,23 +165,34 @@ void epidemic::onData(WaveShortMessage* wsm) {
                  //cout << "pos = messageReceived.find(delimiter): " << messageReceived.find(delimiter) << endl;
                  //cout << "std::string::npos: " << std::string::npos << endl;
                  while((pos = messageReceived.find(delimiter)) != std::string::npos) {
-                        tokenkey = messageReceived.substr(0, pos);
-                        messageReceived.erase(0, pos + delimiter.length());
-                        pos = messageReceived.find(delimiter);
-                        tokenData = messageReceived.substr(0, pos);
-                        messageReceived.erase(0, pos + delimiter.length());
-                        pos = messageReceived.find(delimiter);
-                        tokenSource = messageReceived.substr(0, pos);
-                        messageReceived.erase(0, pos + delimiter.length());
-                        pos = messageReceived.find(delimiter);
-                        tokenTarget = messageReceived.substr(0, pos);
-                        messageReceived.erase(0, pos + delimiter.length());
-                        pos = messageReceived.find(delimiter);
-                        tokenTimestamp = messageReceived.substr(0, pos);
-                        messageReceived.erase(0, pos + delimiter.length());
-                        pos = messageReceived.find(delimiter);
-                        tokenhopcount = messageReceived.substr(0, pos);
-                        messageReceived.erase(0, pos + delimiter.length());
+
+                     // leaved to not break the code
+                     tokenkey = messageReceived.substr(0, pos);
+                     messageReceived.erase(0, pos + delimiter.length());
+                     //
+
+                     //tokenkey = wsm->getGlobalMessageIdentificaton();
+
+                     pos = messageReceived.find(delimiter);
+                     tokenData = messageReceived.substr(0, pos);
+                     messageReceived.erase(0, pos + delimiter.length());
+
+                     pos = messageReceived.find(delimiter);
+                     tokenSource = messageReceived.substr(0, pos);
+                     messageReceived.erase(0, pos + delimiter.length());
+
+                     pos = messageReceived.find(delimiter);
+                     tokenTarget = messageReceived.substr(0, pos);
+                     messageReceived.erase(0, pos + delimiter.length());
+
+                     pos = messageReceived.find(delimiter);
+                     tokenTimestamp = messageReceived.substr(0, pos);
+                     messageReceived.erase(0, pos + delimiter.length());
+
+                     pos = messageReceived.find(delimiter);
+                     tokenhopcount = messageReceived.substr(0, pos);
+                     messageReceived.erase(0, pos + delimiter.length());
+
                         //cout << "I'm " << findHost()->getFullName() << " and the message received is tokenData: " << tokenData << "tokenSource: " << tokenSource << "tokenTarget: " << tokenTarget << "tokenTimestamp: " << tokenTimestamp << endl;
                         WaveShortMessage w = *wsm;
                         w.setWsmData(tokenData.c_str());
@@ -186,6 +200,10 @@ void epidemic::onData(WaveShortMessage* wsm) {
                         w.setTarget(tokenTarget.c_str());
                         w.setTimestamp(st.parse(tokenTimestamp.c_str()));
                         w.setHopCount(stoi(tokenhopcount));
+
+                        // test Jonh
+                        w.setGlobalMessageIdentificaton(wsm->getGlobalMessageIdentificaton());
+
                         //checking if the maximum buffer size was reached
                         if(queueFIFO.size() < maximumEpidemicBufferSize) {
                             //Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
@@ -339,7 +357,7 @@ void epidemic::sendEpidemicRequestMessageVector(unsigned int newRecipientAddress
     //epidemicRequestMessageVector.clear();
 }
 
-void epidemic::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj) {
+void epidemic::receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details) {
     Enter_Method_Silent();
     if (signalID == mobilityStateChangedSignal) {
         handlePositionUpdate(obj);
@@ -468,9 +486,16 @@ void epidemic::generateMessage() {
     string data = "WSMData generated by ";
     data += findHost()->getFullName();
     wsm.setWsmData(data.c_str());
-    wsm.setLocalMessageIdentificaton(to_string(epidemic::messageId).c_str());
-    wsm.setGlobalMessageIdentificaton((to_string(epidemic::messageId) + to_string(MACToInteger())).c_str());
-    wsm.setHopCount(hopCount);
+
+    //wsm.setLocalMessageIdentificaton(to_string(epidemic::messageId).c_str());
+    if (epidemic::messageId < 10) {
+        stringTmp = '0' + to_string(epidemic::messageId);
+        wsm.setGlobalMessageIdentificaton(stringTmp.c_str()); // Id 01 to 09
+    } else {
+        wsm.setGlobalMessageIdentificaton(to_string(epidemic::messageId).c_str()); // Id 10 and keep going
+    }
+    wsm.setHopCount(hopCount + 1);
+
     epidemic::messageId++;
 
     //Putting the message in the epidemicLocalMessageBuffer
@@ -500,10 +525,11 @@ void epidemic::printEpidemicLocalMessageBuffer() {
            cout << "EpidemicLocalMessageBuffer from " << findHost()->getFullName() << " is empty now " << endl;
     } else {
         int i = 0;
-        cout << "Printing the epidemicLocalMessageBuffer from " << findHost()->getFullName() << "(" << MACToInteger() <<"):" << endl;
+        cout << "Veh - Printing the epidemicLocalMessageBuffer from " << findHost()->getFullName() << "(" << MACToInteger() <<"):" << endl;
         for(auto& x: epidemicLocalMessageBuffer) {
             WaveShortMessage wsmBuffered = x.second;
             cout << " Key " << ++i << ": " << x.first << " - Message Content: " << wsmBuffered.getWsmData() << " source: " << wsmBuffered.getSource() << " target: " << wsmBuffered.getTarget() << " Timestamp: " << wsmBuffered.getTimestamp() << " HopCount: " << wsmBuffered.getHopCount() << endl;
+            cout << "GlobalID" << wsmBuffered.getGlobalMessageIdentificaton() << endl;
         }
     }
 }
@@ -576,7 +602,7 @@ void epidemic::printWaveShortMessage(WaveShortMessage wsm) {
     cout << "wsm.getSummaryVector():" << wsm.getSummaryVector() << endl;
     cout << "wsm.getRequestMessages():" << wsm.getRequestMessages() << endl;
     cout << "wsm.getWsmData():" << wsm.getWsmData() << endl;
-    cout << "wsm.getLocalMessageIdentificaton(): " << wsm.getLocalMessageIdentificaton() << endl;
+    //cout << "wsm.getLocalMessageIdentificaton(): " << wsm.getLocalMessageIdentificaton() << endl;
     cout << "wsm.getGlobalMessageIdentificaton(): " << wsm.getGlobalMessageIdentificaton() << endl;
     cout << "wsm.getHopCount(): " << wsm.getHopCount() << endl;
 }
