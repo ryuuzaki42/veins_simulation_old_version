@@ -29,9 +29,6 @@
 using Veins::AnnotationManager;
 using namespace std;
 
-/**
- * Small RSU Demo using 11p
- */
 class epidemic_rsu : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
@@ -44,11 +41,11 @@ class epidemic_rsu : public BaseWaveApplLayer {
         typedef pair<string, WaveShortMessage> MyPairEpidemicMessageBuffer;
         //Creating a unordered_map to represent the local epidemic messages buffer
         MyMapEpidemicMessageBuffer epidemicLocalMessageBuffer;
-        //Bit Vector to represent a summary vector that indicates which entries in their local hash table are setted.
+        //Bit Vector to represent a summary vector that indicates which entries in their local hash table are set.
         unordered_map<string, bool> epidemicLocalSummaryVector;
-        //Bit Vector to represent a summary vector that indicates which entries in remote hash table are setted.
+        //Bit Vector to represent a summary vector that indicates which entries in remote hash table are set.
         unordered_map<string, bool> epidemicRemoteSummaryVector;
-        //Bit Vector to represent a result summary vector that will be used to make a resquest of messages.
+        //Bit Vector to represent a result summary vector that will be used to make a request of messages.
         unordered_map<string, bool> epidemicRequestMessageVector;
         //bitset<BROADCAST> epidemicSummaryVector;
         //Cache with nodes that I recently met
@@ -58,6 +55,21 @@ class epidemic_rsu : public BaseWaveApplLayer {
         //implementation of FIFO in order to maintain the limited length of the buffer activated
         queue<string> queueFIFO;
         double maiortempo = 0;
+
+        struct messages {
+            unsigned short int copyMessage;
+            string hops;
+            unsigned short int minHop;
+            unsigned short int maxHop;
+            unsigned short int sumHops;
+            unsigned short int countT;
+            unsigned short int countP;
+            string wsmData;
+            simtime_t sumTimeRecived;
+            string times;
+        };
+        map<string, struct messages> messagesReceived;
+        unordered_map<string, WaveShortMessage> MessageBuffer;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -83,6 +95,10 @@ class epidemic_rsu : public BaseWaveApplLayer {
         void printQueueFIFO(queue<string> qFIFO);
         void createEpidemicRemoteSummaryVector(string s);
         virtual void finish();
+
+        void epidemic_InitializeVariables();
+        void messagesReceivedMeasuring(WaveShortMessage* wsm);
+        void printCountMessagesReceived();
 };
 
 #endif
