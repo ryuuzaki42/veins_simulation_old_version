@@ -32,7 +32,7 @@ class vehDist : public BaseWaveApplLayer {
         virtual void initialize(int stage);
 
         enum WaveApplMessageKinds {
-            SendEvtUpdatePositionVeh, SendEvtBeaconMessage, SendEvtGenerateBeaconMessage, SendEvtUpdateTimeToSendVeh
+            SendEvtUpdatePositionVeh, SendEvtBeaconMessage, SendEvtGenerateBeaconMessage, SendEvtUpdateRateTimeToSendVeh
         };
 
     protected:
@@ -43,12 +43,18 @@ class vehDist : public BaseWaveApplLayer {
         cMessage* sendBeaconMessageEvt;
         cMessage* sendGenerateBeaconMessageEvt;
         cMessage* sendUpdatePosisitonVeh;
-        cMessage* sendUpdateTimeToSendVeh;
+        cMessage* sendUpdateRateTimeToSendVeh;
+
+        static double ttlBeaconStatus;
+        static unsigned short int numVehToRandom;
+        static unsigned short int beaconMessageBufferSize;
+        static unsigned short int beaconStatusBufferSize;
+        static float timeLimitGenerateBeaconMessage;
 
         static unsigned short int countMesssageDrop;
         static unsigned short int beaconMessageId;
         static vector<string> numVehicles;
-        static unordered_map<unsigned short int, bool> vehGenerateMessage;
+        static vector <int> vehGenerateMessage;
 
         Coord vehPositionPrevious;
         unordered_map<string, WaveShortMessage> messagesBuffer;
@@ -63,12 +69,8 @@ class vehDist : public BaseWaveApplLayer {
         unsigned short int rateTimeToSendUpdateTime;
         unsigned short int messageToSend;
 
-        float vehOffSet;
-        float ttlBeaconStatus;
+        double vehOffSet;
         string vehCategory;
-        float timeLimitGenerateBeaconMessage;
-        unsigned short int beaconMessageBufferSize;
-        unsigned short int beaconStatusBufferSize;
 
         struct messagesDropStruct {
             unsigned short int byBuffer;
@@ -79,11 +81,12 @@ class vehDist : public BaseWaveApplLayer {
 
         struct shortestDistance {
             string categoryVeh;
-            float speedVeh;
+            double speedVeh;
+            double distanceToTarget;
+            double decisionValueDistanceSpeed;
+            double decisionValueDistanceRateTimeToSend;
+            double decisionValueDistanceSpeedRateTimeToSend;
             unsigned short int rateTimeToSendVeh;
-            unsigned short int distanceToTarget; // Int to ignore small differences
-            unsigned short int decisionValueDistanceSpeed;
-            unsigned short int decisionValueDistanceSpeedRateTimeToSend;
         };
 
     protected:
@@ -93,48 +96,64 @@ class vehDist : public BaseWaveApplLayer {
         void finish();
         void handleSelfMsg(cMessage* msg);
         void handleLowerMsg(cMessage* msg);
+
+        void printBeaconStatusNeighbors();
+        void onBeaconStatus(WaveShortMessage* wsm);
         WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
+
+        void vehCreateEventTrySendBeaconMessage();
+        void generateTarget();
+        void sendBeaconMessage();
+        void printMessagesBuffer();
+        void generateBeaconMessage();
+        void colorCarryMessage();
         WaveShortMessage* updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId);
 
-        void generateTarget();
-        void generateBeaconMessage();
-        void printMessagesBuffer();
-        void printBeaconStatusNeighbors();
-        void updateVehPosition();
-        unsigned short int getVehHeading8();
-        unsigned short int getVehHeading4();
-        void saveVehStartPosition(string fileNameLocation);
-        void restartFilesResult();
-        void vehUpdatePosition();
-        void vehCreateEventTrySendBeaconMessage();
-        void sendMessageNeighborsTarget(string beaconSource);
-        string returnLastMessageInserted();
-        void printCountBeaconMessagesDrop();
-        void colorCarryMessage();
-        void onBeaconStatus(WaveShortMessage* wsm);
-        void onBeaconMessage(WaveShortMessage* wsm);
+        void trySendBeaconMessage(string idMessage);
+        string neighborWithShortestDistanceToTarge(string key);
+
+        void selectVehGenerateMessage();
         void vehGenerateBeaconMessageBegin();
         void vehGenerateBeaconMessageAfterBegin();
-        void selectVehGenerateMessage();
+
+        void updateVehPosition();
+        void vehUpdatePosition();
+        void vehUpdateRateTimeToSend();
+        void vehCreateUpdateRateTimeToSendEvent();
+
+        void restartFilesResult();
         void vehInitializeVariables();
+        void saveVehStartPosition(string fileNameLocation);
+
+        void sendMessageNeighborsTarget(string beaconSource);
+        void onBeaconMessage(WaveShortMessage* wsm);
+
         void insertMessageDrop(string ID, int type);
-        string getNeighborShortestDistanceToTarge(string key);
-        string neighborWithShortestDistanceToTarge(string key);
+        void printCountBeaconMessagesDrop();
         void removeOldestInputBeaconMessage();
         void removeOldestInputBeaconStatus();
-        void vehUpdateTimeToSend();
-        void vehCreateUpdateTimeToSendEvent();
-        void sendBeaconMessage();
-        void trySendBeaconMessage(string idMessage);
-        string chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget);
-        string chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget);
-        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP);
-        string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP);
+
+        string chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 1
+        string chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 12
+        string chosenByDistance_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP); // 13
+        string chosenByDistance_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 14
+        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP); // 123
+        string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP); // 1234
+
+        string returnLastMessageInserted();
+        string getNeighborShortestDistanceToTarge(string key);
+        unsigned short int getVehHeading8();
+        unsigned short int getVehHeading4();
 };
 
-unsigned short int vehDist::beaconMessageId = 1;
-unsigned short int vehDist::countMesssageDrop = 0;
-unordered_map<unsigned short int, bool> vehDist::vehGenerateMessage;
+unsigned short int vehDist::beaconMessageId;
+unsigned short int vehDist::countMesssageDrop;
+vector <int> vehDist::vehGenerateMessage;
 vector<string> vehDist::numVehicles;
+unsigned short int vehDist::numVehToRandom;
+double vehDist::ttlBeaconStatus;
+unsigned short int vehDist::beaconMessageBufferSize;
+unsigned short int vehDist::beaconStatusBufferSize;
+float vehDist::timeLimitGenerateBeaconMessage;
 
 #endif
