@@ -119,7 +119,18 @@ void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsign
     myfile << "Exp: " << experimentNumber <<  " ######################################################";
     myfile << "#######################################################################################" << endl << endl;
     myfile << "Exp: " << experimentNumber << " ### Experiment: " << experimentNumber << " Execution: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
-    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << " exp_DSCR" << experimentSendbyDSCR << endl << endl;
+    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << " exp_DSCR: ";
+
+    if (experimentSendbyDSCR < 10) {
+        myfile << "000" << experimentSendbyDSCR;
+    } else if (experimentSendbyDSCR < 100) {
+        myfile << "00" << experimentSendbyDSCR;
+    } else if (experimentSendbyDSCR < 1000) {
+        myfile << "0" << experimentSendbyDSCR;
+    } else {
+        myfile << experimentSendbyDSCR;
+    }
+    myfile << endl << endl;
 }
 
 void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber(){
@@ -154,27 +165,27 @@ string BaseWaveApplLayer::getFolderResult(unsigned short int experimentSendbyDSC
     string result_folder_part;
     switch (experimentSendbyDSCR){
     case 1:
-        result_folder_part = "1_chosenByDistance";
+        result_folder_part = "0001_chosenByDistance";
         break;
     case 12:
-        result_folder_part = "12_chosenByDistance_Speed";
+        result_folder_part = "0012_chosenByDistance_Speed";
         break;
     case 13:
-        result_folder_part = "13_chosenByDistance_Category";
+        result_folder_part = "0013_chosenByDistance_Category";
         break;
     case 14:
-        result_folder_part = "14_chosenByDistance_RateTimeToSend";
+        result_folder_part = "0014_chosenByDistance_RateTimeToSend";
         break;
     case 123:
-        result_folder_part = "123_chosenByDistance_Speed_Category";
+        result_folder_part = "0123_chosenByDistance_Speed_Category";
         break;
     case 1234:
         result_folder_part = "1234_chosenByDistance_Speed_Category_RateTimeToSend";
         break;
 
     default:
-        cout << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in vehDist.cc";
-        DBG << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in vehDist.cc";
+        cout << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
+        DBG << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
         exit(1);
     }
 
