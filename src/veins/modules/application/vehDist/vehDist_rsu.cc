@@ -101,7 +101,7 @@ void vehDist_rsu::onBeaconStatus(WaveShortMessage* wsm) {
 }
 
 void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
-    if (strcmp(wsm->getRecipientAddressTemporary(), source.c_str()) == 0) {
+    if (source.compare(wsm->getRecipientAddressTemporary()) == 0) {
         findHost()->bubble("Received Message");
         saveMessagesOnFile(wsm, fileMessagesUnicast);
 
