@@ -20,7 +20,7 @@ int main() {
     fileInput = "test.rou.xml";
     fileOutput = "test_end2.rou.xml";
     fileDist = "distributionCategory_end.r";
-    freopen(fileInput.c_str(),"r",stdin); // Arquivo de entrada gerado com script randomTrips.py
+    freopen(fileInput.c_str(), "r", stdin); // Arquivo de entrada gerado com script randomTrips.py
 
     ofstream output;
     output.open(fileOutput.c_str()); // Arquivo que será criado com todas rotas
@@ -29,9 +29,10 @@ int main() {
 
     bool parte1 = true;
     bool validRoute, use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
-    string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart, route_id;
+    string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
     int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes;
     int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
+
     count = 1;
     pathComp = 4; // Metade do percurso em blocos (quarteirão)
     countVehicleRoutes = 50;
@@ -48,9 +49,6 @@ int main() {
     // By 25 m/s or 90 km/h => will move 15 km
     // By 15 m/s or 54 km/h => will move 9 km
     // 16000 m/25 m/s => 640 s
-
-    map<string, bool> routes_test;
-    map<string, bool>::iterator itRoutesTest;
 
     cout << "Por favor espere, gerando rotas..." << endl << endl;
 
@@ -81,7 +79,7 @@ int main() {
                 if (validRoute) {
                     if (parte1) {
                         p2 = pathComp * 9 + p1 -1;
-                        routeTmp = line.substr(p1,(p2-p1)); // Pega o primeira parte da rota
+                        routeTmp = line.substr(p1, (p2 - p1)); // Pega o primeira parte da rota
 //     <route edges="0/3to1/3 1/3to1/2 1/2to1/1 1/1to2/1 2/1to3/1 3/1to4/1 4/1to4/0 4/0to3/0 3/0to2/0 2/0to2/1 2/1to2/2 ...
 
                         toTmp += " edges=\"";
@@ -106,15 +104,8 @@ int main() {
                         }
 
                         toTmp += "\"/>\n";
-                        route_id = line.substr(22, 8);
-                        itRoutesTest = routes_test.find(route_id);
-                        if (itRoutesTest == routes_test.end()){
-                            //cout << "route_id " << count << ": " << route_id << endl;
-                            routes_test.insert(make_pair(route_id, true));
-
-                            output << toTmp; // Escrita da rota no arquivo de saída
-                            count++;
-                        }
+                        output << toTmp; // Escrita da rota no arquivo de saída
+                        count++;
 
                         if (count > countVehicleCagegoryA) {
                             parte1 = false;
@@ -129,14 +120,8 @@ int main() {
                             }
                             toTmp += "\"/>\n";
 
-                            route_id = line.substr(22, 8);
-                            itRoutesTest = routes_test.find(route_id);
-                            if (itRoutesTest == routes_test.end()){
-                                //cout << "route_id " << count << ": " << route_id << endl;
-                                routes_test.insert(make_pair(route_id, true));
-                                output << toTmp; // Escrita da rota no arquivo de saída
-                                count++;
-                            }
+                            output << toTmp; // Escrita da rota no arquivo de saída
+                            count++;
                         } else {
                             //cout << endl << "to.size, menor que" << routeComp << " : " << to.size() << endl;
                         }
@@ -192,9 +177,9 @@ int main() {
     cout << "Rotas salvas no arquivo " << fileOutput << "..." << endl << endl;
 
     // verifica dispersão de veículo no cenário
-    freopen(fileOutput.c_str(),"r",stdin); // Arquivo de entrada gerado com script randomTrips.py
+    freopen(fileOutput.c_str(), "r", stdin); // Arquivo de gerado na primeira parte
 
-    count = 0;
+    count = 1;
     map<string, struct distributionCategory> routes;
     map<string, struct distributionCategory>::iterator it;
 
@@ -203,19 +188,19 @@ int main() {
     output << "cP = Veículos de Passeio.   cT = Táxi" << endl << endl;
 
     if (use_left_and_right_road_as_samePlace) {
-        output << "   Nome do segmento de rua                 Count cP  Count cT  %% cP          %% cT" << endl << endl;
+        output << "Nome do segmento de rua                  Count cP    Count cT    %cP    %cT    cT + cP" << endl << endl;
     } else {
-        output << "    Nome do segmento de rua    Count cP  Count cT   %% cP           %% cT" << endl << endl;
+        output << "Nome do segmento de rua    Count cP    Count cT    %cP    %cT    cT + cP" << endl << endl;
     }
 
-    while (getline(cin,line) && count <= countVehicleRoutes) { // count < 50 to create 50 routes
+    while (getline(cin,line) && count <= countVehicleRoutes) { // count <= 50 to 50 routes
         if (line.compare(0, 11, "    <route ") == 0) {
             p1 = 31;
             to = line.substr(p1);
             p2 = to.size();
 
             while (p1 < p2) {
-                routeTmp = line.substr(p1,8); // Pega o primeiro ponto (ponto de partida)
+                routeTmp = line.substr(p1, 8); // Pega o primeiro ponto (ponto de partida)
                 it = routes.find(routeTmp);
 
                 if (use_left_and_right_road_as_samePlace) {
@@ -237,8 +222,7 @@ int main() {
                     }
                 } else {
                     struct distributionCategory dC;
-                    dC.categoryP = 0;
-                    dC.categoryT = 0;
+                    dC.categoryP = dC.categoryT = 0;
                     if (count <= countVehicleCagegoryA) {
                         dC.categoryP++;
                     } else {
@@ -254,10 +238,10 @@ int main() {
     }
 
     count = 1;
-    cout.precision(2);
-    output.precision(2);
+    cout.precision(4);
+    output.precision(4);
     double percentage;
-    int countP, countT;
+    int countP, countT, countTandP;
     countP = countT = 0;
     for (it = routes.begin(); it != routes.end(); it++) {
         if (use_left_and_right_road_as_samePlace) {
@@ -268,48 +252,57 @@ int main() {
             routeTmp = lastPart + middlePart + fristPart;
 
             if (count < 10) {
-                output << "   Street_Segment_0" << count << ": " << it->first << " | " << routeTmp << "    cP: " << it->second.categoryP;
+                output << "Street_Segment_0" << count << ": " << it->first << " | " << routeTmp;
             } else {
-                output << "   Street_Segment_" << count << ": " << it->first << " | " << routeTmp << "    cP: " << it->second.categoryP;
+                output << "Street_Segment_" << count << ": " << it->first << " | " << routeTmp;
             }
         } else {
             if (count < 10) {
-                output << "   Street_Segment_0" << count << ": " << it->first << "    cP: " << it->second.categoryP;
+                output << "Street_Segment_0" << count << ": " << it->first;
             } else {
-                output << "   Street_Segment_" << count << ": " << it->first << "    cP: " << it->second.categoryP;
+                output << "Street_Segment_" << count << ": " << it->first;
             }
         }
 
+        countTandP = it->second.categoryP + it->second.categoryT;
+        output << "    cT + cP: " << countTandP;
+        if (countTandP < 10) {
+            output << "  ";
+        } else if (countTandP < 100){
+            output << " ";
+        }
+
+        output<< "    cP: " << it->second.categoryP;
         if (it->second.categoryP < 10) {
+            output << "  ";
+        } else if (it->second.categoryP < 100){
             output << " ";
         }
 
         output << "    cT: " << it->second.categoryT;
         if (it->second.categoryT < 10) {
+            output << "  ";
+        } else if (it->second.categoryT < 100){
             output << " ";
         }
 
-        percentage = it->second.categoryP + it->second.categoryT;
-        percentage = it->second.categoryP/percentage;
-        output << "   %%cP: " << percentage;
         countP += it->second.categoryP;
+        percentage = (double(it->second.categoryP)/countTandP) * 100;
+        output << "   %cP: " << percentage;
 
-        percentage = it->second.categoryP + it->second.categoryT;
-        percentage = it->second.categoryT/percentage;
-        output << "     %%cT: " << percentage;
         countT += it->second.categoryT;
-        output << "                     cT + cP: " << (it->second.categoryP + it->second.categoryT) << endl;
+        percentage = (double(it->second.categoryT)/countTandP) * 100;
+        output << "    %cT: " << percentage << endl;
 
         count++;
      }
 
     output << endl << "CountTotal: " << (countP + countT) << " countP: " << countP << "    countT: " << countT << endl << endl;
-    percentage = countP + countT;
-    percentage  = double(countP)/percentage;
+    countTandP = countP + countT;
+    percentage = double(countP)/countTandP;
     output << "Porcentagem geral, %%GcP: " << percentage;
-    percentage = countP + countT;
-    percentage  = double(countT)/percentage;
-    output << "    %%GcT: " << percentage;
+    percentage = double(countT)/countTandP;
+    output << "    %%GcT: " << percentage << endl;
 
     output.close();
     cout << "Distribuição de veículos pelos segmentos de rotas salvas no arquivo " << fileDist << "..." << endl << endl;
