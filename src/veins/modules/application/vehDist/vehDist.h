@@ -69,6 +69,7 @@ class vehDist : public BaseWaveApplLayer {
         unsigned short int rateTimeToSendUpdateTime;
         unsigned short int messageToSend;
 
+        mt19937 mt_veh;
         double vehOffSet;
         string vehCategory;
 
@@ -128,17 +129,18 @@ class vehDist : public BaseWaveApplLayer {
         void sendMessageNeighborsTarget(string beaconSource);
         void onBeaconMessage(WaveShortMessage* wsm);
 
-        void insertMessageDrop(string ID, int type);
+        void insertMessageDrop(string ID, unsigned short int type);
         void printCountBeaconMessagesDrop();
         void removeOldestInputBeaconMessage();
         void removeOldestInputBeaconStatus();
 
+        string choseCategory_RandomNumber1to100(int percentP, string vehIdP, string vehIdT);
         string chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 1
         string chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 12
-        string chosenByDistance_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP); // 13
+        string chosenByDistance_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 13
         string chosenByDistance_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 14
-        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP); // 123
-        string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, unsigned short int percentP); // 1234
+        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 123
+        string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 1234
 
         string returnLastMessageInserted();
         string getNeighborShortestDistanceToTarge(string key);
