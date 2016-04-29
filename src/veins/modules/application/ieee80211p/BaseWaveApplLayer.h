@@ -86,7 +86,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
         void printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
         void openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
-        void generalInitializeVariables_executionByExperimentNumber();
+        void generalInitializeVariables_executionByExpNumber();
         string getFolderResult(unsigned short int experimentSendbyDSR);
 //######################################### vehDist #########################################
 
@@ -163,8 +163,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
         string fileMessagesGenerated;
 
         unsigned short int repeatNumber;
-        unsigned short int experimentNumber;
-        unsigned short int experimentSendbyDSCR;
+        unsigned short int expNumber;
+        unsigned short int expSendbyDSCR;
         string stringTmp;
         double ttlBeaconMessage;
         unsigned short int countGenerateBeaconMessage;

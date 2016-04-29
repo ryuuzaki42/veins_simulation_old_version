@@ -52,9 +52,9 @@ void epidemic_rsu::epidemic_InitializeVariables(){
     stringTmp = ev.getConfig()->getConfigValue("seed-set");
     repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
 
-    experimentNumber = par("experimentNumber");
+    expNumber = par("expNumber");
 
-    stringTmp = "results/epidemic_resultsEnd/E" + to_string(experimentNumber);
+    stringTmp = "results/epidemic_resultsEnd/E" + to_string(expNumber);
     stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
     fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + findHost()->getFullName();
@@ -66,11 +66,11 @@ void epidemic_rsu::epidemic_InitializeVariables(){
     //fileMessagesDrop and fileMessagesGenerated not used yet to RSU
 
     if ((myId == 0) && (repeatNumber == 0)) { //Open a new file (blank)
-        if (experimentNumber == 1) { // maxSpeed 15 m/s
+        if (expNumber == 1) { // maxSpeed 15 m/s
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
             system(comand.c_str());
             cout << endl << "Change the spped to 15 m/s, command: " << comand << endl;
-        } else if (experimentNumber == 5){  // maxSpeed 25 m/s
+        } else if (expNumber == 5){  // maxSpeed 25 m/s
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
             system(comand.c_str());
             cout << endl << "Change the spped to 25 m/s, command: " << comand << endl;
@@ -178,13 +178,13 @@ void epidemic_rsu::printCountMessagesReceived() {
         avgGeneralTimeMessageReceived /= messagesReceived.size();
         avgGeneralCopyMessageReceived /= messagesReceived.size();
 
-        myfile << endl << "Exp: " << experimentNumber << " ### Count Messages Received: " << messagesReceived.size() << endl;
-        myfile << "Exp: " << experimentNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
-        myfile << "Exp: " << experimentNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
-        myfile << "Exp: " << experimentNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
+        myfile << endl << "Exp: " << expNumber << " ### Count Messages Received: " << messagesReceived.size() << endl;
+        myfile << "Exp: " << expNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
+        myfile << "Exp: " << expNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
+        myfile << "Exp: " << expNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
 
-        myfile << "Exp: " << experimentNumber << " ### Category T general: " << countT << endl;
-        myfile << "Exp: " << experimentNumber << " ### Category P general: " << countP << endl << endl;;
+        myfile << "Exp: " << expNumber << " ### Category T general: " << countT << endl;
+        myfile << "Exp: " << expNumber << " ### Category P general: " << countP << endl << endl;;
     } else {
         myfile << "messagesReceived from " << source << " is empty" << endl;
     }
@@ -780,7 +780,7 @@ void epidemic_rsu::finish() {
 
     cout << "Test1: Count of messages received by the RSU: " << epidemicLocalMessageBuffer.size() << endl;
     printCountMessagesReceived();
-    if (experimentNumber == 8) { // maxSpeed 15 m/s
+    if (expNumber == 8) { // maxSpeed 15 m/s
         string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
         system(comand.c_str());
         cout << endl << "Setting speed back to default (15 m/s), command: " << comand << endl;
