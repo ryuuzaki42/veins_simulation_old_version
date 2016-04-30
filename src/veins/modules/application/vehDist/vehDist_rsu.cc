@@ -36,14 +36,14 @@ void vehDist_rsu::initialize(int stage) {
 }
 
 void vehDist_rsu::rsuInitializeVariables() {
-    generalInitializeVariables_executionByExperimentNumber();
+    generalInitializeVariables_executionByExpNumber();
 
     restartFilesResult();
     //cout << " " << source << " entered in the scenario" << endl;
 }
 
 void vehDist_rsu::restartFilesResult() {
-    stringTmp = getFolderResult(experimentSendbyDSCR);
+    stringTmp = getFolderResult(expSendbyDSCR);
 
     fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + source;
 
@@ -54,11 +54,11 @@ void vehDist_rsu::restartFilesResult() {
     //fileMessagesDrop and fileMessagesGenerated not used yet to RSU
 
     if ((myId == 0) && (repeatNumber == 0)) { //Open a new file (blank)
-        if (experimentNumber == 1) { // maxSpeed 15 m/s
+        if (expNumber == 1) { // maxSpeed 15 m/s
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
             system(comand.c_str());
             cout << endl << "Change the spped to 15 m/s, command: " << comand << endl;
-        } else if (experimentNumber == 5){  // maxSpeed 25 m/s
+        } else if (expNumber == 5){  // maxSpeed 25 m/s
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
             system(comand.c_str());
             cout << endl << "Change the spped to 25 m/s, command: " << comand << endl;
@@ -202,7 +202,7 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int leng
 
 void vehDist_rsu::finish() {
     printCountMessagesReceived();
-    if (experimentNumber == 8) { // maxSpeed 15 m/s
+    if (expNumber == 8) { // maxSpeed 15 m/s
         string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
         system(comand.c_str());
         cout << endl << "Setting speed back to default (15 m/s), command: " << comand << endl;
@@ -251,13 +251,13 @@ void vehDist_rsu::printCountMessagesReceived() {
         avgGeneralTimeMessageReceived /= messagesReceived.size();
         avgGeneralCopyMessageReceived /= messagesReceived.size();
 
-        myfile << endl << "Exp: " << experimentNumber << " ### Count Messages Received: " << messagesReceived.size() << endl;
-        myfile << "Exp: " << experimentNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
-        myfile << "Exp: " << experimentNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
-        myfile << "Exp: " << experimentNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
+        myfile << endl << "Exp: " << expNumber << " ### Count Messages Received: " << messagesReceived.size() << endl;
+        myfile << "Exp: " << expNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
+        myfile << "Exp: " << expNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
+        myfile << "Exp: " << expNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
 
-        myfile << "Exp: " << experimentNumber << " ### Category T general: " << countT << endl;
-        myfile << "Exp: " << experimentNumber << " ### Category P general: " << countP << endl << endl;;
+        myfile << "Exp: " << expNumber << " ### Category T general: " << countT << endl;
+        myfile << "Exp: " << expNumber << " ### Category P general: " << countP << endl << endl;;
     } else {
         myfile << "messagesReceived from " << source << " is empty" << endl;
     }

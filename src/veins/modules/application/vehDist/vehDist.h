@@ -49,7 +49,7 @@ class vehDist : public BaseWaveApplLayer {
         static unsigned short int numVehToRandom;
         static unsigned short int beaconMessageBufferSize;
         static unsigned short int beaconStatusBufferSize;
-        static float timeLimitGenerateBeaconMessage;
+        static int timeLimitGenerateBeaconMessage;
 
         static unsigned short int countMesssageDrop;
         static unsigned short int beaconMessageId;
@@ -156,6 +156,6 @@ unsigned short int vehDist::numVehToRandom;
 double vehDist::ttlBeaconStatus;
 unsigned short int vehDist::beaconMessageBufferSize;
 unsigned short int vehDist::beaconStatusBufferSize;
-float vehDist::timeLimitGenerateBeaconMessage;
+int vehDist::timeLimitGenerateBeaconMessage;
 
 #endif

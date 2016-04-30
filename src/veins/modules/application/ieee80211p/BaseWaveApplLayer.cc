@@ -116,54 +116,53 @@ void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsign
     if (repeatNumber != 0) {
         myfile << endl;
     }
-    myfile << "Exp: " << experimentNumber <<  " ######################################################";
-    myfile << "#######################################################################################" << endl << endl;
-    myfile << "Exp: " << experimentNumber << " ### Experiment: " << experimentNumber << " Execution: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
-    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << " exp_DSCR: ";
+    myfile << "Exp: " << expNumber <<  " ###################################################";
+    myfile << "#############################################################################" << endl;
+    myfile << "Exp: " << expNumber << " ### ExpNumber: " << expNumber << " RepeatNumber: " << repeatNumber << " ttlBeaconMessage: " << ttlBeaconMessage;
+    myfile << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << " expDSCR: ";
 
-    if (experimentSendbyDSCR < 10) {
-        myfile << "000" << experimentSendbyDSCR;
-    } else if (experimentSendbyDSCR < 100) {
-        myfile << "00" << experimentSendbyDSCR;
-    } else if (experimentSendbyDSCR < 1000) {
-        myfile << "0" << experimentSendbyDSCR;
-    } else {
-        myfile << experimentSendbyDSCR;
+    if (expSendbyDSCR < 10) {
+        myfile << "000";
+    } else if (expSendbyDSCR < 100) {
+        myfile << "00";
+    } else if (expSendbyDSCR < 1000) {
+        myfile << "0";
     }
+    myfile << expSendbyDSCR;
     myfile << endl << endl;
 }
 
-void BaseWaveApplLayer::generalInitializeVariables_executionByExperimentNumber(){
+void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumber(){
     source = findHost()->getFullName();
     beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
     stringTmp = ev.getConfig()->getConfigValue("seed-set");
     repeatNumber = atoi(stringTmp.c_str()); // number of execution (${repetition})
-    experimentSendbyDSCR = par("experimentSendbyDSCR").longValue();
+    expSendbyDSCR = par("expSendbyDSCR").longValue();
 
-    experimentNumber = par("experimentNumber").longValue();
-    if ((experimentNumber == 1) || (experimentNumber == 5)) {
+    expNumber = par("expNumber").longValue();
+    if ((expNumber == 1) || (expNumber == 5)) {
         ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
-    } else if ((experimentNumber == 2) || (experimentNumber == 6)) {
+    } else if ((expNumber == 2) || (expNumber == 6)) {
         ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
-    } else if ((experimentNumber == 3) || (experimentNumber == 7)) {
+    } else if ((expNumber == 3) || (expNumber == 7)) {
         ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
-    } else if ((experimentNumber == 4) || (experimentNumber == 8)) {
+    } else if ((expNumber == 4) || (expNumber == 8)) {
         ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
     } else {
-        cout << "Error: Number of experiment not configured. Go to VehDist.cc line 146." << endl;
+        cout << "Error: Number of experiment not configured. Go to BaseWaveApplLayer.cc line 156." << endl;
         exit(1); // Comets this line for use the values below
         ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
         countGenerateBeaconMessage = 0; // Will not generate any message
     }
 }
 
-string BaseWaveApplLayer::getFolderResult(unsigned short int experimentSendbyDSCR){
+string BaseWaveApplLayer::getFolderResult(unsigned short int expSendbyDSCR){
     string result_folder_part;
-    switch (experimentSendbyDSCR){
+    switch (expSendbyDSCR){
     case 1:
         result_folder_part = "0001_chosenByDistance";
         break;
@@ -184,18 +183,18 @@ string BaseWaveApplLayer::getFolderResult(unsigned short int experimentSendbyDSC
         break;
 
     default:
-        cout << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
-        DBG << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
+        cout << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
+        DBG << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
         exit(1);
     }
 
-    stringTmp = "results/vehDist_resultsEnd/" + result_folder_part + "/E" + to_string(experimentNumber);
-    stringTmp += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
+    int expPart_one_or_two = par("expPart_one_or_two");
+    stringTmp = "results/vehDist_resultsEnd_" + to_string(expPart_one_or_two) + "/" + result_folder_part + "/";
+    stringTmp += "E" + to_string(expNumber) + "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_";
+    stringTmp += to_string(countGenerateBeaconMessage) +"/";
 
     return stringTmp;
 }
-
-// end
 //######################################### vehDist ##############################################################################################
 
 void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {

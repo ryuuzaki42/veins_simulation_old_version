@@ -35,7 +35,7 @@ void vehDist::initialize(int stage) {
 }
 
 void vehDist::vehInitializeVariables() {
-    generalInitializeVariables_executionByExperimentNumber();
+    generalInitializeVariables_executionByExpNumber();
 
     vehCategory = traciVehicle->getTypeId();
 
@@ -48,15 +48,13 @@ void vehDist::vehInitializeVariables() {
         vehDist::beaconMessageBufferSize = par("beaconMessageBufferSize").longValue();
         vehDist::beaconStatusBufferSize = par("beaconStatusBufferSize").longValue();
 
-        vehDist::timeLimitGenerateBeaconMessage = atof(ev.getConfig()->getConfigValue("sim-time-limit"));
-        double doublleTmp = par("ttlBeaconMessage_two").doubleValue();
-        vehDist::timeLimitGenerateBeaconMessage -= doublleTmp;
+        vehDist::timeLimitGenerateBeaconMessage = par("timeLimitGenerateBeaconMessage").longValue();
 
         //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (the seed is "static")
         mt_veh.seed(repeatNumber); // Instead another value, for make the experiment more reproducible, so seed = reapeatNumber
         srand(repeatNumber + 1); // repeatNumber + 1, because srand(0) == srand(1)
 
-        cout << endl << "Experiment: " << experimentNumber << endl;
+        cout << endl << "Experiment: " << expNumber << " repeatNumber: " << repeatNumber << endl;
         cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
         cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
         cout << "timeLimitGenerateMessage: " << vehDist::timeLimitGenerateBeaconMessage << endl << endl;
@@ -393,7 +391,7 @@ string vehDist::neighborWithShortestDistanceToTarge(string key) {
     //    }
 
     if (!vehShortestDistanceToTarget.empty()) { // If don't any veh going to target
-        switch (experimentSendbyDSCR) {
+        switch (expSendbyDSCR) {
         case 1:
             vehId = chosenByDistance(vehShortestDistanceToTarget);
             break;
@@ -413,8 +411,8 @@ string vehDist::neighborWithShortestDistanceToTarge(string key) {
             vehId = chosenByDistance_Speed_Category_RateTimeToSend(vehShortestDistanceToTarget, percentP);
             break;
         default:
-            cout << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in vehDist.cc";
-            DBG << "Error! experimentSendbyDSCR: " << experimentSendbyDSCR << "not defined, class in vehDist.cc";
+            cout << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in vehDist.cc";
+            DBG << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in vehDist.cc";
             exit(1);
         }
     }
@@ -600,7 +598,7 @@ void vehDist::printCountBeaconMessagesDrop() {
     }
 
     if (vehDist::numVehicles.size() == 1) {
-        myfile << endl << "Exp: " << experimentNumber << " ### Final count messages drop: " << vehDist::countMesssageDrop << endl << endl;
+        myfile << endl << "Exp: " << expNumber << " ### Final count messages drop: " << vehDist::countMesssageDrop << endl << endl;
     }
     myfile.close();
 }
@@ -657,7 +655,7 @@ void vehDist::handleLowerMsg(cMessage* msg) {
 }
 
 void vehDist::restartFilesResult() {
-    stringTmp = getFolderResult(experimentSendbyDSCR);
+    stringTmp = getFolderResult(expSendbyDSCR);
     saveVehStartPosition(stringTmp); // Save the start position of vehicle. Just for test of the seed.
 
     fileMessagesUnicast = fileMessagesDrop = fileMessagesGenerated = stringTmp;
