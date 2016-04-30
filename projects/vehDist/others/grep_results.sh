@@ -22,9 +22,10 @@
 #
 # Script: Script to collect the simulation result in one place
 #
-# Última atualização: 09/04/2016
+# Última atualização: 29/04/2016
 #
 cd /media/sda4/prog/simulation_veins/projects/vehDist/others/
+#
 echo -e "\n## Scrpit to collect the simulation results in one place\n"
 
 pathFolder="../results/vehDist_resultsEnd"
@@ -36,11 +37,11 @@ continue=1
 
 while [ $continue == 1 ]; do
     case $count in
-        1) experiment="1_chosenByDistance" ;;
-        2) experiment="12_chosenByDistance_Speed" ;;
-        3) experiment="13_chosenByDistance_Category" ;;
-        4) experiment="14_chosenByDistance_RateTimeToSend" ;;
-        5) experiment="123_chosenByDistance_Speed_Category" ;;
+        1) experiment="0001_chosenByDistance" ;;
+        2) experiment="0012_chosenByDistance_Speed" ;;
+        3) experiment="0013_chosenByDistance_Category" ;;
+        4) experiment="0014_chosenByDistance_RateTimeToSend" ;;
+        5) experiment="0123_chosenByDistance_Speed_Category" ;;
         6) experiment="1234_chosenByDistance_Speed_Category_RateTimeToSend" ;;
     esac
 
