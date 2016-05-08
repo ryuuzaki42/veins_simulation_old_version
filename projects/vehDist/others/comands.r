@@ -7,6 +7,9 @@
     netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o test.net.xml
         # netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o test.net.xml
         # Change --default.lanenumber to 1; added --no-turnarounds and the (max) speed to 85
+## Want TLS?
+ # http://sumo.dlr.de/wiki/NETCONVERT
+	netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o test.net.xml --tls.set "0/0, 0/1, 0/2, 0/3, 0/4, 1/0, 1/1, 1/2, 1/3, 1/4, 2/0, 2/1, 2/2, 2/3, 2/4, 3/0, 3/1, 3/2, 3/3, 3/4, 4/0, 4/1, 4/2, 4/3, 4/4"
 
 ## Generate the trips and the routes (with various distance)
     python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py -n test.net.xml --min-distance=100000 -b 0 -e 30000 -i 200 -s 1 -r test.rou.xml
@@ -52,11 +55,18 @@
 
     calculeDistance()
 
-## See if the selected veh to generate messages are the same
+## See if the selected vehicle to generate messages are the same
 sublime_text E1*/Veh_Messages_Generated.r E3*/Veh_Messages_Generated.r E5*/Veh_Messages_Generated.r E7*/Veh_Messages_Generated.r
 
 sublime_text E2*/Veh_Messages_Generated.r E4*/Veh_Messages_Generated.r E6*/Veh_Messages_Generated.r E8*/Veh_Messages_Generated.r
 
- sublime_text E*/Veh_Position_Initialize.r 
+sublime_text E*/Veh_Position_Initialize.r
 
-##end
+## Split results in experiments numbers
+v=v001; mkdir $v; i=1; while [ $i -lt 9 ]; do echo Experiment $i $v; cat output_vehDist_$v\_results.r | grep -E "Exp: $i|experiment" > $v/exp$i.r; ((i+=1)); done
+
+
+## Get the count message received by the "split" experiment
+i=1; cat exp$i.r | grep -E "Count|experiment" | sed 's/Exp: '$i' ### Count Messages Received://g'
+
+#
