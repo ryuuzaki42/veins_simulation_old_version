@@ -32,7 +32,7 @@ class vehDist : public BaseWaveApplLayer {
         virtual void initialize(int stage);
 
         enum WaveApplMessageKinds {
-            SendEvtUpdatePositionVeh, SendEvtBeaconMessage, SendEvtGenerateBeaconMessage, SendEvtUpdateRateTimeToSendVeh
+            SendEvtBeaconMessage, SendEvtGenerateBeaconMessage, SendEvtUpdateRateTimeToSendVeh
         };
 
     protected:
@@ -42,32 +42,37 @@ class vehDist : public BaseWaveApplLayer {
 
         cMessage* sendBeaconMessageEvt;
         cMessage* sendGenerateBeaconMessageEvt;
-        cMessage* sendUpdatePosisitonVeh;
         cMessage* sendUpdateRateTimeToSendVeh;
 
         static double ttlBeaconStatus;
         static unsigned short int numVehToRandom;
+        static int timeLimitGenerateBeaconMessage;
+        static unsigned short int msgDroppedbyTTL;
+        static unsigned short int msgDroppedbyHop;
+        static unsigned short int msgDroppedbyBuffer;
+        static unsigned short int countMsgPacketSend;
+        static unsigned short int msgBufferUseGeneral;
+        static unsigned short int timeToUpdatePosition;
         static unsigned short int beaconMessageBufferSize;
         static unsigned short int beaconStatusBufferSize;
-        static int timeLimitGenerateBeaconMessage;
 
-        static unsigned short int countMesssageDrop;
-        static unsigned short int beaconMessageId;
         static vector<string> numVehicles;
         static vector <int> vehGenerateMessage;
+        static unsigned short int countMesssageDrop;
+        static unsigned short int beaconMessageId;
 
-        Coord vehPositionPrevious;
-        unordered_map<string, WaveShortMessage> messagesBuffer;
-        unordered_map<string, WaveShortMessage> beaconStatusNeighbors;
         vector <string> messagesDelivered;
         vector <string> messagesOrderReceived;
+        unordered_map<string, WaveShortMessage> messagesBuffer;
+        unordered_map<string, WaveShortMessage> beaconStatusNeighbors;
 
-        unsigned short int rateTimeToSend;
-        unsigned short int rateTimeToSendDistanceControl;
-        unsigned short int rateTimeToSendLimitTime;
-        simtime_t timeToFinishLastStartSend;
-        unsigned short int rateTimeToSendUpdateTime;
         unsigned short int messageToSend;
+        unsigned short int rateTimeToSend;
+        unsigned short int msgBufferMaxUse;
+        simtime_t timeToFinishLastStartSend;
+        unsigned short int rateTimeToSendLimitTime;
+        unsigned short int rateTimeToSendUpdateTime;
+        unsigned short int rateTimeToSendDistanceControl;
 
         mt19937 mt_veh;
         double vehOffSet;
@@ -117,8 +122,6 @@ class vehDist : public BaseWaveApplLayer {
         void vehGenerateBeaconMessageBegin();
         void vehGenerateBeaconMessageAfterBegin();
 
-        void updateVehPosition();
-        void vehUpdatePosition();
         void vehUpdateRateTimeToSend();
         void vehCreateUpdateRateTimeToSendEvent();
 
@@ -148,14 +151,20 @@ class vehDist : public BaseWaveApplLayer {
         unsigned short int getVehHeading4();
 };
 
+double vehDist::ttlBeaconStatus;
+vector<string> vehDist::numVehicles;
+vector <int> vehDist::vehGenerateMessage;
+unsigned short int vehDist::numVehToRandom;
+unsigned short int vehDist::msgDroppedbyTTL;
+unsigned short int vehDist::msgDroppedbyHop;
+int vehDist::timeLimitGenerateBeaconMessage;
 unsigned short int vehDist::beaconMessageId;
 unsigned short int vehDist::countMesssageDrop;
-vector <int> vehDist::vehGenerateMessage;
-vector<string> vehDist::numVehicles;
-unsigned short int vehDist::numVehToRandom;
-double vehDist::ttlBeaconStatus;
-unsigned short int vehDist::beaconMessageBufferSize;
+unsigned short int vehDist::msgDroppedbyBuffer;
+unsigned short int vehDist::countMsgPacketSend;
+unsigned short int vehDist::msgBufferUseGeneral;
+unsigned short int vehDist::timeToUpdatePosition;
 unsigned short int vehDist::beaconStatusBufferSize;
-int vehDist::timeLimitGenerateBeaconMessage;
+unsigned short int vehDist::beaconMessageBufferSize;
 
 #endif

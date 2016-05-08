@@ -38,17 +38,20 @@ void vehDist::vehInitializeVariables() {
     generalInitializeVariables_executionByExpNumber();
 
     vehCategory = traciVehicle->getTypeId();
+    msgBufferMaxUse = 0;
 
     if (myId == 0) { // Vehicle must be the first to generate messages, so your offset is 0;
         vehDist::beaconMessageId = 1;
         vehDist::countMesssageDrop = 0;
 
-        vehDist::numVehToRandom = par("numVehToRandom").longValue();
-        vehDist::ttlBeaconStatus = par("ttlBeaconStatus").doubleValue();
-        vehDist::beaconMessageBufferSize = par("beaconMessageBufferSize").longValue();
-        vehDist::beaconStatusBufferSize = par("beaconStatusBufferSize").longValue();
-
-        vehDist::timeLimitGenerateBeaconMessage = par("timeLimitGenerateBeaconMessage").longValue();
+        vehDist::numVehToRandom = par("numVehToRandom");
+        vehDist::ttlBeaconStatus = par("ttlBeaconStatus");
+        vehDist::beaconMessageBufferSize = par("beaconMessageBufferSize");
+        vehDist::beaconStatusBufferSize = par("beaconStatusBufferSize");
+        vehDist::timeToUpdatePosition = par("vehTimeUpdatePosition");
+        vehDist::timeLimitGenerateBeaconMessage = par("timeLimitGenerateBeaconMessage");
+        vehDist::countMsgPacketSend = vehDist::msgBufferUseGeneral = 0;
+        vehDist::msgDroppedbyTTL = vehDist::msgDroppedbyHop = vehDist::msgDroppedbyBuffer = 0;
 
         //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (the seed is "static")
         mt_veh.seed(repeatNumber); // Instead another value, for make the experiment more reproducible, so seed = reapeatNumber
@@ -65,7 +68,6 @@ void vehDist::vehInitializeVariables() {
     }
     vehDist::numVehicles.push_back(source);
 
-    vehUpdatePosition(); // Create Evt to update the position of vehicle
     restartFilesResult(); // Start the file for save results
     vehCreateUpdateRateTimeToSendEvent(); // Create Evt to update the rateTimeToSend
     vehGenerateBeaconMessageBegin(); // Create Evt to generate messages
@@ -116,6 +118,9 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
                     }
 
                     messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm)); // Add the message in the vehicle buffer
+                    if (messagesBuffer.size() > msgBufferMaxUse) {
+                        msgBufferMaxUse = messagesBuffer.size();
+                    }
                     messagesOrderReceived.push_back(wsm->getGlobalMessageIdentificaton());
                     colorCarryMessage();
                 } else {
@@ -123,7 +128,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
                 }
 
             } else {  // wsm->getHopCount() == 0
-                insertMessageDrop(wsm->getGlobalMessageIdentificaton(), 3); // by ttl (1 buffer, 2 ttl, 3 hop)
+                insertMessageDrop(wsm->getGlobalMessageIdentificaton(), 2); // by ttl (1 buffer, 2 hop, 3 time)
             }
         } else {
             cout << "This message has been delivered to the target before" << endl;
@@ -161,14 +166,14 @@ void vehDist::removeOldestInputBeaconMessage() {
 
         if (simTime() > (minTime + ttlBeaconMessage)) {
             //cout << source << " remove one message (" << idMessage << ") by time, minTime: " << minTime << " at: " << simTime() << " ttlBeaconMessage: " << ttlBeaconMessage << endl;
-            typeRemoved = 2; // by ttl (1 buffer, 2 ttl, 3 hop)
+            typeRemoved = 3; // by ttl (1 buffer, 2 hop, 3 time)
         } else if (messagesBuffer.size() >= vehDist::beaconMessageBufferSize) {
             //cout << source << " remove one message (" << idMessage << ") by space, MessageBuffer.size(): " << messagesBuffer.size() << " at: " << simTime() << " vehDist::beaconMessageBufferSize: " << vehDist::beaconMessageBufferSize << endl;
-            typeRemoved = 1; // by buffer (1 buffer, 2 ttl, 3 hop)
+            typeRemoved = 1; // by buffer (1 buffer, 2 hop, 3 time)
         }
 
         if (typeRemoved != 0) {
-            insertMessageDrop(messagesOrderReceived.front(), typeRemoved); // Removed by the value of tyRemoved (1 buffer, 2 ttl, 3 hop)
+            insertMessageDrop(messagesOrderReceived.front(), typeRemoved); // Removed by the value of tyRemoved (1 buffer, 2 hop, 3 time)
             messagesBuffer.erase(messagesOrderReceived.front());
             messagesOrderReceived.erase(messagesOrderReceived.begin());
             colorCarryMessage();
@@ -298,6 +303,7 @@ void vehDist::trySendBeaconMessage(string idMessage) {
             if (source.compare(rcvId) != 0) {
                 cout << "The chosen vehicle Will be send to vehicle " << rcvId << endl;
                 sendWSM(updateBeaconMessageWSM(messagesBuffer[idMessage].dup(), rcvId));
+                vehDist::countMsgPacketSend++;
 
                 //cout << source << " send message to " << rcvId << " at "<< simTime() << endl;
                 //cout << " MessageID: " << messagesBuffer[idMessage].getGlobalMessageIdentificaton() << endl;
@@ -334,7 +340,7 @@ string vehDist::neighborWithShortestDistanceToTarge(string key) {
     string category, vehId;;
     shortestDistance sD;
 
-    int percentP = 20; // 20 meaning 20%
+    int percentP = 40; //20; // 20 meaning 20%
 
     vehId = source;
     //double neighborDistanceLocalVeh = traci->getDistance(curPosition, messagesBuffer[key].getTargetPos(), false);
@@ -356,13 +362,14 @@ string vehDist::neighborWithShortestDistanceToTarge(string key) {
                 sD.distanceToTarget = neighborDistanceNow;
                 sD.speedVeh = itBeaconNeighbors->second.getSenderSpeed();
                 sD.rateTimeToSendVeh = itBeaconNeighbors->second.getRateTimeToSend();
-                sD.decisionValueDistanceSpeed = sD.distanceToTarget - (sD.speedVeh/2);
-                sD.decisionValueDistanceRateTimeToSend = sD.distanceToTarget + (double(sD.rateTimeToSendVeh)/100);
-                sD.decisionValueDistanceSpeedRateTimeToSend = sD.distanceToTarget - (sD.speedVeh/2) + (double(sD.rateTimeToSendVeh)/100);
 
-                // Distance = [0 - 125] - 720 m // vehicle Speed = 0 - 84 m/s // rateTimeToSend = 100 to 5000 ms
-                // DecisonValueDS = distance - speed/2
-                // DecisonValueDSCR = distance - speed/2 + rateTimeToSend/100 (0.1 * 10)
+                sD.decisionValueDistanceSpeed = sD.distanceToTarget - (sD.speedVeh);
+                sD.decisionValueDistanceRateTimeToSend = sD.distanceToTarget + (double(sD.rateTimeToSendVeh)/100);
+                sD.decisionValueDistanceSpeedRateTimeToSend = sD.distanceToTarget - (sD.speedVeh) + (double(sD.rateTimeToSendVeh)/100);
+
+                // Distance = [0 - 125] - 720 m // vehicle Speed = 0 - (15/25)84 m/s // rateTimeToSend = 100 to 5000 ms
+                // DecisonValueDS = distance - speed
+                // DecisonValueDSCR = distance - speed + rateTimeToSend/100 (0.1 * 10)
 
                 vehShortestDistanceToTarget.insert(make_pair(itBeaconNeighbors->first, sD));
             //}
@@ -589,16 +596,26 @@ void vehDist::printCountBeaconMessagesDrop() {
             myfile << "By Hop: " << it->second.byHop << endl;
             myfile << "By Time: " << it->second.byTime << endl;
             messageDropbyOneVeh += it->second.byBuffer + it->second.byHop + it->second.byTime;
+            vehDist::msgDroppedbyTTL += it->second.byTime;
+            vehDist::msgDroppedbyHop += it->second.byHop;
+            vehDist::msgDroppedbyBuffer += it->second.byBuffer;
         }
         vehDist::countMesssageDrop += messageDropbyOneVeh;
         myfile << "### " << source << " dropped: " << messageDropbyOneVeh << endl;
+        myfile << "### " << source << " use message buffer: " << msgBufferMaxUse << endl;
+        vehDist::msgBufferUseGeneral += msgBufferMaxUse;
     } else {
         myfile << endl << "messagesDrop from " << source << " is empty now" << endl;
         myfile << "### " << source << " dropped: " << 0 << endl;
     }
 
     if (vehDist::numVehicles.size() == 1) {
-        myfile << endl << "Exp: " << expNumber << " ### Final count messages drop: " << vehDist::countMesssageDrop << endl << endl;
+        myfile << endl << "Exp: " << expNumber << " ### Final count messages drop: " << vehDist::countMesssageDrop << endl;
+        myfile << "Exp: " << expNumber << " ### Final count packets messages send: " << vehDist::countMsgPacketSend << endl;
+        myfile << "Exp: " << expNumber << " ### Final avg buffer use: " << double(vehDist::msgBufferUseGeneral)/vehDist::numVehToRandom << endl;
+        myfile << "Exp: " << expNumber << " ### Final count message dropped by ttl: " << vehDist::msgDroppedbyTTL << endl;
+        myfile << "Exp: " << expNumber << " ### Final count message dropped by hop: " << vehDist::msgDroppedbyHop << endl;
+        myfile << "Exp: " << expNumber << " ### Final count message dropped by buffer: " << vehDist::msgDroppedbyBuffer << endl << endl;
     }
     myfile.close();
 }
@@ -612,6 +629,7 @@ void vehDist::sendMessageNeighborsTarget(string beaconSource) {
             idMessage = itMessage->second.getGlobalMessageIdentificaton();
             cout << "Sending message: " << idMessage << " to: " << beaconSource << " and removing" << endl;
             sendWSM(updateBeaconMessageWSM(itMessage->second.dup(), beaconSource));
+            vehDist::countMsgPacketSend++;
             messagesDelivered.push_back(idMessage);
 
             if (countMessage == 1) {
@@ -742,11 +760,13 @@ void vehDist::selectVehGenerateMessage() {
             int vehSelected;
             myfile.open(fileMessagesGenerated, std::ios_base::app); // To save info (Id and vehicle generate) on fileMessagesGenerated
             for (unsigned short int i = 0; i < countGenerateBeaconMessage;) { // select <countGenerateBeaconMessage> distinct vehicle to generate messages
-                //vehSelected = rand() % vehDist::numVehicles.size(); // random car to generate message
-                //vehSelected = rand() % vehDist::numVehToRandom; // random car to generate message
+                //vehDist::numVehToRandom instead vehDist::numVehicles.size() to use all vehicle, not just the vehicle came in in the scenario at this moment
 
                 uniform_int_distribution <int> dist(0, (vehDist::numVehToRandom -1));
                 vehSelected = dist(mt_veh);
+
+                //vehSelected = intuniform(1, (vehDist::numVehToRandom -1), repeatNumber);
+                //cout << getRNG(0) << endl;
 
                 auto it = find(vehDist::vehGenerateMessage.begin(), vehDist::vehGenerateMessage.end(), vehSelected);
                 if (it == vehDist::vehGenerateMessage.end()) {
@@ -790,12 +810,15 @@ WaveShortMessage* vehDist::prepareBeaconStatusWSM(std::string name, int lengthBi
     wsm->setSenderSpeed(mobility->getSpeed());
     wsm->setCategory(vehCategory.c_str());
     wsm->setSenderPos(curPosition);
-    wsm->setSenderPosPrevious(vehPositionPrevious);
+    if (simTime() < vehDist::timeToUpdatePosition) {
+        wsm->setSenderPosPrevious(mobility->getPositionAt(0.1));
+    } else {
+        wsm->setSenderPosPrevious(mobility->getPositionAt(simTime() - vehDist::timeToUpdatePosition));
+    }
     wsm->setRateTimeToSend(rateTimeToSend);
 
     // heading 1 to 4 or 1 to 8
-    wsm->setHeading(getVehHeading4());
-    //wsm->setHeading(getVehHeading8());
+    wsm->setHeading(getVehHeading4()); //wsm->setHeading(getVehHeading8());
 
     DBG << "Creating BeaconStatus with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << endl;
     return wsm;
@@ -851,6 +874,9 @@ void vehDist::generateBeaconMessage() {
     myfile.close();
 
     messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); // Adding the message on the buffer
+    if (messagesBuffer.size() > msgBufferMaxUse) {
+        msgBufferMaxUse = messagesBuffer.size();
+    }
     messagesOrderReceived.push_back(wsm->getGlobalMessageIdentificaton());
     colorCarryMessage(); // Change the range-color in the vehicle (GUI)
     vehDist::beaconMessageId++;
@@ -863,8 +889,12 @@ WaveShortMessage* vehDist::updateBeaconMessageWSM(WaveShortMessage* wsm, string 
     wsm->setCategory(vehCategory.c_str());
     wsm->setSenderSpeed(mobility->getSpeed());
     wsm->setSenderPos(curPosition);
-    wsm->setSenderPosPrevious(vehPositionPrevious);
-    wsm->setHeading(getVehHeading4());
+    if (simTime() < vehDist::timeToUpdatePosition) {
+        wsm->setSenderPosPrevious(mobility->getPositionAt(0.1));
+    } else {
+        wsm->setSenderPosPrevious(mobility->getPositionAt(simTime() - vehDist::timeToUpdatePosition));
+    }
+    wsm->setHeading(getVehHeading4()); //wsm->setHeading(getVehHeading8());
     wsm->setHopCount(wsm->getHopCount() -1);
     return wsm;
 }
@@ -878,11 +908,6 @@ void vehDist::handleSelfMsg(cMessage* msg) {
         }
         case SendEvtBeaconMessage: {
             sendBeaconMessage();
-            break;
-        }
-        case SendEvtUpdatePositionVeh: {
-            updateVehPosition();
-            scheduleAt((simTime() + par("vehTimeUpdatePosition").doubleValue()), sendUpdatePosisitonVeh);
             break;
         }
         case SendEvtUpdateRateTimeToSendVeh: {
@@ -955,20 +980,6 @@ void vehDist::printBeaconStatusNeighbors() {
     } else {
         cout << endl << "beaconStatusNeighbors from " << source << " is empty now: " << simTime() << " position: " << curPosition << endl;
     }
-}
-
-void vehDist::vehUpdatePosition() {
-    vehPositionPrevious = mobility->getPositionAt(simTime() + 0.1);
-    //cout << "Initial positionPrevious: " << vehPositionPrevious << endl;
-    sendUpdatePosisitonVeh = new cMessage("Event update position vehicle", SendEvtUpdatePositionVeh);
-    //cout << source << " at: " << simTime() << " schedule created UpdatePosition to: "<< (simTime() + par("vehTimeUpdatePosition").doubleValue()) << endl;
-    scheduleAt((simTime() + par("vehTimeUpdatePosition").doubleValue()), sendUpdatePosisitonVeh);
-}
-
-void vehDist::updateVehPosition() {
-    //cout << source << " update position: " << " at: "<< simTime() << " positionPrevious: " << vehPositionPrevious << endl;
-    vehPositionPrevious = mobility->getPositionAt(simTime() - par("vehTimeUpdatePosition").doubleValue());
-    //cout << "Updated to: " << vehPositionPrevious << " next update: " << (simTime() + par("vehTimeUpdatePosition").doubleValue()) << endl;
 }
 
 //##############################################################################################################
