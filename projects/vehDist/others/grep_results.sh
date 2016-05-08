@@ -22,20 +22,48 @@
 #
 # Script: Script to collect the simulation result in one place
 #
-# Última atualização: 29/04/2016
+# Última atualização: 08/05/2016
 #
-cd /media/sda4/prog/simulation_veins/projects/vehDist/others/
-#
-echo -e "\n## Scrpit to collect the simulation results in one place\n"
+part=$1
+if [ "$part" == '' ]; then
+   echo -e "\nError, you need pass the result_part value, e.g., $0 1\n"
+   exit 1
+fi
 
-pathFolder="../results/vehDist_resultsEnd"
+num_exp_i=$2
+if [ "$num_exp_i" == '' ]; then
+    num_exp_i=1
+fi
+
+num_exp_f=$3
+if [ "$num_exp_f" == '' ]; then
+    num_exp_f=8
+fi
+
+if [ "$num_exp_f" -lt "$num_exp_i" ]; then
+    num_exp_f=$num_exp_i
+fi
+
+echo -e "\nNumber of experiments: $num_exp_i to $num_exp_f\n"
+((num_exp_f++))
+
+## Local pc folder
+cd /media/sda4/prog/simulation_veins/projects/vehDist/others/
+# or
+## Cluser folder, change de v001 for the veins version
+#cd /mnt/nfs/home/luz.marina/0_jonh/veins_v00$part/projects/vehDist$part/others/
+
+echo -e "\n## Script to collect the simulation results in one place\n"
+echo -e "\n   ## Results from vehDist $part\n"
+
+pathFolder="../results/vehDist_resultsEnd_$part"
 rsu_0_File="rsu\[0\]_Count_Messages_Received.r"
 vehs_file="Veh_Messages_Drop.r"
 
 count=1
-continue=1
+continue_flag=1
 
-while [ $continue == 1 ]; do
+while [ $continue_flag == 1 ]; do
     case $count in
         1) experiment="0001_chosenByDistance" ;;
         2) experiment="0012_chosenByDistance_Speed" ;;
@@ -46,22 +74,21 @@ while [ $continue == 1 ]; do
     esac
 
     echo -e "\n## Values from experiment $experiment\n"
-    i=1
-    while [ $i -lt 9 ]; do
+    i=$num_exp_i
+    while [ $i -lt $num_exp_f ]; do
         echo -e "\n               ## Experiment $i\n"
-        cat $pathFolder/$experiment/E*/$rsu_0_File | grep -E "Exp: $i"
+        cat $pathFolder/$experiment/E$i_*/$rsu_0_File | grep -E "Exp: $i"
         echo
-        cat $pathFolder/$experiment/E*/$vehs_file | grep -E "Exp: $i"
-        i=$((i+1))
+        cat $pathFolder/$experiment/E$i_*/$vehs_file | grep -E "Exp: $i"
+        ((i++))
     done
 
-    ((count+=1))
-
+    ((count++))
     if [ $count == 7 ]; then
-        continue=0
+        continue_flag=0
     fi
 done
 
 echo -e "\n\n               ## End of script\n"
 exit 0
-#end
+#
