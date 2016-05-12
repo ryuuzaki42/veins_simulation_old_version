@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int main(){
+int main() {
    int size, countFields, countLimit, fieldsValue;
    string nome;
 
@@ -23,20 +23,17 @@ int main(){
    std::ofstream myfile;
    myfile.open("diagram.txt");
    myfile << "packetdiag {" << endl;
-   myfile << "    #colwidth = 16" << endl; 
+   myfile << "    #colwidth = 16" << endl;
    myfile << "    #node_height = 80" << endl;
    myfile << "    #node_width = 20" << endl << endl;
 
-   while (countFields <= countLimit){
+   while (countFields <= countLimit) {
       while (cin.get() != '\n') {
          continue;
       }
 
-      cout << endl;
-
-      cout << "Nome_" << countFields << ": ";
+      cout << endl << "Nome_" << countFields << ": ";
       getline(cin, nome);
-
       cout << "Tamanho: ";
       cin >> size;
 
