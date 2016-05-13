@@ -41,7 +41,7 @@ int main() {
     insert_by_time = 10; //10;
     time_to_insert = 60; //60
     parte1 = true;
-    go_and_back = false; // true
+    go_and_back = true; // true
     use_left_and_right_road_as_samePlace = true;
     use_depart_Pos_arrivalPos_departSpeed_as_random = false;
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
