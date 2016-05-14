@@ -1,7 +1,7 @@
-//#################################################################
-//                         To compile:                            #
-// g++ -std=c++0x -o 1_path_routes_back.out 1_path_routes_back.cc #
-//#################################################################
+//#######################################################################
+//                           To compile:                                #
+// g++ -std=c++0x -Wall -o 1_path_routes_back.out 1_path_routes_back.cc #
+//#######################################################################
 
 #include <iostream>
 #include <fstream>
@@ -30,8 +30,8 @@ int main() {
     bool parte1 = true;
     bool validRoute, use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
     string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
-    int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes;
-    int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
+    unsigned short int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes, compare, compare2;
+    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
 
     count = 1;
     pathComp = 4; // Metade do percurso em blocos (quarteirão)
@@ -64,7 +64,8 @@ int main() {
             toTmp = to;
             to += line.substr(14) + "\n";
 
-            if (to.size() > (pathComp * 9 + p1 - 1 + notLoopStreet * 9)) {
+            compare = pathComp * 9 + p1 - 1 + notLoopStreet * 9;
+            if (to.size() > compare) {
                 pTmp = p1;
                 validRoute = true;
                 notLoopStreetTmp = notLoopStreet;
@@ -114,7 +115,8 @@ int main() {
                         if (to.size() > routeComp) {
                             toTmp += line.substr(14, 16);
                             p1 = 31;
-                            while (toTmp.size() < (routeComp + (pathComp * 9 * 2) - 46)) {
+                            compare2 = routeComp + (pathComp * 9 * 2) - 46;
+                            while (toTmp.size() < compare2) {
                                 toTmp += " " + line.substr(p1, 8);
                                 p1 = p1 + 9;
                             }

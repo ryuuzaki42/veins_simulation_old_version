@@ -30,9 +30,9 @@ int main() {
     bool parte1, go_and_back;
     bool validRoute, use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
     string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
-    int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes;
-    int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
-    int insert_by_time, time_to_insert, vehicle_time_depart, countTmp, routeCompA;
+    unsigned short int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes;
+    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
+    unsigned short int insert_by_time, time_to_insert, vehicle_time_depart, countTmp, compare, compare2;
 
     count = 1;
     pathComp = 4; //4; // Metade do percurso em blocos (quarteirão)
@@ -45,12 +45,11 @@ int main() {
     use_left_and_right_road_as_samePlace = true;
     use_depart_Pos_arrivalPos_departSpeed_as_random = false;
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
-    p1 = 22; // Inicia a rota
+    p1 = 22; // Início da rota
 
     // 23 no início [        <route edges="] + 3 no final ["/>] => 26; 1 tem 9 [1/2to1/1 ], como uma rua tem 250 m.
     // logo 1 km => 4 *9 => 36 + 26 + 9 (ponto inicial). x km = x * 36 + 26 + 9
-    routeComp = 580; // Para 15 km, 15 * 36 + 26 + 9 = 575, para ter certeza 580
-    routeCompA = 112; //  Para 2 km, 2 * 36 + 26 + 9 = 107, para ter certeza 112
+    routeComp = 580; //580 // Para 15 km, 15 * 36 + 26 + 9 = 575, para ter certeza 580
     // Will generate 576 part of 9 (1/2to3/4 ) => (576/9) * 250/1000 => 16 km
     // By 25 m/s or 90 km/h => will move 15 km
     // By 15 m/s or 54 km/h => will move 9 km
@@ -72,7 +71,8 @@ int main() {
             toTmp = to;
             to += line.substr(14) + "\n";
 
-            if (to.size() > (pathComp * 9 + p1 - 1 + notLoopStreet * 9)) {
+            compare = pathComp * 9 + p1 - 1 + notLoopStreet * 9;
+            if (to.size() > compare) {
                 pTmp = p1;
                 validRoute = true;
                 notLoopStreetTmp = notLoopStreet;
@@ -89,7 +89,8 @@ int main() {
                       if (to.size() > routeComp) {
                             toTmp += line.substr(14, 16);
                             p1 = 31;
-                            while (toTmp.size() < (routeComp + (pathComp * 9 * 2) - 46)) {
+                            compare2 = routeComp + (pathComp * 9 * 2) - 46;
+                            while (toTmp.size() < compare2) {
                                 toTmp += " " + line.substr(p1, 8);
                                 p1 = p1 + 9;
                             }

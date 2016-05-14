@@ -62,12 +62,12 @@ sublime_text E*/Veh_Position_Initialize.r
 v=v001; mkdir $v; i=1; while [ $i -lt 9 ]; do echo Experiment $i $v; cat output_vehDist_$v\_results.r | grep -E "Exp: $i|experiment" > $v/exp$i.r; ((i+=1)); done
 
 ## Get the count message received by the "split" experiment
-i=1; cat exp$i.r | grep -E "Count|experiment" | sed 's/Exp: '$i' ### Count Messages Received://g'
+i=1; cat exp$i.r | grep -E "Count|experiment" | sed 's/Exp: '$i' ### Count messages received://g'
 
 ## Get the count message received by the full experiment file
-i=1; cat file.r | grep -E "Exp: $i|Values" |  grep -E "Count Messages Received|Values" | sed 's/Exp: '$i' ### Count Messages Received://g'
+i=1; cat file.r | grep -E "Exp: $i|Values" |  grep -E "Count messages received|Values" | sed 's/Exp: '$i' ### Count messages received://g'
 #or
-i=1; f=1; part=1; ./grep_results.sh $part $i $f | grep -E "Exp: $i|Values" |  grep -E "Count|Values" | sed 's/Exp: '$i' ### Count Messages Received://g'
+i=1; f=1; part=1; ./grep_results.sh $part $i $f | grep -E "Exp: $i|Values" |  grep -E "Count messages received|Values" | sed 's/Exp: '$i' ### Count messages received://g'
 
 ## Get the count message dropped by the full experiment file
 i=1; cat file.r | grep -E "Exp: $i|Values" |  grep -E "drop:|Values" | sed 's/Exp: '$i' ### Final count messages drop://g'

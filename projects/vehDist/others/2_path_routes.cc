@@ -1,7 +1,7 @@
-//#######################################################
-//                  To compile:                         #
-// g++ -std=c++0x -o 2_path_routes.out 2_path_routes.cc #
-//#######################################################
+//#############################################################
+//                     To compile:                            #
+// g++ -std=c++0x -Wall -o 2_path_routes.out 2_path_routes.cc #
+//#############################################################
 
 #include <iostream>
 #include <fstream>
@@ -19,7 +19,7 @@ int main(){
     bool parte1 = true;
     bool flagContinue;
     string routePart1, routePart2, to, toTmp, line;
-    int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes, routeComp;
+    unsigned short int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes, routeComp, compare;
     count = 1;
     countVehicleRoutes = 50;
     countVehicleCagegoryA = 40;
@@ -42,9 +42,10 @@ int main(){
                     p1 = 22;
                     p2 = 85;
                     flagContinue = true;
-                    while ((p2 + 12) < to.size() && flagContinue) {
+                    compare = p2 + 12;
+                    while (compare < to.size() && flagContinue) {
                         dist = 8;
-                        while ((p2 + 12) < to.size() && flagContinue) {
+                        while (compare < to.size() && flagContinue) {
                             routePart1 = line.substr(p1,8); // Pega o primeiro ponto (ponto de partida)
                             routePart2 = line.substr(p2,8); // Pega o oitavo ponto (ponto de partida)
                             if (strcmp(routePart1.c_str(), routePart2.c_str()) == 0) {
