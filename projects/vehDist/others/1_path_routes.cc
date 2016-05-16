@@ -1,7 +1,7 @@
-//#######################################################
-//                  To compile:                         #
-// g++ -std=c++0x -o 1_path_routes.out 1_path_routes.cc #
-//#######################################################
+//#############################################################
+//                      To compile:                           #
+// g++ -std=c++0x -Wall -o 1_path_routes.out 1_path_routes.cc #
+//#############################################################
 
 #include <iostream>
 #include <fstream>
@@ -35,17 +35,17 @@ int main() {
     unsigned short int insert_by_time, time_to_insert, vehicle_time_depart, countTmp, compare, compare2;
 
     count = 1;
-    pathComp = 4; //4; // Metade do percurso em blocos (quarteirão)
-    countVehicleRoutes = 100; //100;
-    countVehicleCagegoryA = 20; //20;
-    insert_by_time = 10; //10;
+    pathComp = 4; //4; //1 é 250 m de rota
+    countVehicleRoutes = 50; //50;
+    countVehicleCagegoryA = 10; //10;
+    insert_by_time = 5; //5;
     time_to_insert = 60; //60
-    parte1 = true;
     go_and_back = true; // true
     use_left_and_right_road_as_samePlace = true;
     use_depart_Pos_arrivalPos_departSpeed_as_random = false;
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
     p1 = 22; // Início da rota
+    parte1 = true;
 
     // 23 no início [        <route edges="] + 3 no final ["/>] => 26; 1 tem 9 [1/2to1/1 ], como uma rua tem 250 m.
     // logo 1 km => 4 *9 => 36 + 26 + 9 (ponto inicial). x km = x * 36 + 26 + 9
