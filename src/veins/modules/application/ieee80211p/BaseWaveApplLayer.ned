@@ -85,7 +85,6 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int beaconStatusBufferSize = default(50);
         int vehTimeUpdatePosition @unit("s") = default(5s); //time for update vehicle position
         int expSendbyDSCR = default(0);
-        int numVehToRandom = default(0);
 
     gates:
         input lowerLayerIn; // from mac layer
