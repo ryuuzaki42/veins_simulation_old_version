@@ -126,7 +126,7 @@ void vehDist_rsu::messagesReceivedMeasuring(WaveShortMessage* wsm) {
             it->second.maxHop = countHops;
         }
         if (countHops < it->second.minHop) {
-             it->second.minHop = countHops;
+            it->second.minHop = countHops;
         }
 
         it->second.sumTimeRecived += timeToArrived;
@@ -178,8 +178,10 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int leng
     wsm->addBitLength(headerLength);
     wsm->addBitLength(lengthBits);
     switch (channel) {
-        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
-        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
+        case type_SCH:
+            wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+        case type_CCH:
+            wsm->setChannelNumber(Channels::CCH); break;
     }
     wsm->setPsid(0);
     wsm->setPriority(priority);
@@ -216,12 +218,12 @@ void vehDist_rsu::printCountMessagesReceived() {
         myfile << "messagesReceived from " << source << endl;
 
         float avgGeneralHopsMessage = 0;
-        SimTime avgGeneralCopyMessageReceived = 0;
-        SimTime avgGeneralTimeMessageReceived = 0;
+        SimTime avgGeneralCopyMessageReceived, avgGeneralTimeMessageReceived;
+        unsigned short int countP, countT, messageCountHopZero;
 
-        unsigned short int countP = 0;
-        unsigned short int countT = 0;
-        map<string, struct messages>::iterator it;
+        avgGeneralCopyMessageReceived = avgGeneralTimeMessageReceived = 0;
+        countP = countT = messageCountHopZero = 0;
+        map <string, struct messages>::iterator it;
         for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
             myfile << endl << "## Message ID: " << it->first << endl;
             myfile << "Count received: " << it->second.copyMessage << endl;
@@ -230,6 +232,9 @@ void vehDist_rsu::printCountMessagesReceived() {
             myfile << it->second.wsmData << endl;
             myfile << "Hops: " << it->second.hops << endl;
             myfile << "Sum hops: " << it->second.sumHops << endl;
+            if (it->second.sumHops == 0) {
+                messageCountHopZero++;
+            }
             avgGeneralHopsMessage += it->second.sumHops;
             myfile << "Average hops: " << (it->second.sumHops/it->second.copyMessage) << endl;
             myfile << "Max hop: " << it->second.maxHop << endl;
@@ -249,15 +254,17 @@ void vehDist_rsu::printCountMessagesReceived() {
         // TODO: XX geradas, mas só (XX - 4) recebidas
         avgGeneralHopsMessage /= messagesReceived.size();
         avgGeneralTimeMessageReceived /= messagesReceived.size();
+
+        myfile << endl << "Exp: " << expNumber << " ### Count messages received: " << messagesReceived.size() << endl;
+        myfile << endl << "Exp: " << expNumber << " ### Count messages with hop equal of zero received: " << messageCountHopZero << endl;
+        myfile << endl << "Exp: " << expNumber << " ### Count messages with hop different of zero Received: " << (messagesReceived.size() - messageCountHopZero) << endl;
+        myfile << "Exp: " << expNumber << " ### Average time to receive: " << avgGeneralTimeMessageReceived << endl;
+        myfile << "Exp: " << expNumber << " ### Count copy message received: " << avgGeneralCopyMessageReceived << endl;
         avgGeneralCopyMessageReceived /= messagesReceived.size();
-
-        myfile << endl << "Exp: " << expNumber << " ### Count Messages Received: " << messagesReceived.size() << endl;
-        myfile << "Exp: " << expNumber << " ### avg time to receive: " << avgGeneralTimeMessageReceived << endl;
-        myfile << "Exp: " << expNumber << " ### avg copy received: " << avgGeneralCopyMessageReceived << endl;
-        myfile << "Exp: " << expNumber << " ### avg hops to received: " << avgGeneralHopsMessage << endl;
-
-        myfile << "Exp: " << expNumber << " ### Category T general: " << countT << endl;
-        myfile << "Exp: " << expNumber << " ### Category P general: " << countP << endl << endl;;
+        myfile << "Exp: " << expNumber << " ### Average copy received: " << avgGeneralCopyMessageReceived << endl;
+        myfile << "Exp: " << expNumber << " ### Average hops to received: " << avgGeneralHopsMessage << endl;
+        myfile << "Exp: " << expNumber << " ### Hops by category T general: " << countT << endl;
+        myfile << "Exp: " << expNumber << " ### Hops by category P general: " << countP << endl << endl;;
     } else {
         myfile << "messagesReceived from " << source << " is empty" << endl;
     }
