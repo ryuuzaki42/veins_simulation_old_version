@@ -44,7 +44,7 @@ class vehDist_rsu : public BaseWaveApplLayer {
           simtime_t sumTimeRecived;
           string times;
         };
-        map<string, struct messages> messagesReceived;
+        map <string, struct messages> messagesReceived;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
