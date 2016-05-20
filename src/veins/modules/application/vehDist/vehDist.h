@@ -57,7 +57,7 @@ class vehDist : public BaseWaveApplLayer {
         static unsigned short int beaconStatusBufferSize;
         static unsigned short int countMeetN;
         static unsigned short int countTwoCategoryN;
-        static unsigned short int countMeetPBigerT;
+        static unsigned short int countMeetPshortestT;
         static unsigned short int countVehicleAll;
 
         static vector <string> numVehicles;
@@ -123,7 +123,7 @@ class vehDist : public BaseWaveApplLayer {
         WaveShortMessage* updateBeaconMessageWSM(WaveShortMessage* wsm, string rcvId);
 
         void trySendBeaconMessage();
-        string neighborWithShortestDistanceToTarge(string key);
+        string neighborWithShortestDistanceToTarge(string idMessage);
 
         void selectVehGenerateMessage();
         void vehGenerateBeaconMessageBegin();
@@ -165,7 +165,7 @@ unsigned short int vehDist::msgDroppedbyTTL;
 unsigned short int vehDist::countVehicleAll;
 unsigned short int vehDist::msgDroppedbyHop;
 unsigned short int vehDist::beaconMessageId;
-unsigned short int vehDist::countMeetPBigerT;
+unsigned short int vehDist::countMeetPshortestT;
 unsigned short int vehDist::countMesssageDrop;
 unsigned short int vehDist::countTwoCategoryN;
 unsigned short int vehDist::msgDroppedbyBuffer;
