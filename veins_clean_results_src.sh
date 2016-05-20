@@ -22,22 +22,22 @@
 #
 # Script: limpa o histórico de resultados de execução do framework Veins
 #
-# Última atualização: 23/11/2015
+# Última atualização: 20/05/2016
 #
-# Pasta do Veins (altere se a sua for diferente
+# Pasta do Veins (altere se a sua for diferente)
 cd /media/sda4/prog/simulation_veins/
 
 echo -e "Deseja remover os results da pasta de projects?\n"
-echo -e "Irá apagar os arquivos projects/*/results e projects/*/.tkenvrc\n (y)es - (rm ...) ou (n)o (exit)"
-
+echo -e "Irá apagar os arquivos projects/*/results e projects/*/.tkenvrc\n(y)es - (rm ...) ou (n)o (exit)"
 read resposta
-if [ $resposta = y ]
-  then # altera projects para o nome da sua pasta de projetos.
-  rm -r projects/*/results/
-  rm projects/*/.tkenvrc
+
+if [ $resposta = y ]; then # Altere projects para o nome da sua pasta de projetos
+    rm -r projects/*/results/
+    rm projects/*/.tkenvrc
+    echo -e "\n\nOs arquivos foram apagados\n"
+elif [ $resposta = n ]; then
+    echo -e "\nOs arquivos não foram apagados\n"
 fi
-if [ $resposta = n ]
-  then
-  echo -e "Fim do script \n"  
-fi
+
+echo -e "Fim do script\n"
 #
