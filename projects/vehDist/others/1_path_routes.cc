@@ -27,14 +27,14 @@ int main() {
     bool parte1, go_and_back;
     bool validRoute, use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
     string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
-    unsigned short int count, countVehicleCagegoryA, p1, p2, dist, countVehicleRoutes;
+    unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes;
     unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
     unsigned short int insert_by_time, time_to_insert, vehicle_time_depart, countTmp, compare, compare2;
 
-    count = 1;
+    count = 1; // route start number
     pathComp = 4; //4; //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
     countVehicleRoutes = 50; //50;
-    countVehicleCagegoryA = 10; //10;
+    countVehicleCagegoryT = 10; //10;
     insert_by_time = 5; //5;
     time_to_insert = 60; //60
     go_and_back = false; //false
@@ -53,11 +53,16 @@ int main() {
     // 16000 m/25 m/s => 640 s
 
     output.open(fileOutput.c_str()); // Arquivo que será criado com todas rotas
-    output << "<routes>\n" << endl; // Escrita da definição do tipo de veículo no arquivo de saída
+    output << "<routes>" << endl << endl; // Escrita da definição do tipo de veículo no arquivo de saída
 
-    output << "<!-- File with " << countVehicleRoutes << " (" << countVehicleCagegoryA << " T, ";
-    output << (countVehicleRoutes - countVehicleCagegoryA) << " P) routes, => T random and P with ";
-    output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m) -->" << endl << endl;
+    output << "    <!--" << endl;
+    output <<"    File with " << countVehicleRoutes << " (" << countVehicleCagegoryT << " T, ";
+    output << (countVehicleRoutes - countVehicleCagegoryT) << " P) routes" << endl;
+    output << "    go_and_back: " << boolalpha << go_and_back << endl;
+    output << "    Routes T (" << count << " to " << countVehicleCagegoryT <<"): \"random\"" << endl;
+    output << "    Routes P (" << (countVehicleCagegoryT + 1) << " to " << countVehicleRoutes << "): ";
+    output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m)" << endl;
+    output << "    -->" << endl << endl;
 
     cout << "Por favor espere, gerando rotas..." << endl << endl;
     while (getline(cin, line) && count <= countVehicleRoutes) { // count < 50 para criar 50 rotas
@@ -105,7 +110,7 @@ int main() {
                             //cout << endl << "to.size, menor que" << routeComp << " : " << to.size() << endl;
                         //}
 
-                        if (count > countVehicleCagegoryA) {
+                        if (count > countVehicleCagegoryT) {
                             parte1 = false;
                         }
                     } else {
@@ -154,7 +159,7 @@ int main() {
     output << endl << "    <!-- T => Taxi -->" << endl;
     output << "    <vType id=\"T\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>" << endl << endl;
     count = 1;
-    while (count <= countVehicleCagegoryA) {
+    while (count <= countVehicleCagegoryT) {
         if (count < 10) {
             if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
                 output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh00" << count <<"\" route=\"route00" << count << "\" type=\"T\"/>" << endl;
@@ -258,7 +263,7 @@ int main() {
                 }
 
                 if (it != routes.end()) { // Testa se ele já foi inserido ou existe
-                    if (count <= countVehicleCagegoryA) {
+                    if (count <= countVehicleCagegoryT) {
                         it->second.categoryP++;
                     } else {
                         it->second.categoryT++;
@@ -266,7 +271,7 @@ int main() {
                 } else {
                     struct distributionCategory dC;
                     dC.categoryP = dC.categoryT = 0;
-                    if (count <= countVehicleCagegoryA) {
+                    if (count <= countVehicleCagegoryT) {
                         dC.categoryP++;
                     } else {
                         dC.categoryT++;
