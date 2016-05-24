@@ -18,7 +18,9 @@ int printObstaclesAxis(int idPolygon, int ya, int xa, int xb, int countKm) {
         yc = yb = ya+38;
         yd = ya;
 
-        myfile2 << "    <poly id=\"" << idPolygon << "\" type=\"building\" color=\"190,190,190\" fill=\"1\" layer=\"1\" shape=\"" << xa << "," << ya << " " << xb << "," << yb << " " << xc << "," << yc << " " << xd << "," << yd << " " << xa << "," << ya << "\"/>" << endl;
+        myfile2 << "    <poly id=\"" << idPolygon << "\" type=\"building\" color=\"190,190,190\" fill=\"1\" layer=\"1\" shape=\"";
+        myfile2 << xa << "," << ya << " " << xb << "," << yb << " " << xc << "," << yc;
+        myfile2 << " " << xd << "," << yd << " " << xa << "," << ya << "\"/>" << endl;
 
         ya = yb + 10;
         idPolygon++;
@@ -44,12 +46,17 @@ int main() {
     int xa, xb, ya, idPolygon, count;
     int countKm, countLimt;
     ofstream myfile;
+    string fileOutput = "vehDist.poly.xml";
     count = idPolygon = 1;
 
-    myfile.open ("vehDist.poly.xml");
-    myfile << "<shapes>" << endl;
-    myfile.close();
     countKm = 1; // 1 km of grid
+
+    myfile.open (fileOutput);
+    myfile << "<shapes>" << endl << endl;
+    myfile << "    <!-- File with " << countKm << " km^2 of grid polygons -->" << endl << endl;
+    myfile.close();
+
+    cout << endl << "Por favor espere, gerando polygons..." << endl;
 
     countLimt = countKm * 20;
     ya = xa = xb = 10;
@@ -71,6 +78,8 @@ int main() {
     }
 
     myfile.open ("vehDist.poly.xml", std::ios_base::app);
-    myfile << "</shapes>";
+    myfile << endl << "</shapes>";
     myfile.close();
+
+    cout << endl << "Polygons saved in the file " << fileOutput << endl << endl;
 }

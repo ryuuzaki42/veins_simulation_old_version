@@ -64,7 +64,7 @@ int main() {
     output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m)" << endl;
     output << "    -->" << endl << endl;
 
-    cout << "Por favor espere, gerando rotas..." << endl << endl;
+    cout << endl << "Por favor espere, gerando rotas..." << endl << endl;
     while (getline(cin, line) && count <= countVehicleRoutes) { // count < 50 para criar 50 rotas
         if (line.compare(0, 15, "        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
             to = "    <route id=\"";
@@ -222,7 +222,7 @@ int main() {
     }
     output << endl << "</routes>"; // Finalização do arquivo de saída
     output.close();
-    cout << "Rotas salvas no arquivo " << fileOutput << "..." << endl << endl;
+    cout << "Rotas salvas no arquivo " << fileOutput << endl << endl;
 
     // verifica dispersão de veículo no cenário
     freopen(fileOutput.c_str(), "r", stdin); // Arquivo de gerado na primeira parte
@@ -353,6 +353,6 @@ int main() {
     output << "    %%GcT: " << percentage << endl;
 
     output.close();
-    cout << "Distribuição de veículos pelos segmentos de rotas salvas no arquivo " << fileDist << "..." << endl << endl;
+    cout << "Distribuição de veículos pelos segmentos de rotas salvas no arquivo " << fileDist << endl << endl;
     return 0;
 }
