@@ -32,20 +32,6 @@ class vehDist_rsu : public BaseWaveApplLayer {
         BaseMobility* mobi;
         bool sentMessage;
 
-        struct messages {
-          unsigned short int copyMessage;
-          string hops;
-          unsigned short int minHop;
-          unsigned short int maxHop;
-          unsigned short int sumHops;
-          unsigned short int countT;
-          unsigned short int countP;
-          string wsmData;
-          simtime_t sumTimeRecived;
-          string times;
-        };
-        map <string, struct messages> messagesReceived;
-
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
         virtual void onData(WaveShortMessage* wsm);
@@ -59,7 +45,5 @@ class vehDist_rsu : public BaseWaveApplLayer {
         void rsuInitializeVariables();
         void onBeaconStatus(WaveShortMessage* wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
-        void messagesReceivedMeasuring(WaveShortMessage* wsm);
-        void printCountMessagesReceived();
 };
 #endif
