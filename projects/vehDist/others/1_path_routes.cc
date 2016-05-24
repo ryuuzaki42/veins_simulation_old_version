@@ -17,15 +17,12 @@ struct distributionCategory {
 
 int main() {
     string fileInput, fileOutput, fileDist;
+    ofstream output;
     fileInput = "vehDist_tmp.rou.xml";
     fileOutput = "vehDist.rou.xml";
     fileDist = "distributionCategory.r";
+
     freopen(fileInput.c_str(), "r", stdin); // Arquivo de entrada gerado com script randomTrips.py
-
-    ofstream output;
-    output.open(fileOutput.c_str()); // Arquivo que será criado com todas rotas
-
-    output << "<routes>\n" << endl; // Escrita da definição do tipo de veículo no arquivo de saída
 
     bool parte1, go_and_back;
     bool validRoute, use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
@@ -35,12 +32,12 @@ int main() {
     unsigned short int insert_by_time, time_to_insert, vehicle_time_depart, countTmp, compare, compare2;
 
     count = 1;
-    pathComp = 4; //4; //1 é 250 m de rota
+    pathComp = 4; //4; //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
     countVehicleRoutes = 50; //50;
     countVehicleCagegoryA = 10; //10;
     insert_by_time = 5; //5;
     time_to_insert = 60; //60
-    go_and_back = true; // true
+    go_and_back = false; //false
     use_left_and_right_road_as_samePlace = true;
     use_depart_Pos_arrivalPos_departSpeed_as_random = false;
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
@@ -55,8 +52,14 @@ int main() {
     // By 15 m/s or 54 km/h => will move 9 km
     // 16000 m/25 m/s => 640 s
 
-    cout << "Por favor espere, gerando rotas..." << endl << endl;
+    output.open(fileOutput.c_str()); // Arquivo que será criado com todas rotas
+    output << "<routes>\n" << endl; // Escrita da definição do tipo de veículo no arquivo de saída
 
+    output << "<!-- File with " << countVehicleRoutes << " (" << countVehicleCagegoryA << " T, ";
+    output << (countVehicleRoutes - countVehicleCagegoryA) << " P) routes, => T random and P with ";
+    output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m) -->" << endl << endl;
+
+    cout << "Por favor espere, gerando rotas..." << endl << endl;
     while (getline(cin, line) && count <= countVehicleRoutes) { // count < 50 para criar 50 rotas
         if (line.compare(0, 15, "        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
             to = "    <route id=\"";
@@ -148,27 +151,27 @@ int main() {
             }
         }
     }
-    output << "\n    <!-- T => Taxi -->\n";
-    output << "    <vType id=\"T\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>\n\n";
+    output << endl << "    <!-- T => Taxi -->" << endl;
+    output << "    <vType id=\"T\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>" << endl << endl;
     count = 1;
     while (count <= countVehicleCagegoryA) {
         if (count < 10) {
             if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh00" << count <<"\" route=\"route00" << count << "\" type=\"T\"/>\n";
+                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh00" << count <<"\" route=\"route00" << count << "\" type=\"T\"/>" << endl;
             } else {
-                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh00" << count << "\" route=\"route00" << count << "\" type=\"T\"/>\n";
+                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh00" << count << "\" route=\"route00" << count << "\" type=\"T\"/>" << endl;
             }
         } else if (count < 100) {
             if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"T\"/>\n";
+                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"T\"/>" << endl;
             } else {
-                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route0" << count << "\" type=\"T\"/>\n";
+                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route0" << count << "\" type=\"T\"/>" << endl;
             }
         } else {
             if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh" << count <<"\" route=\"route" << count << "\" type=\"T\"/>\n";
+                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh" << count <<"\" route=\"route" << count << "\" type=\"T\"/>" << endl;
             } else {
-                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh" << count << "\" route=\"route" << count << "\" type=\"T\"/>\n";
+                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh" << count << "\" route=\"route" << count << "\" type=\"T\"/>" << endl;
             }
         }
         count++;
@@ -176,8 +179,8 @@ int main() {
 
 
     // Um com id=P e outro com id=T
-    output << "\n    <!-- P => Carro de Passeio -->\n";
-    output << "    <vType id=\"P\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"0,1,0\"/>\n\n";
+    output << endl << "    <!-- P => Carro de Passeio -->" << endl;
+    output << "    <vType id=\"P\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"0,1,0\"/>" << endl << endl;
 
     output << "    <!-- http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes -->" << endl;
     vehicle_time_depart = 0;
@@ -185,21 +188,21 @@ int main() {
     while (count <= countVehicleRoutes) {
         if (count < 10) {
             if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh00" << count <<"\" route=\"route00" << count << "\" type=\"P\"/>\n";
+                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh00" << count <<"\" route=\"route00" << count << "\" type=\"P\"/>" << endl;
             } else {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route00" << count << "\" type=\"P\"/>\n";
+                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route00" << count << "\" type=\"P\"/>" << endl;
             }
         } else if (count < 100) {
             if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"P\"/>\n";
+                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"P\"/>" << endl;
             } else {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route0" << count << "\" type=\"P\"/>\n";
+                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route0" << count << "\" type=\"P\"/>" << endl;
             }
         } else {
             if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh" << count <<"\" route=\"route" << count << "\" type=\"P\"/>\n";
+                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh" << count <<"\" route=\"route" << count << "\" type=\"P\"/>" << endl;
             } else {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh" << count << "\" route=\"route" << count << "\" type=\"P\"/>\n";
+                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh" << count << "\" route=\"route" << count << "\" type=\"P\"/>" << endl;
             }
         }
         count++;
