@@ -1,4 +1,7 @@
 <shapes>
+
+    <!-- File with 1 km^2 of grid polygons -->
+
     <poly id="1" type="building" color="190,190,190" fill="1" layer="1" shape="10,10 10,48 48,48 48,10 10,10"/>
     <poly id="2" type="building" color="190,190,190" fill="1" layer="1" shape="10,58 10,96 48,96 48,58 10,58"/>
     <poly id="3" type="building" color="190,190,190" fill="1" layer="1" shape="10,106 10,144 48,144 48,106 10,106"/>
@@ -399,4 +402,5 @@
     <poly id="398" type="building" color="190,190,190" fill="1" layer="1" shape="952,856 952,894 990,894 990,856 952,856"/>
     <poly id="399" type="building" color="190,190,190" fill="1" layer="1" shape="952,904 952,942 990,942 990,904 952,904"/>
     <poly id="400" type="building" color="190,190,190" fill="1" layer="1" shape="952,952 952,990 990,990 990,952 952,952"/>
+
 </shapes>
