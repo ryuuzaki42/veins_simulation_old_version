@@ -66,9 +66,9 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int vehBeaconMessageTarget_y = default(0);
 
         int beaconMessageBufferSize = default(50);
-        int beaconMessageInterval @unit("s") = default(5s); // interval to try send message(s)
+        int beaconMessageInterval @unit("s") = default(5s); // Interval to try send message(s)
         int beaconMessageHopLimit = default(10); // Limit of hops
-        int timeGenerateBeaconMessage @unit("s") = default(30s); // time for generate messages
+        int timeGenerateBeaconMessage @unit("s") = default(30s); // Time for generate messages
 
         int expNumber = default(1); // Experiment number by table 2^k, number to use _one or _two variables
         int expPart_one_or_two = default(1); // Experiment part, can be 1 or 2, to use 4 values of ttlBM
@@ -76,13 +76,15 @@ simple BaseWaveApplLayer like IBaseApplLayer {
 
         int ttlBeaconMessage_one @unit("s") = default(30s); // ttl beacon message
         int ttlBeaconMessage_two @unit("s") = default(60s);
-        int countGenerateBeaconMessage_one = default(4); // count messages generate by time
+        int countGenerateBeaconMessage_one = default(4); // Count messages generate by time
         int countGenerateBeaconMessage_two = default(8);
 
         int ttlBeaconStatus @unit("s") = default(3s);
         int beaconStatusBufferSize = default(50);
-        int vehTimeUpdatePosition @unit("s") = default(5s); //time for update vehicle position
+        int vehTimeUpdatePosition @unit("s") = default(5s); // Time for update vehicle position
         int expSendbyDSCR = default(0);
+
+        int porcentP = default(20); // Potcentage that send to vehicle from category P
 
     gates:
         input lowerLayerIn; // from mac layer
