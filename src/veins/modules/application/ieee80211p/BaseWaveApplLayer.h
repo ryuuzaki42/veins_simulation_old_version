@@ -21,7 +21,6 @@
 #ifndef BASEWAVEAPPLLAYER_H_
 #define BASEWAVEAPPLLAYER_H_
 
-#include <map>
 #include "veins/base/modules/BaseApplLayer.h"
 #include "veins/modules/utility/Consts80211p.h"
 #include "veins/modules/messages/WaveShortMessage_m.h"
@@ -31,11 +30,12 @@
 // Add for Epidemic
 #include <stdio.h>
 
-#include <fstream>
 #include <map>
-#include <unordered_map>
-#include <algorithm>    // std::find
+#include <queue>
 #include <vector>
+#include <fstream>
+#include <unordered_map>
+#include <algorithm> // std::find
 
 using namespace std;
 
@@ -70,7 +70,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual void initialize_default_veins_TraCI(int stage);
         virtual void initialize_minicurso_UFPI_TraCI(int stage);
         virtual void initialize_epidemic(int stage);
-        virtual void initialize_mfcv_epidemic(int stage);
         virtual void finish();
 
         virtual  void receiveSignal(cComponent* source, simsignal_t signalID, cObject* obj, cObject* details);
@@ -79,16 +78,10 @@ class BaseWaveApplLayer : public BaseApplLayer {
             SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
             SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT, //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
             SEND_BEACON_EVT_epidemic,
-            SEND_BEACON_EVT_mfcv_epidemic
+            SEND_BEACON_EVT_mfcv_epidemic,
+            Send_EpidemicMessageRequestEvt
         };
 
-//######################################### vehDist #########################################
-        void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
-        void printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
-        void openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
-        void generalInitializeVariables_executionByExpNumber();
-        string getFolderResult(unsigned short int experimentSendbyDSR);
-//######################################### vehDist #########################################
 
     protected:
 
@@ -102,18 +95,55 @@ class BaseWaveApplLayer : public BaseApplLayer {
         //virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
         virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
 
-        //Add for Epidemic
+//######################################### vehDist #########################################
+        void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
+        void printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
+        void openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
+        void generalInitializeVariables_executionByExpNumber();
+        string getFolderResult(unsigned short int experimentSendbyDSR);
+
+        //## Used to another projects
+        void messagesReceivedMeasuringRSU(WaveShortMessage* wsm);
+        void printCountMessagesReceived();
+        void toFinishRSU();
+//######################################### vehDist #########################################
+
+//######################################### Epidemic #########################################
         virtual WaveShortMessage* prepareWSM_epidemic(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
-        virtual unsigned int MACToInteger();
+        unsigned int MACToInteger();
+
+        void receivedOnBeacon(WaveShortMessage* wsm);
+        void receivedOnData(WaveShortMessage* wsm);
+
+        void printWaveShortMessage(WaveShortMessage* wsm);
+
+        void printQueueFIFO(std::queue <string> qFIFO);
+        void sendLocalSummaryVector(unsigned int newRecipientAddress);
+
+        //Return a string with the whole summaryVector
+        string getLocalSummaryVectorData();
+        string getEpidemicRequestMessageVectorData();
+
+        void printNodesIRecentlySentSummaryVector();
+
+        void printEpidemicLocalMessageBuffer();
+        void printEpidemicRequestMessageVector();
+        void printEpidemicLocalSummaryVectorData();
+        void printEpidemicRemoteSummaryVectorData();
+
+        void sendEpidemicRequestMessageVector(unsigned int newRecipientAddress);
+        void sendMessagesRequested(string s, unsigned int recipientAddress);
+
+        void createEpidemicRequestMessageVector();
+        void createEpidemicRemoteSummaryVector(string s);
+//######################################### Epidemic #########################################
+
 
         virtual void sendWSM(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm) = 0;
         virtual void onData(WaveShortMessage* wsm) = 0;
 
         virtual void handlePositionUpdate(cObject* obj);
-
-        // record in file
-        std::ofstream myfile;
 
     protected:
         int beaconLengthBits;
@@ -128,31 +158,16 @@ class BaseWaveApplLayer : public BaseApplLayer {
         int mySCH;
         int myId;
 
+        string source;
+        string target;
+
         cMessage* sendBeaconEvt;
 
         WaveAppToMac1609_4Interface* myMac;
 
-        // Add for Epidemic
-        int sendSummaryVectorInterval;
-        unsigned int maximumEpidemicBufferSize;
-        unsigned int hopCount;
-
-        unsigned int maximumMfcvEpidemicBufferSize;
-
-        //To record statistics collection
-        //cLongHistogram hopCountStats;
-        //cOutVector hopCountVector;
-        //cDoubleHistogram messageArrivalTimeStats;
-        //cOutVector messageArrivalTimeVector;
-        //long unsigned int numMessageReceived;
-
-        //simsignal_t hopsToDeliverSignal;
-        //simsignal_t delayToDeliverSignal;
-        //simsignal_t messageArrivalSignal;
-
 //######################################### vehDist #########################################
-        string source;
-        string target;
+        ofstream myfile; // record in file
+
         unsigned short int target_x;
         unsigned short int target_y;
 
@@ -165,11 +180,52 @@ class BaseWaveApplLayer : public BaseApplLayer {
         unsigned short int repeatNumber;
         unsigned short int expNumber;
         unsigned short int expSendbyDSCR;
-        string stringTmp;
         double ttlBeaconMessage;
         unsigned short int countGenerateBeaconMessage;
+
+        //## Used to another projects
         unsigned short int beaconMessageHopLimit;
+
+        struct messages {
+          unsigned short int copyMessage;
+          string hops;
+          unsigned short int minHop;
+          unsigned short int maxHop;
+          unsigned short int sumHops;
+          unsigned short int countT;
+          unsigned short int countP;
+          string wsmData;
+          simtime_t sumTimeRecived;
+          string times;
+        };
+        map <string, struct messages> messagesReceived;
 //######################################### vehDist #########################################
+
+//######################################### Epidemic #########################################
+        //Hash table to represent the node buffer. It stores messages generated by itself as well messages carried on behalf of other nodes
+        //Creating a unordered_map to represent the local epidemic messages buffer
+        unordered_map <string, WaveShortMessage> epidemicLocalMessageBuffer;
+        //Bit Vector to represent a summary vector that indicates which entries in their local hash table are set.
+        unordered_map <string, bool> epidemicLocalSummaryVector;
+        //Bit Vector to represent a summary vector that indicates which entries in remote hash table are set.
+        unordered_map <string, bool> epidemicRemoteSummaryVector;
+        //Bit Vector to represent a result summary vector that will be used to make a request of messages.
+        unordered_map <string, bool> epidemicRequestMessageVector;
+        //Cache with nodes that I recently met
+        unordered_map <unsigned int, simtime_t> nodesRecentlyFoundList;
+        //Cache with nodes that I recently sent the summary vector
+        unordered_map <unsigned int, simtime_t> nodesIRecentlySentSummaryVector;
+        //implementation of FIFO in order to maintain the limited length of the buffer activated
+        queue <string> queueFIFO;
+
+        int sendSummaryVectorInterval;
+        unsigned int maximumEpidemicBufferSize;
+        //unsigned int hopCount;
+
+
+        cMessage* sendEpidemicMessageRequestEvt;
+        unordered_map <string, WaveShortMessage> epidemicMessageSend;
+//######################################### Epidemic #########################################
 };
 
 #endif /* BASEWAVEAPPLLAYER_H_ */
