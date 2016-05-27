@@ -3,10 +3,10 @@
 // g++ -std=c++0x -Wall -o 1_path_routes.out 1_path_routes.cc #
 //#############################################################
 
-#include <iostream>
-#include <fstream>
-#include <string.h>
 #include <map>
+#include <fstream>
+#include <iostream>
+#include <string.h>
 
 using namespace std;
 
@@ -15,19 +15,34 @@ struct distributionCategory {
     int categoryT;
 };
 
+unsigned short int generate_routes (unsigned short int line_start, unsigned short int route_fileNumber);
+
 int main() {
-    string fileInput, fileOutput, fileDist;
+    unsigned short int countFileRoutesGenerate, route_fileNumber, line_start;
+
+    countFileRoutesGenerate = 1;
+
+    line_start = 0;       //e.g., 0, 1319, 2537, 3446, 4763, 5780
+    route_fileNumber = 0; //e.g., 0,    1,    2,    3,    4,    5
+
+    while (route_fileNumber < countFileRoutesGenerate) {
+        line_start = generate_routes(line_start, route_fileNumber);
+        route_fileNumber++;
+    }
+
+    return 0;
+}
+
+unsigned short int generate_routes (unsigned short int line_start, unsigned short int route_fileNumber) {
     ofstream output;
-    fileInput = "vehDist_tmp.rou.xml";
-    fileOutput = "vehDist.rou.xml";
-    fileDist = "distributionCategory.r";
 
-    freopen(fileInput.c_str(), "r", stdin); // Arquivo de entrada gerado com script randomTrips.py
-
-    bool parte1, go_and_back;
-    bool validRoute, use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
+    string fileInput, fileOutput, fileDist, fileResultPartName;
     string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
-    unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes;
+
+    bool parte1, go_and_back, validRoute;
+    bool use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
+
+    unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes, line_count;
     unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
     unsigned short int insert_by_time, time_to_insert, vehicle_time_depart, countTmp, compare, compare2;
 
@@ -43,6 +58,23 @@ int main() {
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
     p1 = 22; // Início da rota
     parte1 = true;
+
+    if (route_fileNumber < 10) {
+        fileResultPartName = "0" + to_string(route_fileNumber);
+    } else {
+        fileResultPartName = to_string(route_fileNumber);
+    }
+
+    fileInput = "vehDist_tmp.rou.xml";
+    fileOutput = "vehDist.rou"+ fileResultPartName + ".xml";
+    fileDist = "distributionCategory" + fileResultPartName + ".r";
+
+    freopen(fileInput.c_str(), "r", stdin); // Arquivo de entrada gerado com script randomTrips.py
+
+    line_count = 0;
+    while (getline(cin, line) && line_count < line_start) {
+        line_count++;
+    }
 
     // 23 no início [        <route edges="] + 3 no final ["/>] => 26; 1 tem 9 [1/2to1/1 ], como uma rua tem 250 m.
     // logo 1 km => 4 *9 => 36 + 26 + 9 (ponto inicial). x km = x * 36 + 26 + 9
@@ -62,6 +94,8 @@ int main() {
     output << "    Routes T (" << count << " to " << countVehicleCagegoryT <<"): \"random\"" << endl;
     output << "    Routes P (" << (countVehicleCagegoryT + 1) << " to " << countVehicleRoutes << "): ";
     output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m)" << endl;
+    output << "    fileOutput: " << fileOutput << endl;
+    output << "    line_start: " << line_count << endl;
     output << "    -->" << endl << endl;
 
     cout << endl << "Por favor espere, gerando rotas..." << endl << endl;
@@ -155,7 +189,10 @@ int main() {
                 }
             }
         }
+        line_count++;
     }
+    output << endl << "    <!-- line_end: " << line_count << " -->" << endl;
+
     output << endl << "    <!-- T => Taxi -->" << endl;
     output << "    <vType id=\"T\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>" << endl << endl;
     count = 1;
@@ -354,5 +391,5 @@ int main() {
 
     output.close();
     cout << "Distribuição de veículos pelos segmentos de rotas salvas no arquivo " << fileDist << endl << endl;
-    return 0;
+    return line_count;
 }
