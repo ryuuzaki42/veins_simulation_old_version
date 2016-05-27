@@ -61,15 +61,18 @@ class vehDist : public BaseWaveApplLayer {
         static unsigned short int countVehicleAll;
 
         static vector <string> numVehicles;
+        static unordered_map <string, WaveShortMessage> vehScenario;
+
         static vector <string> vehGenerateMessage;
         static unsigned short int countMesssageDrop;
         static unsigned short int beaconMessageId;
 
         vector <string> messagesDelivered;
         vector <string> messagesOrderReceived;
-        unordered_map<string, WaveShortMessage> messagesBuffer;
-        unordered_map<string, WaveShortMessage> beaconStatusNeighbors;
-        unordered_map<string, string> messagesSendLog;
+        unordered_map <string, WaveShortMessage> messagesBuffer;
+        unordered_map <string, WaveShortMessage> messagesOnlyDelivery;
+        unordered_map <string, WaveShortMessage> beaconStatusNeighbors;
+        unordered_map <string, string> messagesSendLog;
 
         unsigned short int messageToSend;
         unsigned short int rateTimeToSend;
@@ -136,7 +139,9 @@ class vehDist : public BaseWaveApplLayer {
         void vehInitializeVariables();
         void saveVehStartPosition(string fileNameLocation);
 
-        void sendMessageNeighborsTarget(string beaconSource);
+        void sendMessageToOneNeighborTarget(string beaconSource);
+        void sendMessageToOneNeighborTargetOnlyDelivery(string beaconSource);
+        bool sendOneNewMessageToOneNeighborTarget(WaveShortMessage wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
 
         void insertMessageDrop(string ID, unsigned short int type);
@@ -175,5 +180,6 @@ unsigned short int vehDist::timeToUpdatePosition;
 unsigned short int vehDist::beaconStatusBufferSize;
 unsigned short int vehDist::beaconMessageBufferSize;
 unsigned short int vehDist::timeLimitGenerateBeaconMessage;
+unordered_map<string, WaveShortMessage> vehDist::vehScenario;
 
 #endif
