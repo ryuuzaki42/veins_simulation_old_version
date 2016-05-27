@@ -33,15 +33,15 @@
     # cat General-*.sca | grep "attr iterationvars2"
     i=0; while [ $i -lt 32 ]; do cat General-$i.sca | grep "attr iterationvars2"; i=$((i+1)); done
 
-## Run on terminal
-    -u = mode, -f = arquivo ini -r = nº de execucão -l = libveins -n = arquivos ned
-    # sem GUI
-        opp_run -u Cmdenv -n .:../../src/ -f vehDist.ini -r 0 -l ../../src/libveins.so
-    # com GUI
-        opp_run -u Tkenv -n .:../../src/ -f vehDist.ini -r 0 -l ../../src/libveins.so
-    # sem repeat
-        opp_run -u Cmdenv -n .:../../src/ -f vehDist.ini -l ../../src/libveins.so
-        opp_run -u Tkenv -n .:../../src/ -f vehDist.ini -l ../../src/libveins.so
+## OMNeT run project on terminal
+    -u = mode (com GUI - Tkenv, sem GUI - Cmdenv) -f = arquivo ini -r = nº de execucão -l = libveins -n = arquivos ned
+    # sem GUI e todas as execuções
+        opp_run -u Cmdenv -n ../../src/veins/ -l ../../src/libveins.so -f vehDist.ini > run.r
+    # com GUI e todas as execuções
+        opp_run -u Tkenv -n ../../src/veins/ -l ../../src/libveins.so -f vehDist.ini > run.r
+    # Execuções de 0 até 3
+        opp_run -r 0..3 -u Tkenv -n ../../src/veins/ -l ../../src/libveins.so -f vehDist.ini > run.r
+        opp_run -r 0..3 -u Cmdenv -n ../../src/veins/ -l ../../src/libveins.so -f vehDist.ini > run.r
 
 ## Script in R ##
 ## Execute R < script_r.r or source('script_r.r', echo=TRUE)
