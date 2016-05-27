@@ -43,9 +43,9 @@ void vehDist_rsu::rsuInitializeVariables() {
 }
 
 void vehDist_rsu::restartFilesResult() {
-    stringTmp = getFolderResult(expSendbyDSCR);
+    string folderResult = getFolderResult(expSendbyDSCR);
 
-    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = stringTmp + source;
+    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = folderResult + source;
 
     fileMessagesBroadcast += "_Broadcast_Messages.r";
     fileMessagesUnicast += "_Messages_Received.r";
@@ -57,17 +57,17 @@ void vehDist_rsu::restartFilesResult() {
         if (expNumber <= 4) { // Set the maxSpeed to 15 m/s in the expNumber 1 to 4
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
             system(comand.c_str());
-            cout << endl << "Change the spped to 15 m/s, command: " << comand << endl;
+            cout << endl << "Change the speed to 15 m/s, command: " << comand << endl;
         } else if (expNumber >= 5){ // Set the maxSpeed to 25 m/s in the expNumber 5 to 8
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
             system(comand.c_str());
-            cout << endl << "Change the spped to 25 m/s, command: " << comand << endl;
+            cout << endl << "Change the speed to 25 m/s, command: " << comand << endl;
         }
 
-        stringTmp = "mkdir -p " + stringTmp + " > /dev/null";
-        cout << endl << "Created the folder, command: \"" << stringTmp << "\"" << endl;
+        string commandCreateFolder = "mkdir -p " + folderResult + " > /dev/null";
+        cout << endl << "Created the folder, command: \"" << commandCreateFolder << "\"" << endl;
         cout << "repeatNumber: " << repeatNumber << endl;
-        system(stringTmp.c_str()); //create a folder results
+        system(commandCreateFolder.c_str()); //create a folder results
 
         openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
         openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
@@ -104,7 +104,7 @@ void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
         findHost()->bubble("Received Message");
         saveMessagesOnFile(wsm, fileMessagesUnicast);
 
-        messagesReceivedMeasuring(wsm);
+        messagesReceivedMeasuringRSU(wsm);
     } else {
         saveMessagesOnFile(wsm, fileMessagesBroadcast);
     }
