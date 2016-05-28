@@ -72,8 +72,9 @@ packet WaveShortMessage {
 
     // Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
     unsigned short hopCount = 0;
+
     // Determine if a message has been successfully received or not. False is default value assigned to it
-    bool ackRequest = false;
+    //bool ackRequest = false;
 
     //Add Minicurso_UFPI - Send ID da pista e velocidade
     //Current ID of the road, e. g., 1ato2b
@@ -81,11 +82,12 @@ packet WaveShortMessage {
     // Speed of vehicle in the moment which send a message WSM, wsm->setSenderSpeed(traci->getSpeed());
     float senderSpeed = 0.0;
 
-    // MFCV
+    // MFCV => vehDist
     string senderAddressTemporary;
     string recipientAddressTemporary;
     // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
     string category;
+
     // Path history of the vehicle, calculated from time to time
     //string pathHistory;
     // Radius of Gyration of the vehicle, calculated from time to time.
