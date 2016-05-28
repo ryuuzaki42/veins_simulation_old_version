@@ -18,8 +18,6 @@
 
 #include "veins/modules/application/vehDist/vehDist_rsu.h"
 
-using Veins::AnnotationManagerAccess;
-
 Define_Module(vehDist_rsu);
 
 void vehDist_rsu::initialize(int stage) {
@@ -27,9 +25,6 @@ void vehDist_rsu::initialize(int stage) {
     if (stage == 0) {
         mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
         ASSERT(mobi);
-        annotations = AnnotationManagerAccess().getIfExists();
-        ASSERT(annotations);
-        sentMessage = false;
 
         rsuInitializeVariables();
     }
@@ -39,21 +34,21 @@ void vehDist_rsu::rsuInitializeVariables() {
     generalInitializeVariables_executionByExpNumber();
 
     restartFilesResult();
-    //cout << " " << source << " entered in the scenario" << endl;
+    //cout << source << " entered in the scenario" << endl;
 }
 
 void vehDist_rsu::restartFilesResult() {
     string folderResult = getFolderResult(expSendbyDSCR);
 
-    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = folderResult + source;
+    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = folderResult + source + "_";
 
-    fileMessagesBroadcast += "_Broadcast_Messages.r";
-    fileMessagesUnicast += "_Messages_Received.r";
-    fileMessagesCount += "_Count_Messages_Received.r";
+    fileMessagesBroadcast += "Broadcast_Messages.r";
+    fileMessagesUnicast += "Messages_Received.r";
+    fileMessagesCount += "Count_Messages_Received.r";
 
-    //fileMessagesDrop and fileMessagesGenerated not used yet to RSU
+    //fileMessagesDrop and fileMessagesGenerated // Not used yet to RSU
 
-    if ((myId == 0) && (repeatNumber == 0)) { //Open a new file (blank)
+    if ((myId == 0) && (repeatNumber == 0)) { // Open a new file (blank)
         if (expNumber <= 4) { // Set the maxSpeed to 15 m/s in the expNumber 1 to 4
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
             system(comand.c_str());
@@ -67,12 +62,12 @@ void vehDist_rsu::restartFilesResult() {
         string commandCreateFolder = "mkdir -p " + folderResult + " > /dev/null";
         cout << endl << "Created the folder, command: \"" << commandCreateFolder << "\"" << endl;
         cout << "repeatNumber: " << repeatNumber << endl;
-        system(commandCreateFolder.c_str()); //create a folder results
+        system(commandCreateFolder.c_str()); // Create a folder results
 
         openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
         openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
         openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
-    } else { // (repeatNumber != 0)) // for just append
+    } else { // repeatNumber != 0 just append
         openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
         openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
         openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
@@ -85,8 +80,7 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
 
     if (wsm->getType() == 1) {
         onBeaconStatus(wsm);
-    }
-    else if (wsm->getType() == 2) {
+    } else if (wsm->getType() == 2) {
         onBeaconMessage(wsm);
     } else {
         DBG << "unknown message (" << wsm->getName() << ")  received\n";
@@ -113,29 +107,32 @@ void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
 void vehDist_rsu::handleSelfMsg(cMessage* msg) {
     switch (msg->getKind()) {
         case SEND_BEACON_EVT: {
-            //sendWSM(prepareWSM("beacon", beaconLengthBits, type_CCH, beaconPriority, 0, -1));
             sendWSM(prepareBeaconStatusWSM("beaconStatus", beaconLengthBits, type_CCH, beaconPriority, -1));
             scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
             break;
         }
         default: {
-            if (msg)
+            if (msg) {
                 DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
+                exit(2);
+            }
             break;
         }
     }
 }
 
-WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial) {
+WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(string name, int lengthBits, t_channel channel, int priority, int serial) {
     WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
     wsm->setType(1); // Beacon of Status
     wsm->addBitLength(headerLength);
     wsm->addBitLength(lengthBits);
     switch (channel) {
-        case type_SCH:
-            wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+        case type_SCH: // Will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+            wsm->setChannelNumber(Channels::SCH1);
+            break;
         case type_CCH:
-            wsm->setChannelNumber(Channels::CCH); break;
+            wsm->setChannelNumber(Channels::CCH);
+            break;
     }
     wsm->setPsid(0);
     wsm->setPriority(priority);

@@ -20,17 +20,13 @@
 #define vehDist_rsu_H
 
 #include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
-#include "veins/modules/world/annotations/AnnotationManager.h"
-
-using Veins::AnnotationManager;
 
 class vehDist_rsu : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
+
     protected:
-        AnnotationManager* annotations;
         BaseMobility* mobi;
-        bool sentMessage;
 
     protected:
         virtual void onBeacon(WaveShortMessage* wsm);
@@ -39,7 +35,7 @@ class vehDist_rsu : public BaseWaveApplLayer {
         void finish();
         void handleSelfMsg(cMessage* msg);
         void handleLowerMsg(cMessage* msg);
-        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
+        WaveShortMessage* prepareBeaconStatusWSM(string name, int lengthBits, t_channel channel, int priority, int serial);
 
         void restartFilesResult();
         void rsuInitializeVariables();
