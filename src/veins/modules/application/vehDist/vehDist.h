@@ -19,13 +19,12 @@
 #ifndef vehDist_H
 #define vehDist_H
 
-#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
 #include "veins/modules/mobility/traci/TraCIMobility.h"
 #include "veins/modules/mobility/traci/TraCICommandInterface.h"
+#include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
 
 using Veins::TraCIMobility;
 using Veins::TraCICommandInterface;
-using Veins::AnnotationManager;
 
 class vehDist : public BaseWaveApplLayer {
     public:
@@ -115,7 +114,7 @@ class vehDist : public BaseWaveApplLayer {
 
         void printBeaconStatusNeighbors();
         void onBeaconStatus(WaveShortMessage* wsm);
-        WaveShortMessage* prepareBeaconStatusWSM(std::string name, int lengthBits, t_channel channel, int priority, int serial);
+        WaveShortMessage* prepareBeaconStatusWSM(string name, int lengthBits, t_channel channel, int priority, int serial);
 
         void vehCreateEventTrySendBeaconMessage();
         void generateTarget();
@@ -150,11 +149,11 @@ class vehDist : public BaseWaveApplLayer {
         void removeOldestInputBeaconStatus();
 
         string choseCategory_RandomNumber1to100(unsigned short int percentP, string vehIdP, string vehIdT);
-        string chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 1
-        string chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 12
-        string chosenByDistance_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 13
-        string chosenByDistance_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 14
-        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 123
+        string chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 0001
+        string chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 0012
+        string chosenByDistance_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 0013
+        string chosenByDistance_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 0014
+        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 0123
         string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 1234
 
         unsigned short int getVehHeading8();
@@ -180,6 +179,6 @@ unsigned short int vehDist::timeToUpdatePosition;
 unsigned short int vehDist::beaconStatusBufferSize;
 unsigned short int vehDist::beaconMessageBufferSize;
 unsigned short int vehDist::timeLimitGenerateBeaconMessage;
-unordered_map<string, WaveShortMessage> vehDist::vehScenario;
+unordered_map <string, WaveShortMessage> vehDist::vehScenario;
 
 #endif
