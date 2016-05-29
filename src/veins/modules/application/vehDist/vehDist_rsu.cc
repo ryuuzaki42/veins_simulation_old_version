@@ -31,47 +31,10 @@ void vehDist_rsu::initialize(int stage) {
 }
 
 void vehDist_rsu::rsuInitializeVariables() {
-    generalInitializeVariables_executionByExpNumber();
+    generalInitializeVariables_executionByExpNumberVehDist();
 
-    restartFilesResult();
+    restartFilesResultRSU(getFolderResultVehDist(expSendbyDSCR));
     //cout << source << " entered in the scenario" << endl;
-}
-
-void vehDist_rsu::restartFilesResult() {
-    string folderResult = getFolderResult(expSendbyDSCR);
-
-    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = folderResult + source + "_";
-
-    fileMessagesBroadcast += "Broadcast_Messages.r";
-    fileMessagesUnicast += "Messages_Received.r";
-    fileMessagesCount += "Count_Messages_Received.r";
-
-    //fileMessagesDrop and fileMessagesGenerated // Not used yet to RSU
-
-    if ((myId == 0) && (repeatNumber == 0)) { // Open a new file (blank)
-        if (expNumber <= 4) { // Set the maxSpeed to 15 m/s in the expNumber 1 to 4
-            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
-            system(comand.c_str());
-            cout << endl << "Change the speed to 15 m/s, command: " << comand << endl;
-        } else if (expNumber >= 5){ // Set the maxSpeed to 25 m/s in the expNumber 5 to 8
-            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
-            system(comand.c_str());
-            cout << endl << "Change the speed to 25 m/s, command: " << comand << endl;
-        }
-
-        string commandCreateFolder = "mkdir -p " + folderResult + " > /dev/null";
-        cout << endl << "Created the folder, command: \"" << commandCreateFolder << "\"" << endl;
-        cout << "repeatNumber: " << repeatNumber << endl;
-        system(commandCreateFolder.c_str()); // Create a folder results
-
-        openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
-    } else { // repeatNumber != 0 just append
-        openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
-    }
 }
 
 void vehDist_rsu::handleLowerMsg(cMessage* msg) {

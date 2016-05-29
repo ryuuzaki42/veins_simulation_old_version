@@ -37,7 +37,6 @@ class vehDist_rsu : public BaseWaveApplLayer {
         void handleLowerMsg(cMessage* msg);
         WaveShortMessage* prepareBeaconStatusWSM(string name, int lengthBits, t_channel channel, int priority, int serial);
 
-        void restartFilesResult();
         void rsuInitializeVariables();
         void onBeaconStatus(WaveShortMessage* wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
