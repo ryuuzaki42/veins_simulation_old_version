@@ -82,9 +82,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
             Send_EpidemicMessageRequestEvt
         };
 
-
     protected:
-
         static const simsignalwrap_t mobilityStateChangedSignal;
 
         /** @brief handle messages from below */
@@ -92,20 +90,22 @@ class BaseWaveApplLayer : public BaseApplLayer {
         /** @brief handle self messages */
         virtual void handleSelfMsg(cMessage* msg);
 
-        //virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
-        virtual WaveShortMessage* prepareWSM(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
+        //virtual WaveShortMessage* prepareWSM(string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
+        virtual WaveShortMessage* prepareWSM(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
 
 //######################################### vehDist #########################################
+        void generalInitializeVariables_executionByExpNumberVehDist();
+        string getFolderResultVehDist(unsigned short int experimentSendbyDSR);
+
+        //## Used to another projects
+        void toFinishRSU();
+        void restartFilesResultRSU(string folderResult);
+        void printCountMessagesReceivedRSU();
+        void messagesReceivedMeasuringRSU(WaveShortMessage* wsm);
+
         void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
         void printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
         void openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
-        void generalInitializeVariables_executionByExpNumber();
-        string getFolderResult(unsigned short int experimentSendbyDSR);
-
-        //## Used to another projects
-        void messagesReceivedMeasuringRSU(WaveShortMessage* wsm);
-        void printCountMessagesReceived();
-        void toFinishRSU();
 //######################################### vehDist #########################################
 
 //######################################### Epidemic #########################################
@@ -138,11 +138,9 @@ class BaseWaveApplLayer : public BaseApplLayer {
         void createEpidemicRemoteSummaryVector(string s);
 //######################################### Epidemic #########################################
 
-
         virtual void sendWSM(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm) = 0;
         virtual void onData(WaveShortMessage* wsm) = 0;
-
         virtual void handlePositionUpdate(cObject* obj);
 
     protected:
@@ -187,6 +185,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         unsigned short int beaconMessageHopLimit;
 
         struct messages {
+          string fristSource;
           unsigned short int copyMessage;
           string hops;
           unsigned short int minHop;
@@ -220,8 +219,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         int sendSummaryVectorInterval;
         unsigned int maximumEpidemicBufferSize;
-        //unsigned int hopCount;
-
 
         cMessage* sendEpidemicMessageRequestEvt;
         unordered_map <string, WaveShortMessage> epidemicMessageSend;

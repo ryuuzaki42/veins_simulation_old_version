@@ -53,7 +53,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
         double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
         offSet = offSet + floor(offSet/0.050)*0.050;
         individualOffset = dblrand() * maxOffset;
-        //cout << findHost()->getFullName() << " Beacon offSet: " << offSet << endl; // betwen 0 and 1
+        //cout << findHost()->getFullName() << " Beacon offSet: " << offSet << endl; // Between 0 and 1
 
         findHost()->subscribe(mobilityStateChangedSignal, this);
 
@@ -64,8 +64,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
 }
 
 //######################################### vehDist - begin #####################################################################
-
-void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileName){
+void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileName) {
     myfile.open (fileName, std::ios_base::app); //Open file for just append
 
     //Send "strings" to be saved on the file
@@ -96,13 +95,12 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
     myfile << "wsm->getWsmData(): " << wsm->getWsmData() << endl;
     myfile << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
-    myfile << "Time to generate and received: " << (simTime() - wsm->getTimestamp()) << endl;
-    myfile << endl;
+    myfile << "Time to generate and received: " << (simTime() - wsm->getTimestamp()) << endl << endl;
 
     myfile.close();
 }
 
-void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage ){
+void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage) {
     if (justForAppend) {
         myfile.open(fileName, std::ios_base::app);
     } else {
@@ -112,7 +110,7 @@ void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, do
     myfile.close();
 }
 
-void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage){
+void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage) {
     if (repeatNumber != 0) {
         myfile << endl;
     }
@@ -133,11 +131,11 @@ void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsign
     myfile << " ttlBeaconMessage: " << ttlBeaconMessage << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;
 }
 
-void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumber(){
+void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist() {
     source = findHost()->getFullName();
     beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
     string seedNumber = ev.getConfig()->getConfigValue("seed-set");
-    repeatNumber = atoi(seedNumber.c_str()); // number of execution (${repetition})
+    repeatNumber = atoi(seedNumber.c_str()); // Number of execution (${repetition})
     expSendbyDSCR = par("expSendbyDSCR").longValue();
 
     expNumber = par("expNumber").longValue();
@@ -154,16 +152,14 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumber(){
         ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
     } else {
-        cout << "Error: Number of experiment not configured. Go to BaseWaveApplLayer.cc line 156." << endl;
-        exit(1); // Comets this line for use the values below
-        ttlBeaconMessage = 60; // Just for don't left garbage value in this variable
-        countGenerateBeaconMessage = 0; // Will not generate any message
+        cout << "Error: Number of experiment not configured. Go to BaseWaveApplLayer.cc line 155" << endl;
+        exit(33);
     }
 }
 
-string BaseWaveApplLayer::getFolderResult(unsigned short int expSendbyDSCR){
-    string expSendbyDSCRText, result_folder_part;
-    switch (expSendbyDSCR){
+string BaseWaveApplLayer::getFolderResultVehDist(unsigned short int expSendbyDSCR) {
+    string expSendbyDSCRText, resultFolderPart;
+    switch (expSendbyDSCR) {
     case 1:
         expSendbyDSCRText = "0001_chosenByDistance";
         break;
@@ -182,22 +178,61 @@ string BaseWaveApplLayer::getFolderResult(unsigned short int expSendbyDSCR){
     case 1234:
         expSendbyDSCRText = "1234_chosenByDistance_Speed_Category_RateTimeToSend";
         break;
-
     default:
         cout << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
         DBG << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
         exit(1);
     }
 
-    int expPart_one_or_two = par("expPart_one_or_two");
-    result_folder_part = "results/vehDist_resultsEnd_" + to_string(expPart_one_or_two) + "/" + expSendbyDSCRText + "/";
-    result_folder_part += "E" + to_string(expNumber) + "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_";
-    result_folder_part += to_string(countGenerateBeaconMessage) +"/";
+    unsigned short int expPartOneOrTwo = par("expPart_one_or_two");
+    resultFolderPart = "results/vehDist_resultsEnd_" + to_string(expPartOneOrTwo) + "/" + expSendbyDSCRText + "/";
+    resultFolderPart += "E" + to_string(expNumber) + "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_";
+    resultFolderPart += to_string(countGenerateBeaconMessage) +"/";
 
-    return result_folder_part;
+    return resultFolderPart;
 }
 
-void BaseWaveApplLayer::printCountMessagesReceived() {
+void BaseWaveApplLayer::restartFilesResultRSU(string folderResult) {
+    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = folderResult + source + "_";
+
+    fileMessagesBroadcast += "Broadcast_Messages.r";
+    fileMessagesUnicast += "Messages_Received.r";
+    fileMessagesCount += "Count_Messages_Received.r";
+
+    //fileMessagesDrop and fileMessagesGenerated // Not used yet to RSU
+
+    bool justAppend;
+    if (myId == 0) {
+        if (expNumber <= 4) { // Set the maxSpeed to 15 m/s in the expNumber 1 to 4
+            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
+            system(comand.c_str());
+            cout << endl << "Change the speed to 15 m/s, command: " << comand << endl;
+        } else if (expNumber >= 5){ // Set the maxSpeed to 25 m/s in the expNumber 5 to 8
+            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
+            system(comand.c_str());
+            cout << endl << "Change the speed to 25 m/s, command: " << comand << endl;
+        }
+
+        string commandCreateFolder = "mkdir -p " + folderResult + " > /dev/null";
+        cout << endl << "Created the folder, command: \"" << commandCreateFolder << "\"" << endl;
+        cout << "repeatNumber: " << repeatNumber << endl;
+        system(commandCreateFolder.c_str()); // Try create a folder to save the results
+
+        if (repeatNumber == 0) {
+            justAppend = false; // Open a new file (blank)
+        } else {
+            justAppend = true;
+        }
+    } else { // repeatNumber != 0 just append
+        justAppend = true;
+    }
+
+    openFileAndClose(fileMessagesBroadcast, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
+    openFileAndClose(fileMessagesUnicast, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
+    openFileAndClose(fileMessagesCount, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
+}
+
+void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
     myfile.open (fileMessagesCount, std::ios_base::app);
 
     if (!messagesReceived.empty()) {
@@ -210,42 +245,57 @@ void BaseWaveApplLayer::printCountMessagesReceived() {
         avgGeneralTimeMessageReceived = 0;
         countP = countT = messageCountHopZero = 0;
         avgGeneralHopsMessage = avgGeneralCopyMessageReceived = 0;
-        map <string, struct messages>::iterator it;
-        for (it = messagesReceived.begin(); it != messagesReceived.end(); it++) {
-            myfile << endl << "## Message ID: " << it->first << endl;
-            myfile << "Count received: " << it->second.copyMessage << endl;
-            avgGeneralCopyMessageReceived += it->second.copyMessage;
+        map <string, struct messages>::iterator itMessagesReceived;
+        for (itMessagesReceived = messagesReceived.begin(); itMessagesReceived != messagesReceived.end(); itMessagesReceived++) {
+            myfile << endl << "## Message ID: " << itMessagesReceived->first << endl;
+            myfile << "Count received: " << itMessagesReceived->second.copyMessage << endl;
+            myfile << "Frist received source: " << itMessagesReceived->second.fristSource << endl;
+            avgGeneralCopyMessageReceived += itMessagesReceived->second.copyMessage;
 
-            myfile << "wsmData: " << it->second.wsmData << endl;
-            myfile << "Hops: " << it->second.hops << endl;
-            myfile << "Sum hops: " << it->second.sumHops << endl;
-            avgGeneralHopsMessage += it->second.sumHops;
-            if (it->second.sumHops == 0) {
-                messageCountHopZero++;
-            }
+            myfile << "wsmData: " << itMessagesReceived->second.wsmData << endl;
+            myfile << "Hops: " << itMessagesReceived->second.hops << endl;
+            myfile << "Sum hops: " << itMessagesReceived->second.sumHops << endl;
+            avgGeneralHopsMessage += itMessagesReceived->second.sumHops;
 
-            myfile << "Average hops: " << (it->second.sumHops/it->second.copyMessage) << endl;
-            myfile << "Max hop: " << it->second.maxHop << endl;
-            myfile << "Min hop: " << it->second.minHop << endl;
+            myfile << "Average hops: " << (itMessagesReceived->second.sumHops/itMessagesReceived->second.copyMessage) << endl;
+            myfile << "Max hop: " << itMessagesReceived->second.maxHop << endl;
+            myfile << "Min hop: " << itMessagesReceived->second.minHop << endl;
 
-            myfile << "Times: " << it->second.times << endl;
-            myfile << "Sum times: " << it->second.sumTimeRecived << endl;
-            avgGeneralTimeMessageReceived += it->second.sumTimeRecived;
-            myfile << "Average time to received: " << (it->second.sumTimeRecived/it->second.copyMessage) << endl;
+            myfile << "Times: " << itMessagesReceived->second.times << endl;
+            myfile << "Sum times: " << itMessagesReceived->second.sumTimeRecived << endl;
+            avgGeneralTimeMessageReceived += itMessagesReceived->second.sumTimeRecived;
+            myfile << "Average time to received: " << (itMessagesReceived->second.sumTimeRecived/itMessagesReceived->second.copyMessage) << endl;
 
-            myfile << "Category T count: " << it->second.countT << endl;
-            countT += it->second.countT;
-            myfile << "Category P count: " << it->second.countP << endl;
-            countP += it->second.countP;
+            myfile << "Category T count: " << itMessagesReceived->second.countT << endl;
+            countT += itMessagesReceived->second.countT;
+            myfile << "Category P count: " << itMessagesReceived->second.countP << endl;
+            countP += itMessagesReceived->second.countP;
         }
 
-        // TODO: XX geradas, mas só (XX - 4) recebidas
+
+        string messageHopCountZero, messageHopCountDifferentZero;
+        messageHopCountZero = messageHopCountDifferentZero = "";
+        for (itMessagesReceived = messagesReceived.begin(); itMessagesReceived != messagesReceived.end(); itMessagesReceived++) {
+            if (itMessagesReceived->second.sumHops == 0) {
+                messageHopCountZero += itMessagesReceived->first + ", ";
+                messageCountHopZero++;
+            } else {
+                messageHopCountDifferentZero += itMessagesReceived->first + ", ";
+            }
+        }
+
+        myfile << endl << "Messages received with hop count equal to zero:" << endl;
+        myfile << messageHopCountZero << endl;
+
+        myfile << endl << "Messages received with hop count different of zero:" << endl;
+        myfile << messageHopCountDifferentZero << endl;
+
         avgGeneralHopsMessage /= messagesReceived.size();
         avgGeneralTimeMessageReceived /= avgGeneralCopyMessageReceived;
 
-        myfile << endl << "Exp: " << expNumber << " ### Count messages received: " << messagesReceived.size() << endl;
-        myfile << "Exp: " << expNumber << " ### Count messages with hop equal of zero received: " << messageCountHopZero << endl;
-        myfile << "Exp: " << expNumber << " ### Count messages with hop different of zero Received: " << (messagesReceived.size() - messageCountHopZero) << endl;
+        myfile << endl << endl << "Exp: " << expNumber << " ### Count messages received: " << messagesReceived.size() << endl;
+        myfile << "Exp: " << expNumber << " ### Count messages with hop count equal of zero received: " << messageCountHopZero << endl;
+        myfile << "Exp: " << expNumber << " ### Count messages with hop count different of zero Received: " << (messagesReceived.size() - messageCountHopZero) << endl;
         myfile << "Exp: " << expNumber << " ### Average time to receive: " << avgGeneralTimeMessageReceived << endl;
         myfile << "Exp: " << expNumber << " ### Count copy message received: " << avgGeneralCopyMessageReceived << endl;
         avgGeneralCopyMessageReceived /= messagesReceived.size();
@@ -255,6 +305,7 @@ void BaseWaveApplLayer::printCountMessagesReceived() {
         myfile << "Exp: " << expNumber << " ### Hops by category P general: " << countP << endl;
     } else {
         myfile << "messagesReceived from " << source << " is empty" << endl;
+        myfile << endl << "Exp: " << expNumber << " ### Count messages received: " << 0 << endl;
     }
     myfile.close();
 }
@@ -263,49 +314,51 @@ void BaseWaveApplLayer::messagesReceivedMeasuringRSU(WaveShortMessage* wsm) {
     string wsmData = wsm->getWsmData();
     simtime_t timeToArrived = (simTime() - wsm->getTimestamp());
     unsigned short int countHops = (beaconMessageHopLimit - wsm->getHopCount());
-    map <string, struct messages>::iterator it = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
+    map <string, struct messages>::iterator itMessagesReceived = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
 
-    if (it != messagesReceived.end()) {
-        it->second.copyMessage++;
+    if (itMessagesReceived != messagesReceived.end()) {
+        itMessagesReceived->second.copyMessage++;
 
-        it->second.hops += ", " + to_string(countHops);
-        it->second.sumHops += countHops;
-        if (countHops > it->second.maxHop) {
-            it->second.maxHop = countHops;
+        itMessagesReceived->second.hops += ", " + to_string(countHops);
+        itMessagesReceived->second.sumHops += countHops;
+        if (countHops > itMessagesReceived->second.maxHop) {
+            itMessagesReceived->second.maxHop = countHops;
         }
-        if (countHops < it->second.minHop) {
-            it->second.minHop = countHops;
+        if (countHops < itMessagesReceived->second.minHop) {
+            itMessagesReceived->second.minHop = countHops;
         }
 
-        it->second.sumTimeRecived += timeToArrived;
-        it->second.times += ", " + timeToArrived.str();
+        itMessagesReceived->second.sumTimeRecived += timeToArrived;
+        itMessagesReceived->second.times += ", " + timeToArrived.str();
 
         if (wsmData.size() > 42){ // WSMData generated by car[x] and carry by [ T,
-            it->second.wsmData += " & " + wsmData.substr(42); // To check
+            itMessagesReceived->second.wsmData += " & " + wsmData.substr(42); // To check
         }
+
         // Be aware, don't use the category identification as a value insert in the wsmData in the begin
-        it->second.countT += count(wsmData.begin(), wsmData.end(), 'T');
-        it->second.countP += count(wsmData.begin(), wsmData.end(), 'P');
+        itMessagesReceived->second.countT += count(wsmData.begin(), wsmData.end(), 'T');
+        itMessagesReceived->second.countP += count(wsmData.begin(), wsmData.end(), 'P');
     } else {
-        struct messages m;
-        m.copyMessage = 1;
-        m.wsmData = wsmData;
-        m.hops = to_string(countHops);
-        m.maxHop = m.minHop = m.sumHops = countHops;
+        struct messages msg;
+        msg.fristSource = wsm->getSource();
+        msg.copyMessage = 1;
+        msg.wsmData = wsmData;
+        msg.hops = to_string(countHops);
+        msg.maxHop = msg.minHop = msg.sumHops = countHops;
 
-        m.sumTimeRecived = timeToArrived;
-        m.times = timeToArrived.str();
+        msg.sumTimeRecived = timeToArrived;
+        msg.times = timeToArrived.str();
 
         // Be aware, don't use the category identification as a value insert in the wsmData in the begin
-        m.countT = count(wsmData.begin(), wsmData.end(), 'T');
-        m.countP = count(wsmData.begin(), wsmData.end(), 'P');
+        msg.countT = count(wsmData.begin(), wsmData.end(), 'T');
+        msg.countP = count(wsmData.begin(), wsmData.end(), 'P');
 
-        messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), m));
+        messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), msg));
     }
 }
 
 void BaseWaveApplLayer::toFinishRSU() {
-    printCountMessagesReceived();
+    printCountMessagesReceivedRSU();
 
     // Set the maxSpeed back to default: 15 m/s
     string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
