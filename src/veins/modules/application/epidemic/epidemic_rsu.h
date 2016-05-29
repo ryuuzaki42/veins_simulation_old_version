@@ -29,6 +29,7 @@ using Veins::AnnotationManager;
 class epidemic_rsu : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
+
     protected:
         BaseMobility* mobi;
 
@@ -38,8 +39,7 @@ class epidemic_rsu : public BaseWaveApplLayer {
 
         void finish();
 
-        void epidemic_InitializeVariables();
-        void printCountMessagesReceived();
+        void epidemicInitializeVariables();
 };
 
 #endif

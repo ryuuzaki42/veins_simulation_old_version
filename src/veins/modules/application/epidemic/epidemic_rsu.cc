@@ -30,56 +30,25 @@ void epidemic_rsu::initialize(int stage) {
         mobi = dynamic_cast<BaseMobility*> (getParentModule()->getSubmodule("mobility"));
         ASSERT(mobi);
 
-        epidemic_InitializeVariables();
+        epidemicInitializeVariables();
 
-        std::cout << "I'm " << source <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
+        cout << source << " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
         cout << "sendSummaryVectorInterval: " << sendSummaryVectorInterval << endl;
         cout << "maximumEpidemicBufferSize: " << maximumEpidemicBufferSize << endl;
         cout << "beaconMessageHopLimit: " << beaconMessageHopLimit << endl;
     }
 }
 
-void epidemic_rsu::epidemic_InitializeVariables() {
+void epidemic_rsu::epidemicInitializeVariables() {
     string seedNumber = ev.getConfig()->getConfigValue("seed-set");
-    repeatNumber = atoi(seedNumber.c_str()); // number of execution (${repetition})
+    repeatNumber = atoi(seedNumber.c_str()); // Number of execution (${repetition})
 
     expNumber = par("expNumber");
 
-    string resultFolder = "results/epidemic_resultsEnd/E" + to_string(expNumber);
-    resultFolder += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
+    string folderResult = "results/epidemic_resultsEnd/E" + to_string(expNumber);
+    folderResult += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 
-    fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = resultFolder + source;
-
-    fileMessagesBroadcast += "_Broadcast_Messages.r";
-    fileMessagesUnicast += "_Messages_Received.r";
-    fileMessagesCount += "_Count_Messages_Received.r";
-
-    //fileMessagesDrop and fileMessagesGenerated not used yet to RSU
-
-    if ((myId == 0) && (repeatNumber == 0)) { //Open a new file (blank)
-        if (expNumber <= 4) { // maxSpeed 15 m/s
-            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
-            system(comand.c_str());
-            cout << endl << "Change the spped to 15 m/s, command: " << comand << endl;
-        } else if (expNumber >= 5){ // maxSpeed 25 m/s
-            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
-            system(comand.c_str());
-            cout << endl << "Change the spped to 25 m/s, command: " << comand << endl;
-        }
-
-        string commadCreateFolder = "mkdir -p " + resultFolder + " > /dev/null";
-        cout << endl << "Created the folder, command: \"" << commadCreateFolder << "\"" << endl;
-        cout << "repeatNumber " << repeatNumber << endl;
-        system(commadCreateFolder.c_str()); //create a folder results
-
-        openFileAndClose(fileMessagesBroadcast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesUnicast, false, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesCount, false, ttlBeaconMessage, countGenerateBeaconMessage);
-    } else { // (repeatNumber != 0)) // for just append
-        openFileAndClose(fileMessagesBroadcast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesUnicast, true, ttlBeaconMessage, countGenerateBeaconMessage);
-        openFileAndClose(fileMessagesCount, true, ttlBeaconMessage, countGenerateBeaconMessage);
-    }
+    restartFilesResultRSU(folderResult);
 }
 
 void epidemic_rsu::onBeacon(WaveShortMessage* wsm) {
