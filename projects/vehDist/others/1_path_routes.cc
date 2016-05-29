@@ -15,54 +15,55 @@ struct distributionCategory {
     int categoryT;
 };
 
-unsigned short int generate_routes (unsigned short int line_start, unsigned short int route_fileNumber);
+unsigned short int generate_routes (unsigned short int lineStart, unsigned short int routeFileNumber);
 
 int main() {
-    unsigned short int countFileRoutesGenerate, route_fileNumber, line_start;
+    unsigned short int countFileRoutesGenerate, routeFileNumber, lineStart;
 
     countFileRoutesGenerate = 1;
 
-    line_start = 0;       //e.g., 0, 1319, 2537, 3446, 4763, 5780
-    route_fileNumber = 0; //e.g., 0,    1,    2,    3,    4,    5
+    lineStart = 0;       //e.g., 0, 1319, 2537, 3446, 4763, 5780
+    routeFileNumber = 0; //e.g., 0,    1,    2,    3,    4,    5
 
-    while (route_fileNumber < countFileRoutesGenerate) {
-        line_start = generate_routes(line_start, route_fileNumber);
-        route_fileNumber++;
+    while (routeFileNumber < countFileRoutesGenerate) {
+        lineStart = generate_routes(lineStart, routeFileNumber);
+        routeFileNumber++;
     }
 
     return 0;
 }
 
-unsigned short int generate_routes (unsigned short int line_start, unsigned short int route_fileNumber) {
+unsigned short int generate_routes (unsigned short int lineStart, unsigned short int routeFileNumber) {
     ofstream output;
 
     string fileInput, fileOutput, fileDist, fileResultPartName;
     string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
 
-    bool parte1, go_and_back, validRoute;
-    bool use_depart_Pos_arrivalPos_departSpeed_as_random, use_left_and_right_road_as_samePlace;
+    bool parte1, goAndBack, validRoute;
+    bool useDepartPos_ArrivalPos_DepartSpeed_AsRandom, useLeftAndRightRoadAsSamePlace;
 
-    unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes, line_count;
-    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
-    unsigned short int insert_by_time, time_to_insert, vehicle_time_depart, countTmp, compare, compare2;
+    unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes, lineCount;
+    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp, sigmaValue;
+    unsigned short int insertByTime, timeToInsert, compare, compare2;
 
     count = 1; // route start number
     pathComp = 4; //4; //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
     countVehicleRoutes = 50; //50;
     countVehicleCagegoryT = 10; //10;
-    insert_by_time = 5; //5;
-    time_to_insert = 60; //60
-    go_and_back = false; //false
-    use_left_and_right_road_as_samePlace = true;
-    use_depart_Pos_arrivalPos_departSpeed_as_random = false;
+    insertByTime = 5; //5;
+    timeToInsert = 60; //60
+    sigmaValue = 0; // 0.5
+    goAndBack = false; //false
+    useLeftAndRightRoadAsSamePlace = true;
+    useDepartPos_ArrivalPos_DepartSpeed_AsRandom = false;
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
     p1 = 22; // Início da rota
     parte1 = true;
 
-    if (route_fileNumber < 10) {
-        fileResultPartName = "0" + to_string(route_fileNumber);
+    if (routeFileNumber < 10) {
+        fileResultPartName = "0" + to_string(routeFileNumber);
     } else {
-        fileResultPartName = to_string(route_fileNumber);
+        fileResultPartName = to_string(routeFileNumber);
     }
 
     fileInput = "vehDist_tmp.rou.xml";
@@ -71,12 +72,12 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
 
     freopen(fileInput.c_str(), "r", stdin); // Arquivo de entrada gerado com script randomTrips.py
 
-    line_count = 0;
-    while (getline(cin, line) && line_count < line_start) {
-        line_count++;
+    lineCount = 0;
+    while (getline(cin, line) && (lineCount < lineStart)) {
+        lineCount++;
     }
 
-    // 23 no início [        <route edges="] + 3 no final ["/>] => 26; 1 tem 9 [1/2to1/1 ], como uma rua tem 250 m.
+    // 23 no início [        <route edges="] + 3 no final ["/>] => 26; 1 tem 9 [1/2to1/1 ], como uma rua tem 250 m
     // logo 1 km => 4 *9 => 36 + 26 + 9 (ponto inicial). x km = x * 36 + 26 + 9
     routeComp = 580; //580 // Para 15 km, 15 * 36 + 26 + 9 = 575, para ter certeza 580
     // Will generate 576 part of 9 (1/2to3/4 ) => (576/9) * 250/1000 => 16 km
@@ -90,16 +91,16 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
     output << "    <!--" << endl;
     output <<"    File with " << countVehicleRoutes << " (" << countVehicleCagegoryT << " T, ";
     output << (countVehicleRoutes - countVehicleCagegoryT) << " P) routes" << endl;
-    output << "    go_and_back: " << boolalpha << go_and_back << endl;
+    output << "    goAndBack: " << boolalpha << goAndBack << endl;
     output << "    Routes T (" << count << " to " << countVehicleCagegoryT <<"): \"random\"" << endl;
     output << "    Routes P (" << (countVehicleCagegoryT + 1) << " to " << countVehicleRoutes << "): ";
     output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m)" << endl;
     output << "    fileOutput: " << fileOutput << endl;
-    output << "    line_start: " << line_count << endl;
+    output << "    lineStart: " << lineCount << endl;
     output << "    -->" << endl << endl;
 
     cout << endl << "Por favor espere, gerando rotas..." << endl << endl;
-    while (getline(cin, line) && count <= countVehicleRoutes) { // count < 50 para criar 50 rotas
+    while (getline(cin, line) && (count <= countVehicleRoutes)) { // count < 50 para criar 50 rotas
         if (line.compare(0, 15, "        <route ") == 0) { // Edita cada linha do arquivo de entrada que representa rotas
             to = "    <route id=\"";
             if (count < 10) {
@@ -150,25 +151,26 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
                     } else {
                         p1 = 22;
 
-                        if (go_and_back) {
+                        if (goAndBack) {
                             p2 = pathComp * 9 - 1;
                         } else {
                             p2 = ((pathComp * 9) * 2) -1;
                         }
 
                         routeTmp = line.substr(p1, p2); // Pega o primeira parte da rota
-//     <route edges="0/3to1/3 1/3to1/2 1/2to1/1 1/1to2/1 2/1to3/1 3/1to4/1 4/1to4/0 4/0to3/0 3/0to2/0 2/0to2/1 2/1to2/2 ...
+//     <route edges="0/3to1/3 1/3to1/2 1/2to1/1 1/1to2/1 2/1to3/1 3/1to4/1 4/1to4/0 4/0to3/0 3/0to2/0 2/0to2/1 2/1to2/2...
 
                         toTmp += " edges=\"";
                         pathCompTmp = pathComp;
-                        while(pathCompTmp > 0 && go_and_back) {
+                        while(pathCompTmp > 0 && goAndBack) {
                             routeTmp += " ";
                             dist = (pathCompTmp - 1) * 9 + p1;
 
                             fristPart = line.substr(dist, 3);
                             middlePart = "to"; //line.substr((dist + 3), 2);
                             lastPart = line.substr((dist + 5), 3);
-                            //cout << line.substr(dist, 8) << " dist: " << dist << " p1: " << p1 << " p2: "<< p2 << " Result: " << lastPart << middlePart << fristPart << endl;
+                            //cout << line.substr(dist, 8) << " dist: " << dist << " p1: " << p1 << " p2: "<< p2;
+                            //cout << " Result: " << lastPart << middlePart << fristPart << endl;
 
                             dist -= 9;
                             routeTmp += lastPart + middlePart + fristPart;
@@ -189,75 +191,72 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
                 }
             }
         }
-        line_count++;
+        lineCount++;
     }
-    output << endl << "    <!-- line_end: " << line_count << " -->" << endl;
+    output << endl << "    <!-- line_end: " << lineCount << " -->" << endl;
 
-    output << endl << "    <!-- T => Taxi -->" << endl;
-    output << "    <vType id=\"T\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>" << endl << endl;
+    string departPos, departSpeed, arrivalPos;
+    if (useDepartPos_ArrivalPos_DepartSpeed_AsRandom) {
+        departPos = departSpeed = arrivalPos = "random";
+    } else {
+        departPos = departSpeed = "0";
+        arrivalPos = "max";
+    }
+    string routeDescripPart = " departPos=\"" + departPos + "\" arrivalPos=\"" + arrivalPos;
+    routeDescripPart += "\" departSpeed=\"" + departSpeed + "\" id=\"";
+
+    string vehDescripType = " accel=\"3\" decel=\"5\" sigma=\"" + to_string(sigmaValue);
+    vehDescripType += "\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"1,1,0\"/>";
+
+    output << endl << "    <!-- T => Taxi/Táxi -->" << endl;
+    // Um com id=T e outro com id=P
+    output << "    <vType id=\"T\"" << vehDescripType << endl << endl;
+
     count = 1;
     while (count <= countVehicleCagegoryT) {
+        output << "        <vehicle depart=\"0\"" << routeDescripPart;
+
         if (count < 10) {
-            if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh00" << count <<"\" route=\"route00" << count << "\" type=\"T\"/>" << endl;
-            } else {
-                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh00" << count << "\" route=\"route00" << count << "\" type=\"T\"/>" << endl;
-            }
+            output << "veh00" << count <<"\" route=\"route00" << count;
         } else if (count < 100) {
-            if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"T\"/>" << endl;
-            } else {
-                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route0" << count << "\" type=\"T\"/>" << endl;
-            }
+            output << "veh0" << count <<"\" route=\"route0" << count;
         } else {
-            if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"0\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh" << count <<"\" route=\"route" << count << "\" type=\"T\"/>" << endl;
-            } else {
-                output << "        <vehicle depart=\"0\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh" << count << "\" route=\"route" << count << "\" type=\"T\"/>" << endl;
-            }
+            output << "veh" << count <<"\" route=\"route" << count;
         }
+        output << "\" type=\"T\"/>" << endl;
+
         count++;
     }
 
-
-    // Um com id=P e outro com id=T
-    output << endl << "    <!-- P => Carro de Passeio -->" << endl;
-    output << "    <vType id=\"P\" accel=\"3\" decel=\"5\" sigma=\"0.5\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" color=\"0,1,0\"/>" << endl << endl;
-
+    output << endl << "    <!-- P => Private car/Carro de passeio -->" << endl;
+    output << "    <vType id=\"P\"" << vehDescripType << endl << endl;
     output << "    <!-- http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes -->" << endl;
-    vehicle_time_depart = 0;
-    countTmp = 0;
+
+    unsigned short int countTmp, vehicleTimeDepart;
+    countTmp = vehicleTimeDepart = 0;
     while (count <= countVehicleRoutes) {
+        output << "        <vehicle depart=\"" << vehicleTimeDepart << "\"" << routeDescripPart;
+
         if (count < 10) {
-            if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh00" << count <<"\" route=\"route00" << count << "\" type=\"P\"/>" << endl;
-            } else {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route00" << count << "\" type=\"P\"/>" << endl;
-            }
+            output << "veh00" << count <<"\" route=\"route00" << count;
         } else if (count < 100) {
-            if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh0" << count <<"\" route=\"route0" << count << "\" type=\"P\"/>" << endl;
-            } else {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh0" << count << "\" route=\"route0" << count << "\" type=\"P\"/>" << endl;
-            }
+            output << "veh0" << count <<"\" route=\"route0" << count;
         } else {
-            if (use_depart_Pos_arrivalPos_departSpeed_as_random) {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"random\" arrivalPos=\"random\" departSpeed=\"random\" id=\"veh" << count <<"\" route=\"route" << count << "\" type=\"P\"/>" << endl;
-            } else {
-                output << "        <vehicle depart=\"" << vehicle_time_depart << "\" departPos=\"0\" arrivalPos=\"max\" departSpeed=\"0\" id=\"veh" << count << "\" route=\"route" << count << "\" type=\"P\"/>" << endl;
-            }
+            output << "veh" << count <<"\" route=\"route" << count;
         }
+        output <<  "\" type=\"P\"/>" << endl;
+
         count++;
         countTmp++;
-        if (countTmp == insert_by_time){ 
+        if (countTmp == insertByTime){
             countTmp = 0;
         }
 
         if (countTmp == 0) {
-            vehicle_time_depart += time_to_insert;
+            vehicleTimeDepart += timeToInsert;
         }
     }
-    output << endl << "</routes>"; // Finalização do arquivo de saída
+    output << endl << "</routes>"; // Finalização do arquivo de rotas
     output.close();
     cout << "Rotas salvas no arquivo " << fileOutput << endl << endl;
 
@@ -265,18 +264,20 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
     freopen(fileOutput.c_str(), "r", stdin); // Arquivo de gerado na primeira parte
 
     count = 1;
-    map<string, struct distributionCategory> routes;
-    map<string, struct distributionCategory>::iterator it;
+    map <string, struct distributionCategory> routes;
+    map <string, struct distributionCategory>::iterator itRoutes;
 
     output.open(fileDist.c_str()); // Arquivo de saída da distribuição de veículos nos locais
     output << "## Distribuição dos veículos pelos segmentos de ruas" << endl;
     output << "cP = Veículos de Passeio.   cT = Táxi" << endl << endl;
 
-    if (use_left_and_right_road_as_samePlace) {
-        output << "Nome do segmento de rua                  Count cP    Count cT    %cP    %cT    cT + cP" << endl << endl;
+    output << "Nome do segmento de rua";
+    if (useLeftAndRightRoadAsSamePlace) {
+        output << "                  Count cP    Count cT    %cP    %cT    cT + cP";
     } else {
-        output << "Nome do segmento de rua    Count cP    Count cT    %cP    %cT    cT + cP" << endl << endl;
+        output << "    Count cP    Count cT    %cP    %cT    cT + cP";
     }
+    output << endl << endl;
 
     while (getline(cin,line) && count <= countVehicleRoutes) { // count <= 50 to 50 routes
         if (line.compare(0, 11, "    <route ") == 0) {
@@ -286,24 +287,24 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
 
             while (p1 < p2) {
                 routeTmp = line.substr(p1, 8); // Pega o primeiro ponto (ponto de partida)
-                it = routes.find(routeTmp);
+                itRoutes = routes.find(routeTmp);
 
-                if (use_left_and_right_road_as_samePlace) {
-                    if (it == routes.end()) {
+                if (useLeftAndRightRoadAsSamePlace) {
+                    if (itRoutes == routes.end()) {
                         fristPart = routeTmp.substr(0, 3);
                         middlePart = "to"; //routeTmp.substr(3, 2);
                         lastPart = routeTmp.substr(5, 3);
                         routeTmp = lastPart + middlePart + fristPart;
 
-                        it = routes.find(routeTmp);
+                        itRoutes = routes.find(routeTmp);
                     }
                 }
 
-                if (it != routes.end()) { // Testa se ele já foi inserido ou existe
+                if (itRoutes != routes.end()) { // Testa se ele já foi inserido ou existe
                     if (count <= countVehicleCagegoryT) {
-                        it->second.categoryP++;
+                        itRoutes->second.categoryP++;
                     } else {
-                        it->second.categoryT++;
+                        itRoutes->second.categoryT++;
                     }
                 } else {
                     struct distributionCategory dC;
@@ -328,28 +329,28 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
     double percentage;
     int countP, countT, countTandP;
     countP = countT = 0;
-    for (it = routes.begin(); it != routes.end(); it++) {
-        if (use_left_and_right_road_as_samePlace) {
-            routeTmp = it->first;
+    for (itRoutes = routes.begin(); itRoutes != routes.end(); itRoutes++) {
+        if (useLeftAndRightRoadAsSamePlace) {
+            routeTmp = itRoutes->first;
             fristPart = routeTmp.substr(0, 3);
             middlePart = "to"; //routeTmp.substr(3, 2);
             lastPart = routeTmp.substr(5, 3);
             routeTmp = lastPart + middlePart + fristPart;
 
             if (count < 10) {
-                output << "Street_Segment_0" << count << ": " << it->first << " | " << routeTmp;
+                output << "Street_Segment_0" << count << ": " << itRoutes->first << " | " << routeTmp;
             } else {
-                output << "Street_Segment_" << count << ": " << it->first << " | " << routeTmp;
+                output << "Street_Segment_" << count << ": " << itRoutes->first << " | " << routeTmp;
             }
         } else {
             if (count < 10) {
-                output << "Street_Segment_0" << count << ": " << it->first;
+                output << "Street_Segment_0" << count << ": " << itRoutes->first;
             } else {
-                output << "Street_Segment_" << count << ": " << it->first;
+                output << "Street_Segment_" << count << ": " << itRoutes->first;
             }
         }
 
-        countTandP = it->second.categoryP + it->second.categoryT;
+        countTandP = itRoutes->second.categoryP + itRoutes->second.categoryT;
         output << "    cT + cP: " << countTandP;
         if (countTandP < 10) {
             output << "  ";
@@ -357,39 +358,39 @@ unsigned short int generate_routes (unsigned short int line_start, unsigned shor
             output << " ";
         }
 
-        output<< "    cP: " << it->second.categoryP;
-        if (it->second.categoryP < 10) {
+        output<< "    cP: " << itRoutes->second.categoryP;
+        if (itRoutes->second.categoryP < 10) {
             output << "  ";
-        } else if (it->second.categoryP < 100){
+        } else if (itRoutes->second.categoryP < 100){
             output << " ";
         }
 
-        output << "    cT: " << it->second.categoryT;
-        if (it->second.categoryT < 10) {
+        output << "    cT: " << itRoutes->second.categoryT;
+        if (itRoutes->second.categoryT < 10) {
             output << "  ";
-        } else if (it->second.categoryT < 100){
+        } else if (itRoutes->second.categoryT < 100){
             output << " ";
         }
 
-        countP += it->second.categoryP;
-        percentage = (double(it->second.categoryP)/countTandP) * 100;
+        countP += itRoutes->second.categoryP;
+        percentage = (double(itRoutes->second.categoryP)/countTandP) * 100;
         output << "   %cP: " << percentage;
 
-        countT += it->second.categoryT;
-        percentage = (double(it->second.categoryT)/countTandP) * 100;
+        countT += itRoutes->second.categoryT;
+        percentage = (double(itRoutes->second.categoryT)/countTandP) * 100;
         output << "    %cT: " << percentage << endl;
 
         count++;
      }
 
-    output << endl << "CountTotal: " << (countP + countT) << " countP: " << countP << "    countT: " << countT << endl << endl;
+    output << endl << "CountTotal: " << (countP + countT) << " countP: " << countP << "    countT: " << countT;
     countTandP = countP + countT;
     percentage = double(countP)/countTandP;
-    output << "Porcentagem geral, %%GcP: " << percentage;
+    output << endl << endl << "Porcentagem geral, %%GcP: " << percentage;
     percentage = double(countT)/countTandP;
     output << "    %%GcT: " << percentage << endl;
 
     output.close();
     cout << "Distribuição de veículos pelos segmentos de rotas salvas no arquivo " << fileDist << endl << endl;
-    return line_count;
+    return lineCount;
 }
