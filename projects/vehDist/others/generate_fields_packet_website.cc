@@ -1,7 +1,7 @@
-//###############################################################################################
-//                                           To compile:                                        #
-// g++ -std=c++0x -Wall -o generate_fields_packet_website.out generate_fields_packet_website.cc #
-//###############################################################################################
+//#############################################################################################
+//                                           To compile:                                       
+// g++ -std=c++0x -Wall -o generate_fields_packet_website.out generate_fields_packet_website.cc
+//#############################################################################################
 
 // Scritp to generate the text for generate the packat-image in 
 // the website http://interactive.blockdiag.com/packetdiag/
