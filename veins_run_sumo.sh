@@ -37,4 +37,6 @@ elif [ $resposta = n ]; then
     echo -e "\nRunning sumo\n"
     python sumo-launchd.py -vv -c sumo
 fi
+
+exit 0
 #

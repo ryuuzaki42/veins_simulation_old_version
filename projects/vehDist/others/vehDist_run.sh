@@ -29,4 +29,5 @@ while [ $run -lt $run_end ]; do
     fi
 done
 
+exit 0
 #

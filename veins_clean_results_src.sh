@@ -43,4 +43,6 @@ else
 fi
 
 echo -e "Fim do script\n"
+
+exit 0
 #

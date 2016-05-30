@@ -43,4 +43,5 @@ sed -i 's/_12/_c/g' vehDist.net.xml
 sed -i 's/\/12/\/c/g' vehDist.net.xml
 sed -i 's/12\//c\//g' vehDist.net.xml
 
+exit 0
 #
