@@ -19,85 +19,51 @@
 //
 
 cplusplus {{
-#include "veins/base/utils/Coord.h"
+    #include "veins/base/utils/Coord.h"
 }}
 
 class noncobject Coord;
 
 packet WaveShortMessage {
-    // Version of the Wave Short Message
-    int wsmVersion = 0;
-    // Determine which security mechanism was used
-    int securityType = 0;
-    // Channel Number on which this packet was sent
-    int channelNumber;
-    // Data rate with which this packet was sent
-    int dataRate = 1;
-    // Power Level with which this packet was sent
-    int priority = 3;
-    // Unique number to identify the service
-    int psid = 0;
-    // Provider Service Context
-    string psc = "Service with some Data";
-    // Length of Wave Short Message
-    int wsmLength;
-    // Data of Wave Short Message
-    string wsmData = "Some Data";
+    int wsmVersion = 0; // Version of the Wave Short Message
+    int securityType = 0; // Determine which security mechanism was used
+    int channelNumber; // Channel Number on which this packet was sent
+    int dataRate = 1; // Data rate with which this packet was sent
+    int priority = 3; // Power Level with which this packet was sent
+    int psid = 0; // Unique number to identify the service
+    string psc = "Service with some Data"; // Provider Service Context
+    int wsmLength; // Length of Wave Short Message
+    string wsmData = "Some Data"; // Data of Wave Short Message
 
-    // not sure, but I think is like a port number or identification of an application
-    int serial = 0;
+    int serial = 0; // Not sure, but I think is like a port number or identification of an application
     Coord senderPos;
     simtime_t timestamp = 0;
 
-    // int senderAddress = 0;
-    // int recipientAddress = -1;
-
     // Epidemic changes
-    // Set the Address of the sender;
-    unsigned int senderAddress = 0;
-    // Set the Address of the recipient. 268435455 means broadcast, the conversion of OxFFFFFFF to int;
-    unsigned int recipientAddress = 268435455;
+    //bool ackRequest = false; // Determine if a message has been successfully received or not
+    unsigned int senderAddress = 0; // int senderAddress = 0;
+    unsigned int recipientAddress = 0; // int recipientAddress = -1;
 
-    // Add for Epidemic
-    // Set the source which generate the message, e.g., car[0], car[1] etc.
-    string source;
-    // Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
-    string target;
-    // Set if this is a summary vector or not. true value means summaryvector
-    bool summaryVector = false;
-    // Set if this is a request vector or not. true value means requestvector
-    bool requestMessages = false;
-    // Unique global message identification
-    string globalMessageIdentificaton;
+    string source; // Set the source which generate the message, e.g., car[0], car[1] etc.
+    string target; // Set the target which the message will be delivered, e.g., rsu[0], rsu[1] etc.
+    bool summaryVector = false; // Set if this is a summary vector or not. true value means summaryvector
+    bool requestMessages = false; // Set if this is a request vector or not. true value means requestvector
+    string globalMessageIdentificaton; // Unique global message identification
+    unsigned short hopCount; // Hop Count works like TTL in the IP packets
 
-    // Hop Count works like TTL in the IP packets. -1 means that this variable has not being used
-    unsigned short hopCount = 0;
+    // Add Minicurso_UFPI - Send ID da pista e velocidade
+    string roadId = ""; // Current ID of the road, e. g., 1ato2b
+    double senderSpeed = 0; // Speed of vehicle in the moment
 
-    // Determine if a message has been successfully received or not. False is default value assigned to it
-    //bool ackRequest = false;
-
-    //Add Minicurso_UFPI - Send ID da pista e velocidade
-    //Current ID of the road, e. g., 1ato2b
-    string roadId = "";
-    // Speed of vehicle in the moment which send a message WSM, wsm->setSenderSpeed(traci->getSpeed());
-    float senderSpeed = 0.0;
-
-    // MFCV => vehDist
-    string senderAddressTemporary;
-    string recipientAddressTemporary;
-    // Category of vehicle (1 to 10): 1 is bus, 2 is cab, ... need to complete 
-    string category;
-
-    // Path history of the vehicle, calculated from time to time
-    //string pathHistory;
-    // Radius of Gyration of the vehicle, calculated from time to time.
-    // The vehicle send yours Radius of Gyration to another vehicles 
-    //double radius_of_Gyration;
-
-    // test Jonh
+    //string pathHistory; // Path history of the vehicle, calculated from time to time
+    //double radius_of_Gyration; // Radius of Gyration of the vehicle, calculated from time to time.
     unsigned short heading;
+
+    unsigned short type; // Type of message
+    string category; // Category of vehicle, e.g., T for Taxi, P for Private car
     Coord TargetPos; // Target position for de message
     Coord senderPosPrevious; // Position previous of the veh
-    unsigned short type; // Type of message
+    string senderAddressTemporary;
+    string recipientAddressTemporary;
     unsigned short rateTimeToSend; // TimeToSend to try another message
 }
