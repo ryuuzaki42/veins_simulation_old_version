@@ -20,7 +20,7 @@
 
 #include "veins/modules/application/ieee80211p/BaseWaveApplLayer.h"
 
-// Adicionado (Minicurso_UFPI)
+// Added by Minicurso_UFPI
 #include "veins/modules/mobility/traci/TraCIMobility.h"
 using Veins::TraCIMobilityAccess;
 //
@@ -49,7 +49,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
 
         sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
 
-        //simulate asynchronous channel access
+        // Simulate asynchronous channel access
         double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
         offSet = offSet + floor(offSet/0.050)*0.050;
         individualOffset = dblrand() * maxOffset;
@@ -65,7 +65,7 @@ void BaseWaveApplLayer::initialize_default_veins_TraCI(int stage) {
 
 //######################################### vehDist - begin #####################################################################
 void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileName) {
-    myfile.open (fileName, std::ios_base::app); //Open file for just append
+    myfile.open(fileName, std::ios_base::app); // Open file for just append
 
     //Send "strings" to be saved on the file
     myfile << "BeaconMessage from " << wsm->getSenderAddressTemporary() << " at " << simTime();
@@ -106,7 +106,8 @@ void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend, do
     } else {
         myfile.open(fileName);
     }
-    printHeaderfileExecution(ttlBeaconMessage ,countGenerateBeaconMessage);
+
+    printHeaderfileExecution(ttlBeaconMessage, countGenerateBeaconMessage);
     myfile.close();
 }
 
@@ -160,28 +161,27 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
 string BaseWaveApplLayer::getFolderResultVehDist(unsigned short int expSendbyDSCR) {
     string expSendbyDSCRText, resultFolderPart;
     switch (expSendbyDSCR) {
-    case 1:
-        expSendbyDSCRText = "0001_chosenByDistance";
-        break;
-    case 12:
-        expSendbyDSCRText = "0012_chosenByDistance_Speed";
-        break;
-    case 13:
-        expSendbyDSCRText = "0013_chosenByDistance_Category";
-        break;
-    case 14:
-        expSendbyDSCRText = "0014_chosenByDistance_RateTimeToSend";
-        break;
-    case 123:
-        expSendbyDSCRText = "0123_chosenByDistance_Speed_Category";
-        break;
-    case 1234:
-        expSendbyDSCRText = "1234_chosenByDistance_Speed_Category_RateTimeToSend";
-        break;
-    default:
-        cout << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
-        DBG << "Error! expSendbyDSCR: " << expSendbyDSCR << "not defined, class in BaseWaveApplLayer.cc";
-        exit(1);
+        case 1:
+            expSendbyDSCRText = "0001_chosenByDistance";
+            break;
+        case 12:
+            expSendbyDSCRText = "0012_chosenByDistance_Speed";
+            break;
+        case 13:
+            expSendbyDSCRText = "0013_chosenByDistance_Category";
+            break;
+        case 14:
+            expSendbyDSCRText = "0014_chosenByDistance_RateTimeToSend";
+            break;
+        case 123:
+            expSendbyDSCRText = "0123_chosenByDistance_Speed_Category";
+            break;
+        case 1234:
+            expSendbyDSCRText = "1234_chosenByDistance_Speed_Category_RateTimeToSend";
+            break;
+        default:
+            cout << "Error, expSendbyDSCR: " << expSendbyDSCR << " not defined, class in BaseWaveApplLayer.cc line 183";
+            exit(1);
     }
 
     unsigned short int expPartOneOrTwo = par("expPart_one_or_two");
@@ -195,8 +195,8 @@ string BaseWaveApplLayer::getFolderResultVehDist(unsigned short int expSendbyDSC
 void BaseWaveApplLayer::restartFilesResultRSU(string folderResult) {
     fileMessagesBroadcast = fileMessagesUnicast = fileMessagesCount = folderResult + source + "_";
 
-    fileMessagesBroadcast += "Broadcast_Messages.r";
     fileMessagesUnicast += "Messages_Received.r";
+    fileMessagesBroadcast += "Broadcast_Messages.r";
     fileMessagesCount += "Count_Messages_Received.r";
 
     //fileMessagesDrop and fileMessagesGenerated // Not used yet to RSU
@@ -207,7 +207,7 @@ void BaseWaveApplLayer::restartFilesResultRSU(string folderResult) {
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
             system(comand.c_str());
             cout << endl << "Change the speed to 15 m/s, command: " << comand << endl;
-        } else if (expNumber >= 5){ // Set the maxSpeed to 25 m/s in the expNumber 5 to 8
+        } else if (expNumber >= 5) { // Set the maxSpeed to 25 m/s in the expNumber 5 to 8
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
             system(comand.c_str());
             cout << endl << "Change the speed to 25 m/s, command: " << comand << endl;
@@ -227,9 +227,9 @@ void BaseWaveApplLayer::restartFilesResultRSU(string folderResult) {
         justAppend = true;
     }
 
-    openFileAndClose(fileMessagesBroadcast, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
-    openFileAndClose(fileMessagesUnicast, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
     openFileAndClose(fileMessagesCount, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
+    openFileAndClose(fileMessagesUnicast, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
+    openFileAndClose(fileMessagesBroadcast, justAppend, ttlBeaconMessage, countGenerateBeaconMessage);
 }
 
 void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
@@ -239,17 +239,17 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
         myfile << "messagesReceived from " << source << endl;
 
         SimTime avgGeneralTimeMessageReceived;
-        unsigned short int countP, countT, messageCountHopZero;
+        unsigned short int countP, countT;
         double avgGeneralHopsMessage, avgGeneralCopyMessageReceived;
 
         avgGeneralTimeMessageReceived = 0;
-        countP = countT = messageCountHopZero = 0;
+        countP = countT = 0;
         avgGeneralHopsMessage = avgGeneralCopyMessageReceived = 0;
         map <string, struct messages>::iterator itMessagesReceived;
         for (itMessagesReceived = messagesReceived.begin(); itMessagesReceived != messagesReceived.end(); itMessagesReceived++) {
             myfile << endl << "## Message ID: " << itMessagesReceived->first << endl;
             myfile << "Count received: " << itMessagesReceived->second.copyMessage << endl;
-            myfile << "Frist received source: " << itMessagesReceived->second.fristSource << endl;
+            myfile << "First received source: " << itMessagesReceived->second.firstSource << endl;
             avgGeneralCopyMessageReceived += itMessagesReceived->second.copyMessage;
 
             myfile << "wsmData: " << itMessagesReceived->second.wsmData << endl;
@@ -273,6 +273,7 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
         }
 
 
+        unsigned short int messageCountHopZero = 0;
         string messageHopCountZero, messageHopCountDifferentZero;
         messageHopCountZero = messageHopCountDifferentZero = "";
         for (itMessagesReceived = messagesReceived.begin(); itMessagesReceived != messagesReceived.end(); itMessagesReceived++) {
@@ -283,6 +284,8 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
                 messageHopCountDifferentZero += itMessagesReceived->first + ", ";
             }
         }
+        messageHopCountZero.erase((messageHopCountZero.length() - 2), messageHopCountZero.length());
+        messageHopCountDifferentZero.erase((messageHopCountDifferentZero.length() - 2), messageHopCountDifferentZero.length());
 
         myfile << endl << "Messages received with hop count equal to zero:" << endl;
         myfile << messageHopCountZero << endl;
@@ -331,7 +334,7 @@ void BaseWaveApplLayer::messagesReceivedMeasuringRSU(WaveShortMessage* wsm) {
         itMessagesReceived->second.sumTimeRecived += timeToArrived;
         itMessagesReceived->second.times += ", " + timeToArrived.str();
 
-        if (wsmData.size() > 42){ // WSMData generated by car[x] and carry by [ T,
+        if (wsmData.size() > 42) { // WSMData generated by car[x] and carry by [ T,
             itMessagesReceived->second.wsmData += " & " + wsmData.substr(42); // To check
         }
 
@@ -340,7 +343,7 @@ void BaseWaveApplLayer::messagesReceivedMeasuringRSU(WaveShortMessage* wsm) {
         itMessagesReceived->second.countP += count(wsmData.begin(), wsmData.end(), 'P');
     } else {
         struct messages msg;
-        msg.fristSource = wsm->getSource();
+        msg.firstSource = wsm->getSource();
         msg.copyMessage = 1;
         msg.wsmData = wsmData;
         msg.hops = to_string(countHops);
@@ -361,9 +364,11 @@ void BaseWaveApplLayer::toFinishRSU() {
     printCountMessagesReceivedRSU();
 
     // Set the maxSpeed back to default: 15 m/s
-    string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
-    system(comand.c_str());
-    cout << endl << "Setting speed back to default (15 m/s), command: " << comand << endl;
+    if (myId == 0) {
+        string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
+        system(comand.c_str());
+        cout << endl << "Setting speed back to default (15 m/s), command: " << comand << endl;
+    }
 }
 //######################################### vehDist - end #######################################################################
 
@@ -390,7 +395,7 @@ void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
         //sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
         sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT_minicurso);
 
-        //simulate asynchronous channel access
+        // Simulate asynchronous channel access
         double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
         offSet = offSet + floor(offSet/0.050)*0.050;
         individualOffset = dblrand() * maxOffset;
@@ -398,20 +403,24 @@ void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
         findHost()->subscribe(mobilityStateChangedSignal, this);
 
         if (sendBeacons) {
-            scheduleAt(simTime() + offSet, sendBeaconEvt); //parte modificada para o osdp e para o service_discovery
+            scheduleAt(simTime() + offSet, sendBeaconEvt); // Parte modificada para o osdp e para o service_discovery
         }
     }
 }
 
-//WaveShortMessage*  BaseWaveApplLayer::prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial) {
-WaveShortMessage*  BaseWaveApplLayer::prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
+//WaveShortMessage*  BaseWaveApplLayer::prepareWSM(string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial) {
+WaveShortMessage*  BaseWaveApplLayer::prepareWSM(string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
     WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
     wsm->addBitLength(headerLength);
     wsm->addBitLength(lengthBits);
 
     switch (channel) {
-        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
-        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
+        case type_SCH: // Will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+            wsm->setChannelNumber(Channels::SCH1);
+            break;
+        case type_CCH:
+            wsm->setChannelNumber(Channels::CCH);
+            break;
     }
     wsm->setPsid(0);
     wsm->setPriority(priority);
@@ -423,13 +432,13 @@ WaveShortMessage*  BaseWaveApplLayer::prepareWSM(std::string name, int lengthBit
     wsm->setSerial(serial);
 
     if (name == "beacon_minicurso") { // Change Minicurso_UFPI
-        wsm->setRoadId(TraCIMobilityAccess().get(getParentModule()) ->getRoadId().c_str());
-        wsm->setSenderSpeed(TraCIMobilityAccess(). get(getParentModule())->getSpeed());
-        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+        wsm->setRoadId(TraCIMobilityAccess().get(getParentModule())->getRoadId().c_str());
+        wsm->setSenderSpeed(TraCIMobilityAccess().get(getParentModule())->getSpeed());
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << endl;
     } else if (name == "beacon") {
-        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << endl;
     } else if (name == "data") {
-        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << endl;
     }
     return wsm;
 }
@@ -464,12 +473,12 @@ void BaseWaveApplLayer::initialize_epidemic(int stage) {
 
         source = findHost()->getFullName();
         string seedNumber = ev.getConfig()->getConfigValue("seed-set");
-        repeatNumber = atoi(seedNumber.c_str()); // number of execution (${repetition})
+        repeatNumber = atoi(seedNumber.c_str()); // Number of execution (${repetition})
 
         //sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
         sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT_epidemic);
 
-        //simulate asynchronous channel access
+        // Simulate asynchronous channel access
         double offSet = dblrand() * (par("beaconInterval").doubleValue()/2);
         offSet = offSet + floor(offSet/0.050)*0.050;
         individualOffset = dblrand() * maxOffset;
@@ -482,14 +491,17 @@ void BaseWaveApplLayer::initialize_epidemic(int stage) {
     }
 }
 
-//WaveShortMessage* BaseWaveApplLayer::prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, std::string rcvId, int serial) {
 WaveShortMessage* BaseWaveApplLayer::prepareWSM_epidemic(std::string name, int lengthBits, t_channel channel, int priority, unsigned int rcvId, int serial) {
     WaveShortMessage* wsm = new WaveShortMessage(name.c_str());
     wsm->addBitLength(headerLength);
     wsm->addBitLength(lengthBits);
     switch (channel) {
-        case type_SCH: wsm->setChannelNumber(Channels::SCH1); break; //will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
-        case type_CCH: wsm->setChannelNumber(Channels::CCH); break;
+        case type_SCH: // Will be rewritten at Mac1609_4 to actual Service Channel. This is just so no controlInfo is needed
+            wsm->setChannelNumber(Channels::SCH1);
+            break;
+        case type_CCH:
+            wsm->setChannelNumber(Channels::CCH);
+            break;
     }
     wsm->setPsid(0);
     wsm->setPriority(priority);
@@ -506,23 +518,23 @@ WaveShortMessage* BaseWaveApplLayer::prepareWSM_epidemic(std::string name, int l
     wsm->setSerial(serial);
 
     if (name == "beacon") {
-        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+        DBG << "Creating Beacon with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << endl;
     }else if (name == "data") {
-        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
+        DBG << "Creating Data with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << endl;
     }
     return wsm;
 }
 
 unsigned int BaseWaveApplLayer::MACToInteger(){
     unsigned int macInt;
-    std::stringstream ss;
+    stringstream ss;
     ss << std::hex << myMac;
     ss >> macInt;
     return macInt;
 }
 
-void BaseWaveApplLayer::printWaveShortMessage(WaveShortMessage* wsm) {
-    cout << endl << source << " print of wsm message at "<< simTime() << endl;
+void BaseWaveApplLayer::printWaveShortMessageEpidemic(WaveShortMessage* wsm) {
+    cout << endl << findHost()->getFullName() << " print of wsm message at "<< simTime() << endl;
     cout << "wsm->getName(): " << wsm->getName() << endl;
     cout << "wsm->getBitLength(): " << wsm->getBitLength() << endl;
     cout << "wsm->getChannelNumber(): " << wsm->getChannelNumber() << endl;
@@ -530,10 +542,10 @@ void BaseWaveApplLayer::printWaveShortMessage(WaveShortMessage* wsm) {
     cout << "wsm->getPriority(): " << wsm->getPriority() << endl;
     cout << "wsm->getWsmVersion(): " << wsm->getWsmVersion() << endl;
     cout << "wsm->getTimestamp(): " << wsm->getTimestamp() << endl;
-    cout << "wsm->getSenderAddress(): " << wsm->getSenderAddress() << endl;
-    cout << "wsm->getRecipientAddress(): " << wsm->getRecipientAddress() << endl;
     cout << "wsm->getSource(): " << wsm->getSource() << endl;
     cout << "wsm->getTarget(): " << wsm->getTarget() << endl;
+    cout << "wsm->getSenderAddress(): " << wsm->getSenderAddress() << endl;
+    cout << "wsm->getRecipientAddress(): " << wsm->getRecipientAddress() << endl;
     cout << "wsm->getSenderPos(): " << wsm->getSenderPos() << endl;
     cout << "wsm->getSerial(): " << wsm->getSerial() << endl;
     cout << "wsm->getSummaryVector(): " << wsm->getSummaryVector() << endl;
@@ -544,7 +556,7 @@ void BaseWaveApplLayer::printWaveShortMessage(WaveShortMessage* wsm) {
 }
 
 void BaseWaveApplLayer::printQueueFIFO(queue <string> qFIFO) {
-    int i = 0;
+    unsigned short int i = 0;
     while(!qFIFO.empty()) {
         cout << source << " - queueFIFO Element " << ++i << ": " << qFIFO.front() << endl;
         qFIFO.pop();
@@ -554,14 +566,14 @@ void BaseWaveApplLayer::printQueueFIFO(queue <string> qFIFO) {
 //Method used to initiate the anti-entropy session sending the epidemicLocalSummaryVector
 void BaseWaveApplLayer::sendLocalSummaryVector(unsigned int newRecipientAddress) {
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, newRecipientAddress,2);
+    WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, newRecipientAddress, 2);
 
     wsm->setSummaryVector(true);
     wsm->setRequestMessages(false);
 
-    wsm->setWsmData(getLocalSummaryVectorData().c_str()); //Put the summary vector here, on data wsm field
+    wsm->setWsmData(getLocalSummaryVectorData().c_str()); // Put the summary vector here, on data wsm field
 
-    sendWSM(wsm); //Sending the summary vector
+    sendWSM(wsm); // Sending the summary vector
 }
 
 //Method used to convert the unordered_map epidemicLocalSummaryVectorData in a string
@@ -572,31 +584,31 @@ string BaseWaveApplLayer::getLocalSummaryVectorData() {
     }
 
     string s = ss.str();
-    s = s.substr(0, s.length() - 1);
+    s = s.substr(0, (s.length() - 1));
 
     //cout << "EpidemicLocalSummaryVector from " << source << "(" << MACToInteger() << "): " << s << endl;
-    return s.c_str();
+    return s;
 }
 
 string BaseWaveApplLayer::getEpidemicRequestMessageVectorData() {
     ostringstream ss;
-    //adding the requester name in order to identify if the requester is also the target of the messages with hopcount == 1.
-    //In this case, hopcount == 1, the messages can be sent to the target. Otherwise, the message will not be spread
+    // Adding the requester name in order to identify if the requester is also the target of the messages with hopCount == 1
+    // In this case, hopCount == 1, the messages can be sent to the target. Otherwise, the message will not be spread
     ss << source << "|";
     for (auto& x: epidemicRequestMessageVector) {
         ss << x.first << "|" << x.second << "|";
     }
 
     string s = ss.str();
-    s = s.substr(0, s.length() - 1);
+    s = s.substr(0, (s.length() - 1));
 
     //cout << "String format of EpidemicRequestMessageVector from " << source << ": " << s << endl;
-    return s.c_str();
+    return s;
 }
 
 void BaseWaveApplLayer::printNodesIRecentlySentSummaryVector() {
     if (!nodesIRecentlySentSummaryVector.empty()) {
-        int i = 0;
+        unsigned short int i = 0;
         cout << "NodesIRecentlySentSummaryVector from " << source << " (" << MACToInteger() << "):" << endl;
 
         for (auto& x: nodesIRecentlySentSummaryVector) {
@@ -609,17 +621,16 @@ void BaseWaveApplLayer::printNodesIRecentlySentSummaryVector() {
 
 void BaseWaveApplLayer::printEpidemicLocalMessageBuffer() {
     if (!epidemicLocalMessageBuffer.empty()) {
-        int i = 0;
-        cout << "Printing the epidemicLocalMessageBuffer from " << source << "(" << MACToInteger() <<"):" << endl;
+        cout << endl << "Printing the epidemicLocalMessageBuffer from " << source << " (" << MACToInteger() <<") at :" << simTime() << endl;
+
         for (auto& x: epidemicLocalMessageBuffer) {
             WaveShortMessage wsmBuffered = x.second;
-            cout << " Key " << ++i << ": " << x.first << endl;
+            cout << " GlobalID " << ": " << x.first << endl;
             cout << " Message Content: " << wsmBuffered.getWsmData() << endl;
             cout << " source: " << wsmBuffered.getSource() << endl;
             cout << " target: " << wsmBuffered.getTarget() << endl;
             cout << " Timestamp: " << wsmBuffered.getTimestamp() << endl;
-            cout << " HopCount: " << wsmBuffered.getHopCount() << endl;
-            cout << " GlobalID: " << wsmBuffered.getGlobalMessageIdentificaton() << endl;
+            cout << " HopCount: " << wsmBuffered.getHopCount() << endl << endl;
         }
     } else {
         cout << "EpidemicLocalMessageBuffer from " << source << " is empty now " << endl;
@@ -634,7 +645,7 @@ void BaseWaveApplLayer::printEpidemicRequestMessageVector() {
         }
 
         string s = ss.str();
-        s = s.substr(0, s.length() - 1);
+        s = s.substr(0, (s.length() - 1));
 
         cout << "EpidemicRequestMessageVector from " << source << ": " << s << endl;
     } else {
@@ -666,7 +677,7 @@ void BaseWaveApplLayer::printEpidemicRemoteSummaryVectorData() {
         }
 
         string s = ss.str();
-        s = s.substr(0, s.length() - 1);
+        s = s.substr(0, (s.length() - 1));
 
         cout << "EpidemicRemoteSummaryVector from " << source << ": " << s << endl;
     } else {
@@ -676,145 +687,109 @@ void BaseWaveApplLayer::printEpidemicRemoteSummaryVectorData() {
 
 void BaseWaveApplLayer::sendEpidemicRequestMessageVector(unsigned int newRecipientAddress) {
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, newRecipientAddress,2);
+    WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, newRecipientAddress, 2);
 
     wsm->setSummaryVector(false);
     wsm->setRequestMessages(true);
 
-    wsm->setWsmData(getEpidemicRequestMessageVectorData().c_str()); //Put the summary vector here
-
-    sendWSM(wsm); //Sending the summary vector
+    wsm->setWsmData(getEpidemicRequestMessageVectorData().c_str()); // Put the summary vector here
 
     //cout << "Sending a vector of request messages from " << source << "(" << MACToInteger() << ") to " << newRecipientAddress << endl;
+    sendWSM(wsm); //Sending the summary vector
 }
 
 void BaseWaveApplLayer::createEpidemicRequestMessageVector() {
-    epidemicRequestMessageVector.clear();
+    epidemicRequestMessageVector.clear(); // Clean the unordered_map requestMessage before create a new one
 
     for (auto& x: epidemicRemoteSummaryVector) {
         unordered_map <string, bool>::iterator got = epidemicLocalSummaryVector.find(x.first);
 
-        //cout << "I'm in createEpidemicRequestMessageVector().  x.first: " << x.first << " x.second: " << x.second << endl;
-        if (got == epidemicLocalSummaryVector.end()) { //true value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
-            //Putting the message in the EpidemicRequestMessageVector
+        //cout << source << " in createEpidemicRequestMessageVector(). x.first: " << x.first << " x.second: " << x.second << endl;
+        if (got == epidemicLocalSummaryVector.end()) { // True value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
             string s = x.first;
-            epidemicRequestMessageVector.insert(make_pair<string, bool>(s.c_str(),true));
-        } else { //An entry in the unordered_map was found
-            //cout << "I'm in createEpidemicRequestMessageVector(). got->first: " << got->first << " got->second: " << got->second << endl;
-            //cout << "The message " << got->first << " in the epidemicRemoteSummaryVector was found in my epidemicLocalSummaryVector." << endl;
-        }
+            epidemicRequestMessageVector.insert(make_pair(s.c_str(), true)); // Putting the message in the EpidemicRequestMessageVector
+        }/* else { // An entry in the unordered_map was found
+            cout << source << " The message " << got->first << " in the epidemicRemoteSummaryVector was found in my epidemicLocalSummaryVector" << endl;
+        }*/
     }
 }
 
 void BaseWaveApplLayer::createEpidemicRemoteSummaryVector(string s) {
-    //cout << "Creating the epidemicRemoteSummaryVector in " << source << endl;
+    epidemicRemoteSummaryVector.clear();
+
     string delimiter = "|";
     size_t pos = 0;
-    string token;
-    unsigned i = 0;
-    epidemicRemoteSummaryVector.clear();
+    unsigned short int i = 0;
     while ((pos = s.find(delimiter)) != std::string::npos) {
-        //token = s.substr(0, pos);
-        //cout << token << endl;
-        //Catch just the key of the local summary vector
-        if (i%2 == 0) {
-            epidemicRemoteSummaryVector.insert(make_pair<string, bool>(s.substr(0, pos),true));
+        if (i%2 == 0) { // Catch just the key of the local summary vector
+            epidemicRemoteSummaryVector.insert(make_pair(s.substr(0, pos), true));
         }
-        s.erase(0, pos + delimiter.length());
+        s.erase(0, (pos + delimiter.length()));
         i++;
     }
-    //cout << s << endl;
+    //cout << source << " createEpidemicRemoteSummaryVector: " << s << endl;
 }
 
 void BaseWaveApplLayer::sendMessagesRequested(string s, unsigned int recipientAddress) {
-    cout << "I'm " << source << "(" << MACToInteger() << "). Sending the following messages requested: " << s << " to " << recipientAddress << endl;
+    cout << source << "(" << MACToInteger() << ") sending the following messages requested: " << s << " to " << recipientAddress << endl;
+
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
-    WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, recipientAddress,2);
+    WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, recipientAddress, 2);
+
     string delimiter = "|";
     size_t pos = 0;
-    string token;
-    unsigned i = 0;
-    string message="";
 
-    printEpidemicLocalMessageBuffer();
-
-    bool startSend = epidemicMessageSend.empty();
-    //Extracting who request message
     pos = s.find(delimiter);
-    string tokenRequester = s.substr(0, pos);
-    s.erase(0, pos + delimiter.length());
+    string tokenRequester = s.substr(0, pos); // Extracting who request message
+    s.erase(0, (pos + delimiter.length()));
 
+    unsigned short int i = 0;
+    bool startSend = epidemicMessageSend.empty();
+    //printEpidemicLocalMessageBuffer();
     while ((pos = s.find(delimiter)) != std::string::npos) {
-        //Catch just the key of the local summary vector
-        if (i%2 == 0) {
-            ostringstream ss;
-            //cout << "i = " << i << " - looking for the message key(s.substr(0, pos)): " << s.substr(0, pos) << endl;
-            WaveShortMessage w;
-            unordered_map <string, WaveShortMessage>::const_iterator got = epidemicLocalMessageBuffer.find(s.substr(0, pos));
-            if (got == epidemicLocalMessageBuffer.end()) {
-                //true value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
-            } else {
-                w = got->second;
-                //cout << "id " << w.getGlobalMessageIdentificaton() << endl;
-                wsm->setGlobalMessageIdentificaton(w.getGlobalMessageIdentificaton());
-                wsm->setHopCount(w.getHopCount() - 1);
-                //exit(22);
-                //WaveShortMessage w = getEpidemicLocalMessageBuffer(s.substr(0, pos));
-                //Verifying if I'm still able to spread the message or not. If w.getHopCount == 1 I'm able to send the message only to its target
-                if (w.getHopCount() > 1) {
-                    ss << s.substr(0, pos) << "|" << w.getWsmData() << "|" << w.getSource() << "|" << w.getTarget() << "|" << w.getTimestamp() << "|" << w.getHopCount() - 1 << "|";
-                } else if (w.getHopCount() == 1) {
-                    if ((strcmp(tokenRequester.c_str(), w.getTarget()) == 0)) {
-                        ss << s.substr(0, pos) << "|" << w.getWsmData() << "|" << w.getSource() << "|" << w.getTarget() << "|" << w.getTimestamp() << "|" << w.getHopCount() - 1 << "|";
-                    }
-                }
-                //cout << "ss.str() inside the sendMessageRequested method: " << ss.str() << endl;
-                message += ss.str();
-                //cout << "message inside the sendMessageRequested method. message += ss.str(): " << message << endl;
-            }
+        bool insert = false;
+        if (i%2 == 0) { // Catch just the key of the local summary vector
+            unordered_map <string, WaveShortMessage>::iterator got = epidemicLocalMessageBuffer.find(s.substr(0, pos));
+
+            if (got != epidemicLocalMessageBuffer.end()) {
+                insert = true;
+
+                wsm->setSource(got->second.getSource());
+                wsm->setTarget(got->second.getTarget());
+                wsm->setTimestamp(got->second.getTimestamp());
+                wsm->setHopCount(got->second.getHopCount() - 1);
+                wsm->setGlobalMessageIdentificaton(got->second.getGlobalMessageIdentificaton()); // To check
+                wsm->setWsmData(got->second.getWsmData());
+            }/* else {
+                // True value means that there is no entry in the epidemicLocalSummaryVector for a epidemicRemoteSummaryVector key
+            }*/
         }
-        //cout << "i = " << i << " - s inside the sendMessageRequested method: " << s << endl;
-        s.erase(0, pos + delimiter.length());
-        //cout << "i = " << i << " - s inside the sendMessageRequested method, after s.erase(0, pos + delimiter.length()): " << s << endl;
+        s.erase(0, (pos + delimiter.length()));
         i++;
 
-        message = message.substr(0, message.length() - 1);
-        cout << "Message that is sending as a result of a requisition vector request. wsm->setWsmData: " << message << endl;
-        //exit(1);
+        if (insert) {
+            //cout << source << "One of message that is sending as a result of a requisition vector request, wsm->setWsmData: " << message << endl;
 
-        wsm->setWsmData(message.c_str());
-        wsm->setSummaryVector(false);
-        wsm->setRequestMessages(false);
+            wsm->setSummaryVector(false);
+            wsm->setRequestMessages(false);
 
-        printWaveShortMessage(wsm);
-        //exit(22);
+            //printWaveShortMessageEpidemic(wsm);
 
-        epidemicMessageSend.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
-        message = "";
+            epidemicMessageSend.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
+        }
     }
 
     if (startSend) {
         sendEpidemicMessageRequestEvt = new cMessage("beacon evt", Send_EpidemicMessageRequestEvt);
         scheduleAt(simTime(), sendEpidemicMessageRequestEvt);
     }
-
-//    message = message.substr(0, message.length() - 1);
-//    cout << "Message that is sending as a result of a requisition vector request. wsm->setWsmData: " << message << endl;
-//
-//    wsm->setWsmData(message.c_str());
-//    wsm->setSummaryVector(false);
-//    wsm->setRequestMessages(false);
-//
-//    printWaveShortMessage(wsm);
-//
-//    sendWSM(wsm);
 }
 
 void BaseWaveApplLayer::receivedOnBeacon(WaveShortMessage* wsm) {
-    if (wsm->getSenderAddress() > MACToInteger()) { //Verifying if have the smaller address, with start the anti-entropy session sending out a summary vector
+    if (wsm->getSenderAddress() > MACToInteger()) { // Verifying if have the smaller address, with start the anti-entropy session sending out a summary vector
         unordered_map <unsigned int, simtime_t>::iterator got = nodesIRecentlySentSummaryVector.find(wsm->getSenderAddress());
         if (got == nodesIRecentlySentSummaryVector.end()) {
-            //cout << source << " Contact not found in nodesIRecentlySentSummaryVector. Sending my summary vector to " << wsm->getSenderAddress() << endl;
+            //cout << source << " contact not found in nodesIRecentlySentSummaryVector. Sending my summary vector to " << wsm->getSenderAddress() << endl;
             nodesIRecentlySentSummaryVector.insert(make_pair(wsm->getSenderAddress(), simTime()));
 
             sendLocalSummaryVector(wsm->getSenderAddress());
@@ -822,10 +797,9 @@ void BaseWaveApplLayer::receivedOnBeacon(WaveShortMessage* wsm) {
             printNodesIRecentlySentSummaryVector();
         } else {
            if ((simTime() - got->second) >= sendSummaryVectorInterval) { //Send a summary vector to this node if passed the "sendSummaryVectorInterval" interval
-               //cout << "I'm " << source << " and I'm updating the entry in the nodesIRecentlySentSummaryVector." << endl;
+               //cout << source << " updating the entry in the nodesIRecentlySentSummaryVector" << endl;
 
                got->second = simTime();
-
                sendLocalSummaryVector(wsm->getSenderAddress());
 
                printNodesIRecentlySentSummaryVector();
@@ -837,172 +811,82 @@ void BaseWaveApplLayer::receivedOnBeacon(WaveShortMessage* wsm) {
 }
 
 void BaseWaveApplLayer::receivedOnData(WaveShortMessage* wsm) {
-    //Verifying the kind of a received message: if a summary vector (true) or a epidemic buffer data message (false).
-    if (wsm->getSummaryVector()) {
-        //checking if the summary vector was sent to me
-        if (wsm->getRecipientAddress() == MACToInteger()) {
-            cout << source << "(" << MACToInteger() << ") received the summary vector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << " at: " << simTime() << endl;
-            //Creating the remote summary vector with the data received in wsm->message field
-            createEpidemicRemoteSummaryVector(wsm->getWsmData());
+    if (wsm->getRecipientAddress() == MACToInteger()) { // Checking if is the recipient of this message
+        if (wsm->getSummaryVector()) {
+            cout << source << "(" << MACToInteger() << ") received the summary vector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << " at " << simTime() << endl;
+
+            createEpidemicRemoteSummaryVector(wsm->getWsmData()); //Creating the remote summary vector
+
             printEpidemicRemoteSummaryVectorData();
             printEpidemicLocalSummaryVectorData();
-            //Creating a key vector in order to request messages that I still do not have in my buffer
-            createEpidemicRequestMessageVector();
+
+            createEpidemicRequestMessageVector(); // Creating a key vector in order to request messages that I still do not have in my buffer
+
             printEpidemicRequestMessageVector();
-            //Verifying if this is the end of second round of the anti-entropy session when the EpidemicRemoteSummaryVector and EpidemicLocalSummaryVector are equals
-            if ((epidemicRequestMessageVector.empty() ||(strcmp(wsm->getWsmData(),"") == 0)) && (wsm->getSenderAddress() > MACToInteger())) {
+
+            // Verifying if this is the end of second round of the anti-entropy session when the EpidemicRemoteSummaryVector and EpidemicLocalSummaryVector are equals
+            if ((epidemicRequestMessageVector.empty() || (strcmp(wsm->getWsmData(), "") == 0)) && (wsm->getSenderAddress() > MACToInteger())) {
                 //cout << "EpidemicRequestMessageVector from " << source << " is empty now " << endl;
                 //cout << "Or strcmp(wsm->getWsmData(),\"\") == 0) " << endl;
                 //cout << "And  wsm->getSenderAddress() > MACToInteger() " << endl;
             } else if (epidemicRequestMessageVector.empty()) {
-                //cout << "EpidemicRequestMessageVector from " << source << " is empty now " << endl;
-                //changing the turn of the anti-entropy session. In this case, I have not found any differences between EpidemicRemoteSummaryVector and EpidemicLocalSummaryVector but I need to change the round of anti-entropy session
+                // Changing the turn of the anti-entropy session.
+                // In this case not have any differences between EpidemicRemoteSummaryVector and EpidemicLocalSummaryVector, but I need to change the round of anti-entropy session
                 sendLocalSummaryVector(wsm->getSenderAddress());
             } else {
-                //Sending a request vector in order to get messages that I don't have
-                sendEpidemicRequestMessageVector(wsm->getSenderAddress());
+                sendEpidemicRequestMessageVector(wsm->getSenderAddress()); // Sending a request vector in order to get messages that I don't have
             }
-        }
-    } else { //is a data message requisition or a data message content
-        //cout << "I'm " << source << ". This is not a summary vector" << endl;
-        //Verifying if this is a request message
-        if (wsm->getRequestMessages()) {
-            //checking if the request vector was sent to me
-            if (wsm->getRecipientAddress() == MACToInteger()) {
-                //Searching for elements in the epidemicLocalMessageBuffer and sending them to requester
+        } else {
+            if (wsm->getRequestMessages()) { // Searching for elements in the epidemicLocalMessageBuffer and sending them to requester
                 cout << source << " received the epidemicRequestMessageVector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
                 sendMessagesRequested(wsm->getWsmData(), wsm->getSenderAddress());
-            }
-        } else { //is data content
-            if (wsm->getRecipientAddress() == MACToInteger()) {
-                //WSMData generated by car[3]|car[3]|rsu[0]|1.2
-                cout << source << "(" << MACToInteger() << ") received all the message requested |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
+            } else { // It's data content
+                cout << source << "(" << MACToInteger() << ") received a message requested " << wsm->getGlobalMessageIdentificaton() << " |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
+
                 cout << "Before message processing" << endl;
                 printEpidemicLocalMessageBuffer();
                 cout << "Before message processing" << endl;
                 printEpidemicLocalSummaryVectorData();
                 cout << "Before message processing" << endl;
                 printQueueFIFO(queueFIFO);
-                string delimiter = "|";
-                size_t pos = 0;
-                string tokenkey, tokenData, tokenSource, tokenTarget, tokenTimestamp, tokenhopcount;
-                string messageReceived = wsm->getWsmData();
-                cout << "messageReceived: " << messageReceived << endl;
-                simtime_t st;
-                //cout << "pos = messageReceived.find(delimiter): " << messageReceived.find(delimiter) << endl;
-                //cout << "std::string::npos: " << std::string::npos << endl;
-                while((pos = messageReceived.find(delimiter)) != std::string::npos) {
 
-                    // leaved to not break the code
-                    tokenkey = messageReceived.substr(0, pos);
-                    messageReceived.erase(0, pos + delimiter.length());
+                //Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
+                unordered_map <string, WaveShortMessage>::iterator got = epidemicLocalMessageBuffer.find(wsm->getGlobalMessageIdentificaton());
 
-                    //tokenkey = wsm->getGlobalMessageIdentificaton();
-
-                    pos = messageReceived.find(delimiter);
-                    tokenData = messageReceived.substr(0, pos);
-                    messageReceived.erase(0, pos + delimiter.length());
-
-                    pos = messageReceived.find(delimiter);
-                    tokenSource = messageReceived.substr(0, pos);
-                    messageReceived.erase(0, pos + delimiter.length());
-
-                    pos = messageReceived.find(delimiter);
-                    tokenTarget = messageReceived.substr(0, pos);
-                    messageReceived.erase(0, pos + delimiter.length());
-
-                    pos = messageReceived.find(delimiter);
-                    tokenTimestamp = messageReceived.substr(0, pos);
-                    messageReceived.erase(0, pos + delimiter.length());
-
-                    pos = messageReceived.find(delimiter);
-                    tokenhopcount = messageReceived.substr(0, pos);
-                    cout << "tokenhopcount: " << tokenhopcount << endl;
-                    //exit(1);
-                    messageReceived.erase(0, pos + delimiter.length());
-
-                    //cout << "I'm " << source << " and the message received is tokenData: " << tokenData << "tokenSource: " << tokenSource << "tokenTarget: " << tokenTarget << "tokenTimestamp: " << tokenTimestamp << endl;
-                    WaveShortMessage w = *wsm;
-                    w.setWsmData(tokenData.c_str());
-                    w.setSource(tokenSource.c_str());
-                    w.setTarget(tokenTarget.c_str());
-                    w.setTimestamp(st.parse(tokenTimestamp.c_str()));
-                    w.setHopCount(stoi(tokenhopcount));
-
-//                     if (source.substr(0, 3).compare("rsu") == 0) {
-//                         if (source.compare(w.getTarget()) == 0) {
-//                             WaveShortMessage w2 = w;
-//                             w2.setGlobalMessageIdentificaton(tokenkey.c_str());
-//                             messagesReceivedMeasuring(&w2);
-//                         }
-//                     }
-
-                    //checking if the maximum buffer size was reached
-                    if (queueFIFO.size() < maximumEpidemicBufferSize) {
-                        //Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
-                        unordered_map <string,WaveShortMessage>::iterator got = epidemicLocalMessageBuffer.find(tokenkey);
-                        if (got == epidemicLocalMessageBuffer.end()) { //true value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
-                            //Putting the message in the epidemicLocalMessageBuffer
-                            epidemicLocalMessageBuffer.insert(make_pair(tokenkey,w));
-                            //Putting the message in the EpidemicLocalSummaryVector
-                            epidemicLocalSummaryVector.insert(make_pair(tokenkey.c_str(),true));
-                            //FIFO strategy to set the maximum size that a node is willing to allocate epidemic messages in its buffer
-                            queueFIFO.push(tokenkey.c_str());
-                            //printQueueFIFO(queueFIFO);
-
-                            bubble("message added in my buffer"); //making animation message more informative
-                            //recording some statistics
-//                             cout << "source == w.getTarget(): " << " source: " << source << " w.getTarget():" << w.getTarget() << endl;
-
-                        } else { //An entry in the unordered_map was found
-                            //do nothing because the message is already in my epidemicLocalBuffer
-                        }
-                    } else { //The maximum buffer size was reached, so I have to remove the first item from the queueFIFO
-                        //Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
-                        unordered_map <string,WaveShortMessage>::iterator got = epidemicLocalMessageBuffer.find(tokenkey.c_str());
-                        if (got == epidemicLocalMessageBuffer.end()) { //true value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
-                            epidemicLocalMessageBuffer.erase(queueFIFO.front());
-                            epidemicLocalSummaryVector.erase(queueFIFO.front());
-                            queueFIFO.pop();
-                            //Putting the message in the epidemicLocalMessageBuffer
-                            epidemicLocalMessageBuffer.insert(make_pair(tokenkey,w));
-                            //Putting the message in the EpidemicLocalSummaryVector
-                            epidemicLocalSummaryVector.insert(make_pair(tokenkey.c_str(),true));
-                            //FIFO strategy to set the maximum size that a node is willing to allocate epidemic messages in its buffer
-                            queueFIFO.push(tokenkey.c_str());
-                            //printQueueFIFO(queueFIFO);
-
-                            //recording some statistics
-//                                cout << "source == w.getTarget(): " << " source: " << source << " w.getTarget():" << w.getTarget() << endl;
-                        } else { //An entry in the unordered_map was found
-                            //do nothing because the message is already in my epidemicLocalBuffer
-                        }
+                if (got == epidemicLocalMessageBuffer.end()) { // True value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
+                    if (queueFIFO.size() > maximumEpidemicBufferSize) { // The maximum buffer size was reached, so remove the first item from the queueFIFO
+                        epidemicLocalMessageBuffer.erase(queueFIFO.front());
+                        epidemicLocalSummaryVector.erase(queueFIFO.front());
+                        queueFIFO.pop();
                     }
-                } // end of while
+
+                    epidemicLocalMessageBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
+                    epidemicLocalSummaryVector.insert(make_pair(wsm->getGlobalMessageIdentificaton(), true));
+
+                    // FIFO strategy to set the maximum size that a node is willing to allocate epidemic messages in its buffer
+                    queueFIFO.push(wsm->getGlobalMessageIdentificaton());
+                }
+
                 cout << "After message processing" << endl;
                 printEpidemicLocalMessageBuffer();
                 cout << "After message processing" << endl;
                 printEpidemicLocalSummaryVectorData();
                 cout << "After message processing" << endl;
                 printQueueFIFO(queueFIFO);
-                //changing the turn of the anti-entropy session. If this is the first round, call sendLocalSummaryVector(wsm->getSenderAddress())
+
+                // Changing the turn of the anti-entropy session
                 if (wsm->getSenderAddress() < MACToInteger()) {
                     sendLocalSummaryVector(wsm->getSenderAddress());
                 }
-            } //end of if
-        }// end of else
 
-        //Verifying if I'm the target of a message
-        if (source.compare(wsm->getTarget()) == 0) {
-            if (!wsm->getSummaryVector() && !wsm->getRequestMessages()) { // TODO Change to best programation
-                cout << source << " received a message for him at " << simTime() << std::endl;
-                if (source.substr(0, 3).compare("rsu") == 0) {
-                    messagesReceivedMeasuringRSU(wsm);
+                if (source.compare(wsm->getTarget()) == 0) { // Verifying if is the target of this message
+                    cout << source << " received a message for him at " << simTime() << endl;
+                    if (source.substr(0, 3).compare("rsu") == 0) {
+                        findHost()->bubble("Received one message");
+                        messagesReceivedMeasuringRSU(wsm);
+                    }
                 }
             }
-        } else { //this node is a relaying node because it is not the target of the message
-            findHost()->getDisplayString().updateWith("r=16,green");
-            //std::cout << source << " will cache the message for forwarding it later." << " at " << simTime() << std::endl;
         }
     }
 }
@@ -1052,17 +936,15 @@ void BaseWaveApplLayer::handleSelfMsg(cMessage* msg) {
             break;
         }
         case SEND_BEACON_EVT_epidemic: {
-            //prepareWSM(std::string name, int lengthBits, t_channel channel, int priority, int rcvId, int serial)
-            //I our implementation, if rcvId = BROADCAST then we are broadcasting beacons. Otherwise, this parameter must be instantiated with the receiver address
-            sendWSM(prepareWSM_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, BROADCAST, -1));
+            sendWSM(prepareWSM_epidemic("beacon", beaconLengthBits, type_CCH, beaconPriority, -1, -1));
             scheduleAt(simTime() + par("beaconInterval").doubleValue(), sendBeaconEvt);
             break;
         }
         case Send_EpidemicMessageRequestEvt: {
-            unordered_map <string, WaveShortMessage>::iterator itEM;
-            itEM = epidemicMessageSend.begin();
+            unordered_map <string, WaveShortMessage>::iterator itEpidemicMessageSend;
+            itEpidemicMessageSend = epidemicMessageSend.begin();
 
-            sendWSM(itEM->second.dup());
+            sendWSM(itEpidemicMessageSend->second.dup());
 
             epidemicMessageSend.erase(epidemicMessageSend.begin());
             if (!epidemicMessageSend.empty()) {
@@ -1070,8 +952,9 @@ void BaseWaveApplLayer::handleSelfMsg(cMessage* msg) {
             }
         }
         default: {
-            if (msg)
+            if (msg) {
                 DBG << "APP: Error: Got Self Message of unknown kind! Name: " << msg->getName() << endl;
+            }
             break;
         }
     }
@@ -1084,12 +967,11 @@ void BaseWaveApplLayer::sendWSM(WaveShortMessage* wsm) {
 void BaseWaveApplLayer::finish() {
     if (sendBeaconEvt->isScheduled()) {
         cancelAndDelete(sendBeaconEvt);
-    }else {
+    } else {
         delete sendBeaconEvt;
     }
     findHost()->unsubscribe(mobilityStateChangedSignal, this);
 }
 
 BaseWaveApplLayer::~BaseWaveApplLayer() {
-
 }
