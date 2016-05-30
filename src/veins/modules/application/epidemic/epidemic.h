@@ -32,13 +32,11 @@ using Veins::AnnotationManager;
 class epidemic : public BaseWaveApplLayer {
     public:
         virtual void initialize(int stage);
+
     protected:
         TraCIMobility* mobility;
         TraCICommandInterface* traci;
         TraCICommandInterface::Vehicle* traciVehicle;
-
-        // To store the number of recent contacts of a mobile node
-        int NumberOfContacts[50];
 
         static unsigned short int messageId;
 
