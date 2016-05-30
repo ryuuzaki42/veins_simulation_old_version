@@ -44,63 +44,39 @@ class vehDist : public BaseWaveApplLayer {
         cMessage* sendUpdateRateTimeToSendVeh;
 
         static double ttlBeaconStatus;
-        static unsigned short int numVehToRandom;
-        static unsigned short int timeLimitGenerateBeaconMessage;
-        static unsigned short int msgDroppedbyTTL;
-        static unsigned short int msgDroppedbyHop;
-        static unsigned short int msgDroppedbyBuffer;
-        static unsigned short int countMsgPacketSend;
-        static unsigned short int msgBufferUseGeneral;
-        static unsigned short int timeToUpdatePosition;
-        static unsigned short int beaconMessageBufferSize;
-        static unsigned short int beaconStatusBufferSize;
-        static unsigned short int countMeetN;
-        static unsigned short int countTwoCategoryN;
-        static unsigned short int countMeetPshortestT;
-        static unsigned short int countVehicleAll;
 
-        static vector <string> numVehicles;
+        static unsigned short int numVehToRandom, timeLimitGenerateBeaconMessage, msgDroppedbyTTL;
+        static unsigned short int msgDroppedbyHop, msgDroppedbyBuffer, countMsgPacketSend, msgBufferUseGeneral;
+        static unsigned short int timeToUpdatePosition, beaconMessageBufferSize, beaconStatusBufferSize, countMeetN;
+        static unsigned short int countTwoCategoryN, countMeetPshortestT, countVehicleAll, countMesssageDrop, beaconMessageId;
+
+        static vector <string> numVehicles, vehGenerateMessage;
+        vector <string> messagesDelivered, messagesOrderReceived;
+
+        unordered_map <string, string> messagesSendLog;
         static unordered_map <string, WaveShortMessage> vehScenario;
 
-        static vector <string> vehGenerateMessage;
-        static unsigned short int countMesssageDrop;
-        static unsigned short int beaconMessageId;
+        unordered_map <string, WaveShortMessage> messagesBuffer, messagesOnlyDelivery, beaconStatusNeighbors;
 
-        vector <string> messagesDelivered;
-        vector <string> messagesOrderReceived;
-        unordered_map <string, WaveShortMessage> messagesBuffer;
-        unordered_map <string, WaveShortMessage> messagesOnlyDelivery;
-        unordered_map <string, WaveShortMessage> beaconStatusNeighbors;
-        unordered_map <string, string> messagesSendLog;
+        unsigned short int messageToSend, rateTimeToSend, msgBufferMaxUse;
+        unsigned short int rateTimeToSendLimitTime, rateTimeToSendUpdateTime, rateTimeToSendDistanceControl;
 
-        unsigned short int messageToSend;
-        unsigned short int rateTimeToSend;
-        unsigned short int msgBufferMaxUse;
         simtime_t timeToFinishLastStartSend;
-        unsigned short int rateTimeToSendLimitTime;
-        unsigned short int rateTimeToSendUpdateTime;
-        unsigned short int rateTimeToSendDistanceControl;
 
         mt19937 mt_veh;
         double vehOffSet;
         string vehCategory;
 
         struct messagesDropStruct {
-            unsigned short int byBuffer;
-            unsigned short int byHop;
-            unsigned short int byTime;
+            unsigned short int byBuffer, byHop, byTime;
         };
         map <string, struct messagesDropStruct> messagesDrop;
 
         struct shortestDistance {
             Coord senderPos;
-            double speedVeh;
             string categoryVeh;
-            double distanceToTarget;
-            double distanceToTargetCategory;
-            double decisionValueDistanceSpeed;
-            double decisionValueDistanceRateTimeToSend;
-            double decisionValueDistanceSpeedRateTimeToSend;
+            double distanceToTarget, distanceToTargetCategory, decisionValueDistanceSpeed;
+            double decisionValueDistanceRateTimeToSend, decisionValueDistanceSpeedRateTimeToSend, speedVeh;
             unsigned short int rateTimeToSendVeh;
         };
 
@@ -161,24 +137,15 @@ class vehDist : public BaseWaveApplLayer {
 };
 
 double vehDist::ttlBeaconStatus;
-vector <string> vehDist::numVehicles;
-unsigned short int vehDist::countMeetN;
-vector <string> vehDist::vehGenerateMessage;
-unsigned short int vehDist::numVehToRandom;
-unsigned short int vehDist::msgDroppedbyTTL;
-unsigned short int vehDist::countVehicleAll;
-unsigned short int vehDist::msgDroppedbyHop;
-unsigned short int vehDist::beaconMessageId;
-unsigned short int vehDist::countMeetPshortestT;
-unsigned short int vehDist::countMesssageDrop;
-unsigned short int vehDist::countTwoCategoryN;
-unsigned short int vehDist::msgDroppedbyBuffer;
-unsigned short int vehDist::countMsgPacketSend;
-unsigned short int vehDist::msgBufferUseGeneral;
-unsigned short int vehDist::timeToUpdatePosition;
-unsigned short int vehDist::beaconStatusBufferSize;
-unsigned short int vehDist::beaconMessageBufferSize;
-unsigned short int vehDist::timeLimitGenerateBeaconMessage;
+
+vector <string> vehDist::numVehicles, vehDist::vehGenerateMessage;
+
 unordered_map <string, WaveShortMessage> vehDist::vehScenario;
+
+unsigned short int vehDist::msgBufferUseGeneral, vehDist::timeLimitGenerateBeaconMessage;
+unsigned short int vehDist::countTwoCategoryN, vehDist::msgDroppedbyBuffer, vehDist::countMsgPacketSend;
+unsigned short int vehDist::timeToUpdatePosition, vehDist::beaconStatusBufferSize, vehDist::beaconMessageBufferSize;
+unsigned short int vehDist::countMeetN, vehDist::numVehToRandom, vehDist::msgDroppedbyTTL, vehDist::countVehicleAll;
+unsigned short int vehDist::msgDroppedbyHop, vehDist::beaconMessageId, vehDist::countMeetPshortestT, vehDist::countMesssageDrop;
 
 #endif
