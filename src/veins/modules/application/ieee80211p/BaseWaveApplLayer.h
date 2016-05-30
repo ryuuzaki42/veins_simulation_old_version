@@ -39,12 +39,6 @@
 
 using namespace std;
 
-//Define a constant to support send beacons or send messages in a broadcast fashion
-#ifndef BROADCAST
-#define BROADCAST 268435455
-#endif
-//
-
 #ifndef DBG
 #define DBG EV
 #endif
@@ -76,19 +70,17 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         enum WaveApplMessageKinds {
             SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
-            SEND_BEACON_EVT,SEND_BEACON_EVT_minicurso, SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, MOBILITY_EVT, //modificado osdp, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, anter era apenas SEND_BEACON_EVT, para o  service_discovery foi add MOBILITY_EVT
-            SEND_BEACON_EVT_epidemic,
-            SEND_BEACON_EVT_mfcv_epidemic,
-            Send_EpidemicMessageRequestEvt
+            SEND_BEACON_EVT, SEND_BEACON_EVT_minicurso,
+            SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, // Modificado OSDP, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, antes era apenas SEND_BEACON_EVT
+            SEND_BEACON_EVT_epidemic, Send_EpidemicMessageRequestEvt
         };
 
     protected:
         static const simsignalwrap_t mobilityStateChangedSignal;
 
-        /** @brief handle messages from below */
-        virtual void handleLowerMsg(cMessage* msg);
-        /** @brief handle self messages */
-        virtual void handleSelfMsg(cMessage* msg);
+        virtual void handleLowerMsg(cMessage* msg); /** @brief handle messages from below */
+
+        virtual void handleSelfMsg(cMessage* msg); /** @brief handle self messages */
 
         //virtual WaveShortMessage* prepareWSM(string name, int dataLengthBits, t_channel channel, int priority, int rcvId, int serial=0);
         virtual WaveShortMessage* prepareWSM(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
@@ -109,18 +101,17 @@ class BaseWaveApplLayer : public BaseApplLayer {
 //######################################### vehDist #########################################
 
 //######################################### Epidemic #########################################
-        virtual WaveShortMessage* prepareWSM_epidemic(std::string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
+        virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
         unsigned int MACToInteger();
 
         void receivedOnBeacon(WaveShortMessage* wsm);
         void receivedOnData(WaveShortMessage* wsm);
 
-        void printWaveShortMessage(WaveShortMessage* wsm);
+        void printWaveShortMessageEpidemic(WaveShortMessage* wsm);
 
         void printQueueFIFO(std::queue <string> qFIFO);
         void sendLocalSummaryVector(unsigned int newRecipientAddress);
 
-        //Return a string with the whole summaryVector
         string getLocalSummaryVectorData();
         string getEpidemicRequestMessageVectorData();
 
@@ -144,20 +135,12 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual void handlePositionUpdate(cObject* obj);
 
     protected:
-        int beaconLengthBits;
-        int beaconPriority;
-        bool sendData;
-        bool sendBeacons;
+        int beaconLengthBits, beaconPriority, mySCH, myId, dataLengthBits, dataPriority;
+        bool sendData, sendBeacons, dataOnSch;
         simtime_t individualOffset;
-        int dataLengthBits;
-        bool dataOnSch;
-        int dataPriority;
         Coord curPosition;
-        int mySCH;
-        int myId;
 
-        string source;
-        string target;
+        string source, target;
 
         cMessage* sendBeaconEvt;
 
@@ -166,62 +149,37 @@ class BaseWaveApplLayer : public BaseApplLayer {
 //######################################### vehDist #########################################
         ofstream myfile; // record in file
 
-        unsigned short int target_x;
-        unsigned short int target_y;
+        unsigned short int target_x, target_y;
 
-        string fileMessagesUnicast;
-        string fileMessagesBroadcast;
-        string fileMessagesCount;
-        string fileMessagesDrop;
-        string fileMessagesGenerated;
+        string fileMessagesUnicast, fileMessagesBroadcast, fileMessagesCount, fileMessagesDrop, fileMessagesGenerated;
 
-        unsigned short int repeatNumber;
-        unsigned short int expNumber;
-        unsigned short int expSendbyDSCR;
+        unsigned short int repeatNumber, expNumber, expSendbyDSCR, countGenerateBeaconMessage;
         double ttlBeaconMessage;
-        unsigned short int countGenerateBeaconMessage;
 
         //## Used to another projects
         unsigned short int beaconMessageHopLimit;
 
         struct messages {
-          string fristSource;
-          unsigned short int copyMessage;
-          string hops;
-          unsigned short int minHop;
-          unsigned short int maxHop;
-          unsigned short int sumHops;
-          unsigned short int countT;
-          unsigned short int countP;
-          string wsmData;
+          string firstSource, hops, wsmData, times;
+          unsigned short int minHop, maxHop, sumHops, countT, countP, copyMessage;
           simtime_t sumTimeRecived;
-          string times;
         };
         map <string, struct messages> messagesReceived;
 //######################################### vehDist #########################################
 
 //######################################### Epidemic #########################################
-        //Hash table to represent the node buffer. It stores messages generated by itself as well messages carried on behalf of other nodes
-        //Creating a unordered_map to represent the local epidemic messages buffer
-        unordered_map <string, WaveShortMessage> epidemicLocalMessageBuffer;
-        //Bit Vector to represent a summary vector that indicates which entries in their local hash table are set.
-        unordered_map <string, bool> epidemicLocalSummaryVector;
-        //Bit Vector to represent a summary vector that indicates which entries in remote hash table are set.
-        unordered_map <string, bool> epidemicRemoteSummaryVector;
-        //Bit Vector to represent a result summary vector that will be used to make a request of messages.
-        unordered_map <string, bool> epidemicRequestMessageVector;
-        //Cache with nodes that I recently met
-        unordered_map <unsigned int, simtime_t> nodesRecentlyFoundList;
-        //Cache with nodes that I recently sent the summary vector
-        unordered_map <unsigned int, simtime_t> nodesIRecentlySentSummaryVector;
-        //implementation of FIFO in order to maintain the limited length of the buffer activated
+        unordered_map <string, WaveShortMessage> epidemicLocalMessageBuffer, epidemicMessageSend;
+
+        unordered_map <string, bool> epidemicLocalSummaryVector, epidemicRemoteSummaryVector, epidemicRequestMessageVector;
+
+        unordered_map <unsigned int, simtime_t> nodesRecentlyFoundList, nodesIRecentlySentSummaryVector;
+
+        // Implementation of FIFO in order to maintain the limited length of the buffer activated
         queue <string> queueFIFO;
 
-        int sendSummaryVectorInterval;
-        unsigned int maximumEpidemicBufferSize;
+        unsigned int sendSummaryVectorInterval, maximumEpidemicBufferSize;
 
         cMessage* sendEpidemicMessageRequestEvt;
-        unordered_map <string, WaveShortMessage> epidemicMessageSend;
 //######################################### Epidemic #########################################
 };
 
