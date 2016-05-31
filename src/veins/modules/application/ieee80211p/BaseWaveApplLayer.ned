@@ -85,6 +85,7 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int expSendbyDSCR = default(0);
 
         int porcentP = default(0); // Potcentage that send to vehicle from category P
+        bool usePathHistory = default(false); // User or not path history when send a message
 
     gates:
         input lowerLayerIn; // from mac layer
