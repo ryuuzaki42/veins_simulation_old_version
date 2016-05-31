@@ -46,7 +46,6 @@ void vehDist_rsu::handleLowerMsg(cMessage* msg) {
     } else if (wsm->getType() == 2) {
         onBeaconMessage(wsm);
     } else {
-        DBG << "unknown message (" << wsm->getName() << ")  received\n";
         cout << "unknown message (" << wsm->getName() << ")  received\n";
         exit(1);
     }
