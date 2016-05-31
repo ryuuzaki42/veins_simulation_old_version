@@ -45,6 +45,8 @@ void epidemic_rsu::epidemicInitializeVariables() {
 
     expNumber = par("expNumber");
 
+    generalInitializeVariables_executionByExpNumberVehDist();
+
     string folderResult = "results/epidemic_resultsEnd/E" + to_string(expNumber);
     folderResult += "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_" + to_string(countGenerateBeaconMessage) +"/";
 

@@ -45,6 +45,8 @@ void epidemic::initialize(int stage) {
             epidemic::messageId = 1;
         }
 
+        generalInitializeVariables_executionByExpNumberVehDist();
+
         generateMessage();
     }
 }
