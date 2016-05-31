@@ -49,6 +49,8 @@ class vehDist : public BaseWaveApplLayer {
         static unsigned short int msgDroppedbyHop, msgDroppedbyBuffer, countMsgPacketSend, msgBufferUseGeneral;
         static unsigned short int timeToUpdatePosition, beaconMessageBufferSize, beaconStatusBufferSize, countMeetN;
         static unsigned short int countTwoCategoryN, countMeetPshortestT, countVehicleAll, countMesssageDrop, beaconMessageId;
+        static unsigned short int percentP;
+        static bool usePathHistory;
 
         static vector <string> numVehicles, vehGenerateMessage;
         vector <string> messagesDelivered, messagesOrderReceived;
@@ -125,12 +127,13 @@ class vehDist : public BaseWaveApplLayer {
         void removeOldestInputBeaconStatus();
 
         string choseCategory_RandomNumber1to100(unsigned short int percentP, string vehIdP, string vehIdT);
-        string chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 0001
-        string chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 0012
-        string chosenByDistance_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 0013
-        string chosenByDistance_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget); // 0014
-        string chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 0123
-        string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 1234
+        string chosenByDistance(unordered_map <string, shortestDistance> vehShortestDistanceToTarget); // 0001
+        string chosenByDistance_Speed(unordered_map <string, shortestDistance> vehShortestDistanceToTarget); // 0012
+        string chosenByDistance_CategoryA(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 0013
+        string chosenByDistance_RateTimeToSend(unordered_map <string, shortestDistance> vehShortestDistanceToTarget); // 0014
+        string chosenByDistance_Speed_Category(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 0123
+        string chosenByDistance_Speed_Category_RateTimeToSend(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 1234
+        string chosenByDistance_CategoryB(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP); // 0013 with uncomment
 
         unsigned short int getVehHeading8();
         unsigned short int getVehHeading4();
@@ -147,5 +150,7 @@ unsigned short int vehDist::countTwoCategoryN, vehDist::msgDroppedbyBuffer, vehD
 unsigned short int vehDist::timeToUpdatePosition, vehDist::beaconStatusBufferSize, vehDist::beaconMessageBufferSize;
 unsigned short int vehDist::countMeetN, vehDist::numVehToRandom, vehDist::msgDroppedbyTTL, vehDist::countVehicleAll;
 unsigned short int vehDist::msgDroppedbyHop, vehDist::beaconMessageId, vehDist::countMeetPshortestT, vehDist::countMesssageDrop;
+unsigned short int vehDist::percentP;
+bool vehDist::usePathHistory;
 
 #endif

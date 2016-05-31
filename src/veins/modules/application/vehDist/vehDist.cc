@@ -50,6 +50,8 @@ void vehDist::vehInitializeVariables() {
         vehDist::beaconStatusBufferSize = par("beaconStatusBufferSize");
         vehDist::timeToUpdatePosition = par("vehTimeUpdatePosition");
         vehDist::timeLimitGenerateBeaconMessage = par("timeLimitGenerateBeaconMessage");
+        vehDist::percentP = par("porcentP"); // 20 meaning 20% of message send to category P
+        vehDist::usePathHistory = par("usePathHistory"); // User or not path history when will send a message
 
         //initialize random seed (Seed the RNG) # Inside of IF because must be executed one time (the seed is "static")
         mt_veh.seed(repeatNumber); // Instead another value, for make the experiment more reproducible, so seed = reapeatNumber
@@ -61,6 +63,7 @@ void vehDist::vehInitializeVariables() {
         cout << endl << "Experiment: " << expNumber << " repeatNumber: " << repeatNumber << endl;
         cout << "ttlBeaconMessage: " << ttlBeaconMessage  << endl;
         cout << "countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl;
+        cout << "usePathHistory: " << boolalpha << usePathHistory << endl;
         cout << "timeLimitGenerateMessage: " << vehDist::timeLimitGenerateBeaconMessage << endl << endl;
     }
 
@@ -371,28 +374,36 @@ string vehDist::choseCategory_RandomNumber1to100(unsigned short int percentP, st
 }
 
 string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
+    string category;
+    shortestDistance sD;
+    unsigned short int MeetCatT, MeetCatP;
     double neighborDistanceBefore, neighborDistanceNow;
     unordered_map<string, shortestDistance> vehShortestDistanceToTarget;
     unordered_map<string, shortestDistance>::iterator itShortestDistance;
     unordered_map<string, WaveShortMessage>::iterator itBeaconNeighbors;
-    string category, vehId;;
-    shortestDistance sD;
 
-    unsigned short int percentP = par("porcentP"); // from ini file, 20 meaning 20%
-    vehId = source;
-
-    unsigned short int t, p;
-    p = t = 0;
-
+    MeetCatT = MeetCatP = 0;
+    bool insert;
     for (itBeaconNeighbors = beaconStatusNeighbors.begin(); itBeaconNeighbors != beaconStatusNeighbors.end(); itBeaconNeighbors++) {
-        if (!messagesSendLog.empty() && (messagesSendLog[idMessage].find(itBeaconNeighbors->first) != std::string::npos)){
+        if (!messagesSendLog.empty() && (messagesSendLog[idMessage].find(itBeaconNeighbors->first) != std::string::npos)) {
             cout << source << " has been send a message " << idMessage << " to " << itBeaconNeighbors->first << endl;
         } else {
+            if (usePathHistory) { // True will check if the vehicle is closing to target (message target destination)
+                insert = false;
+                neighborDistanceBefore = traci->getDistance(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBuffer[idMessage].getTargetPos(), false);
+                neighborDistanceNow = traci->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBuffer[idMessage].getTargetPos(), false);
 
-            neighborDistanceBefore = traci->getDistance(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBuffer[idMessage].getTargetPos(), false);
-            neighborDistanceNow = traci->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBuffer[idMessage].getTargetPos(), false);
+                if (neighborDistanceBefore > neighborDistanceNow) { // Test if is closing to target
+                    insert = true;
+                } /*else {
+                    cout << itBeaconNeighbors->first << " going to another direction" << endl;
+                }*/
+            } else {
+                insert = true;
+            }
 
-            if (neighborDistanceBefore > neighborDistanceNow) { // Test if is closing to target
+            if (insert) {
+            //if (neighborDistanceBefore > neighborDistanceNow) { // Test if is closing to target
                 sD.categoryVeh = itBeaconNeighbors->second.getCategory();
                 sD.distanceToTarget = neighborDistanceNow;
                 sD.senderPos = Coord(itBeaconNeighbors->second.getSenderPos());
@@ -401,32 +412,32 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
 
                 if (sD.categoryVeh.compare("T") == 0) {
                     sD.distanceToTargetCategory = sD.distanceToTarget + sD.distanceToTarget * 0.1;
-                    t = 1;
+                    MeetCatT = 1;
                 } else if (sD.categoryVeh.compare("P") == 0) {
                     sD.distanceToTargetCategory = sD.distanceToTarget + sD.distanceToTarget * 0.3;
-                    p =1;
+                    MeetCatP =1;
                 }
 
                 sD.decisionValueDistanceSpeed = sD.distanceToTarget - (sD.speedVeh);
                 sD.decisionValueDistanceRateTimeToSend = sD.distanceToTarget + (double(sD.rateTimeToSendVeh)/100);
                 sD.decisionValueDistanceSpeedRateTimeToSend = sD.distanceToTarget - (sD.speedVeh) + (double(sD.rateTimeToSendVeh)/100);
 
-                // Distance = [0 - 125] - 720 m // vehicle Speed = 0 - (15/25)84 m/s // rateTimeToSend = 100 to 5000 ms
+                // Distance = [0 - 125] - 720 m
+                // vehicle Speed = 0 - (15/25) - 84 m/s
+                // rateTimeToSend = 100 to 5000 ms
                 // DecisonValueDS = distance - speed
                 // DecisonValueDSCR = distance - speed + rateTimeToSend/100 (0.1 * 10)
 
                 vehShortestDistanceToTarget.insert(make_pair(itBeaconNeighbors->first, sD));
-            } /*else {
-                cout << itBeaconNeighbors->first << " going to another direction" << endl;
-            }*/
+            }
         }
     }
 
     if (!vehShortestDistanceToTarget.empty()) {
-        if ((p == 1) && (t == 1)) {
+        if ((MeetCatP == 1) && (MeetCatT == 1)) {
             vehDist::countTwoCategoryN++;
             cout << endl << "Meet of vehicles of two categories" << endl;
-        } else if ((p == 1) || (t == 1)) {
+        } else if ((MeetCatP == 1) || (MeetCatT == 1)) {
             vehDist::countMeetN++;
         }
 
@@ -455,7 +466,8 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
         cout << endl << "vehShortestDistanceToTarget to " << source << " at " << simTime() << " vehShortestDistanceToTarget is empty." << endl << endl;
     }
 
-    if (!vehShortestDistanceToTarget.empty()) { // If don't any veh going to target
+    string vehId = source;
+    if (!vehShortestDistanceToTarget.empty()) {
         switch (expSendbyDSCR) {
             case 1:
                 vehId = chosenByDistance(vehShortestDistanceToTarget);
@@ -464,7 +476,8 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
                 vehId = chosenByDistance_Speed(vehShortestDistanceToTarget);
                 break;
             case 13:
-                vehId = chosenByDistance_Category(vehShortestDistanceToTarget, percentP);
+                vehId = chosenByDistance_CategoryA(vehShortestDistanceToTarget, percentP);
+                //vehId = chosenByDistance_CategoryB(vehShortestDistanceToTarget, percentP);
                 break;
             case 14:
                 vehId = chosenByDistance_RateTimeToSend(vehShortestDistanceToTarget);
@@ -493,8 +506,8 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
     return vehId;
 }
 
-string vehDist::chosenByDistance(unordered_map<string, shortestDistance> vehShortestDistanceToTarget) {
-    unordered_map<string, shortestDistance>::iterator itShortestDistance;
+string vehDist::chosenByDistance(unordered_map <string, shortestDistance> vehShortestDistanceToTarget) {
+    unordered_map <string, shortestDistance>::iterator itShortestDistance;
     double distanceToTarget, shortestDistanceToTarget;
 
     string vehId = source;
@@ -509,8 +522,8 @@ string vehDist::chosenByDistance(unordered_map<string, shortestDistance> vehShor
     return vehId;
 }
 
-string vehDist::chosenByDistance_Speed(unordered_map<string, shortestDistance> vehShortestDistanceToTarget) {
-    unordered_map<string, shortestDistance>::iterator itShortestDistance;
+string vehDist::chosenByDistance_Speed(unordered_map <string, shortestDistance> vehShortestDistanceToTarget) {
+    unordered_map <string, shortestDistance>::iterator itShortestDistance;
     double distanceSpeedValue, shortestDistanceSpeedValue;
 
     string vehId = source;
@@ -525,65 +538,62 @@ string vehDist::chosenByDistance_Speed(unordered_map<string, shortestDistance> v
     return vehId;
 }
 
-string vehDist::chosenByDistance_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP) {
-    unordered_map<string, shortestDistance>::iterator itShortestDistance;
-//
-//    bool go1 = true;
-//    if (go1) {
-        double distanceToTarget, shortestDistanceT, shortestDistanceP;
-        string category, vehIdP, vehIdT;
+string vehDist::chosenByDistance_CategoryA(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP) {
+    unordered_map <string, shortestDistance>::iterator itShortestDistance;
+    double distanceToTarget, shortestDistanceT, shortestDistanceP;
+    string category, vehIdP, vehIdT;
 
-        vehIdP = vehIdT = source;
-        shortestDistanceP = shortestDistanceT = DBL_MAX;
-        for(itShortestDistance = vehShortestDistanceToTarget.begin(); itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
-            category = itShortestDistance->second.categoryVeh;
-            distanceToTarget = itShortestDistance->second.distanceToTarget;
-            if (category.compare("P") == 0) {
-                if (shortestDistanceP > distanceToTarget) {
-                    shortestDistanceP = distanceToTarget;
-                    vehIdP = itShortestDistance->first;
-                }
-            } else if (category.compare("T") == 0) {
-                if (shortestDistanceT > distanceToTarget) {
-                    shortestDistanceT = distanceToTarget;
-                    vehIdT = itShortestDistance->first;
-                }
+    vehIdP = vehIdT = source;
+    shortestDistanceP = shortestDistanceT = DBL_MAX;
+    for(itShortestDistance = vehShortestDistanceToTarget.begin(); itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
+        category = itShortestDistance->second.categoryVeh;
+        distanceToTarget = itShortestDistance->second.distanceToTarget;
+        if (category.compare("P") == 0) {
+            if (shortestDistanceP > distanceToTarget) {
+                shortestDistanceP = distanceToTarget;
+                vehIdP = itShortestDistance->first;
+            }
+        } else if (category.compare("T") == 0) {
+            if (shortestDistanceT > distanceToTarget) {
+                shortestDistanceT = distanceToTarget;
+                vehIdT = itShortestDistance->first;
             }
         }
+    }
 
-        if (shortestDistanceP == DBL_MAX) {
-            return vehIdT;
-        } else if (shortestDistanceT == DBL_MAX) {
-            return vehIdP;
-        }
+    if (shortestDistanceP == DBL_MAX) {
+        return vehIdT;
+    } else if (shortestDistanceT == DBL_MAX) {
+        return vehIdP;
+    }
 
-        if (int(shortestDistanceT) > int(shortestDistanceP)) {
-            vehDist::countMeetPshortestT++;
-            return choseCategory_RandomNumber1to100(percentP, vehIdP, vehIdT);
-        } else {
-            return vehIdT;
-        }
-
-//    } else {
-//
-//        double shortestDistanceCategory = DBL_MAX;
-//        double distanceToTargetCategory;
-//        string vehId = source;
-//        for(itShortestDistance = vehShortestDistanceToTarget.begin(); itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
-//            distanceToTargetCategory = itShortestDistance->second.distanceToTargetCategory;
-//
-//            if (shortestDistanceCategory > distanceToTargetCategory) {
-//                shortestDistanceCategory = distanceToTargetCategory;
-//                vehId = itShortestDistance->first;
-//            }
-//        }
-//        return vehId;
-//
-//    }
+    if (int(shortestDistanceT) > int(shortestDistanceP)) {
+        vehDist::countMeetPshortestT++;
+        return choseCategory_RandomNumber1to100(percentP, vehIdP, vehIdT);
+    } else {
+        return vehIdT;
+    }
 }
 
-string vehDist::chosenByDistance_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget) {
-    unordered_map<string, shortestDistance>::iterator itShortestDistance;
+string vehDist::chosenByDistance_CategoryB(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP) {
+    string vehId = source;
+    double distanceToTargetCategory, shortestDistanceCategory;
+    shortestDistanceCategory = DBL_MAX;
+
+    unordered_map <string, shortestDistance>::iterator itShortestDistance = vehShortestDistanceToTarget.begin();
+    for (; itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
+        distanceToTargetCategory = itShortestDistance->second.distanceToTargetCategory;
+
+        if (shortestDistanceCategory > distanceToTargetCategory) {
+            shortestDistanceCategory = distanceToTargetCategory;
+            vehId = itShortestDistance->first;
+        }
+    }
+    return vehId;
+}
+
+string vehDist::chosenByDistance_RateTimeToSend(unordered_map <string, shortestDistance> vehShortestDistanceToTarget) {
+    unordered_map <string, shortestDistance>::iterator itShortestDistance;
     double distanceRateTimeToSendValue, shortestDistanceRateTimeToSendValue;
     string vehId = source;
 
@@ -598,8 +608,8 @@ string vehDist::chosenByDistance_RateTimeToSend(unordered_map<string, shortestDi
     return vehId;
 }
 
-string vehDist::chosenByDistance_Speed_Category(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP) {
-    unordered_map<string, shortestDistance>::iterator itShortestDistance;
+string vehDist::chosenByDistance_Speed_Category(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP) {
+    unordered_map <string, shortestDistance>::iterator itShortestDistance;
     double distanceSpeedValue, shortestDistanceT, shortestDistanceP;
     string category, vehIdP, vehIdT;
 
@@ -635,14 +645,14 @@ string vehDist::chosenByDistance_Speed_Category(unordered_map<string, shortestDi
     }
 }
 
-string vehDist::chosenByDistance_Speed_Category_RateTimeToSend(unordered_map<string, shortestDistance> vehShortestDistanceToTarget, int percentP) {
-    unordered_map<string, shortestDistance>::iterator itShortestDistance;
+string vehDist::chosenByDistance_Speed_Category_RateTimeToSend(unordered_map <string, shortestDistance> vehShortestDistanceToTarget, int percentP) {
+    unordered_map <string, shortestDistance>::iterator itShortestDistance;
     double valueDSCR, shortestDistanceT, shortestDistanceP;
     string category, vehIdP, vehIdT;
 
     vehIdP = vehIdT = source;
     shortestDistanceP = shortestDistanceT = DBL_MAX;
-    for(itShortestDistance = vehShortestDistanceToTarget.begin(); itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
+    for (itShortestDistance = vehShortestDistanceToTarget.begin(); itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
         category = itShortestDistance->second.categoryVeh;
         valueDSCR = itShortestDistance->second.decisionValueDistanceSpeedRateTimeToSend;
         if (category.compare("P") == 0) {
