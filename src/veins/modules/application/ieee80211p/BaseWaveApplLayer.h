@@ -128,7 +128,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
         void createEpidemicRequestMessageVector();
         void createEpidemicRemoteSummaryVector(string s);
 //######################################### Epidemic #########################################
-
         virtual void sendWSM(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm) = 0;
         virtual void onData(WaveShortMessage* wsm) = 0;
@@ -178,6 +177,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
         queue <string> queueFIFO;
 
         unsigned int sendSummaryVectorInterval, maximumEpidemicBufferSize;
+        unsigned int nodesRecentlySendLocalSummaryVector = 0;
+        simtime_t lastTimeSendLocalSummaryVector = 0;
 
         cMessage* sendEpidemicMessageRequestEvt;
 //######################################### Epidemic #########################################

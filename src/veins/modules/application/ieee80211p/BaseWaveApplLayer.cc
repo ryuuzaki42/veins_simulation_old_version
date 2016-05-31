@@ -272,7 +272,6 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
             countP += itMessagesReceived->second.countP;
         }
 
-
         unsigned short int messageCountHopZero = 0;
         string messageHopCountZero, messageHopCountDifferentZero;
         messageHopCountZero = messageHopCountDifferentZero = "";
@@ -284,8 +283,6 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
                 messageHopCountDifferentZero += itMessagesReceived->first + ", ";
             }
         }
-        messageHopCountZero.erase((messageHopCountZero.length() - 2), messageHopCountZero.length());
-        messageHopCountDifferentZero.erase((messageHopCountDifferentZero.length() - 2), messageHopCountDifferentZero.length());
 
         myfile << endl << "Messages received with hop count equal to zero:" << endl;
         myfile << messageHopCountZero << endl;
@@ -363,15 +360,13 @@ void BaseWaveApplLayer::messagesReceivedMeasuringRSU(WaveShortMessage* wsm) {
 void BaseWaveApplLayer::toFinishRSU() {
     printCountMessagesReceivedRSU();
 
-    // Set the maxSpeed back to default: 15 m/s
     if (myId == 0) {
         string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
-        system(comand.c_str());
+        system(comand.c_str()); // Set the maxSpeed back to default: 15 m/s
         cout << endl << "Setting speed back to default (15 m/s), command: " << comand << endl;
     }
 }
 //######################################### vehDist - end #######################################################################
-
 void BaseWaveApplLayer::initialize_minicurso_UFPI_TraCI(int stage) {
     BaseApplLayer::initialize(stage);
 
@@ -464,11 +459,11 @@ void BaseWaveApplLayer::initialize_epidemic(int stage) {
         dataOnSch = par("dataOnSch").boolValue();
         dataPriority = par("dataPriority").longValue();
 
-        //define the minimum slide window length among contacts to send new version of summary vector
+        // Define the minimum slide window length among contacts to send new version of summary vector
         sendSummaryVectorInterval = par("sendSummaryVectorInterval").longValue();
-        //define the maximum buffer size (in number of messages) that a node is willing to allocate for epidemic messages.
+        // Define the maximum buffer size (in number of messages) that a node is willing to allocate for epidemic messages.
         maximumEpidemicBufferSize = par("maximumEpidemicBufferSize").longValue();
-        //define the maximum number of hopes that a message can be forward before reach the target
+        // Define the maximum number of hopes that a message can be forward before reach the target
         beaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
 
         source = findHost()->getFullName();
@@ -557,7 +552,7 @@ void BaseWaveApplLayer::printWaveShortMessageEpidemic(WaveShortMessage* wsm) {
 
 void BaseWaveApplLayer::printQueueFIFO(queue <string> qFIFO) {
     unsigned short int i = 0;
-    while(!qFIFO.empty()) {
+    while (!qFIFO.empty()) {
         cout << source << " - queueFIFO Element " << ++i << ": " << qFIFO.front() << endl;
         qFIFO.pop();
     }
@@ -565,6 +560,28 @@ void BaseWaveApplLayer::printQueueFIFO(queue <string> qFIFO) {
 
 //Method used to initiate the anti-entropy session sending the epidemicLocalSummaryVector
 void BaseWaveApplLayer::sendLocalSummaryVector(unsigned int newRecipientAddress) {
+    string idMessage;
+    unsigned short int countMessage = epidemicLocalMessageBuffer.size();
+    unordered_map <string , WaveShortMessage>::iterator itMsg = epidemicLocalMessageBuffer.begin();
+    //printEpidemicLocalMessageBuffer();
+    while (countMessage > 0) {
+        if ((itMsg->second.getTimestamp() + ttlBeaconMessage) < simTime()) {
+            idMessage = itMsg->second.getGlobalMessageIdentificaton();
+
+            if (countMessage == 1) {
+                countMessage = 0;
+            } else {
+                countMessage--;
+                itMsg++;
+            }
+
+            epidemicLocalMessageBuffer.erase(idMessage);
+        } else {
+            countMessage--;
+            itMsg++;
+        }
+    }
+
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
     WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, newRecipientAddress, 2);
 
@@ -576,7 +593,7 @@ void BaseWaveApplLayer::sendLocalSummaryVector(unsigned int newRecipientAddress)
     sendWSM(wsm); // Sending the summary vector
 }
 
-//Method used to convert the unordered_map epidemicLocalSummaryVectorData in a string
+// Method used to convert the unordered_map epidemicLocalSummaryVectorData in a string
 string BaseWaveApplLayer::getLocalSummaryVectorData() {
     ostringstream ss;
     for (auto& x: epidemicLocalSummaryVector) {
@@ -695,7 +712,7 @@ void BaseWaveApplLayer::sendEpidemicRequestMessageVector(unsigned int newRecipie
     wsm->setWsmData(getEpidemicRequestMessageVectorData().c_str()); // Put the summary vector here
 
     //cout << "Sending a vector of request messages from " << source << "(" << MACToInteger() << ") to " << newRecipientAddress << endl;
-    sendWSM(wsm); //Sending the summary vector
+    sendWSM(wsm); // Sending the summary vector
 }
 
 void BaseWaveApplLayer::createEpidemicRequestMessageVector() {
@@ -779,7 +796,7 @@ void BaseWaveApplLayer::sendMessagesRequested(string s, unsigned int recipientAd
         }
     }
 
-    if (startSend) {
+    if (startSend && !epidemicMessageSend.empty()) {
         sendEpidemicMessageRequestEvt = new cMessage("beacon evt", Send_EpidemicMessageRequestEvt);
         scheduleAt(simTime(), sendEpidemicMessageRequestEvt);
     }
@@ -796,7 +813,7 @@ void BaseWaveApplLayer::receivedOnBeacon(WaveShortMessage* wsm) {
 
             printNodesIRecentlySentSummaryVector();
         } else {
-           if ((simTime() - got->second) >= sendSummaryVectorInterval) { //Send a summary vector to this node if passed the "sendSummaryVectorInterval" interval
+           if ((simTime() - got->second) >= sendSummaryVectorInterval) { // Send a summary vector to this node if passed the "sendSummaryVectorInterval" interval
                //cout << source << " updating the entry in the nodesIRecentlySentSummaryVector" << endl;
 
                got->second = simTime();
@@ -815,7 +832,7 @@ void BaseWaveApplLayer::receivedOnData(WaveShortMessage* wsm) {
         if (wsm->getSummaryVector()) {
             cout << source << "(" << MACToInteger() << ") received the summary vector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << " at " << simTime() << endl;
 
-            createEpidemicRemoteSummaryVector(wsm->getWsmData()); //Creating the remote summary vector
+            createEpidemicRemoteSummaryVector(wsm->getWsmData()); // Creating the remote summary vector
 
             printEpidemicRemoteSummaryVectorData();
             printEpidemicLocalSummaryVectorData();
@@ -843,47 +860,62 @@ void BaseWaveApplLayer::receivedOnData(WaveShortMessage* wsm) {
             } else { // It's data content
                 cout << source << "(" << MACToInteger() << ") received a message requested " << wsm->getGlobalMessageIdentificaton() << " |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << endl;
 
-                cout << "Before message processing" << endl;
-                printEpidemicLocalMessageBuffer();
-                cout << "Before message processing" << endl;
-                printEpidemicLocalSummaryVectorData();
-                cout << "Before message processing" << endl;
-                printQueueFIFO(queueFIFO);
-
-                //Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
-                unordered_map <string, WaveShortMessage>::iterator got = epidemicLocalMessageBuffer.find(wsm->getGlobalMessageIdentificaton());
-
-                if (got == epidemicLocalMessageBuffer.end()) { // True value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
-                    if (queueFIFO.size() > maximumEpidemicBufferSize) { // The maximum buffer size was reached, so remove the first item from the queueFIFO
-                        epidemicLocalMessageBuffer.erase(queueFIFO.front());
-                        epidemicLocalSummaryVector.erase(queueFIFO.front());
-                        queueFIFO.pop();
-                    }
-
-                    epidemicLocalMessageBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
-                    epidemicLocalSummaryVector.insert(make_pair(wsm->getGlobalMessageIdentificaton(), true));
-
-                    // FIFO strategy to set the maximum size that a node is willing to allocate epidemic messages in its buffer
-                    queueFIFO.push(wsm->getGlobalMessageIdentificaton());
-                }
-
-                cout << "After message processing" << endl;
-                printEpidemicLocalMessageBuffer();
-                cout << "After message processing" << endl;
-                printEpidemicLocalSummaryVectorData();
-                cout << "After message processing" << endl;
-                printQueueFIFO(queueFIFO);
-
-                // Changing the turn of the anti-entropy session
-                if (wsm->getSenderAddress() < MACToInteger()) {
-                    sendLocalSummaryVector(wsm->getSenderAddress());
-                }
-
                 if (source.compare(wsm->getTarget()) == 0) { // Verifying if is the target of this message
                     cout << source << " received a message for him at " << simTime() << endl;
                     if (source.substr(0, 3).compare("rsu") == 0) {
                         findHost()->bubble("Received one message");
                         messagesReceivedMeasuringRSU(wsm);
+                    } /* else {
+                        // This message has target destination one vehicle
+                    } */
+                } else {
+                    cout << "Before message processing" << endl;
+                    printEpidemicLocalMessageBuffer();
+                    cout << "Before message processing" << endl;
+                    printEpidemicLocalSummaryVectorData();
+                    cout << "Before message processing" << endl;
+                    printQueueFIFO(queueFIFO);
+
+                    // Verifying if there is no entry for current message received in my epidemicLocalMessageBuffer
+                    unordered_map <string, WaveShortMessage>::iterator got = epidemicLocalMessageBuffer.find(wsm->getGlobalMessageIdentificaton());
+
+                    if (got == epidemicLocalMessageBuffer.end()) { // True value means that there is no entry in the epidemicLocalMessageBuffer for the current message identification
+                        if (queueFIFO.size() > maximumEpidemicBufferSize) { // The maximum buffer size was reached, so remove the first item from the queueFIFO
+                            epidemicLocalMessageBuffer.erase(queueFIFO.front());
+                            epidemicLocalSummaryVector.erase(queueFIFO.front());
+                            queueFIFO.pop();
+                        }
+
+                        epidemicLocalMessageBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
+                        epidemicLocalSummaryVector.insert(make_pair(wsm->getGlobalMessageIdentificaton(), true));
+
+                        // FIFO strategy to set the maximum size that a node is willing to allocate epidemic messages in its buffer
+                        queueFIFO.push(wsm->getGlobalMessageIdentificaton());
+                    }
+
+                    cout << "After message processing" << endl;
+                    printEpidemicLocalMessageBuffer();
+                    cout << "After message processing" << endl;
+                    printEpidemicLocalSummaryVectorData();
+                    cout << "After message processing" << endl;
+                    printQueueFIFO(queueFIFO);
+                }
+
+                // Changing the turn of the anti-entropy session
+                if (wsm->getSenderAddress() < MACToInteger()) { // To check, send a by time
+                    bool SendOrNotLocalSummaryVector = false;
+                    if (wsm->getSenderAddress() == nodesRecentlySendLocalSummaryVector) {
+                        if ((simTime() - sendSummaryVectorInterval) >= lastTimeSendLocalSummaryVector) {
+                            SendOrNotLocalSummaryVector = true;
+                        }
+                    } else {
+                        SendOrNotLocalSummaryVector = true;
+                    }
+
+                    if(SendOrNotLocalSummaryVector) {
+                        sendLocalSummaryVector(wsm->getSenderAddress());
+                        nodesRecentlySendLocalSummaryVector = wsm->getSenderAddress();
+                        lastTimeSendLocalSummaryVector = simTime();
                     }
                 }
             }
