@@ -1,7 +1,7 @@
-//###########################################################
-//                      To compile:
-// g++ -std=c++0x -Wall -o 1_path_routes.out 1_path_routes.cc
-//###########################################################
+//##################################################################
+//                        To compile:
+// g++ -std=c++0x -Wall -o 1_path_routes_10x.out 1_path_routes_10x.cc
+//###################################################################
 
 #include <map>
 #include <fstream>
@@ -44,19 +44,20 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
 
     unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes, lineCount;
     unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp, sigmaValue;
-    unsigned short int insertByTime, timeToInsert, compare, compare2, stopDurationTime;
+    unsigned short int insertByTime, timeToInsert, compare, compare2, stopDurationTime, route10x;
 
     count = 1; // route start number
     pathComp = 4; //4 //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
-    countVehicleRoutes = 50; //50
-    countVehicleCagegoryT = 10; //10
+    countVehicleRoutes = 85; //50
+    countVehicleCagegoryT = 5; //10
     insertByTime = 5; //5
-    timeToInsert = 60; //60
+    timeToInsert = 180; //30 * 5; //60
     sigmaValue = 0; //0.5
-    goAndBack = false; //false
-    stopPart = false; // Se colocar true coloque valor maior que zero em stopDurationTime, e.g. 20
+    goAndBack = true; //false
+    route10x = 10; //10
+    stopPart = true; // Se colocar true coloque valor maior que zero em stopDurationTime, e.g. 20
     // Site configs: http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes
-    stopDurationTime = 60;
+    stopDurationTime = 60 * 8; // 480 s
     useLeftAndRightRoadAsSamePlace = true;
     useDepartPos_ArrivalPos_DepartSpeed_AsRandom = false;
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
@@ -83,6 +84,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     // 23 no início [        <route edges="] + 3 no final ["/>] => 26; 1 tem 9 [1/2to1/1 ], como uma rua tem 250 m
     // logo 1 km => 4 *9 => 36 + 26 + 9 (ponto inicial). x km = x * 36 + 26 + 9
     routeComp = 580; //580 // Para 15 km, 15 * 36 + 26 + 9 = 575, para ter certeza 580
+    routeComp *= route10x;
     // Will generate 576 part of 9 (1/2to3/4 ) => (576/9) * 250/1000 => 16 km
     // By 25 m/s or 90 km/h => will move 15 km
     // By 15 m/s or 54 km/h => will move 9 km
@@ -323,6 +325,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
                 p1 += 9;
             }
             count++;
+
         }
     }
 
