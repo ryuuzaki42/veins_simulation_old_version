@@ -91,6 +91,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         //## Used to another projects
         void toFinishRSU();
+        string boolToString(bool value);
         void restartFilesResultRSU(string folderResult);
         void printCountMessagesReceivedRSU();
         void messagesReceivedMeasuringRSU(WaveShortMessage* wsm);
@@ -152,8 +153,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         string fileMessagesUnicast, fileMessagesBroadcast, fileMessagesCount, fileMessagesDrop, fileMessagesGenerated;
 
-        unsigned short int repeatNumber, expNumber, expSendbyDSCR, countGenerateBeaconMessage;
-        double ttlBeaconMessage;
+        unsigned short int repeatNumber, expNumber, expSendbyDSCR, countGenerateBeaconMessage, ttlBeaconMessage;
 
         //## Used to another projects
         unsigned short int beaconMessageHopLimit;

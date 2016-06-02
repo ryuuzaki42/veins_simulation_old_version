@@ -141,20 +141,28 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
 
     expNumber = par("expNumber").longValue();
     if ((expNumber == 1) || (expNumber == 5)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+        ttlBeaconMessage = par("ttlBeaconMessage_one").longValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
     } else if ((expNumber == 2) || (expNumber == 6)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_one").doubleValue();
+        ttlBeaconMessage = par("ttlBeaconMessage_one").longValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
     } else if ((expNumber == 3) || (expNumber == 7)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+        ttlBeaconMessage = par("ttlBeaconMessage_two").longValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_one").longValue();
     } else if ((expNumber == 4) || (expNumber == 8)) {
-        ttlBeaconMessage = par("ttlBeaconMessage_two").doubleValue();
+        ttlBeaconMessage = par("ttlBeaconMessage_two").longValue();
         countGenerateBeaconMessage = par("countGenerateBeaconMessage_two").longValue();
     } else {
         cout << "Error: Number of experiment not configured. Go to BaseWaveApplLayer.cc line 155" << endl;
         exit(33);
+    }
+}
+
+string BaseWaveApplLayer::boolToString(bool value) {
+    if (value) {
+        return "true";
+    } else {
+        return "false";
     }
 }
 
@@ -186,7 +194,7 @@ string BaseWaveApplLayer::getFolderResultVehDist(unsigned short int expSendbyDSC
 
     unsigned short int expPartOneOrTwo = par("expPart_one_or_two");
     resultFolderPart = "results/vehDist_resultsEnd_" + to_string(expPartOneOrTwo) + "/" + expSendbyDSCRText + "/";
-    resultFolderPart += "E" + to_string(expNumber) + "_" + to_string((static_cast<int>(ttlBeaconMessage))) + "_";
+    resultFolderPart += "E" + to_string(expNumber) + "_" + to_string(ttlBeaconMessage) + "_";
     resultFolderPart += to_string(countGenerateBeaconMessage) +"/";
 
     return resultFolderPart;
