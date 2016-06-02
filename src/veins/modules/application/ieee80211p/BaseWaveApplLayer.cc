@@ -126,7 +126,7 @@ void BaseWaveApplLayer::printHeaderfileExecution(double ttlBeaconMessage, unsign
     }
     expSendbyDSCRText += to_string(expSendbyDSCR);
 
-    myfile << "Exp: " << expNumber << " expSendbyDSCR: " << expSendbyDSCRText.c_str() << " ######################################";
+    myfile << "Exp: " << expNumber << " expSendbyDSCR: " << expSendbyDSCRText.c_str() << " ################";
     myfile << "##########################################################################" << endl;
     myfile << "Exp: " << expNumber << " expSendbyDSCR: " << expSendbyDSCRText.c_str() << " ### ExpNumber: " << expNumber << " RepeatNumber: " << repeatNumber;
     myfile << " ttlBeaconMessage: " << ttlBeaconMessage << " countGenerateBeaconMessage: " << countGenerateBeaconMessage << endl << endl;
@@ -293,6 +293,7 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
         avgGeneralHopsMessage /= messagesReceived.size();
         avgGeneralTimeMessageReceived /= avgGeneralCopyMessageReceived;
 
+        myfile << "Exp: " << expNumber << " ### Messages received in the " << source << endl;
         myfile << endl << endl << "Exp: " << expNumber << " ### Count messages received: " << messagesReceived.size() << endl;
         myfile << "Exp: " << expNumber << " ### Count messages with hop count equal of zero received: " << messageCountHopZero << endl;
         myfile << "Exp: " << expNumber << " ### Count messages with hop count different of zero Received: " << (messagesReceived.size() - messageCountHopZero) << endl;
