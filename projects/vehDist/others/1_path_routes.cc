@@ -1,5 +1,5 @@
 //###########################################################
-//                      To compile:                          
+//                      To compile:
 // g++ -std=c++0x -Wall -o 1_path_routes.out 1_path_routes.cc
 //###########################################################
 
@@ -39,21 +39,23 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     string fileInput, fileOutput, fileDist, fileResultPartName;
     string routeTmp, to, toTmp, line, fristPart, middlePart, lastPart;
 
-    bool parte1, goAndBack, validRoute;
+    bool parte1, goAndBack, validRoute, stopPart;
     bool useDepartPos_ArrivalPos_DepartSpeed_AsRandom, useLeftAndRightRoadAsSamePlace;
 
     unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes, lineCount;
     unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp, sigmaValue;
-    unsigned short int insertByTime, timeToInsert, compare, compare2;
+    unsigned short int insertByTime, timeToInsert, compare, compare2, stopDurationTime;
 
     count = 1; // route start number
-    pathComp = 4; //4; //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
-    countVehicleRoutes = 50; //50;
-    countVehicleCagegoryT = 10; //10;
-    insertByTime = 5; //5;
+    pathComp = 4; //4 //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
+    countVehicleRoutes = 50; //50
+    countVehicleCagegoryT = 10; //10
+    insertByTime = 5; //5
     timeToInsert = 60; //60
-    sigmaValue = 0; // 0.5
+    sigmaValue = 0; //0.5
     goAndBack = false; //false
+    stopPart = false; // Se colocar true coloque valor maior que zero em stopDurationTime, e.g. 20
+    stopDurationTime = 60;
     useLeftAndRightRoadAsSamePlace = true;
     useDepartPos_ArrivalPos_DepartSpeed_AsRandom = false;
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
@@ -129,6 +131,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
 
                 if (validRoute) {
                     if (parte1) {
+                        // Routes T
                       if (to.size() > routeComp) {
                             toTmp += line.substr(14, 16);
                             p1 = 31;
@@ -149,12 +152,21 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
                             parte1 = false;
                         }
                     } else {
+                        // Routes P
                         p1 = 22;
 
                         if (goAndBack) {
                             p2 = pathComp * 9 - 1;
                         } else {
                             p2 = ((pathComp * 9) * 2) -1;
+                        }
+
+                        string routeStopPart;
+                        if (stopPart) {
+                            unsigned short int middleRoute = pathComp * 9 - 1;;
+                            //cout << "Route " << count << " middleRoute " << middleRoute << " stopPart: " << line.substr((p1 + middleRoute + 1), 9) << endl;
+                            //cout << "Full route " << line.substr(p1, p2) << endl;
+                            routeStopPart = line.substr((p1 + middleRoute - 8), 8);
                         }
 
                         routeTmp = line.substr(p1, p2); // Pega o primeira parte da rota
@@ -184,7 +196,13 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
                         //    toTmp += " " + routeTmp;
                         //}
 
-                        toTmp += "\"/>\n";
+                        if (stopPart) {
+                            toTmp += "\">\n";
+                            toTmp += "        <stop lane=\"" + routeStopPart +"_0\" parking=\"true\" friendlyPos=\"true\" endPos=\"50\" duration=\"" + to_string(stopDurationTime) + "\"/>\n    </route>\n";
+                        } else {
+                            toTmp += "\"/>\n";
+                        }
+
                         output << toTmp; // Escrita da rota no arquivo de saída
                         count++;
                     }
@@ -267,18 +285,6 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     map <string, struct distributionCategory> routes;
     map <string, struct distributionCategory>::iterator itRoutes;
 
-    output.open(fileDist.c_str()); // Arquivo de saída da distribuição de veículos nos locais
-    output << "## Distribuição dos veículos pelos segmentos de ruas" << endl;
-    output << "cP = Veículos de Passeio.   cT = Táxi" << endl << endl;
-
-    output << "Nome do segmento de rua";
-    if (useLeftAndRightRoadAsSamePlace) {
-        output << "                  Count cP    Count cT    %cP    %cT    cT + cP";
-    } else {
-        output << "    Count cP    Count cT    %cP    %cT    cT + cP";
-    }
-    output << endl << endl;
-
     while (getline(cin,line) && count <= countVehicleRoutes) { // count <= 50 to 50 routes
         if (line.compare(0, 11, "    <route ") == 0) {
             p1 = 32;
@@ -302,26 +308,37 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
 
                 if (itRoutes != routes.end()) { // Testa se ele já foi inserido ou existe
                     if (count <= countVehicleCagegoryT) {
-                        itRoutes->second.categoryP++;
-                    } else {
                         itRoutes->second.categoryT++;
+                    } else {
+                        itRoutes->second.categoryP++;
                     }
                 } else {
                     struct distributionCategory dC;
                     dC.categoryP = dC.categoryT = 0;
                     if (count <= countVehicleCagegoryT) {
-                        dC.categoryP++;
-                    } else {
                         dC.categoryT++;
+                    } else {
+                        dC.categoryP++;
                     }
                     routes.insert(make_pair(routeTmp, dC));
                 }
                 p1 += 9;
             }
             count++;
-
         }
     }
+
+    output.open(fileDist.c_str()); // Arquivo de saída da distribuição de veículos nos locais
+    output << "## Distribuição dos veículos pelos segmentos de ruas" << endl;
+    output << "cP = Veículos de Passeio.   cT = Táxi" << endl << endl;
+
+    output << "Nome do segmento de rua";
+    if (useLeftAndRightRoadAsSamePlace) {
+        output << "                  Count cP    Count cT    %cP    %cT    cT + cP";
+    } else {
+        output << "    Count cP    Count cT    %cP    %cT    cT + cP";
+    }
+    output << endl << endl;
 
     count = 1;
     cout.precision(4);
