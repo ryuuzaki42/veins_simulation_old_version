@@ -16,7 +16,8 @@
     ./gridConvertOneCharacter.sh 13
 
 ## Generate the trips and the routes (with various distance)
-    python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py -n vehDist.net.xml --min-distance=100000 -b 0 -e 30000 -i 200 -s 1 -r vehDist_tmp.rou.xml
+    python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py -n vehDist.net.xml --min-distance=100000 -b 0 -e 3000 -i 200 -s 1 -r vehDist_tmp.rou.xml
+    #python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py -n vehDist.net.xml --min-distance=100000 -b 0 -e 30000 -i 200 -s 1 -r vehDist_tmp.rou.xml
         # The -s (seed) 1, for generate the same routes every time that run the command
 
 ## To test "is the same routes?"
@@ -49,7 +50,7 @@
 
 ## Script in R ##
 ## Execute R < script_r.r or source('script_r.r', echo=TRUE)
-    calculeDistance <- function(){
+    calculeDistance <- function() {
         ## copy in a=c("values") and b=c("values")
         a=c(1030.0,1300.0,0)
         b=c(520,520,3)
@@ -73,7 +74,7 @@ i=1; cat exp$i.r | grep -E "Count|experiment" | sed 's/Exp: '$i' ### Count messa
 
 ## Get the count message received by the full experiment file
 i=1; cat file.r | grep -E "Exp: $i|Values" |  grep -E "Count messages received|Values" | sed 's/Exp: '$i' ### Count messages received://g'
-#or
+    #or
 i=1; f=1; part=1; ./grep_results.sh $part $i $f | grep -E "Exp: $i|Values" |  grep -E "Count messages received|Values" | sed 's/Exp: '$i' ### Count messages received://g'
 
 ## Get the count message dropped by the full experiment file
@@ -81,5 +82,15 @@ i=1; cat file.r | grep -E "Exp: $i|Values" |  grep -E "drop:|Values" | sed 's/Ex
 
 ## Get the count message packets send by the full experiment file
 i=1; cat file.r | grep -E "Exp: $i|Values" | grep -E "send|Values" | sed 's/Exp: '$i' ### Final count packets messages send://g'
+
+# Error ASSERT: condition count == drivingVehicleCount false in function processVehicleSubscription, veins/modules/mobility/traci/TraCIScenarioManager.cc line 759
+    Commenting out the ASSERT is totally fine.
+    In SUMO any vehicle can have one of five states (according to statesvehicleStates_sm.uxf):
+    first, it is loaded, transitions to running when it starts driving, then transitions to arrived when it arrived at its destination.
+    In addition, running vehicles can temporarily become teleporting or parking.
+    Veins subscribes to these state changes to keep track of the number of driving vehicles.
+    To make sure that the bookkeeping is correct, it compares its own count against SUMO''s reported number of active vehicles.
+    I do not know why the numbers do not match sometimes. It only seems to occur in large congested networks.
+    # Link: http://stackoverflow.com/questions/31605511/assert-condition-for-driving-vehicles-in-veins-failed
 
 #
