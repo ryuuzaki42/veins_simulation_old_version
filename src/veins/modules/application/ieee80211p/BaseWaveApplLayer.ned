@@ -86,7 +86,8 @@ simple BaseWaveApplLayer like IBaseApplLayer {
 
         int porcentP = default(0); // Potcentage that send to vehicle from category P
         bool usePathHistory = default(false); // User or not path history when send a message
-        bool allowMessageCopy= default(false); // Allow or not copy of messages
+        bool allowMessageCopy = default(false); // Allow or not copy of messages
+        bool selectFromAllVehicles = default(false); // Chose for all vehicle or for only new
 
     gates:
         input lowerLayerIn; // from mac layer
