@@ -22,30 +22,38 @@
 #
 # Script: Script to collect the simulation result in one place
 #
-# Última atualização: 08/05/2016
+# Última atualização: 03/06/2016
 #
 part=$1
 if [ "$part" == '' ]; then
-   echo -e "\nError, you need pass the result_part value, e.g., $0 1\n"
-   exit 1
+    echo -e "\nError, you need pass the result_part value, e.g., $0 \"1\" 1 1\n"
+    exit 1
 fi
 
-numExpI=$2
-if [ "$numExpI" == '' ]; then
-    numExpI=1
+numExpI_1to8=$2
+if [ "$numExpI_1to8" == '' ]; then
+    echo -e "\nError, you need pass the start experiment number (1 to 8) value, e.g., $0 1 \"1\" 1\n"
+    exit 1
 fi
 
-numExpF=$3
-if [ "$numExpF" == '' ]; then
-    numExpF=8
+numExpF_1to8=$3
+if [ "$numExpF_1to8" == '' ]; then
+    echo -e "\nError, you need pass the finish experiment number (1 to 8) value, e.g., $0 1 1 \"1\"\n"
+    exit 1
 fi
 
-if [ "$numExpF" -lt "$numExpI" ]; then
-    numExpF=$numExpI
+numExpF_DSCR=$4
+if [ "$numExpF_DSCR" == '' ]; then
+    numExpF_DSCR=6
+fi
+((numExpF_DSCR++))
+
+if [ "$numExpF_1to8" -lt "$numExpI_1to8" ]; then
+    numExpF_1to8=$numExpI_1to8
 fi
 
-echo -e "\nNumber of experiments: $numExpI to $numExpF\n"
-((numExpF++))
+echo -e "\nNumber of experiments: $numExpI_1to8 to $numExpF_1to8\n"
+((numExpF_1to8++))
 
 ## Local my pc folder
 cd /media/sda4/prog/simulation_veins/projects/vehDist/others/
@@ -72,10 +80,10 @@ while [ $continueFlag == 1 ]; do
         6) experiment="1234_chosenByDistance_Speed_Category_RateTimeToSend" ;;
     esac
 
-    echo -e "\n## Values from experiment $experiment\n"
-    i=$numExpI
-    while [ $i -lt $numExpF ]; do
-        echo -e "\n               ## Experiment $i\n"
+    echo -e "\n\n## Values from experiment $experiment"
+    i=$numExpI_1to8
+    while [ $i -lt $numExpF_1to8 ]; do
+        echo -e "               ## Experiment $i\n"
         cat $pathFolder/$experiment/E$i_*/$rsu0File | grep -E "Exp: $i"
         echo
         cat $pathFolder/$experiment/E$i_*/$vehiclesFile | grep -E "Exp: $i"
@@ -83,7 +91,7 @@ while [ $continueFlag == 1 ]; do
     done
 
     ((count++))
-    if [ $count == 7 ]; then
+    if [ $count == $numExpF_DSCR ]; then
         continueFlag=0
     fi
 done
