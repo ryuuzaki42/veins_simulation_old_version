@@ -301,8 +301,8 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
         avgGeneralHopsMessage /= messagesReceived.size();
         avgGeneralTimeMessageReceived /= avgGeneralCopyMessageReceived;
 
-        myfile << "Exp: " << expNumber << " ### Messages received in the " << source << endl;
-        myfile << endl << endl << "Exp: " << expNumber << " ### Count messages received: " << messagesReceived.size() << endl;
+        myfile << endl << endl << "Exp: " << expNumber << " ### Messages received in the " << source << endl;
+        myfile << "Exp: " << expNumber << " ### Count messages received: " << messagesReceived.size() << endl;
         myfile << "Exp: " << expNumber << " ### Count messages with hop count equal of zero received: " << messageCountHopZero << endl;
         myfile << "Exp: " << expNumber << " ### Count messages with hop count different of zero Received: " << (messagesReceived.size() - messageCountHopZero) << endl;
         myfile << "Exp: " << expNumber << " ### Average time to receive: " << avgGeneralTimeMessageReceived << endl;
