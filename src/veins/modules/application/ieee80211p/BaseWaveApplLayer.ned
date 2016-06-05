@@ -88,6 +88,7 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         bool usePathHistory = default(false); // User or not path history when send a message
         bool allowMessageCopy = default(false); // Allow or not copy of messages
         bool selectFromAllVehicles = default(false); // Chose for all vehicle or for only new
+        bool useMessagesSendLog = default(false); // Use or not message send log
 
     gates:
         input lowerLayerIn; // from mac layer
