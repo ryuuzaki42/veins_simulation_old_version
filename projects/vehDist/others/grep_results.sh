@@ -97,6 +97,4 @@ while [ $continueFlag == 1 ]; do
 done
 
 echo -e "\n\n               ## End of script\n"
-
-exit 0
 #

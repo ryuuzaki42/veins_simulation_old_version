@@ -24,7 +24,7 @@
 # to use just one character in the edges
 #
 # Última atualização: 31/05/2016
-
+#
 countGrid=$1
 if [ "$countGrid" == "" ]; then
     echo "Error, need to pass the grid count to convert (e.g., $0 13)"
@@ -78,7 +78,6 @@ while [ $countGridTmp -lt $countGrid ]; do
     ((countGridTmp++))
     echo -e "\tTurning \"$inValue\" in \"$outValue\""
 done
-echo -e "\nConverting finished\n"
 
-exit 0
+echo -e "\nConverting finished\n"
 #

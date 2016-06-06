@@ -28,6 +28,4 @@ while [ $run -lt $run_end ]; do
         runFile=0;
     fi
 done
-
-exit 0
 #
