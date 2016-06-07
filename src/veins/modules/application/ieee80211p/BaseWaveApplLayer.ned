@@ -84,7 +84,7 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         int vehTimeUpdatePosition @unit("s") = default(0s); // Time for update vehicle position
         int expSendbyDSCR = default(0);
 
-        int percentP = default(0); // Potcentage that send to vehicle from category P
+        int percentP = default(0); // Percentage that send to vehicle from category P
         bool usePathHistory = default(false); // User or not path history when send a message
         bool allowMessageCopy = default(false); // Allow or not copy of messages
         bool selectFromAllVehicles = default(false); // Chose for all vehicle or for only new
