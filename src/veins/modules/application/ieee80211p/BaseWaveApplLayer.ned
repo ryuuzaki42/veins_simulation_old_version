@@ -89,6 +89,7 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         bool allowMessageCopy = default(false); // Allow or not copy of messages
         bool selectFromAllVehicles = default(false); // Chose for all vehicle or for only new
         bool useMessagesSendLog = default(false); // Use or not message send log
+        bool vehSendWhileParking = default(false); // Send or not while is parking
 
     gates:
         input lowerLayerIn; // from mac layer
