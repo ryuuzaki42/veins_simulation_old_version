@@ -1,36 +1,8 @@
-//
-// Copyright (C) 2011 David Eckhoff <eckhoff@cs.fau.de>
-//
-// Documentation for these modules is at http://veins.car2x.org/
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//
+// Copyright (C) 2015-2016 João Batista <joao.b@usp.br>
 
 package org.car2x.veins.modules.application.ieee80211p;
 import org.car2x.veins.base.modules.IBaseApplLayer;
 
-//
-// WAVE application layer base class.
-//
-// @author David Eckhoff
-//
-// @see BaseWaveApplLayer
-// @see Nic80211p
-// @see Mac1609_4
-// @see PhyLayer80211p
-//
 simple BaseWaveApplLayer like IBaseApplLayer {
     parameters:
         bool debug = default(false); //whether to print debug output
@@ -80,6 +52,8 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         bool selectFromAllVehicles = default(false); // Chose for all vehicle or for only new
         bool useMessagesSendLog = default(false); // Use or not message send log
         bool vehSendWhileParking = default(false); // Send or not while is parking
+        bool vehDist_true_epidemicFalse = default(false); // Is vehDist (true), is Epidemic (false)
+        bool vehDist_create_eventGenerateMessage = default(false); // Use the event to generate message or not
 
     gates:
         input lowerLayerIn; // from mac layer
