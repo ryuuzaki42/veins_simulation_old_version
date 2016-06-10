@@ -88,17 +88,19 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(string name, int lengthBit
     wsm->setPriority(priority);
     wsm->setWsmVersion(1);
     wsm->setSerial(serial);
+
     wsm->setTimestamp(simTime());
-    wsm->setSenderPos(curPosition);
-    //wsm->setSenderPos(Coord(1000,1000,3));
     wsm->setSource(source.c_str());
 
+    //wsm->setSenderPos(curPosition);
+    wsm->setSenderPos(Coord(30000, 30000, 3)); // Value set to be not select by small distance
+    wsm->setSenderPosPrevious(Coord(30000, 30000, 3)); // RSU can't move
+    wsm->setRateTimeToSend(10000); // Value set to be not select by small rateTimeToSend
+
     //beacon don't need
-    //wsm->setSenderPosPrevious(curPosition); // RSU can't move
     //wsm->setRecipientAddressString(); => "BROADCAST"
     //wsm->setSenderAddressTemporary();
     //wsm->setTarget(); => "BROADCAST"
-    //wsm->setRateTimeToSend();
 
     DBG << "Creating BeaconStatus with Priority " << priority << " at Applayer at " << wsm->getTimestamp() << std::endl;
     return wsm;
