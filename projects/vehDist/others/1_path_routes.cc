@@ -50,10 +50,10 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     count = 1; // route start number
     pathComp = 4; //4 //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
     simulationTimeLimit = 600 - 150;
-    countVehicleRoutes = 170; //50
+    countVehicleRoutes = 50; //170; //50
     countVehicleCagegoryT = 10; //10
-    countPBegin = 40; //10
-    insertByTime = 40; //5
+    countPBegin = 10; //40; //10
+    insertByTime = 10; //40; //5
     timeToInsert = 120; //60
     sigmaValue = 0.5; //0.5
     goAndBack = false; //false
@@ -102,6 +102,8 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     output << "    Routes T (" << count << " to " << countVehicleCagegoryT <<"): \"random\"" << endl;
     output << "    Routes P (" << (countVehicleCagegoryT + 1) << " to " << countVehicleRoutes << "): ";
     output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m)" << endl;
+    output << "    Begin insert " << countVehicleCagegoryT << " T and " << countPBegin << " P" << endl;
+    output << "        After this, insert " << insertByTime << " P by each " << timeToInsert << " seconds "<< endl;
     output << "    fileOutput: " << fileOutput << endl;
     output << "    lineStart: " << lineCount << endl;
     output << "    -->" << endl << endl;
