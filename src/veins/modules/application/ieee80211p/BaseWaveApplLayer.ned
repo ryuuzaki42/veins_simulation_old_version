@@ -52,8 +52,8 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         bool selectFromAllVehicles = default(false); // Chose for all vehicle or for only new
         bool useMessagesSendLog = default(false); // Use or not message send log
         bool vehSendWhileParking = default(false); // Send or not while is parking
-        bool vehDist_true_epidemicFalse = default(false); // Is vehDist (true), is Epidemic (false)
-        bool vehDist_create_eventGenerateMessage = default(false); // Use the event to generate message or not
+        bool vehDistTrueEpidemicFalse = default(false); // Is vehDist (true), is Epidemic (false)
+        bool vehDistCreateEventGenerateMessage = default(false); // Use the event to generate message or not
 
     gates:
         input lowerLayerIn; // from mac layer
