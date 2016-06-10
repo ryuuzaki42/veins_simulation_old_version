@@ -53,7 +53,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         string getFolderResultVehDist(unsigned short int experimentSendbyDSR);
 
         void toFinishRSU();
-        void finishVeh();
+        void toFinishVeh();
         string boolToString(bool value);
 
         void restartFilesResultRSU(string folderResult);
@@ -82,8 +82,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual WaveShortMessage* prepareWSM_epidemic(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
         unsigned int MACToInteger();
 
-        void receivedOnBeacon(WaveShortMessage* wsm);
-        void receivedOnData(WaveShortMessage* wsm);
+        void receivedOnBeaconEpidemic(WaveShortMessage* wsm);
+        void receivedOnDataEpidemic(WaveShortMessage* wsm);
 
         void printWaveShortMessageEpidemic(WaveShortMessage* wsm);
 
@@ -107,6 +107,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         void generateMessageEpidemic();
 //######################################### Epidemic #########################################
+
         virtual void sendWSM(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm) = 0;
         virtual void onData(WaveShortMessage* wsm) = 0;
@@ -125,28 +126,32 @@ class BaseWaveApplLayer : public BaseApplLayer {
         WaveAppToMac1609_4Interface* myMac;
 
 //######################################### vehDist #########################################
+
+        vector <string> messagesOrderReceivedVehDist;
+
+        unordered_map <string, WaveShortMessage> messagesBufferVehDist;
+
+        //## Used to another projects
         cMessage* sendGenerateBeaconMessageEvt;
 
         mt19937 mt_veh;
 
         double vehOffSet;
 
-        vector <string> messagesOrderReceived;
+        ofstream myfile; // record in file
 
         unsigned short int target_x, target_y, msgBufferMaxUse;
 
-        unordered_map <string, WaveShortMessage> messagesBuffer;
-
         string fileMessagesUnicast, fileMessagesBroadcast, fileMessagesCount, fileMessagesDrop, fileMessagesGenerated;
-
-        //## Used to another projects
-        ofstream myfile; // record in file
 
         static unsigned short int SrepeatNumber, SexpNumber, SexpSendbyDSCR, ScountGenerateBeaconMessage, SttlBeaconMessage;
 
         static unsigned short int SmsgDroppedbyTTL, SmsgDroppedbyCopy, SmsgDroppedbyBuffer;
         static unsigned short int ScountMsgPacketSend, SmsgBufferUseGeneral, ScountMesssageDrop, SbeaconMessageHopLimit;
         static unsigned short int ScountMeetN, ScountTwoCategoryN, ScountMeetPshortestT, ScountVehicleAll, SbeaconMessageId;
+
+        static unsigned short int SbeaconStatusBufferSize, SttlBeaconStatus, SpercentP;
+        static unsigned short int StimeLimitGenerateBeaconMessage, StimeToUpdatePosition, SbeaconMessageBufferSize;
 
         static string SprojectInfo;
 
@@ -156,35 +161,32 @@ class BaseWaveApplLayer : public BaseApplLayer {
         static bool SvehDistTrueEpidemicFalse, SusePathHistory, SallowMessageCopy, SvehSendWhileParking;
         static bool SselectFromAllVehicles, SuseMessagesSendLog, SvehDistCreateEventGenerateMessage;
 
-        static unsigned short int SbeaconStatusBufferSize, SttlBeaconStatus, SpercentP;
-        static unsigned short int StimeLimitGenerateBeaconMessage, StimeToUpdatePosition, SbeaconMessageBufferSize;
-
         struct messages {
           string firstSource, hops, wsmData, times;
           unsigned short int minHop, maxHop, sumHops, countT, countP, copyMessage;
           simtime_t sumTimeRecived;
         };
-        map <string, struct messages> messagesReceived;
+        map <string, struct messages> messagesReceivedRSU;
 
         struct messagesDropStruct {
             unsigned short int byBuffer, byTime, byCopy;
             simtime_t timeGenerate, timeDroped, timeDifference;
         };
-        map <string, struct messagesDropStruct> messagesDrop;
+        map <string, struct messagesDropStruct> messagesDropVeh;
 //######################################### vehDist #########################################
 
 //######################################### Epidemic #########################################
+
+        cMessage* sendEpidemicMessageRequestEvt;
+
         unordered_map <string, WaveShortMessage> epidemicLocalMessageBuffer, epidemicMessageSend;
 
         unordered_map <string, bool> epidemicLocalSummaryVector, epidemicRemoteSummaryVector, epidemicRequestMessageVector;
 
         unordered_map <unsigned int, simtime_t> nodesRecentlyFoundList, nodesIRecentlySentSummaryVector;
 
-        unsigned int sendSummaryVectorInterval, maximumEpidemicBufferSize;
-        unsigned int nodesRecentlySendLocalSummaryVector = 0;
-        simtime_t lastTimeSendLocalSummaryVector = 0;
-
-        cMessage* sendEpidemicMessageRequestEvt;
+        unsigned int sendSummaryVectorInterval, maximumEpidemicBufferSize, nodesRecentlySendLocalSummaryVector;
+        simtime_t lastTimeSendLocalSummaryVector;
 //######################################### Epidemic #########################################
 };
 

@@ -202,6 +202,10 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
 
         SprojectInfo += texTmp + "\n";
         cout << endl << SprojectInfo << endl;
+
+        if (!SvehDistTrueEpidemicFalse) {
+            lastTimeSendLocalSummaryVector = nodesRecentlySendLocalSummaryVector = 0;
+        }
     }
 }
 
@@ -417,14 +421,14 @@ void BaseWaveApplLayer::generateBeaconMessageVehDist() {
     //bool insert = sendOneNewMessageToOneNeighborTarget(*wsm);
     bool insert = true;
     if (insert) {
-        messagesBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); // Adding the message on the buffer
-        if (messagesBuffer.size() > msgBufferMaxUse) {
-            msgBufferMaxUse = messagesBuffer.size();
+        messagesBufferVehDist.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); // Adding the message on the buffer
+        if (messagesBufferVehDist.size() > msgBufferMaxUse) {
+            msgBufferMaxUse = messagesBufferVehDist.size();
         }
-        messagesOrderReceived.push_back(wsm->getGlobalMessageIdentificaton());
+        messagesOrderReceivedVehDist.push_back(wsm->getGlobalMessageIdentificaton());
     }
 
-    colorCarryMessageVehDist(messagesBuffer); // Change the range-color in the vehicle (GUI)
+    colorCarryMessageVehDist(messagesBufferVehDist); // Change the range-color in the vehicle (GUI)
     SbeaconMessageId++;
 }
 
@@ -434,7 +438,7 @@ void BaseWaveApplLayer::printCountBeaconMessagesDropVeh() {
     myfile << endl << "messagesDrop from " << source << endl;
     unsigned short int messageDropbyOneVeh = 0;
     map <string, struct messagesDropStruct>::iterator itMessageDrop;
-    for (itMessageDrop = messagesDrop.begin(); itMessageDrop != messagesDrop.end(); itMessageDrop++) {
+    for (itMessageDrop = messagesDropVeh.begin(); itMessageDrop != messagesDropVeh.end(); itMessageDrop++) {
         myfile << "Message Id: " << itMessageDrop->first << endl;
         myfile << "By Buffer: " << itMessageDrop->second.byBuffer << endl;
         myfile << "By Time: " << itMessageDrop->second.byTime << endl;
@@ -469,7 +473,7 @@ void BaseWaveApplLayer::printCountBeaconMessagesDropVeh() {
     myfile.close();
 }
 
-void BaseWaveApplLayer:: finishVeh() {
+void BaseWaveApplLayer:: toFinishVeh() {
     printCountBeaconMessagesDropVeh();
 
     auto itVeh = find(SnumVehicles.begin(), SnumVehicles.end(), source);
@@ -502,7 +506,7 @@ void BaseWaveApplLayer::colorCarryMessageVehDist(unordered_map <string, WaveShor
 void BaseWaveApplLayer::selectVehGenerateMessage() {
     if (myId == 0) { // If true, some vehicle has (in past) selected the vehicle to generate messages
         if (simTime() <= StimeLimitGenerateBeaconMessage) { // Modify the generate message and test vehDist::timeLimitGenerateBeaconMessage
-            cout << source << " at " << simTime() << " StimeLimitGenerateBeaconMessage: " << StimeLimitGenerateBeaconMessage << endl;
+            cout << source << " at " << simTime() << "in selectVehGenerateMessage, timeLimitGenerateBeaconMessage: " << StimeLimitGenerateBeaconMessage << endl;
 
             unsigned short int vehSelected;
             myfile.open(fileMessagesGenerated, std::ios_base::app); // To save info (Id and vehicle generate) on fileMessagesGenerated
@@ -555,7 +559,7 @@ void BaseWaveApplLayer::selectVehGenerateMessage() {
 }
 
 void BaseWaveApplLayer::insertMessageDropVeh(string messageId, unsigned short int type, simtime_t timeGenarted) {
-    if (messagesDrop.empty() || (messagesDrop.find(messageId) == messagesDrop.end())) {
+    if (messagesDropVeh.empty() || (messagesDropVeh.find(messageId) == messagesDropVeh.end())) {
         struct messagesDropStruct mD_tmp;
         mD_tmp.byBuffer = mD_tmp.byTime = mD_tmp.byCopy = 0;
 
@@ -571,14 +575,14 @@ void BaseWaveApplLayer::insertMessageDropVeh(string messageId, unsigned short in
         mD_tmp.timeDroped = simTime();
         mD_tmp.timeDifference = mD_tmp.timeDroped - mD_tmp.timeGenerate;
 
-        messagesDrop.insert(make_pair(messageId, mD_tmp));
+        messagesDropVeh.insert(make_pair(messageId, mD_tmp));
     } else {
         if (type == 1) { // Increment the number of byBuffer (limit)
-            messagesDrop[messageId].byBuffer++;
+            messagesDropVeh[messageId].byBuffer++;
         } else if (type == 2) {  // Increment the number of byCopy (limit)
-            messagesDrop[messageId].byCopy++;
+            messagesDropVeh[messageId].byCopy++;
         } else if (type == 3) { // Increment the number of byTime (limit)
-            messagesDrop[messageId].byTime++;
+            messagesDropVeh[messageId].byTime++;
         }
     }
 }
@@ -586,7 +590,7 @@ void BaseWaveApplLayer::insertMessageDropVeh(string messageId, unsigned short in
 void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
     myfile.open (fileMessagesCount, std::ios_base::app);
 
-    if (!messagesReceived.empty()) {
+    if (!messagesReceivedRSU.empty()) {
         myfile << "messagesReceived from " << source << endl;
 
         SimTime avgGeneralTimeMessageReceived;
@@ -597,7 +601,7 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
         countP = countT = 0;
         avgGeneralHopsMessage = avgGeneralCopyMessageReceived = 0;
         map <string, struct messages>::iterator itMessagesReceived;
-        for (itMessagesReceived = messagesReceived.begin(); itMessagesReceived != messagesReceived.end(); itMessagesReceived++) {
+        for (itMessagesReceived = messagesReceivedRSU.begin(); itMessagesReceived != messagesReceivedRSU.end(); itMessagesReceived++) {
             myfile << endl << "## Message ID: " << itMessagesReceived->first << endl;
             myfile << "Count received: " << itMessagesReceived->second.copyMessage << endl;
             myfile << "First received source: " << itMessagesReceived->second.firstSource << endl;
@@ -626,7 +630,7 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
         unsigned short int messageCountHopZero = 0;
         string messageHopCountZero, messageHopCountDifferentZero;
         messageHopCountZero = messageHopCountDifferentZero = "";
-        for (itMessagesReceived = messagesReceived.begin(); itMessagesReceived != messagesReceived.end(); itMessagesReceived++) {
+        for (itMessagesReceived = messagesReceivedRSU.begin(); itMessagesReceived != messagesReceivedRSU.end(); itMessagesReceived++) {
             if (itMessagesReceived->second.sumHops == 0) {
                 messageHopCountZero += itMessagesReceived->first + ", ";
                 messageCountHopZero++;
@@ -641,17 +645,17 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
         myfile << endl << "Messages received with hop count different of zero:" << endl;
         myfile << messageHopCountDifferentZero << endl;
 
-        avgGeneralHopsMessage /= messagesReceived.size();
+        avgGeneralHopsMessage /= messagesReceivedRSU.size();
         avgGeneralTimeMessageReceived /= avgGeneralCopyMessageReceived;
 
         string textTmp = "Exp: " + to_string(SexpNumber) + " ###";
         myfile << endl << endl << textTmp + " Messages received in the " << source << endl;
-        myfile << textTmp + " Count messages received: " << messagesReceived.size() << endl;
+        myfile << textTmp + " Count messages received: " << messagesReceivedRSU.size() << endl;
         myfile << textTmp + " Count messages with hop count equal of zero received: " << messageCountHopZero << endl;
-        myfile << textTmp + " Count messages with hop count different of zero Received: " << (messagesReceived.size() - messageCountHopZero) << endl;
+        myfile << textTmp + " Count messages with hop count different of zero Received: " << (messagesReceivedRSU.size() - messageCountHopZero) << endl;
         myfile << textTmp + " Average time to receive: " << avgGeneralTimeMessageReceived << endl;
         myfile << textTmp + " Count copy message received: " << avgGeneralCopyMessageReceived << endl;
-        avgGeneralCopyMessageReceived /= messagesReceived.size();
+        avgGeneralCopyMessageReceived /= messagesReceivedRSU.size();
         myfile << textTmp + " Average copy received: " << avgGeneralCopyMessageReceived << endl;
         myfile << textTmp + " Average hops to received: " << avgGeneralHopsMessage << endl;
         myfile << textTmp + " Hops by category T general: " << countT << endl;
@@ -667,9 +671,9 @@ void BaseWaveApplLayer::messagesReceivedMeasuringRSU(WaveShortMessage* wsm) {
     string wsmData = wsm->getWsmData();
     simtime_t timeToArrived = (simTime() - wsm->getTimestamp());
     unsigned short int countHops = (SbeaconMessageHopLimit - wsm->getHopCount());
-    map <string, struct messages>::iterator itMessagesReceived = messagesReceived.find(wsm->getGlobalMessageIdentificaton());
+    map <string, struct messages>::iterator itMessagesReceived = messagesReceivedRSU.find(wsm->getGlobalMessageIdentificaton());
 
-    if (itMessagesReceived != messagesReceived.end()) {
+    if (itMessagesReceived != messagesReceivedRSU.end()) {
         itMessagesReceived->second.copyMessage++;
 
         itMessagesReceived->second.hops += ", " + to_string(countHops);
@@ -706,7 +710,7 @@ void BaseWaveApplLayer::messagesReceivedMeasuringRSU(WaveShortMessage* wsm) {
         msg.countT = count(wsmData.begin(), wsmData.end(), 'T');
         msg.countP = count(wsmData.begin(), wsmData.end(), 'P');
 
-        messagesReceived.insert(make_pair(wsm->getGlobalMessageIdentificaton(), msg));
+        messagesReceivedRSU.insert(make_pair(wsm->getGlobalMessageIdentificaton(), msg));
     }
 }
 
@@ -816,10 +820,6 @@ void BaseWaveApplLayer::initialize_epidemic(int stage) {
         sendSummaryVectorInterval = par("sendSummaryVectorInterval").longValue();
         // Define the maximum buffer size (in number of messages) that a node is willing to allocate for epidemic messages.
         maximumEpidemicBufferSize = par("maximumEpidemicBufferSize").longValue();
-
-        source = findHost()->getFullName();
-        string seedNumber = ev.getConfig()->getConfigValue("seed-set");
-        SrepeatNumber = atoi(seedNumber.c_str()); // Number of execution (${repetition})
 
         //sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT);
         sendBeaconEvt = new cMessage("beacon evt", SEND_BEACON_EVT_epidemic);
@@ -1036,10 +1036,10 @@ string BaseWaveApplLayer::getEpidemicRequestMessageVectorData() {
 void BaseWaveApplLayer::printNodesIRecentlySentSummaryVector() {
     if (!nodesIRecentlySentSummaryVector.empty()) {
         unsigned short int i = 0;
-        cout << "NodesIRecentlySentSummaryVector from " << source << " (" << MACToInteger() << "):" << endl;
+        cout << "NodesIRecentlySentSummaryVector from " << source << " (" << MACToInteger() << ") at: " << simTime() << endl;
 
         for (auto& x: nodesIRecentlySentSummaryVector) {
-            cout << ++i << " Node: " << x.first << " added at " << x.second << endl;
+            cout << ++i << " Node: " << x.first << " added at: " << x.second << endl;
         }
     } else {
         cout << "NodesIRecentlySentSummaryVector from " << source << " is empty at: " << simTime() << endl;
@@ -1075,7 +1075,7 @@ void BaseWaveApplLayer::printEpidemicRequestMessageVector() {
         string s = ss.str();
         s = s.substr(0, (s.length() - 1));
 
-        cout << "EpidemicRequestMessageVector from " << source << ": " << s << endl;
+        cout << "EpidemicRequestMessageVector from " << source << ": " << s << " at: " << simTime() << endl;
     } else {
         cout << "EpidemicRequestMessageVector from " << source << " is empty at: " << simTime() << endl;
     }
@@ -1091,7 +1091,7 @@ void BaseWaveApplLayer::printEpidemicLocalSummaryVectorData() {
         string s = ss.str();
         s = s.substr(0, s.length() - 1);
 
-        cout << "EpidemicLocalSummaryVector from " << source << "(" << MACToInteger() << "): " << s << endl;
+        cout << "EpidemicLocalSummaryVector from " << source << "(" << MACToInteger() << "): " << s << " at: " << simTime() << endl;
     } else {
         cout << "EpidemicLocalSummaryVector from " << source << " is empty at: " << simTime() << endl;
     }
@@ -1107,7 +1107,7 @@ void BaseWaveApplLayer::printEpidemicRemoteSummaryVectorData() {
         string s = ss.str();
         s = s.substr(0, (s.length() - 1));
 
-        cout << "EpidemicRemoteSummaryVector from " << source << ": " << s << endl;
+        cout << "EpidemicRemoteSummaryVector from " << source << ": " << s << " at: " << simTime() << endl;
     } else {
         cout << "EpidemicRemoteSummaryVector from " << source << " is empty at: " << simTime() << endl;
     }
@@ -1159,7 +1159,7 @@ void BaseWaveApplLayer::createEpidemicRemoteSummaryVector(string s) {
 }
 
 void BaseWaveApplLayer::sendMessagesRequested(string s, unsigned int recipientAddress) {
-    cout << source << "(" << MACToInteger() << ") sending the following messages requested: " << s << " to " << recipientAddress << endl;
+    cout << source << "(" << MACToInteger() << ") sending the following messages requested: " << s << " to " << recipientAddress << " at: " << simTime() << endl;
 
     t_channel channel = dataOnSch ? type_SCH : type_CCH;
     WaveShortMessage* wsm = prepareWSM_epidemic("data", dataLengthBits, channel, dataPriority, recipientAddress, 2);
@@ -1213,7 +1213,7 @@ void BaseWaveApplLayer::sendMessagesRequested(string s, unsigned int recipientAd
     }
 }
 
-void BaseWaveApplLayer::receivedOnBeacon(WaveShortMessage* wsm) {
+void BaseWaveApplLayer::receivedOnBeaconEpidemic(WaveShortMessage* wsm) {
     if (wsm->getSenderAddress() > MACToInteger()) { // Verifying if have the smaller address, with start the anti-entropy session sending out a summary vector
         unordered_map <unsigned int, simtime_t>::iterator got = nodesIRecentlySentSummaryVector.find(wsm->getSenderAddress());
         if (got == nodesIRecentlySentSummaryVector.end()) {
@@ -1238,7 +1238,7 @@ void BaseWaveApplLayer::receivedOnBeacon(WaveShortMessage* wsm) {
     }*/
 }
 
-void BaseWaveApplLayer::receivedOnData(WaveShortMessage* wsm) {
+void BaseWaveApplLayer::receivedOnDataEpidemic(WaveShortMessage* wsm) {
     if (wsm->getRecipientAddress() == MACToInteger()) { // Checking if is the recipient of this message
         if (wsm->getSummaryVector()) {
             cout << source << "(" << MACToInteger() << ") received the summary vector |> " << wsm->getWsmData() << " <| from " << wsm->getSenderAddress() << " at " << simTime() << endl;
@@ -1411,7 +1411,7 @@ void BaseWaveApplLayer::handleSelfMsg(cMessage* msg) {
             string idMessage = itEpidemicMessageSend->second.getGlobalMessageIdentificaton();
 
             if (!SallowMessageCopy) {
-                cout << source << " send the message " << idMessage << " to " << epidemicMessageSend[idMessage].getRecipientAddress() << " and removing at " << simTime() << endl;
+                cout << source << " send the message " << idMessage << " to " << epidemicMessageSend[idMessage].getRecipientAddress() << " and removing at: " << simTime() << endl;
                 insertMessageDropVeh(idMessage, 2, epidemicMessageSend[idMessage].getTimestamp());
 
                 epidemicLocalMessageBuffer.erase(idMessage);

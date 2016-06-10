@@ -45,11 +45,11 @@ void epidemic::vehInitializeVariablesEpidemicVeh() {
 }
 
 void epidemic::onBeacon(WaveShortMessage* wsm) {
-    receivedOnBeacon(wsm);
+    receivedOnBeaconEpidemic(wsm);
 }
 
 void epidemic::onData(WaveShortMessage* wsm) {
-    receivedOnData(wsm);
+    receivedOnDataEpidemic(wsm);
 }
 
 void epidemic::sendWSM(WaveShortMessage* wsm) {
@@ -62,5 +62,5 @@ void epidemic::sendWSM(WaveShortMessage* wsm) {
 }
 
 void epidemic::finish() {
-    finishVeh();
+    toFinishVeh();
 }
