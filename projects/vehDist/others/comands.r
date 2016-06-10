@@ -75,7 +75,7 @@ i=1; cat exp$i.r | grep -E "Count|experiment" | sed 's/Exp: '$i' ### Count messa
 ## Get the count message received by the full experiment file
 i=1; cat file.r | grep -E "Exp: $i|Values" |  grep -E "Count messages received|Values" | sed 's/Exp: '$i' ### Count messages received://g'
     #or
-i=1; f=1; part=1; ./grep_results.sh $part $i $f | grep -E "Exp: $i|Values" |  grep -E "Count messages received|Values" | sed 's/Exp: '$i' ### Count messages received://g'
+i=1; f=1; part=1; ./grep_results_*.sh $part $i $f | grep -E "Exp: $i|Values" |  grep -E "Count messages received|Values" | sed 's/Exp: '$i' ### Count messages received://g'
 
 ## Get the count message dropped by the full experiment file
 i=1; cat file.r | grep -E "Exp: $i|Values" |  grep -E "drop:|Values" | sed 's/Exp: '$i' ### Final count messages drop://g'
