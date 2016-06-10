@@ -43,16 +43,19 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     bool useDepartPos_ArrivalPos_DepartSpeed_AsRandom, useLeftAndRightRoadAsSamePlace;
 
     unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes, lineCount;
-    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp, sigmaValue;
-    unsigned short int insertByTime, timeToInsert, compare, compare2, stopDurationTime;
+    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
+    unsigned short int insertByTime, timeToInsert, compare, compare2, stopDurationTime, countPBegin, simulationTimeLimit;
+    double sigmaValue;
 
     count = 1; // route start number
     pathComp = 4; //4 //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
-    countVehicleRoutes = 50; //50
+    simulationTimeLimit = 600 - 150;
+    countVehicleRoutes = 170; //50
     countVehicleCagegoryT = 10; //10
-    insertByTime = 5; //5
-    timeToInsert = 60; //60
-    sigmaValue = 0; //0.5
+    countPBegin = 40; //10
+    insertByTime = 40; //5
+    timeToInsert = 120; //60
+    sigmaValue = 0.5; //0.5
     goAndBack = false; //false
     stopPart = false; // Se colocar true coloque valor maior que zero em stopDurationTime, e.g. 20
     // Site configs: http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes
@@ -87,6 +90,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     // By 25 m/s or 90 km/h => will move 15 km
     // By 15 m/s or 54 km/h => will move 9 km
     // 16000 m/25 m/s => 640 s
+    //routeComp = 280; // 7 km
 
     output.open(fileOutput.c_str()); // Arquivo que será criado com todas rotas
     output << "<routes>" << endl << endl; // Escrita da definição do tipo de veículo no arquivo de saída
@@ -248,9 +252,15 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     output << "    <vType id=\"P\"" << vehDescripType << "color=\"0,1,0\"/>" << endl << endl;
     output << "    <!-- http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes -->" << endl;
 
-    unsigned short int countTmp, vehicleTimeDepart;
-    countTmp = vehicleTimeDepart = 0;
+    unsigned short int countTmp, vehicleTimeDepart, countPBeginTmp;
+    vehicleTimeDepart = 0;
+    countPBeginTmp = countPBegin + count;
+    countTmp = insertByTime - 1;
     while (count <= countVehicleRoutes) {
+        if (vehicleTimeDepart > simulationTimeLimit) {
+            cout << endl << endl <<"Error, vehicleTimeDepart is great than simulationTimeLimit" << endl << endl;
+            exit(1);
+        }
         output << "        <vehicle depart=\"" << vehicleTimeDepart << "\"" << routeDescripPart;
 
         if (count < 10) {
@@ -261,15 +271,14 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
             output << "veh" << count <<"\" route=\"route" << count;
         }
         output <<  "\" type=\"P\"/>" << endl;
-
         count++;
-        countTmp++;
-        if (countTmp == insertByTime){
-            countTmp = 0;
-        }
 
-        if (countTmp == 0) {
-            vehicleTimeDepart += timeToInsert;
+        if (count >= countPBeginTmp) {
+            countTmp++;
+            if (countTmp == insertByTime){
+                countTmp = 0;
+                vehicleTimeDepart += timeToInsert;
+            }
         }
     }
     output << endl << "</routes>"; // Finalização do arquivo de rotas
