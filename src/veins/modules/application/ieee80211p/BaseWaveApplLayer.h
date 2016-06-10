@@ -1,22 +1,4 @@
-//
-// Copyright (C) 2011 David Eckhoff <eckhoff@cs.fau.de>
-//
-// Documentation for these modules is at http://veins.car2x.org/
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//
+// Copyright (C) 2015-2016 João Batista <joao.b@usp.br>
 
 #ifndef BASEWAVEAPPLLAYER_H_
 #define BASEWAVEAPPLLAYER_H_
@@ -27,12 +9,6 @@
 #include "veins/base/connectionManager/ChannelAccess.h"
 #include "veins/modules/mac/ieee80211p/WaveAppToMac1609_4Interface.h"
 
-// Add for Epidemic
-#include <stdio.h>
-
-#include <map>
-#include <queue>
-#include <vector>
 #include <fstream>
 #include <unordered_map>
 #include <algorithm> // std::find
@@ -42,23 +18,8 @@ using namespace std;
 #ifndef DBG
 #define DBG EV
 #endif
-//#define DBG std::cerr << "[" << simTime().raw() << "] " << getParentModule()->getFullPath() << " "
 
-/**
- * @brief
- * WAVE application layer base class.
- *
- * @author David Eckhoff
- *
- * @ingroup applLayer
- *
- * @see BaseWaveApplLayer
- * @see Mac1609_4
- * @see PhyLayer80211p
- * @see Decider80211p
- */
 class BaseWaveApplLayer : public BaseApplLayer {
-
     public:
         ~BaseWaveApplLayer();
         virtual void initialize_default_veins_TraCI(int stage);
@@ -72,7 +33,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
             SERVICE_PROVIDER = LAST_BASE_APPL_MESSAGE_KIND,
             SEND_BEACON_EVT, SEND_BEACON_EVT_minicurso,
             SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, // Modificado OSDP, add SERVICE_EXPIRED_EVT, SERVICE_QUERY_EVT, SERVICE_EVT, antes era apenas SEND_BEACON_EVT
-            SEND_BEACON_EVT_epidemic, Send_EpidemicMessageRequestEvt
+            SEND_BEACON_EVT_epidemic, Send_EpidemicMessageRequestEvt,
+            SendEvtGenerateBeaconMessage
         };
 
     protected:
@@ -86,19 +48,34 @@ class BaseWaveApplLayer : public BaseApplLayer {
         virtual WaveShortMessage* prepareWSM(string name, int dataLengthBits, t_channel channel, int priority, unsigned int rcvId, int serial=0);
 
 //######################################### vehDist #########################################
+        //## Used to another projects
         void generalInitializeVariables_executionByExpNumberVehDist();
         string getFolderResultVehDist(unsigned short int experimentSendbyDSR);
 
-        //## Used to another projects
         void toFinishRSU();
+        void finishVeh();
         string boolToString(bool value);
+
         void restartFilesResultRSU(string folderResult);
+        void restartFilesResultVeh(string projectInfo, Coord initialPos);
+        void saveVehStartPositionVeh(string fileNameLocation, Coord initialPos);
+        void insertMessageDropVeh(string ID, unsigned short int type, simtime_t timeGenarted);
+
         void printCountMessagesReceivedRSU();
         void messagesReceivedMeasuringRSU(WaveShortMessage* wsm);
 
+        void vehGenerateBeaconMessageBeginVeh(double vehOffSet);
+        void vehGenerateBeaconMessageAfterBeginVeh();
+        void selectVehGenerateMessage();
+
+        void generateBeaconMessageVehDist();
+        void generateTarget();
+        void colorCarryMessageVehDist(unordered_map <string, WaveShortMessage> bufferOfMessages);
+        void printCountBeaconMessagesDropVeh();
+
         void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
-        void printHeaderfileExecution(double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
-        void openFileAndClose(string fileName, bool justForAppend, double ttlBeaconMessage, unsigned short int countGenerateBeaconMessage);
+        void printHeaderfileExecution();
+        void openFileAndClose(string fileName, bool justForAppend);
 //######################################### vehDist #########################################
 
 //######################################### Epidemic #########################################
@@ -110,7 +87,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         void printWaveShortMessageEpidemic(WaveShortMessage* wsm);
 
-        void printQueueFIFO(std::queue <string> qFIFO);
         void sendLocalSummaryVector(unsigned int newRecipientAddress);
 
         string getLocalSummaryVectorData();
@@ -128,6 +104,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         void createEpidemicRequestMessageVector();
         void createEpidemicRemoteSummaryVector(string s);
+
+        void generateMessageEpidemic();
 //######################################### Epidemic #########################################
         virtual void sendWSM(WaveShortMessage* wsm);
         virtual void onBeacon(WaveShortMessage* wsm) = 0;
@@ -147,16 +125,39 @@ class BaseWaveApplLayer : public BaseApplLayer {
         WaveAppToMac1609_4Interface* myMac;
 
 //######################################### vehDist #########################################
-        ofstream myfile; // record in file
+        cMessage* sendGenerateBeaconMessageEvt;
 
-        unsigned short int target_x, target_y;
+        mt19937 mt_veh;
+
+        double vehOffSet;
+
+        vector <string> messagesOrderReceived;
+
+        unsigned short int target_x, target_y, msgBufferMaxUse;
+
+        unordered_map <string, WaveShortMessage> messagesBuffer;
 
         string fileMessagesUnicast, fileMessagesBroadcast, fileMessagesCount, fileMessagesDrop, fileMessagesGenerated;
 
-        unsigned short int repeatNumber, expNumber, expSendbyDSCR, countGenerateBeaconMessage, ttlBeaconMessage;
-
         //## Used to another projects
-        unsigned short int beaconMessageHopLimit;
+        ofstream myfile; // record in file
+
+        static unsigned short int SrepeatNumber, SexpNumber, SexpSendbyDSCR, ScountGenerateBeaconMessage, SttlBeaconMessage;
+
+        static unsigned short int SmsgDroppedbyTTL, SmsgDroppedbyCopy, SmsgDroppedbyBuffer;
+        static unsigned short int ScountMsgPacketSend, SmsgBufferUseGeneral, ScountMesssageDrop, SbeaconMessageHopLimit;
+        static unsigned short int ScountMeetN, ScountTwoCategoryN, ScountMeetPshortestT, ScountVehicleAll, SbeaconMessageId;
+
+        static string SprojectInfo;
+
+        static vector <string> SnumVehicles, SvehGenerateMessage;
+
+        static unordered_map <string, WaveShortMessage> SvehScenario;
+        static bool SvehDistTrueEpidemicFalse, SusePathHistory, SallowMessageCopy, SvehSendWhileParking;
+        static bool SselectFromAllVehicles, SuseMessagesSendLog, SvehDistCreateEventGenerateMessage;
+
+        static unsigned short int SbeaconStatusBufferSize, SttlBeaconStatus, SpercentP;
+        static unsigned short int StimeLimitGenerateBeaconMessage, StimeToUpdatePosition, SbeaconMessageBufferSize;
 
         struct messages {
           string firstSource, hops, wsmData, times;
@@ -164,6 +165,12 @@ class BaseWaveApplLayer : public BaseApplLayer {
           simtime_t sumTimeRecived;
         };
         map <string, struct messages> messagesReceived;
+
+        struct messagesDropStruct {
+            unsigned short int byBuffer, byTime, byCopy;
+            simtime_t timeGenerate, timeDroped, timeDifference;
+        };
+        map <string, struct messagesDropStruct> messagesDrop;
 //######################################### vehDist #########################################
 
 //######################################### Epidemic #########################################
@@ -173,9 +180,6 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         unordered_map <unsigned int, simtime_t> nodesRecentlyFoundList, nodesIRecentlySentSummaryVector;
 
-        // Implementation of FIFO in order to maintain the limited length of the buffer activated
-        queue <string> queueFIFO;
-
         unsigned int sendSummaryVectorInterval, maximumEpidemicBufferSize;
         unsigned int nodesRecentlySendLocalSummaryVector = 0;
         simtime_t lastTimeSendLocalSummaryVector = 0;
@@ -184,4 +188,4 @@ class BaseWaveApplLayer : public BaseApplLayer {
 //######################################### Epidemic #########################################
 };
 
-#endif /* BASEWAVEAPPLLAYER_H_ */
+#endif

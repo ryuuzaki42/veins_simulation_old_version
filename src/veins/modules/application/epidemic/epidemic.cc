@@ -35,7 +35,7 @@ void epidemic::vehInitializeVariablesEpidemicVeh() {
 
     restartFilesResultVeh(SprojectInfo, mobility->getPositionAt(simTime() + 0.1));
 
-    if (SvehDist_create_eventGenerateMessage) {
+    if (SvehDistCreateEventGenerateMessage) {
         vehGenerateBeaconMessageBeginVeh(vehOffSet); // Create Event to generate messages
     } else {
         generateMessageEpidemic();

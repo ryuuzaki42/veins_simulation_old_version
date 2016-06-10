@@ -1,20 +1,4 @@
-//
 // Copyright (C) 2015-2016 João Batista <joao.b@usp.br>
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-//
 
 #include "veins/modules/application/vehDist/vehDist_rsu.h"
 
@@ -33,7 +17,7 @@ void vehDist_rsu::initialize(int stage) {
 void vehDist_rsu::rsuInitializeVariables() {
     generalInitializeVariables_executionByExpNumberVehDist();
 
-    restartFilesResultRSU(getFolderResultVehDist(expSendbyDSCR));
+    restartFilesResultRSU(getFolderResultVehDist(SexpSendbyDSCR));
     //cout << source << " entered in the scenario" << endl;
 }
 
@@ -57,10 +41,14 @@ void vehDist_rsu::onBeaconStatus(WaveShortMessage* wsm) {
 
 void vehDist_rsu::onBeaconMessage(WaveShortMessage* wsm) {
     if (source.compare(wsm->getRecipientAddressTemporary()) == 0) {
-        findHost()->bubble("Received Message");
-        saveMessagesOnFile(wsm, fileMessagesUnicast);
+        if (source.compare(wsm->getTarget()) == 0) {
+            findHost()->bubble("Received Message");
+            saveMessagesOnFile(wsm, fileMessagesUnicast);
 
-        messagesReceivedMeasuringRSU(wsm);
+            messagesReceivedMeasuringRSU(wsm);
+        }/* else {
+            real scenario save this message in the buffer
+        }*/
     } else {
         saveMessagesOnFile(wsm, fileMessagesBroadcast);
     }
@@ -102,6 +90,7 @@ WaveShortMessage* vehDist_rsu::prepareBeaconStatusWSM(string name, int lengthBit
     wsm->setSerial(serial);
     wsm->setTimestamp(simTime());
     wsm->setSenderPos(curPosition);
+    //wsm->setSenderPos(Coord(1000,1000,3));
     wsm->setSource(source.c_str());
 
     //beacon don't need
