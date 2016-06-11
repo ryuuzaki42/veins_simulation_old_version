@@ -37,8 +37,6 @@ class vehDist : public BaseWaveApplLayer {
 
         simtime_t timeToFinishLastStartSend;
 
-        string vehCategory;
-
         struct shortestDistance {
             Coord senderPos;
             string categoryVeh;
@@ -108,7 +106,7 @@ unsigned short int BaseWaveApplLayer::ScountMeetPshortestT, BaseWaveApplLayer::S
 unsigned short int BaseWaveApplLayer::SbeaconMessageId;
 
 unsigned short int BaseWaveApplLayer::SrepeatNumber, BaseWaveApplLayer::SexpNumber, BaseWaveApplLayer::SexpSendbyDSCR;
-unsigned short int BaseWaveApplLayer::ScountGenerateBeaconMessage, BaseWaveApplLayer::SttlBeaconMessage;
+unsigned short int BaseWaveApplLayer::ScountGenerateBeaconMessage, BaseWaveApplLayer::SttlBeaconMessage, BaseWaveApplLayer::SvehTimeLimitToAcceptGenerateMgs;
 
 unsigned short int BaseWaveApplLayer::SbeaconStatusBufferSize, BaseWaveApplLayer::SttlBeaconStatus, BaseWaveApplLayer::SpercentP;
 unsigned short int BaseWaveApplLayer::StimeLimitGenerateBeaconMessage, BaseWaveApplLayer::StimeToUpdatePosition, BaseWaveApplLayer::SbeaconMessageBufferSize;
