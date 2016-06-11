@@ -26,13 +26,20 @@
 # Pasta do Veins (altere se a sua for diferente)
 cd /media/sda4/prog/simulation_veins/
 
+readPar=$1
+
 echo -e "\nDeseja remover os results da pasta de projects?\n"
 echo -e "Irá apagar os arquivos:"
 echo -e "\tprojects/*/results"
 echo -e "\tprojects/*/.tkenvrc"
 echo -e "\tprojects/*/run.r"
 echo -e "\n(y)es - (rm ...) ou (n)o - (exit)"
-read resposta
+
+if [ "$readPar" != "y" ]; then
+    read resposta
+else
+    resposta=y
+fi
 
 if [ $resposta = y ]; then # Altere projects para o nome da sua pasta de projetos
     rm -r projects/*/results/
