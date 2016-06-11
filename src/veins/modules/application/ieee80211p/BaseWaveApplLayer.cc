@@ -607,6 +607,7 @@ void BaseWaveApplLayer::printCountMessagesReceivedRSU() {
             myfile << "First received source: " << itMessagesReceived->second.firstSource << endl;
             avgGeneralCopyMessageReceived += itMessagesReceived->second.copyMessage;
 
+            myfile << "Message timestamp generate: " << itMessagesReceived->second.timeGenerate << endl;
             myfile << "wsmData: " << itMessagesReceived->second.wsmData << endl;
             myfile << "Hops: " << itMessagesReceived->second.hops << endl;
             myfile << "Sum hops: " << itMessagesReceived->second.sumHops << endl;
@@ -702,6 +703,7 @@ void BaseWaveApplLayer::messagesReceivedMeasuringRSU(WaveShortMessage* wsm) {
         msg.wsmData = wsmData;
         msg.hops = to_string(countHops);
         msg.maxHop = msg.minHop = msg.sumHops = countHops;
+        msg.timeGenerate = wsm->getTimestamp();
 
         msg.sumTimeRecived = timeToArrived;
         msg.times = timeToArrived.str();

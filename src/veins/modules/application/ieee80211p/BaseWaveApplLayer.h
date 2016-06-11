@@ -164,7 +164,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
         struct messages {
           string firstSource, hops, wsmData, times;
           unsigned short int minHop, maxHop, sumHops, countT, countP, copyMessage;
-          simtime_t sumTimeRecived;
+          simtime_t sumTimeRecived, timeGenerate;
         };
         map <string, struct messages> messagesReceivedRSU;
 
