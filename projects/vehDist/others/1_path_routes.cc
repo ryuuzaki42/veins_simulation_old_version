@@ -49,19 +49,19 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
 
     count = 1; // route start number
     pathComp = 4; //4 //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
-    simulationTimeLimit = 600 - 150;
-    countVehicleRoutes = 50; //170; //50
-    countVehicleCagegoryT = 10; //10
-    countPBegin = 10; //40; //10
-    insertByTime = 10; //40; //5
+    simulationTimeLimit = 600 - 100;
+    countVehicleRoutes = 105; //170; //50
+    countVehicleCagegoryT = 5; //10
+    countPBegin = 20; //40; //10
+    insertByTime = 20; //40; //5
     timeToInsert = 120; //60
-    sigmaValue = 0.5; //0.5
+    sigmaValue = 0; //0.5
     goAndBack = false; //false
     stopPart = false; // Se colocar true coloque valor maior que zero em stopDurationTime, e.g. 20
     // Site configs: http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes
     stopDurationTime = 60;
     useLeftAndRightRoadAsSamePlace = true;
-    useDepartPos_ArrivalPos_DepartSpeed_AsRandom = false;
+    useDepartPos_ArrivalPos_DepartSpeed_AsRandom = false; //false
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
     p1 = 22; // Início da rota
     parte1 = true;
@@ -103,7 +103,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     output << "    Routes P (" << (countVehicleCagegoryT + 1) << " to " << countVehicleRoutes << "): ";
     output << ((double(pathComp) * 250)/1000) * 2 << " km (" << ((pathComp * 250) * 2) << " m)" << endl;
     output << "    Begin insert " << countVehicleCagegoryT << " T and " << countPBegin << " P" << endl;
-    output << "        After this, insert " << insertByTime << " P by each " << timeToInsert << " seconds "<< endl;
+    output << "        After this, insert " << insertByTime << " P by each " << timeToInsert << " seconds"<< endl;
     output << "    fileOutput: " << fileOutput << endl;
     output << "    lineStart: " << lineCount << endl;
     output << "    -->" << endl << endl;
@@ -228,7 +228,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     routeDescripPart += "\" departSpeed=\"" + departSpeed + "\" id=\"";
 
     string vehDescripType = " accel=\"3\" decel=\"5\" sigma=\"" + to_string(sigmaValue);
-    vehDescripType += "\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"15\" ";
+    vehDescripType += "\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"16.67\" ";
 
     output << endl << "    <!-- T => Taxi/Táxi -->" << endl;
     // Um com id=T e outro com id=P
