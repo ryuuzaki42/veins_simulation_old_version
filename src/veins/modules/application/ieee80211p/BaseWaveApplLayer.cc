@@ -304,11 +304,11 @@ void BaseWaveApplLayer::restartFilesResultRSU(string folderResult) {
 
     bool justAppend;
     if (myId == 0) {
-        if (SexpNumber <= 4) { // Set the maxSpeed to 15 m/s in the expNumber 1 to 4
-            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
+        if (SexpNumber <= 4) { // Set the maxSpeed to 16.67 m/s (60 km/h) in the expNumber 1 to 4
+            string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"16.67\" color/g' vehDist.rou.xml";
             system(comand.c_str());
-            cout << endl << "Change the speed to 15 m/s, command: " << comand << endl;
-        } else if (SexpNumber >= 5) { // Set the maxSpeed to 25 m/s in the expNumber 5 to 8
+            cout << endl << "Change the speed to 16.67 m/s, command: " << comand << endl;
+        } else if (SexpNumber >= 5) { // Set the maxSpeed to 25 m/s  (90 km/h) in the expNumber 5 to 8
             string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"25\" color/g' vehDist.rou.xml";
             system(comand.c_str());
             cout << endl << "Change the speed to 25 m/s, command: " << comand << endl;
@@ -757,9 +757,9 @@ void BaseWaveApplLayer::toFinishRSU() {
     printCountMessagesReceivedRSU();
 
     if (myId == 0) {
-        string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"15\" color/g' vehDist.rou.xml";
-        system(comand.c_str()); // Set the maxSpeed back to default: 15 m/s
-        cout << endl << "Setting speed back to default (15 m/s), command: " << comand << endl;
+        string comand = "sed -i 's/maxSpeed=.* color/maxSpeed=\"16.67\" color/g' vehDist.rou.xml";
+        system(comand.c_str()); // Set the maxSpeed back to default: 16.67 m/s (60 km/h)
+        cout << endl << "Setting speed back to default (16.67 m/s), command: " << comand << endl;
     }
 }
 //######################################### vehDist - end #######################################################################
