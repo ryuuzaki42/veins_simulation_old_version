@@ -82,6 +82,44 @@ void BaseWaveApplLayer::saveMessagesOnFile(WaveShortMessage* wsm, string fileNam
     myfile.close();
 }
 
+void BaseWaveApplLayer::vehInitializeValuesVehDist(string category, Coord position) {
+    generalInitializeVariables_executionByExpNumberVehDist();
+
+    vehOffSet = double(myId)/1000; // Simulate asynchronous channel access. Values between 0.001, 0.002
+    SnumVehicles.push_back(source);
+    ScountVehicleAll++;
+
+    vehCategory = category;
+
+    WaveShortMessage wsmTmp;
+    wsmTmp.setTimestamp(simTime());
+    wsmTmp.setCategory(category.c_str());
+    SvehScenario.insert(make_pair(source, wsmTmp));
+
+    restartFilesResultVeh(SprojectInfo, position);
+
+    if (SvehDistCreateEventGenerateMessage) { // Create Event to generate messages
+        vehGenerateBeaconMessageBeginVeh(vehOffSet);
+    } else { // All vehicle that enter will generate one message
+        if (SvehDistTrueEpidemicFalse) {
+            generateBeaconMessageVehDist();
+        } else {
+            generateMessageEpidemic();
+        }
+    }
+
+    cout << endl << source << " (" << MACToInteger() << ") cat: " << category << " entered in the scenario at " << simTime() << " whit OffSet: " << vehOffSet << endl;
+}
+
+void BaseWaveApplLayer::rsuInitializeValuesVehDist() {
+    generalInitializeVariables_executionByExpNumberVehDist();
+
+    restartFilesResultRSU(getFolderResultVehDist(SexpSendbyDSCR));
+
+   cout << endl << source << " (" << MACToInteger() << ") entered in the scenario at " << simTime() << endl;
+
+}
+
 void BaseWaveApplLayer::openFileAndClose(string fileName, bool justForAppend) {
     if (justForAppend) {
         myfile.open(fileName, std::ios_base::app);
@@ -118,7 +156,11 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
     source = findHost()->getFullName();
     msgBufferUse = 0;
 
-    if (myId == 0) { // Vehicle must be the first to generate messages, so your offset is 0;
+    if (!SvehDistTrueEpidemicFalse) {
+        lastTimeSendLocalSummaryVector = nodesRecentlySendLocalSummaryVector = 0;
+    }
+
+    if (source.compare("rsu[0]") == 0) { // Static values inside of the if, that are the same for vehicle(s) and RSU(s)
         SbeaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
         string seedNumber = ev.getConfig()->getConfigValue("seed-set");
         SrepeatNumber = atoi(seedNumber.c_str()); // Number of execution (${repetition})
@@ -137,6 +179,7 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
         SbeaconStatusBufferSize = par("beaconStatusBufferSize");
         StimeToUpdatePosition = par("vehTimeUpdatePosition");
         StimeLimitGenerateBeaconMessage = par("timeLimitGenerateBeaconMessage");
+        SvehTimeLimitToAcceptGenerateMgs = par("vehTimeLimitToAcceptGenerateMgs");
         SpercentP = par("percentP"); // 20 meaning 20% of message send to category P
 
         SexpNumber = par("expNumber").longValue();
@@ -202,10 +245,6 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
 
         SprojectInfo += texTmp + "\n";
         cout << endl << SprojectInfo << endl;
-
-        if (!SvehDistTrueEpidemicFalse) {
-            lastTimeSendLocalSummaryVector = nodesRecentlySendLocalSummaryVector = 0;
-        }
     }
 }
 
@@ -530,8 +569,8 @@ void BaseWaveApplLayer::selectVehGenerateMessage() {
                         i++;
                     }
                 } else {
-                    if ((SvehScenario[vehSelectedId].getTimestamp() + 60) >= simTime()) { // Test if vehicle are less than 60 s in the scenario
-                    //if (((vehDist::vehScenario[vehSelectedId].getTimestamp() + 60) >= simTime()) || (strcmp(vehDist::vehScenario[vehSelectedId].getCategory(), "T") == 0)) { // Test if vehicle are less than 60 s in the scenario
+                    //if ((SvehScenario[vehSelectedId].getTimestamp() + SvehTimeLimitToAcceptGenerateMgs) >= simTime()) { // Test if vehicle are less than 60 s in the scenario
+                    if (((SvehScenario[vehSelectedId].getTimestamp() + SvehTimeLimitToAcceptGenerateMgs) >= simTime()) || (strcmp(SvehScenario[vehSelectedId].getCategory(), "T") == 0)) { // Test if vehicle are less than 60 s in the scenario
                         auto itVehSelected = find(SvehGenerateMessage.begin(), SvehGenerateMessage.end(), vehSelectedId);
                         if (itVehSelected == SvehGenerateMessage.end()) {
                             SvehGenerateMessage.push_back(vehSelectedId);

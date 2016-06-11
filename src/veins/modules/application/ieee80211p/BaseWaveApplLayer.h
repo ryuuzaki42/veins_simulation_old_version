@@ -76,6 +76,9 @@ class BaseWaveApplLayer : public BaseApplLayer {
         void saveMessagesOnFile(WaveShortMessage* wsm, string fileName);
         void printHeaderfileExecution();
         void openFileAndClose(string fileName, bool justForAppend);
+
+        void vehInitializeValuesVehDist(string category, Coord position);
+        void rsuInitializeValuesVehDist();
 //######################################### vehDist #########################################
 
 //######################################### Epidemic #########################################
@@ -138,6 +141,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         double vehOffSet;
 
+        string vehCategory;
+
         ofstream myfile; // record in file
 
         unsigned short int target_x, target_y;
@@ -147,7 +152,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         static unsigned short int SrepeatNumber, SexpNumber, SexpSendbyDSCR, ScountGenerateBeaconMessage, SttlBeaconMessage;
 
-        static unsigned short int SmsgDroppedbyTTL, SmsgDroppedbyCopy, SmsgDroppedbyBuffer;
+        static unsigned short int SmsgDroppedbyTTL, SmsgDroppedbyCopy, SmsgDroppedbyBuffer, SvehTimeLimitToAcceptGenerateMgs;
         static unsigned short int ScountMsgPacketSend, SmsgBufferUseGeneral, ScountMesssageDrop, SbeaconMessageHopLimit;
         static unsigned short int ScountMeetN, ScountTwoCategoryN, ScountMeetPshortestT, ScountVehicleAll, SbeaconMessageId;
 
