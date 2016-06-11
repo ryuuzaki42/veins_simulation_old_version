@@ -29,7 +29,8 @@ class vehDist : public BaseWaveApplLayer {
         vector <string> messagesDelivered;
 
         unordered_map <string, string> messagesSendLog;
-        unordered_map <string, WaveShortMessage> messagesOnlyDelivery, beaconStatusNeighbors;
+
+        unordered_map <string, WaveShortMessage> beaconStatusNeighbors;
 
         unsigned short int messageToSend, rateTimeToSend;
         unsigned short int rateTimeToSendLimitTime, rateTimeToSendUpdateTime, rateTimeToSendDistanceControl;
@@ -76,12 +77,10 @@ class vehDist : public BaseWaveApplLayer {
         void vehInitializeVariablesVehDistVeh();
 
         void sendMessageToOneNeighborTarget(string beaconSource);
-        void sendMessageToOneNeighborTargetOnlyDelivery(string beaconSource);
         bool sendOneNewMessageToOneNeighborTarget(WaveShortMessage wsm);
         void onBeaconMessage(WaveShortMessage* wsm);
 
         void removeOldestInputBeaconMessage();
-        void removeOldestInputBeaconMessageOnlyDelivery();
         void removeOldestInputBeaconStatus();
 
         string choseCategory_RandomNumber1to100(unsigned short int percentP, string vehIdP, string vehIdT);
