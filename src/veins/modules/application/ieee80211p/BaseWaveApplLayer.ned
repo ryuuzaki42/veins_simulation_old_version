@@ -54,6 +54,7 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         bool vehSendWhileParking = default(false); // Send or not while is parking
         bool vehDistTrueEpidemicFalse = default(false); // Is vehDist (true), is Epidemic (false)
         bool vehDistCreateEventGenerateMessage = default(false); // Use the event to generate message or not
+        int vehTimeLimitToAcceptGenerateMgs @unit("s") = default(0s); // Time limit that one vehile enter in the scenario
 
     gates:
         input lowerLayerIn; // from mac layer
