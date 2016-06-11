@@ -5,19 +5,31 @@
 
 ## km^2, grid: (1,5) (2,9) (3,13) (4,17) (5, 21) (6, 25)
 
-## Generate the Grid 1 km^2
+## Generate the grid 1 km^2
     netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o vehDist.net.xml
-        # netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o vehDist.net.xml
+    # or with no --no-turnarounds
+    netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o vehDist.net.xml
         # Change --default.lanenumber to 1; added --no-turnarounds and the (max) speed to 85
 
-## Generate the Grid 3 km^2
+## Generate the grid 3 km^2
     netgenerate -g --grid.number=13 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o vehDist.net.xml
+    # or with no --no-turnarounds
+    netgenerate -g --grid.number=13 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o vehDist.net.xml
     ## Afer this comand run the script
     ./gridConvertOneCharacter.sh 13
 
+## Generate the grid 6 km^2
+    netgenerate -g --grid.number=25 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o vehDist.net.xml
+    # or with no --no-turnarounds
+    netgenerate -g --grid.number=25 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o vehDist.net.xml
+    ## Afer this comand run the script
+    ./gridConvertOneCharacter.sh 25
+
 ## Generate the trips and the routes (with various distance)
+    # Geneate 3 M routes
     python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py -n vehDist.net.xml --min-distance=100000 -b 0 -e 3000 -i 200 -s 1 -r vehDist_tmp.rou.xml
-    #python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py -n vehDist.net.xml --min-distance=100000 -b 0 -e 30000 -i 200 -s 1 -r vehDist_tmp.rou.xml
+    # Geneate 30 M routes
+    python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py -n vehDist.net.xml --min-distance=100000 -b 0 -e 30000 -i 200 -s 1 -r vehDist_tmp.rou.xml
         # The -s (seed) 1, for generate the same routes every time that run the command
 
 ## To test "is the same routes?"
