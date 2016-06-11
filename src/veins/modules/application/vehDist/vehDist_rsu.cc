@@ -15,10 +15,7 @@ void vehDist_rsu::initialize(int stage) {
 }
 
 void vehDist_rsu::rsuInitializeVariables() {
-    generalInitializeVariables_executionByExpNumberVehDist();
-
-    restartFilesResultRSU(getFolderResultVehDist(SexpSendbyDSCR));
-    //cout << source << " entered in the scenario" << endl;
+    rsuInitializeValuesVehDist();
 }
 
 void vehDist_rsu::handleLowerMsg(cMessage* msg) {

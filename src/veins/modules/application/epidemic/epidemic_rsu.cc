@@ -17,11 +17,7 @@ void epidemic_rsu::initialize(int stage) {
 }
 
 void epidemic_rsu::epidemicInitializeVariables() {
-    generalInitializeVariables_executionByExpNumberVehDist();
-
-    restartFilesResultRSU(getFolderResultVehDist(SexpSendbyDSCR));
-
-    //cout << source << " myMac: " << myMac << " MACToInteger: " << MACToInteger() << endl;
+    rsuInitializeValuesVehDist();
 }
 
 void epidemic_rsu::onBeacon(WaveShortMessage* wsm) {
