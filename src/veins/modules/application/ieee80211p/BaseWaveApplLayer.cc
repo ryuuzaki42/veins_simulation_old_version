@@ -116,7 +116,7 @@ void BaseWaveApplLayer::printHeaderfileExecution() {
 
 void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist() {
     source = findHost()->getFullName();
-    msgBufferMaxUse = 0;
+    msgBufferUse = 0;
 
     if (myId == 0) { // Vehicle must be the first to generate messages, so your offset is 0;
         SbeaconMessageHopLimit = par("beaconMessageHopLimit").longValue();
@@ -421,10 +421,8 @@ void BaseWaveApplLayer::generateBeaconMessageVehDist() {
     //bool insert = sendOneNewMessageToOneNeighborTarget(*wsm);
     bool insert = true;
     if (insert) {
-        messagesBufferVehDist.insert(make_pair(wsm->getGlobalMessageIdentificaton(),*wsm)); // Adding the message on the buffer
-        if (messagesBufferVehDist.size() > msgBufferMaxUse) {
-            msgBufferMaxUse = messagesBufferVehDist.size();
-        }
+        messagesBufferVehDist.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm)); // Adding the message on the buffer
+        msgBufferUse++;
         messagesOrderReceivedVehDist.push_back(wsm->getGlobalMessageIdentificaton());
     }
 
@@ -454,8 +452,8 @@ void BaseWaveApplLayer::printCountBeaconMessagesDropVeh() {
 
     ScountMesssageDrop += messageDropbyOneVeh;
     myfile << "### " << source << " dropped: " << messageDropbyOneVeh << endl;
-    myfile << "### " << source << " use message buffer: " << msgBufferMaxUse << endl;
-    SmsgBufferUseGeneral += msgBufferMaxUse;
+    myfile << "### " << source << " use message buffer: " << msgBufferUse << endl;
+    SmsgBufferUseGeneral += msgBufferUse;
 
     if (SnumVehicles.size() == 1) {
         myfile << endl << "Exp: " << SexpNumber << " ### Final count messages drop: " << ScountMesssageDrop << endl;
@@ -930,9 +928,7 @@ void BaseWaveApplLayer::generateMessageEpidemic() { //Generate a message in orde
 
     epidemicLocalMessageBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
     epidemicLocalSummaryVector.insert(make_pair(wsm->getGlobalMessageIdentificaton(), true));
-    if (epidemicLocalMessageBuffer.size() > msgBufferMaxUse) {
-        msgBufferMaxUse = epidemicLocalMessageBuffer.size();
-    }
+    msgBufferUse++;
     colorCarryMessageVehDist(epidemicLocalMessageBuffer);
 }
 
@@ -1315,9 +1311,7 @@ void BaseWaveApplLayer::receivedOnDataEpidemic(WaveShortMessage* wsm) {
 
                         epidemicLocalMessageBuffer.insert(make_pair(wsm->getGlobalMessageIdentificaton(), *wsm));
                         epidemicLocalSummaryVector.insert(make_pair(wsm->getGlobalMessageIdentificaton(), true));
-                        if (epidemicLocalMessageBuffer.size() > msgBufferMaxUse) {
-                            msgBufferMaxUse = epidemicLocalMessageBuffer.size();
-                        }
+                        msgBufferUse++;
                         colorCarryMessageVehDist(epidemicLocalMessageBuffer);
                     }
 

@@ -140,7 +140,8 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         ofstream myfile; // record in file
 
-        unsigned short int target_x, target_y, msgBufferMaxUse;
+        unsigned short int target_x, target_y;
+        unsigned int msgBufferUse;
 
         string fileMessagesUnicast, fileMessagesBroadcast, fileMessagesCount, fileMessagesDrop, fileMessagesGenerated;
 
