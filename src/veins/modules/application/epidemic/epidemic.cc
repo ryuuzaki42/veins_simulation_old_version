@@ -20,28 +20,7 @@ void epidemic::initialize(int stage) {
 }
 
 void epidemic::vehInitializeVariablesEpidemicVeh() {
-    generalInitializeVariables_executionByExpNumberVehDist();
-
-    vehOffSet = double(myId)/1000; // Simulate asynchronous channel access. Values between 0.001, 0.002
-    SnumVehicles.push_back(source);
-    ScountVehicleAll++;
-
-    //vehCategory = traciVehicle->getTypeId();
-
-    WaveShortMessage wsmTmp;
-    wsmTmp.setTimestamp(simTime());
-    //w.setCategory(vehCategory.c_str());
-    SvehScenario.insert(make_pair(source, wsmTmp));
-
-    restartFilesResultVeh(SprojectInfo, mobility->getPositionAt(simTime() + 0.1));
-
-    if (SvehDistCreateEventGenerateMessage) {
-        vehGenerateBeaconMessageBeginVeh(vehOffSet); // Create Event to generate messages
-    } else {
-        generateMessageEpidemic();
-    }
-
-    cout << source <<  " myMac: " << myMac << " MACToInteger: " << MACToInteger() << " entered in the scenario" << endl;
+    vehInitializeValuesVehDist(traciVehicle->getTypeId(), mobility->getPositionAt(simTime() + 0.1)); // The same for Epidemic and VehDist
 }
 
 void epidemic::onBeacon(WaveShortMessage* wsm) {

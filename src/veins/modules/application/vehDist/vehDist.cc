@@ -18,31 +18,11 @@ void vehDist::initialize(int stage) {
 }
 
 void vehDist::vehInitializeVariablesVehDistVeh() {
-    generalInitializeVariables_executionByExpNumberVehDist();
+    vehCreateUpdateRateTimeToSendEvent(); // Create Event to update the rateTimeToSend (Only VehDist)
 
-    vehOffSet = double(myId)/1000; // Simulate asynchronous channel access. Values between 0.001, 0.002
-    SnumVehicles.push_back(source);
-    ScountVehicleAll++;
+    vehInitializeValuesVehDist(traciVehicle->getTypeId(), mobility->getPositionAt(simTime() + 0.1)); // The same for Epidemic and VehDist
 
-    vehCategory = traciVehicle->getTypeId();
-
-    WaveShortMessage wsmTmp;
-    wsmTmp.setTimestamp(simTime());
-    wsmTmp.setCategory(vehCategory.c_str());
-    SvehScenario.insert(make_pair(source, wsmTmp));
-
-    restartFilesResultVeh(SprojectInfo, mobility->getPositionAt(simTime() + 0.1)); // Start the file for save results
-
-    vehCreateUpdateRateTimeToSendEvent(); // Create Event to update the rateTimeToSend
-
-    if (SvehDistCreateEventGenerateMessage) {
-        vehGenerateBeaconMessageBeginVeh(vehOffSet); // Create Event to generate messages
-    } else {
-        generateBeaconMessageVehDist();
-    }
-
-    vehCreateEventTrySendBeaconMessage(); // Create one Event to try send messages in buffer
-    cout << endl << source << " cat: " << vehCategory << " entered in the scenario at " << simTime() << " whit OffSet: " << vehOffSet << endl;
+    vehCreateEventTrySendBeaconMessage(); // Create one Event to try send messages in buffer (Only VehDist)
 }
 
 void vehDist::onBeaconStatus(WaveShortMessage* wsm) {
