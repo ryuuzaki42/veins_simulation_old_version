@@ -50,12 +50,12 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     count = 1; // route start number
     pathComp = 4; //4 //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
     simulationTimeLimit = 600 - 100;
-    countVehicleRoutes = 210;//210; //170; //50
-    countVehicleCagegoryT = 10; //10
-    countPBegin = 40; //40; //10
-    insertByTime = 40; //40; //5
-    timeToInsert = 120; //60
-    sigmaValue = 0; //0.5
+    countVehicleRoutes = 210;   //420 - 105 - 55
+    countVehicleCagegoryT = 10; // 10 -   5 -  5
+    countPBegin = 40;   // 5x   // 40 -  20 - 10
+    insertByTime = 40;  // 5x   // 40 -  20 - 10
+    timeToInsert = 120; //120
+    sigmaValue = 0;
     goAndBack = false; //false
     stopPart = false; // Se colocar true coloque valor maior que zero em stopDurationTime, e.g. 20
     // Site configs: http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes
@@ -284,7 +284,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
             }
         }
     }
-    output << endl << "</routes>"; // Finalização do arquivo de rotas
+    output << "</routes>"; // Finalização do arquivo de rotas
     output.close();
     cout << "Rotas salvas no arquivo " << fileOutput << endl << endl;
 
