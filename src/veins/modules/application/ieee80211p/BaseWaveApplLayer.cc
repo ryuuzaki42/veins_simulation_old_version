@@ -215,7 +215,7 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
 
         string texTmp = "\nExp: " + to_string(SexpNumber);
         SprojectInfo = texTmp;
-        SprojectInfo += texTmp + " Project informations:";
+        SprojectInfo += texTmp + " Project information:";
         SprojectInfo += texTmp + " vehDistTrueEpidemicFalse: " + boolToString(SvehDistTrueEpidemicFalse);
         SprojectInfo += texTmp + " vehDistCreateEventGenerateMessage: " + boolToString(SvehDistCreateEventGenerateMessage);
         SprojectInfo += texTmp + " Experiment: " + to_string(SexpNumber);
@@ -228,12 +228,12 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
         SprojectInfo += texTmp + " timeLimitGenerateMessage: " + to_string(StimeLimitGenerateBeaconMessage);
         SprojectInfo += texTmp + " beaconMessageHopLimit: " + to_string(SbeaconMessageHopLimit);
         SprojectInfo += texTmp + " expSendbyDSCR: " + to_string(SexpSendbyDSCR);
-        SprojectInfo += texTmp + " ttlBeaconStatus: " + to_string(SttlBeaconStatus);
-        SprojectInfo += texTmp + " beaconMessageBufferSize: " + to_string(SbeaconMessageBufferSize);
-        SprojectInfo += texTmp + " beaconStatusBufferSize:" + to_string(SbeaconStatusBufferSize);
         SprojectInfo += texTmp + "\n";
 
         if (SvehDistTrueEpidemicFalse) {
+            SprojectInfo += texTmp + " ttlBeaconStatus: " + to_string(SttlBeaconStatus);
+            SprojectInfo += texTmp + " beaconMessageBufferSize: " + to_string(SbeaconMessageBufferSize);
+            SprojectInfo += texTmp + " beaconStatusBufferSize:" + to_string(SbeaconStatusBufferSize);
             SprojectInfo += texTmp + " percentP: " + to_string(SpercentP);
             SprojectInfo += texTmp + " usePathHistory: " + boolToString(SusePathHistory);
             SprojectInfo += texTmp + " useMessagesSendLog " + boolToString(SuseMessagesSendLog);
