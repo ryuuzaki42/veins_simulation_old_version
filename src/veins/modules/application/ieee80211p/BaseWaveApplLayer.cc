@@ -1038,6 +1038,7 @@ void BaseWaveApplLayer::sendLocalSummaryVector(unsigned int newRecipientAddress)
     wsm->setWsmData(getLocalSummaryVectorData().c_str()); // Put the summary vector here, on data wsm field
 
     sendWSM(wsm); // Sending the summary vector
+    ScountMsgPacketSend++;
 }
 
 // Method used to convert the unordered_map epidemicLocalSummaryVectorData in a string
@@ -1161,6 +1162,7 @@ void BaseWaveApplLayer::sendEpidemicRequestMessageVector(unsigned int newRecipie
 
     //cout << "Sending a vector of request messages from " << source << "(" << MACToInteger() << ") to " << newRecipientAddress << endl;
     sendWSM(wsm); // Sending the summary vector
+    ScountMsgPacketSend++;
 }
 
 void BaseWaveApplLayer::createEpidemicRequestMessageVector() {
