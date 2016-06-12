@@ -52,12 +52,10 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
         // TODO Alguma diferença no resultado final de mensagens recebidas?
         if (messagesDelivered.empty() || (find(messagesDelivered.begin(), messagesDelivered.end(), wsm->getGlobalMessageIdentificaton()) == messagesDelivered.end())) {
 
-          bool insert = sendOneNewMessageToOneNeighborTarget(*wsm); // Look in neigborStatus buffer if has the target of this message
-//            bool insert = true;
+          //bool insert = sendOneNewMessageToOneNeighborTarget(*wsm); // Look in neigborStatus buffer if has the target of this message
+            bool insert = true;
             if (insert) {
-
-                //if (wsm->getHopCount() > 1) {
-                if (wsm->getHopCount() > 0) {
+                if (wsm->getHopCount() >= 0) {
                     if (messagesBufferVehDist.empty() || messagesBufferVehDist.find(wsm->getGlobalMessageIdentificaton()) == messagesBufferVehDist.end()) { //verify if the message isn't in the buffer
                         cout << source << " saving message from " << wsm->getSenderAddressTemporary() << " with Id: " << wsm->getGlobalMessageIdentificaton() << " at: " << simTime() << endl;
                         string wsmDataTmp = wsm->getWsmData();
@@ -83,7 +81,7 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
                         cout << source << " message is on the buffer at: " << simTime() << endl;
                     }
                 } else { // wsm->getHopCount() < 0
-                    cout << "Error: reveiced message with hopCount < 0, hopCount: " << wsm->getHopCount() << " at: " << simTime() << endl;
+                    cout << "Error: received message with hopCount < 0, hopCount: " << wsm->getHopCount() << " at: " << simTime() << endl;
                     exit(2);
                 }
             }
@@ -203,8 +201,8 @@ void vehDist::sendBeaconMessage() {
 
     if (messageToSend >= messagesOrderReceivedVehDist.size() || messagesOrderReceivedVehDist.empty()) {
         if (simTime() > timeToFinishLastStartSend) {
-            cout << source << " 1_schedule at: " << simTime() << " to: " << (simTime() + double(rateTimeToSend)/1000);
             scheduleAt((simTime() + double(rateTimeToSend)/1000), sendBeaconMessageEvt);
+            cout << source << " 1_schedule at: " << simTime() << " to: " << (simTime() + double(rateTimeToSend)/1000);
         } else {
             scheduleAt(timeToFinishLastStartSend, sendBeaconMessageEvt);
             cout << source << " 2_schedule at: " << simTime() << " to: " << timeToFinishLastStartSend;
@@ -215,9 +213,10 @@ void vehDist::sendBeaconMessage() {
         scheduleAt((simTime() + double(rateTimeToSend)/1000), sendBeaconMessageEvt);
         cout << source << " 3_schedule at: " << simTime() << " to: " << (simTime() + double(rateTimeToSend)/1000) << " rateTimeToSend: " << rateTimeToSend;
     }
-
     cout << " timeToFinishLastStartSend: " << timeToFinishLastStartSend << endl;
     cout << "                               " << source << " expSendbyDSCR: " << SexpSendbyDSCR << " at: " << simTime() << endl << endl;
+
+    //scheduleAt((simTime() + 1), sendBeaconMessageEvt);
 }
 
 void vehDist::trySendBeaconMessage() {
@@ -232,11 +231,8 @@ void vehDist::trySendBeaconMessage() {
             // Assumimos o mesmo Range (rsu e veh)
 
             string idMessage, rcvId;
-            cout << "oimessageToSend " << messageToSend << endl;
-            cout << "messagesOrderReceived.empty " << messagesOrderReceivedVehDist.empty() << endl;
             idMessage = messagesOrderReceivedVehDist[messageToSend];
-            cout << "oimessageToSend " << messageToSend << endl;
-            if (messagesBufferVehDist[idMessage].getHopCount() > 1) {
+            if (messagesBufferVehDist[idMessage].getHopCount() > 0) {
                 rcvId = neighborWithShortestDistanceToTarge(idMessage);
             } else {
                 rcvId = neighborWithShortestDistanceToTargeOnlyDelivery(idMessage);
@@ -311,7 +307,7 @@ string vehDist::neighborWithShortestDistanceToTargeOnlyDelivery(string idMessage
     for (itBeaconNeighbors = beaconStatusNeighbors.begin(); itBeaconNeighbors != beaconStatusNeighbors.end(); itBeaconNeighbors++) {
         if (strcmp(itBeaconNeighbors->second.getSource(), messagesBufferVehDist[idMessage].getTarget()) == 0) {
             cout << source << " found target, message " << idMessage << " target " << messagesBufferVehDist[idMessage].getTarget() << " at " << simTime() << endl;
-            return messagesBufferVehDist[idMessage].getTarget();
+            return itBeaconNeighbors->second.getSource();
         }
     }
     return source;
@@ -320,73 +316,80 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
     string category;
     shortestDistance sD;
     unsigned short int MeetCatT, MeetCatP;
-    double neighborDistanceBefore, neighborDistanceNow, thisVehDistanceNow;
+    double neighborDistanceBefore, neighborDistanceNow;
     unordered_map <string, shortestDistance> vehShortestDistanceToTarget;
     unordered_map <string, shortestDistance>::iterator itShortestDistance;
     unordered_map <string, WaveShortMessage>::iterator itBeaconNeighbors;
 
     MeetCatT = MeetCatP = 0;
     bool insert;
+
+    cout << "Meet with neighbors " << beaconStatusNeighbors.size() << " options to a send" << idMessage << " message" << endl;
     for (itBeaconNeighbors = beaconStatusNeighbors.begin(); itBeaconNeighbors != beaconStatusNeighbors.end(); itBeaconNeighbors++) {
         if (strcmp(itBeaconNeighbors->second.getSource(), messagesBufferVehDist[idMessage].getTarget()) == 0) {
              cout << source << " found target, message " << idMessage << " target " << messagesBufferVehDist[idMessage].getTarget() << endl;
-             return messagesBufferVehDist[idMessage].getTarget();
-        } else {
-        if (!messagesSendLog.empty() && (messagesSendLog[idMessage].find(itBeaconNeighbors->first) != std::string::npos)) {
-            cout << source << " has been send a message " << idMessage << " to " << itBeaconNeighbors->first << endl;
-        } else {
-            neighborDistanceBefore = traci->getDistance(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBufferVehDist[idMessage].getTargetPos(), false);
-            neighborDistanceNow = traci->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBufferVehDist[idMessage].getTargetPos(), false);
 
-            if (SusePathHistory) { // True will check if the vehicle is closing to target (message target destination)
-                insert = false;
-
-                if (neighborDistanceBefore > neighborDistanceNow) { // Test if is closing to target
-                    insert = true;
-                } /*else {
-                    cout << itBeaconNeighbors->first << " going to another direction" << endl;
-                }*/
+             return itBeaconNeighbors->second.getSource();
+        } else {
+            if (!messagesSendLog.empty() && (messagesSendLog[idMessage].find(itBeaconNeighbors->first) != std::string::npos)) {
+                cout << source << " has been send a message " << idMessage << " to " << itBeaconNeighbors->first << endl;
             } else {
-                insert = true;
-            }
+                neighborDistanceBefore = traci->getDistance(itBeaconNeighbors->second.getSenderPosPrevious(), messagesBufferVehDist[idMessage].getTargetPos(), false);
+                neighborDistanceNow = traci->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBufferVehDist[idMessage].getTargetPos(), false);
+                cout << "    1337 " << itBeaconNeighbors->first << "DistB: " << neighborDistanceBefore << " DistN: " << neighborDistanceNow << endl;
 
-            if (!SallowMessageCopy) {
-                thisVehDistanceNow = traci->getDistance(curPosition, messagesBufferVehDist[idMessage].getTargetPos(), false);
-                if (neighborDistanceNow > thisVehDistanceNow) { // Test if is closing to target
+                if (SusePathHistory) { // True will check if the vehicle is closing to target (message target destination)
                     insert = false;
-                }
-            }
 
-            if (insert) {
-                sD.categoryVeh = itBeaconNeighbors->second.getCategory();
-                sD.distanceToTarget = neighborDistanceNow;
-                sD.senderPos = Coord(itBeaconNeighbors->second.getSenderPos());
-                sD.speedVeh = itBeaconNeighbors->second.getSenderSpeed();
-                sD.rateTimeToSendVeh = itBeaconNeighbors->second.getRateTimeToSend();
-
-                if (sD.categoryVeh.compare("T") == 0) {
-                    sD.distanceToTargetCategory = sD.distanceToTarget + sD.distanceToTarget * 0.1;
-                    MeetCatT = 1;
-                } else if (sD.categoryVeh.compare("P") == 0) {
-                    sD.distanceToTargetCategory = sD.distanceToTarget + sD.distanceToTarget * 0.3;
-                    MeetCatP =1;
+                    if (neighborDistanceBefore > neighborDistanceNow) { // Test if is closing to target
+                        insert = true;
+                    } /*else {
+                        cout << itBeaconNeighbors->first << " going to another direction" << endl;
+                    }*/
+                } else {
+                    insert = true;
                 }
 
-                sD.decisionValueDistanceSpeed = sD.distanceToTarget - (sD.speedVeh);
-                sD.decisionValueDistanceRateTimeToSend = sD.distanceToTarget + (double(sD.rateTimeToSendVeh)/100);
-//                sD.decisionValueDistanceRateTimeToSend = sD.distanceToTarget * (double(sD.rateTimeToSendVeh)/1000);
-                sD.decisionValueDistanceSpeedRateTimeToSend = sD.distanceToTarget - (sD.speedVeh) + (double(sD.rateTimeToSendVeh)/100);
+//                if (!SallowMessageCopy || !SusePathHistory) {
+//                    double thisVehDistanceNow = traci->getDistance(curPosition, messagesBufferVehDist[idMessage].getTargetPos(), false);
+//                    if (neighborDistanceNow > thisVehDistanceNow) { // Test if is closing to target
+//                        insert = false;
+//                    }
+//                }
 
-                // Distance = [0 - 125] - 720 m
-                // vehicle Speed = 0 - (15/25) - 84 m/s
-                // rateTimeToSend = 100 to 5000 ms
-                // DecisonValueDS = distance - speed
-                // DecisonValueDSCR = distance - speed + rateTimeToSend/100 (0.1 * 10)
+                if (insert) {
+                    sD.categoryVeh = itBeaconNeighbors->second.getCategory();
+                    sD.distanceToTargetNow = neighborDistanceNow;
+                    sD.distanceToTargetBefore = neighborDistanceBefore;
+                    sD.senderPos = Coord(itBeaconNeighbors->second.getSenderPos());
+                    sD.speedVeh = itBeaconNeighbors->second.getSenderSpeed();
+                    sD.rateTimeToSendVeh = itBeaconNeighbors->second.getRateTimeToSend();
 
-                vehShortestDistanceToTarget.insert(make_pair(itBeaconNeighbors->first, sD));
+                    if (sD.categoryVeh.compare("T") == 0) {
+                        sD.distanceToTargetCategory = sD.distanceToTargetNow + sD.distanceToTargetNow * 0.1;
+                        MeetCatT = 1;
+                    } else if (sD.categoryVeh.compare("P") == 0) {
+                        sD.distanceToTargetCategory = sD.distanceToTargetNow + sD.distanceToTargetNow * 0.3;
+                        MeetCatP =1;
+                    } else {
+                        cout << "Error category unknown" << endl;
+                        exit(3);
+                    }
+
+                    sD.decisionValueDistanceSpeed = sD.distanceToTargetNow - (sD.speedVeh);
+                    sD.decisionValueDistanceRateTimeToSend = sD.distanceToTargetNow + (double(sD.rateTimeToSendVeh)/100);
+                    sD.decisionValueDistanceSpeedRateTimeToSend = sD.distanceToTargetNow - (sD.speedVeh) + (double(sD.rateTimeToSendVeh)/100);
+
+                    // Distance = [0 - 125] - 720 m
+                    // vehicle Speed = 0 - (16.67/25) - 84 m/s
+                    // rateTimeToSend = 100 to 5000 ms
+                    // DecisonValueDS = distance - speed
+                    // DecisonValueDSCR = distance - speed + rateTimeToSend/100 (0.1 * 10)
+
+                    vehShortestDistanceToTarget.insert(make_pair(itBeaconNeighbors->first, sD));
+                }
             }
         }
-    }
     }
 
     if (!vehShortestDistanceToTarget.empty()) {
@@ -398,8 +401,8 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
         }
         cout << "Meet with " << vehShortestDistanceToTarget.size() << " options to a send" << idMessage << " message" << endl;
 
-        cout << endl << "Source vehicle informations" << endl;
-        cout << "    Id: " << source << endl;
+        cout << endl << "Source vehicle information" << endl;
+        cout << "    Id(veh): " << source << endl;
         cout << "    Message Id: " << messagesBufferVehDist[idMessage].getGlobalMessageIdentificaton() << endl;
         cout << "    Category: " << vehCategory << endl;
         cout << "    Distance: " << traci->getDistance(curPosition, messagesBufferVehDist[idMessage].getTargetPos(), false) << endl;
@@ -412,7 +415,8 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
             cout << "    Id(veh): " << itShortestDistance->first << endl;
             cout << "    Position: " << itShortestDistance->second.senderPos << endl;
             cout << "    Category: " << itShortestDistance->second.categoryVeh << endl;
-            cout << "    Distance: " << itShortestDistance->second.distanceToTarget << endl;
+            cout << "    DistanceBefore: " << itShortestDistance->second.distanceToTargetBefore << endl;
+            cout << "    DistanceNow:    " << itShortestDistance->second.distanceToTargetNow << endl;
             cout << "    Speed: " << itShortestDistance->second.speedVeh << endl;
             cout << "    RateTimeToSend: " << itShortestDistance->second.rateTimeToSendVeh << endl;
             cout << "    DistanceCategory: " << itShortestDistance->second.distanceToTargetCategory << endl;
@@ -421,7 +425,31 @@ string vehDist::neighborWithShortestDistanceToTarge(string idMessage) {
             cout << "    DecisionValueDistanceSpeedRateTimeToSend: " << itShortestDistance->second.decisionValueDistanceSpeedRateTimeToSend << endl << endl;
         }
     } else {
-        cout << endl << "vehShortestDistanceToTarget to " << source << " at " << simTime() << " vehShortestDistanceToTarget is empty." << endl << endl;
+        cout << endl << "vehShortestDistanceToTarget to " << source << " at " << simTime() << " vehShortestDistanceToTarget is empty" << endl << endl;
+    }
+
+    if (SusePathHistory) {
+        if (vehShortestDistanceToTarget.empty()) {
+            cout << source << " select the more closest to target to take good use of this meet. ";
+
+            itBeaconNeighbors = beaconStatusNeighbors.begin();
+            string vehId = itBeaconNeighbors->first;
+            double shortDist = traci->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBufferVehDist[idMessage].getTargetPos(), false);
+            itBeaconNeighbors++;
+
+            for (; itBeaconNeighbors != beaconStatusNeighbors.end(); itBeaconNeighbors++) {
+                neighborDistanceNow = traci->getDistance(itBeaconNeighbors->second.getSenderPos(), messagesBufferVehDist[idMessage].getTargetPos(), false);
+
+                if (shortDist > neighborDistanceNow) {
+                    shortDist = neighborDistanceNow;
+                    vehId = itBeaconNeighbors->first;
+                }
+            }
+
+            cout << "The vehicle more closest is " << vehId << endl;
+            ScountMeetN++;
+            return vehId;
+        }
     }
 
     string vehId = source;
@@ -471,7 +499,7 @@ string vehDist::chosenByDistance(unordered_map <string, shortestDistance> vehSho
     string vehId = source;
     shortestDistanceToTarget = DBL_MAX;
     for (itShortestDistance = vehShortestDistanceToTarget.begin(); itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
-        distanceToTarget = itShortestDistance->second.distanceToTarget;
+        distanceToTarget = itShortestDistance->second.distanceToTargetNow;
         if (shortestDistanceToTarget > distanceToTarget) {
             shortestDistanceToTarget = distanceToTarget;
             vehId = itShortestDistance->first;
@@ -505,7 +533,7 @@ string vehDist::chosenByDistance_CategoryA(unordered_map <string, shortestDistan
     shortestDistanceP = shortestDistanceT = DBL_MAX;
     for (itShortestDistance = vehShortestDistanceToTarget.begin(); itShortestDistance != vehShortestDistanceToTarget.end(); itShortestDistance++) {
         category = itShortestDistance->second.categoryVeh;
-        distanceToTarget = itShortestDistance->second.distanceToTarget;
+        distanceToTarget = itShortestDistance->second.distanceToTargetNow;
         if (category.compare("P") == 0) {
             if (shortestDistanceP > distanceToTarget) {
                 shortestDistanceP = distanceToTarget;
