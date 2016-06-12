@@ -52,10 +52,10 @@ if [ "$numExpF_1to8" -lt "$numExpI_1to8" ]; then
     numExpF_1to8=$numExpI_1to8
 fi
 
-echo -e "\nNumber of experiments: $numExpI_1to8 to $numExpF_1to8\n"
+echo -e "\nNumber of experiments: $numExpI_1to8 to $numExpF_1to8"
 ((numExpF_1to8++))
 
-echo -e "\n## Script to collect the simulation results in one place\n"
+echo -e "\n## Script to collect the simulation results in one place"
 echo -e "\n   ## Results from vehDist $part\n"
 
 pathFolder="../results/vehDist_resultsEnd_$part"
@@ -64,7 +64,7 @@ vehiclesFile="Veh_Messages_Drop.r"
 
 experiment="0099_epidemic"
 
-echo -e "\n\n## Values from experiment $experiment"
+echo -e "## Values from experiment $experiment"
 
 i=$numExpI_1to8
 while [ $i -lt $numExpF_1to8 ]; do
@@ -75,5 +75,5 @@ while [ $i -lt $numExpF_1to8 ]; do
     ((i++))
 done
 
-echo -e "\n\n               ## End of script\n"
+echo -e "\n               ## End of script\n"
 #

@@ -52,7 +52,7 @@ if [ "$numExpF_1to8" -lt "$numExpI_1to8" ]; then
     numExpF_1to8=$numExpI_1to8
 fi
 
-echo -e "\nNumber of experiments: $numExpI_1to8 to $numExpF_1to8\n"
+echo -e "\nNumber of experiments: $numExpI_1to8 to $numExpF_1to8"
 ((numExpF_1to8++))
 
 ## Local my pc folder
@@ -61,7 +61,7 @@ cd /media/sda4/prog/simulation_veins/projects/vehDist/others/
 ## Cluster folder, change de v001 for the veins version
 #cd /mnt/nfs/home/luz.marina/0_jonh/veins_v00$part/projects/vehDist$part/others/
 
-echo -e "\n## Script to collect the simulation results in one place\n"
+echo -e "\n## Script to collect the simulation results in one place"
 echo -e "\n   ## Results from vehDist $part\n"
 
 pathFolder="../results/vehDist_resultsEnd_$part"
@@ -80,7 +80,7 @@ while [ $continueFlag == 1 ]; do
         6) experiment="1234_chosenByDistance_Speed_Category_RateTimeToSend" ;;
     esac
 
-    echo -e "\n\n## Values from experiment $experiment"
+    echo -e "## Values from experiment $experiment"
     i=$numExpI_1to8
     while [ $i -lt $numExpF_1to8 ]; do
         echo -e "               ## Experiment $i\n"
@@ -96,5 +96,5 @@ while [ $continueFlag == 1 ]; do
     fi
 done
 
-echo -e "\n\n               ## End of script\n"
+echo -e "\n               ## End of script\n"
 #
