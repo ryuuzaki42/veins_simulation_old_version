@@ -40,10 +40,8 @@ class vehDist : public BaseWaveApplLayer {
         struct shortestDistance {
             Coord senderPos;
             string categoryVeh;
-            //double distanceToTarget, distanceToTargetCategory, decisionValueDistanceSpeed;
-            //double decisionValueDistanceRateTimeToSend, decisionValueDistanceSpeedRateTimeToSend, speedVeh;
-            int distanceToTarget, distanceToTargetCategory, decisionValueDistanceSpeed;
-            int decisionValueDistanceRateTimeToSend, decisionValueDistanceSpeedRateTimeToSend, speedVeh;
+            double distanceToTargetNow, distanceToTargetBefore, distanceToTargetCategory, decisionValueDistanceSpeed;
+            double decisionValueDistanceRateTimeToSend, decisionValueDistanceSpeedRateTimeToSend, speedVeh;
             unsigned short int rateTimeToSendVeh;
         };
 
