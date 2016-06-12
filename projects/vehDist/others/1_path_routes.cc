@@ -50,10 +50,10 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     count = 1; // route start number
     pathComp = 4; //4 //1 é 250 m de rota e 4 1 km que no final se torna 2 km de rota
     simulationTimeLimit = 600 - 100;
-    countVehicleRoutes = 210;   //420 - 105 - 55
-    countVehicleCagegoryT = 10; // 10 -   5 -  5
-    countPBegin = 40;   // 5x   // 40 -  20 - 10
-    insertByTime = 40;  // 5x   // 40 -  20 - 10
+    countVehicleRoutes = 420;   //420 - 210 - 105 - 55
+    countVehicleCagegoryT = 20; // 20 -  10 -   5 -  5
+    countPBegin = 80;   // 5x   // 80 -  40 -  20 - 10
+    insertByTime = 80;  // 5x   // 80 -  40 -  20 - 10
     timeToInsert = 120; //120
     sigmaValue = 0;
     goAndBack = false; //false
