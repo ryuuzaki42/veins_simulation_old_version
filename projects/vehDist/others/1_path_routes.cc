@@ -43,7 +43,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     bool useDepartPos_ArrivalPos_DepartSpeed_AsRandom, useLeftAndRightRoadAsSamePlace;
 
     unsigned short int count, countVehicleCagegoryT, p1, p2, dist, countVehicleRoutes, lineCount;
-    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp;
+    unsigned short int notLoopStreet, notLoopStreetTmp, routeComp, pathComp, pathCompTmp, pTmp, countTmp2;
     unsigned short int insertByTime, timeToInsert, compare, compare2, stopDurationTime, countPBegin, simulationTimeLimit;
     double sigmaValue;
 
@@ -60,6 +60,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     stopPart = false; // Se colocar true coloque valor maior que zero em stopDurationTime, e.g. 20
     // Site configs: http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes
     stopDurationTime = 60;
+    countTmp2 = 0;
     useLeftAndRightRoadAsSamePlace = true;
     useDepartPos_ArrivalPos_DepartSpeed_AsRandom = false; //false
     notLoopStreet = notLoopStreetTmp = 10; // Em pedaços da rota o veículo não pode dar volta na rua
@@ -208,6 +209,13 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
                         }
 
                         output << toTmp; // Escrita da rota no arquivo de saída
+
+                        countTmp2++;
+                        if (countTmp2 == insertByTime) {
+                            output << endl;
+                            countTmp2 = 0;
+                        }
+
                         count++;
                     }
                 }
@@ -215,7 +223,7 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
         }
         lineCount++;
     }
-    output << endl << "    <!-- line_end: " << lineCount << " -->" << endl;
+    output << "    <!-- line_end: " << lineCount << " -->" << endl;
 
     string departPos, departSpeed, arrivalPos;
     if (useDepartPos_ArrivalPos_DepartSpeed_AsRandom) {
