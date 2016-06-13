@@ -52,8 +52,8 @@ void vehDist::onBeaconMessage(WaveShortMessage* wsm) {
         // TODO Alguma diferença no resultado final de mensagens recebidas?
         if (messagesDelivered.empty() || (find(messagesDelivered.begin(), messagesDelivered.end(), wsm->getGlobalMessageIdentificaton()) == messagesDelivered.end())) {
 
-          //bool insert = sendOneNewMessageToOneNeighborTarget(*wsm); // Look in neigborStatus buffer if has the target of this message
-            bool insert = true;
+          bool insert = sendOneNewMessageToOneNeighborTarget(*wsm); // Look in neigborStatus buffer if has the target of this message
+            //bool insert = true;
             if (insert) {
                 if (wsm->getHopCount() >= 0) {
                     if (messagesBufferVehDist.empty() || messagesBufferVehDist.find(wsm->getGlobalMessageIdentificaton()) == messagesBufferVehDist.end()) { //verify if the message isn't in the buffer
