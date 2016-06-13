@@ -25,7 +25,7 @@
 # Última atualização: 10/06/2016
 #
 ## Local my pc folder
-cd /media/sda4/prog/simulation_veins/projects/epidemic/outros/
+cd /media/sda4/prog/simulation_veins/projects/epidemic/others/
 # or
 ## Cluster folder, change de v001 for the veins version
 #cd /mnt/nfs/home/luz.marina/0_jonh/veins_v00$part/projects/vehDist$part/others/
