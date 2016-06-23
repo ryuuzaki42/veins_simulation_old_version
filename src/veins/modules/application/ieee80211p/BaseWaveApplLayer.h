@@ -165,7 +165,7 @@ class BaseWaveApplLayer : public BaseApplLayer {
 
         static unordered_map <string, WaveShortMessage> SvehScenario;
         static bool SvehDistTrueEpidemicFalse, SusePathHistory, SallowMessageCopy, SvehSendWhileParking;
-        static bool SselectFromAllVehicles, SuseMessagesSendLog, SvehDistCreateEventGenerateMessage;
+        static bool SselectFromAllVehicles, SuseMessagesSendLog, SvehDistCreateEventGenerateMessage, SuseRateTimeToSend;
 
         struct messages {
           string firstSource, hops, wsmData, times;
