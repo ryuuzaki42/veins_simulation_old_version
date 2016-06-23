@@ -1,9 +1,0 @@
-<edges>
-    <edge from="1" id="road1_in" to="2" numLanes="2"/>
-    <edge from="2" id="road1" to="3" numLanes="2" />
-    <edge from="3" id="road1_out" to="4" numLanes="2" />
-
-    <edge from="8" id="road2_in" to="7" numLanes="2"/>
-    <edge from="7" id="road2" to="6" numLanes="2"/>
-    <edge from="6" id="road2_out" to="5" numLanes="2" />
-</edges>

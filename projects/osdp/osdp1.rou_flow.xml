@@ -1,7 +1,0 @@
-<routes>
-    <vType accel="4.0" decel="5.0" id="Car" length="2.5" maxSpeed="27" sigma="0.0" departLane="random" speedFactor="1" speedDev="0.1" />
-    <route id="road1_route0" edges="road1_in road1 road1_out"/>
-    <route id="road2_route0" edges="road2_in road2 road2_out"/>
-    <flow id="flow0" type="Car" route="road1_route0" begin="0" end="40" number="50"/>
-    <flow id="flow1" type="Car" route="road2_route0" begin="0" end="40" number="50"/>
-</routes>
