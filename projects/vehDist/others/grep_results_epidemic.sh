@@ -25,6 +25,7 @@
 # Última atualização: 23/06/2016
 #
 ## Local my pc folder
+#cd /media/sda4/prog/simulation_veins/projects/epidemic/others/
 cd /media/sda4/prog/simulation_veins/projects/vehDist/others/
 # or
 ## Cluster folder, change de v001 for the veins version
@@ -48,12 +49,6 @@ if [ "$numExpF_1to8" == '' ]; then
     exit 1
 fi
 
-numExpF_DSCR=$4
-if [ "$numExpF_DSCR" == '' ]; then
-    numExpF_DSCR=6
-fi
-((numExpF_DSCR++))
-
 if [ "$numExpF_1to8" -lt "$numExpI_1to8" ]; then
     numExpF_1to8=$numExpI_1to8
 fi
@@ -68,32 +63,17 @@ pathFolder="../results/vehDist_resultsEnd_$part"
 rsu0File="rsu\[0\]_Count_Messages_Received.r"
 vehiclesFile="Veh_Messages_Drop.r"
 
-count=1
-continueFlag=1
-while [ $continueFlag == 1 ]; do
-    case $count in
-        1) experiment="0001_chosenByDistance" ;;
-        2) experiment="0012_chosenByDistance_Speed" ;;
-        3) experiment="0013_chosenByDistance_Category" ;;
-        4) experiment="0014_chosenByDistance_RateTimeToSend" ;;
-        5) experiment="0123_chosenByDistance_Speed_Category" ;;
-        6) experiment="1234_chosenByDistance_Speed_Category_RateTimeToSend" ;;
-    esac
+experiment="0099_epidemic"
 
-    echo -e "## Values from experiment $experiment"
-    i=$numExpI_1to8
-    while [ $i -lt $numExpF_1to8 ]; do
-        echo -e "               ## Experiment $i\n"
-        cat $pathFolder/$experiment/E$i_*/$rsu0File | grep -E "Exp: $i"
-        echo
-        cat $pathFolder/$experiment/E$i_*/$vehiclesFile | grep -E "Exp: $i"
-        ((i++))
-    done
+echo -e "## Values from experiment $experiment"
 
-    ((count++))
-    if [ $count == $numExpF_DSCR ]; then
-        continueFlag=0
-    fi
+i=$numExpI_1to8
+while [ $i -lt $numExpF_1to8 ]; do
+    echo -e "               ## Experiment $i\n"
+    cat $pathFolder/$experiment/E$i_*/$rsu0File | grep -E "Exp: $i"
+    echo
+    cat $pathFolder/$experiment/E$i_*/$vehiclesFile | grep -E "Exp: $i"
+    ((i++))
 done
 
 echo -e "\n               ## End of script\n"
