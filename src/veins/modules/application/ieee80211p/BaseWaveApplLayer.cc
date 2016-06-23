@@ -173,6 +173,7 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
         SuseMessagesSendLog = par("useMessagesSendLog").boolValue();
         SvehDistTrueEpidemicFalse = par("vehDistTrueEpidemicFalse").boolValue();
         SvehDistCreateEventGenerateMessage = par("vehDistCreateEventGenerateMessage").boolValue();
+        SuseRateTimeToSend = par("useRateTimeToSend").boolValue();
 
         SttlBeaconStatus = par("ttlBeaconStatus");
         SbeaconMessageBufferSize = par("beaconMessageBufferSize");
@@ -218,6 +219,7 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
         SprojectInfo += texTmp + " Project information:";
         SprojectInfo += texTmp + " vehDistTrueEpidemicFalse: " + boolToString(SvehDistTrueEpidemicFalse);
         SprojectInfo += texTmp + " vehDistCreateEventGenerateMessage: " + boolToString(SvehDistCreateEventGenerateMessage);
+        SprojectInfo += texTmp + " useRateTimeToSend: " + boolToString(SuseRateTimeToSend);
         SprojectInfo += texTmp + " Experiment: " + to_string(SexpNumber);
         SprojectInfo += texTmp + " repeatNumber: " + to_string(SrepeatNumber);
         SprojectInfo += texTmp + " ttlBeaconMessage: " + to_string(SttlBeaconMessage);
@@ -257,7 +259,7 @@ string BaseWaveApplLayer::boolToString(bool value) {
 }
 
 string BaseWaveApplLayer::getFolderResultVehDist(unsigned short int expSendbyDSCR) {
-    string expSendbyDSCRText, resultFolderPart;
+    string expSendbyDSCRText;
     switch (expSendbyDSCR) {
         case 1:
             expSendbyDSCRText = "0001_chosenByDistance";
@@ -285,10 +287,16 @@ string BaseWaveApplLayer::getFolderResultVehDist(unsigned short int expSendbyDSC
             exit(1);
     }
 
+    string resultFolderPart = "results/";
+    if (SvehDistTrueEpidemicFalse) {
+        resultFolderPart += "vehDist_resultsEnd_";
+    } else {
+        resultFolderPart += "epidemic_resultsEnd_";
+    }
+
     unsigned short int expPartOneOrTwo = par("expPart_one_or_two");
-    resultFolderPart = "results/vehDist_resultsEnd_" + to_string(expPartOneOrTwo) + "/" + expSendbyDSCRText + "/";
-    resultFolderPart += "E" + to_string(SexpNumber) + "_" + to_string(SttlBeaconMessage) + "_";
-    resultFolderPart += to_string(ScountGenerateBeaconMessage) +"/";
+    resultFolderPart += to_string(expPartOneOrTwo) + "/" + expSendbyDSCRText + "/" + "E" + to_string(SexpNumber) + "_";
+    resultFolderPart += to_string(SttlBeaconMessage) + "_" + to_string(ScountGenerateBeaconMessage) +"/";
 
     return resultFolderPart;
 }
