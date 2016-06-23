@@ -199,24 +199,27 @@ void vehDist::sendBeaconMessage() {
     //printMessagesBuffer();
     messageToSend++; // Move to next message
 
-    if (messageToSend >= messagesOrderReceivedVehDist.size() || messagesOrderReceivedVehDist.empty()) {
-        if (simTime() > timeToFinishLastStartSend) {
-            scheduleAt((simTime() + double(rateTimeToSend)/1000), sendBeaconMessageEvt);
-            cout << source << " 1_schedule at: " << simTime() << " to: " << (simTime() + double(rateTimeToSend)/1000);
-        } else {
-            scheduleAt(timeToFinishLastStartSend, sendBeaconMessageEvt);
-            cout << source << " 2_schedule at: " << simTime() << " to: " << timeToFinishLastStartSend;
-        }
-
-        timeToFinishLastStartSend += double(rateTimeToSendLimitTime)/1000;
+    if (!SuseRateTimeToSend){
+        cout << source << " schedule useRateTimeToSend: false at: " << simTime() << " to: " << (simTime() + 1);
+        scheduleAt((simTime() + 1), sendBeaconMessageEvt);
     } else {
-        scheduleAt((simTime() + double(rateTimeToSend)/1000), sendBeaconMessageEvt);
-        cout << source << " 3_schedule at: " << simTime() << " to: " << (simTime() + double(rateTimeToSend)/1000) << " rateTimeToSend: " << rateTimeToSend;
-    }
-    cout << " timeToFinishLastStartSend: " << timeToFinishLastStartSend << endl;
-    cout << "                               " << source << " expSendbyDSCR: " << SexpSendbyDSCR << " at: " << simTime() << endl << endl;
+        if (messageToSend >= messagesOrderReceivedVehDist.size() || messagesOrderReceivedVehDist.empty()) {
+            if (simTime() > timeToFinishLastStartSend) {
+                scheduleAt((simTime() + double(rateTimeToSend)/1000), sendBeaconMessageEvt);
+                cout << source << " 1_schedule at: " << simTime() << " to: " << (simTime() + double(rateTimeToSend)/1000);
+            } else {
+                scheduleAt(timeToFinishLastStartSend, sendBeaconMessageEvt);
+                cout << source << " 2_schedule at: " << simTime() << " to: " << timeToFinishLastStartSend;
+            }
 
-    //scheduleAt((simTime() + 1), sendBeaconMessageEvt);
+            timeToFinishLastStartSend += double(rateTimeToSendLimitTime)/1000;
+        } else {
+            scheduleAt((simTime() + double(rateTimeToSend)/1000), sendBeaconMessageEvt);
+            cout << source << " 3_schedule at: " << simTime() << " to: " << (simTime() + double(rateTimeToSend)/1000) << " rateTimeToSend: " << rateTimeToSend;
+        }
+        cout << " timeToFinishLastStartSend: " << timeToFinishLastStartSend << endl;
+        cout << "                               " << source << " expSendbyDSCR: " << SexpSendbyDSCR << " at: " << simTime() << endl << endl;
+    }
 }
 
 void vehDist::trySendBeaconMessage() {
