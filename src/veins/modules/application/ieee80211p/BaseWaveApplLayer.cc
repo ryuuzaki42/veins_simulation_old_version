@@ -219,29 +219,36 @@ void BaseWaveApplLayer::generalInitializeVariables_executionByExpNumberVehDist()
         SprojectInfo += texTmp + " Project information:";
         SprojectInfo += texTmp + " vehDistTrueEpidemicFalse: " + boolToString(SvehDistTrueEpidemicFalse);
         SprojectInfo += texTmp + " vehDistCreateEventGenerateMessage: " + boolToString(SvehDistCreateEventGenerateMessage);
-        SprojectInfo += texTmp + " useRateTimeToSend: " + boolToString(SuseRateTimeToSend);
         SprojectInfo += texTmp + " Experiment: " + to_string(SexpNumber);
         SprojectInfo += texTmp + " repeatNumber: " + to_string(SrepeatNumber);
-        SprojectInfo += texTmp + " ttlBeaconMessage: " + to_string(SttlBeaconMessage);
+        SprojectInfo += texTmp + " ttlBeaconMessage: " + to_string(SttlBeaconMessage) + " s";
         SprojectInfo += texTmp + " countGenerateBeaconMessage: " + to_string(ScountGenerateBeaconMessage);
         SprojectInfo += texTmp + " allowMessageCopy: " + boolToString(SallowMessageCopy);
         SprojectInfo += texTmp + " sendWhileParking: " + boolToString(SvehSendWhileParking);
         SprojectInfo += texTmp + " selectFromAllVehicles: " + boolToString(SselectFromAllVehicles);
-        SprojectInfo += texTmp + " timeLimitGenerateMessage: " + to_string(StimeLimitGenerateBeaconMessage);
+        SprojectInfo += texTmp + " timeLimitGenerateMessage: " + to_string(StimeLimitGenerateBeaconMessage) + " s";
         SprojectInfo += texTmp + " beaconMessageHopLimit: " + to_string(SbeaconMessageHopLimit);
         SprojectInfo += texTmp + " expSendbyDSCR: " + to_string(SexpSendbyDSCR);
         SprojectInfo += texTmp + "\n";
 
+        SprojectInfo += texTmp;
         if (SvehDistTrueEpidemicFalse) {
-            SprojectInfo += texTmp + " ttlBeaconStatus: " + to_string(SttlBeaconStatus);
+            SprojectInfo += texTmp + " useRateTimeToSend: " + boolToString(SuseRateTimeToSend);
+            if (!SuseRateTimeToSend) {
+                stringstream ss;
+                ss << fixed << setprecision(1) << par("normalTimeSendMessage").doubleValue();
+                SprojectInfo += texTmp + " normalTimeSendMessage: " + ss.str() + " s";
+            }
+
+            SprojectInfo += texTmp + " ttlBeaconStatus: " + to_string(SttlBeaconStatus) + " s";
             SprojectInfo += texTmp + " beaconMessageBufferSize: " + to_string(SbeaconMessageBufferSize);
             SprojectInfo += texTmp + " beaconStatusBufferSize:" + to_string(SbeaconStatusBufferSize);
-            SprojectInfo += texTmp + " percentP: " + to_string(SpercentP);
+            SprojectInfo += texTmp + " percentP: " + to_string(SpercentP) + " %";
             SprojectInfo += texTmp + " usePathHistory: " + boolToString(SusePathHistory);
             SprojectInfo += texTmp + " useMessagesSendLog " + boolToString(SuseMessagesSendLog);
-            SprojectInfo += texTmp + " timeToUpdatePosition: " + to_string(StimeToUpdatePosition);
+            SprojectInfo += texTmp + " timeToUpdatePosition: " + to_string(StimeToUpdatePosition) + " s";
         } else {
-            SprojectInfo += texTmp + " sendSummaryVectorInterval: " + to_string(sendSummaryVectorInterval);
+            SprojectInfo += texTmp + " sendSummaryVectorInterval: " + to_string(sendSummaryVectorInterval) + " s";
             SprojectInfo += texTmp + " maximumEpidemicBufferSize: " + to_string(maximumEpidemicBufferSize);
         }
 

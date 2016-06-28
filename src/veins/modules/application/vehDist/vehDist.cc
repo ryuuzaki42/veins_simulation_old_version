@@ -201,7 +201,7 @@ void vehDist::sendBeaconMessage() {
 
     if (!SuseRateTimeToSend){
         cout << source << " schedule useRateTimeToSend: false at: " << simTime() << " to: " << (simTime() + 1);
-        scheduleAt((simTime() + 1), sendBeaconMessageEvt);
+        scheduleAt((simTime() + par("normalTimeSendMessage").doubleValue()), sendBeaconMessageEvt);
     } else {
         if (messageToSend >= messagesOrderReceivedVehDist.size() || messagesOrderReceivedVehDist.empty()) {
             if (simTime() > timeToFinishLastStartSend) {
