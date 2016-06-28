@@ -55,7 +55,9 @@ simple BaseWaveApplLayer like IBaseApplLayer {
         bool vehDistTrueEpidemicFalse = default(false); // Is vehDist (true), is Epidemic (false)
         bool vehDistCreateEventGenerateMessage = default(false); // Use the event to generate message or not
         int vehTimeLimitToAcceptGenerateMgs @unit("s") = default(0s); // Time limit that one vehile enter in the scenario
+
         bool useRateTimeToSend = default(false); // Use or not the rateTimeToSend
+        double normalTimeSendMessage @unit("s") = default(0s); // Time will send a message whe useRateTimeToSend is false.
 
     gates:
         input lowerLayerIn; // from mac layer
