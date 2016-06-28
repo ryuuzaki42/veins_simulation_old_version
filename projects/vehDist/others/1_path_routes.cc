@@ -7,6 +7,8 @@
 #include <fstream>
 #include <iostream>
 #include <string.h>
+#include <iomanip> // std::setprecision
+#include <sstream>
 
 using namespace std;
 
@@ -235,7 +237,10 @@ unsigned short int generate_routes (unsigned short int lineStart, unsigned short
     string routeDescripPart = " departPos=\"" + departPos + "\" arrivalPos=\"" + arrivalPos;
     routeDescripPart += "\" departSpeed=\"" + departSpeed + "\" id=\"";
 
-    string vehDescripType = " accel=\"3\" decel=\"5\" sigma=\"" + to_string(sigmaValue);
+    stringstream ss;
+    ss << fixed << setprecision(1) << sigmaValue;
+
+    string vehDescripType = " accel=\"3\" decel=\"5\" sigma=\"" + ss.str();
     vehDescripType += "\" length=\"2.5\" minGap=\"2.5\" maxSpeed=\"16.67\" ";
 
     output << endl << "    <!-- T => Taxi/Táxi -->" << endl;

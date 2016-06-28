@@ -3,7 +3,7 @@
     python /media/sda4/prog/sumo-0.25.0/tools/randomTrips.py --help
     http://sumo.dlr.de/wiki/FAQ#How_do_I_generate_random_routes.3F
 
-## km^2, grid: (1,5) (2,9) (3,13) (4,17) (5, 21) (6, 25)
+## km^2, grid: (1, 5) (4, 9) (9, 13) (16, 17) (25, 21) (36, 25)
 
 ## Generate the grid 1 km^2
     netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o vehDist.net.xml
@@ -11,14 +11,14 @@
     netgenerate -g --grid.number=5 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o vehDist.net.xml
         # Change --default.lanenumber to 1; added --no-turnarounds and the (max) speed to 85
 
-## Generate the grid 3 km^2
+## Generate the grid 9 km^2
     netgenerate -g --grid.number=13 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o vehDist.net.xml
     # or with no --no-turnarounds
     netgenerate -g --grid.number=13 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o vehDist.net.xml
     ## Afer this comand run the script
     ./gridConvertOneCharacter.sh 13
 
-## Generate the grid 6 km^2
+## Generate the grid 36 km^2
     netgenerate -g --grid.number=25 --grid.length=250 --default.lanenumber=1 --default.speed 85 -o vehDist.net.xml
     # or with no --no-turnarounds
     netgenerate -g --grid.number=25 --grid.length=250 --default.lanenumber=1 --no-turnarounds --default.speed 85 -o vehDist.net.xml

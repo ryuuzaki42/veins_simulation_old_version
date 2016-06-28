@@ -440,7 +440,7 @@
     <!-- line_end: 1292 -->
 
     <!-- T => Taxi/Táxi -->
-    <vType id="T" accel="3" decel="5" sigma="0.000000" length="2.5" minGap="2.5" maxSpeed="16.67" color="1,1,0"/>
+    <vType id="T" accel="3" decel="5" sigma="0.0" length="2.5" minGap="2.5" maxSpeed="16.67" color="1,1,0"/>
 
         <vehicle depart="0" departPos="0" arrivalPos="max" departSpeed="0" id="veh001" route="route001" type="T"/>
         <vehicle depart="0" departPos="0" arrivalPos="max" departSpeed="0" id="veh002" route="route002" type="T"/>
@@ -464,7 +464,7 @@
         <vehicle depart="0" departPos="0" arrivalPos="max" departSpeed="0" id="veh020" route="route020" type="T"/>
 
     <!-- P => Private car/Carro de passeio -->
-    <vType id="P" accel="3" decel="5" sigma="0.000000" length="2.5" minGap="2.5" maxSpeed="16.67" color="0,1,0"/>
+    <vType id="P" accel="3" decel="5" sigma="0.0" length="2.5" minGap="2.5" maxSpeed="16.67" color="0,1,0"/>
 
     <!-- http://sumo.dlr.de/wiki/Definition_of_Vehicles,_Vehicle_Types,_and_Routes -->
         <vehicle depart="0" departPos="0" arrivalPos="max" departSpeed="0" id="veh021" route="route021" type="P"/>
