@@ -9,9 +9,14 @@
 #include "veins/base/connectionManager/ChannelAccess.h"
 #include "veins/modules/mac/ieee80211p/WaveAppToMac1609_4Interface.h"
 
+#include <map>
+#include <iomanip> // std::setprecision
+#include <sstream>
 #include <fstream>
-#include <unordered_map>
+#include <iostream> // std::cout, std::fixed
+#include <string.h>
 #include <algorithm> // std::find
+#include <unordered_map>
 
 using namespace std;
 
