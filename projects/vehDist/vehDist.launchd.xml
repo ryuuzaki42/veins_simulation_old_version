@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <launch>
     <copy file="vehDist.net.xml" />
-    <copy file="vehDist.poly.xml" />
+    <!-- <copy file="vehDist.poly.xml" /> -->
+    <copy file="vehDist.poly_blank.xml" />
     <copy file="vehDist.rou.xml" />
     <copy file="gui-settings.cfg" />
     <copy file="vehDist.sumo.cfg" type="config" />
